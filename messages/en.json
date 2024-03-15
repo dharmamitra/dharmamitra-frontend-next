@@ -8,6 +8,11 @@
   "Team": {
     "title": "Team"
   },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "team": "Team"
+  },
   "localeSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} other {Unknown}}"

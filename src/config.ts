@@ -6,14 +6,8 @@ export const localePrefix = "as-needed"
 
 export const pathnames = {
   "/": "/",
-  "/about": {
-    en: "/about",
-    bo: "/ཨ་བྷུ།",
-  },
-  "/team": {
-    en: "/team",
-    bo: "/ཇ།",
-  },
+  "/about": "/about",
+  "/team": "/team",
 } satisfies Pathnames<typeof supportedLocales>
 
 export type AppPathnames = keyof typeof pathnames
