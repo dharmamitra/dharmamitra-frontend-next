@@ -1,0 +1,20 @@
+{
+  "Home": {
+    "title": "ཕེབས་པར་ལེགས་སོ།"
+  },
+  "About": {
+    "title": "ཨ་བྷུ།"
+  },
+  "Team": {
+    "title": "ཇ།"
+  },
+  "navigation": {
+    "home": "ཧོ༔",
+    "about": "ཨ་བྷུ།",
+    "team": "ཇ།"
+  },
+  "localeSwitcher": {
+    "label": "(Tib) Change language",
+    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} other {Unknown}}"
+  }
+}

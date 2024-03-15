@@ -1,9 +1,12 @@
+import { useTranslations } from "next-intl"
 import styles from "./page.module.css"
 
 export default function Home() {
+  const t = useTranslations("Home")
+
   return (
     <main className={styles.main}>
-      <h1>Namo tassa bhagavato arahato sammāsambuddhassa.</h1>
+      <h1>{t("title")}</h1>
     </main>
   )
 }

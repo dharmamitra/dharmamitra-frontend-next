@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { Navigation } from "@/components/Navigation"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin", "latin-ext"] })
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,12 +12,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode
+  params: { locale: string }
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang={locale}>
+      <body className={inter.className}>
+        <Navigation />
+        {children}
+      </body>
     </html>
   )
 }
