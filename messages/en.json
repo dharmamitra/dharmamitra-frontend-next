@@ -1,11 +1,15 @@
 {
-  "home": {
+  "Home": {
     "title": "Welcome!"
   },
-  "about": {
+  "About": {
     "title": "About"
   },
-  "team": {
+  "Team": {
     "title": "Team"
+  },
+  "localeSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} other {Unknown}}"
   }
 }
