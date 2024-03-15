@@ -8,4 +8,11 @@ services:
     container_name: "dmnext"
     restart: always
     ports:
-    - "3000:3000"
+    - "3333:3000"
+
+#     networks:
+#       - buddhanexus_default
+
+# networks:
+#   buddhanexus_default:
+#     external: true
