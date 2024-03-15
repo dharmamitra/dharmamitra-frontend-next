@@ -10,9 +10,9 @@ services:
     ports:
     - "3333:3000"
 
-#     networks:
-#       - buddhanexus_default
-
-# networks:
-#   buddhanexus_default:
-#     external: true
+  nginx:
+    build:
+      context: ./nginx
+    container_name: "nginx"
+    ports:
+      - "80:80"
