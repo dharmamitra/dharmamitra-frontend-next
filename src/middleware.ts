@@ -1,6 +1,7 @@
-import createMiddleware from "next-intl/middleware"
-import { supportedLocales, defaultLocale, localePrefix } from "@/config"
 import { NextRequest } from "next/server"
+import createMiddleware from "next-intl/middleware"
+
+import { defaultLocale, localePrefix, supportedLocales } from "@/config"
 
 const handleI18nRouting = createMiddleware({
   locales: supportedLocales,

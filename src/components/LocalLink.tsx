@@ -1,7 +1,8 @@
 "use client"
 
-import { useSelectedLayoutSegment } from "next/navigation"
 import { ComponentProps } from "react"
+import { useSelectedLayoutSegment } from "next/navigation"
+
 import type { AppPathnames } from "@/config"
 import { Link } from "@/navigation"
 

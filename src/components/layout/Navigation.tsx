@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl"
-import { LocaleSelector } from "@/components/LocaleSelector"
-import LocalLink from "./LocalLink"
+
+import LocalLink from "@/components/LocalLink"
+
+import LocaleSelector from "./LocaleSelector"
 
 export default function Navigation() {
   const t = useTranslations("navigation")

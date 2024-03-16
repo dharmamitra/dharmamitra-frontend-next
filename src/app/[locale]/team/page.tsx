@@ -1,12 +1,20 @@
 import { useTranslations } from "next-intl"
-import styles from "../page.module.css"
+import Avatar from "@mui/material/Avatar"
+import { deepOrange, deepPurple } from "@mui/material/colors"
+import Stack from "@mui/material/Stack"
+
+import { PageShell } from "@/components/layout"
 
 export default function Home() {
   const t = useTranslations("Team")
 
   return (
-    <main className={styles.main}>
-      <h1>{t("title")}</h1>
-    </main>
+    <PageShell title={t("title")}>
+      <Stack direction="row" spacing={2}>
+        <Avatar>H</Avatar>
+        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+        <Avatar sx={{ bgcolor: deepPurple[500] }}>P</Avatar>
+      </Stack>
+    </PageShell>
   )
 }

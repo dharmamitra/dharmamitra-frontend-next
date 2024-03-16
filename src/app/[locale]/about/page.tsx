@@ -1,12 +1,39 @@
 import { useTranslations } from "next-intl"
-import styles from "../page.module.css"
+import { Typography } from "@mui/material"
 
-export default function Home() {
+import { PageShell } from "@/components/layout"
+
+export default function About() {
   const t = useTranslations("About")
 
   return (
-    <main className={styles.main}>
-      <h1>{t("title")}</h1>
-    </main>
+    <PageShell title={t("title")}>
+      <Typography component="blockquote">
+        He insulted me; he struck me;
+        <br />
+        He defeated me; he robbed me.
+        <br />
+        For those who dwell on such resentments,
+        <br />
+        Enmity never ceases.
+        <br />
+        <br />
+        He insulted me; he struck me;
+        <br />
+        He defeated me; he robbed me.
+        <br />
+        For those who do not dwell on such resentments,
+        <br />
+        Enmity subsides;
+        <br />
+        <br />
+        For enmities are never appeased by enmity.
+        <br />
+        They are appeased by peace.
+        <br />
+        This is an eternal law.
+        <br />
+      </Typography>
+    </PageShell>
   )
 }
