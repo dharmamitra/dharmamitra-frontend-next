@@ -18,6 +18,7 @@ This project uses:
 - [`next-intl`](https://next-intl-docs.vercel.app/docs) ([examples](https://github.com/amannn/next-intl/tree/main/examples)).
     - [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) local codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for `/messages/` files.
     - `/messages/` files use the convention of title-case keys for page content and camel-case keys for component content. 
+- [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js App routing integration](https://mui.com/material-ui/integrations/nextjs/)
 - [linting tools](https://medium.com/yavar/setting-up-a-eslint-prettier-husky-and-lint-staged-integration-with-typescript-in-next-js-13-14-68044dfae920#ec5e) (`eslint`, `prettier`, `simple-import-sort`, `husky`, and `lint-staged`)
     - [`husky`](https://typicode.github.io/husky/) uses v9 config
     - for code reliability `husky` runs a `pre-push` hook that tests if the project successfully builds
