@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { getRequestConfig } from "next-intl/server"
-import { supportedLocales } from "@/config"
 
+import { supportedLocales } from "@/config"
 
 export default getRequestConfig(async ({ locale }) => {
   const locales = Array.from(supportedLocales) as string[]
