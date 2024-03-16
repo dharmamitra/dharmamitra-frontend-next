@@ -20,6 +20,8 @@ This project uses:
     - `/messages/` files use the convention of title-case keys for page content and camel-case keys for component content. 
 - [linting tools](https://medium.com/yavar/setting-up-a-eslint-prettier-husky-and-lint-staged-integration-with-typescript-in-next-js-13-14-68044dfae920#ec5e) (`eslint`, `prettier`, `simple-import-sort`, `husky`, and `lint-staged`)
     - [`husky`](https://typicode.github.io/husky/) uses v9 config
+    - for code reliability `husky` runs a `pre-push` hook that tests if the project successfully builds
+    - all git hooks can be skipped by adding a `-n/--no-verify` option.
 
 ## Next.js
 

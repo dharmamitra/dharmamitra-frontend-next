@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Allows us to read user input below, assigns stdin to keyboard
+# https://stackoverflow.com/a/10015707/7794529
+exec < /dev/tty
+
+run_build() {
+  echo "Running build step..."
+  yarn build
+  
+  if [ $? -ne 0 ]; then
+    echo "Build step failed. Push aborted."
+    exit 1
+  fi
+}
+
+while true; do 
+  read -p "Is this branch PR-ready? [y/N] " answer
+
+  if [ "$answer" = "" ]; then
+    answer='N'
+  fi
+
+  case $answer in
+    [yY]) run_build 
+          break ;;
+    [nN]) echo "Pushing without build check."  
+          break ;;
+    *) echo "Please answer y (yes), or n (no).";;
+  esac
+done
+
+# close STDIN again
+exec <&-
