@@ -12,7 +12,7 @@ const manrope = Manrope({
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#007bff",
+      main: "#007baa",
     },
     secondary: {
       main: "#ffc107",
@@ -22,6 +22,9 @@ const theme = createTheme({
     fontFamily: manrope.style.fontFamily,
     fontSize: 16, // Sets the base font size to 16px
     htmlFontSize: 14, // Adjusts the root HTML font size for rem calculations
+  },
+  components: {
+    MuiButton: {},
   },
 })
 

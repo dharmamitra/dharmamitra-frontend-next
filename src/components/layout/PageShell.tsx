@@ -15,7 +15,8 @@ export default function PageShell({ children, title, maxWidth = "md" }: Props) {
   return (
     <>
       <Navigation />
-      <Container component="main" maxWidth={maxWidth}>
+      {/* mt for absolute nav offset */}
+      <Container component="main" maxWidth={maxWidth} sx={{ mt: 12 }}>
         <Typography variant="h1">{title}</Typography>
         {children}
       </Container>
