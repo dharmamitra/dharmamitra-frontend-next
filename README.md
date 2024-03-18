@@ -24,7 +24,7 @@ This project uses:
     - for code reliability `husky` runs a `pre-push` hook that tests if the project successfully builds
     - all git hooks can be skipped by adding a `-n/--no-verify` option.
 
-## Next.js
+### Next.js
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -32,3 +32,37 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Containerization
+
+### Simple setting
+
+```sh
+docker build . --tag dmnext  --no-cache
+docker run --detach --rm --publish 3333:3000 --name dmnext dmnext
+```
+
+`3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN).
+
+The project will be available at `http://localhost:3333/dmnext`. To shut it down gracefully run:
+
+```sh
+docker stop dmnext
+```
+
+### Compose setting
+
+```
+docker compose build --no-cache && docker compose up --force-recreate -d
+```
+
+NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.
+The app is again available under `localhost:3333` e.g. `http://localhost:3333/dmnext/bo/about`.
+
+The server (published locally on port 80) functions as a proxy so the same page should be reachable over `http://localhost/dmnext/bo/about`
+
+If you want to see the NGINX logs you can use (press Ctrl-C to exit):
+
+```
+docker logs nginx -f
+```
