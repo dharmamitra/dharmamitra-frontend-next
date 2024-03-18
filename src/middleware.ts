@@ -23,6 +23,7 @@ export default async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     // Skip all paths that should not be internationalized (inc ones containing a dot, e.g. `favicon.ico`).
+    "/",
     "/((?!api|_next|.*\\..*).*)",
   ],
 }
