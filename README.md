@@ -19,7 +19,7 @@ This project uses:
     - [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) local codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for `/messages/` files.
     - `/messages/` files use the convention of title-case keys for page content and camel-case keys for component content. 
 
-## Next.js
+### Next.js
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -28,21 +28,24 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-# Containerization
+## Containerization
 
-## Simple setting
+### Simple setting
 
-```
+```sh
 docker build . --tag dmnext  --no-cache
 docker run --detach --rm --publish 3333:3000 --name dmnext dmnext
+```
+
+`3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN).
+
+The project will be available at `http://localhost:3333/dmnext`. To shut it down gracefully run:
+
+```sh
 docker stop dmnext
 ```
 
-3000 seems to be the default port for many apps based on Node.js 
-and here we publish it on local port 3333 
-so that the probabiloty is less for it to compete with other locally deployed apps (e.g. BN)
-
-## Compose setting
+### Compose setting
 
 ```
 docker compose build --no-cache && docker compose up --force-recreate -d
@@ -50,6 +53,7 @@ docker compose build --no-cache && docker compose up --force-recreate -d
 
 NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.
 The app is again available under `localhost:3333` e.g. `http://localhost:3333/dmnext/bo/about`.
+
 The server (published locally on port 80) functions as a proxy so the same page should be reachable over `http://localhost/dmnext/bo/about`
 
 If you want to see the NGINX logs you can use (press Ctrl-C to exit):
