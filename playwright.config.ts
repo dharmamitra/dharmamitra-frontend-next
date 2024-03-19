@@ -69,9 +69,12 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  webServer: process.env.CI
+    ? {
+        command: "yarn start",
+        port: 3000,
+        timeout: 2 * 60 * 1000,
+        reuseExistingServer: !process.env.CI,
+      }
+    : undefined,
 })

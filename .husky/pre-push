@@ -1,47 +1,47 @@
 #!/bin/bash
 
-# Allows us to read user input below, assigns stdin to keyboard
-# https://stackoverflow.com/a/10015707/7794529
-exec </dev/tty
+# # Allows us to read user input below, assigns stdin to keyboard
+# # https://stackoverflow.com/a/10015707/7794529
+# exec </dev/tty
 
-# Formatting with ANSI escape codes
-bold=$(tput bold)
-normal=$(tput sgr0)
-blue=$(tput setaf 4)
-green=$(tput setaf 2)
-red=$(tput setaf 1)
+# # Formatting with ANSI escape codes
+# bold=$(tput bold)
+# normal=$(tput sgr0)
+# blue=$(tput setaf 4)
+# green=$(tput setaf 2)
+# red=$(tput setaf 1)
 
-run_build() {
-  echo "Running build step..."
-  yarn build
+# run_build() {
+#   echo "Running build step..."
+#   yarn build
 
-  if [ $? -eq 0 ]; then
-    echo "${green}${bold}Build step succeeded! Pushing!${normal}"
-  else
-    echo "${red}${bold}Build step failed. Push aborted.${normal}"
-    exit 1
-  fi
-}
+#   if [ $? -eq 0 ]; then
+#     echo "${green}${bold}Build step succeeded! Pushing!${normal}"
+#   else
+#     echo "${red}${bold}Build step failed. Push aborted.${normal}"
+#     exit 1
+#   fi
+# }
 
-while true; do
-  read -p "${blue}Is this branch PR-ready? [y/N] ${normal}" answer
+# while true; do
+#   read -p "${blue}Is this branch PR-ready? [y/N] ${normal}" answer
 
-  if [ "$answer" = "" ]; then
-    answer='N'
-  fi
+#   if [ "$answer" = "" ]; then
+#     answer='N'
+#   fi
 
-  case $answer in
-  [yY])
-    run_build
-    break
-    ;;
-  [nN])
-    echo "${blue}Pushing without build check. ${normal}"
-    break
-    ;;
-  *) echo "${blue}${bold}Please answer y (yes), or n (no).${normal}" ;;
-  esac
-done
+#   case $answer in
+#   [yY])
+#     run_build
+#     break
+#     ;;
+#   [nN])
+#     echo "${blue}Pushing without build check. ${normal}"
+#     break
+#     ;;
+#   *) echo "${blue}${bold}Please answer y (yes), or n (no).${normal}" ;;
+#   esac
+# done
 
-# close STDIN again
-exec <&-
+# # close STDIN again
+# exec <&-
