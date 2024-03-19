@@ -23,6 +23,7 @@ This project uses:
     - [`husky`](https://typicode.github.io/husky/) uses v9 config
     - for code reliability `husky` runs a `pre-push` hook that tests if the project successfully builds
     - all git hooks can be skipped by adding a `-n/--no-verify` option.
+- [`playwrite`](https://playwright.dev/docs/intro) and [`@axe-core/playwright`](https://www.npmjs.com/package/@axe-core/playwright)
 
 ### Next.js
 
@@ -66,3 +67,30 @@ If you want to see the NGINX logs you can use (press Ctrl-C to exit):
 ```
 docker logs nginx -f
 ```
+
+
+## Testing
+
+Playwright commands:
+
+```sh
+# Run the end-to-end tests.
+yarn playwright test
+
+# Starts the interactive UI mode.
+yarn playwright test --ui
+
+# Runs the tests only on Desktop Chrome.
+yarn playwright test --project=chromium
+ 
+# Runs the tests in a specific file.
+yarn playwright test example
+
+# Runs the tests in debug mode.
+yarn playwright test --debug
+
+# Auto generate tests with Codegen.
+yarn playwright codegen
+```    
+
+Visit https://playwright.dev/docs/intro for more information
