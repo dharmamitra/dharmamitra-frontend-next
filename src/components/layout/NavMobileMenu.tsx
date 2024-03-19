@@ -21,10 +21,15 @@ const drawerWidth = 240
 
 export default function NavMobileMenu({
   navItems,
+  messages,
   children,
 }: {
   navItems: ReturnType<typeof useNavItems>
   children: React.ReactNode
+  messages: {
+    ariaButton: string
+    ariaMenu: string
+  }
 }) {
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
@@ -56,12 +61,12 @@ export default function NavMobileMenu({
   )
 
   return (
-    <>
-      <Box sx={{ display: { sm: "none" } }}>
+    <Box sx={{ display: { sm: "none" } }}>
+      <Box>
         {children}
         <IconButton
           color="inherit"
-          aria-label="open drawer"
+          aria-label={messages.ariaButton}
           edge="start"
           sx={{ ml: 1 }}
           onClick={handleDrawerToggle}
@@ -69,13 +74,14 @@ export default function NavMobileMenu({
           <MenuIcon />
         </IconButton>
       </Box>
-      <nav>
+      <nav aria-label={messages.ariaMenu}>
         <Drawer
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -88,6 +94,6 @@ export default function NavMobileMenu({
           {drawer}
         </Drawer>
       </nav>
-    </>
+    </Box>
   )
 }

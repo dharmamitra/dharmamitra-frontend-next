@@ -11,7 +11,9 @@
   "navigation": {
     "home": "Home",
     "about": "About",
-    "team": "Team"
+    "team": "Team",
+    "aria-mobile-button": "open navigation menu",
+    "aria-mobile-menu": "navigation menu"
   },
   "localeSwitcher": {
     "label": "Change language",

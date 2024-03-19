@@ -11,7 +11,9 @@
   "navigation": {
     "home": "ཧོ༔",
     "about": "ཨ་བྷུ།",
-    "team": "ཇ།"
+    "team": "ཇ།",
+    "aria-mobile-button": "open navigation menu",
+    "aria-mobile-menu": "navigation menu"
   },
   "localeSwitcher": {
     "label": "(Tib) Change language",

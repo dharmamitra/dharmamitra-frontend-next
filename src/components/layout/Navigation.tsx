@@ -1,5 +1,6 @@
 import * as React from "react"
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material"
+import { useTranslations } from "next-intl"
+import { AppBar, Box, Toolbar, Typography } from "@mui/material"
 
 import { useNavItems } from "@/app/hooks/useNavItems"
 import LocalLink from "@/components/LocalLink"
@@ -9,7 +10,7 @@ import NavMobileMenu from "./NavMobileMenu"
 
 export default function Navigation() {
   const navItems = useNavItems()
-
+  const t = useTranslations("navigation")
   return (
     <AppBar component="nav" color="transparent" elevation={1} sx={{ py: 1 }}>
       <Toolbar>
@@ -19,7 +20,13 @@ export default function Navigation() {
           </LocalLink>
         </Typography>
 
-        <NavMobileMenu navItems={navItems}>
+        <NavMobileMenu
+          navItems={navItems}
+          messages={{
+            ariaButton: t("aria-mobile-button"),
+            ariaMenu: t("aria-mobile-menu"),
+          }}
+        >
           <LocaleSelector />
         </NavMobileMenu>
 
@@ -34,11 +41,9 @@ export default function Navigation() {
             {navItems.map((item) => {
               const { id, label, href } = item
               return (
-                <Button key={id}>
-                  <LocalLink href={href} sx={{ textDecoration: "none" }}>
-                    {label}
-                  </LocalLink>
-                </Button>
+                <LocalLink key={id} href={href} variant="text-button">
+                  {label}
+                </LocalLink>
               )
             })}
           </Box>
