@@ -12,7 +12,6 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 
 branch_name=$(git rev-parse --abbrev-ref HEAD)
-regex="^[0-9]+/[a-z0-9-]+$"
 
 run_pr_prep() {
     echo "Updating Playwright snapshots..."
@@ -28,13 +27,8 @@ run_pr_prep() {
     fi
 }
 
-if ! [[ $branch_name =~ $regex ]]; then
-    read -p "${blue}If there is an issue associated with this branch, please enter the issue number (press enter to skip): ${normal}" issue_number
-
-    if [[ $issue_number =~ ^[0-9]+$ ]]; then
-        new_branch_name="$issue_number/$branch_name"
-        git branch -m $new_branch_name
-    fi
+if ! echo "$branch_name" | grep -qE "^[0-9]+"; then
+    read -p "${blue}This branch doesn't seem to be associated with a GitHub issue number. Press enter to continue anyway, or Ctrl-C to exit. ${normal}" issue
 fi
 
 while true; do
