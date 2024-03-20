@@ -2,46 +2,59 @@
 
 # # Allows us to read user input below, assigns stdin to keyboard
 # # https://stackoverflow.com/a/10015707/7794529
-# exec </dev/tty
+exec </dev/tty
 
-# # Formatting with ANSI escape codes
-# bold=$(tput bold)
-# normal=$(tput sgr0)
-# blue=$(tput setaf 4)
-# green=$(tput setaf 2)
-# red=$(tput setaf 1)
+# Formatting with ANSI escape codes
+bold=$(tput bold)
+normal=$(tput sgr0)
+blue=$(tput setaf 4)
+green=$(tput setaf 2)
+red=$(tput setaf 1)
 
-# run_build() {
-#   echo "Running build step..."
-#   yarn build
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+regex="^[0-9]+/[a-z0-9-]+$"
 
-#   if [ $? -eq 0 ]; then
-#     echo "${green}${bold}Build step succeeded! Pushing!${normal}"
-#   else
-#     echo "${red}${bold}Build step failed. Push aborted.${normal}"
-#     exit 1
-#   fi
-# }
+run_pr_prep() {
+    echo "Updating Playwright snapshots..."
+    yarn playwright test tests/static-pages.spec.ts --update-snapshots
+    git add .
+    git commit -m "Update Playwright snapshots"
 
-# while true; do
-#   read -p "${blue}Is this branch PR-ready? [y/N] ${normal}" answer
+    if [ $? -eq 0 ]; then
+        echo "${green}${bold}Snapshots updated! Pushing...${normal}"
+    else
+        echo "${red}${bold}Houston, we have a problem. Push aborted.${normal}"
+        exit 1
+    fi
+}
 
-#   if [ "$answer" = "" ]; then
-#     answer='N'
-#   fi
+if ! [[ $branch_name =~ $regex ]]; then
+    read -p "${blue}If there is an issue associated with this branch, please enter the issue number (press enter to skip): ${normal}" issue_number
 
-#   case $answer in
-#   [yY])
-#     run_build
-#     break
-#     ;;
-#   [nN])
-#     echo "${blue}Pushing without build check. ${normal}"
-#     break
-#     ;;
-#   *) echo "${blue}${bold}Please answer y (yes), or n (no).${normal}" ;;
-#   esac
-# done
+    if [[ $issue_number =~ ^[0-9]+$ ]]; then
+        new_branch_name="$issue_number/$branch_name"
+        git branch -m $new_branch_name
+    fi
+fi
 
-# # close STDIN again
-# exec <&-
+while true; do
+    read -p "${blue}If this branch PR-ready, do new Playwright tests images need to be generated? [y/N] ${normal}" answer
+
+    if [ "$answer" = "" ]; then
+        answer='N'
+    fi
+
+    case $answer in
+    [yY])
+        run_pr_prep
+        break
+        ;;
+    [nN])
+        break
+        ;;
+    *) echo "${blue}${bold}Please answer y (yes), or n (no).${normal}" ;;
+    esac
+done
+
+# close STDIN again
+exec <&-
