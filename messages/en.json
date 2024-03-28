@@ -1,6 +1,15 @@
 {
   "Home": {
-    "title": "Welcome!"
+    "title": "Welcome to Dharmamitra",
+    "search": {
+      "heading": "Search 2500 years of Buddhism",
+      "tabLabel": "Search",
+      "placeholder": "Search for something"
+    },
+    "translate": {
+      "tabLabel": "Translate",
+      "placeholder": "Translate something"
+    }
   },
   "About": {
     "title": "About"

@@ -16,7 +16,7 @@ export default function Footer() {
     >
       <Container>
         <Typography variant="body2" color="text.secondary" align="center">
-          Converse with over 2500 years of Buddhism.
+          DharmaMitra
         </Typography>
       </Container>
     </Box>
