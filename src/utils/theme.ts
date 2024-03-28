@@ -1,9 +1,9 @@
 "use client"
 
-import { Manrope } from "next/font/google"
+import { Noto_Sans } from "next/font/google"
 import { createTheme } from "@mui/material/styles"
 
-const manrope = Manrope({
+const notoSans = Noto_Sans({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin", "latin-ext"],
   display: "swap",
@@ -19,7 +19,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: manrope.style.fontFamily,
+    fontFamily: notoSans.style.fontFamily,
     fontSize: 16, // Sets the base font size to 16px
     htmlFontSize: 14, // Adjusts the root HTML font size for rem calculations
   },
