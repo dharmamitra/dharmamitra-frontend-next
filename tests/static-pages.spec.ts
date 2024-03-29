@@ -3,8 +3,26 @@ import { expect, test } from "@playwright/test"
 
 import { basePath, defaultLocale, pathnames, supportedLocales } from "@/config"
 
+import boMessages from "../messages/bo.json"
+import enMessages from "../messages/en.json"
+
+const messages = {
+  en: enMessages,
+  bo: boMessages,
+} satisfies Record<(typeof supportedLocales)[number], typeof enMessages>
+
+const messagePaths = {
+  "/": "Home",
+  "/about": "About",
+  "/team": "Team",
+} as const
+
+type PathnameKey = keyof typeof messagePaths
+
 Object.keys(pathnames).forEach((pathname) => {
   supportedLocales.forEach((locale) => {
+    const key = pathname as PathnameKey
+
     const route = [basePath, locale === defaultLocale ? "" : locale, pathname]
       .filter(Boolean)
       .join("/")
@@ -17,13 +35,10 @@ Object.keys(pathnames).forEach((pathname) => {
       })
 
       test("renders page content", async ({ page }) => {
-        await expect(page).toHaveScreenshot(
-          `${route.slice(1).replace(/\//g, "-")}.png`,
-          {
-            fullPage: true,
-            maxDiffPixelRatio: 0.8,
-          },
-        )
+        const pageMessages = messages[locale][messagePaths[key]]
+        // TODO: title
+        // await expect(page).toHaveTitle(pageMessages.title)
+        await expect(page.locator("h1")).toContainText(pageMessages.h1)
       })
       test(`has no auto-detected accessibility violations`, async ({
         page,

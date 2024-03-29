@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test"
 
 import { basePath } from "@/config"
 
-test.describe("search", () => {
+test.describe("search & translate", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(basePath)
   })
