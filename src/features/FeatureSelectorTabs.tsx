@@ -69,7 +69,7 @@ export default function FeatureSelectorTabs({
       router.push(
         pathname +
           "?" +
-          createQueryString("view", newValue === 0 ? "search" : "translation"),
+          createQueryString("view", newValue === 0 ? "search" : "translate"),
       )
     },
     [router, pathname, createQueryString],

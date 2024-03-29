@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic"
 
 type Props = {
   searchParams?: {
-    view?: "search" | "translation"
+    view?: "search" | "translate"
     page?: string
   }
 }
@@ -24,7 +24,7 @@ type Props = {
 export default function Home({ searchParams }: Props) {
   const t = useTranslations("Home")
 
-  const tabIndex = searchParams?.view === "translation" ? 1 : 0
+  const tabIndex = searchParams?.view === "translate" ? 1 : 0
 
   return (
     <PageShell title={t("title")} visuallyHiddenTitle>

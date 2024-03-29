@@ -34,7 +34,7 @@ export default function TranslationBox({
         }}
         placeholder={placeholder}
         inputProps={{
-          "aria-label": "translation",
+          "aria-label": "translate",
         }}
         rows={3}
         multiline
