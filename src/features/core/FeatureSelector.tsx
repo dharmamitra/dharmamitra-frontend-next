@@ -23,7 +23,7 @@ export function FeatureTabPanel(props: TabPanelProps) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`sfeature-selector-tabpanel-${index}`}
+      id={`feature-selector-tabpanel-${index}`}
       aria-labelledby={`feature-selector-tab-${index}`}
       {...other}
     >
