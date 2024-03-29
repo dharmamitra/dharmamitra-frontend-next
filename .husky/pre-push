@@ -13,42 +13,11 @@ red=$(tput setaf 1)
 
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 
-run_pr_prep() {
-    echo "Updating Playwright snapshots..."
-    yarn playwright test tests/static-pages.spec.ts --update-snapshots
-    git add .
-    git commit -m "Update Playwright snapshots"
-
-    if [ $? -eq 0 ]; then
-        echo "${green}${bold}Snapshots updated! Pushing...${normal}"
-    else
-        echo "${red}${bold}Houston, we have a problem. Push aborted.${normal}"
-        exit 1
-    fi
-}
-
 if ! echo "$branch_name" | grep -qE "^[0-9]+"; then
     read -p "${blue}This branch doesn't seem to be associated with a GitHub issue number. Press enter to continue anyway, or Ctrl-C to exit. ${normal}" issue
 fi
 
-while true; do
-    read -p "${blue}If this branch PR-ready, do new Playwright tests images need to be generated? [y/N] ${normal}" answer
-
-    if [ "$answer" = "" ]; then
-        answer='N'
-    fi
-
-    case $answer in
-    [yY])
-        run_pr_prep
-        break
-        ;;
-    [nN])
-        break
-        ;;
-    *) echo "${blue}${bold}Please answer y (yes), or n (no).${normal}" ;;
-    esac
-done
+echo "${green}${bold}Pushing...${normal}"
 
 # close STDIN again
 exec <&-

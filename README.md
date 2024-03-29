@@ -99,8 +99,8 @@ yarn playwright test --debug
 yarn playwright codegen
 ```    
 
-Visual comparison is used to test pages render:
-- If there are no base comparison images, a test run will fail once, but thereafter succeed (the base images are generated during the run) 
-- If there is a change to the UI, existing base comparison images will need to be updated with `yarn playwright test --update-snapshots`.
+If you want to use visual comparison to test pages render:
+- when there are no base comparison images, a test run will fail once, but thereafter succeed (the base images are generated during the run) 
+- when there is a change to the UI, existing base comparison images will need to be updated with `yarn playwright test --update-snapshots`.
 
 Visit https://playwright.dev/docs/intro for more information
