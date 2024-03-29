@@ -39,7 +39,7 @@ function a11yProps(index: number) {
   }
 }
 
-export default function FeatureSelector({
+export default function FeatureSelectorTabs({
   children,
   tabIndex,
   tabLabels,
@@ -69,7 +69,7 @@ export default function FeatureSelector({
       router.push(
         pathname +
           "?" +
-          createQueryString("view", newValue === 0 ? "search" : "translate"),
+          createQueryString("view", newValue === 0 ? "search" : "translation"),
       )
     },
     [router, pathname, createQueryString],

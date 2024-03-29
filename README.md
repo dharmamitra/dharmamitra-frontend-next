@@ -16,14 +16,14 @@ This project uses:
 
 - [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 - [`next-intl`](https://next-intl-docs.vercel.app/docs) ([examples](https://github.com/amannn/next-intl/tree/main/examples)).
-    - [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) local codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for `/messages/` files.
-    - `/messages/` files use the convention of title-case keys for page content and camel-case keys for component content. 
-- [`@tanstack/react-query`](https://tanstack.com/query/latest/docs/framework/react/overview) 
+  - [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) local codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for `/messages/` files.
+  - `/messages/` files use the convention of title-case keys for page content and camel-case keys for component content.
+- [`@tanstack/react-query`](https://tanstack.com/query/latest/docs/framework/react/overview)
 - [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js App routing integration](https://mui.com/material-ui/integrations/nextjs/)
 - [linting tools](https://medium.com/yavar/setting-up-a-eslint-prettier-husky-and-lint-staged-integration-with-typescript-in-next-js-13-14-68044dfae920#ec5e) (`eslint`, `prettier`, `simple-import-sort`, `husky`, and `lint-staged`)
-    - [`husky`](https://typicode.github.io/husky/) uses v9 config
-    - for code reliability `husky` runs a `pre-push` hook that tests if the project successfully builds
-    - all git hooks can be skipped by adding a `-n/--no-verify` option.
+  - [`husky`](https://typicode.github.io/husky/) uses v9 config
+  - for code reliability `husky` runs a `pre-push` hook that tests if the project successfully builds
+  - all git hooks can be skipped by adding a `-n/--no-verify` option.
 - [`playwrite`](https://playwright.dev/docs/intro) and [`@axe-core/playwright`](https://www.npmjs.com/package/@axe-core/playwright)
 
 ### Next.js
@@ -72,13 +72,23 @@ docker logs nginx -f
 ## i18n
 
 ### internal navigation
+
 - most internal navigation can be handled with `src/components/LocalLink.tsx`.
-- where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.  
+- where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.
 
+## DharmaMitra API client & typing
 
-# Querying the API
+[Dharmamitra API docs](https://dharmamitra.org/api/docs#/)
 
-- as we need to do client-side fetching we use `@tanstack/react-query`
+The project uses `[openapi-typescript](https://openapi-ts.pages.dev/introduction)` and `[openapi-fetch](https://openapi-ts.pages.dev/openapi-fetch/)` to interface with the API. In addition, as we need to do client-side fetching, we also use `@tanstack/react-query`.
+
+DM API request and response model types are generated from the project's [OpenAPI schema](https://dharmamitra.org/api/openapi.json) by running:
+
+```
+yarn api:codegen
+```
+
+`openapi-fetch`'s api client (instantiated in `utils/api/client.ts`) can then be used to fetch typed data ([see docs](https://openapi-ts.pages.dev/openapi-fetch/)) from the API.
 
 ## Testing
 
@@ -93,7 +103,7 @@ yarn playwright test --ui
 
 # Runs the tests only on Desktop Chrome.
 yarn playwright test --project=chromium
- 
+
 # Runs the tests in a specific file.
 yarn playwright test example
 
@@ -102,10 +112,11 @@ yarn playwright test --debug
 
 # Auto generate tests with Codegen.
 yarn playwright codegen
-```    
+```
 
 If you want to use visual comparison to test pages render:
-- when there are no base comparison images, a test run will fail once, but thereafter succeed (the base images are generated during the run) 
+
+- when there are no base comparison images, a test run will fail once, but thereafter succeed (the base images are generated during the run)
 - when there is a change to the UI, existing base comparison images will need to be updated with `yarn playwright test --update-snapshots`.
 
 Visit https://playwright.dev/docs/intro for more information

@@ -2,14 +2,14 @@ import { expect, test } from "@playwright/test"
 
 import { basePath } from "@/config"
 
-test.describe("search & translate", () => {
+test.describe("search & translation", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(basePath)
   })
 
-  test("search and translate navigate to correct tabs", async ({ page }) => {
-    await page.getByRole("tab", { name: /translate/i }).click()
-    await expect(page).toHaveURL(/.*view=translate/)
+  test("search and translation navigate to correct tabs", async ({ page }) => {
+    await page.getByRole("tab", { name: /translation/i }).click()
+    await expect(page).toHaveURL(/.*view=translation/)
     await expect(page.getByText(/Translate something/i)).toBeVisible()
     await page.getByRole("tab", { name: /search/i }).click()
     await expect(page).toHaveURL(/.*view=search/)

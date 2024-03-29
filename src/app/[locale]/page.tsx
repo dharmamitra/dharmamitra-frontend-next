@@ -3,11 +3,11 @@ import { useTranslations } from "next-intl"
 import { Typography } from "@mui/material"
 
 import { PageShell } from "@/components/layout"
-import FeatureSelector, {
+import FeatureSelectorTabs, {
   FeatureTabPanel,
-} from "@/features/core/FeatureSelector"
-import SearchBox from "@/features/core/SearchBox"
-import TranslateBox from "@/features/translate/TranslateBox"
+} from "@/features/FeatureSelectorTabs"
+import SearchBox from "@/features/search/SearchBox"
+import TranslationBox from "@/features/translation/TranslationBox"
 
 // As we're using query parameters that are only known
 // at request time, we need to make sure we're using
@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic"
 
 type Props = {
   searchParams?: {
-    view?: "search" | "translate"
+    view?: "search" | "translation"
     page?: string
   }
 }
@@ -24,13 +24,13 @@ type Props = {
 export default function Home({ searchParams }: Props) {
   const t = useTranslations("Home")
 
-  const tabIndex = searchParams?.view === "translate" ? 1 : 0
+  const tabIndex = searchParams?.view === "translation" ? 1 : 0
 
   return (
     <PageShell title={t("title")} visuallyHiddenTitle>
-      <FeatureSelector
+      <FeatureSelectorTabs
         tabIndex={tabIndex}
-        tabLabels={{ 0: t("search.tabLabel"), 1: t("translate.tabLabel") }}
+        tabLabels={{ 0: t("search.tabLabel"), 1: t("translation.tabLabel") }}
       >
         <FeatureTabPanel value={tabIndex} index={0}>
           <Typography
@@ -50,11 +50,11 @@ export default function Home({ searchParams }: Props) {
             align="center"
             sx={{ mt: 2, mb: 5 }}
           >
-            {t("translate.placeholder")}
+            {t("translation.heading")}
           </Typography>
-          <TranslateBox placeholder={t("translate.placeholder")} />
+          <TranslationBox placeholder={t("translation.placeholder")} />
         </FeatureTabPanel>
-      </FeatureSelector>
+      </FeatureSelectorTabs>
     </PageShell>
   )
 }

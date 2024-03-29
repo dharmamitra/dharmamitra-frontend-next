@@ -7,7 +7,8 @@
       "tabLabel": "Search",
       "placeholder": "Search for something"
     },
-    "translate": {
+    "translation": {
+      "heading": "Dharma to Dharma",
       "tabLabel": "Translate",
       "placeholder": "Translate something"
     }
