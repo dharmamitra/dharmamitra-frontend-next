@@ -7,6 +7,7 @@ import FeatureSelector, {
   FeatureTabPanel,
 } from "@/features/core/FeatureSelector"
 import SearchBox from "@/features/core/SearchBox"
+import TranslateBox from "@/features/translate/TranslateBox"
 
 // As we're using query parameters that are only known
 // at request time, we need to make sure we're using
@@ -51,6 +52,7 @@ export default function Home({ searchParams }: Props) {
           >
             {t("translate.placeholder")}
           </Typography>
+          <TranslateBox placeholder={t("translate.placeholder")} />
         </FeatureTabPanel>
       </FeatureSelector>
     </PageShell>

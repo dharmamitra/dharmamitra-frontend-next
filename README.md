@@ -18,6 +18,7 @@ This project uses:
 - [`next-intl`](https://next-intl-docs.vercel.app/docs) ([examples](https://github.com/amannn/next-intl/tree/main/examples)).
     - [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) local codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for `/messages/` files.
     - `/messages/` files use the convention of title-case keys for page content and camel-case keys for component content. 
+- [`@tanstack/react-query`](https://tanstack.com/query/latest/docs/framework/react/overview) 
 - [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js App routing integration](https://mui.com/material-ui/integrations/nextjs/)
 - [linting tools](https://medium.com/yavar/setting-up-a-eslint-prettier-husky-and-lint-staged-integration-with-typescript-in-next-js-13-14-68044dfae920#ec5e) (`eslint`, `prettier`, `simple-import-sort`, `husky`, and `lint-staged`)
     - [`husky`](https://typicode.github.io/husky/) uses v9 config
@@ -68,12 +69,16 @@ If you want to see the NGINX logs you can use (press Ctrl-C to exit):
 docker logs nginx -f
 ```
 
-
 ## i18n
 
 ### internal navigation
 - most internal navigation can be handled with `src/components/LocalLink.tsx`.
 - where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.  
+
+
+# Querying the API
+
+- as we need to do client-side fetching we use `@tanstack/react-query`
 
 ## Testing
 

@@ -12,7 +12,11 @@ export default function Navigation() {
   const navItems = useNavItems()
   const t = useTranslations("navigation")
   return (
-    <AppBar component="nav" color="transparent" elevation={1} sx={{ py: 1 }}>
+    <AppBar
+      component="nav"
+      elevation={1}
+      sx={{ py: 1, backgroundColor: "white" }}
+    >
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <LocalLink href="/" sx={{ textDecoration: "none" }}>
