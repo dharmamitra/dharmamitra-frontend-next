@@ -39,7 +39,7 @@ function a11yProps(index: number) {
   }
 }
 
-export default function FeatureSelector({
+export default function FeatureSelectorTabs({
   children,
   tabIndex,
   tabLabels,

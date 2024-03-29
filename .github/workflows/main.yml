@@ -15,6 +15,9 @@ jobs:
       - name: Install project dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Typechecking
+        run: yarn test:ts
+
       - name: Lint
         run: yarn lint
 
@@ -24,7 +27,7 @@ jobs:
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
 
-      - name: Run Playwright tests
+      - name: Playwright tests
         run: yarn playwright test
         env:
           CI: 'true'
