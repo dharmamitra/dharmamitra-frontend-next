@@ -1,6 +1,15 @@
 {
   "Home": {
-    "title": "ཕེབས་པར་ལེགས་སོ།"
+    "title": "(tib)Welcome to Dharmamitra",
+    "search": {
+      "heading": "(tib) Search 2500 years of Buddhism",
+      "tabLabel": "(Tib) Search",
+      "placeholder": "(Tib) Search for something"
+    },
+    "translate": {
+      "tabLabel": "(Tib) Translate",
+      "placeholder": "(Tib) Translate something"
+    }
   },
   "About": {
     "title": "ཨ་བྷུ།"

@@ -69,6 +69,12 @@ docker logs nginx -f
 ```
 
 
+## i18n
+
+### internal navigation
+- most internal navigation can be handled with `src/components/LocalLink.tsx`.
+- where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.  
+
 ## Testing
 
 Playwright commands:

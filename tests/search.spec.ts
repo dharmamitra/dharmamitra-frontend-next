@@ -2,15 +2,27 @@ import { expect, test } from "@playwright/test"
 
 import { basePath } from "@/config"
 
-test.describe("main app functionality", () => {
+test.describe("search", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(basePath)
   })
 
-  test("search and translate tab buttons are visible", async ({ page }) => {
-    // TODO: this is a dummy test
-    await expect(page.locator("h1")).toContainText(/Welcome/)
+  test("search and translate navigate to correct tabs", async ({ page }) => {
+    await page.getByRole("tab", { name: /translate/i }).click()
+    await expect(page).toHaveURL(/.*view=translate/)
+    await expect(page.getByText(/Translate something/i)).toBeVisible()
+    await page.getByRole("tab", { name: /search/i }).click()
+    await expect(page).toHaveURL(/.*view=search/)
+    await expect(page.getByPlaceholder("Search for something")).toBeVisible()
   })
+
+  // search box
+  // options toggle button & popover
+  // placeholder options
+  // search button
+  // example search chips
+  // sticky tabs & search box on scroll
+  // results placeholder
 
   // test("advanced search mode option should be visible", async ({ page }) => {
   // "bilingual search spec:" https://docs.google.com/document/d/1ZKQpER4vS4XjSU-fMHxCCi5AXFtR8lpbdeTExpLpDrs/edit

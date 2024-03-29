@@ -5,7 +5,6 @@ import { useSelectedLayoutSegment } from "next/navigation"
 import { Link as MuiLink, SxProps, Theme } from "@mui/material"
 import { alpha, styled } from "@mui/material/styles"
 
-import type { AppPathnames } from "@/config"
 import { Link as NavigationLink } from "@/navigation"
 
 const LocalLinkButton = styled(NavigationLink)(({ theme }) => ({
@@ -33,17 +32,17 @@ const LocalLinkButton = styled(NavigationLink)(({ theme }) => ({
 
 const NavigationLinkForwardRef = React.forwardRef<
   HTMLAnchorElement,
-  ComponentProps<typeof NavigationLink<AppPathnames>>
+  ComponentProps<typeof NavigationLink>
 >((props, ref) => <NavigationLink {...props} ref={ref} />)
 NavigationLinkForwardRef.displayName = "NavigationLinkForwardRef"
 
-export default function LocalLink<Pathname extends AppPathnames>({
+export default function LocalLink({
   href,
   children,
   sx,
   variant = "link",
   ...rest
-}: ComponentProps<typeof NavigationLink<Pathname>> & {
+}: ComponentProps<typeof NavigationLink> & {
   sx?: SxProps<Theme>
   // TODO: Add support for "button" and "outline-button"
   variant?: "link" | "button" | "outline-button" | "text-button"

@@ -20,8 +20,13 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: notoSans.style.fontFamily,
-    fontSize: 16, // Sets the base font size to 16px
-    htmlFontSize: 14, // Adjusts the root HTML font size for rem calculations
+    // Sets the base font size to 16px
+    fontSize: 16,
+    // Adjusts the root HTML font size for rem calculations
+    // htmlFontSize: 14,
+    h1: {
+      fontSize: "4.5rem",
+    },
   },
   components: {
     MuiButton: {},

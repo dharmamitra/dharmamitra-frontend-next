@@ -1,7 +1,7 @@
 "use client"
 
 import React, { ReactNode, useTransition } from "react"
-import { useParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import LanguageIcon from "@mui/icons-material/Language"
 import {
   FormControl,
@@ -27,7 +27,8 @@ export default function LocaleSelectionSwitcher({
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const pathname = usePathname()
-  const params = useParams()
+  const params = useSearchParams()
+  const searchParams = new URLSearchParams(params)
 
   const [value, setValue] = React.useState(defaultValue)
 
@@ -35,13 +36,9 @@ export default function LocaleSelectionSwitcher({
     const nextLocale = event.target.value
     setValue(nextLocale)
     startTransition(() => {
-      router.replace(
-        // @ts-expect-error -- TypeScript will validate that only known `params`
-        // are used in combination with a given `pathname`. Since the two will
-        // always match for the current route, we can skip runtime checks.
-        { pathname, params },
-        { locale: nextLocale },
-      )
+      router.replace(`${pathname}?${searchParams.toString()}`, {
+        locale: nextLocale,
+      })
     })
   }
 
