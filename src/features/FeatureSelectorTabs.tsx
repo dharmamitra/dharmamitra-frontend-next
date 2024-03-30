@@ -34,7 +34,9 @@ export function FeatureTabPanel(props: TabPanelProps) {
       style={{ height: "100%" }}
       {...other}
     >
-      {value === index && <Box sx={{ width: "100%", py: 3 }}>{children}</Box>}
+      {value === index && (
+        <Box sx={{ width: "100%", height: "100%", py: 3 }}>{children}</Box>
+      )}
     </div>
   )
 }
@@ -119,11 +121,15 @@ export default function FeatureSelectorTabs({
             component="h2"
             variant="h4"
             align="center"
+            className={scrollMarkerInView ? undefined : styles.hiddenHeading}
             sx={{ mt: 2, mb: 5 }}
           >
             {headings.search}
           </Typography>
-          <SearchBox placeholder={placeholders.search!} />
+          <SearchBox
+            className={scrollMarkerInView ? undefined : styles.stickyInput}
+            placeholder={placeholders.search!}
+          />
         </FeatureTabPanel>
 
         <FeatureTabPanel value={tabIndex} index={1}>
@@ -137,9 +143,10 @@ export default function FeatureSelectorTabs({
             {headings.translation}
           </Typography>
 
-          <div className={scrollMarkerInView ? undefined : styles.stickyInput}>
-            <TranslationBox placeholder={placeholders.translation!} />
-          </div>
+          <TranslationBox
+            className={scrollMarkerInView ? undefined : styles.stickyInput}
+            placeholder={placeholders.translation!}
+          />
 
           <Typography component="h3" variant="h5" sx={{ mt: 6 }}>
             Results:

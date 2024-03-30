@@ -11,8 +11,10 @@ import DM_API from "@/api"
 
 export default function TranslationBox({
   placeholder,
+  className,
 }: {
   placeholder: string
+  className?: string
 }) {
   const [isQueryEnabled, setIsQueryEnabled] = React.useState(false)
 
@@ -27,7 +29,7 @@ export default function TranslationBox({
   })
 
   return (
-    <Box>
+    <Box className={className}>
       <OutlinedInput
         sx={{
           width: "100%",
