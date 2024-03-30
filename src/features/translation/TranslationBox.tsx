@@ -27,11 +27,46 @@ export default function TranslationBox({
     model: "NO",
   }
 
+  // OPTION 1: AWAIT WHOLE RESPONSE
   const { data, isLoading, isError } = useQuery({
     queryKey: DM_API.translation.makeQueryKey(params),
     queryFn: () => DM_API.translation.call(params),
     enabled: isQueryEnabled,
   })
+
+  // OPTION 2: IMMEDIATE RESPONSE
+  // const [eventMsgs, setEventMsgs] = React.useState<string[]>([])
+
+  // React.useEffect(() => {
+  //   if (!isQueryEnabled) {
+  //     return
+  //   }
+
+  //   const fetchData = async () => {
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_API_URL}/translation/`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(params),
+  //       },
+  //     )
+
+  //     const reader = response.body?.getReader()
+  //     const decoder = new TextDecoder("utf-8")
+
+  //     while (true) {
+  //       const { value, done } = (await reader?.read()) ?? {}
+  //       if (done) break
+  //       setEventMsgs((prev) => [...prev, extractContent(decoder.decode(value))])
+  //     }
+  //   }
+
+  //   fetchData()
+  //   setIsQueryEnabled(false)
+  // }, [isQueryEnabled])
 
   return (
     <Box>
@@ -58,9 +93,16 @@ export default function TranslationBox({
         </Button>
       </Box>
       <Box sx={{ mt: 3 }}>
-        {isLoading && <Typography>Loading...</Typography>}
-        {isError && <Typography>Error</Typography>}
-        {JSON.stringify(data as string)}
+        {isLoading ? <Typography>Loading...</Typography> : null}
+        {isError ? <Typography>Error</Typography> : null}
+        {data ? (
+          <>
+            <Typography component="h3" variant="h5" sx={{ mt: 6 }}>
+              Results:
+            </Typography>
+            <Typography sx={{ mt: 2 }}>{data.map((part) => part)}</Typography>
+          </>
+        ) : null}
       </Box>
     </Box>
   )

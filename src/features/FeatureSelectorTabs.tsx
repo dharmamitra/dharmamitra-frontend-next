@@ -140,10 +140,6 @@ export default function FeatureSelectorTabs({
           <div className={scrollMarkerInView ? undefined : styles.stickyInput}>
             <TranslationBox placeholder={placeholders.translation!} />
           </div>
-
-          <Typography component="h3" variant="h5" sx={{ mt: 6 }}>
-            Results:
-          </Typography>
         </FeatureTabPanel>
       </Box>
     </Box>
