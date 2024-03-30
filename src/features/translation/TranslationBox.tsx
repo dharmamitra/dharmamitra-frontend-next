@@ -11,8 +11,10 @@ import { DM_API, type TranslationRequestProps } from "@/api"
 
 export default function TranslationBox({
   placeholder,
+  className,
 }: {
   placeholder: string
+  className?: string
 }) {
   const [isQueryEnabled, setIsQueryEnabled] = React.useState(false)
 
@@ -69,7 +71,7 @@ export default function TranslationBox({
   // }, [isQueryEnabled])
 
   return (
-    <Box>
+    <Box className={className}>
       <OutlinedInput
         sx={{
           width: "100%",

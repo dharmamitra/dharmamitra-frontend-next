@@ -9,7 +9,13 @@ import { useQuery } from "@tanstack/react-query"
 
 import { DM_API } from "@/api"
 
-export default function SearchBox({ placeholder }: { placeholder: string }) {
+export default function SearchBox({
+  placeholder,
+  className,
+}: {
+  placeholder: string
+  className?: string
+}) {
   const [isQueryEnabled, setIsQueryEnabled] = React.useState(false)
 
   const { data, isLoading, isError } = useQuery({
@@ -19,7 +25,7 @@ export default function SearchBox({ placeholder }: { placeholder: string }) {
   })
 
   return (
-    <Box>
+    <Box className={className}>
       <OutlinedInput
         sx={{
           width: "100%",
@@ -28,7 +34,7 @@ export default function SearchBox({ placeholder }: { placeholder: string }) {
         inputProps={{
           "aria-label": "search",
         }}
-        rows={3}
+        rows={1}
         multiline
       />
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
