@@ -30,6 +30,9 @@ test.describe("search & translation", () => {
   // sticky tabs & search box on scroll
   // results placeholder
 
+  // const inputSentence =
+  //   "Kacci pana vo, anuruddhā, samaggā sammodamānā avivadamānā khīrodakībhūtā aññamaññaṁ piyacakkhūhi sampassantā viharathā”ti"
+
   // test("advanced search mode option should be visible", async ({ page }) => {
   // "bilingual search spec:" https://docs.google.com/document/d/1ZKQpER4vS4XjSU-fMHxCCi5AXFtR8lpbdeTExpLpDrs/edit
   // A sort of ‘advanced mode’ for the main search function sounds like a good idea. There should be some switch/filter option ‘search only in bilingual aligned reference data’ or the like. Also the presentation of the results should be slightly different as described above.

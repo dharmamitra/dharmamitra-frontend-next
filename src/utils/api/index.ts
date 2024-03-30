@@ -1,24 +1,23 @@
-import makeSearchQuery from "./search"
-import makeTranslationQuery from "./translation"
-import { SearchRequestProps, TranslationRequestProps } from "./types"
+import makeSearchQuery, { type SearchRequestProps } from "./search"
+import makeTranslationQuery, {
+  type TranslationRequestProps,
+} from "./translation"
 
 const DM_API = {
   search: {
-    makeQueryKey: ({ searchInput, queryParams }: SearchRequestProps) => [
+    makeQueryKey: (requestBody: SearchRequestProps) => [
       "search",
-      searchInput,
-      queryParams,
+      JSON.stringify(requestBody),
     ],
     call: makeSearchQuery,
   },
   translation: {
-    makeQueryKey: ({ inputSentence, queryParams }: TranslationRequestProps) => [
+    makeQueryKey: (requestBody: TranslationRequestProps) => [
       "translation",
-      inputSentence,
-      queryParams,
+      JSON.stringify(requestBody),
     ],
     call: makeTranslationQuery,
   },
 }
 
-export default DM_API
+export { DM_API, SearchRequestProps, TranslationRequestProps }

@@ -7,23 +7,25 @@ import OutlinedInput from "@mui/material/OutlinedInput"
 import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 
-import DM_API from "@/api"
+import { DM_API } from "@/api"
 
-export default function SearchBox({ placeholder }: { placeholder: string }) {
+export default function SearchBox({
+  placeholder,
+  className,
+}: {
+  placeholder: string
+  className?: string
+}) {
   const [isQueryEnabled, setIsQueryEnabled] = React.useState(false)
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: DM_API.search.makeQueryKey({
-      searchInput: placeholder,
-      queryParams: {},
-    }),
-    queryFn: () =>
-      DM_API.search.call({ searchInput: placeholder, queryParams: {} }),
+    queryKey: DM_API.search.makeQueryKey({ search_input: placeholder }),
+    queryFn: () => DM_API.search.call({ search_input: placeholder }),
     enabled: isQueryEnabled,
   })
 
   return (
-    <Box>
+    <Box className={className}>
       <OutlinedInput
         sx={{
           width: "100%",
@@ -32,7 +34,7 @@ export default function SearchBox({ placeholder }: { placeholder: string }) {
         inputProps={{
           "aria-label": "search",
         }}
-        rows={3}
+        rows={1}
         multiline
       />
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
