@@ -31,12 +31,13 @@ export default function TranslationBox({
       <OutlinedInput
         sx={{
           width: "100%",
+          backgroundColor: "background.paper",
         }}
         placeholder={placeholder}
         inputProps={{
           "aria-label": "translate",
         }}
-        rows={3}
+        rows={1}
         multiline
       />
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
