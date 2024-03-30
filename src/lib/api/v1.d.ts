@@ -22,25 +22,44 @@ export interface components {
     Body_translation_translation__post: {
       /** Input Sentence */
       input_sentence: string
-      /** Input Encoding */
-      input_encoding: string
+      input_encoding: components["schemas"]["InputEncoding"]
       /** Level Of Explanation */
       level_of_explanation: number
-      /** Target Lang */
-      target_lang: string
-      /** Model */
-      model: string
+      target_lang: components["schemas"]["TargetLanguage"]
+      model: components["schemas"]["ModelName"]
     }
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */
       detail?: components["schemas"]["ValidationError"][]
     }
+    /**
+     * InputEncoding
+     * @enum {string}
+     */
+    InputEncoding: "auto" | "dev" | "wylie" | "itrans" | "velthuis" | "hk"
+    /**
+     * ModelName
+     * @enum {string}
+     */
+    ModelName: "NO" | "ANALYZE" | "GPT4TRANSLATE"
     /** SearchInput */
     SearchInput: {
       /** Search Input */
       search_input: string
     }
+    /**
+     * TargetLanguage
+     * @enum {string}
+     */
+    TargetLanguage:
+      | "english"
+      | "sanskrit"
+      | "tibetan"
+      | "chinese"
+      | "japanese"
+      | "korean"
+      | "pali"
     /** ValidationError */
     ValidationError: {
       /** Location */
