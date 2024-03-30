@@ -2,8 +2,8 @@ import * as React from "react"
 import { useTranslations } from "next-intl"
 import { AppBar, Box, Toolbar, Typography } from "@mui/material"
 
-import { useNavItems } from "@/app/hooks/useNavItems"
 import LocalLink from "@/components/LocalLink"
+import { useNavItems } from "@/hooks/useNavItems"
 
 import LocaleSelector from "./LocaleSelector"
 import NavMobileMenu from "./NavMobileMenu"

@@ -41,6 +41,8 @@ export default function LocalLink({
   children,
   sx,
   variant = "link",
+  // eslint-disable-next-line no-unused-vars -- this is just to exclude the "as" prop
+  as,
   ...rest
 }: ComponentProps<typeof NavigationLink> & {
   sx?: SxProps<Theme>
@@ -50,6 +52,10 @@ export default function LocalLink({
   const selectedLayoutSegment = useSelectedLayoutSegment()
   const pathname = selectedLayoutSegment ? `/${selectedLayoutSegment}` : "/"
   const isActive = pathname === href
+
+  if (href.toString().startsWith("http")) {
+    Object.assign(rest, { target: "_blank", rel: "noopener noreferrer" })
+  }
 
   return (
     <>
@@ -67,6 +73,7 @@ export default function LocalLink({
         <LocalLinkButton
           href={href}
           aria-current={isActive ? "page" : undefined}
+          {...rest}
         >
           {children}
         </LocalLinkButton>

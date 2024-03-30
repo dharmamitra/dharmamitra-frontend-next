@@ -14,8 +14,8 @@ import {
   Typography,
 } from "@mui/material"
 
-import { useNavItems } from "@/app/hooks/useNavItems"
 import LocalLink from "@/components/LocalLink"
+import { useNavItems } from "@/hooks/useNavItems"
 
 const drawerWidth = 240
 

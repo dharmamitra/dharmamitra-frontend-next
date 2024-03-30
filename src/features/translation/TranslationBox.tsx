@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 
 import { DM_API, type TranslationRequestProps } from "@/api"
+import useParams from "@/hooks/useParams"
 
 export default function TranslationBox({
   placeholder,
@@ -18,8 +19,19 @@ export default function TranslationBox({
 }) {
   const [isQueryEnabled, setIsQueryEnabled] = React.useState(false)
 
-  const inputSentence =
-    "Kacci pana vo, anuruddhā, samaggā sammodamānā avivadamānā khīrodakībhūtā aññamaññaṁ piyacakkhūhi sampassantā viharathā”ti"
+  const { getSearchParam, createQueryString, updateParams } = useParams()
+  const [inputSentence, setInputSentence] = React.useState<string>(
+    getSearchParam("input_sentence") ?? "",
+  )
+
+  const handleInputChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const newValue = event.target.value
+      setInputSentence(newValue)
+      updateParams(createQueryString("input_sentence", newValue))
+    },
+    [updateParams, createQueryString],
+  )
 
   const params: TranslationRequestProps = {
     input_sentence: inputSentence,
@@ -83,6 +95,13 @@ export default function TranslationBox({
         }}
         rows={1}
         multiline
+        value={inputSentence}
+        onChange={handleInputChange}
+        onKeyUp={(event) => {
+          if (event.key === "Enter" && inputSentence.length > 0) {
+            setIsQueryEnabled(true)
+          }
+        }}
       />
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
         <Button

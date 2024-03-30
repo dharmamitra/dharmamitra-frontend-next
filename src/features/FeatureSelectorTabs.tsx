@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { useInView } from "react-intersection-observer"
-import { useSearchParams } from "next/navigation"
 import ScreenSearchDesktopOutlinedIcon from "@mui/icons-material/ScreenSearchDesktopOutlined"
 import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined"
 import Box from "@mui/material/Box"
@@ -12,7 +11,7 @@ import Typography from "@mui/material/Typography"
 
 import SearchBox from "@/features/search/SearchBox"
 import TranslationBox from "@/features/translation/TranslationBox"
-import { usePathname, useRouter } from "@/navigation"
+import useParams from "@/hooks/useParams"
 
 import styles from "./FeatureSelectorTabs.module.css"
 
@@ -59,36 +58,20 @@ export default function FeatureSelectorTabs({
   headings: Record<string, string>
   placeholders: Record<string, string>
 }) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-
   const { ref: scrollMarkerRef, inView: scrollMarkerInView } = useInView({
     rootMargin: "-60px 0px",
     initialInView: true,
   })
 
-  // Get a new searchParams string by merging the current
-  // searchParams with a provided key/value pair
-  const createQueryString = React.useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString())
-      params.set(name, value)
-
-      return params.toString()
-    },
-    [searchParams],
-  )
+  const { createQueryString, updateParams } = useParams()
 
   const handleTabChange = React.useCallback(
     (event: React.SyntheticEvent, newValue: number) => {
-      router.push(
-        pathname +
-          "?" +
-          createQueryString("view", newValue === 0 ? "search" : "translate"),
+      updateParams(
+        createQueryString("view", newValue === 0 ? "search" : "translate"),
       )
     },
-    [router, pathname, createQueryString],
+    [updateParams, createQueryString],
   )
 
   return (
