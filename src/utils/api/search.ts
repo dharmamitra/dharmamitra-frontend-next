@@ -1,11 +1,12 @@
-import apiClient from "./client"
-import { SearchRequestProps } from "./types"
+import type { components } from "@/lib/api/v1.d"
 
-const makeSearchQuery = async ({ searchInput }: SearchRequestProps) => {
+import apiClient from "./client"
+
+export type SearchRequestProps = components["schemas"]["SearchInput"]
+
+const makeSearchQuery = async (requestBody: SearchRequestProps) => {
   const { data } = await apiClient.POST("/search/", {
-    body: {
-      search_input: searchInput,
-    },
+    body: requestBody,
   })
 
   return data

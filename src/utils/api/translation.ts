@@ -1,19 +1,14 @@
+import type { components } from "@/lib/api/v1.d"
+
 import apiClient from "./client"
-import { TranslationRequestProps } from "./types"
 
-const makeTranslationQuery = async ({
-  inputSentence,
-}: TranslationRequestProps) => {
+export type TranslationRequestProps =
+  components["schemas"]["Body_translation_translation__post"]
+
+const makeTranslationQuery = async (requestBody: TranslationRequestProps) => {
   const { data } = await apiClient.POST("/translation/", {
-    body: {
-      input_sentence: inputSentence,
-      input_encoding: "string",
-      level_of_explanation: 0,
-      target_lang: "string",
-      model: "string",
-    },
+    body: requestBody,
   })
-
   return data
 }
 

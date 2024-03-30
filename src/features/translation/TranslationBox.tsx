@@ -7,7 +7,7 @@ import OutlinedInput from "@mui/material/OutlinedInput"
 import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 
-import DM_API from "@/api"
+import { DM_API, type TranslationRequestProps } from "@/api"
 
 export default function TranslationBox({
   placeholder,
@@ -16,13 +16,20 @@ export default function TranslationBox({
 }) {
   const [isQueryEnabled, setIsQueryEnabled] = React.useState(false)
 
+  const inputSentence =
+    "Kacci pana vo, anuruddhā, samaggā sammodamānā avivadamānā khīrodakībhūtā aññamaññaṁ piyacakkhūhi sampassantā viharathā”ti"
+
+  const params: TranslationRequestProps = {
+    input_sentence: inputSentence,
+    input_encoding: "auto",
+    level_of_explanation: 0,
+    target_lang: "english",
+    model: "NO",
+  }
+
   const { data, isLoading, isError } = useQuery({
-    queryKey: DM_API.translation.makeQueryKey({
-      inputSentence: placeholder,
-      queryParams: {},
-    }),
-    queryFn: () =>
-      DM_API.translation.call({ inputSentence: placeholder, queryParams: {} }),
+    queryKey: DM_API.translation.makeQueryKey(params),
+    queryFn: () => DM_API.translation.call(params),
     enabled: isQueryEnabled,
   })
 
