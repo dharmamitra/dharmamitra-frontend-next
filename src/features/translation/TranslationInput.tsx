@@ -1,31 +1,23 @@
-"use client"
-
-import React from "react"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import OutlinedInput from "@mui/material/OutlinedInput"
-import Typography from "@mui/material/Typography"
-import { useQuery } from "@tanstack/react-query"
+import { useSetAtom } from "jotai"
 
-import { DM_API } from "@/api"
+import { triggerTranslationQueryAtom } from "@/atoms"
 import { setRows } from "@/features/utils"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 
-export default function SearchBox({
+export default function TranslationInput({
   placeholder,
   className,
+  isScrolling,
 }: {
   placeholder: string
   className?: string
+  isScrolling?: boolean
 }) {
-  const [isQueryEnabled, setIsQueryEnabled] = React.useState(false)
-  const { input, handleInputChange } = useInputWithUrlParam("search_input")
-
-  const { data, isLoading, isError } = useQuery({
-    queryKey: DM_API.search.makeQueryKey({ search_input: placeholder }),
-    queryFn: () => DM_API.search.call({ search_input: placeholder }),
-    enabled: isQueryEnabled,
-  })
+  const { input, handleInputChange } = useInputWithUrlParam("input_sentence")
+  const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
   return (
     <Box className={className}>
@@ -37,15 +29,15 @@ export default function SearchBox({
         }}
         placeholder={placeholder}
         inputProps={{
-          "aria-label": "search",
+          "aria-label": "translate",
         }}
-        value={input}
-        rows={setRows(input)}
+        rows={isScrolling ? 1 : setRows(input)}
         multiline
+        value={input}
         onChange={handleInputChange}
         onKeyUp={(event) => {
           if (event.key === "Enter" && input.length > 0) {
-            setIsQueryEnabled(true)
+            setTriggerTranslationQuery(true)
           }
         }}
       />
@@ -53,16 +45,11 @@ export default function SearchBox({
         <Button
           variant="contained"
           onClick={() => {
-            setIsQueryEnabled(true)
+            setTriggerTranslationQuery(true)
           }}
         >
-          Search
+          Translate
         </Button>
-      </Box>
-      <Box sx={{ mt: 3 }}>
-        {isLoading && <Typography>Loading...</Typography>}
-        {isError && <Typography>Error</Typography>}
-        {JSON.stringify(data as string)}
       </Box>
     </Box>
   )
