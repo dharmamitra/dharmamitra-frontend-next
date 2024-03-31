@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 
 import { DM_API } from "@/api"
+import { setRows } from "@/features/utils"
+import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 
 export default function SearchBox({
   placeholder,
@@ -17,6 +19,7 @@ export default function SearchBox({
   className?: string
 }) {
   const [isQueryEnabled, setIsQueryEnabled] = React.useState(false)
+  const { input, handleInputChange } = useInputWithUrlParam("search_input")
 
   const { data, isLoading, isError } = useQuery({
     queryKey: DM_API.search.makeQueryKey({ search_input: placeholder }),
@@ -29,13 +32,22 @@ export default function SearchBox({
       <OutlinedInput
         sx={{
           width: "100%",
+          backgroundColor: "background.paper",
+          overflow: "clip",
         }}
         placeholder={placeholder}
         inputProps={{
           "aria-label": "search",
         }}
-        rows={1}
+        value={input}
+        rows={setRows(input)}
         multiline
+        onChange={handleInputChange}
+        onKeyUp={(event) => {
+          if (event.key === "Enter" && input.length > 0) {
+            setIsQueryEnabled(true)
+          }
+        }}
       />
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
         <Button
