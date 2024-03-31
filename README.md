@@ -35,6 +35,27 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+
+## Workflow
+
+### Branches:
+
+- `main`: for production deployment
+- `dev`: for preview deployment
+- development item branches linked to issue numbers
+
+`dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
+
+### Development cycle:
+
+1. New item specification defined in an issue with clear acceptance criteria
+2. A new branch under the issue number is created for the work
+3. On completion a PR will be openned against `dev`
+4. When a PR is accepted the new work will be deployed on preview for testing
+5. After final sign-off `dev` will be merged into `main` with a release tag [TODO: define convention]
+6. Deploy to production
+
+
 ## Containerization
 
 ### Simple setting
