@@ -9,8 +9,10 @@ import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 import Typography from "@mui/material/Typography"
 
-import SearchBox from "@/features/search/SearchBox"
-import TranslationBox from "@/features/translation/TranslationBox"
+import SearchInput from "@/features/search/SearchInput"
+import SearchResults from "@/features/search/SearchResults"
+import TranslationInput from "@/features/translation/TranslationInput"
+import TranslationResults from "@/features/translation/TranslationResults"
 import useParams from "@/hooks/useParams"
 
 import styles from "./FeatureSelectorTabs.module.css"
@@ -109,10 +111,14 @@ export default function FeatureSelectorTabs({
           >
             {headings.search}
           </Typography>
-          <SearchBox
+
+          <SearchInput
             className={scrollMarkerInView ? undefined : styles.stickyInput}
             placeholder={placeholders.search!}
+            isScrolling={!scrollMarkerInView}
           />
+
+          <SearchResults />
         </FeatureTabPanel>
 
         <FeatureTabPanel value={tabIndex} index={1}>
@@ -126,10 +132,13 @@ export default function FeatureSelectorTabs({
             {headings.translation}
           </Typography>
 
-          <TranslationBox
+          <TranslationInput
             className={scrollMarkerInView ? undefined : styles.stickyInput}
             placeholder={placeholders.translation!}
+            isScrolling={!scrollMarkerInView}
           />
+
+          <TranslationResults />
         </FeatureTabPanel>
       </Box>
     </Box>
