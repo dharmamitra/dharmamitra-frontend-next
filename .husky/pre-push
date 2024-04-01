@@ -13,7 +13,7 @@ red=$(tput setaf 1)
 
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 
-if ! echo "$branch_name" | grep -qE "^[0-9]+"; then
+if ! echo "$branch_name" | grep -qE "^[0-9]+" && [[ "$branch_name" != "dev" ]]; then
     read -p "${blue}This branch doesn't seem to be associated with a GitHub issue number. Press enter to continue anyway, or Ctrl-C to exit. ${normal}" issue
 fi
 
