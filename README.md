@@ -74,9 +74,9 @@ Automated release updates depend on standardized commit messages following the [
 
 1. New item specification defined in an issue with clear acceptance criteria
 2. A new branch under the issue number is created for the work
-3. On completion a PR will be openned against `dev`
+3. On completion a PR will be opened against `dev`
 4. When a PR is accepted the new work will be deployed on preview for testing
-5. After final sign-off a PR will be openned from `dev` to `main` and `semantic-release` will handle release versions based on commits.
+5. After final sign-off a PR will be opened from `dev` to `main` and `semantic-release` will handle release versions based on commits.
 6. Deploy to production from `main`.
 
 
