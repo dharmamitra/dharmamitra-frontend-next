@@ -25,6 +25,7 @@ This project uses:
   - for code reliability `husky` runs a `pre-push` hook that tests if the project successfully builds
   - all git hooks can be skipped by adding a `-n/--no-verify` option.
 - [`playwrite`](https://playwright.dev/docs/intro) and [`@axe-core/playwright`](https://www.npmjs.com/package/@axe-core/playwright)
+- [`semantic-release`](https://semantic-release.gitbook.io/semantic-release) for releases automation
 
 ### Next.js
 
@@ -46,14 +47,37 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 `dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
 
+### Commit messages
+
+Automated release updates depend on standardized commit messages following the [Angular Commit Message Conventions](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#-commit-message-format):
+
+> - **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+> - **ci**: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)
+> - **docs**: Documentation only changes
+> - **feat**: A new feature
+> - **fix**: A bug fix
+> - **perf**: A code change that improves performance
+> - **refactor**: A code change that neither fixes a bug nor adds a feature
+> - **test**: Adding missing tests or correcting existing tests
+
+`semantic-release` uses commet messages to handle versoning as follows:
+
+|**Commit message** | **Release type** |
+|-------------------|-------------------|
+| `fix: stop graphite breaking when too much pressure applied` | Fix (Patch) Release |
+| `feat: add 'graphiteWidth' option` | Feature (Minor) Release |
+| `perf(pencil): remove graphiteWidth option`<br> <br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.`| Breaking (Major) Release ((Note that the `BREAKING CHANGE`: token must be in the footer of the commit)) |
+
+
+
 ### Development cycle:
 
 1. New item specification defined in an issue with clear acceptance criteria
 2. A new branch under the issue number is created for the work
 3. On completion a PR will be openned against `dev`
 4. When a PR is accepted the new work will be deployed on preview for testing
-5. After final sign-off `dev` will be merged into `main` with a release tag [TODO: define convention]
-6. Deploy to production
+5. After final sign-off a PR will be openned from `dev` to `main` and `semantic-release` will handle release versions based on commits.
+6. Deploy to production from `main`.
 
 
 ## Containerization

@@ -1,0 +1,41 @@
+name: Release
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed] 
+  pull_request_target:
+    types: [merged]
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js  
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+      
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      
+      - name: Yarn Audit  
+        run: yarn audit --level high  
+        if: ${{ failure() }}  # Fail the step if an exit code present
+      
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
