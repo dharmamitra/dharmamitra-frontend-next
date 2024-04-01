@@ -60,7 +60,7 @@ Automated release updates depend on standardized commit messages following the [
 > - **refactor**: A code change that neither fixes a bug nor adds a feature
 > - **test**: Adding missing tests or correcting existing tests
 
-`semantic-release` uses commet messages to handle versoning as follows:
+`semantic-release` uses commit messages to handle versoning as follows:
 
 |**Commit message** | **Release type** |
 |-------------------|-------------------|
