@@ -1,11 +1,7 @@
 name: Release
 on:
-  pull_request:
+  push:
     branches:
-      - main
-    types: [closed] 
-  pull_request_target:
-    types: [merged]
 
 permissions:
   contents: read # for checkout
