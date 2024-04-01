@@ -1,7 +1,8 @@
 name: Release
 on:
   push:
-    branches:
+    branches: [main]
+
 
 permissions:
   contents: read # for checkout
