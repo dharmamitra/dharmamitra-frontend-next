@@ -1,7 +1,5 @@
-"use client"
-
 import { Noto_Sans } from "next/font/google"
-import { createTheme } from "@mui/material/styles"
+import { CustomTheming, ThemeOptions } from "@mui/material/styles"
 
 const notoSans = Noto_Sans({
   weight: ["300", "400", "500", "700"],
@@ -9,7 +7,13 @@ const notoSans = Noto_Sans({
   display: "swap",
 })
 
-const theme = createTheme({
+const customTheming: CustomTheming = {
+  shape: {
+    inputRadius: "24px",
+  },
+}
+
+export const theme: ThemeOptions = {
   palette: {
     primary: {
       main: "#007baa",
@@ -31,6 +35,7 @@ const theme = createTheme({
   components: {
     MuiButton: {},
   },
-})
+  custom: customTheming,
+}
 
-export default theme
+export default customTheming

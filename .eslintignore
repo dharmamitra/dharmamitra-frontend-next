@@ -1,0 +1,9 @@
+.next/
+node_modules/
+yarn.lock
+coverage/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+*.d.ts
