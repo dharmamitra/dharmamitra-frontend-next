@@ -7,7 +7,7 @@ export default function About() {
   const t = useTranslations("About")
 
   return (
-    <PageShell title={t("title")}>
+    <PageShell h1={t("h1")}>
       <Typography component="blockquote">
         He insulted me; he struck me;
         <br />
