@@ -1,16 +1,16 @@
 {
   "Home": {
-    "title": "(tib)Welcome to Dharmamitra",
-    "h1": "(tib)Welcome to Dharmamitra",
+    "title": "[bo] Welcome to Dharmamitra",
+    "h1": "[bo] Welcome to Dharmamitra",
     "search": {
-      "heading": "(tib) Search 2500 years of Buddhism",
-      "tabLabel": "(Tib) Search",
-      "placeholder": "(Tib) Search for something"
+      "heading": "[bo] Search 2500 years of Buddhism",
+      "tabLabel": "[bo] Search",
+      "placeholder": "[bo] Search for something"
     },
     "translation": {
-      "heading": "(Tib) Translate Dharma text",
-      "tabLabel": "(Tib) Translate",
-      "placeholder": "(Tib) Translate something"
+      "heading": "[bo] Translate Dharma text",
+      "tabLabel": "[bo] Translate",
+      "placeholder": "[bo] Translate something"
     }
   },
   "About": {
@@ -29,7 +29,7 @@
     "aria-mobile-menu": "navigation menu"
   },
   "localeSwitcher": {
-    "label": "(Tib) Change language",
-    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} other {Unknown}}"
+    "label": "[bo] Change language",
+    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} other {Unknown}}"
   }
 }
