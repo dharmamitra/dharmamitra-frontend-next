@@ -8,6 +8,10 @@ function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
     getSearchParam(paramName) ?? defaultValue,
   )
 
+  React.useEffect(() => {
+    setInput(getSearchParam(paramName) ?? defaultValue)
+  }, [getSearchParam, paramName, defaultValue])
+
   const handleInputChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const newValue = event.target.value

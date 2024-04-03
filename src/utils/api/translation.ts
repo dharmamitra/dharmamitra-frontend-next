@@ -10,6 +10,8 @@ export type TranslationRequestProps =
 const makeTranslationQuery = async (
   requestBody: TranslationRequestProps,
 ): Promise<string[]> => {
+  console.log("requestBody", requestBody)
+
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
