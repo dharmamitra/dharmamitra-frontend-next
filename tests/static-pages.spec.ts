@@ -5,10 +5,12 @@ import { basePath, defaultLocale, pathnames, supportedLocales } from "@/config"
 
 import boMessages from "../messages/bo.json"
 import enMessages from "../messages/en.json"
+import zhMessages from "../messages/zh.json"
 
 const messages = {
   en: enMessages,
   bo: boMessages,
+  zh: zhMessages,
 } satisfies Record<(typeof supportedLocales)[number], typeof enMessages>
 
 const messagePaths = {

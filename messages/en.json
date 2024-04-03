@@ -30,6 +30,6 @@
   },
   "localeSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} other {Unknown}}"
+    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} other {Unknown}}"
   }
 }
