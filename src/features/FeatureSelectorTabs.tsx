@@ -132,11 +132,7 @@ export default function FeatureSelectorTabs({
             {headings.translation}
           </Typography>
 
-          <TranslationInput
-            className={scrollMarkerInView ? undefined : styles.stickyInput}
-            placeholder={placeholders.translation!}
-            isScrolling={!scrollMarkerInView}
-          />
+          <TranslationInput placeholder={placeholders.translation!} />
 
           <TranslationResults />
         </FeatureTabPanel>
