@@ -16,7 +16,7 @@ export default function Home() {
   const t = useTranslations("Home")
 
   return (
-    <PageShell h1={t("translation.heading")} maxWidth="xl" visuallyHiddenH1>
+    <PageShell h1={t("h1")} maxWidth="xl" visuallyHiddenH1>
       <Box
         sx={{
           display: "flex",
