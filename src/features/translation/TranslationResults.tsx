@@ -41,6 +41,7 @@ export default function TranslationResults() {
         borderTopRightRadius: (theme) => theme.custom.shape.inputRadius,
         borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
       }}
+      data-testid="translation-results"
     >
       {isLoading ? (
         <Typography component="p" variant="h5">

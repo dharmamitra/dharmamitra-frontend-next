@@ -4,23 +4,35 @@ import { basePath } from "@/config"
 
 import enMessages from "../messages/en.json"
 
-test.describe("search & translation", () => {
+test.describe("main functionality", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(basePath)
   })
 
-  test("search and translation navigate to correct tabs", async ({ page }) => {
-    await page.getByRole("tab", { name: /translate/i }).click()
-    await expect(page).toHaveURL(/.*view=translate/)
+  test("translation box renders correctly", async ({ page }) => {
     await expect(
       page.getByPlaceholder(enMessages.Home.translation.placeholder),
     ).toBeVisible()
-    await page.getByRole("tab", { name: /search/i }).click()
-    await expect(page).toHaveURL(/.*view=search/)
-    await expect(
-      page.getByPlaceholder(enMessages.Home.search.placeholder),
-    ).toBeVisible()
+    await expect(page.getByRole("button", { name: /translate/i })).toBeVisible()
+    await expect(page.getByTestId("translation-results")).toBeVisible()
   })
+
+  // const inputSentence =
+  // "Kacci pana vo, anuruddhā, samaggā sammodamānā avivadamānā khīrodakībhūtā aññamaññaṁ piyacakkhūhi sampassantā viharathā”ti"
+
+  // TODO: Reinstate post mvp launch
+  // test("search and translation navigate to correct tabs", async ({ page }) => {
+  //   await page.getByRole("tab", { name: /translate/i }).click()
+  //   await expect(page).toHaveURL(/.*view=translate/)
+  //   await expect(
+  //     page.getByPlaceholder(enMessages.Home.translation.placeholder),
+  //   ).toBeVisible()
+  //   await page.getByRole("tab", { name: /search/i }).click()
+  //   await expect(page).toHaveURL(/.*view=search/)
+  //   await expect(
+  //     page.getByPlaceholder(enMessages.Home.search.placeholder),
+  //   ).toBeVisible()
+  // })
 
   // search box
   // options toggle button & popover
@@ -29,9 +41,6 @@ test.describe("search & translation", () => {
   // example search chips
   // sticky tabs & search box on scroll
   // results placeholder
-
-  // const inputSentence =
-  //   "Kacci pana vo, anuruddhā, samaggā sammodamānā avivadamānā khīrodakībhūtā aññamaññaṁ piyacakkhūhi sampassantā viharathā”ti"
 
   // test("advanced search mode option should be visible", async ({ page }) => {
   // "bilingual search spec:" https://docs.google.com/document/d/1ZKQpER4vS4XjSU-fMHxCCi5AXFtR8lpbdeTExpLpDrs/edit
