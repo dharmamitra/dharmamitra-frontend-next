@@ -1,39 +1,37 @@
 import { useTranslations } from "next-intl"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid"
 
 import { PageShell } from "@/components/layout"
-import FeatureSelectorTabs from "@/features/FeatureSelectorTabs"
+import TranslationInput from "@/features/translation/TranslationInput"
+import TranslationResults from "@/features/translation/TranslationResults"
+import customTheming from "@/utils/theme/config"
 
 // As we're using query parameters that are only known
 // at request time, we need to make sure we're using
 // dynamic rendering (i.e. no SSG).
 export const dynamic = "force-dynamic"
 
-type Props = {
-  searchParams?: {
-    view?: "search" | "translate"
-    page?: string
-  }
-}
-
-export default function Home({ searchParams }: Props) {
+export default function Home() {
   const t = useTranslations("Home")
 
-  const tabIndex = searchParams?.view === "translate" ? 1 : 0
-
   return (
-    <PageShell title={t("title")} visuallyHiddenTitle>
-      <FeatureSelectorTabs
-        tabIndex={tabIndex}
-        tabLabels={{ 0: t("search.tabLabel"), 1: t("translation.tabLabel") }}
-        headings={{
-          search: t("search.heading"),
-          translation: t("translation.heading"),
+    <PageShell h1={t("h1")} maxWidth="xl" visuallyHiddenH1>
+      <Box
+        sx={{
+          display: "flex",
+          width: "100%",
+          height: "100%",
+          border: "1px solid",
+          borderColor: "divider",
+          borderRadius: customTheming.shape.inputRadius,
         }}
-        placeholders={{
-          search: t("search.placeholder"),
-          translation: t("translation.placeholder"),
-        }}
-      />
+      >
+        <Grid container>
+          <TranslationInput placeholder={t("translation.placeholder")} />
+          <TranslationResults />
+        </Grid>
+      </Box>
     </PageShell>
   )
 }

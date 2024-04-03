@@ -3,38 +3,35 @@ import { Container, Typography } from "@mui/material"
 import type { Breakpoint } from "@mui/system"
 import { visuallyHidden } from "@mui/utils"
 
-import Footer from "./Footer"
 import Navigation from "./Navigation"
 
 type Props = {
   children?: ReactNode
-  title?: ReactNode
-  visuallyHiddenTitle?: boolean
+  h1?: ReactNode
+  visuallyHiddenH1?: boolean
   maxWidth?: Breakpoint | false
 }
 
 export default function PageShell({
   children,
-  title,
-  visuallyHiddenTitle,
+  h1,
+  visuallyHiddenH1,
   maxWidth = "md",
 }: Props) {
   return (
     <>
       <Navigation />
-      {/* mt for absolute nav offset */}
-      <Container component="main" maxWidth={maxWidth} sx={{ mt: 14 }}>
+      <Container component="main" maxWidth={maxWidth} sx={{ mt: 8 }}>
         <Typography
           variant="h3"
           component="h1"
           align="center"
-          sx={{ ...(visuallyHiddenTitle && visuallyHidden) }}
+          sx={{ ...(visuallyHiddenH1 && visuallyHidden), mb: 4 }}
         >
-          {title}
+          {h1}
         </Typography>
         {children}
       </Container>
-      <Footer />
     </>
   )
 }

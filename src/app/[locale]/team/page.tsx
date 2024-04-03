@@ -9,7 +9,7 @@ export default function Home() {
   const t = useTranslations("Team")
 
   return (
-    <PageShell title={t("title")}>
+    <PageShell h1={t("h1")}>
       <Stack direction="row" spacing={2}>
         <Avatar>H</Avatar>
         <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>

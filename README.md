@@ -36,7 +36,6 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-
 ## Workflow
 
 ### Branches:
@@ -62,13 +61,11 @@ Automated release updates depend on standardized commit messages following the [
 
 `semantic-release` uses commit messages to handle versoning as follows:
 
-|**Commit message** | **Release type** |
-|-------------------|-------------------|
-| `fix: stop graphite breaking when too much pressure applied` | Fix (Patch) Release |
-| `feat: add 'graphiteWidth' option` | Feature (Minor) Release |
-| `perf(pencil): remove graphiteWidth option`<br> <br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.`| Breaking (Major) Release ((Note that the `BREAKING CHANGE`: token must be in the footer of the commit)) |
-
-
+| **Commit message**                                                                                                                                                                        | **Release type**                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `fix: stop graphite breaking when too much pressure applied`                                                                                                                              | Fix (Patch) Release                                                                                     |
+| `feat: add 'graphiteWidth' option`                                                                                                                                                        | Feature (Minor) Release                                                                                 |
+| `perf: remove graphiteWidth option`<br> <br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.` | Breaking (Major) Release ((Note that the `BREAKING CHANGE`: token must be in the footer of the commit)) |
 
 ### Development cycle:
 
@@ -78,7 +75,6 @@ Automated release updates depend on standardized commit messages following the [
 4. When a PR is accepted the new work will be deployed on preview for testing
 5. After final sign-off a PR will be opened from `dev` to `main` and `semantic-release` will handle release versions based on commits.
 6. Deploy to production from `main`.
-
 
 ## Containerization
 
@@ -114,13 +110,6 @@ If you want to see the NGINX logs you can use (press Ctrl-C to exit):
 docker logs nginx -f
 ```
 
-## i18n
-
-### internal navigation
-
-- most internal navigation can be handled with `src/components/LocalLink.tsx`.
-- where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.
-
 ## DharmaMitra API client & typing
 
 [Dharmamitra API docs](https://dharmamitra.org/api/docs#/)
@@ -134,6 +123,34 @@ yarn api:codegen
 ```
 
 `openapi-fetch`'s api client (instantiated in `utils/api/client.ts`) can then be used to fetch typed data ([see docs](https://openapi-ts.pages.dev/openapi-fetch/)) from the API.
+
+## i18n
+
+### internal navigation
+
+- most internal navigation can be handled with `src/components/LocalLink.tsx`.
+- where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.
+
+## Theming
+
+The project using [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js App routing integration](https://mui.com/material-ui/integrations/nextjs/).
+
+### Config
+
+The theme is configured in a static `.ts` file (`src/utils/theme/config.ts`) so that custom design tokens can be used in both sever and client components.
+
+For server components theme-aware propeties are readily available via component's `sx` prop. Additionally, `customTheming` can be imported to get access to these styles. In client components the same custome styles can be accessed via the theme's `custom` prop:
+
+```
+ sx={{
+  borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
+}}
+```
+
+### References:
+
+- [Mui's default theme object](https://mui.com/material-ui/customization/default-theme/)
+- [MUI's theme-aware propeties](https://mui.com/system/getting-started/the-sx-prop/#theme-aware-properties) - these are props available to any component without importing `theme`
 
 ## Testing
 

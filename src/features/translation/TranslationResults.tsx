@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 import { useAtomValue } from "jotai"
@@ -29,25 +29,31 @@ export default function TranslationResults() {
   })
 
   return (
-    <Box sx={{ mt: 3 }}>
+    <Grid
+      item
+      xs={12}
+      md={6}
+      sx={{
+        position: "relative",
+        backgroundColor: "grey.100",
+        overflow: "clip",
+        p: 2,
+        borderTopRightRadius: (theme) => theme.custom.shape.inputRadius,
+        borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
+      }}
+      data-testid="translation-results"
+    >
       {isLoading ? (
-        <Typography component="p" variant="h5" sx={{ mt: 6 }}>
+        <Typography component="p" variant="h5">
           Loading...
         </Typography>
       ) : null}
       {isError ? (
-        <Typography component="p" variant="h5" sx={{ mt: 6 }}>
+        <Typography component="p" variant="h5">
           Error
         </Typography>
       ) : null}
-      {data ? (
-        <>
-          <Typography component="h3" variant="h5" sx={{ mt: 6 }}>
-            Results:
-          </Typography>
-          <Typography sx={{ mt: 2 }}>{data.map((part) => part)}</Typography>
-        </>
-      ) : null}
-    </Box>
+      {data ? <Typography>{data.map((part) => part)}</Typography> : null}
+    </Grid>
   )
 }

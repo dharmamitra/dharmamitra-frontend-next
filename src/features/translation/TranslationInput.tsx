@@ -1,37 +1,53 @@
+"use client"
+
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
+import Grid from "@mui/material/Grid"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { useSetAtom } from "jotai"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
-import { setRows } from "@/features/utils"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import customTheming from "@/utils/theme/config"
 
 export default function TranslationInput({
   placeholder,
-  className,
-  isScrolling,
 }: {
   placeholder: string
-  className?: string
-  isScrolling?: boolean
 }) {
   const { input, handleInputChange } = useInputWithUrlParam("input_sentence")
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
+  const rows = 16
+
   return (
-    <Box className={className}>
+    <Grid
+      item
+      xs={12}
+      md={6}
+      sx={{
+        position: "relative",
+        minHeight: `${rows * 2}rem`,
+      }}
+    >
       <OutlinedInput
         sx={{
           width: "100%",
           backgroundColor: "background.paper",
           overflow: "clip",
+          borderTopRightRadius: "none",
+          borderBottomRightRadius: "none",
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
+          },
+          borderRadius: customTheming.shape.inputRadius,
         }}
         placeholder={placeholder}
         inputProps={{
           "aria-label": "translate",
         }}
-        rows={isScrolling ? 1 : setRows(input)}
+        rows={rows}
         multiline
         value={input}
         onChange={handleInputChange}
@@ -41,9 +57,16 @@ export default function TranslationInput({
           }
         }}
       />
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: "1rem",
+          right: "1rem",
+        }}
+      >
         <Button
-          variant="contained"
+          variant="text"
+          endIcon={<KeyboardDoubleArrowRightIcon />}
           onClick={() => {
             setTriggerTranslationQuery(true)
           }}
@@ -51,6 +74,6 @@ export default function TranslationInput({
           Translate
         </Button>
       </Box>
-    </Box>
+    </Grid>
   )
 }
