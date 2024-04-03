@@ -4,7 +4,7 @@ import React from "react"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
-import { useAtomValue } from "jotai"
+import { useAtom } from "jotai"
 
 import { DM_API, type TranslationRequestProps } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
@@ -12,7 +12,9 @@ import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 
 export default function TranslationResults() {
   const { input } = useInputWithUrlParam("input_sentence")
-  const triggerTranslationQuery = useAtomValue(triggerTranslationQueryAtom)
+  const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
+    triggerTranslationQueryAtom,
+  )
 
   const params: TranslationRequestProps = {
     input_sentence: input,
@@ -27,6 +29,10 @@ export default function TranslationResults() {
     queryFn: () => DM_API.translation.call(params),
     enabled: triggerTranslationQuery,
   })
+
+  if (!isLoading) {
+    setTriggerTranslationQuery(false)
+  }
 
   return (
     <Grid
