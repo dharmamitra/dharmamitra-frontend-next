@@ -1,4 +1,5 @@
 import React from "react"
+import { SelectChangeEvent } from "@mui/material"
 
 import useParams from "@/hooks/useParams"
 
@@ -13,7 +14,11 @@ function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
   }, [getSearchParam, paramName, defaultValue])
 
   const handleInputChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (
+      event:
+        | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        | SelectChangeEvent<string>,
+    ) => {
       const newValue = event.target.value
       setInput(newValue)
       updateParams(createQueryString(paramName, newValue))

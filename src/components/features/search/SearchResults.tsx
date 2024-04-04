@@ -9,9 +9,11 @@ import { useAtomValue } from "jotai"
 import { DM_API } from "@/api"
 import { triggerSearchQueryAtom } from "@/atoms"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { apiParamsNames } from "@/utils/api/params"
 
 export default function SearchResults() {
-  const { input } = useInputWithUrlParam("search_input")
+  const { input } = useInputWithUrlParam(apiParamsNames.search.search_input)
+
   const triggerSearchQuery = useAtomValue(triggerSearchQueryAtom)
 
   const { data, isLoading, isError } = useQuery({

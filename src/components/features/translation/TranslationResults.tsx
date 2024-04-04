@@ -9,9 +9,12 @@ import { useAtom } from "jotai"
 import { DM_API, type TranslationRequestProps } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { apiParamsNames } from "@/utils/api/params"
 
 export default function TranslationResults() {
-  const { input } = useInputWithUrlParam("input_sentence")
+  const { input } = useInputWithUrlParam(
+    apiParamsNames.translation.input_sentence,
+  )
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
     triggerTranslationQueryAtom,
   )
@@ -44,7 +47,6 @@ export default function TranslationResults() {
         backgroundColor: "grey.100",
         overflow: "clip",
         p: 2,
-        borderTopRightRadius: (theme) => theme.custom.shape.inputRadius,
         borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
       }}
       data-testid="translation-results"

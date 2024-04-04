@@ -5,7 +5,9 @@ import Grid from "@mui/material/Grid"
 import customTheming from "@/utils/theme/config"
 
 import TranslationInput from "./TranslationInput"
+import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
 import TranslationResults from "./TranslationResults"
+import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
 
 export default function TranslationFeature() {
   const t = useTranslations("translation")
@@ -22,6 +24,8 @@ export default function TranslationFeature() {
       }}
     >
       <Grid container>
+        <TranslationInputEncodingSelector />
+        <TranslationTargetLanguageSelector />
         <TranslationInput
           placeholder={t("placeholder")}
           translateBtnLabel={t("translateBtnLabel")}

@@ -6,6 +6,7 @@ import { useSetAtom } from "jotai"
 import { triggerSearchQueryAtom } from "@/atoms"
 import { setRows } from "@/features/utils"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { apiParamsNames } from "@/utils/api/params"
 
 export default function SearchBox({
   placeholder,
@@ -16,7 +17,10 @@ export default function SearchBox({
   className?: string
   isScrolling?: boolean
 }) {
-  const { input, handleInputChange } = useInputWithUrlParam("search_input")
+  const { input, handleInputChange } = useInputWithUrlParam(
+    apiParamsNames.search.search_input,
+  )
+
   const setTriggerSearchQuery = useSetAtom(triggerSearchQueryAtom)
 
   return (
