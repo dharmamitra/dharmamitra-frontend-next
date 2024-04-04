@@ -50,16 +50,24 @@ export default function TranslationResults() {
       data-testid="translation-results"
     >
       {isLoading ? (
-        <Typography component="p" variant="h5">
+        <Typography
+          component="p"
+          variant="h5"
+          data-testid="translation-loading"
+        >
           Loading...
         </Typography>
       ) : null}
       {isError ? (
-        <Typography component="p" variant="h5">
+        <Typography component="p" variant="h5" data-testid="translation-error">
           Error
         </Typography>
       ) : null}
-      {data ? <Typography>{data.map((part) => part)}</Typography> : null}
+      {data ? (
+        <Typography data-testid="request-translation">
+          {data.map((part) => part)}
+        </Typography>
+      ) : null}
     </Grid>
   )
 }

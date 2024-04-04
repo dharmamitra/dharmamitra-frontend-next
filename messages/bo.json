@@ -1,17 +1,7 @@
 {
   "Home": {
     "title": "[bo] Welcome to Dharmamitra",
-    "h1": "[bo] Welcome to Dharmamitra",
-    "search": {
-      "heading": "[bo] Search 2500 years of Buddhism",
-      "tabLabel": "[bo] Search",
-      "placeholder": "[bo] Search for something"
-    },
-    "translation": {
-      "heading": "[bo] Translate Dharma text",
-      "tabLabel": "[bo] Translate",
-      "placeholder": "[bo] Translate something"
-    }
+    "h1": "[bo] Welcome to Dharmamitra"
   },
   "About": {
     "title": "ཨ་བྷུ།",
@@ -31,5 +21,26 @@
   "localeSwitcher": {
     "label": "[bo] Change language",
     "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} other {Unknown}}"
+  },
+  "search": {
+    "heading": "[bo] Search 2500 years of Buddhism",
+    "tabLabel": "[bo] Search",
+    "placeholder": "[bo] Search for something"
+  },
+  "translation": {
+    "heading": "[bo] Translate Dharma text",
+    "tabLabel": "[bo] Translate",
+    "placeholder": "[bo] Translate something",
+    "encodings": {
+      "auto": "Autodetect Encoding",
+      "dev": "Devanagari",
+      "roman": "IAST Roman Transliteration",
+      "hk": "Harvard-Kyoto",
+      "velthuis": "Velthuis",
+      "itrans": "ITRANS",
+      "tibetan": "Tibetan Unicode",
+      "wylie": "Wylie"
+    },
+    "translateBtnLabel": "[bo] Translate"
   }
 }

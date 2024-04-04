@@ -8,7 +8,7 @@ import TranslationInput from "./TranslationInput"
 import TranslationResults from "./TranslationResults"
 
 export default function TranslationFeature() {
-  const t = useTranslations("Home")
+  const t = useTranslations("translation")
 
   return (
     <Box
@@ -22,7 +22,10 @@ export default function TranslationFeature() {
       }}
     >
       <Grid container>
-        <TranslationInput placeholder={t("translation.placeholder")} />
+        <TranslationInput
+          placeholder={t("placeholder")}
+          translateBtnLabel={t("translateBtnLabel")}
+        />
         <TranslationResults />
       </Grid>
     </Box>

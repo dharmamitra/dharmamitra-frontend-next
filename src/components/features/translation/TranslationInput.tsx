@@ -13,8 +13,10 @@ import customTheming from "@/utils/theme/config"
 
 export default function TranslationInput({
   placeholder,
+  translateBtnLabel,
 }: {
   placeholder: string
+  translateBtnLabel: string
 }) {
   const { input, handleInputChange } = useInputWithUrlParam("input_sentence")
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
@@ -46,6 +48,7 @@ export default function TranslationInput({
         placeholder={placeholder}
         inputProps={{
           "aria-label": "translate",
+          "data-testid": "translation-input",
         }}
         rows={rows}
         multiline
@@ -71,7 +74,7 @@ export default function TranslationInput({
             setTriggerTranslationQuery(true)
           }}
         >
-          Translate
+          {translateBtnLabel}
         </Button>
       </Box>
     </Grid>
