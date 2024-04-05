@@ -51,12 +51,12 @@ function a11yProps(index: number) {
 
 export default function FeatureSelectorTabs({
   tabIndex,
-  tabLabels,
+  translates,
   headings,
   placeholders,
 }: {
   tabIndex: number
-  tabLabels: Record<number, string>
+  translates: Record<number, string>
   headings: Record<string, string>
   placeholders: Record<string, string>
 }) {
@@ -89,13 +89,13 @@ export default function FeatureSelectorTabs({
         <Tab
           icon={<ScreenSearchDesktopOutlinedIcon />}
           iconPosition="start"
-          label={tabLabels[0]}
+          label={translates[0]}
           {...a11yProps(0)}
         />
         <Tab
           icon={<TranslateOutlinedIcon />}
           iconPosition="start"
-          label={tabLabels[1]}
+          label={translates[1]}
           {...a11yProps(1)}
         />
       </Tabs>

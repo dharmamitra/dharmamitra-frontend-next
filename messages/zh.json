@@ -15,8 +15,8 @@
     "home": "家",
     "about": "关于",
     "team": "团队",
-    "aria-mobile-button": "开放导航菜单",
-    "aria-mobile-menu": "导航菜单"
+    "mobileButtonAriaLabel": "开放导航菜单",
+    "mobileMenuAriaLabel": "导航菜单"
   },
   "localeSwitcher": {
     "label": "改变语言",
@@ -29,8 +29,12 @@
   },
   "translation": {
     "heading": "翻译佛法文字",
-    "tabLabel": "翻译",
+    "translate": "翻译",
+    "inputAriaLabel": "翻译输入字段",
     "placeholder": "翻译一些东西",
+    "otherLabel": "其他",
+    "primaryEncodingsAriaLabel": "主要编码选项",
+    "otherEncodingsAriaLabel": "其他编码选项",
     "encodings": {
       "auto": "Autodetect Encoding",
       "dev": "Devanagari",
@@ -41,6 +45,13 @@
       "tibetan": "Tibetan Unicode",
       "wylie": "Wylie"
     },
-    "translateBtnLabel": "翻译"
+    "targetLanguages": {
+      "english": "English",
+      "sanskrit": "Sanskrit",
+      "tibetan": "Tibetan",
+      "chinese": "Chinese",
+      "korean": "Korean",
+      "japanese": "Japanese"
+    }
   }
 }

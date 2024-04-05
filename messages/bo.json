@@ -15,8 +15,8 @@
     "home": "ཧོ༔",
     "about": "ཨ་བྷུ།",
     "team": "ཇ།",
-    "aria-mobile-button": "open navigation menu",
-    "aria-mobile-menu": "navigation menu"
+    "mobileButtonAriaLabel": "open navigation menu",
+    "mobileMenuAriaLabel": "navigation menu"
   },
   "localeSwitcher": {
     "label": "[bo] Change language",
@@ -29,8 +29,12 @@
   },
   "translation": {
     "heading": "[bo] Translate Dharma text",
-    "tabLabel": "[bo] Translate",
+    "translate": "[bo] Translate",
+    "inputAriaLabel": "[bo] Translation input field",
     "placeholder": "[bo] Translate something",
+    "otherLabel": "[bo] Other",
+    "primaryEncodingsAriaLabel": "[bo] Primary encoding options",
+    "otherEncodingsAriaLabel": "[bo] Other encoding options",
     "encodings": {
       "auto": "Autodetect Encoding",
       "dev": "Devanagari",
@@ -41,6 +45,13 @@
       "tibetan": "Tibetan Unicode",
       "wylie": "Wylie"
     },
-    "translateBtnLabel": "[bo] Translate"
+    "targetLanguages": {
+      "english": "English",
+      "sanskrit": "Sanskrit",
+      "tibetan": "Tibetan",
+      "chinese": "Chinese",
+      "korean": "Korean",
+      "japanese": "Japanese"
+    }
   }
 }

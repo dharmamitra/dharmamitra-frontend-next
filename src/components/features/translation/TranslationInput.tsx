@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
@@ -11,13 +12,8 @@ import { triggerTranslationQueryAtom } from "@/atoms"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import customTheming from "@/utils/theme/config"
 
-export default function TranslationInput({
-  placeholder,
-  translateBtnLabel,
-}: {
-  placeholder: string
-  translateBtnLabel: string
-}) {
+export default function TranslationInput() {
+  const t = useTranslations("translation")
   const { input, handleInputChange } = useInputWithUrlParam("input_sentence")
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
@@ -45,10 +41,10 @@ export default function TranslationInput({
           },
           borderRadius: customTheming.shape.inputRadius,
         }}
-        placeholder={placeholder}
+        placeholder={t("placeholder")}
         inputProps={{
-          "aria-label": "translate",
           "data-testid": "translation-input",
+          "aria-label": t("inputAriaLabel"),
         }}
         rows={rows}
         multiline
@@ -74,7 +70,7 @@ export default function TranslationInput({
             setTriggerTranslationQuery(true)
           }}
         >
-          {translateBtnLabel}
+          {t("translate")}
         </Button>
       </Box>
     </Grid>

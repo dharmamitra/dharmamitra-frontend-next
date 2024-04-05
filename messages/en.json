@@ -15,8 +15,8 @@
     "home": "Home",
     "about": "About",
     "team": "Team",
-    "aria-mobile-button": "open navigation menu",
-    "aria-mobile-menu": "navigation menu"
+    "mobileButtonAriaLabel": "open navigation menu",
+    "mobileMenuAriaLabel": "navigation menu"
   },
   "localeSwitcher": {
     "label": "Change language",
@@ -28,10 +28,14 @@
   },
   "translation": {
     "heading": "Translate Dharma text",
-    "tabLabel": "Translate",
+    "translate": "Translate",
+    "inputAriaLabel": "Translation input field",
     "placeholder": "Translate something",
+    "otherLabel": "Other",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "otherEncodingsAriaLabel": "Other encoding options",
     "encodings": {
-      "auto": "Autodetect Encoding",
+      "auto": "Autodetect",
       "dev": "Devanagari",
       "roman": "IAST Roman Transliteration",
       "hk": "Harvard-Kyoto",
@@ -40,6 +44,13 @@
       "tibetan": "Tibetan Unicode",
       "wylie": "Wylie"
     },
-    "translateBtnLabel": "Translate"
+    "targetLanguages": {
+      "english": "English",
+      "sanskrit": "Sanskrit",
+      "tibetan": "Tibetan",
+      "chinese": "Chinese",
+      "korean": "Korean",
+      "japanese": "Japanese"
+    }
   }
 }

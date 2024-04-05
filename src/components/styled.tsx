@@ -1,3 +1,5 @@
+"use client"
+
 import { FormControlLabel, Radio, styled } from "@mui/material"
 
 export const VisuallyHiddenRadio = styled(Radio)({
@@ -9,11 +11,17 @@ export const VisuallyHiddenRadio = styled(Radio)({
   overflow: "hidden",
 })
 
+export const selectedOptionsStyles = {
+  textDecoration: "underline",
+  textDecorationThickness: "3px",
+  textUnderlineOffset: "1.2rem",
+}
+
 export const CustomFormControlLabel = styled(FormControlLabel)(
   ({ theme, checked }) => ({
     paddingInline: theme.spacing(1),
     ".MuiFormControlLabel-label": checked && {
-      textDecoration: "underline",
+      ...selectedOptionsStyles,
       color: theme.palette.primary.main,
     },
   }),

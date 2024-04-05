@@ -12,7 +12,7 @@ import {
 import enMessages from "../messages/en.json"
 
 const {
-  translation: { translateBtnLabel },
+  translation: { translate },
 } = enMessages
 
 test.describe("main features functionality", () => {
@@ -22,9 +22,7 @@ test.describe("main features functionality", () => {
 
   test("translation box renders correctly", async ({ page }) => {
     await expect(page.getByTestId("translation-input")).toBeVisible()
-    await expect(
-      page.getByRole("button", { name: translateBtnLabel }),
-    ).toBeVisible()
+    await expect(page.getByRole("button", { name: translate })).toBeVisible()
     await expect(page.getByTestId("translation-results")).toBeVisible()
   })
 
@@ -47,7 +45,7 @@ test.describe("main features functionality", () => {
 
     await page.getByTestId("translation-input").fill(translationRequest1)
     await expect(page).toHaveURL(inputParamTest)
-    await page.getByRole("button", { name: translateBtnLabel }).click()
+    await page.getByRole("button", { name: translate }).click()
     await page.waitForTimeout(200)
     await expect(page.getByTestId("translation-loading")).toBeVisible()
   })

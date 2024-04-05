@@ -1,13 +1,12 @@
 "use client"
 
 import React from "react"
+import { useTranslations } from "next-intl"
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import { FormControl, MenuItem, RadioGroup, Select } from "@mui/material"
 import Grid from "@mui/material/Grid"
 
-import {
-  CustomFormControlLabel,
-  VisuallyHiddenRadio,
-} from "@/components/styled"
+import { selectedOptionsStyles } from "@/components/styled"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 import customTheming from "@/utils/theme/config"
@@ -17,11 +16,13 @@ import {
   primaryEncodingOptions,
 } from "@/utils/ui"
 
+import RadioOption from "./RadioOption"
+
 export default function TranslationInputEncodingSelector() {
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.input_encoding,
   )
-
+  const t = useTranslations("translation")
   return (
     <Grid
       item
@@ -35,67 +36,69 @@ export default function TranslationInputEncodingSelector() {
       }}
     >
       <FormControl
+        data-testid="input-encoding-selector"
         component="fieldset"
         sx={{ flexDirection: "row" }}
-        data-testid="input-encoding-selector"
       >
         <RadioGroup
-          row
-          aria-label="position"
-          name="position"
-          value={input === "" ? encodingKeys[0] : input}
+          name="primary-encodings"
+          aria-label={t("primaryEncodingsAriaLabel")}
+          value={input ? input : encodingKeys[0]}
           onChange={(e) =>
             handleInputChange(
               inputEncodings[e.target.value as keyof typeof inputEncodings]!,
             )
           }
+          row
         >
           {primaryEncodingOptions.map((option) => (
-            <CustomFormControlLabel
+            <RadioOption
               key={option + "-primary-encoding-option"}
-              value={option}
-              control={
-                <VisuallyHiddenRadio
-                  id={`${option}-input-encoding-option`}
-                  data-testid={`${option}-input-encoding-option`}
-                />
-              }
-              label={option}
-              checked={input === option}
+              i18nKey="encodings"
+              option={option}
+              input={input}
             />
           ))}
         </RadioGroup>
         <Select
+          data-testid={`other-input-encoding-options`}
           value={primaryEncodingOptions.includes(input) ? "" : input}
           onChange={(e) =>
             handleInputChange(
               inputEncodings[e.target.value as keyof typeof inputEncodings]!,
             )
           }
-          displayEmpty
-          inputProps={{ "aria-label": "More options" }}
+          inputProps={{
+            "aria-label": t("otherEncodingsAriaLabel"),
+            sx: { px: "0 !important" },
+          }}
+          IconComponent={() => (
+            <KeyboardArrowDownIcon
+              sx={{ pl: 1, fontSize: "2rem", color: "gray" }}
+            />
+          )}
           sx={{
-            width: "min-content",
-            backgroundColor: "background.paper",
-            overflow: "clip",
-
+            ...(!primaryEncodingOptions.includes(input)
+              ? { ...selectedOptionsStyles, color: "primary.main" }
+              : {}),
             "& .MuiOutlinedInput-notchedOutline": {
               border: "none",
             },
-            borderRadius: customTheming.shape.inputRadius,
           }}
-          data-testid={`other-input-encoding-options`}
+          displayEmpty
         >
           <MenuItem disabled value="">
-            Other Encodings
+            {t("otherLabel")}
           </MenuItem>
           {otherEncodingOptions.map((option) => (
             <MenuItem
               key={option + "-other-encoding-encoding"}
-              value={option}
               data-testid={`${option}-input-encoding-option`}
+              value={option}
             >
-              {option}
+              {t(
+                `encodings.${option as keyof Messages["translation"]["encodings"]}`,
+              )}
             </MenuItem>
           ))}
         </Select>

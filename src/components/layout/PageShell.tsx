@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
-import { Container, Typography } from "@mui/material"
+import Container from "@mui/material/Container"
+import Typography from "@mui/material/Typography"
 import type { Breakpoint } from "@mui/system"
 import { visuallyHidden } from "@mui/utils"
 
