@@ -47,7 +47,7 @@ export default function NavMobileMenu({
         {navItems.map((item) => {
           const { id, label, href } = item
           return (
-            <ListItem key={id.concat("mobile")} disablePadding>
+            <ListItem key={id + "-mobile-menu-item"} disablePadding>
               <ListItemButton>
                 <LocalLink href={href} sx={{ textDecoration: "none" }}>
                   <ListItemText primary={label} />

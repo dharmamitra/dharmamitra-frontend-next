@@ -11,18 +11,16 @@ import {
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 import customTheming from "@/utils/theme/config"
+import {
+  encodingKeys,
+  otherEncodingOptions,
+  primaryEncodingOptions,
+} from "@/utils/ui"
 
 export default function TranslationInputEncodingSelector() {
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.input_encoding,
   )
-
-  // TODO: generate elsewhere to avoid generating on every render
-  const encodingKeys = Object.keys(inputEncodings)
-  const [priorityEncodings, otherEncodings] = [
-    encodingKeys.slice(0, 3),
-    encodingKeys.slice(3),
-  ]
 
   return (
     <Grid
@@ -36,27 +34,44 @@ export default function TranslationInputEncodingSelector() {
         borderTopLeftRadius: customTheming.shape.inputRadius,
       }}
     >
-      <FormControl component="fieldset" sx={{ flexDirection: "row" }}>
+      <FormControl
+        component="fieldset"
+        sx={{ flexDirection: "row" }}
+        data-testid="input-encoding-selector"
+      >
         <RadioGroup
           row
           aria-label="position"
           name="position"
           value={input === "" ? encodingKeys[0] : input}
-          onChange={handleInputChange}
+          onChange={(e) =>
+            handleInputChange(
+              inputEncodings[e.target.value as keyof typeof inputEncodings]!,
+            )
+          }
         >
-          {priorityEncodings.map((encoding) => (
+          {primaryEncodingOptions.map((option) => (
             <CustomFormControlLabel
-              key={encoding + "priority-target-encoding"}
-              value={encoding}
-              control={<VisuallyHiddenRadio />}
-              label={encoding}
-              checked={input === encoding}
+              key={option + "-primary-encoding-option"}
+              value={option}
+              control={
+                <VisuallyHiddenRadio
+                  id={`${option}-input-encoding-option`}
+                  data-testid={`${option}-input-encoding-option`}
+                />
+              }
+              label={option}
+              checked={input === option}
             />
           ))}
         </RadioGroup>
         <Select
-          value={input}
-          onChange={handleInputChange}
+          value={primaryEncodingOptions.includes(input) ? "" : input}
+          onChange={(e) =>
+            handleInputChange(
+              inputEncodings[e.target.value as keyof typeof inputEncodings]!,
+            )
+          }
           displayEmpty
           inputProps={{ "aria-label": "More options" }}
           sx={{
@@ -69,13 +84,18 @@ export default function TranslationInputEncodingSelector() {
             },
             borderRadius: customTheming.shape.inputRadius,
           }}
+          data-testid={`other-input-encoding-options`}
         >
           <MenuItem disabled value="">
-            Other
+            Other Encodings
           </MenuItem>
-          {otherEncodings.map((encoding) => (
-            <MenuItem key={encoding + "other-target-encoding"} value={encoding}>
-              {encoding}
+          {otherEncodingOptions.map((option) => (
+            <MenuItem
+              key={option + "-other-encoding-encoding"}
+              value={option}
+              data-testid={`${option}-input-encoding-option`}
+            >
+              {option}
             </MenuItem>
           ))}
         </Select>

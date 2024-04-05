@@ -15,11 +15,12 @@ function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
 
   const handleInputChange = React.useCallback(
     (
-      event:
+      input:
         | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-        | SelectChangeEvent<string>,
+        | SelectChangeEvent<string>
+        | string,
     ) => {
-      const newValue = event.target.value
+      const newValue = typeof input === "string" ? input : input.target.value
       setInput(newValue)
       updateParams(createQueryString(paramName, newValue))
     },

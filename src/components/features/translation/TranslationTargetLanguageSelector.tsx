@@ -18,7 +18,7 @@ export default function TranslationTargetLanguageSelector() {
   )
 
   // TODO: generate elsewhere to avoid generating on every render
-  const [priorityLanguages, otherLanguages] = [
+  const [primaryLanguages, otherLanguages] = [
     targetLanguages.slice(0, 3),
     targetLanguages.slice(3),
   ]
@@ -44,9 +44,9 @@ export default function TranslationTargetLanguageSelector() {
           value={input === "" ? targetLanguages[0] : input}
           onChange={handleInputChange}
         >
-          {priorityLanguages.map((language) => (
+          {primaryLanguages.map((language) => (
             <CustomFormControlLabel
-              key={language + "priority-target-language"}
+              key={language + "primary-target-language"}
               value={language}
               control={<VisuallyHiddenRadio />}
               label={language}
