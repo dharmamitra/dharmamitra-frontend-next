@@ -1,21 +1,20 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight"
 import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
 import Grid from "@mui/material/Grid"
+import IconButton from "@mui/material/IconButton"
 import OutlinedInput from "@mui/material/OutlinedInput"
+import Tooltip from "@mui/material/Tooltip"
 import { useSetAtom } from "jotai"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import customTheming from "@/utils/theme/config"
 
-export default function TranslationInput({
-  placeholder,
-}: {
-  placeholder: string
-}) {
+export default function TranslationInput() {
+  const t = useTranslations("translation")
   const { input, handleInputChange } = useInputWithUrlParam("input_sentence")
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
@@ -43,16 +42,17 @@ export default function TranslationInput({
           },
           borderRadius: customTheming.shape.inputRadius,
         }}
-        placeholder={placeholder}
+        placeholder={t("placeholder")}
         inputProps={{
-          "aria-label": "translate",
+          "data-testid": "translation-input",
+          "aria-label": t("inputAriaLabel"),
         }}
         rows={rows}
         multiline
         value={input}
         onChange={handleInputChange}
         onKeyUp={(event) => {
-          if (event.key === "Enter" && input.length > 0) {
+          if (event.key === "Enter" && event.ctrlKey && input.length > 0) {
             setTriggerTranslationQuery(true)
           }
         }}
@@ -64,15 +64,17 @@ export default function TranslationInput({
           right: "1rem",
         }}
       >
-        <Button
-          variant="text"
-          endIcon={<KeyboardDoubleArrowRightIcon />}
-          onClick={() => {
-            setTriggerTranslationQuery(true)
-          }}
-        >
-          Translate
-        </Button>
+        <Tooltip title={`${t("translate")} (Ctrl + Enter)`} placement="top">
+          <IconButton
+            aria-label={t("translate")}
+            color="primary"
+            onClick={() => {
+              setTriggerTranslationQuery(true)
+            }}
+          >
+            <KeyboardDoubleArrowRightIcon />
+          </IconButton>
+        </Tooltip>
       </Box>
     </Grid>
   )

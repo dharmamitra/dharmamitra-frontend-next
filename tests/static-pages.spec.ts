@@ -2,6 +2,7 @@ import AxeBuilder from "@axe-core/playwright"
 import { expect, test } from "@playwright/test"
 
 import { basePath, defaultLocale, pathnames, supportedLocales } from "@/config"
+import { Messages } from "@/i18n"
 
 import boMessages from "../messages/bo.json"
 import enMessages from "../messages/en.json"
@@ -11,7 +12,7 @@ const messages = {
   en: enMessages,
   bo: boMessages,
   zh: zhMessages,
-} satisfies Record<(typeof supportedLocales)[number], typeof enMessages>
+} satisfies Record<(typeof supportedLocales)[number], Messages>
 
 const messagePaths = {
   "/": "Home",

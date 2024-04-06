@@ -1,17 +1,7 @@
 {
   "Home": {
     "title": "Welcome to Dharmamitra",
-    "h1": "Welcome to Dharmamitra",
-    "search": {
-      "heading": "Search 2500 years of Buddhism",
-      "tabLabel": "Search",
-      "placeholder": "Search for something"
-    },
-    "translation": {
-      "heading": "Translate Dharma text",
-      "tabLabel": "Translate",
-      "placeholder": "Translate something"
-    }
+    "h1": "Welcome to Dharmamitra"
   },
   "About": {
     "title": "About",
@@ -25,11 +15,46 @@
     "home": "Home",
     "about": "About",
     "team": "Team",
-    "aria-mobile-button": "open navigation menu",
-    "aria-mobile-menu": "navigation menu"
+    "mobileButtonAriaLabel": "open navigation menu",
+    "mobileMenuAriaLabel": "navigation menu"
   },
   "localeSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} other {Unknown}}"
+  },
+  "search": {
+    "heading": "Search 2500 years of Buddhism",
+    "tabLabel": "Search"
+  },
+  "translation": {
+    "heading": "Translate Dharma text",
+    "translate": "Translate",
+    "inputAriaLabel": "Translation input field",
+    "placeholder": "Translate something",
+    "otherLabel": "Other",
+    "encodingSelectLabel": "Script",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "otherEncodingsAriaLabel": "Other encoding options",
+    "targetLanguageSelectLabel": "Output language",
+    "primaryTargetLanguagesAriaLabel": "Primary traget language options",
+    "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "encodings": {
+      "auto": "Autodetect",
+      "dev": "Devanagari",
+      "roman": "IAST Roman Transliteration",
+      "hk": "Harvard-Kyoto",
+      "velthuis": "Velthuis",
+      "itrans": "ITRANS",
+      "tibetan": "Tibetan Unicode",
+      "wylie": "Wylie"
+    },
+    "targetLanguages": {
+      "english": "English",
+      "sanskrit": "Sanskrit",
+      "tibetan": "Tibetan",
+      "chinese": "Chinese",
+      "korean": "Korean",
+      "japanese": "Japanese"
+    }
   }
 }

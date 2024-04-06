@@ -1,50 +1,141 @@
 import { expect, test } from "@playwright/test"
 
 import { basePath } from "@/config"
+import {
+  apiParamsNames,
+  inputEncodings,
+  targetLanguages,
+} from "@/utils/api/params"
+import { translationRequests } from "@/utils/tests"
+import {
+  getSettingPriotiryGroups,
+  otherEncodingOptions,
+  primaryEncodingOptions,
+} from "@/utils/ui"
 
 import enMessages from "../messages/en.json"
 
-test.describe("main functionality", () => {
+const {
+  translation: {
+    translate: translateMsg,
+    encodings: encodingsMsgs,
+    targetLanguages: targetLanguagesMsgs,
+  },
+} = enMessages
+
+const [primaryLanguageOptions, otherLanguageOptions] = getSettingPriotiryGroups(
+  {
+    setting: targetLanguages,
+    noOfPrimaryItems: 3,
+  },
+)
+
+test.describe("main features functionality", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(basePath)
   })
 
   test("translation box renders correctly", async ({ page }) => {
-    await expect(
-      page.getByPlaceholder(enMessages.Home.translation.placeholder),
-    ).toBeVisible()
-    await expect(page.getByRole("button", { name: /translate/i })).toBeVisible()
+    await expect(page.getByTestId("translation-input")).toBeVisible()
+    await expect(page.getByRole("button", { name: translateMsg })).toBeVisible()
     await expect(page.getByTestId("translation-results")).toBeVisible()
   })
 
-  // const inputSentence =
-  // "Kacci pana vo, anuruddhā, samaggā sammodamānā avivadamānā khīrodakībhūtā aññamaññaṁ piyacakkhūhi sampassantā viharathā”ti"
+  test("submits basic translation request", async ({ page, browserName }) => {
+    test.skip(
+      browserName === "webkit",
+      "Playwright bug in `fill` method on webkit",
+    )
 
-  // TODO: Reinstate post mvp launch
-  // test("search and translation navigate to correct tabs", async ({ page }) => {
-  //   await page.getByRole("tab", { name: /translate/i }).click()
-  //   await expect(page).toHaveURL(/.*view=translate/)
-  //   await expect(
-  //     page.getByPlaceholder(enMessages.Home.translation.placeholder),
-  //   ).toBeVisible()
-  //   await page.getByRole("tab", { name: /search/i }).click()
-  //   await expect(page).toHaveURL(/.*view=search/)
-  //   await expect(
-  //     page.getByPlaceholder(enMessages.Home.search.placeholder),
-  //   ).toBeVisible()
-  // })
+    const translationRequest1 =
+      translationRequests[
+        Math.floor(Math.random() * translationRequests.length)
+      ]!
 
-  // search box
-  // options toggle button & popover
-  // placeholder options
-  // search button
-  // example search chips
-  // sticky tabs & search box on scroll
-  // results placeholder
+    // This only checks the first word of the translation request is updated in the URL to avoid issues with different punctuation encodings given by Next.js and `encodeURI`
+    const inputParamTest = new RegExp(
+      `.*${apiParamsNames.translation.input_sentence}=${encodeURI(translationRequest1.split(" ")[0]!)}`,
+      "i",
+    )
 
-  // test("advanced search mode option should be visible", async ({ page }) => {
-  // "bilingual search spec:" https://docs.google.com/document/d/1ZKQpER4vS4XjSU-fMHxCCi5AXFtR8lpbdeTExpLpDrs/edit
-  // A sort of ‘advanced mode’ for the main search function sounds like a good idea. There should be some switch/filter option ‘search only in bilingual aligned reference data’ or the like. Also the presentation of the results should be slightly different as described above.
-  //  I agree that this is a specific feature that will only be interesting to a certain group of ‘pro users’, that is to say translators and researchers, not the general public initially.
-  // })
+    await page.getByTestId("translation-input").fill(translationRequest1)
+    await expect(page).toHaveURL(inputParamTest)
+    await page.getByRole("button", { name: translateMsg }).click()
+
+    // TODO: fetech behavior will be tested with an intercept. We need to determine what can run in which environment
+    // await page.waitForTimeout(200)
+    // await expect(page.getByTestId("translation-loading")).toBeVisible()
+  })
+
+  test("primary input encoding selector updates query params correctly", async ({
+    page,
+  }) => {
+    const inputEncodingsSelector = page.getByTestId("input-encoding-selector")
+
+    for (const option of primaryEncodingOptions) {
+      const encodingParamTest = new RegExp(
+        `.*${apiParamsNames.translation.input_encoding}=${inputEncodings[option]}`,
+        "i",
+      )
+      // `getByText` is used as the selector's radio buttons have been visually hidden for custom styling and are not clickable (`getByText` uses the `value` attribute for buttons: https://playwright.dev/docs/api/class-framelocator#frame-locator-get-by-text).
+      const optionBtn = inputEncodingsSelector.getByText(option)
+      await expect(optionBtn).toBeVisible()
+      await optionBtn.click()
+      await expect(page).toHaveURL(encodingParamTest)
+    }
+  })
+
+  test("secondary input encoding selector updates query params correctly", async ({
+    page,
+  }) => {
+    for (const option of otherEncodingOptions) {
+      const encodingParamTest = new RegExp(
+        `.*${apiParamsNames.translation.input_encoding}=${inputEncodings[option]}`,
+        "i",
+      )
+      const optionBtn = page.getByRole("option", {
+        name: encodingsMsgs[option as keyof typeof encodingsMsgs],
+      })
+      await page.getByTestId("other-input-encoding-options").click()
+      await expect(optionBtn).toBeVisible()
+      await optionBtn.click()
+      await expect(page).toHaveURL(encodingParamTest)
+    }
+  })
+
+  test("primary target language selector updates query params correctly", async ({
+    page,
+  }) => {
+    const targetLangSelector = page.getByTestId("target-language-selector")
+
+    for (const option of primaryLanguageOptions) {
+      const encodingParamTest = new RegExp(
+        `.*${apiParamsNames.translation.target_lang}=${option}`,
+        "i",
+      )
+      // see `getByText` comment for: primary input encoding selector
+      const optionBtn = targetLangSelector.getByText(option)
+      await expect(optionBtn).toBeVisible()
+      await optionBtn.click()
+      await expect(page).toHaveURL(encodingParamTest)
+    }
+  })
+
+  test("secondary target language selector updates query params correctly", async ({
+    page,
+  }) => {
+    for (const option of otherLanguageOptions) {
+      const encodingParamTest = new RegExp(
+        `.*${apiParamsNames.translation.target_lang}=${option}`,
+        "i",
+      )
+      const optionBtn = page.getByRole("option", {
+        name: targetLanguagesMsgs[option as keyof typeof targetLanguagesMsgs],
+      })
+      await page.getByTestId("other-target-language-options").click()
+      await expect(optionBtn).toBeVisible()
+      await optionBtn.click()
+      await expect(page).toHaveURL(encodingParamTest)
+    }
+  })
 })

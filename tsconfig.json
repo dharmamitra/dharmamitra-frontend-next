@@ -24,6 +24,9 @@
       "@/components/*": [
         "./src/components/*"
       ],
+      "@/features/*": [
+        "./src/components/features/*"
+      ],
       "@/utils/*": [
         "./src/utils/*"
       ],

@@ -28,8 +28,8 @@ export default function Navigation() {
           <NavMobileMenu
             navItems={navItems}
             messages={{
-              ariaButton: t("aria-mobile-button"),
-              ariaMenu: t("aria-mobile-menu"),
+              ariaButton: t("mobileButtonAriaLabel"),
+              ariaMenu: t("mobileMenuAriaLabel"),
             }}
           >
             <LocaleSelector />

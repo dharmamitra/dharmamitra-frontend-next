@@ -166,7 +166,7 @@ For server components theme-aware propeties are readily available via component'
 
 ## Testing
 
-Playwright commands:
+Playwright commands (these tests can be run the script command `yarn test:pw [OPTIONS]`):
 
 ```sh
 # Run the end-to-end tests.
@@ -180,6 +180,9 @@ yarn playwright test --project=chromium
 
 # Runs the tests in a specific file.
 yarn playwright test example
+
+# Runs the tests and opens a browser window
+yarn playwright test --headed
 
 # Runs the tests in debug mode.
 yarn playwright test --debug

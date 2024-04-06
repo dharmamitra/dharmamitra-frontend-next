@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query"
 import { DM_API } from "@/api"
 import { setRows } from "@/features/utils"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { apiParamsNames } from "@/utils/api/params"
 
 export default function SearchBox({
   placeholder,
@@ -19,7 +20,9 @@ export default function SearchBox({
   className?: string
 }) {
   const [isQueryEnabled, setIsQueryEnabled] = React.useState(false)
-  const { input, handleInputChange } = useInputWithUrlParam("search_input")
+  const { input, handleInputChange } = useInputWithUrlParam(
+    apiParamsNames.search.search_input,
+  )
 
   const { data, isLoading, isError } = useQuery({
     queryKey: DM_API.search.makeQueryKey({ search_input: placeholder }),
