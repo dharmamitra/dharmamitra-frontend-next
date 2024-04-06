@@ -132,7 +132,7 @@ export default function FeatureSelectorTabs({
             {headings.translation}
           </Typography>
 
-          <TranslationInput placeholder={placeholders.translation!} />
+          <TranslationInput />
 
           <TranslationResults />
         </FeatureTabPanel>
