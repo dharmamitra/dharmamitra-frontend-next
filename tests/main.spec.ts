@@ -1,19 +1,34 @@
 import { expect, test } from "@playwright/test"
 
 import { basePath } from "@/config"
-import { apiParamsNames, inputEncodings } from "@/utils/api/params"
+import {
+  apiParamsNames,
+  inputEncodings,
+  targetLanguages,
+} from "@/utils/api/params"
 import { translationRequests } from "@/utils/tests"
 import {
+  getSettingPriotiryGroups,
   otherEncodingOptions,
-  // encodingKeys,
   primaryEncodingOptions,
 } from "@/utils/ui"
 
 import enMessages from "../messages/en.json"
 
 const {
-  translation: { translate },
+  translation: {
+    translate: translateMsg,
+    encodings: encodingsMsgs,
+    targetLanguages: targetLanguagesMsgs,
+  },
 } = enMessages
+
+const [primaryLanguageOptions, otherLanguageOptions] = getSettingPriotiryGroups(
+  {
+    setting: targetLanguages,
+    noOfPrimaryItems: 3,
+  },
+)
 
 test.describe("main features functionality", () => {
   test.beforeEach(async ({ page }) => {
@@ -22,7 +37,7 @@ test.describe("main features functionality", () => {
 
   test("translation box renders correctly", async ({ page }) => {
     await expect(page.getByTestId("translation-input")).toBeVisible()
-    await expect(page.getByRole("button", { name: translate })).toBeVisible()
+    await expect(page.getByRole("button", { name: translateMsg })).toBeVisible()
     await expect(page.getByTestId("translation-results")).toBeVisible()
   })
 
@@ -45,7 +60,7 @@ test.describe("main features functionality", () => {
 
     await page.getByTestId("translation-input").fill(translationRequest1)
     await expect(page).toHaveURL(inputParamTest)
-    await page.getByRole("button", { name: translate }).click()
+    await page.getByRole("button", { name: translateMsg }).click()
     await page.waitForTimeout(200)
     await expect(page.getByTestId("translation-loading")).toBeVisible()
   })
@@ -53,13 +68,15 @@ test.describe("main features functionality", () => {
   test("primary input encoding selector updates query params correctly", async ({
     page,
   }) => {
+    const inputEncodingsSelector = page.getByTestId("input-encoding-selector")
+
     for (const option of primaryEncodingOptions) {
       const encodingParamTest = new RegExp(
         `.*${apiParamsNames.translation.input_encoding}=${inputEncodings[option]}`,
         "i",
       )
-      // `getByText` is used as the selector's radio buttons have been visually hidden for custom styling and are not clickable.
-      const optionBtn = page.getByText(option)
+      // `getByText` is used as the selector's radio buttons have been visually hidden for custom styling and are not clickable (`getByText` uses the `value` attribute for buttons: https://playwright.dev/docs/api/class-framelocator#frame-locator-get-by-text).
+      const optionBtn = inputEncodingsSelector.getByText(option)
       await expect(optionBtn).toBeVisible()
       await optionBtn.click()
       await expect(page).toHaveURL(encodingParamTest)
@@ -74,7 +91,9 @@ test.describe("main features functionality", () => {
         `.*${apiParamsNames.translation.input_encoding}=${inputEncodings[option]}`,
         "i",
       )
-      const optionBtn = page.getByTestId(`${option}-input-encoding-option`)
+      const optionBtn = page.getByRole("option", {
+        name: encodingsMsgs[option as keyof typeof encodingsMsgs],
+      })
       await page.getByTestId("other-input-encoding-options").click()
       await expect(optionBtn).toBeVisible()
       await optionBtn.click()
@@ -82,14 +101,39 @@ test.describe("main features functionality", () => {
     }
   })
 
-  //   for (const [option, encoding] of Object.entries(inputEncodings)) {
-  //     const encodingParamTest = new RegExp(
-  //       `.*${apiParamsNames.translation.input_encoding}=${encoding}`,
-  //       "i",
-  //     )
-  //     const optionBtn = page.getByTestId(`${option}-input-encoding-option`)
-  //     await optionBtn.click()
-  //     expect(page).toHaveURL(encodingParamTest)
-  //   }
-  // })
+  test("primary target language selector updates query params correctly", async ({
+    page,
+  }) => {
+    const targetLangSelector = page.getByTestId("target-language-selector")
+
+    for (const option of primaryLanguageOptions) {
+      const encodingParamTest = new RegExp(
+        `.*${apiParamsNames.translation.target_lang}=${option}`,
+        "i",
+      )
+      // see `getByText` comment for: primary input encoding selector
+      const optionBtn = targetLangSelector.getByText(option)
+      await expect(optionBtn).toBeVisible()
+      await optionBtn.click()
+      await expect(page).toHaveURL(encodingParamTest)
+    }
+  })
+
+  test("secondary target language selector updates query params correctly", async ({
+    page,
+  }) => {
+    for (const option of otherLanguageOptions) {
+      const encodingParamTest = new RegExp(
+        `.*${apiParamsNames.translation.target_lang}=${option}`,
+        "i",
+      )
+      const optionBtn = page.getByRole("option", {
+        name: targetLanguagesMsgs[option as keyof typeof targetLanguagesMsgs],
+      })
+      await page.getByTestId("other-target-language-options").click()
+      await expect(optionBtn).toBeVisible()
+      await optionBtn.click()
+      await expect(page).toHaveURL(encodingParamTest)
+    }
+  })
 })

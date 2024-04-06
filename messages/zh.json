@@ -33,8 +33,12 @@
     "inputAriaLabel": "翻译输入字段",
     "placeholder": "翻译一些东西",
     "otherLabel": "其他",
+    "encodingSelectLabel": "编码",
     "primaryEncodingsAriaLabel": "主要编码选项",
     "otherEncodingsAriaLabel": "其他编码选项",
+    "targetLanguageSelectLabel": "目标语言",
+    "primaryTargetLanguagesAriaLabel": "主要目标语言选项",
+    "otherTargetLanguagesAriaLabel": "其他目标语言选项",
     "encodings": {
       "auto": "Autodetect Encoding",
       "dev": "Devanagari",
@@ -46,12 +50,12 @@
       "wylie": "Wylie"
     },
     "targetLanguages": {
-      "english": "English",
-      "sanskrit": "Sanskrit",
-      "tibetan": "Tibetan",
-      "chinese": "Chinese",
-      "korean": "Korean",
-      "japanese": "Japanese"
+      "english": "英语",
+      "sanskrit": "梵文",
+      "tibetan": "藏",
+      "chinese": "中国人",
+      "korean": "韩国人",
+      "japanese": "日本人"
     }
   }
 }

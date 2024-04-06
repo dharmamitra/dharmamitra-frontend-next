@@ -9,21 +9,35 @@ import { useAtom } from "jotai"
 import { DM_API, type TranslationRequestProps } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { apiParamsNames } from "@/utils/api/params"
+import {
+  apiParamsNames,
+  InputEncoding,
+  inputEncodings,
+  TargetLanguage,
+  targetLanguages,
+} from "@/utils/api/params"
 
 export default function TranslationResults() {
-  const { input } = useInputWithUrlParam(
+  const { input: inputSentence } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
   )
+  const { input: inputEncoding } = useInputWithUrlParam(
+    apiParamsNames.translation.input_encoding,
+  )
+  const { input: targetLang } = useInputWithUrlParam(
+    apiParamsNames.translation.target_lang,
+  )
+
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
     triggerTranslationQueryAtom,
   )
 
+  // TODO: Add typing to useInputWithUrlParam and remove casting
   const params: TranslationRequestProps = {
-    input_sentence: input,
-    input_encoding: "auto",
+    input_sentence: inputSentence,
+    input_encoding: (inputEncoding as InputEncoding) ?? inputEncodings[0],
     level_of_explanation: 0,
-    target_lang: "english",
+    target_lang: (targetLang as TargetLanguage) ?? targetLanguages[0],
     model: "NO",
   }
 

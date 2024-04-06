@@ -33,8 +33,12 @@
     "inputAriaLabel": "[bo] Translation input field",
     "placeholder": "[bo] Translate something",
     "otherLabel": "[bo] Other",
+    "encodingSelectLabel": "[bo] Script",
     "primaryEncodingsAriaLabel": "[bo] Primary encoding options",
     "otherEncodingsAriaLabel": "[bo] Other encoding options",
+    "targetLanguageSelectLabel": "[bo] Output language",
+    "primaryTargetLanguagesAriaLabel": "[bo] Primary traget language options",
+    "otherTargetLanguagesAriaLabel": "[bo] Other traget language options",
     "encodings": {
       "auto": "Autodetect Encoding",
       "dev": "Devanagari",

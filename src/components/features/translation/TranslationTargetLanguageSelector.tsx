@@ -1,27 +1,40 @@
 "use client"
 
 import React from "react"
-import { FormControl, MenuItem, RadioGroup, Select } from "@mui/material"
+import { useTranslations } from "next-intl"
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
+import {
+  FormControl,
+  MenuItem,
+  RadioGroup,
+  Select,
+  Typography,
+} from "@mui/material"
 import Grid from "@mui/material/Grid"
 
-import {
-  CustomFormControlLabel,
-  VisuallyHiddenRadio,
-} from "@/components/styled"
+import { selectedOptionsStyles } from "@/components/styled"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { apiParamsNames, targetLanguages } from "@/utils/api/params"
+import {
+  apiParamsNames,
+  ServedTargetLanguage,
+  targetLanguages,
+} from "@/utils/api/params"
 import customTheming from "@/utils/theme/config"
+import { getSettingPriotiryGroups } from "@/utils/ui"
+
+import RadioOption from "./RadioOption"
+
+const [primaryLanguagesOptions, otherLanguagesOptions] =
+  getSettingPriotiryGroups({
+    setting: targetLanguages,
+    noOfPrimaryItems: 3,
+  })
 
 export default function TranslationTargetLanguageSelector() {
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.target_lang,
   )
-
-  // TODO: generate elsewhere to avoid generating on every render
-  const [primaryLanguages, otherLanguages] = [
-    targetLanguages.slice(0, 3),
-    targetLanguages.slice(3),
-  ]
+  const t = useTranslations("translation")
 
   return (
     <Grid
@@ -29,6 +42,10 @@ export default function TranslationTargetLanguageSelector() {
       xs={12}
       md={6}
       sx={{
+        position: "relative",
+        display: "flex",
+        alignItems: "flex-end",
+        height: 74,
         px: 2,
         borderLeft: "1px solid",
         borderBottom: "1px solid",
@@ -36,46 +53,79 @@ export default function TranslationTargetLanguageSelector() {
         borderTopRightRadius: customTheming.shape.inputRadius,
       }}
     >
-      <FormControl component="fieldset" sx={{ flexDirection: "row" }}>
+      <Typography
+        sx={{
+          position: "absolute",
+          top: "-16px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          px: 2,
+          color: "text.secondary",
+          backgroundColor: "background.default",
+        }}
+      >
+        {t("targetLanguageSelectLabel")}
+      </Typography>
+      <FormControl
+        data-testid="target-language-selector"
+        component="fieldset"
+        sx={{ flexDirection: "row" }}
+      >
         <RadioGroup
-          row
-          aria-label="position"
-          name="position"
+          aria-label={t("primaryTargetLanguagesAriaLabel")}
           value={input === "" ? targetLanguages[0] : input}
           onChange={handleInputChange}
+          row
         >
-          {primaryLanguages.map((language) => (
-            <CustomFormControlLabel
-              key={language + "primary-target-language"}
-              value={language}
-              control={<VisuallyHiddenRadio />}
-              label={language}
-              checked={input === language}
+          {primaryLanguagesOptions.map((language) => (
+            <RadioOption
+              key={language + "-primary-target-language-option"}
+              i18nKey="targetLanguages"
+              option={language}
+              input={input}
             />
           ))}
         </RadioGroup>
         <Select
-          value={input}
+          data-testid="other-target-language-options"
+          aria-label={t("otherTargetLanguagesAriaLabel")}
+          value={
+            primaryLanguagesOptions.includes(input as ServedTargetLanguage)
+              ? ""
+              : input
+          }
           onChange={handleInputChange}
-          displayEmpty
-          inputProps={{ "aria-label": "More options" }}
+          inputProps={{
+            "aria-label": t("otherTargetLanguagesAriaLabel"),
+            sx: { px: "0 !important" },
+          }}
+          IconComponent={() => (
+            <KeyboardArrowDownIcon
+              sx={{ pl: 1, fontSize: "2rem", color: "gray" }}
+            />
+          )}
           sx={{
-            width: "min-content",
-            backgroundColor: "background.paper",
-            overflow: "clip",
-
+            ...(!primaryLanguagesOptions.includes(input as ServedTargetLanguage)
+              ? { ...selectedOptionsStyles, color: "primary.main" }
+              : {}),
             "& .MuiOutlinedInput-notchedOutline": {
               border: "none",
             },
-            borderRadius: customTheming.shape.inputRadius,
           }}
+          displayEmpty
         >
           <MenuItem disabled value="">
-            Other
+            {t("otherLabel")}
           </MenuItem>
-          {otherLanguages.map((language) => (
-            <MenuItem key={language + "other-target-language"} value={language}>
-              {language}
+          {otherLanguagesOptions.map((language) => (
+            <MenuItem
+              key={language + "-other-target-language-option"}
+              data-testid={`${language}-target-language-option`}
+              value={language}
+            >
+              {t(
+                `targetLanguages.${language as keyof Messages["translation"]["targetLanguages"]}`,
+              )}
             </MenuItem>
           ))}
         </Select>

@@ -3,7 +3,13 @@
 import React from "react"
 import { useTranslations } from "next-intl"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
-import { FormControl, MenuItem, RadioGroup, Select } from "@mui/material"
+import {
+  FormControl,
+  MenuItem,
+  RadioGroup,
+  Select,
+  Typography,
+} from "@mui/material"
 import Grid from "@mui/material/Grid"
 
 import { selectedOptionsStyles } from "@/components/styled"
@@ -23,25 +29,42 @@ export default function TranslationInputEncodingSelector() {
     apiParamsNames.translation.input_encoding,
   )
   const t = useTranslations("translation")
+
   return (
     <Grid
       item
       xs={12}
       md={6}
       sx={{
+        position: "relative",
+        display: "flex",
+        alignItems: "flex-end",
+        height: 74,
         px: 2,
         borderBottom: "1px solid",
         borderColor: "divider",
-        borderTopLeftRadius: customTheming.shape.inputRadius,
+        borderTopRightRadius: customTheming.shape.inputRadius,
       }}
     >
+      <Typography
+        sx={{
+          position: "absolute",
+          top: "-16px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          px: 2,
+          color: "text.secondary",
+          backgroundColor: "background.default",
+        }}
+      >
+        {t("encodingSelectLabel")}
+      </Typography>
       <FormControl
         data-testid="input-encoding-selector"
         component="fieldset"
         sx={{ flexDirection: "row" }}
       >
         <RadioGroup
-          name="primary-encodings"
           aria-label={t("primaryEncodingsAriaLabel")}
           value={input ? input : encodingKeys[0]}
           onChange={(e) =>
@@ -51,17 +74,17 @@ export default function TranslationInputEncodingSelector() {
           }
           row
         >
-          {primaryEncodingOptions.map((option) => (
+          {primaryEncodingOptions.map((encoding) => (
             <RadioOption
-              key={option + "-primary-encoding-option"}
+              key={encoding + "-primary-encoding-option"}
               i18nKey="encodings"
-              option={option}
+              option={encoding}
               input={input}
             />
           ))}
         </RadioGroup>
         <Select
-          data-testid={`other-input-encoding-options`}
+          data-testid="other-input-encoding-options"
           value={primaryEncodingOptions.includes(input) ? "" : input}
           onChange={(e) =>
             handleInputChange(
@@ -90,14 +113,14 @@ export default function TranslationInputEncodingSelector() {
           <MenuItem disabled value="">
             {t("otherLabel")}
           </MenuItem>
-          {otherEncodingOptions.map((option) => (
+          {otherEncodingOptions.map((encoding) => (
             <MenuItem
-              key={option + "-other-encoding-encoding"}
-              data-testid={`${option}-input-encoding-option`}
-              value={option}
+              key={encoding + "-other-encoding-option"}
+              data-testid={`${encoding}-input-encoding-option`}
+              value={encoding}
             >
               {t(
-                `encodings.${option as keyof Messages["translation"]["encodings"]}`,
+                `encodings.${encoding as keyof Messages["translation"]["encodings"]}`,
               )}
             </MenuItem>
           ))}
