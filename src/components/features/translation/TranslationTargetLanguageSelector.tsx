@@ -62,12 +62,12 @@ export default function TranslationTargetLanguageSelector() {
       <Typography
         sx={{
           position: "absolute",
-          top: "-16px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          px: 2,
+          top: "-12px",
+          left: "4px",
+          px: 1,
           color: "text.secondary",
           backgroundColor: "background.default",
+          fontSize: "body2.fontSize",
         }}
       >
         {t("targetLanguageSelectLabel")}
@@ -103,11 +103,16 @@ export default function TranslationTargetLanguageSelector() {
           onChange={handleInputChange}
           inputProps={{
             "aria-label": t("otherTargetLanguagesAriaLabel"),
-            sx: { px: "0 !important" },
+            sx: { pl: "0 !important", pr: 1 },
           }}
           IconComponent={() => (
             <KeyboardArrowDownIcon
-              sx={{ pl: 1, fontSize: "2rem", color: "gray" }}
+              sx={{
+                position: "absolute",
+                zIndex: "-1",
+                right: 0,
+                color: "gray",
+              }}
             />
           )}
           sx={{
