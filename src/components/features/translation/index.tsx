@@ -2,7 +2,7 @@ import { NextIntlClientProvider, useMessages } from "next-intl"
 import Box from "@mui/material/Box"
 import Grid from "@mui/material/Grid"
 
-import { Messages, pickMessages } from "@/i18n"
+import { pickMessages } from "@/i18n"
 import customTheming from "@/utils/theme/config"
 
 import TranslationInput from "./TranslationInput"

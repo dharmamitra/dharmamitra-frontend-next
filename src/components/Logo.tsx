@@ -2,9 +2,8 @@ import * as React from "react"
 import Image from "next/image"
 import { Box } from "@mui/material"
 
+import logo from "@/assets/dm-logo-flat.png"
 import LocalLink from "@/components/LocalLink"
-
-import logo from "./dm-logo-flat.png"
 
 export default function Logo() {
   return (
