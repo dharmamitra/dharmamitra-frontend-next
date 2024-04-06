@@ -19,8 +19,8 @@ const useParams = () => {
   const searchParams = useSearchParams()
 
   const getSearchParam = React.useCallback(
-    (name: string) => {
-      return searchParams.get(name)
+    (paramName: string) => {
+      return searchParams.get(paramName)
     },
     [searchParams],
   )
@@ -28,9 +28,9 @@ const useParams = () => {
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
   const createQueryString = React.useCallback(
-    (name: string, value: string) => {
+    (paramName: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString())
-      params.set(name, value)
+      params.set(paramName, value)
 
       return params.toString()
     },
