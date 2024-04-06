@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { AppBar, Box, Toolbar } from "@mui/material"
 
+import logo from "@/assets/dm-logo-flat.png"
 import LocalLink from "@/components/LocalLink"
 import { useNavItems } from "@/hooks/useNavItems"
 
@@ -22,7 +23,7 @@ export default function Navigation() {
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
             <LocalLink href="/" sx={{ textDecoration: "none" }}>
-              <Image src="/dm-logo-flat.png" alt="Dharmamitra" width={240} />
+              <Image src={logo} alt="Dharmamitra" width={240} />
             </LocalLink>
           </Box>
 
