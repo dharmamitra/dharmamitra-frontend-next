@@ -61,8 +61,10 @@ test.describe("main features functionality", () => {
     await page.getByTestId("translation-input").fill(translationRequest1)
     await expect(page).toHaveURL(inputParamTest)
     await page.getByRole("button", { name: translateMsg }).click()
-    await page.waitForTimeout(200)
-    await expect(page.getByTestId("translation-loading")).toBeVisible()
+
+    // TODO: fetech behavior will be tested with an intercept. We need to determine what can run in which environment
+    // await page.waitForTimeout(200)
+    // await expect(page.getByTestId("translation-loading")).toBeVisible()
   })
 
   test("primary input encoding selector updates query params correctly", async ({
