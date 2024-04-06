@@ -2,7 +2,7 @@ import * as React from "react"
 import { useSearchParams } from "next/navigation"
 
 import { defaultLocale } from "@/config"
-import { usePathname, useRouter } from "@/navigation"
+import { usePathname } from "@/navigation"
 
 function updateQueryParamsWithoutReloading(newUrl: string) {
   if (typeof window !== "undefined") {
@@ -14,7 +14,6 @@ function updateQueryParamsWithoutReloading(newUrl: string) {
 }
 
 const useParams = () => {
-  const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -41,7 +40,7 @@ const useParams = () => {
     (queryString: string) => {
       updateQueryParamsWithoutReloading(pathname + "?" + queryString)
     },
-    [router, pathname],
+    [pathname],
   )
 
   return {
