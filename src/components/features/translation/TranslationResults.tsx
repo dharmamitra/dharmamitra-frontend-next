@@ -80,7 +80,10 @@ export default function TranslationResults() {
         </Typography>
       ) : null}
       {data ? (
-        <Typography data-testid="request-translation">
+        <Typography
+          data-testid="request-translation"
+          sx={{ fontSize: (theme) => theme.custom.typography.reader?.fontSize }}
+        >
           {data.map((part) => part)}
         </Typography>
       ) : null}

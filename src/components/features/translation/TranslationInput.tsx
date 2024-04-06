@@ -41,6 +41,7 @@ export default function TranslationInput() {
             border: "none",
           },
           borderRadius: customTheming.shape.inputRadius,
+          fontSize: customTheming.typography.reader?.fontSize,
         }}
         placeholder={t("placeholder")}
         inputProps={{
@@ -67,7 +68,7 @@ export default function TranslationInput() {
         <Tooltip title={`${t("translate")} (Ctrl + Enter)`} placement="top">
           <IconButton
             aria-label={t("translate")}
-            color="primary"
+            color="secondary"
             onClick={() => {
               setTriggerTranslationQuery(true)
             }}

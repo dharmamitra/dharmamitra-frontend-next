@@ -9,6 +9,9 @@ import theme from "@/utils/theme"
 export const metadata: Metadata = {
   title: "Dharma Mitra",
   description: "Exploring the teachings of the Buddha",
+  icons: {
+    icon: [{ url: `${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.png` }],
+  },
 }
 
 export default function RootLayout({

@@ -1,10 +1,12 @@
 import * as React from "react"
+import Image from "next/image"
 import { useTranslations } from "next-intl"
-import { AppBar, Box, Toolbar, Typography } from "@mui/material"
+import { AppBar, Box, Toolbar } from "@mui/material"
 
 import LocalLink from "@/components/LocalLink"
 import { useNavItems } from "@/hooks/useNavItems"
 
+import logo from "../../../public/dm-logo-flat.png"
 import LocaleSelector from "./LocaleSelector"
 import NavMobileMenu from "./NavMobileMenu"
 
@@ -15,15 +17,15 @@ export default function Navigation() {
     <>
       <AppBar
         component="nav"
-        elevation={1}
-        sx={{ py: 1, backgroundColor: "white" }}
+        elevation={0}
+        sx={{ py: "0.2rem", backgroundColor: "white" }}
       >
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1 }}>
             <LocalLink href="/" sx={{ textDecoration: "none" }}>
-              DHARMAMITRA
+              <Image src={logo} alt="Dharmamitra" width={240} />
             </LocalLink>
-          </Typography>
+          </Box>
 
           <NavMobileMenu
             navItems={navItems}

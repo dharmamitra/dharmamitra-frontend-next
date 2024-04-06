@@ -22,7 +22,7 @@ export const CustomFormControlLabel = styled(FormControlLabel)(
     paddingInline: theme.spacing(1),
     ".MuiFormControlLabel-label": checked && {
       ...selectedOptionsStyles,
-      color: theme.palette.primary.main,
+      color: theme.palette.secondary.main,
     },
   }),
 )
