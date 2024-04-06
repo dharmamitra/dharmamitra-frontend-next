@@ -11,11 +11,14 @@ import { useSetAtom } from "jotai"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { apiParamsNames } from "@/utils/api/params"
 import customTheming from "@/utils/theme/config"
 
 export default function TranslationInput() {
   const t = useTranslations("translation")
-  const { input, handleInputChange } = useInputWithUrlParam("input_sentence")
+  const { input, handleInputChange } = useInputWithUrlParam(
+    apiParamsNames.translation.input_sentence,
+  )
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
   const rows = 16

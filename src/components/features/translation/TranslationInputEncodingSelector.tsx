@@ -30,6 +30,12 @@ export default function TranslationInputEncodingSelector() {
   )
   const t = useTranslations("translation")
 
+  React.useEffect(() => {
+    if (input === "") {
+      handleInputChange(encodingKeys[0]!)
+    }
+  }, [input, handleInputChange])
+
   return (
     <Grid
       item

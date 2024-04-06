@@ -36,6 +36,12 @@ export default function TranslationTargetLanguageSelector() {
   )
   const t = useTranslations("translation")
 
+  React.useEffect(() => {
+    if (input === "") {
+      handleInputChange(targetLanguages[0])
+    }
+  }, [input, handleInputChange])
+
   return (
     <Grid
       item
@@ -73,7 +79,7 @@ export default function TranslationTargetLanguageSelector() {
       >
         <RadioGroup
           aria-label={t("primaryTargetLanguagesAriaLabel")}
-          value={input === "" ? targetLanguages[0] : input}
+          value={input}
           onChange={handleInputChange}
           row
         >

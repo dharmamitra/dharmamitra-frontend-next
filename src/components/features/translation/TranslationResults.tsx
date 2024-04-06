@@ -28,16 +28,23 @@ export default function TranslationResults() {
     apiParamsNames.translation.target_lang,
   )
 
+  // TODO: Add typing to useInputWithUrlParam and remove casting
+  const inputEncodingParam = (
+    inputEncoding ? inputEncoding : inputEncodings.auto
+  ) as InputEncoding
+  const targetLangParam = (
+    targetLang ? targetLang : targetLanguages[0]
+  ) as TargetLanguage
+
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
     triggerTranslationQueryAtom,
   )
 
-  // TODO: Add typing to useInputWithUrlParam and remove casting
   const params: TranslationRequestProps = {
     input_sentence: inputSentence,
-    input_encoding: (inputEncoding as InputEncoding) ?? inputEncodings[0],
+    input_encoding: inputEncodingParam,
     level_of_explanation: 0,
-    target_lang: (targetLang as TargetLanguage) ?? targetLanguages[0],
+    target_lang: targetLangParam,
     model: "NO",
   }
 

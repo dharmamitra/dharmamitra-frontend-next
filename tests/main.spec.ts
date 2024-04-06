@@ -61,10 +61,8 @@ test.describe("main features functionality", () => {
     await page.getByTestId("translation-input").fill(translationRequest1)
     await expect(page).toHaveURL(inputParamTest)
     await page.getByRole("button", { name: translateMsg }).click()
-
-    // TODO: fetech behavior will be tested with an intercept. We need to determine what can run in which environment
-    // await page.waitForTimeout(200)
-    // await expect(page.getByTestId("translation-loading")).toBeVisible()
+    await page.waitForTimeout(200)
+    await expect(page.getByTestId("translation-loading")).toBeVisible()
   })
 
   test("primary input encoding selector updates query params correctly", async ({
@@ -77,6 +75,13 @@ test.describe("main features functionality", () => {
         `.*${apiParamsNames.translation.input_encoding}=${inputEncodings[option]}`,
         "i",
       )
+
+      if (option === inputEncodings.auto) {
+        //TODO: update to check auto is in param once BE has de-multi-mapped option->param
+        // await expect(page).toHaveURL(encodingParamTest)
+        continue
+      }
+
       // `getByText` is used as the selector's radio buttons have been visually hidden for custom styling and are not clickable (`getByText` uses the `value` attribute for buttons: https://playwright.dev/docs/api/class-framelocator#frame-locator-get-by-text).
       const optionBtn = inputEncodingsSelector.getByText(option)
       await expect(optionBtn).toBeVisible()
@@ -113,6 +118,12 @@ test.describe("main features functionality", () => {
         `.*${apiParamsNames.translation.target_lang}=${option}`,
         "i",
       )
+
+      if (option === primaryLanguageOptions[0]) {
+        await expect(page).toHaveURL(encodingParamTest)
+        continue
+      }
+
       // see `getByText` comment for: primary input encoding selector
       const optionBtn = targetLangSelector.getByText(option)
       await expect(optionBtn).toBeVisible()
