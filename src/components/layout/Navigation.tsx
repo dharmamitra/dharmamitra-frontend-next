@@ -6,7 +6,6 @@ import { AppBar, Box, Toolbar } from "@mui/material"
 import LocalLink from "@/components/LocalLink"
 import { useNavItems } from "@/hooks/useNavItems"
 
-import logo from "../../../public/dm-logo-flat.png"
 import LocaleSelector from "./LocaleSelector"
 import NavMobileMenu from "./NavMobileMenu"
 
@@ -23,7 +22,7 @@ export default function Navigation() {
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
             <LocalLink href="/" sx={{ textDecoration: "none" }}>
-              <Image src={logo} alt="Dharmamitra" width={240} />
+              <Image src="/dm-logo-flat.png" alt="Dharmamitra" width={240} />
             </LocalLink>
           </Box>
 
