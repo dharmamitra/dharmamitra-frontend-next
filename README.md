@@ -39,6 +39,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 - `main`: for production deployment
 - `dev`: for preview deployment
+- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files. 
 - development item branches linked to issue numbers
 
 `dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
@@ -134,13 +135,20 @@ TODO
 - Supported locales are defined in the `supportedLocales` varriable in `src/config.ts` and locale files with matching file names are added to the `messages/` directory.
 - `messages/` files use the convention of title-case keys for page content and camel-case keys for component content.
 
-### internal navigation
+### Updating locale content
+
+TODO (https://stackoverflow.com/questions/14500240/how-can-i-generate-a-diff-for-a-single-file-between-two-branches-in-github)
+
+
+
+### Internal navigation
 
 - most internal navigation can be handled with `src/components/LocalLink.tsx`.
 - where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.
 
 ### Referrences:
 
+- [Locale code list](https://www.alchemysoftware.com/livedocs/ezscript/Topics/Catalyst/Language.htm)
 - [Latest CLDR locale data chart](https://www.unicode.org/cldr/charts/latest/summary/root.html)
 
 ## Theming

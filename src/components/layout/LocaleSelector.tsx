@@ -13,13 +13,18 @@ export default function LocaleSelector() {
   return (
     <LocaleSelectionSwitcher defaultValue={locale} label={t("label")}>
       {supportedLocales.map((currentLocale) => (
-        <MenuItem key={currentLocale + "locale-switcher"} value={currentLocale}>
+        <MenuItem
+          key={currentLocale + "-locale-switcher"}
+          value={currentLocale}
+        >
           <Typography
             variant="body2"
             sx={{ textTransform: "uppercase" }}
             lineHeight={1.5}
           >
-            {t("locale", { locale: currentLocale })}
+            {t("locale", {
+              locale: currentLocale === "zh-Hant" ? "zhHant" : currentLocale,
+            })}
           </Typography>
         </MenuItem>
       ))}
