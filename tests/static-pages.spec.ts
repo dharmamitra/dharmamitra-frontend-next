@@ -6,11 +6,13 @@ import { basePath, defaultLocale, pathnames, supportedLocales } from "@/config"
 import boMessages from "../messages/bo.json"
 import enMessages from "../messages/en.json"
 import zhMessages from "../messages/zh.json"
+import zhHantMessages from "../messages/zh-Hant.json"
 
 const messages = {
   en: enMessages,
   bo: boMessages,
   zh: zhMessages,
+  "zh-Hant": zhHantMessages,
 } satisfies Record<(typeof supportedLocales)[number], Messages>
 
 const messagePaths = {
