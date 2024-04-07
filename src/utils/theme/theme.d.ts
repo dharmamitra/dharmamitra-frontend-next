@@ -5,6 +5,12 @@ declare module "@mui/material/styles" {
     shape: {
       inputRadius?: string
     }
+    typography: {
+      reader?: {
+        fontSize?: string
+        lineHeight?: number
+      }
+    }
   }
 
   interface Theme {

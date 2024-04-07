@@ -15,14 +15,15 @@ export const selectedOptionsStyles = {
   textDecoration: "underline",
   textDecorationThickness: "3px",
   textUnderlineOffset: "1.2rem",
+  textDecorationColor: "currentColor",
 }
 
 export const CustomFormControlLabel = styled(FormControlLabel)(
   ({ theme, checked }) => ({
     paddingInline: theme.spacing(1),
     ".MuiFormControlLabel-label": checked && {
+      color: theme.palette.secondary.main,
       ...selectedOptionsStyles,
-      color: theme.palette.primary.main,
     },
   }),
 )

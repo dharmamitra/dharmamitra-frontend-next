@@ -11,15 +11,20 @@ const customTheming: CustomTheming = {
   shape: {
     inputRadius: "24px",
   },
+  typography: {
+    reader: {
+      fontSize: "1.35rem",
+    },
+  },
 }
 
 export const theme: ThemeOptions = {
   palette: {
     primary: {
-      main: "#007baa",
+      main: "#06315f",
     },
     secondary: {
-      main: "#ffc107",
+      main: "#972e3a",
     },
   },
   typography: {

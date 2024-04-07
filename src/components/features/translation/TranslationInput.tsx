@@ -11,11 +11,14 @@ import { useSetAtom } from "jotai"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { apiParamsNames } from "@/utils/api/params"
 import customTheming from "@/utils/theme/config"
 
 export default function TranslationInput() {
   const t = useTranslations("translation")
-  const { input, handleInputChange } = useInputWithUrlParam("input_sentence")
+  const { input, handleInputChange } = useInputWithUrlParam(
+    apiParamsNames.translation.input_sentence,
+  )
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
   const rows = 16
@@ -41,6 +44,7 @@ export default function TranslationInput() {
             border: "none",
           },
           borderRadius: customTheming.shape.inputRadius,
+          fontSize: customTheming.typography.reader?.fontSize,
         }}
         placeholder={t("placeholder")}
         inputProps={{
@@ -67,7 +71,7 @@ export default function TranslationInput() {
         <Tooltip title={`${t("translate")} (Ctrl + Enter)`} placement="top">
           <IconButton
             aria-label={t("translate")}
-            color="primary"
+            color="secondary"
             onClick={() => {
               setTriggerTranslationQuery(true)
             }}

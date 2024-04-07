@@ -2,7 +2,6 @@ import AxeBuilder from "@axe-core/playwright"
 import { expect, test } from "@playwright/test"
 
 import { basePath, defaultLocale, pathnames, supportedLocales } from "@/config"
-import { Messages } from "@/i18n"
 
 import boMessages from "../messages/bo.json"
 import enMessages from "../messages/en.json"

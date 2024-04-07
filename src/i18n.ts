@@ -3,10 +3,6 @@ import { getRequestConfig } from "next-intl/server"
 
 import { supportedLocales } from "@/config"
 
-import enMessages from "../messages/en.json"
-
-export type Messages = typeof enMessages
-
 export const pickMessages = ({
   messages,
   messageKeys,
