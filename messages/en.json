@@ -22,8 +22,22 @@
     }
   },
   "Team": {
-    "title": "Team",
-    "h1": "Team"
+    "title": "Our Team",
+    "h1": "Our Team",
+    "present": {
+      "h2": "Present"
+    },
+    "past": {
+      "h2": "Past"
+    },
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "webDesign": "Web design",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
+    }
   },
   "navigation": {
     "home": "Home",

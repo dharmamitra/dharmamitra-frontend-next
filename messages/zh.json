@@ -23,7 +23,21 @@
   },
   "Team": {
     "title": "团队",
-    "h1": "团队"
+    "h1": "团队",
+    "present": {
+      "h2": "现在"
+    },
+    "past": {
+      "h2": "过去"
+    },
+    "roles": {
+      "directorExecutive": "执行董事",
+      "directorTechnical": "技术董事",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "项目基础设施",
+      "webDesign": "网页设计",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
+    }
   },
   "navigation": {
     "home": "家",

@@ -23,7 +23,21 @@
   },
   "Team": {
     "title": "ཇ།",
-    "h1": "ཇ།"
+    "h1": "ཇ།",
+    "present": {
+      "h2": "སྐད་དུ།"
+    },
+    "past": {
+      "h2": "སྐད་དུ།"
+    },
+    "roles": {
+      "directorExecutive": "བོད་སྐད་དུ།",
+      "directorTechnical": "བོད་སྐད་དུ།",
+      "dataCollectionSanskrit": "བོད་སྐད་དུ།",
+      "projectInfrastructure": "བོད་སྐད་དུ།",
+      "webDesign": "བོད་སྐད་དུ།",
+      "nlpResearchSanskrit": "བོད་སྐད་དུ།"
+    }
   },
   "navigation": {
     "home": "ཧོ༔",
