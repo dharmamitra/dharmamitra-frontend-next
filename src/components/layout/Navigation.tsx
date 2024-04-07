@@ -17,7 +17,12 @@ export default function Navigation() {
       <AppBar
         component="nav"
         elevation={0}
-        sx={{ py: "0.2rem", backgroundColor: "white" }}
+        sx={{
+          py: "0.2rem",
+          backgroundColor: "white",
+          border: "1px solid",
+          borderColor: "secondary.main",
+        }}
       >
         <Toolbar>
           <Logo />
