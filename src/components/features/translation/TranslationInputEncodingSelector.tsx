@@ -113,7 +113,7 @@ export default function TranslationInputEncodingSelector() {
           )}
           sx={{
             ...(!primaryEncodingOptions.includes(input)
-              ? { ...selectedOptionsStyles, color: "primary.main" }
+              ? { ...selectedOptionsStyles, color: "secondary.main" }
               : {}),
             "& .MuiOutlinedInput-notchedOutline": {
               border: "none",

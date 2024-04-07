@@ -117,7 +117,7 @@ export default function TranslationTargetLanguageSelector() {
           )}
           sx={{
             ...(!primaryLanguagesOptions.includes(input as ServedTargetLanguage)
-              ? { ...selectedOptionsStyles, color: "primary.main" }
+              ? { ...selectedOptionsStyles, color: "secondary.main" }
               : {}),
             "& .MuiOutlinedInput-notchedOutline": {
               border: "none",
