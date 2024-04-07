@@ -18,13 +18,18 @@ const customTheming: CustomTheming = {
   },
 }
 
+const colours = {
+  primary: "#06315f",
+  secondary: "#972e3a",
+}
+
 export const theme: ThemeOptions = {
   palette: {
     primary: {
-      main: "#06315f",
+      main: colours.primary,
     },
     secondary: {
-      main: "#972e3a",
+      main: colours.secondary,
     },
   },
   typography: {
@@ -34,7 +39,14 @@ export const theme: ThemeOptions = {
     // Adjusts the root HTML font size for rem calculations
     // htmlFontSize: 14,
     h1: {
-      fontSize: "4.5rem",
+      color: colours.primary,
+      // fontSize: "2.5rem",
+      fontWeight: 500,
+      marginTop: "2rem",
+    },
+    h2: {
+      color: colours.primary,
+      marginTop: "2rem",
     },
   },
   components: {
