@@ -49,7 +49,7 @@ export default function Home() {
                     <Typography
                       align="center"
                       key={id + "-" + i18nRoleKey}
-                      color="grey"
+                      color="text.secondary"
                     >
                       {t(`roles.${i18nRoleKey}`)}
                       {index < roles.length - 1 && ","}
@@ -93,7 +93,7 @@ export default function Home() {
                     <Typography
                       align="center"
                       key={id + "-" + i18nRoleKey}
-                      color="grey"
+                      color="text.secondary"
                     >
                       {t(`roles.${i18nRoleKey}`)}
                       {index < roles.length - 1 && ","}
