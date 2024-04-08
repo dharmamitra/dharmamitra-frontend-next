@@ -1,64 +1,24 @@
-import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Typography } from "@mui/material"
-import Box from "@mui/material/Box"
-import Stack from "@mui/material/Stack"
 
 import { PageShell } from "@/components/layout"
+import Members from "@/components/Members"
 
-import members from "./data"
+import membersData from "./data"
 
-export default function Home() {
+export default function Team() {
   const t = useTranslations("Team")
 
   return (
-    <PageShell sx={{ mb: 12 }}>
-      <Typography variant="h1" component="h1">
-        {t("h1")}
-      </Typography>
+    <PageShell>
+      <Typography variant="h1">{t("h1")}</Typography>
 
       <section style={{ marginBlockEnd: "4rem" }}>
-        <Typography variant="h2" mb={4}>
+        <Typography variant="h2" mt={{ xs: 2, sm: 4 }} mb={4}>
           {t("present.h2")}
         </Typography>
 
-        <Stack
-          direction="row"
-          spacing={4}
-          rowGap={8}
-          useFlexGap
-          flexWrap="wrap"
-        >
-          {members.current.map((member) => {
-            const { id, name, roles, image } = member
-            return (
-              <Box key={id}>
-                <Image
-                  src={image}
-                  alt={name}
-                  width={200}
-                  height={200}
-                  style={{ borderRadius: "50%" }}
-                />
-
-                <Typography align="center" variant="h6" component="p">
-                  {name}
-                </Typography>
-                {roles &&
-                  roles.map(({ i18nRoleKey }, index) => (
-                    <Typography
-                      align="center"
-                      key={id + "-" + i18nRoleKey}
-                      color="text.secondary"
-                    >
-                      {t(`roles.${i18nRoleKey}`)}
-                      {index < roles.length - 1 && ","}
-                    </Typography>
-                  ))}
-              </Box>
-            )
-          })}
-        </Stack>
+        <Members members={membersData.current} />
       </section>
 
       <section style={{ marginBlockEnd: "4rem" }}>
@@ -66,43 +26,7 @@ export default function Home() {
           {t("past.h2")}
         </Typography>
 
-        <Stack
-          direction="row"
-          spacing={4}
-          rowGap={8}
-          useFlexGap
-          flexWrap="wrap"
-        >
-          {members.past.map((member) => {
-            const { id, name, roles, image } = member
-            return (
-              <Box key={id}>
-                <Image
-                  src={image}
-                  alt={name}
-                  width={200}
-                  height={200}
-                  style={{ borderRadius: "50%" }}
-                />
-
-                <Typography align="center" variant="h6" component="p">
-                  {name}
-                </Typography>
-                {roles &&
-                  roles.map(({ i18nRoleKey }, index) => (
-                    <Typography
-                      align="center"
-                      key={id + "-" + i18nRoleKey}
-                      color="text.secondary"
-                    >
-                      {t(`roles.${i18nRoleKey}`)}
-                      {index < roles.length - 1 && ","}
-                    </Typography>
-                  ))}
-              </Box>
-            )
-          })}
-        </Stack>
+        <Members members={membersData.past} />
       </section>
     </PageShell>
   )

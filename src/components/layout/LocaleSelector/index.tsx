@@ -4,14 +4,14 @@ import MenuItem from "@mui/material/MenuItem"
 
 import { supportedLocales } from "@/config"
 
-import LocaleSelectionSwitcher from "./LocaleSelectionSwitcher"
+import ResponsiveLocaleSelector from "./ResponseiveLocaleSwitcher"
 
 export default function LocaleSelector() {
   const t = useTranslations("localeSwitcher")
   const locale = useLocale()
 
   return (
-    <LocaleSelectionSwitcher defaultValue={locale} label={t("label")}>
+    <ResponsiveLocaleSelector defaultValue={locale} label={t("label")}>
       {supportedLocales.map((currentLocale) => (
         <MenuItem
           key={currentLocale + "-locale-switcher"}
@@ -28,6 +28,6 @@ export default function LocaleSelector() {
           </Typography>
         </MenuItem>
       ))}
-    </LocaleSelectionSwitcher>
+    </ResponsiveLocaleSelector>
   )
 }

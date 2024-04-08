@@ -15,6 +15,7 @@ import {
 } from "@mui/material"
 
 import LocalLink from "@/components/LocalLink"
+import Logo from "@/components/Logo"
 import { useNavItems } from "@/hooks/useNavItems"
 
 const drawerWidth = 240
@@ -25,6 +26,7 @@ export default function NavMobileMenu({
   children,
 }: {
   navItems: ReturnType<typeof useNavItems>
+  // locale selector passed as a child to avoid the need for i18n provider
   children: React.ReactNode
   messages: {
     ariaButton: string
@@ -40,7 +42,7 @@ export default function NavMobileMenu({
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ p: 1 }}>
       <Typography variant="h5" component="div">
-        DHARMAMITRA
+        <Logo />
       </Typography>
       <Divider />
       <List>
@@ -63,9 +65,8 @@ export default function NavMobileMenu({
   return (
     <Box sx={{ display: { sm: "none" } }}>
       <Box>
-        {children}
         <IconButton
-          color="inherit"
+          color="primary"
           aria-label={messages.ariaButton}
           edge="start"
           sx={{ ml: 1 }}
@@ -73,6 +74,7 @@ export default function NavMobileMenu({
         >
           <MenuIcon />
         </IconButton>
+        {children}
       </Box>
       <nav aria-label={messages.ariaMenu}>
         <Drawer

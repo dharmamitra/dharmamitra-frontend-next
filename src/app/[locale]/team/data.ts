@@ -17,7 +17,7 @@ import imgShivamAgarwal from "@/assets/team/shivam-agarwal.jpg"
 import imgSiyaMehta from "@/assets/team/siya-mehta.png"
 import imgVarunRao from "@/assets/team/varun-rao.png"
 
-type TeamMemeber = {
+export type Member = {
   id: string
   name: string
   roles: { role: string; i18nRoleKey: keyof Messages["Team"]["roles"] }[] | null
@@ -25,8 +25,8 @@ type TeamMemeber = {
 }
 
 type TeamMembers = {
-  current: TeamMemeber[]
-  past: TeamMemeber[]
+  current: Member[]
+  past: Member[]
 }
 
 const members: TeamMembers = {
@@ -71,8 +71,16 @@ const members: TeamMembers = {
     },
     {
       id: crypto.randomUUID(),
+      name: "Aminah Borg-Luck",
+      roles: [
+        { role: "Website development", i18nRoleKey: "websiteDevelopment" },
+      ],
+      image: avatar,
+    },
+    {
+      id: crypto.randomUUID(),
       name: "Shivam Agarwal",
-      roles: [{ role: "Web design", i18nRoleKey: "webDesign" }],
+      roles: [{ role: "Website design", i18nRoleKey: "websiteDesign" }],
       image: imgShivamAgarwal,
     },
     {

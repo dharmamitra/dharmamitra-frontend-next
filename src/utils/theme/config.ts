@@ -13,7 +13,7 @@ const customTheming: CustomTheming = {
   },
   typography: {
     reader: {
-      fontSize: "1.35rem",
+      fontSize: "1.5rem",
     },
   },
 }
@@ -23,7 +23,7 @@ const colours = {
   secondary: "#972e3a",
 }
 
-export const theme: ThemeOptions = {
+export const baseTheme: ThemeOptions = {
   palette: {
     primary: {
       main: colours.primary,
@@ -37,16 +37,18 @@ export const theme: ThemeOptions = {
     // Sets the base font size to 16px
     fontSize: 16,
     // Adjusts the root HTML font size for rem calculations
-    // htmlFontSize: 14,
+    htmlFontSize: 14,
     h1: {
       color: colours.primary,
-      // fontSize: "2.5rem",
-      fontWeight: 500,
       marginTop: "2rem",
     },
     h2: {
       color: colours.primary,
       marginTop: "2rem",
+    },
+    reader: {
+      fontSize: "1.15rem",
+      marginBlock: "1rem",
     },
   },
   components: {
