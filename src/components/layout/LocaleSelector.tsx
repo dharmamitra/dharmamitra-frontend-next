@@ -23,7 +23,7 @@ export default function LocaleSelector() {
             lineHeight={1.5}
           >
             {t("locale", {
-              locale: currentLocale === "zh-Hant" ? "zhHant" : currentLocale,
+              locale: currentLocale.replace(/-/g, "_"),
             })}
           </Typography>
         </MenuItem>
