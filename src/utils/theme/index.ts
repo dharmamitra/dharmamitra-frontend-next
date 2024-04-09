@@ -12,6 +12,9 @@ theme = responsiveFontSizes(theme)
 theme.typography.reader = {
   ...theme.typography.reader,
   fontSize: "1.15rem",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.15rem",
+  },
   [theme.breakpoints.up("sm")]: {
     fontSize: "1.25rem",
   },
@@ -20,4 +23,4 @@ theme.typography.reader = {
   },
 }
 
-export default responsiveFontSizes(theme)
+export default theme

@@ -59,7 +59,7 @@
     "heading": "Translate Dharma text",
     "translate": "Translate",
     "inputAriaLabel": "Translation input field",
-    "placeholder": "Translate something",
+    "placeholder": "Enter text to translate...",
     "otherLabel": "Other",
     "encodingSelectLabel": "Transliteration",
     "primaryEncodingsAriaLabel": "Primary encoding options",
@@ -70,20 +70,23 @@
     "encodings": {
       "auto": "Autodetect",
       "dev": "Devanagari",
-      "roman": "IAST Roman",
       "hk": "Harvard-Kyoto",
-      "velthuis": "Velthuis",
+      "iast": "IAST Roman",
       "itrans": "ITRANS",
       "tibetan": "Tibetan Unicode",
+      "velthuis": "Velthuis",
       "wylie": "Wylie"
     },
     "targetLanguages": {
+      "tibetan": "Tibetan",
       "english": "English",
       "sanskrit": "Sanskrit",
-      "tibetan": "Tibetan",
       "chinese": "Chinese",
+      "japanese": "Japanese",
       "korean": "Korean",
-      "japanese": "Japanese"
+      "sanskrit-dev": "Sanskrit Dev",
+      "sa-en": "SA English",
+      "modern-chinese": "Modern Chinese"
     }
   }
 }

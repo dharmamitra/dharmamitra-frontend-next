@@ -53,7 +53,12 @@ export default function TranslationInput() {
           "data-testid": "translation-input",
           "aria-label": t("inputAriaLabel"),
           sx: {
-            fontSize: { sm: theme.typography.h5.fontSize },
+            // TODO: fix quick and dirty `reader` theme font-size hack!
+            fontSize: {
+              xs: "1.15rem !important",
+              sm: `1.25rem !important`,
+              md: `1.35rem !important`,
+            },
           },
         }}
         rows={rows}

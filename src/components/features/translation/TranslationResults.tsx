@@ -2,63 +2,13 @@
 
 import React from "react"
 import Typography from "@mui/material/Typography"
-import { useQuery } from "@tanstack/react-query"
-import { useAtom } from "jotai"
 
-import { DM_API, type TranslationRequestProps } from "@/api"
-import { triggerTranslationQueryAtom } from "@/atoms"
 import { TranslationContentBox } from "@/components/styled"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
-import {
-  apiParamsNames,
-  InputEncoding,
-  inputEncodings,
-  TargetLanguage,
-  targetLanguages,
-} from "@/utils/api/params"
+import useTranslationResults from "@/hooks/useTranslationResults"
 
 export default function TranslationResults() {
-  const { input: inputSentence } = useInputWithUrlParam(
-    apiParamsNames.translation.input_sentence,
-  )
-  const { input: inputEncoding } = useInputWithUrlParam(
-    apiParamsNames.translation.input_encoding,
-  )
-  const { input: targetLang } = useInputWithUrlParam(
-    apiParamsNames.translation.target_lang,
-  )
-
-  // TODO: Add typing to useInputWithUrlParam and remove casting
-  const inputEncodingParam = (
-    inputEncoding ? inputEncoding : inputEncodings.auto
-  ) as InputEncoding
-  const targetLangParam = (
-    targetLang ? targetLang : targetLanguages[0]
-  ) as TargetLanguage
-
-  const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
-    triggerTranslationQueryAtom,
-  )
-
-  const params: TranslationRequestProps = {
-    input_sentence: inputSentence,
-    input_encoding: inputEncodingParam,
-    level_of_explanation: 0,
-    target_lang: targetLangParam,
-    model: "NO",
-  }
-
-  const { data, isLoading, isError } = useQuery({
-    queryKey: DM_API.translation.makeQueryKey(params),
-    queryFn: () => DM_API.translation.call(params),
-    enabled: triggerTranslationQuery,
-  })
-
-  if (!isLoading) {
-    setTriggerTranslationQuery(false)
-  }
-
+  const { data, isLoading, isError } = useTranslationResults()
   const rows = useResponsiveContentRows()
 
   return (
@@ -93,8 +43,9 @@ export default function TranslationResults() {
       {data ? (
         <Typography
           data-testid="request-translation"
-          variant="h5"
+          variant="reader"
           component="p"
+          mt={0}
         >
           {data.map((part) => part)}
         </Typography>
