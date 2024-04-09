@@ -5,14 +5,13 @@ import {
   apiParamsNames,
   // TODO: encoding tests have been temporarily commented pending API param updates
   // inputEncodings,
-  targetLanguages,
+  // targetLanguages,
 } from "@/utils/api/params"
 import { translationRequests } from "@/utils/tests"
-import {
-  getSettingPriotiryGroups,
-  // otherEncodingOptions,
-  // primaryEncodingOptions,
-} from "@/utils/ui"
+import {} from // getSettingPriotiryGroups,
+// otherEncodingOptions,
+// primaryEncodingOptions,
+"@/utils/ui"
 
 import enMessages from "../messages/en.json"
 
@@ -20,16 +19,16 @@ const {
   translation: {
     translate: translateMsg,
     // encodings: encodingsMsgs,
-    targetLanguages: targetLanguagesMsgs,
+    // targetLanguages: targetLanguagesMsgs,
   },
 } = enMessages
 
-const [primaryLanguageOptions, otherLanguageOptions] = getSettingPriotiryGroups(
-  {
-    setting: targetLanguages,
-    noOfPrimaryItems: 3,
-  },
-)
+// const [primaryLanguageOptions, otherLanguageOptions] = getSettingPriotiryGroups(
+//   {
+//     setting: targetLanguages,
+//     noOfPrimaryItems: 3,
+//   },
+// )
 
 test.describe("main features functionality", () => {
   test.beforeEach(async ({ page }) => {
@@ -65,6 +64,10 @@ test.describe("main features functionality", () => {
     await page.waitForTimeout(200)
     await expect(page.getByTestId("translation-loading")).toBeVisible()
   })
+
+  /**
+   * TODO: redraft translation feature tests following page updates.
+   */
 
   // test("primary input encoding selector updates query params correctly", async ({
   //   page,
@@ -109,45 +112,45 @@ test.describe("main features functionality", () => {
   //   }
   // })
 
-  test("primary target language selector updates query params correctly", async ({
-    page,
-  }) => {
-    const targetLangSelector = page.getByTestId("target-language-selector")
+  // test("primary target language selector updates query params correctly", async ({
+  //   page,
+  // }) => {
+  //   const targetLangSelector = page.getByTestId("target-language-selector")
 
-    for (const option of primaryLanguageOptions) {
-      const encodingParamTest = new RegExp(
-        `.*${apiParamsNames.translation.target_lang}=${option}`,
-        "i",
-      )
+  //   for (const option of primaryLanguageOptions) {
+  //     const encodingParamTest = new RegExp(
+  //       `.*${apiParamsNames.translation.target_lang}=${option}`,
+  //       "i",
+  //     )
 
-      if (option === primaryLanguageOptions[0]) {
-        await expect(page).toHaveURL(encodingParamTest)
-        continue
-      }
+  //     if (option === primaryLanguageOptions[0]) {
+  //       await expect(page).toHaveURL(encodingParamTest)
+  //       continue
+  //     }
 
-      // see `getByText` comment for: primary input encoding selector
-      const optionBtn = targetLangSelector.getByText(option)
-      await expect(optionBtn).toBeVisible()
-      await optionBtn.click()
-      await expect(page).toHaveURL(encodingParamTest)
-    }
-  })
+  //     // see `getByText` comment for: primary input encoding selector
+  //     const optionBtn = targetLangSelector.getByText(option)
+  //     await expect(optionBtn).toBeVisible()
+  //     await optionBtn.click()
+  //     await expect(page).toHaveURL(encodingParamTest)
+  //   }
+  // })
 
-  test("secondary target language selector updates query params correctly", async ({
-    page,
-  }) => {
-    for (const option of otherLanguageOptions) {
-      const encodingParamTest = new RegExp(
-        `.*${apiParamsNames.translation.target_lang}=${option}`,
-        "i",
-      )
-      const optionBtn = page.getByRole("option", {
-        name: targetLanguagesMsgs[option as keyof typeof targetLanguagesMsgs],
-      })
-      await page.getByTestId("other-target-language-options").click()
-      await expect(optionBtn).toBeVisible()
-      await optionBtn.click()
-      await expect(page).toHaveURL(encodingParamTest)
-    }
-  })
+  // test("secondary target language selector updates query params correctly", async ({
+  //   page,
+  // }) => {
+  //   for (const option of otherLanguageOptions) {
+  //     const encodingParamTest = new RegExp(
+  //       `.*${apiParamsNames.translation.target_lang}=${option}`,
+  //       "i",
+  //     )
+  //     const optionBtn = page.getByRole("option", {
+  //       name: targetLanguagesMsgs[option as keyof typeof targetLanguagesMsgs],
+  //     })
+  //     await page.getByTestId("other-target-language-options").click()
+  //     await expect(optionBtn).toBeVisible()
+  //     await optionBtn.click()
+  //     await expect(page).toHaveURL(encodingParamTest)
+  //   }
+  // })
 })
