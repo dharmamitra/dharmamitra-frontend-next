@@ -65,7 +65,7 @@ export interface components {
       | "sanskrit"
       | "sanskrit-dev"
       | "tibetan"
-      | "chinese"
+      | "ancient-chinese"
       | "japanese"
       | "korean"
       | "pali"
