@@ -39,7 +39,7 @@ export const targetLanguages = exhaustiveStringTuple<ServedTargetLanguage>()(
   "tibetan",
   "english",
   "sanskrit",
-  "chinese",
+  "ancient-chinese",
   "korean",
   "japanese",
   "sanskrit-dev",
