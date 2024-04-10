@@ -38,21 +38,23 @@ export const CustomFormControlLabel = styled(FormControlLabel)(
     paddingInline: theme.spacing(1),
     ".MuiFormControlLabel-label": checked && {
       color: theme.palette.secondary.main,
-      [theme.breakpoints.up("md")]: {
-        // matches `selectedOptionsStyles` above,
-        textDecoration: "underline",
-        textDecorationThickness: "3px",
-        textUnderlineOffset: "1.2rem",
-        textDecorationColor: "currentColor",
-      },
+      [theme.breakpoints.up("md")]: Object.entries(
+        selectedOptionsStyles,
+      ).reduce(
+        (styles, [key, value]) => ({
+          ...styles,
+          [key]: value.md,
+        }),
+        {},
+      ),
     },
   }),
 )
 
-export const SettingBlock = styled(Grid)<{ placement: "start" | "end" }>(({
-  theme,
-  placement,
-}) => {
+export const SettingBlock = styled(Grid)<{
+  placement: "start" | "end"
+  isHydrated?: boolean
+}>(({ theme, placement, isHydrated = true }) => {
   const inputRadius =
     placement === "start"
       ? {
@@ -66,6 +68,14 @@ export const SettingBlock = styled(Grid)<{ placement: "start" | "end" }>(({
     position: "relative",
     display: "flex",
     height: 74,
+    ...(!isHydrated && {
+      opacity: "0.7",
+      cursor: "wait",
+      "& label": {
+        cursor: "wait !important",
+      },
+    }),
+    transition: "opacity 1s ease-out",
     [theme.breakpoints.down("md")]: {
       alignItems: "start",
       paddingTop: theme.spacing(1),
@@ -119,4 +129,23 @@ export const TranslationContentBox = styled(Grid)<{
   position: "relative",
   minHeight: `${rows * 1.9}rem`,
   background: theme.palette.background.default,
+}))
+
+export const BoxBottomElementsRow = styled(Box)<{
+  spread?: "flex-end" | "space-between"
+}>(({ theme, spread }) => ({
+  position: "absolute",
+  zIndex: 1,
+  bottom: "0.25rem",
+  right: "0.25rem",
+  left: "0.25rem",
+  display: "flex",
+  alignItems: "center",
+  gap: theme.spacing(2),
+  ...(spread && { justifyContent: spread }),
+  [theme.breakpoints.up("md")]: {
+    bottom: "0.75rem",
+    right: "0.75rem",
+    left: "0.75rem",
+  },
 }))

@@ -19,8 +19,14 @@ function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
         | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
         | SelectChangeEvent<string>
         | string,
+      limit?: number,
     ) => {
-      const newValue = typeof input === "string" ? input : input.target.value
+      let newValue = typeof input === "string" ? input : input.target.value
+
+      if (limit && newValue.length > limit) {
+        newValue = newValue.slice(0, limit)
+      }
+
       setInput(newValue)
       updateParams(createQueryString(paramName, newValue))
     },

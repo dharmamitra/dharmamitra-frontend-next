@@ -18,6 +18,8 @@ import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 import RadioOption from "./RadioOption"
 
 export default function TranslationInputEncodingSelector() {
+  const t = useTranslations("translation")
+
   const { input, handleInputChange, isHydrated } = useInputWithLocalStorage({
     paramName: apiParamsNames.translation.input_encoding,
     defaultValue: inputEncodings[0],
@@ -26,7 +28,10 @@ export default function TranslationInputEncodingSelector() {
   const [primaryEncodingOptions, otherEncodingOptions] =
     useResponsiveOptions(inputEncodings)
 
-  const t = useTranslations("translation")
+  const isPrimaryValueSelected = React.useMemo<boolean>(
+    () => primaryEncodingOptions.includes(input),
+    [input, primaryEncodingOptions],
+  )
 
   React.useEffect(() => {
     if (input === "") {
@@ -35,19 +40,12 @@ export default function TranslationInputEncodingSelector() {
   }, [input, handleInputChange])
 
   return (
-    <SettingBlock item xs={12} md={6} placement="start">
+    <SettingBlock item xs={12} md={6} placement="start" isHydrated={isHydrated}>
       <SettingBlockLabel>{t("encodingSelectLabel")}</SettingBlockLabel>
       <FormControl
         data-testid="input-encoding-selector"
         component="fieldset"
-        sx={{
-          flexDirection: "row",
-          ...(!isHydrated && {
-            opacity: "0.7",
-            pointerEvents: "none",
-          }),
-          transition: "opacity 1s ease-out",
-        }}
+        sx={{ flexDirection: "row" }}
       >
         <RadioGroup
           aria-label={t("primaryEncodingsAriaLabel")}
@@ -66,7 +64,7 @@ export default function TranslationInputEncodingSelector() {
         </RadioGroup>
         <Select
           data-testid="other-input-encoding-options"
-          value={primaryEncodingOptions.includes(input) ? "" : input}
+          value={isPrimaryValueSelected ? "" : input}
           onChange={(e) => handleInputChange(e.target.value)}
           inputProps={{
             "aria-label": t("otherEncodingsAriaLabel"),
@@ -74,7 +72,7 @@ export default function TranslationInputEncodingSelector() {
           }}
           IconComponent={() => <OtherOptionsButtonIcon />}
           sx={{
-            ...(isHydrated && !primaryEncodingOptions.includes(input)
+            ...(isHydrated && !isPrimaryValueSelected
               ? { ...selectedOptionsStyles, color: "secondary.main" }
               : {}),
             "& .MuiOutlinedInput-notchedOutline": {

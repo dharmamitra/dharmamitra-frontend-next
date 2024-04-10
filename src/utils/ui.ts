@@ -5,3 +5,5 @@ export const getSettingPriotiryGroups = <T>(params: {
   const { setting, noOfPrimaryItems } = params
   return [setting.slice(0, noOfPrimaryItems), setting.slice(noOfPrimaryItems)]
 }
+
+export const translationInputLimit = 524 as const

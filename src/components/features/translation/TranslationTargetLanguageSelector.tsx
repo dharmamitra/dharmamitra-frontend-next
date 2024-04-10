@@ -22,6 +22,8 @@ import {
 import RadioOption from "./RadioOption"
 
 export default function TranslationTargetLanguageSelector() {
+  const t = useTranslations("translation")
+
   const { input, handleInputChange, isHydrated } = useInputWithLocalStorage({
     paramName: apiParamsNames.translation.target_lang,
     defaultValue: targetLanguages[0],
@@ -30,7 +32,10 @@ export default function TranslationTargetLanguageSelector() {
   const [primaryLanguagesOptions, otherLanguagesOptions] =
     useResponsiveOptions(targetLanguages)
 
-  const t = useTranslations("translation")
+  const isPrimaryValueSelected = React.useMemo<boolean>(
+    () => primaryLanguagesOptions.includes(input as ServedTargetLanguage),
+    [input, primaryLanguagesOptions],
+  )
 
   React.useEffect(() => {
     if (input === "") {
@@ -39,19 +44,12 @@ export default function TranslationTargetLanguageSelector() {
   }, [input, handleInputChange])
 
   return (
-    <SettingBlock item xs={12} md={6} placement="end">
+    <SettingBlock item xs={12} md={6} placement="end" isHydrated={isHydrated}>
       <SettingBlockLabel>{t("targetLanguageSelectLabel")}</SettingBlockLabel>
       <FormControl
         data-testid="target-language-selector"
         component="fieldset"
-        sx={{
-          flexDirection: "row",
-          ...(!isHydrated && {
-            opacity: "0.7",
-            pointerEvents: "none",
-          }),
-          transition: "opacity 1s ease-out",
-        }}
+        sx={{ flexDirection: "row" }}
       >
         <RadioGroup
           aria-label={t("primaryTargetLanguagesAriaLabel")}
@@ -71,11 +69,7 @@ export default function TranslationTargetLanguageSelector() {
         <Select
           data-testid="other-target-language-options"
           aria-label={t("otherTargetLanguagesAriaLabel")}
-          value={
-            primaryLanguagesOptions.includes(input as ServedTargetLanguage)
-              ? ""
-              : input
-          }
+          value={isPrimaryValueSelected ? "" : input}
           onChange={handleInputChange}
           inputProps={{
             "aria-label": t("otherTargetLanguagesAriaLabel"),
@@ -83,8 +77,7 @@ export default function TranslationTargetLanguageSelector() {
           }}
           IconComponent={() => <OtherOptionsButtonIcon />}
           sx={{
-            ...(isHydrated &&
-            !primaryLanguagesOptions.includes(input as ServedTargetLanguage)
+            ...(isHydrated && !isPrimaryValueSelected
               ? { ...selectedOptionsStyles, color: "secondary.main" }
               : {}),
             "& .MuiOutlinedInput-notchedOutline": {
