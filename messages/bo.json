@@ -35,7 +35,8 @@
       "directorTechnical": "བོད་སྐད་དུ།",
       "dataCollectionSanskrit": "བོད་སྐད་དུ།",
       "projectInfrastructure": "བོད་སྐད་དུ།",
-      "webDesign": "བོད་སྐད་དུ།",
+      "websiteDevelopment": "web dev",
+      "websiteDesign": "བོད་སྐད་དུ།",
       "nlpResearchSanskrit": "བོད་སྐད་དུ།"
     }
   },
@@ -48,7 +49,7 @@
   },
   "localeSwitcher": {
     "label": "[bo] Change language",
-    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} zhHant {繁體中文} other {Unknown}}"
+    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
   },
   "search": {
     "heading": "[bo] Search 2500 years of Buddhism",
@@ -61,16 +62,16 @@
     "inputAriaLabel": "[bo] Translation input field",
     "placeholder": "[bo] Translate something",
     "otherLabel": "[bo] Other",
-    "encodingSelectLabel": "[bo] Script",
+    "encodingSelectLabel": "[bo] Transliteration",
     "primaryEncodingsAriaLabel": "[bo] Primary encoding options",
     "otherEncodingsAriaLabel": "[bo] Other encoding options",
     "targetLanguageSelectLabel": "[bo] Output language",
     "primaryTargetLanguagesAriaLabel": "[bo] Primary traget language options",
     "otherTargetLanguagesAriaLabel": "[bo] Other traget language options",
     "encodings": {
-      "auto": "Autodetect Encoding",
+      "auto": "Autodetect",
       "dev": "Devanagari",
-      "roman": "IAST Roman Transliteration",
+      "roman": "IAST Roman",
       "hk": "Harvard-Kyoto",
       "velthuis": "Velthuis",
       "itrans": "ITRANS",

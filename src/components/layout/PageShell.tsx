@@ -16,8 +16,12 @@ export default function PageShell({ children, maxWidth = "lg", sx }: Props) {
   return (
     <>
       <Navigation />
-      <Box sx={sx}>
-        <Container component="main" maxWidth={maxWidth} sx={{ mt: 8 }}>
+      <Box sx={{ mb: 12, ...sx }}>
+        <Container
+          component="main"
+          maxWidth={maxWidth}
+          sx={{ mt: { xs: 6, md: 8 } }}
+        >
           {children}
         </Container>
       </Box>

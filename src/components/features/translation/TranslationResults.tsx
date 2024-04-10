@@ -1,14 +1,15 @@
 "use client"
 
 import React from "react"
-import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 import { useAtom } from "jotai"
 
 import { DM_API, type TranslationRequestProps } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
+import { TranslationContentBox } from "@/components/styled"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import {
   apiParamsNames,
   InputEncoding,
@@ -58,18 +59,21 @@ export default function TranslationResults() {
     setTriggerTranslationQuery(false)
   }
 
+  const rows = useResponsiveContentRows()
+
   return (
-    <Grid
+    <TranslationContentBox
       item
       xs={12}
       md={6}
-      sx={{
-        position: "relative",
+      rows={rows}
+      sx={(theme) => ({
         backgroundColor: "grey.100",
         overflow: "clip",
         p: 2,
-        borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
-      }}
+        borderBottomLeftRadius: { xs: theme.custom.shape.inputRadius, md: 0 },
+        borderBottomRightRadius: theme.custom.shape.inputRadius,
+      })}
       data-testid="translation-results"
     >
       {isLoading ? (
@@ -89,11 +93,12 @@ export default function TranslationResults() {
       {data ? (
         <Typography
           data-testid="request-translation"
-          sx={{ fontSize: (theme) => theme.custom.typography.reader?.fontSize }}
+          variant="h5"
+          component="p"
         >
           {data.map((part) => part)}
         </Typography>
       ) : null}
-    </Grid>
+    </TranslationContentBox>
   )
 }

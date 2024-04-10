@@ -2,38 +2,32 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
-import {
-  FormControl,
-  MenuItem,
-  RadioGroup,
-  Select,
-  Typography,
-} from "@mui/material"
-import Grid from "@mui/material/Grid"
+import { FormControl, MenuItem, RadioGroup, Select } from "@mui/material"
 
-import { selectedOptionsStyles } from "@/components/styled"
+import {
+  OptionBlock,
+  OptionBlockLabel,
+  OtherOptionsButtonIcon,
+  OtherOptionsInputStyles,
+  selectedOptionsStyles,
+} from "@/components/styled"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import {
   apiParamsNames,
   ServedTargetLanguage,
   targetLanguages,
 } from "@/utils/api/params"
-import customTheming from "@/utils/theme/config"
-import { getSettingPriotiryGroups } from "@/utils/ui"
 
 import RadioOption from "./RadioOption"
-
-const [primaryLanguagesOptions, otherLanguagesOptions] =
-  getSettingPriotiryGroups({
-    setting: targetLanguages,
-    noOfPrimaryItems: 3,
-  })
 
 export default function TranslationTargetLanguageSelector() {
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.target_lang,
   )
+  const [primaryLanguagesOptions, otherLanguagesOptions] =
+    useResponsiveOptions(targetLanguages)
+
   const t = useTranslations("translation")
 
   React.useEffect(() => {
@@ -43,35 +37,8 @@ export default function TranslationTargetLanguageSelector() {
   }, [input, handleInputChange])
 
   return (
-    <Grid
-      item
-      xs={12}
-      md={6}
-      sx={{
-        position: "relative",
-        display: "flex",
-        alignItems: "flex-end",
-        height: 74,
-        px: 2,
-        borderLeft: "1px solid",
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        borderTopRightRadius: customTheming.shape.inputRadius,
-      }}
-    >
-      <Typography
-        sx={{
-          position: "absolute",
-          top: "-12px",
-          left: "4px",
-          px: 1,
-          color: "text.secondary",
-          backgroundColor: "background.default",
-          fontSize: "body2.fontSize",
-        }}
-      >
-        {t("targetLanguageSelectLabel")}
-      </Typography>
+    <OptionBlock item xs={12} md={6} placement="end">
+      <OptionBlockLabel>{t("targetLanguageSelectLabel")}</OptionBlockLabel>
       <FormControl
         data-testid="target-language-selector"
         component="fieldset"
@@ -103,18 +70,9 @@ export default function TranslationTargetLanguageSelector() {
           onChange={handleInputChange}
           inputProps={{
             "aria-label": t("otherTargetLanguagesAriaLabel"),
-            sx: { pl: "0 !important", pr: 1 },
+            sx: OtherOptionsInputStyles,
           }}
-          IconComponent={() => (
-            <KeyboardArrowDownIcon
-              sx={{
-                position: "absolute",
-                zIndex: "-1",
-                right: 0,
-                color: "gray",
-              }}
-            />
-          )}
+          IconComponent={() => <OtherOptionsButtonIcon />}
           sx={{
             ...(!primaryLanguagesOptions.includes(input as ServedTargetLanguage)
               ? { ...selectedOptionsStyles, color: "secondary.main" }
@@ -141,6 +99,6 @@ export default function TranslationTargetLanguageSelector() {
           ))}
         </Select>
       </FormControl>
-    </Grid>
+    </OptionBlock>
   )
 }

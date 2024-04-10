@@ -3,16 +3,17 @@
 import { useTranslations } from "next-intl"
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight"
 import Box from "@mui/material/Box"
-import Grid from "@mui/material/Grid"
 import IconButton from "@mui/material/IconButton"
 import OutlinedInput from "@mui/material/OutlinedInput"
+import { useTheme } from "@mui/material/styles"
 import Tooltip from "@mui/material/Tooltip"
 import { useSetAtom } from "jotai"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
+import { TranslationContentBox } from "@/components/styled"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import { apiParamsNames } from "@/utils/api/params"
-import customTheming from "@/utils/theme/config"
 
 export default function TranslationInput() {
   const t = useTranslations("translation")
@@ -21,35 +22,39 @@ export default function TranslationInput() {
   )
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
-  const rows = 16
+  const rows = useResponsiveContentRows()
+  const theme = useTheme()
 
   return (
-    <Grid
+    <TranslationContentBox
       item
       xs={12}
       md={6}
+      rows={rows}
       sx={{
-        position: "relative",
-        minHeight: `${rows * 2}rem`,
+        borderBottomLeftRadius: { md: theme.custom.shape.inputRadius },
       }}
     >
       <OutlinedInput
         sx={{
           width: "100%",
-          backgroundColor: "background.paper",
+          height: "100%",
           overflow: "clip",
+          alignItems: "flex-start",
           borderTopRightRadius: "none",
           borderBottomRightRadius: "none",
           "& .MuiOutlinedInput-notchedOutline": {
             border: "none",
           },
-          borderRadius: customTheming.shape.inputRadius,
-          fontSize: customTheming.typography.reader?.fontSize,
+          borderRadius: theme.custom.shape.inputRadius,
         }}
         placeholder={t("placeholder")}
         inputProps={{
           "data-testid": "translation-input",
           "aria-label": t("inputAriaLabel"),
+          sx: {
+            fontSize: { sm: theme.typography.h5.fontSize },
+          },
         }}
         rows={rows}
         multiline
@@ -64,8 +69,9 @@ export default function TranslationInput() {
       <Box
         sx={{
           position: "absolute",
-          bottom: "1rem",
-          right: "1rem",
+          zIndex: 1,
+          bottom: { xs: "0.25rem", md: "0.75rem" },
+          right: { xs: "0.25rem", md: "0.75rem" },
         }}
       >
         <Tooltip title={`${t("translate")} (Ctrl + Enter)`} placement="top">
@@ -80,6 +86,6 @@ export default function TranslationInput() {
           </IconButton>
         </Tooltip>
       </Box>
-    </Grid>
+    </TranslationContentBox>
   )
 }

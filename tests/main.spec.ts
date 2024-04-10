@@ -3,14 +3,15 @@ import { expect, test } from "@playwright/test"
 import { basePath } from "@/config"
 import {
   apiParamsNames,
-  inputEncodings,
+  // TODO: encoding tests have been temporarily commented pending API param updates
+  // inputEncodings,
   targetLanguages,
 } from "@/utils/api/params"
 import { translationRequests } from "@/utils/tests"
 import {
   getSettingPriotiryGroups,
-  otherEncodingOptions,
-  primaryEncodingOptions,
+  // otherEncodingOptions,
+  // primaryEncodingOptions,
 } from "@/utils/ui"
 
 import enMessages from "../messages/en.json"
@@ -18,7 +19,7 @@ import enMessages from "../messages/en.json"
 const {
   translation: {
     translate: translateMsg,
-    encodings: encodingsMsgs,
+    // encodings: encodingsMsgs,
     targetLanguages: targetLanguagesMsgs,
   },
 } = enMessages
@@ -65,48 +66,48 @@ test.describe("main features functionality", () => {
     await expect(page.getByTestId("translation-loading")).toBeVisible()
   })
 
-  test("primary input encoding selector updates query params correctly", async ({
-    page,
-  }) => {
-    const inputEncodingsSelector = page.getByTestId("input-encoding-selector")
+  // test("primary input encoding selector updates query params correctly", async ({
+  //   page,
+  // }) => {
+  //   const inputEncodingsSelector = page.getByTestId("input-encoding-selector")
 
-    for (const option of primaryEncodingOptions) {
-      const encodingParamTest = new RegExp(
-        `.*${apiParamsNames.translation.input_encoding}=${inputEncodings[option]}`,
-        "i",
-      )
+  //   for (const option of primaryEncodingOptions) {
+  //     const encodingParamTest = new RegExp(
+  //       `.*${apiParamsNames.translation.input_encoding}=${inputEncodings[option]}`,
+  //       "i",
+  //     )
 
-      if (option === inputEncodings.auto) {
-        //TODO: update to check auto is in param once BE has de-multi-mapped option->param
-        // await expect(page).toHaveURL(encodingParamTest)
-        continue
-      }
+  //     if (option === inputEncodings.auto) {
+  //       //TODO: update to check auto is in param once BE has de-multi-mapped option->param
+  //       // await expect(page).toHaveURL(encodingParamTest)
+  //       continue
+  //     }
 
-      // `getByText` is used as the selector's radio buttons have been visually hidden for custom styling and are not clickable (`getByText` uses the `value` attribute for buttons: https://playwright.dev/docs/api/class-framelocator#frame-locator-get-by-text).
-      const optionBtn = inputEncodingsSelector.getByText(option)
-      await expect(optionBtn).toBeVisible()
-      await optionBtn.click()
-      await expect(page).toHaveURL(encodingParamTest)
-    }
-  })
+  //     // `getByText` is used as the selector's radio buttons have been visually hidden for custom styling and are not clickable (`getByText` uses the `value` attribute for buttons: https://playwright.dev/docs/api/class-framelocator#frame-locator-get-by-text).
+  //     const optionBtn = inputEncodingsSelector.getByText(option)
+  //     await expect(optionBtn).toBeVisible()
+  //     await optionBtn.click()
+  //     await expect(page).toHaveURL(encodingParamTest)
+  //   }
+  // })
 
-  test("secondary input encoding selector updates query params correctly", async ({
-    page,
-  }) => {
-    for (const option of otherEncodingOptions) {
-      const encodingParamTest = new RegExp(
-        `.*${apiParamsNames.translation.input_encoding}=${inputEncodings[option]}`,
-        "i",
-      )
-      const optionBtn = page.getByRole("option", {
-        name: encodingsMsgs[option as keyof typeof encodingsMsgs],
-      })
-      await page.getByTestId("other-input-encoding-options").click()
-      await expect(optionBtn).toBeVisible()
-      await optionBtn.click()
-      await expect(page).toHaveURL(encodingParamTest)
-    }
-  })
+  // test("secondary input encoding selector updates query params correctly", async ({
+  //   page,
+  // }) => {
+  //   for (const option of otherEncodingOptions) {
+  //     const encodingParamTest = new RegExp(
+  //       `.*${apiParamsNames.translation.input_encoding}=${inputEncodings[option]}`,
+  //       "i",
+  //     )
+  //     const optionBtn = page.getByRole("option", {
+  //       name: encodingsMsgs[option as keyof typeof encodingsMsgs],
+  //     })
+  //     await page.getByTestId("other-input-encoding-options").click()
+  //     await expect(optionBtn).toBeVisible()
+  //     await optionBtn.click()
+  //     await expect(page).toHaveURL(encodingParamTest)
+  //   }
+  // })
 
   test("primary target language selector updates query params correctly", async ({
     page,

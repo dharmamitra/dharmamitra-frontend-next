@@ -2,25 +2,19 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
-import {
-  FormControl,
-  MenuItem,
-  RadioGroup,
-  Select,
-  Typography,
-} from "@mui/material"
-import Grid from "@mui/material/Grid"
+import { FormControl, MenuItem, RadioGroup, Select } from "@mui/material"
 
-import { selectedOptionsStyles } from "@/components/styled"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { apiParamsNames, inputEncodings } from "@/utils/api/params"
-import customTheming from "@/utils/theme/config"
 import {
-  encodingKeys,
-  otherEncodingOptions,
-  primaryEncodingOptions,
-} from "@/utils/ui"
+  OptionBlock,
+  OptionBlockLabel,
+  OtherOptionsButtonIcon,
+  OtherOptionsInputStyles,
+  selectedOptionsStyles,
+} from "@/components/styled"
+import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
+import { apiParamsNames, inputEncodings } from "@/utils/api/params"
+import { encodingKeys } from "@/utils/ui"
 
 import RadioOption from "./RadioOption"
 
@@ -28,6 +22,10 @@ export default function TranslationInputEncodingSelector() {
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.input_encoding,
   )
+
+  const [primaryEncodingOptions, otherEncodingOptions] =
+    useResponsiveOptions(encodingKeys)
+
   const t = useTranslations("translation")
 
   React.useEffect(() => {
@@ -37,34 +35,8 @@ export default function TranslationInputEncodingSelector() {
   }, [input, handleInputChange])
 
   return (
-    <Grid
-      item
-      xs={12}
-      md={6}
-      sx={{
-        position: "relative",
-        display: "flex",
-        alignItems: "flex-end",
-        height: 74,
-        px: 2,
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        borderTopRightRadius: customTheming.shape.inputRadius,
-      }}
-    >
-      <Typography
-        sx={{
-          position: "absolute",
-          top: "-12px",
-          left: "4px",
-          px: 1,
-          color: "text.secondary",
-          backgroundColor: "background.default",
-          fontSize: "body2.fontSize",
-        }}
-      >
-        {t("encodingSelectLabel")}
-      </Typography>
+    <OptionBlock item xs={12} md={6} placement="start">
+      <OptionBlockLabel>{t("encodingSelectLabel")}</OptionBlockLabel>
       <FormControl
         data-testid="input-encoding-selector"
         component="fieldset"
@@ -99,18 +71,9 @@ export default function TranslationInputEncodingSelector() {
           }
           inputProps={{
             "aria-label": t("otherEncodingsAriaLabel"),
-            sx: { pl: "0 !important", pr: 1 },
+            sx: OtherOptionsInputStyles,
           }}
-          IconComponent={() => (
-            <KeyboardArrowDownIcon
-              sx={{
-                position: "absolute",
-                zIndex: "-1",
-                right: 0,
-                color: "gray",
-              }}
-            />
-          )}
+          IconComponent={() => <OtherOptionsButtonIcon />}
           sx={{
             ...(!primaryEncodingOptions.includes(input)
               ? { ...selectedOptionsStyles, color: "secondary.main" }
@@ -137,6 +100,6 @@ export default function TranslationInputEncodingSelector() {
           ))}
         </Select>
       </FormControl>
-    </Grid>
+    </OptionBlock>
   )
 }

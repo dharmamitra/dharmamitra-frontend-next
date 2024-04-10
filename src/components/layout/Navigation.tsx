@@ -19,8 +19,8 @@ export default function Navigation() {
         elevation={0}
         sx={{
           py: "0.2rem",
-          backgroundColor: "white",
-          border: "1px solid",
+          backgroundColor: "background.default",
+          borderBottom: "1px solid",
           borderColor: "secondary.main",
         }}
       >

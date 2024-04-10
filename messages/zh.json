@@ -35,7 +35,8 @@
       "directorTechnical": "技术董事",
       "dataCollectionSanskrit": "Sanskrit data collection",
       "projectInfrastructure": "项目基础设施",
-      "webDesign": "网页设计",
+      "websiteDevelopment": "网站开发",
+      "websiteDesign": "网页设计",
       "nlpResearchSanskrit": "Sanskrit NLP research"
     }
   },
@@ -48,7 +49,7 @@
   },
   "localeSwitcher": {
     "label": "改变语言",
-    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} zhHant {繁體中文} other {Unknown}}"
+    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
   },
   "search": {
     "heading": "搜索2500年的佛教",
@@ -61,16 +62,16 @@
     "inputAriaLabel": "翻译输入字段",
     "placeholder": "翻译一些东西",
     "otherLabel": "其他",
-    "encodingSelectLabel": "编码",
+    "encodingSelectLabel": "Transliteration",
     "primaryEncodingsAriaLabel": "主要编码选项",
     "otherEncodingsAriaLabel": "其他编码选项",
     "targetLanguageSelectLabel": "目标语言",
     "primaryTargetLanguagesAriaLabel": "主要目标语言选项",
     "otherTargetLanguagesAriaLabel": "其他目标语言选项",
     "encodings": {
-      "auto": "Autodetect Encoding",
+      "auto": "Autodetect",
       "dev": "Devanagari",
-      "roman": "IAST Roman Transliteration",
+      "roman": "IAST Roman",
       "hk": "Harvard-Kyoto",
       "velthuis": "Velthuis",
       "itrans": "ITRANS",

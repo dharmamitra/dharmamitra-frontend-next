@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ReactNode, useTransition } from "react"
+import React, { useTransition } from "react"
 import { useSearchParams } from "next/navigation"
 import LanguageIcon from "@mui/icons-material/Language"
 import {
@@ -13,17 +13,13 @@ import { visuallyHidden } from "@mui/utils"
 
 import { usePathname, useRouter } from "@/navigation"
 
-type Props = {
-  children: ReactNode
-  defaultValue: string
-  label: string
-}
+import { LocaleSwitcherProps } from "./ResponseiveLocaleSwitcher"
 
-export default function LocaleSelectionSwitcher({
+export default function DesktopLocaleSwitcher({
   children,
   defaultValue,
   label,
-}: Props) {
+}: LocaleSwitcherProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const pathname = usePathname()
