@@ -8,11 +8,11 @@ import {
 export default function RadioOption({
   i18nKey,
   option,
-  input,
+  isSelected,
 }: {
   i18nKey: "encodings" | "targetLanguages"
   option: string
-  input: string
+  isSelected: boolean
 }) {
   const t = useTranslations(`translation.${i18nKey}`)
 
@@ -27,7 +27,7 @@ export default function RadioOption({
       }
       // TODO: remove casting on enpoint update
       label={t(option as keyof Messages["translation"][typeof i18nKey])}
-      checked={input === option}
+      checked={isSelected}
     />
   )
 }

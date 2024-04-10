@@ -5,13 +5,13 @@ import { useTranslations } from "next-intl"
 import { FormControl, MenuItem, RadioGroup, Select } from "@mui/material"
 
 import {
-  OptionBlock,
-  OptionBlockLabel,
   OtherOptionsButtonIcon,
   OtherOptionsInputStyles,
   selectedOptionsStyles,
+  SettingBlock,
+  SettingBlockLabel,
 } from "@/components/styled"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import useInputWithLocalStorage from "@/hooks/useInputWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import {
   apiParamsNames,
@@ -22,9 +22,11 @@ import {
 import RadioOption from "./RadioOption"
 
 export default function TranslationTargetLanguageSelector() {
-  const { input, handleInputChange } = useInputWithUrlParam(
-    apiParamsNames.translation.target_lang,
-  )
+  const { input, handleInputChange, isHydrated } = useInputWithLocalStorage({
+    paramName: apiParamsNames.translation.target_lang,
+    defaultValue: targetLanguages[0],
+  })
+
   const [primaryLanguagesOptions, otherLanguagesOptions] =
     useResponsiveOptions(targetLanguages)
 
@@ -37,12 +39,19 @@ export default function TranslationTargetLanguageSelector() {
   }, [input, handleInputChange])
 
   return (
-    <OptionBlock item xs={12} md={6} placement="end">
-      <OptionBlockLabel>{t("targetLanguageSelectLabel")}</OptionBlockLabel>
+    <SettingBlock item xs={12} md={6} placement="end">
+      <SettingBlockLabel>{t("targetLanguageSelectLabel")}</SettingBlockLabel>
       <FormControl
         data-testid="target-language-selector"
         component="fieldset"
-        sx={{ flexDirection: "row" }}
+        sx={{
+          flexDirection: "row",
+          ...(!isHydrated && {
+            opacity: "0.6",
+            pointerEvents: "none",
+          }),
+          transition: "opacity 1s ease-out",
+        }}
       >
         <RadioGroup
           aria-label={t("primaryTargetLanguagesAriaLabel")}
@@ -55,7 +64,7 @@ export default function TranslationTargetLanguageSelector() {
               key={language + "-primary-target-language-option"}
               i18nKey="targetLanguages"
               option={language}
-              input={input}
+              isSelected={isHydrated && input === language}
             />
           ))}
         </RadioGroup>
@@ -74,7 +83,8 @@ export default function TranslationTargetLanguageSelector() {
           }}
           IconComponent={() => <OtherOptionsButtonIcon />}
           sx={{
-            ...(!primaryLanguagesOptions.includes(input as ServedTargetLanguage)
+            ...(isHydrated &&
+            !primaryLanguagesOptions.includes(input as ServedTargetLanguage)
               ? { ...selectedOptionsStyles, color: "secondary.main" }
               : {}),
             "& .MuiOutlinedInput-notchedOutline": {
@@ -99,6 +109,6 @@ export default function TranslationTargetLanguageSelector() {
           ))}
         </Select>
       </FormControl>
-    </OptionBlock>
+    </SettingBlock>
   )
 }
