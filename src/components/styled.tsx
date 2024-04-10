@@ -2,12 +2,20 @@
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import {
+  Box,
   FormControlLabel,
   Grid,
   Radio,
   styled,
   Typography,
 } from "@mui/material"
+
+export const Section = styled(Box)(({ theme }) => ({
+  marginBlock: theme.spacing(4),
+  [theme.breakpoints.up("md")]: {
+    marginBlock: theme.spacing(4),
+  },
+}))
 
 export const VisuallyHiddenRadio = styled(Radio)({
   position: "absolute",
