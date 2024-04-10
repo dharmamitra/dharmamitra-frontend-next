@@ -41,6 +41,7 @@
     }
   },
   "generic": {
+    "copied": "སྲུང་།",
     "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"
   },
   "navigation": {
@@ -71,6 +72,7 @@
     "targetLanguageSelectLabel": "[bo] Output language",
     "primaryTargetLanguagesAriaLabel": "[bo] Primary traget language options",
     "otherTargetLanguagesAriaLabel": "[bo] Other traget language options",
+    "copyTranslation": "[bo] Copy translation",
     "encodings": {
       "auto": "Autodetect",
       "dev": "Devanagari",

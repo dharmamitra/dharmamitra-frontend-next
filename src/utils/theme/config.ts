@@ -51,7 +51,13 @@ export const baseTheme: ThemeOptions = {
     },
   },
   components: {
-    MuiButton: {},
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: colours.primary,
+        },
+      },
+    },
   },
   custom: customTheming,
 }

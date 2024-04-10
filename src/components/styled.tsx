@@ -5,6 +5,7 @@ import {
   Box,
   FormControlLabel,
   Grid,
+  Popper as MuiPopper,
   Radio,
   styled,
   Typography,
@@ -148,4 +149,16 @@ export const BoxBottomElementsRow = styled(Box)<{
     right: "0.75rem",
     left: "0.75rem",
   },
+}))
+
+export const Popper = styled(MuiPopper)(({ theme }) => ({
+  zIndex: theme.zIndex.tooltip,
+  height: "32px",
+}))
+
+export const PopperMsgBox = styled(Box)(({ theme }) => ({
+  borderRadius: 8,
+  padding: theme.spacing(1, 2),
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.common.white,
 }))

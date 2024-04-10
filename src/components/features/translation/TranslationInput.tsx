@@ -92,7 +92,22 @@ export default function TranslationInput() {
           limit={translationInputLimit}
           limitReached={limitReached}
         />
-        <Tooltip title={`${t("translate")} (Ctrl + Enter)`} placement="top">
+        <Tooltip
+          title={`${t("translate")} (Ctrl + Enter)`}
+          placement="top"
+          slotProps={{
+            popper: {
+              modifiers: [
+                {
+                  name: "offset",
+                  options: {
+                    offset: [-24, 0],
+                  },
+                },
+              ],
+            },
+          }}
+        >
           <IconButton
             aria-label={t("translate")}
             color="secondary"
