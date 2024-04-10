@@ -47,7 +47,7 @@ export default function TranslationTargetLanguageSelector() {
         sx={{
           flexDirection: "row",
           ...(!isHydrated && {
-            opacity: "0.6",
+            opacity: "0.7",
             pointerEvents: "none",
           }),
           transition: "opacity 1s ease-out",
