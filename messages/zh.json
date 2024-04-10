@@ -71,20 +71,23 @@
     "encodings": {
       "auto": "Autodetect",
       "dev": "Devanagari",
-      "roman": "IAST Roman",
       "hk": "Harvard-Kyoto",
-      "velthuis": "Velthuis",
+      "iast": "IAST Roman",
       "itrans": "ITRANS",
       "tibetan": "Tibetan Unicode",
+      "velthuis": "Velthuis",
       "wylie": "Wylie"
     },
     "targetLanguages": {
+      "tibetan": "藏",
       "english": "英语",
       "sanskrit": "梵文",
-      "tibetan": "藏",
-      "chinese": "中国人",
+      "ancient-chinese": "Ancient Chinese",
+      "japanese": "日本人",
       "korean": "韩国人",
-      "japanese": "日本人"
+      "sanskrit-dev": "Sanskrit Dev",
+      "sa-en": "SA English",
+      "modern-chinese": "现代中国人"
     }
   }
 }

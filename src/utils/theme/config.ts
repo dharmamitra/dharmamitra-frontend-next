@@ -37,7 +37,7 @@ export const baseTheme: ThemeOptions = {
     // Sets the base font size to 16px
     fontSize: 16,
     // Adjusts the root HTML font size for rem calculations
-    htmlFontSize: 14,
+    // htmlFontSize: 14,
     h1: {
       color: colours.primary,
       marginTop: "2rem",
@@ -47,7 +47,6 @@ export const baseTheme: ThemeOptions = {
       marginTop: "2rem",
     },
     reader: {
-      fontSize: "1.15rem",
       marginBlock: "1rem",
     },
   },

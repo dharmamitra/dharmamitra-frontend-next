@@ -17,16 +17,16 @@ export type APIParamsNames = {
 
 export type InputEncodingParamMap = Record<string, InputEncoding>
 
-export const inputEncodings: InputEncodingParamMap = {
-  auto: "auto",
-  dev: "dev",
-  roman: "auto",
-  hk: "hk",
-  velthuis: "velthuis",
-  itrans: "itrans",
-  tibetan: "auto",
-  wylie: "wylie",
-} as const
+export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
+  "auto",
+  "dev",
+  "hk",
+  "iast",
+  "itrans",
+  "tibetan",
+  "velthuis",
+  "wylie",
+)
 
 export const modelNames = exhaustiveStringTuple<ModelName>()(
   "NO",
@@ -36,12 +36,15 @@ export const modelNames = exhaustiveStringTuple<ModelName>()(
 
 export type ServedTargetLanguage = Exclude<TargetLanguage, "pali">
 export const targetLanguages = exhaustiveStringTuple<ServedTargetLanguage>()(
+  "tibetan",
   "english",
   "sanskrit",
-  "tibetan",
-  "chinese",
+  "ancient-chinese",
   "korean",
   "japanese",
+  "sanskrit-dev",
+  "sa-en",
+  "modern-chinese",
 )
 
 export const apiParamsNames: APIParamsNames = {

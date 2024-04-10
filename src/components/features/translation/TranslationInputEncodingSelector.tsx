@@ -14,7 +14,6 @@ import {
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
-import { encodingKeys } from "@/utils/ui"
 
 import RadioOption from "./RadioOption"
 
@@ -24,13 +23,13 @@ export default function TranslationInputEncodingSelector() {
   )
 
   const [primaryEncodingOptions, otherEncodingOptions] =
-    useResponsiveOptions(encodingKeys)
+    useResponsiveOptions(inputEncodings)
 
   const t = useTranslations("translation")
 
   React.useEffect(() => {
     if (input === "") {
-      handleInputChange(encodingKeys[0]!)
+      handleInputChange(inputEncodings[0]!)
     }
   }, [input, handleInputChange])
 
@@ -44,12 +43,8 @@ export default function TranslationInputEncodingSelector() {
       >
         <RadioGroup
           aria-label={t("primaryEncodingsAriaLabel")}
-          value={input ? input : encodingKeys[0]}
-          onChange={(e) =>
-            handleInputChange(
-              inputEncodings[e.target.value as keyof typeof inputEncodings]!,
-            )
-          }
+          value={input ? input : inputEncodings[0]}
+          onChange={(e) => handleInputChange(e.target.value)}
           row
         >
           {primaryEncodingOptions.map((encoding) => (
@@ -64,11 +59,7 @@ export default function TranslationInputEncodingSelector() {
         <Select
           data-testid="other-input-encoding-options"
           value={primaryEncodingOptions.includes(input) ? "" : input}
-          onChange={(e) =>
-            handleInputChange(
-              inputEncodings[e.target.value as keyof typeof inputEncodings]!,
-            )
-          }
+          onChange={(e) => handleInputChange(e.target.value)}
           inputProps={{
             "aria-label": t("otherEncodingsAriaLabel"),
             sx: OtherOptionsInputStyles,
