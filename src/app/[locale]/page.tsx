@@ -16,7 +16,7 @@ export default function Home() {
   const messages = useMessages() as Messages
   const translationMessages = pickMessages({
     messages,
-    messageKeys: ["translation"],
+    messageKeys: ["translation", "generic"],
   })
 
   return (

@@ -3,7 +3,9 @@
 import React from "react"
 import Typography from "@mui/material/Typography"
 
+import Error from "@/components/Error"
 import { TranslationContentBox } from "@/components/styled"
+import TextSkeleton from "@/components/TextSkeleton"
 import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import useTranslationResults from "@/hooks/useTranslationResults"
 
@@ -26,20 +28,8 @@ export default function TranslationResults() {
       })}
       data-testid="translation-results"
     >
-      {isLoading ? (
-        <Typography
-          component="p"
-          variant="h5"
-          data-testid="translation-loading"
-        >
-          Loading...
-        </Typography>
-      ) : null}
-      {isError ? (
-        <Typography component="p" variant="h5" data-testid="translation-error">
-          Error
-        </Typography>
-      ) : null}
+      {isLoading ? <TextSkeleton /> : null}
+      {isError ? <Error /> : null}
       {data ? (
         <Typography
           data-testid="request-translation"

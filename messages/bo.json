@@ -40,6 +40,9 @@
       "nlpResearchSanskrit": "བོད་སྐད་དུ།"
     }
   },
+  "generic": {
+    "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"
+  },
   "navigation": {
     "home": "ཧོ༔",
     "about": "ཨ་བྷུ།",

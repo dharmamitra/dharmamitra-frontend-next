@@ -40,6 +40,9 @@
       "nlpResearchSanskrit": "Sanskrit NLP research"
     }
   },
+  "generic": {
+    "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"
+  },
   "navigation": {
     "home": "Home",
     "about": "About",
