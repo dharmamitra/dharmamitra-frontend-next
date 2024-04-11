@@ -40,6 +40,12 @@
       "nlpResearchSanskrit": "Sanskrit NLP research"
     }
   },
+  "NotFound": {
+    "title": "404 · 找不到网页",
+    "h1": "不好了！找不到网页",
+    "message": "No beginning point is found of beings wandering and roaming. <cite>(Assusutta)</cite>",
+    "home": "Go Home"
+  },
   "metadata": {
     "title": "Dharmamitra · translating the languages of the Dharma",
     "description": "Machine translation for the languages of the Dharma"
