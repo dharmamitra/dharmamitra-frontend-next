@@ -36,8 +36,8 @@ export const modelNames = exhaustiveStringTuple<ModelName>()(
 
 export type ServedTargetLanguage = Exclude<TargetLanguage, "pali">
 export const targetLanguages = exhaustiveStringTuple<ServedTargetLanguage>()(
-  "tibetan",
   "english",
+  "tibetan",
   "sanskrit",
   "ancient-chinese",
   "korean",

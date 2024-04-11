@@ -1,8 +1,7 @@
 import React from "react"
-import { useQuery } from "@tanstack/react-query"
 import { useAtom } from "jotai"
 
-import { DM_API, type TranslationRequestProps } from "@/api"
+import { type TranslationRequestProps } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import {
@@ -12,6 +11,7 @@ import {
   TargetLanguage,
   targetLanguages,
 } from "@/utils/api/params"
+import { extractSSEContent } from "@/utils/transformers"
 
 const useTranslationResults = () => {
   const { input: inputSentence } = useInputWithUrlParam(
@@ -47,17 +47,63 @@ const useTranslationResults = () => {
     [inputSentence, inputEncodingParam, targetLangParam],
   )
 
-  const { data, isLoading, isError } = useQuery({
-    queryKey: DM_API.translation.makeQueryKey(params),
-    queryFn: () => DM_API.translation.call(params),
-    enabled: triggerTranslationQuery,
-  })
+  const [translationEventStream, setTranslationEventStream] =
+    React.useState<string>("")
 
-  if (!isLoading) {
+  const [isLoading, setIsLoading] = React.useState(
+    triggerTranslationQuery && !translationEventStream.length,
+  )
+
+  const [isError, setIsError] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!triggerTranslationQuery) {
+      return
+    }
+
+    setIsLoading(true)
+    setTranslationEventStream("")
+
+    const fetchData = async () => {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/translation/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(params),
+        },
+      )
+
+      const reader = response.body?.getReader()
+
+      if (!reader || !response.ok) {
+        setIsLoading(false)
+        setIsError(true)
+        throw new Error(response.statusText)
+        return
+      }
+
+      const decoder = new TextDecoder("utf-8")
+
+      setIsLoading(false)
+
+      // eslint-disable-next-line no-constant-condition
+      while (true) {
+        const { value, done } = (await reader?.read()) ?? {}
+        if (done) break
+        setTranslationEventStream(
+          (prev) => prev + extractSSEContent(decoder.decode(value)),
+        )
+      }
+    }
+
+    fetchData()
     setTriggerTranslationQuery(false)
-  }
+  }, [triggerTranslationQuery, params])
 
-  return { data, isLoading, isError }
+  return { translationEventStream, isLoading, isError }
 }
 
 export default useTranslationResults

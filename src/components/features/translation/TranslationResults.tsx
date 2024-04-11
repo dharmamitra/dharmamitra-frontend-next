@@ -10,19 +10,12 @@ import {
   BoxBottomElementsRow,
   TranslationContentBox,
 } from "@/components/styled"
-import TextSkeleton from "@/components/TextSkeleton"
 import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import useTranslationResults from "@/hooks/useTranslationResults"
 
 export default function TranslationResults() {
   const t = useTranslations("translation")
-  const { data, isLoading, isError } = useTranslationResults()
-
-  const translation = React.useMemo(
-    () =>
-      data ? data.reduce((compliation, part) => compliation + part, "") : "",
-    [data],
-  )
+  const { translationEventStream, isError } = useTranslationResults()
 
   const rows = useResponsiveContentRows()
 
@@ -41,20 +34,22 @@ export default function TranslationResults() {
       })}
       data-testid="translation-results"
     >
-      {isLoading ? <TextSkeleton /> : null}
       {isError ? <Error /> : null}
-      {data ? (
+      {translationEventStream ? (
         <Typography
           data-testid="request-translation"
           variant="reader"
           component="p"
           mt={0}
         >
-          {translation}
+          {translationEventStream}
         </Typography>
       ) : null}
       <BoxBottomElementsRow spread="flex-end">
-        <CopeText string={translation} ariaLabel={t("copyTranslation")} />
+        <CopeText
+          string={translationEventStream}
+          ariaLabel={t("copyTranslation")}
+        />
       </BoxBottomElementsRow>
     </TranslationContentBox>
   )

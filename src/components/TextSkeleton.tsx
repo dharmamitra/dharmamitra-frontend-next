@@ -8,9 +8,9 @@ export default function TextSkeleton() {
       data-testid="translation-loading"
       aria-label="Loading"
     >
-      {[7, 4, 6].map((n, i) => (
+      {[7, 4].map((n, i) => (
         <Box key={"translation-skeleton-" + i} mb={1.5}>
-          <Skeleton sx={{ animationDuration: `${4 + n}s` }} />
+          <Skeleton sx={{ animationDuration: `2s` }} />
           <Skeleton
             animation="wave"
             sx={{
