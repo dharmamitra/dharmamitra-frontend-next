@@ -40,6 +40,10 @@
       "nlpResearchSanskrit": "བོད་སྐད་དུ།"
     }
   },
+  "metadata": {
+    "title": "[bo] Dharmamitra · translating the languages of the Dharma",
+    "description": "Machine translation for the languages of the Dharma"
+  },
   "generic": {
     "copied": "སྲུང་།",
     "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"

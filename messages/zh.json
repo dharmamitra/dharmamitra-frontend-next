@@ -40,6 +40,10 @@
       "nlpResearchSanskrit": "Sanskrit NLP research"
     }
   },
+  "metadata": {
+    "title": "Dharmamitra · translating the languages of the Dharma",
+    "description": "Machine translation for the languages of the Dharma"
+  },
   "generic": {
     "copied": "已复制到剪切板",
     "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"

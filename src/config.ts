@@ -12,3 +12,5 @@ export const pathnames = {
 } satisfies Pathnames<typeof supportedLocales>
 
 export type AppPathnames = keyof typeof pathnames
+
+// export type Locale = (typeof supportedLocales)[number]

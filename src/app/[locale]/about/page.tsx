@@ -1,11 +1,23 @@
 import Image from "next/image"
 import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { Typography } from "@mui/material"
 import Link from "@mui/material/Link"
 
 import logoFull from "@/assets/dm-logo-full.png"
 import { PageShell } from "@/components/layout"
 import { Section } from "@/components/styled"
+import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
+
+export async function generateMetadata({
+  params: { locale },
+}: I18nMetadataHandlerProps): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "About" })
+
+  return {
+    title: t("title"),
+  }
+}
 
 const linkAttrs = {
   color: "secondary",
@@ -25,7 +37,6 @@ export default function About() {
         <Image
           src={logoFull}
           alt="Dharmamitra"
-          objectFit="contain"
           style={{ width: "100%", height: "auto" }}
           priority
         />
