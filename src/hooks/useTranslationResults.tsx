@@ -101,7 +101,7 @@ const useTranslationResults = () => {
 
     fetchData()
     setTriggerTranslationQuery(false)
-  }, [triggerTranslationQuery, params])
+  }, [triggerTranslationQuery, setTriggerTranslationQuery, params])
 
   return { translationEventStream, isLoading, isError }
 }

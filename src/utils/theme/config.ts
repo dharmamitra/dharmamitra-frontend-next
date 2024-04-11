@@ -58,6 +58,16 @@ export const baseTheme: ThemeOptions = {
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          "&:hover": {
+            // replicates MUI's `darken` function for SSR
+            backgroundColor: "rgb(5, 41, 80)",
+          },
+        },
+      },
+    },
   },
   custom: customTheming,
 }

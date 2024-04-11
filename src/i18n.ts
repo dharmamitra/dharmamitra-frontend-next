@@ -3,6 +3,12 @@ import { getRequestConfig } from "next-intl/server"
 
 import { supportedLocales } from "@/config"
 
+export type { Metadata } from "next"
+
+export type I18nMetadataHandlerProps = {
+  params: { locale: Locale }
+}
+
 export const pickMessages = ({
   messages,
   messageKeys,

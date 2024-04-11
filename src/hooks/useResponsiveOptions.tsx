@@ -14,5 +14,5 @@ export const useResponsiveOptions = <T extends string[]>(options: T) => {
       setting: options,
       noOfPrimaryItems,
     })
-  }, [isMobile, isTablet])
+  }, [isMobile, isTablet, options])
 }

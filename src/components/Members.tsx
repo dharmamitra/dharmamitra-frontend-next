@@ -27,11 +27,10 @@ export function Member({ id, name, roles, image }: MemberType) {
         <Image
           src={image}
           alt={name}
-          layout="fill"
-          objectPosition="center"
-          objectFit="cover"
           style={{
             borderRadius: "50%",
+            width: "100%",
+            height: "100%",
           }}
         />
       </Box>

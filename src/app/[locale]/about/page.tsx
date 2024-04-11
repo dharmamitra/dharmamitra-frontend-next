@@ -1,19 +1,34 @@
 import Image from "next/image"
 import { useTranslations } from "next-intl"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 import Link from "@mui/material/Link"
 
 import logoFull from "@/assets/dm-logo-full.png"
 import { PageShell } from "@/components/layout"
 import { Section } from "@/components/styled"
+import { supportedLocales } from "@/config"
+import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
+import { linkAttrs } from "@/utils/ui"
 
-const linkAttrs = {
-  color: "secondary",
-  target: "_blank",
-  rel: "noopener noreferrer",
+export async function generateMetadata({
+  params: { locale },
+}: I18nMetadataHandlerProps): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "About" })
+
+  return {
+    title: t("title"),
+  }
 }
 
-export default function About() {
+export const generateStaticParams = () => {
+  return supportedLocales.map((locale) => ({ locale }))
+}
+
+export default function About({
+  params: { locale },
+}: I18nMetadataHandlerProps) {
+  unstable_setRequestLocale(locale)
   const t = useTranslations("About")
 
   return (
@@ -25,7 +40,6 @@ export default function About() {
         <Image
           src={logoFull}
           alt="Dharmamitra"
-          objectFit="contain"
           style={{ width: "100%", height: "auto" }}
           priority
         />

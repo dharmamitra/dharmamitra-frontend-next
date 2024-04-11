@@ -2,11 +2,28 @@ import * as React from "react"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Box, Typography } from "@mui/material"
+import { Breakpoint } from "@mui/material/styles"
 
 import error from "@/assets/error-red.svg"
 
-export default function Error() {
+type Props = {
+  imgWdiths?: Partial<Record<Breakpoint, string>>
+  message?:
+    | string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | React.ReactNodeArray
+}
+
+export default function Error({
+  imgWdiths = { xs: "80px", sm: "100px" },
+  message,
+}: Props) {
   const t = useTranslations("generic")
+
+  const defaultMessage = t.rich("error", {
+    newline: (chunks) => <span style={{ display: "block" }}>{chunks}</span>,
+  })
 
   return (
     <Box
@@ -22,7 +39,7 @@ export default function Error() {
       <Box
         sx={{
           py: 1,
-          width: { xs: "80px", sm: "100px" },
+          width: imgWdiths,
         }}
       >
         <Image
@@ -44,11 +61,7 @@ export default function Error() {
         color="error"
         align="center"
       >
-        {t.rich("error", {
-          newline: (chunks) => (
-            <span style={{ display: "block" }}>{chunks}</span>
-          ),
-        })}
+        {message ?? defaultMessage}
       </Typography>
     </Box>
   )

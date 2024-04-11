@@ -171,6 +171,7 @@ For server components theme-aware propeties are readily available via component'
 
 - [Mui's default theme object](https://mui.com/material-ui/customization/default-theme/)
 - [MUI's theme-aware propeties](https://mui.com/system/getting-started/the-sx-prop/#theme-aware-properties) - these are props available to any component without importing `theme`
+- [index of color utilities exported from `@mui/material/styles`](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) (see: [cusomizing colours](https://mui.com/material-ui/customization/palette/#custom-colors))
 
 ## Testing
 

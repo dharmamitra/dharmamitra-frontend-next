@@ -7,3 +7,9 @@ export const getSettingPriotiryGroups = <T>(params: {
 }
 
 export const translationInputLimit = 524 as const
+
+export const linkAttrs = {
+  color: "secondary",
+  target: "_blank",
+  rel: "noopener noreferrer",
+}
