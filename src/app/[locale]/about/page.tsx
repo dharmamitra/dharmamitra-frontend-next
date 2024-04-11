@@ -1,13 +1,15 @@
 import Image from "next/image"
 import { useTranslations } from "next-intl"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 import Link from "@mui/material/Link"
 
 import logoFull from "@/assets/dm-logo-full.png"
 import { PageShell } from "@/components/layout"
 import { Section } from "@/components/styled"
+import { supportedLocales } from "@/config"
 import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
+import { linkAttrs } from "@/utils/ui"
 
 export async function generateMetadata({
   params: { locale },
@@ -19,13 +21,14 @@ export async function generateMetadata({
   }
 }
 
-const linkAttrs = {
-  color: "secondary",
-  target: "_blank",
-  rel: "noopener noreferrer",
+export const generateStaticParams = () => {
+  return supportedLocales.map((locale) => ({ locale }))
 }
 
-export default function About() {
+export default function About({
+  params: { locale },
+}: I18nMetadataHandlerProps) {
+  unstable_setRequestLocale(locale)
   const t = useTranslations("About")
 
   return (

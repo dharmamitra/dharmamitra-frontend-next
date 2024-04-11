@@ -1,10 +1,11 @@
 import { useTranslations } from "next-intl"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 
 import { PageShell } from "@/components/layout"
 import Members from "@/components/Members"
 import { Section } from "@/components/styled"
+import { supportedLocales } from "@/config"
 import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
 
 import membersData from "./data"
@@ -19,7 +20,12 @@ export async function generateMetadata({
   }
 }
 
-export default function Team() {
+export const generateStaticParams = () => {
+  return supportedLocales.map((locale) => ({ locale }))
+}
+
+export default function Team({ params: { locale } }: I18nMetadataHandlerProps) {
+  unstable_setRequestLocale(locale)
   const t = useTranslations("Team")
 
   return (

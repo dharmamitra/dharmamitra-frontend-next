@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter"
@@ -32,6 +32,8 @@ export default function RootLayout({
   children: React.ReactNode
   params: { locale: string }
 }>) {
+  unstable_setRequestLocale(locale)
+
   return (
     <html lang={locale}>
       <body>

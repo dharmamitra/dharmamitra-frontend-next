@@ -22,7 +22,7 @@ function useInputWithLocalStorage({
   const searchParams = useSearchParams()
   const paramValue = React.useMemo(
     () => getSearchParam({ searchParams, paramName }),
-    [searchParams],
+    [searchParams, paramName],
   )
 
   const [input, setInput] = React.useState(() => {
