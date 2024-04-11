@@ -52,10 +52,12 @@ export const CustomFormControlLabel = styled(FormControlLabel)(
   }),
 )
 
-export const SettingBlock = styled(Grid)<{
+export const SettingBlock = styled(Grid, {
+  shouldForwardProp: (prop) => prop !== "isHydrated",
+})<{
   placement: "start" | "end"
   isHydrated?: boolean
-}>(({ theme, placement, isHydrated = true }) => {
+}>(({ theme, placement, isHydrated }) => {
   const inputRadius =
     placement === "start"
       ? {
