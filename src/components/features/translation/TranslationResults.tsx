@@ -5,23 +5,24 @@ import { useTranslations } from "next-intl"
 import Typography from "@mui/material/Typography"
 
 import CopeText from "@/components/CopeText"
-import Error from "@/components/Error"
+// import Error from "@/components/Error"
 import {
   BoxBottomElementsRow,
   TranslationContentBox,
 } from "@/components/styled"
-import TextSkeleton from "@/components/TextSkeleton"
 import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import useTranslationResults from "@/hooks/useTranslationResults"
 
 export default function TranslationResults() {
   const t = useTranslations("translation")
-  const { data, isLoading, isError } = useTranslationResults()
+  const { eventStream } = useTranslationResults()
 
   const translation = React.useMemo(
     () =>
-      data ? data.reduce((compliation, part) => compliation + part, "") : "",
-    [data],
+      eventStream
+        ? eventStream.reduce((compliation, part) => compliation + part, "")
+        : "",
+    [eventStream],
   )
 
   const rows = useResponsiveContentRows()
@@ -41,9 +42,8 @@ export default function TranslationResults() {
       })}
       data-testid="translation-results"
     >
-      {isLoading ? <TextSkeleton /> : null}
-      {isError ? <Error /> : null}
-      {data ? (
+      {/* {isError ? <Error /> : null} */}
+      {translation ? (
         <Typography
           data-testid="request-translation"
           variant="reader"

@@ -61,8 +61,6 @@ test.describe("main features functionality", () => {
     await page.getByTestId("translation-input").fill(translationRequest1)
     await expect(page).toHaveURL(inputParamTest)
     await page.getByRole("button", { name: translateMsg }).click()
-    await page.waitForTimeout(200)
-    await expect(page.getByTestId("translation-loading")).toBeVisible()
   })
 
   /**
