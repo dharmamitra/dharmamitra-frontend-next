@@ -49,7 +49,7 @@ export const CustomFormControlLabel = styled(FormControlLabel)(
   }),
 )
 
-export const OptionBlock = styled(Grid)<{ placement: "start" | "end" }>(({
+export const SettingBlock = styled(Grid)<{ placement: "start" | "end" }>(({
   theme,
   placement,
 }) => {
@@ -88,7 +88,7 @@ export const OptionBlock = styled(Grid)<{ placement: "start" | "end" }>(({
   }
 })
 
-export const OptionBlockLabel = styled(Typography)(({ theme }) => ({
+export const SettingBlockLabel = styled(Typography)(({ theme }) => ({
   position: "absolute",
   top: "-14px",
   left: "6px",

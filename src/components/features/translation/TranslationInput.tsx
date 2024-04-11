@@ -59,6 +59,7 @@ export default function TranslationInput() {
               sm: `1.25rem !important`,
               md: `1.35rem !important`,
             },
+            lineHeight: `1.5 !important`,
           },
         }}
         rows={rows}
