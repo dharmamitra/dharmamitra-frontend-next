@@ -37,7 +37,7 @@ export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
     <NextIntlClientProvider messages={translationMessages}>
       <PageShell maxWidth="xl" sx={{ mb: 12 }}>
         <Typography
-          variant="h3"
+          variant="h4"
           component="h1"
           align="center"
           color="primary"
