@@ -34,6 +34,7 @@ export default function Error() {
             height: "auto",
             opacity: 0.75,
           }}
+          priority
         />
       </Box>
       <Typography

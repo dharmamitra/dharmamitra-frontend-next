@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import Typography from "@mui/material/Typography"
 
 import CopeText from "@/components/CopeText"
-// import Error from "@/components/Error"
+import Error from "@/components/Error"
 import {
   BoxBottomElementsRow,
   TranslationContentBox,
@@ -15,15 +15,7 @@ import useTranslationResults from "@/hooks/useTranslationResults"
 
 export default function TranslationResults() {
   const t = useTranslations("translation")
-  const { eventStream } = useTranslationResults()
-
-  const translation = React.useMemo(
-    () =>
-      eventStream
-        ? eventStream.reduce((compliation, part) => compliation + part, "")
-        : "",
-    [eventStream],
-  )
+  const { translationEventStream, isError } = useTranslationResults()
 
   const rows = useResponsiveContentRows()
 
@@ -42,19 +34,22 @@ export default function TranslationResults() {
       })}
       data-testid="translation-results"
     >
-      {/* {isError ? <Error /> : null} */}
-      {translation ? (
+      {isError ? <Error /> : null}
+      {translationEventStream ? (
         <Typography
           data-testid="request-translation"
           variant="reader"
           component="p"
           mt={0}
         >
-          {translation}
+          {translationEventStream}
         </Typography>
       ) : null}
       <BoxBottomElementsRow spread="flex-end">
-        <CopeText string={translation} ariaLabel={t("copyTranslation")} />
+        <CopeText
+          string={translationEventStream}
+          ariaLabel={t("copyTranslation")}
+        />
       </BoxBottomElementsRow>
     </TranslationContentBox>
   )

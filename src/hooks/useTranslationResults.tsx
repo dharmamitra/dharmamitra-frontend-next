@@ -47,11 +47,14 @@ const useTranslationResults = () => {
     [inputSentence, inputEncodingParam, targetLangParam],
   )
 
-  const [eventStream, setEventStream] = React.useState<string[]>([])
+  const [translationEventStream, setTranslationEventStream] =
+    React.useState<string>("")
 
   const [isLoading, setIsLoading] = React.useState(
-    triggerTranslationQuery && !eventStream.length,
+    triggerTranslationQuery && !translationEventStream.length,
   )
+
+  const [isError, setIsError] = React.useState(false)
 
   React.useEffect(() => {
     if (!triggerTranslationQuery) {
@@ -59,7 +62,7 @@ const useTranslationResults = () => {
     }
 
     setIsLoading(true)
-    setEventStream([])
+    setTranslationEventStream("")
 
     const fetchData = async () => {
       const response = await fetch(
@@ -74,6 +77,14 @@ const useTranslationResults = () => {
       )
 
       const reader = response.body?.getReader()
+
+      if (!reader || !response.ok) {
+        setIsLoading(false)
+        setIsError(true)
+        throw new Error(response.statusText)
+        return
+      }
+
       const decoder = new TextDecoder("utf-8")
 
       setIsLoading(false)
@@ -82,10 +93,9 @@ const useTranslationResults = () => {
       while (true) {
         const { value, done } = (await reader?.read()) ?? {}
         if (done) break
-        setEventStream((prev) => [
-          ...prev,
-          extractSSEContent(decoder.decode(value)),
-        ])
+        setTranslationEventStream(
+          (prev) => prev + extractSSEContent(decoder.decode(value)),
+        )
       }
     }
 
@@ -93,7 +103,7 @@ const useTranslationResults = () => {
     setTriggerTranslationQuery(false)
   }, [triggerTranslationQuery, params])
 
-  return { eventStream, isLoading }
+  return { translationEventStream, isLoading, isError }
 }
 
 export default useTranslationResults
