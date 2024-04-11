@@ -1,14 +1,29 @@
 "use client"
 
 import React from "react"
+import { useTranslations } from "next-intl"
 import Typography from "@mui/material/Typography"
 
-import { TranslationContentBox } from "@/components/styled"
+import CopeText from "@/components/CopeText"
+import Error from "@/components/Error"
+import {
+  BoxBottomElementsRow,
+  TranslationContentBox,
+} from "@/components/styled"
+import TextSkeleton from "@/components/TextSkeleton"
 import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import useTranslationResults from "@/hooks/useTranslationResults"
 
 export default function TranslationResults() {
+  const t = useTranslations("translation")
   const { data, isLoading, isError } = useTranslationResults()
+
+  const translation = React.useMemo(
+    () =>
+      data ? data.reduce((compliation, part) => compliation + part, "") : "",
+    [data],
+  )
+
   const rows = useResponsiveContentRows()
 
   return (
@@ -26,20 +41,8 @@ export default function TranslationResults() {
       })}
       data-testid="translation-results"
     >
-      {isLoading ? (
-        <Typography
-          component="p"
-          variant="h5"
-          data-testid="translation-loading"
-        >
-          Loading...
-        </Typography>
-      ) : null}
-      {isError ? (
-        <Typography component="p" variant="h5" data-testid="translation-error">
-          Error
-        </Typography>
-      ) : null}
+      {isLoading ? <TextSkeleton /> : null}
+      {isError ? <Error /> : null}
       {data ? (
         <Typography
           data-testid="request-translation"
@@ -47,9 +50,12 @@ export default function TranslationResults() {
           component="p"
           mt={0}
         >
-          {data.map((part) => part)}
+          {translation}
         </Typography>
       ) : null}
+      <BoxBottomElementsRow spread="flex-end">
+        <CopeText string={translation} ariaLabel={t("copyTranslation")} />
+      </BoxBottomElementsRow>
     </TranslationContentBox>
   )
 }

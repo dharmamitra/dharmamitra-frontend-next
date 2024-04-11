@@ -40,6 +40,10 @@
       "nlpResearchSanskrit": "Sanskrit NLP research"
     }
   },
+  "generic": {
+    "copied": "Copied!",
+    "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"
+  },
   "navigation": {
     "home": "Home",
     "about": "About",
@@ -67,6 +71,7 @@
     "targetLanguageSelectLabel": "Output language",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
     "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "copyTranslation": "Copy translation",
     "encodings": {
       "auto": "Autodetect",
       "dev": "Devanagari",

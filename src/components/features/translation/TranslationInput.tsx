@@ -1,8 +1,8 @@
 "use client"
 
+import React from "react"
 import { useTranslations } from "next-intl"
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight"
-import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { useTheme } from "@mui/material/styles"
@@ -10,15 +10,24 @@ import Tooltip from "@mui/material/Tooltip"
 import { useSetAtom } from "jotai"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
-import { TranslationContentBox } from "@/components/styled"
+import CharacterCount from "@/components/CharacterCount"
+import {
+  BoxBottomElementsRow,
+  TranslationContentBox,
+} from "@/components/styled"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import { apiParamsNames } from "@/utils/api/params"
+import { translationInputLimit } from "@/utils/ui"
 
 export default function TranslationInput() {
   const t = useTranslations("translation")
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
+  )
+  const limitReached = React.useMemo(
+    () => input.length >= translationInputLimit,
+    [input],
   )
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
@@ -54,6 +63,11 @@ export default function TranslationInput() {
           "aria-label": t("inputAriaLabel"),
           sx: {
             // TODO: fix quick and dirty `reader` theme font-size hack!
+            height: {
+              xs: `calc(${rows} * 1.56rem) !important`,
+              sm: `calc(${rows} * 1.4rem) !important`,
+              md: `calc(${rows} * 1.58rem) !important`,
+            },
             fontSize: {
               xs: "1.15rem !important",
               sm: `1.25rem !important`,
@@ -65,22 +79,35 @@ export default function TranslationInput() {
         rows={rows}
         multiline
         value={input}
-        onChange={handleInputChange}
+        onChange={(e) => handleInputChange(e, translationInputLimit)}
         onKeyUp={(event) => {
           if (event.key === "Enter" && event.ctrlKey && input.length > 0) {
             setTriggerTranslationQuery(true)
           }
         }}
       />
-      <Box
-        sx={{
-          position: "absolute",
-          zIndex: 1,
-          bottom: { xs: "0.25rem", md: "0.75rem" },
-          right: { xs: "0.25rem", md: "0.75rem" },
-        }}
-      >
-        <Tooltip title={`${t("translate")} (Ctrl + Enter)`} placement="top">
+      <BoxBottomElementsRow spread="flex-end">
+        <CharacterCount
+          charcaters={input.length}
+          limit={translationInputLimit}
+          limitReached={limitReached}
+        />
+        <Tooltip
+          title={`${t("translate")} (Ctrl + Enter)`}
+          placement="top"
+          slotProps={{
+            popper: {
+              modifiers: [
+                {
+                  name: "offset",
+                  options: {
+                    offset: [-24, 0],
+                  },
+                },
+              ],
+            },
+          }}
+        >
           <IconButton
             aria-label={t("translate")}
             color="secondary"
@@ -91,7 +118,7 @@ export default function TranslationInput() {
             <KeyboardDoubleArrowRightIcon />
           </IconButton>
         </Tooltip>
-      </Box>
+      </BoxBottomElementsRow>
     </TranslationContentBox>
   )
 }

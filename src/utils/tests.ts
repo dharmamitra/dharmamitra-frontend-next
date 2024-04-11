@@ -4,6 +4,8 @@ export const translationRequests: string[] = [
   "naham aharam na labhamiti pabbajito, siniddhaharo buddha nama , natthi amoghavacana buddhanam vasami”ti manussanam acikkhi. Manussa “idani no khettam iniddhaharo buddha nama",
 ]
 
+// https://tipitaka.org/deva/
+
 // TODO: Reinstate post mvp launch
 // test("search and translation navigate to correct tabs", async ({ page }) => {
 //   await page.getByRole("tab", { name: /translate/i }).click()

@@ -40,6 +40,10 @@
       "nlpResearchSanskrit": "Sanskrit NLP research"
     }
   },
+  "generic": {
+    "copied": "已复制到剪切板",
+    "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"
+  },
   "navigation": {
     "home": "家",
     "about": "关于",
@@ -68,6 +72,7 @@
     "targetLanguageSelectLabel": "目标语言",
     "primaryTargetLanguagesAriaLabel": "主要目标语言选项",
     "otherTargetLanguagesAriaLabel": "其他目标语言选项",
+    "copyTranslation": "复制翻译",
     "encodings": {
       "auto": "Autodetect",
       "dev": "Devanagari",
