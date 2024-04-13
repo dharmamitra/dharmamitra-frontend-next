@@ -4,6 +4,8 @@ import imgAarnavSrivastava from "@/assets/team/aarnav-srivastava.jpg"
 import avatar from "@/assets/team/avatar.svg"
 import imgDavidAllport from "@/assets/team/david-allport.png"
 import imgDevikaGopakumar from "@/assets/team/devika-gopakumar.jpg"
+import imgFrancesBelleza from "@/assets/team/frances-belleza.jpg"
+import imgJivneshSandhan from "@/assets/team/jivnesh-sandhan.jpg"
 import imgKayshavBhardwaj from "@/assets/team/kayshav-bhardwaj.png"
 import imgKurtKeutzer from "@/assets/team/kurt-keutzer.jpg"
 import imgKushBhardwaj from "@/assets/team/kush-bhardwaj.png"
@@ -15,7 +17,9 @@ import imgSanjanaSrinivasan from "@/assets/team/sanjana-srinivasan.png"
 import imgSebastianNehrdich from "@/assets/team/sebastian-nehrdich.jpg"
 import imgShivamAgarwal from "@/assets/team/shivam-agarwal.jpg"
 import imgSiyaMehta from "@/assets/team/siya-mehta.png"
+import imgSujeetJaiswal from "@/assets/team/sujeet-jaiswal.jpg"
 import imgVarunRao from "@/assets/team/varun-rao.png"
+import imgVladimirAngirov from "@/assets/team/vladimir-angirov.jpg"
 
 export type Member = {
   id: string
@@ -67,7 +71,7 @@ const members: TeamMembers = {
           i18nRoleKey: "projectInfrastructure",
         },
       ],
-      image: avatar,
+      image: imgVladimirAngirov,
     },
     {
       id: crypto.randomUUID(),
@@ -96,7 +100,7 @@ const members: TeamMembers = {
           i18nRoleKey: "nlpResearchSanskrit",
         },
       ],
-      image: avatar,
+      image: imgJivneshSandhan,
     },
     {
       id: crypto.randomUUID(),
@@ -111,13 +115,13 @@ const members: TeamMembers = {
           i18nRoleKey: "nlpResearchSanskrit",
         },
       ],
-      image: avatar,
+      image: imgSujeetJaiswal,
     },
     {
       id: crypto.randomUUID(),
       name: "Frances Belleza",
       roles: null,
-      image: avatar,
+      image: imgFrancesBelleza,
     },
     {
       id: crypto.randomUUID(),
