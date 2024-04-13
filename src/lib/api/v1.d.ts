@@ -37,15 +37,7 @@ export interface components {
      * InputEncoding
      * @enum {string}
      */
-    InputEncoding:
-      | "auto"
-      | "tibetan"
-      | "iast"
-      | "dev"
-      | "wylie"
-      | "itrans"
-      | "velthuis"
-      | "hk"
+    InputEncoding: "auto" | "tibetan" | "wylie" | "dev" | "iast" | "hk"
     /**
      * ModelName
      * @enum {string}
@@ -62,15 +54,11 @@ export interface components {
      */
     TargetLanguage:
       | "english"
+      | "tibetan"
       | "sanskrit"
       | "sanskrit-dev"
-      | "tibetan"
       | "ancient-chinese"
-      | "japanese"
       | "korean"
-      | "pali"
-      | "sa-en"
-      | "modern-chinese"
     /** ValidationError */
     ValidationError: {
       /** Location */

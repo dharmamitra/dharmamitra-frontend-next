@@ -73,7 +73,7 @@
     "heading": "Translate Dharma text",
     "translate": "Translate",
     "inputAriaLabel": "Translation input field",
-    "placeholder": "Enter text to translate...",
+    "placeholder": "Enter Sanskrit, Tibetan, Classical Chinese or English text to translate...",
     "otherLabel": "Other",
     "encodingSelectLabel": "Transliteration",
     "primaryEncodingsAriaLabel": "Primary encoding options",
@@ -96,10 +96,10 @@
       "tibetan": "Tibetan",
       "english": "English",
       "sanskrit": "Sanskrit",
-      "ancient-chinese": "Ancient Chinese",
+      "ancient-chinese": "Classical Chinese",
       "japanese": "Japanese",
       "korean": "Korean",
-      "sanskrit-dev": "Sanskrit Dev",
+      "sanskrit-dev": "Sanskrit (Devanagari)",
       "sa-en": "SA English",
       "modern-chinese": "Modern Chinese"
     }

@@ -22,9 +22,7 @@ export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
   "dev",
   "hk",
   "iast",
-  "itrans",
   "tibetan",
-  "velthuis",
   "wylie",
 )
 
@@ -39,12 +37,9 @@ export const targetLanguages = exhaustiveStringTuple<ServedTargetLanguage>()(
   "english",
   "tibetan",
   "sanskrit",
+  "sanskrit-dev",
   "ancient-chinese",
   "korean",
-  "japanese",
-  "sanskrit-dev",
-  "sa-en",
-  "modern-chinese",
 )
 
 export const apiParamsNames: APIParamsNames = {
