@@ -63,7 +63,7 @@
   },
   "localeSwitcher": {
     "label": "改变语言",
-    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
+    "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
   },
   "search": {
     "heading": "搜索2500年的佛教",

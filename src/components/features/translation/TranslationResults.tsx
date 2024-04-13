@@ -6,16 +6,17 @@ import Typography from "@mui/material/Typography"
 
 import CopeText from "@/components/CopeText"
 import Error from "@/components/Error"
+import LoadingDots from "@/components/LoadingDots"
 import {
   BoxBottomElementsRow,
   TranslationContentBox,
 } from "@/components/styled"
 import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
-import useTranslationResults from "@/hooks/useTranslationResults"
+import useTranslationStream from "@/hooks/useTranslationStream"
 
 export default function TranslationResults() {
   const t = useTranslations("translation")
-  const { translationEventStream, isError } = useTranslationResults()
+  const { translationStream, isError, isLoading } = useTranslationStream()
 
   const rows = useResponsiveContentRows()
 
@@ -34,20 +35,21 @@ export default function TranslationResults() {
       })}
       data-testid="translation-results"
     >
+      {isLoading ? <LoadingDots sx={{ m: 2 }} /> : null}
       {isError ? <Error /> : null}
-      {translationEventStream ? (
+      {translationStream ? (
         <Typography
           data-testid="request-translation"
           variant="reader"
           component="p"
           mt={0}
         >
-          {translationEventStream}
+          {translationStream}
         </Typography>
       ) : null}
       <BoxBottomElementsRow spread="flex-end">
         <CopeText
-          string={translationEventStream}
+          string={translationStream ?? ""}
           ariaLabel={t("copyTranslation")}
         />
       </BoxBottomElementsRow>

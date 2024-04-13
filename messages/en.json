@@ -63,7 +63,7 @@
   },
   "localeSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
+    "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
   },
   "search": {
     "heading": "Search 2500 years of Buddhism",
