@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test"
 
-import { basePath } from "@/config"
+import { playwrightBasePath as basePath } from "@/config"
 import {
   apiParamsNames,
   // TODO: encoding tests have been temporarily commented pending API param updates

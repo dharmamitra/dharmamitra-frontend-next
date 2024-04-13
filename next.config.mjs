@@ -4,7 +4,7 @@ const withNextIntl = createNextIntlPlugin()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "/dmnext",
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? "",
 }
 
 export default withNextIntl(nextConfig)

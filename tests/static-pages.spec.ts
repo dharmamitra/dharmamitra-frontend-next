@@ -1,7 +1,13 @@
 import AxeBuilder from "@axe-core/playwright"
 import { expect, test } from "@playwright/test"
 
-import { basePath, defaultLocale, pathnames, supportedLocales } from "@/config"
+import {
+  defaultLocale,
+  pathnames,
+  playwrightBasePath as basePath,
+  supportedLocales,
+} from "@/config"
+import { makeCleanRoute } from "@/utils/transformers"
 
 import boMessages from "../messages/bo.json"
 import enMessages from "../messages/en.json"
@@ -27,11 +33,11 @@ Object.keys(pathnames).forEach((pathname) => {
   supportedLocales.forEach((locale) => {
     const key = pathname as PathnameKey
 
-    const route = [basePath, locale === defaultLocale ? "" : locale, pathname]
-      .filter(Boolean)
-      .join("/")
-      .replace(/\/{2,}/g, "/")
-      .replace(/\/$/, "")
+    const route = makeCleanRoute([
+      basePath,
+      locale === defaultLocale ? "" : locale,
+      pathname,
+    ])
 
     test.describe(`\`${route}\` route`, () => {
       test.beforeEach(async ({ page }) => {

@@ -3,3 +3,11 @@ export function extractSSEContent(eventMessage: string): string {
   const match = eventMessage.match(regex)
   return match && match[1] ? match[1] : ""
 }
+
+export const makeCleanRoute = (route: string[]) => {
+  return route
+    .filter(Boolean)
+    .join("/")
+    .replace(/\/{2,}/g, "/")
+    .replace(/\/$/, "")
+}
