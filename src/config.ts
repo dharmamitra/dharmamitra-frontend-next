@@ -1,6 +1,6 @@
 import { Pathnames } from "next-intl/navigation"
 
-export const supportedLocales = ["en", "bo", "zh", "zh-Hant"] as const
+export const supportedLocales = ["en", "zh", "zh-Hant"] as const
 export const defaultLocale = "en" as const
 export const localePrefix = "as-needed"
 
