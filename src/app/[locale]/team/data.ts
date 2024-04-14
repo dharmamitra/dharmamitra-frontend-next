@@ -5,7 +5,6 @@ import avatar from "@/assets/team/avatar.svg"
 import imgDavidAllport from "@/assets/team/david-allport.png"
 import imgDevikaGopakumar from "@/assets/team/devika-gopakumar.jpg"
 import imgFrancesBelleza from "@/assets/team/frances-belleza.jpg"
-import imgJivneshSandhan from "@/assets/team/jivnesh-sandhan.jpg"
 import imgKayshavBhardwaj from "@/assets/team/kayshav-bhardwaj.png"
 import imgKurtKeutzer from "@/assets/team/kurt-keutzer.jpg"
 import imgKushBhardwaj from "@/assets/team/kush-bhardwaj.png"
@@ -100,7 +99,7 @@ const members: TeamMembers = {
           i18nRoleKey: "nlpResearchSanskrit",
         },
       ],
-      image: imgJivneshSandhan,
+      image: avatar,
     },
     {
       id: crypto.randomUUID(),

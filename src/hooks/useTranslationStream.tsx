@@ -14,7 +14,7 @@ import {
 } from "@/utils/api/params"
 import { cleanSSEData } from "@/utils/transformers"
 
-const translationEndpoint = `${process.env.NEXT_PUBLIC_API_URL}/translation/`
+const translationEndpoint = `${process.env.NEXT_PUBLIC_API_URL}/translation-slow/`
 
 const useTranslationStream = () => {
   const { input: inputSentence } = useInputWithUrlParam(

@@ -52,7 +52,8 @@
   },
   "generic": {
     "copied": "Copied!",
-    "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"
+    "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
+    "clear": "Clear"
   },
   "navigation": {
     "home": "Home",

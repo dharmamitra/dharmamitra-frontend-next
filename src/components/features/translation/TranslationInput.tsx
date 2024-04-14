@@ -2,7 +2,9 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
+import HighlightOffIcon from "@mui/icons-material/HighlightOff"
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight"
+import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { useTheme } from "@mui/material/styles"
@@ -21,7 +23,7 @@ import { apiParamsNames } from "@/utils/api/params"
 import { translationInputLimit } from "@/utils/ui"
 
 export default function TranslationInput() {
-  const t = useTranslations("translation")
+  const t = useTranslations()
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
   )
@@ -57,10 +59,10 @@ export default function TranslationInput() {
           },
           borderRadius: theme.custom.shape.inputRadius,
         }}
-        placeholder={t("placeholder")}
+        placeholder={t("translation.placeholder")}
         inputProps={{
           "data-testid": "translation-input",
-          "aria-label": t("inputAriaLabel"),
+          "aria-label": t("translation.inputAriaLabel"),
           sx: {
             // TODO: fix quick and dirty `reader` theme font-size hack!
             height: {
@@ -86,38 +88,73 @@ export default function TranslationInput() {
           }
         }}
       />
-      <BoxBottomElementsRow spread="flex-end">
-        <CharacterCount
-          charcaters={input.length}
-          limit={translationInputLimit}
-          limitReached={limitReached}
-        />
-        <Tooltip
-          title={`${t("translate")} (Ctrl + Enter)`}
-          placement="top"
-          slotProps={{
-            popper: {
-              modifiers: [
-                {
-                  name: "offset",
-                  options: {
-                    offset: [-24, 0],
-                  },
-                },
-              ],
-            },
-          }}
-        >
+      <BoxBottomElementsRow spread="space-between">
+        <Tooltip title={t("generic.clear")} placement="top">
           <IconButton
-            aria-label={t("translate")}
+            aria-label={t("generic.clear")}
             color="secondary"
             onClick={() => {
-              setTriggerTranslationQuery(true)
+              handleInputChange("", translationInputLimit)
             }}
           >
-            <KeyboardDoubleArrowRightIcon />
+            <HighlightOffIcon />
           </IconButton>
         </Tooltip>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
+        >
+          <CharacterCount
+            charcaters={input.length}
+            limit={translationInputLimit}
+            limitReached={limitReached}
+          />
+          <Tooltip
+            title={
+              <span>
+                {`${t("translation.translate")}`} (Ctrl +
+                <span
+                  style={{
+                    fontSize: "1.1rem",
+                    lineHeight: 0.75,
+                    paddingBottom: "0.1rem",
+                    verticalAlign: "middle",
+                  }}
+                >
+                  ↵
+                </span>
+                )
+              </span>
+            }
+            placement="top"
+            slotProps={{
+              popper: {
+                modifiers: [
+                  {
+                    name: "offset",
+                    options: {
+                      offset: [-24, 0],
+                    },
+                  },
+                ],
+              },
+            }}
+          >
+            <IconButton
+              aria-label={t("translation.translate")}
+              color="secondary"
+              onClick={() => {
+                setTriggerTranslationQuery(true)
+              }}
+            >
+              <KeyboardDoubleArrowRightIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
       </BoxBottomElementsRow>
     </TranslationContentBox>
   )
