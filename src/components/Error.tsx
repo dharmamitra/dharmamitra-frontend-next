@@ -21,7 +21,7 @@ export default function Error({
 }: Props) {
   const t = useTranslations("generic")
 
-  const defaultMessage = t.rich("error", {
+  const defaultMessage = t.rich("error.default", {
     newline: (chunks) => <span style={{ display: "block" }}>{chunks}</span>,
   })
 

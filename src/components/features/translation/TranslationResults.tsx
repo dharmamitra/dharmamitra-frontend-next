@@ -4,7 +4,7 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import Typography from "@mui/material/Typography"
 
-import CopeText from "@/components/CopeText"
+import CopyText from "@/components/CopyText"
 import Error from "@/components/Error"
 import LoadingDots from "@/components/LoadingDots"
 import {
@@ -15,10 +15,19 @@ import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import useTranslationStream from "@/hooks/useTranslationStream"
 
 export default function TranslationResults() {
-  const t = useTranslations("translation")
+  const t = useTranslations()
   const { translationStream, isError, isLoading } = useTranslationStream()
 
   const rows = useResponsiveContentRows()
+
+  const errorMessage =
+    isError && isError.errorCode === 504
+      ? t.rich("generic.error.timeout", {
+          newline: (chunks) => (
+            <span style={{ display: "block" }}>{chunks}</span>
+          ),
+        })
+      : undefined
 
   return (
     <TranslationContentBox
@@ -36,7 +45,7 @@ export default function TranslationResults() {
       data-testid="translation-results"
     >
       {isLoading ? <LoadingDots sx={{ m: 2 }} /> : null}
-      {isError ? <Error /> : null}
+      {isError ? <Error message={errorMessage} /> : null}
       {translationStream ? (
         <Typography
           data-testid="request-translation"
@@ -48,9 +57,9 @@ export default function TranslationResults() {
         </Typography>
       ) : null}
       <BoxBottomElementsRow spread="flex-end">
-        <CopeText
+        <CopyText
           string={translationStream ?? ""}
-          ariaLabel={t("copyTranslation")}
+          ariaLabel={t("translation.copyTranslation")}
         />
       </BoxBottomElementsRow>
     </TranslationContentBox>

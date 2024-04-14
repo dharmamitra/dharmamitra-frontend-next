@@ -7,7 +7,7 @@ import { Fade, IconButton } from "@mui/material"
 
 import { Popper, PopperMsgBox } from "@/components/styled"
 
-export default function CopeText({
+export default function CopyText({
   string,
   ariaLabel,
 }: {

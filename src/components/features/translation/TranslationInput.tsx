@@ -106,6 +106,7 @@ export default function TranslationInput() {
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "center",
+            gap: 0.7,
           }}
         >
           <CharacterCount

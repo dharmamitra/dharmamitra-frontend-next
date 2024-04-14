@@ -14,7 +14,7 @@ import {
 } from "@/utils/api/params"
 import { cleanSSEData } from "@/utils/transformers"
 
-const translationEndpoint = `${process.env.NEXT_PUBLIC_API_URL}/translation-slow/`
+const translationEndpoint = `${process.env.NEXT_PUBLIC_API_URL}/translation/`
 
 const useTranslationStream = () => {
   const { input: inputSentence } = useInputWithUrlParam(
@@ -50,7 +50,7 @@ const useTranslationStream = () => {
     triggerTranslationQueryAtom,
   )
 
-  const [translationStream, setSetTranslation] = React.useState<
+  const [translationStream, setTranslationStream] = React.useState<
     string | undefined
   >("")
   const [isLoading, setIsLoading] = React.useState(false)
@@ -59,13 +59,30 @@ const useTranslationStream = () => {
   >(undefined)
 
   React.useEffect(() => {
+    setTranslationStream("")
+  }, [inputSentence])
+
+  const timeoutIdRef = React.useRef<NodeJS.Timeout | null>(null)
+
+  React.useEffect(() => {
     if (!triggerTranslationQuery || !params.input_sentence) {
       return
     }
     setTriggerTranslationQuery(false)
-    setSetTranslation("")
+    setTranslationStream("")
     setIsLoading(true)
     setIsError(undefined)
+
+    let responseReceived = false
+
+    timeoutIdRef.current = setTimeout(() => {
+      if (!responseReceived) {
+        setIsLoading(false)
+        setIsError({ errorCode: 504, error: "timeout" })
+        eventSource.close()
+      }
+      // 7 seconds
+    }, 7000)
 
     const eventSource = new SSE(translationEndpoint, {
       headers: {
@@ -75,26 +92,17 @@ const useTranslationStream = () => {
       payload: JSON.stringify(params),
     })
 
-    let responseReceived = false
-
-    const timeoutId = setTimeout(() => {
-      if (!responseReceived) {
-        setIsLoading(false)
-        setIsError({ errorCode: 504, error: "timeout" })
-        eventSource.close()
-      }
-      // 5 seconds
-    }, 5000)
-
     // https://developer.mozilla.org/en-US/docs/Web/API/EventSource
     eventSource.addEventListener("message", (event: MessageEvent) => {
+      responseReceived = true
+
       if (event.data === "[DONE]") {
         // TODO: confirm this runs
         eventSource.close()
       }
 
       setIsLoading(false)
-      setSetTranslation((prev) => prev + cleanSSEData(event.data))
+      setTranslationStream((prev) => prev + cleanSSEData(event.data))
     })
 
     eventSource.addEventListener("readystatechange", (event: EventSource) => {
@@ -106,7 +114,7 @@ const useTranslationStream = () => {
     eventSource.onerror = (err) => {
       // An error response was received from the server.
       responseReceived = true
-      clearTimeout(timeoutId)
+      clearTimeout(timeoutIdRef.current!)
 
       setIsLoading(false)
 
@@ -120,7 +128,11 @@ const useTranslationStream = () => {
     eventSource.stream()
 
     // Cleanup function to clear the timeout if the component unmounts
-    return () => clearTimeout(timeoutId)
+    return () => {
+      if (timeoutIdRef.current && responseReceived) {
+        clearTimeout(timeoutIdRef.current)
+      }
+    }
   }, [triggerTranslationQuery, setTriggerTranslationQuery, params])
 
   return { translationStream, isLoading, isError }
