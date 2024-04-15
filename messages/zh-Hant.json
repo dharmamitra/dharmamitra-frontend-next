@@ -1,18 +1,18 @@
 {
   "Home": {
-    "title": "欢迎来到佛法",
-    "h1": "阿布t"
+    "title": "歡迎來到法之善友AI計畫",
+    "h1": "法之善友AI翻譯器"
   },
   "About": {
-    "title": "关于",
-    "h1": "阿布t",
+    "title": "計畫介紹",
+    "h1": "計畫介紹",
     "intro": {
-      "h2": "The MITRA project",
+      "h2": "法之善友AI計畫",
       "p1": "The MITRA project, spearheaded by Kurt Keutzer and Sebastian Nehrdich, represents a pioneering endeavor in the field of machine translation, focusing on bridging the linguistic divide between Buddhist source languages and contemporary languages through the application of advanced Deep Learning and AI technologies. Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, characterized by its collaborative efforts with organizations such as <monlam>monlam.ai</monlam> and contributions from a diverse array of sources, including translators and AI researchers.",
       "p2": "Leveraging a robust corpus of over four million sentence pairs in various directions and utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to Buddhist texts. Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
     },
     "collaboration": {
-      "h2": "Collaborations",
+      "h2": "合作夥伴",
       "p1": "<monlam>monlam.ai</monlam> Machine translation data collection for Tibetan and English"
     },
     "history": {
@@ -22,22 +22,22 @@
     }
   },
   "Team": {
-    "title": "团队",
-    "h1": "团队",
+    "title": "團隊介紹",
+    "h1": "團隊介紹",
     "present": {
-      "h2": "现在"
+      "h2": "現在成員"
     },
     "past": {
-      "h2": "过去"
+      "h2": "前期成員"
     },
     "roles": {
-      "directorExecutive": "执行董事",
-      "directorTechnical": "技术董事",
-      "dataCollectionSanskrit": "Sanskrit data collection",
-      "projectInfrastructure": "项目基础设施",
-      "websiteDevelopment": "网站开发",
-      "websiteDesign": "网页设计",
-      "nlpResearchSanskrit": "Sanskrit NLP research"
+      "directorExecutive": "執行長",
+      "directorTechnical": "技術總監",
+      "dataCollectionSanskrit": "梵語數據收集",
+      "projectInfrastructure": "計畫基礎建設",
+      "websiteDevelopment": "網站開發",
+      "websiteDesign": "網站設計",
+      "nlpResearchSanskrit": "梵文自然語言處理研究"
     }
   },
   "NotFound": {
@@ -60,14 +60,14 @@
     "clear": "Clear"
   },
   "navigation": {
-    "home": "家",
-    "about": "关于",
-    "team": "团队",
+    "home": "首頁",
+    "about": "計畫介紹",
+    "team": "團隊介紹",
     "mobileButtonAriaLabel": "开放导航菜单",
     "mobileMenuAriaLabel": "导航菜单"
   },
   "localeSwitcher": {
-    "label": "改变语言",
+    "label": "切換語言",
     "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}",
     "localePlaceholder": "繁體中文"
   },
@@ -77,18 +77,18 @@
     "placeholder": "搜索一些东西"
   },
   "translation": {
-    "heading": "翻译佛法文字",
-    "translate": "翻译",
-    "inputAriaLabel": "翻译输入字段",
-    "placeholder": "翻译一些东西",
+    "heading": "",
+    "translate": "翻譯",
+    "inputAriaLabel": "翻譯欄位",
+    "placeholder": "在此輸入需要翻譯之梵文、藏文或中文…",
     "otherLabel": "其他",
-    "encodingSelectLabel": "Transliteration",
-    "primaryEncodingsAriaLabel": "主要编码选项",
-    "otherEncodingsAriaLabel": "其他编码选项",
-    "targetLanguageSelectLabel": "目标语言",
-    "primaryTargetLanguagesAriaLabel": "主要目标语言选项",
-    "otherTargetLanguagesAriaLabel": "其他目标语言选项",
-    "copyTranslation": "复制翻译",
+    "encodingSelectLabel": "轉寫系統",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "otherEncodingsAriaLabel": "Other encoding options",
+    "targetLanguageSelectLabel": "翻譯目標語",
+    "primaryTargetLanguagesAriaLabel": "Primary traget language options",
+    "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "copyTranslation": "複製翻譯",
     "encodings": {
       "auto": "Autodetect",
       "dev": "Devanagari",
@@ -100,15 +100,15 @@
       "wylie": "Wylie"
     },
     "targetLanguages": {
-      "tibetan": "Tibetan",
-      "english": "English",
-      "sanskrit": "Sanskrit",
-      "ancient-chinese": "Ancient Chinese",
-      "japanese": "Japanese",
-      "korean": "Korean",
-      "sanskrit-dev": "Sanskrit Dev",
-      "sa-en": "SA English",
-      "modern-chinese": "Modern Chinese"
+      "tibetan": "藏文",
+      "english": "英文",
+      "sanskrit": "梵文",
+      "ancient-chinese": "佛典中文",
+      "japanese": "日文",
+      "korean": "韓文",
+      "sanskrit-dev": "梵文",
+      "sa-en": "梵文",
+      "modern-chinese": "現代中文"
     }
   }
 }
