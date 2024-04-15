@@ -27,9 +27,9 @@ export default function TranslationFeature() {
       }}
     >
       <Grid container>
+        <TranslationInputEncodingSelector />
+        <TranslationTargetLanguageSelector />
         <Suspense fallback={null}>
-          <TranslationInputEncodingSelector />
-          <TranslationTargetLanguageSelector />
           <TranslationInput />
           <TranslationResults />
         </Suspense>
