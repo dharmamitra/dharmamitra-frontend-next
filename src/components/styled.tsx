@@ -9,13 +9,6 @@ import {
   styled,
 } from "@mui/material"
 
-export const Section = styled(Box)(({ theme }) => ({
-  marginBlock: theme.spacing(4),
-  [theme.breakpoints.up("md")]: {
-    marginBlock: theme.spacing(4),
-  },
-}))
-
 export const VisuallyHiddenRadio = styled(Radio)({
   position: "absolute",
   left: "-10000px",
@@ -55,25 +48,6 @@ export const OtherOptionsButtonIcon = styled(KeyboardArrowDownIcon)({
   right: 0,
   color: "gray",
 })
-
-export const BoxBottomElementsRow = styled(Box)<{
-  spread?: "flex-end" | "space-between"
-}>(({ theme, spread }) => ({
-  position: "absolute",
-  zIndex: 1,
-  bottom: "0.25rem",
-  right: "0.25rem",
-  left: "0.25rem",
-  display: "flex",
-  alignItems: "center",
-  gap: theme.spacing(2),
-  ...(spread && { justifyContent: spread }),
-  [theme.breakpoints.up("md")]: {
-    bottom: "0.75rem",
-    right: "0.75rem",
-    left: "0.75rem",
-  },
-}))
 
 export const Popper = styled(MuiPopper)(({ theme }) => ({
   zIndex: theme.zIndex.tooltip,

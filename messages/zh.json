@@ -6,19 +6,45 @@
   "About": {
     "title": "计划介绍",
     "h1": "计划介绍",
-    "intro": {
+    "mission": {
+      "h2": "MITRA's Mission",
+      "p1": "MITRA’s Mission is to harness the rapidly evolving AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications.",
+      "p2": {
+        "line1": "Currently MITRA’s mission is to facilitate the study and practice of dharma through:",
+        "li1": "providing an automated machine translation capability from Sanskrit, classical Tibetan, and classical Chinese into a variety of modern languages including Chinese, Tibetan, Korean, and Japanese;",
+        "li2": "enabling the semantic search of a growing body of texts in Sanskrit, Classical Tibetan, and Classical Chinese;",
+        "li3": "developing tools to facilitate the study of Sanskrit and Classical Tibetan."
+      },
+      "p3": {
+        "line1": "In the future we hope to provide Generative AI tools that enable elevating and transformative experiences through:",
+        "li1": "Immersive 3D experiences in maṇḍala",
+        "li2": "Generation of 2D art based on canonical guildelines"
+      }
+    },
+    "project": {
       "h2": "法之善友AI计划",
-      "p1": "The MITRA project, spearheaded by Kurt Keutzer and Sebastian Nehrdich, represents a pioneering endeavor in the field of machine translation, focusing on bridging the linguistic divide between Buddhist source languages and contemporary languages through the application of advanced Deep Learning and AI technologies. Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, characterized by its collaborative efforts with organizations such as <monlam>monlam.ai</monlam> and contributions from a diverse array of sources, including translators and AI researchers.",
-      "p2": "Leveraging a robust corpus of over four million sentence pairs in various directions and utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to Buddhist texts. Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
+      "p1": "The MITRA project, spearheaded by Kurt Keutzer and Sebastian Nehrdich, focuses on bridging the linguistic divide between Buddhist source languages and contemporary languages through the application of advanced Deep Learning and AI technologies.",
+      "p2": "Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, accelerated  by its collaborative efforts with organizations such as monlam.ai and with contributions from a diverse array of sources, including translators and AI researchers. Leveraging a robust corpus of over four million sentence pairs from various sourcesand utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to Buddhist texts.",
+      "p3": "Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
     },
     "collaboration": {
       "h2": "合作伙伴",
-      "p1": "<monlam>monlam.ai</monlam> Machine translation data collection for Tibetan and English"
-    },
-    "history": {
-      "h2": "History",
-      "p1": "Initially faced with the challenge of insufficient training data, the project gained momentum in March 2022 after a discussion on the application of pretrained Language Models on Buddhist material. Efforts to compile a robust training dataset began, leveraging sources such as the Library of Tibetan Classics, 84000 and individuals like Paul Hackett. A significant breakthrough occurred with the collaboration of Ngawang Trinley and Geshe Monlam's <monlam>monlam.ai</monlam>, which amassed nearly 2 million sentence pairs by mid-2023.",
-      "p2": "This collaboration, along with advancements in sentence alignment technologies and fine-tuning pretrained Language Models such as Meta's No Language Left Behind (NLLB) and Google's MADLAD-400, positioned MITRA for continuous improvement in Buddhist machine translation. Acknowledging the foundational work of authors, translators, publishers, and sponsors, the project reflects a substantial collective endeavor towards enhancing translation productivity and access to Tibetan texts."
+      "monlam": {
+        "name": "<monlam>monlam.ai</monlam>",
+        "description": "Machine translation data collection for Tibetan and English"
+      },
+      "kumarajiva": {
+        "name": "<kumarajiva>Kumarajiva project</kumarajiva>",
+        "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
+      },
+      "iitk": {
+        "name": "<iitk>IIT Kharagpur</iitk>",
+        "description": "Development of Sanskrit translation model development. Sanskrit<>English dataset compilation "
+      },
+      "ai4bharat": {
+        "name": "<ai4bharat>AI4Bharat</ai4bharat>",
+        "description": "Development of Sanskrit data collection"
+      }
     }
   },
   "Team": {

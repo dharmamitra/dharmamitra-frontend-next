@@ -7,8 +7,9 @@ import Typography from "@mui/material/Typography"
 import CopyText from "@/components/CopyText"
 import Error from "@/components/Error"
 import LoadingDots from "@/components/LoadingDots"
-import { BoxBottomElementsRow } from "@/components/styled"
 import useTranslationStream from "@/hooks/useTranslationStream"
+
+import BoxBottomElementsRow from "../BoxBottomElementsRow"
 
 export default function TranslationOutput() {
   const t = useTranslations()
@@ -37,7 +38,7 @@ export default function TranslationOutput() {
           {translationStream}
         </Typography>
       ) : null}
-      <BoxBottomElementsRow spread="flex-end">
+      <BoxBottomElementsRow sx={{ justifyContent: "flex-end" }}>
         <CopyText
           string={translationStream ?? ""}
           ariaLabel={t("translation.copyTranslation")}

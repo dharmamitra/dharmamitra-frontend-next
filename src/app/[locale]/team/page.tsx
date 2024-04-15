@@ -4,7 +4,7 @@ import { Typography } from "@mui/material"
 
 import { PageShell } from "@/components/layout"
 import Members from "@/components/Members"
-import { Section } from "@/components/styled"
+import Section from "@/components/Section"
 import { supportedLocales } from "@/config"
 import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
 
@@ -32,7 +32,7 @@ export default function Team({ params: { locale } }: I18nMetadataHandlerProps) {
     <PageShell>
       <Typography variant="h1">{t("h1")}</Typography>
 
-      <Section component="section">
+      <Section>
         <Typography variant="h2" mt={{ xs: 2, sm: 4 }} mb={4}>
           {t("present.h2")}
         </Typography>
@@ -40,7 +40,7 @@ export default function Team({ params: { locale } }: I18nMetadataHandlerProps) {
         <Members members={membersData.current} />
       </Section>
 
-      <Section component="section">
+      <Section>
         <Typography variant="h2" mb={4}>
           {t("past.h2")}
         </Typography>
