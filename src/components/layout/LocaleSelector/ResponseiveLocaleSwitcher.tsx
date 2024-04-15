@@ -13,6 +13,7 @@ export type LocaleSwitcherProps = {
   label: string
 }
 
+// This is used to make sure only the necessary JS is for the users viewport.
 const ResponsiveLocaleSwitcher = (props: LocaleSwitcherProps) => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"))

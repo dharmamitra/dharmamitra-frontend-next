@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import Box from "@mui/material/Box"
 import { grey } from "@mui/material/colors"
 import Grid from "@mui/material/Grid"
@@ -26,10 +27,12 @@ export default function TranslationFeature() {
       }}
     >
       <Grid container>
-        <TranslationInputEncodingSelector />
-        <TranslationTargetLanguageSelector />
-        <TranslationInput />
-        <TranslationResults />
+        <Suspense fallback={null}>
+          <TranslationInputEncodingSelector />
+          <TranslationTargetLanguageSelector />
+          <TranslationInput />
+          <TranslationResults />
+        </Suspense>
       </Grid>
     </Box>
   )

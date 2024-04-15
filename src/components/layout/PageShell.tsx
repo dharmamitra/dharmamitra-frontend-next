@@ -1,4 +1,4 @@
-import { ReactNode, Suspense } from "react"
+import { ReactNode } from "react"
 import { Box } from "@mui/material"
 import Container from "@mui/material/Container"
 import { SxProps } from "@mui/material/styles"
@@ -15,9 +15,7 @@ type Props = {
 export default function PageShell({ children, maxWidth = "lg", sx }: Props) {
   return (
     <>
-      <Suspense fallback={null}>
-        <Navigation />
-      </Suspense>
+      <Navigation />
       <Box sx={{ mb: 12, ...sx }}>
         <Container
           component="main"

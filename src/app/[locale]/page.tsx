@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import { NextIntlClientProvider, useMessages, useTranslations } from "next-intl"
 import { unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
@@ -47,9 +46,8 @@ export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
         >
           {t("h1")}
         </Typography>
-        <Suspense fallback={null}>
-          <TranslationFeature />
-        </Suspense>
+
+        <TranslationFeature />
       </PageShell>
     </NextIntlClientProvider>
   )
