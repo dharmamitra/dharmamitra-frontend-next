@@ -52,7 +52,11 @@
   },
   "generic": {
     "copied": "已复制到剪切板",
-    "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"
+    "error": {
+      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
+      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>"
+    },
+    "clear": "Clear"
   },
   "navigation": {
     "home": "家",
@@ -63,7 +67,7 @@
   },
   "localeSwitcher": {
     "label": "改变语言",
-    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
+    "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
   },
   "search": {
     "heading": "搜索2500年的佛教",

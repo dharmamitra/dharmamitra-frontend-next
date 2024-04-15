@@ -52,7 +52,11 @@
   },
   "generic": {
     "copied": "Copied!",
-    "error": "Oh no! Something went wrong!<newline>Please try again later.</newline>"
+    "error": {
+      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
+      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>"
+    },
+    "clear": "Clear"
   },
   "navigation": {
     "home": "Home",
@@ -63,7 +67,7 @@
   },
   "localeSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
+    "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}"
   },
   "search": {
     "heading": "Search 2500 years of Buddhism",
@@ -73,7 +77,7 @@
     "heading": "Translate Dharma text",
     "translate": "Translate",
     "inputAriaLabel": "Translation input field",
-    "placeholder": "Enter text to translate...",
+    "placeholder": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English...",
     "otherLabel": "Other",
     "encodingSelectLabel": "Transliteration",
     "primaryEncodingsAriaLabel": "Primary encoding options",
@@ -96,10 +100,10 @@
       "tibetan": "Tibetan",
       "english": "English",
       "sanskrit": "Sanskrit",
-      "ancient-chinese": "Ancient Chinese",
+      "ancient-chinese": "Buddhist Chinese",
       "japanese": "Japanese",
       "korean": "Korean",
-      "sanskrit-dev": "Sanskrit Dev",
+      "sanskrit-dev": "Sanskrit (Devanagari)",
       "sa-en": "SA English",
       "modern-chinese": "Modern Chinese"
     }

@@ -6,7 +6,7 @@ import { supportedLocales } from "@/config"
 export type { Metadata } from "next"
 
 export type I18nMetadataHandlerProps = {
-  params: { locale: Locale }
+  params: { locale: SupportedLocale }
 }
 
 export const pickMessages = ({

@@ -4,20 +4,30 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import Typography from "@mui/material/Typography"
 
-import CopeText from "@/components/CopeText"
+import CopyText from "@/components/CopyText"
 import Error from "@/components/Error"
+import LoadingDots from "@/components/LoadingDots"
 import {
   BoxBottomElementsRow,
   TranslationContentBox,
 } from "@/components/styled"
 import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
-import useTranslationResults from "@/hooks/useTranslationResults"
+import useTranslationStream from "@/hooks/useTranslationStream"
 
 export default function TranslationResults() {
-  const t = useTranslations("translation")
-  const { translationEventStream, isError } = useTranslationResults()
+  const t = useTranslations()
+  const { translationStream, isError, isLoading } = useTranslationStream()
 
   const rows = useResponsiveContentRows()
+
+  const errorMessage =
+    isError && isError.errorCode === 504
+      ? t.rich("generic.error.timeout", {
+          newline: (chunks) => (
+            <span style={{ display: "block" }}>{chunks}</span>
+          ),
+        })
+      : undefined
 
   return (
     <TranslationContentBox
@@ -34,21 +44,22 @@ export default function TranslationResults() {
       })}
       data-testid="translation-results"
     >
-      {isError ? <Error /> : null}
-      {translationEventStream ? (
+      {isLoading ? <LoadingDots sx={{ m: 2 }} /> : null}
+      {isError ? <Error message={errorMessage} /> : null}
+      {translationStream ? (
         <Typography
           data-testid="request-translation"
           variant="reader"
           component="p"
           mt={0}
         >
-          {translationEventStream}
+          {translationStream}
         </Typography>
       ) : null}
       <BoxBottomElementsRow spread="flex-end">
-        <CopeText
-          string={translationEventStream}
-          ariaLabel={t("copyTranslation")}
+        <CopyText
+          string={translationStream ?? ""}
+          ariaLabel={t("translation.copyTranslation")}
         />
       </BoxBottomElementsRow>
     </TranslationContentBox>
