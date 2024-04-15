@@ -53,4 +53,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: "angirov/dmtest:dev-${{ steps.date.outputs.date }},angirov/dmtest:latest"
+          tags: "angirov/dmtest:dev-${{ steps.timestamp.outputs.NOW }},angirov/dmtest:latest"
