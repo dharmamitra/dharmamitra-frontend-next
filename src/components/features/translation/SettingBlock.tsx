@@ -23,10 +23,12 @@ export default function SettingBlock({
       sx={{
         position: "relative",
         display: "flex",
-        height: { xs: placement === "start" ? 80 : 64, md: 64 },
-        transition: "opacity 1s ease-out",
+        height: { xs: placement === "start" ? 86 : 76, md: 64 },
         pt: { xs: 1, md: 0 },
+        px: 2,
+        pb: { xs: placement === "start" ? 3 : 0, md: 0 },
         alignItems: { xs: "start", md: "flex-end" },
+        transition: "opacity 1s ease-out",
         borderTopLeftRadius: {
           xs: customTheming.shape.inputRadius,
           md: placement === "start" ? customTheming.shape.inputRadius : 0,
@@ -38,7 +40,6 @@ export default function SettingBlock({
         borderLeft: {
           md: placement === "end" ? `1px solid ${grey[300]}` : "none",
         },
-        px: 2,
         borderBottom: `1px solid`,
         borderColor: "divider",
       }}

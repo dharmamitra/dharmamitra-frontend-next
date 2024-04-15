@@ -1,14 +1,13 @@
-import { Suspense } from "react"
 import Box from "@mui/material/Box"
 import { grey } from "@mui/material/colors"
 import Grid from "@mui/material/Grid"
 
 import customTheming from "@/utils/theme/config"
 
-import TranslationInput from "./TranslationInput"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
-import TranslationResults from "./TranslationResults"
 import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
+import TranslationInput from "./TrranslationInput"
+import TranslationOutput from "./TrranslationOutput"
 
 export default function TranslationFeature() {
   return (
@@ -29,10 +28,8 @@ export default function TranslationFeature() {
       <Grid container>
         <TranslationInputEncodingSelector />
         <TranslationTargetLanguageSelector />
-        <Suspense fallback={null}>
-          <TranslationInput />
-          <TranslationResults />
-        </Suspense>
+        <TranslationInput />
+        <TranslationOutput />
       </Grid>
     </Box>
   )

@@ -4,7 +4,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import {
   Box,
   FormControlLabel,
-  Grid,
   Popper as MuiPopper,
   Radio,
   styled,
@@ -27,10 +26,11 @@ export const VisuallyHiddenRadio = styled(Radio)({
 })
 
 export const selectedOptionsStyles = {
-  textDecoration: { md: "underline" },
-  textDecorationThickness: { md: "3px" },
-  textUnderlineOffset: { md: "18px" },
-  textDecorationColor: { md: "currentColor" },
+  textDecoration: "underline",
+  textDecorationThickness: "3px",
+  // offset linked to SettingBlock height
+  textUnderlineOffset: "8px",
+  textDecorationColor: "currentColor",
 }
 
 export const CustomFormControlLabel = styled(FormControlLabel)(
@@ -38,15 +38,7 @@ export const CustomFormControlLabel = styled(FormControlLabel)(
     paddingInline: theme.spacing(1),
     ".MuiFormControlLabel-label": checked && {
       color: theme.palette.secondary.main,
-      [theme.breakpoints.up("md")]: Object.entries(
-        selectedOptionsStyles,
-      ).reduce(
-        (styles, [key, value]) => ({
-          ...styles,
-          [key]: value.md,
-        }),
-        {},
-      ),
+      ...selectedOptionsStyles,
     },
   }),
 )
@@ -63,14 +55,6 @@ export const OtherOptionsButtonIcon = styled(KeyboardArrowDownIcon)({
   right: 0,
   color: "gray",
 })
-
-export const TranslationContentBox = styled(Grid)<{
-  rows: number
-}>(({ theme, rows }) => ({
-  position: "relative",
-  minHeight: `${rows * 1.9}rem`,
-  background: theme.palette.background.default,
-}))
 
 export const BoxBottomElementsRow = styled(Box)<{
   spread?: "flex-end" | "space-between"

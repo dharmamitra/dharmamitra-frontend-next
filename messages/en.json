@@ -51,6 +51,7 @@
     "description": "Machine translation for the languages of the Dharma"
   },
   "generic": {
+    "copy": "Copy",
     "copied": "Copied!",
     "error": {
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",

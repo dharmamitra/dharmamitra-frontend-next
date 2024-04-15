@@ -13,14 +13,12 @@ import { useSetAtom } from "jotai"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
 import CharacterCount from "@/components/CharacterCount"
-import {
-  BoxBottomElementsRow,
-  TranslationContentBox,
-} from "@/components/styled"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import { apiParamsNames } from "@/utils/api/params"
 import { translationInputLimit } from "@/utils/ui"
+
+import BoxBottomElementsRow from "../BoxBottomElementsRow"
 
 export default function TranslationInput() {
   const t = useTranslations()
@@ -37,15 +35,7 @@ export default function TranslationInput() {
   const theme = useTheme()
 
   return (
-    <TranslationContentBox
-      item
-      xs={12}
-      md={6}
-      rows={rows}
-      sx={{
-        borderBottomLeftRadius: { md: theme.custom.shape.inputRadius },
-      }}
-    >
+    <>
       <OutlinedInput
         sx={{
           width: "100%",
@@ -88,7 +78,7 @@ export default function TranslationInput() {
           }
         }}
       />
-      <BoxBottomElementsRow spread="space-between">
+      <BoxBottomElementsRow sx={{ justifyContent: "space-between" }}>
         <Tooltip title={t("generic.clear")} placement="top">
           <IconButton
             aria-label={t("generic.clear")}
@@ -157,6 +147,6 @@ export default function TranslationInput() {
           </Tooltip>
         </Box>
       </BoxBottomElementsRow>
-    </TranslationContentBox>
+    </>
   )
 }
