@@ -206,3 +206,5 @@ If you want to use visual comparison to test pages render:
 - when there is a change to the UI, existing base comparison images will need to be updated with `yarn playwright test --update-snapshots`.
 
 Visit https://playwright.dev/docs/intro for more information
+
+# test deploy
