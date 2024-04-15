@@ -40,7 +40,7 @@ jobs:
           retention-days: 7
       - name: Get current date
         id: timestamp
-        run: echo "::set-output name=timestamp::$(date +'%Y-%m-%d-%H%m')"
+        run: echo "NOW=$(date +'%Y-%m-%d-%H%m')" >> "$GITHUB_OUTPUT"
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -52,4 +52,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: angirov/dmtest:dev-${{ steps.date.outputs.date }}
+          tags: angirov/dmtest:dev-${{ steps.timestamp.outputs.NOW }}
