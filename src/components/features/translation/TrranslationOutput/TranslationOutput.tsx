@@ -7,18 +7,13 @@ import Typography from "@mui/material/Typography"
 import CopyText from "@/components/CopyText"
 import Error from "@/components/Error"
 import LoadingDots from "@/components/LoadingDots"
-import {
-  BoxBottomElementsRow,
-  TranslationContentBox,
-} from "@/components/styled"
-import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import useTranslationStream from "@/hooks/useTranslationStream"
 
-export default function TranslationResults() {
+import BoxBottomElementsRow from "../BoxBottomElementsRow"
+
+export default function TranslationOutput() {
   const t = useTranslations()
   const { translationStream, isError, isLoading } = useTranslationStream()
-
-  const rows = useResponsiveContentRows()
 
   const errorMessage =
     isError && isError.errorCode === 504
@@ -30,20 +25,7 @@ export default function TranslationResults() {
       : undefined
 
   return (
-    <TranslationContentBox
-      item
-      xs={12}
-      md={6}
-      rows={rows}
-      sx={(theme) => ({
-        backgroundColor: "grey.100",
-        overflow: "clip",
-        p: 2,
-        borderBottomLeftRadius: { xs: theme.custom.shape.inputRadius, md: 0 },
-        borderBottomRightRadius: theme.custom.shape.inputRadius,
-      })}
-      data-testid="translation-results"
-    >
+    <>
       {isLoading ? <LoadingDots sx={{ m: 2 }} /> : null}
       {isError ? <Error message={errorMessage} /> : null}
       {translationStream ? (
@@ -56,12 +38,12 @@ export default function TranslationResults() {
           {translationStream}
         </Typography>
       ) : null}
-      <BoxBottomElementsRow spread="flex-end">
+      <BoxBottomElementsRow sx={{ justifyContent: "flex-end" }}>
         <CopyText
           string={translationStream ?? ""}
           ariaLabel={t("translation.copyTranslation")}
         />
       </BoxBottomElementsRow>
-    </TranslationContentBox>
+    </>
   )
 }

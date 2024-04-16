@@ -5,6 +5,7 @@ const notoSans = Noto_Sans({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin", "latin-ext"],
   display: "swap",
+  fallback: ["Helvetica", "Arial", "sans-serif"],
 })
 
 const customTheming: CustomTheming = {

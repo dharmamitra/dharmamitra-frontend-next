@@ -4,10 +4,10 @@ import Grid from "@mui/material/Grid"
 
 import customTheming from "@/utils/theme/config"
 
-import TranslationInput from "./TranslationInput"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
-import TranslationResults from "./TranslationResults"
 import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
+import TranslationInput from "./TrranslationInput"
+import TranslationOutput from "./TrranslationOutput"
 
 export default function TranslationFeature() {
   return (
@@ -29,7 +29,7 @@ export default function TranslationFeature() {
         <TranslationInputEncodingSelector />
         <TranslationTargetLanguageSelector />
         <TranslationInput />
-        <TranslationResults />
+        <TranslationOutput />
       </Grid>
     </Box>
   )

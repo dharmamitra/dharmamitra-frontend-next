@@ -25,3 +25,32 @@ export const translationRequests: string[] = [
 // A sort of ‘advanced mode’ for the main search function sounds like a good idea. There should be some switch/filter option ‘search only in bilingual aligned reference data’ or the like. Also the presentation of the results should be slightly different as described above.
 //  I agree that this is a specific feature that will only be interesting to a certain group of ‘pro users’, that is to say translators and researchers, not the general public initially.
 // })
+
+// Nav
+
+// import { expect, test } from "@playwright/test"
+
+// import { playwrightBasePath as basePath } from "@/config"
+// import { makeCleanRoute } from "@/utils/transformers"
+
+// test.describe("navigation", () => {
+//   test.beforeEach(async ({ page }) => await page.goto(basePath))
+
+//   test("should navigate to home page", async ({ page }) => {
+//     await page.getByRole("link", { name: "DHARMAMITRA" }).click()
+
+//     await expect(page).toHaveURL(basePath)
+//   })
+
+//   test("should navigate to about page", async ({ page }) => {
+//     await page.getByRole("link", { name: "About" }).click()
+
+//     await expect(page).toHaveURL(makeCleanRoute([basePath, "/about"]))
+//   })
+
+//   test("should navigate to team page", async ({ page }) => {
+//     await page.getByRole("link", { name: "Team" }).click()
+
+//     await expect(page).toHaveURL(makeCleanRoute([basePath, "/team"]))
+//   })
+// })

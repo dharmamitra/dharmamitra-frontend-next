@@ -9,10 +9,10 @@ import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 import Typography from "@mui/material/Typography"
 
+import TranslationInput from "@/components/features/translation/TrranslationInput/TranslationInput"
+import TrranslationOutput from "@/components/features/translation/TrranslationOutput"
 import SearchInput from "@/features/search/SearchInput"
 import SearchResults from "@/features/search/SearchResults"
-import TranslationInput from "@/features/translation/TranslationInput"
-import TranslationResults from "@/features/translation/TranslationResults"
 import useParams from "@/hooks/useParams"
 
 import styles from "./FeatureSelectorTabs.module.css"
@@ -134,7 +134,7 @@ export default function FeatureSelectorTabs({
 
           <TranslationInput />
 
-          <TranslationResults />
+          <TrranslationOutput />
         </FeatureTabPanel>
       </Box>
     </Box>

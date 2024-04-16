@@ -20,19 +20,21 @@ import { useNavItems } from "@/hooks/useNavItems"
 
 const drawerWidth = 240
 
-export default function NavMobileMenu({
-  navItems,
-  messages,
-  children,
-}: {
+export type MobileNavMenuProps = {
   navItems: ReturnType<typeof useNavItems>
-  // locale selector passed as a child to avoid the need for i18n provider
   children: React.ReactNode
   messages: {
     ariaButton: string
     ariaMenu: string
   }
-}) {
+}
+
+export default function MobileNavMenu({
+  // navItems & locale selector passed as a child to avoid the need for i18n provider
+  navItems,
+  messages,
+  children,
+}: MobileNavMenuProps) {
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
