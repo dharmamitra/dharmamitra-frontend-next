@@ -15,7 +15,7 @@ const MobileNavMenu = dynamic(() => import("./MobileNavMenuRenderer"), {
   ssr: false,
 })
 
-export default function Navigation() {
+export default function NavigationBar() {
   const navItems = useNavItems()
   const t = useTranslations("navigation")
   return (

@@ -153,13 +153,13 @@ TODO (https://stackoverflow.com/questions/14500240/how-can-i-generate-a-diff-for
 
 ## Theming
 
-The project using [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js App routing integration](https://mui.com/material-ui/integrations/nextjs/).
+The project uses [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js integration](https://mui.com/material-ui/integrations/nextjs/).
 
 ### Config
 
 The theme is configured in a static `.ts` file (`src/utils/theme/config.ts`) so that custom design tokens can be used in both sever and client components.
 
-For server components theme-aware propeties are readily available via component's `sx` prop. Additionally, `customTheming` can be imported to get access to these styles. In client components the same custome styles can be accessed via the theme's `custom` prop:
+For server components **theme-aware** propeties are readily available via component's `sx` prop. Additionally, `customTheming` can be imported to get access to these styles. In client components the same custome styles can be accessed via the theme's `custom` prop:
 
 ```
  sx={{

@@ -8,7 +8,22 @@ const notoSans = Noto_Sans({
   fallback: ["Helvetica", "Arial", "sans-serif"],
 })
 
+const rgbCodes = {
+  primary: "6, 49, 95", // #06315f
+  secondary: "151, 46, 58", // #972e3a
+  light: "251, 238, 235", // #FBEEEB
+}
+
+const colours = {
+  primary: `rgb(${rgbCodes.primary}, 1)`,
+  secondary: `rgb(${rgbCodes.secondary}, 1)`,
+  soft: `rgb(${rgbCodes.light}, 0.5)`,
+}
+
 const customTheming: CustomTheming = {
+  palette: {
+    soft: colours.soft,
+  },
   shape: {
     inputRadius: "24px",
   },
@@ -17,11 +32,6 @@ const customTheming: CustomTheming = {
       fontSize: "1.5rem",
     },
   },
-}
-
-const colours = {
-  primary: "#06315f",
-  secondary: "#972e3a",
 }
 
 export const baseTheme: ThemeOptions = {
@@ -64,7 +74,7 @@ export const baseTheme: ThemeOptions = {
         contained: {
           "&:hover": {
             // replicates MUI's `darken` function for SSR
-            backgroundColor: "rgb(5, 41, 80)",
+            backgroundColor: `rgba(${rgbCodes.primary}, 0.9)`,
           },
         },
       },
