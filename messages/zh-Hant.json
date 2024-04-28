@@ -92,6 +92,17 @@
     "mobileButtonAriaLabel": "开放导航菜单",
     "mobileMenuAriaLabel": "导航菜单"
   },
+  "footer": {
+    "mission": {
+      "h2": "Dharmamitra",
+      "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
+    },
+    "contact": {
+      "h2": "We value your feedback",
+      "p": "Please take a moment to share your thoughts with us. We appreciate you taking the time to help make Dhammamitra better for everyone",
+      "button": "Email Us"
+    }
+  },
   "localeSwitcher": {
     "label": "切換語言",
     "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}",

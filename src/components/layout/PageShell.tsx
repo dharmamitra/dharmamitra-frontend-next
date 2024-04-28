@@ -4,7 +4,8 @@ import Container from "@mui/material/Container"
 import { SxProps } from "@mui/material/styles"
 import type { Breakpoint } from "@mui/system"
 
-import Navigation from "./Navigation"
+import Footer from "./Footer"
+import NavigationBar from "./NavigationBar"
 
 type Props = {
   children?: ReactNode
@@ -15,7 +16,7 @@ type Props = {
 export default function PageShell({ children, maxWidth = "lg", sx }: Props) {
   return (
     <>
-      <Navigation />
+      <NavigationBar />
       <Box sx={{ mb: 12, ...sx }}>
         <Container
           component="main"
@@ -25,6 +26,7 @@ export default function PageShell({ children, maxWidth = "lg", sx }: Props) {
           {children}
         </Container>
       </Box>
+      <Footer />
     </>
   )
 }

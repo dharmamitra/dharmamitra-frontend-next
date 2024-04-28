@@ -11,6 +11,9 @@ declare module "@mui/material/styles" {
   }
 
   interface CustomTheming {
+    palette: {
+      soft?: string
+    }
     shape: {
       inputRadius?: string
     }

@@ -18,7 +18,7 @@ export default function Logo() {
       >
         <Image
           src={logo}
-          alt="Dharmamitra"
+          alt="Dharmamitra Logo"
           sizes="100vw"
           style={{
             width: "100%",
