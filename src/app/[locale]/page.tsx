@@ -3,9 +3,12 @@ import { unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 
 import PageShell from "@/components/layout/PageShell"
-import { supportedLocales } from "@/config"
 import TranslationFeature from "@/features/translation"
-import { I18nMetadataHandlerProps, pickMessages } from "@/i18n"
+import {
+  I18nMetadataHandlerProps,
+  pickMessages,
+  supportedLocales,
+} from "@/i18n"
 
 /* 
 If we need to use query parameters (as in earlier iterations -

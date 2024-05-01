@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useSearchParams } from "next/navigation"
 
-import { defaultLocale } from "@/config"
+import { defaultLocale } from "@/i18n"
 import { usePathname } from "@/navigation"
 
 function updateQueryParamsWithoutReloading(newUrl: string) {
