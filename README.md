@@ -33,12 +33,16 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Workflow
+## Project config & workflow (UNDER DEVELOPMENT)
+
+### Config
+
+- adapted from [Best Practices for Handling Per-Environment Configuration in Your JS/TS Applications](https://www.raulmelo.me/en/blog/best-practices-for-handling-per-environment-config-js-ts-applications#the-config-strategy)
 
 ### Branches:
 
 - `main`: for production deployment
-- `dev`: for preview deployment
+- `dev`: for staging deployment
 - `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files. 
 - development item branches linked to issue numbers
 
@@ -70,7 +74,7 @@ Automated release updates depend on standardized commit messages following the [
 1. New item specification defined in an issue with clear acceptance criteria
 2. A new branch under the issue number is created for the work
 3. On completion a PR will be opened against `dev`
-4. When a PR is accepted the new work will be deployed on preview for testing
+4. When a PR is accepted the new work will be deployed on staging for testing
 5. After final sign-off a PR will be opened from `dev` to `main` and `semantic-release` will handle release versions based on commits.
 6. Deploy to production from `main`.
 

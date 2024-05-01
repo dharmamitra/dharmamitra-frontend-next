@@ -1,8 +1,8 @@
 import AxeBuilder from "@axe-core/playwright"
 import { expect, test } from "@playwright/test"
 
-import { playwrightBasePath as basePath } from "@/config"
 import { defaultLocale, supportedLocales } from "@/i18n"
+import { playwrightBasePath as basePath } from "@/utils/tests"
 import { makeCleanRoute } from "@/utils/transformers"
 
 import enMessages from "../messages/en.json"
