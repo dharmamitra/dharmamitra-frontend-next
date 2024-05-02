@@ -4,9 +4,9 @@ import {
   createDMStagingConfig,
   createKJProductionConfig,
   createKJStagingConfig,
+  createLabProductionConfig,
+  createLabStagingConfig,
   createLocalConfig,
-  createPlaygroundProductionConfig,
-  createPlaygroundStagingConfig,
 } from "./envs"
 
 const configCreators: Record<AppConfig["env"], () => AppConfig> = {
@@ -15,19 +15,20 @@ const configCreators: Record<AppConfig["env"], () => AppConfig> = {
   "kj-staging": createKJStagingConfig,
   "kj-production": createKJProductionConfig,
   local: createLocalConfig,
-  "playground-staging": createPlaygroundStagingConfig,
-  "playground-production": createPlaygroundProductionConfig,
+  "lab-staging": createLabStagingConfig,
+  "lab-production": createLabProductionConfig,
 }
 
 function getConfig() {
-  //   const env = process.env.APP_ENV
-  const env = "local"
+  const env = process.env.NEXT_PUBLIC_APP_ENV
 
   if (!env || !(env in configCreators)) {
-    throw new Error(`Invalid APP_ENV "${process.env.APP_ENV}"`)
+    throw new Error(`Invalid NEXT_PUBLIC_APP_ENV value: "${env}"`)
   }
 
   return configCreators[env as keyof typeof configCreators]()
 }
 
-export const appConfig = getConfig()
+const appConfig = getConfig()
+
+export default appConfig

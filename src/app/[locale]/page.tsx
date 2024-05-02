@@ -3,6 +3,7 @@ import { unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 
 import PageShell from "@/components/layout/PageShell"
+import appConfig from "@/config"
 import TranslationFeature from "@/features/translation"
 import {
   I18nMetadataHandlerProps,
@@ -34,6 +35,18 @@ export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
     messages,
     messageKeys: ["translation", "generic"],
   })
+
+  if (appConfig.featureFlags.search === true) {
+    return (
+      <NextIntlClientProvider messages={translationMessages}>
+        <PageShell maxWidth="xl" sx={{ mb: { xs: 12, md: 34 } }}>
+          <Typography component="h1" align="center" color="primary">
+            HELLO ENVIRONMENT! :D
+          </Typography>
+        </PageShell>
+      </NextIntlClientProvider>
+    )
+  }
 
   return (
     <NextIntlClientProvider messages={translationMessages}>

@@ -27,17 +27,27 @@ export function createKJStagingConfig() {
 export function createLocalConfig() {
   return defineConfig({
     env: "local",
+    siteUrl: "http://localhost:3000",
+    featureFlags: {
+      search: true,
+    },
   })
 }
 
-export function createPlaygroundProductionConfig() {
+export function createLabProductionConfig() {
   return defineConfig({
-    env: "playground-production",
+    env: "lab-production",
+    featureFlags: {
+      search: true,
+    },
   })
 }
 
-export function createPlaygroundStagingConfig() {
+export function createLabStagingConfig() {
   return defineConfig({
-    env: "playground-staging",
+    env: "lab-staging",
+    featureFlags: {
+      search: true,
+    },
   })
 }

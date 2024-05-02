@@ -1,8 +1,9 @@
+import appConfig from "@/config"
 import type { components } from "@/lib/api/v1.d"
 
 import { extractSSEContent } from "../transformers"
 
-const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/translation/`
+const endpoint = `${appConfig.apiUrl}/translation/`
 
 export type TranslationRequestProps =
   components["schemas"]["Body_translation_translation__post"]

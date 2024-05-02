@@ -4,6 +4,7 @@ import { SSE, SSEvent } from "sse.js"
 
 import { type TranslationRequestProps } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
+import appConfig from "@/config"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import {
   apiParamsNames,
@@ -14,7 +15,7 @@ import {
 } from "@/utils/api/params"
 import { cleanSSEData } from "@/utils/transformers"
 
-const translationEndpoint = `${process.env.NEXT_PUBLIC_API_URL}/translation/`
+const translationEndpoint = `${appConfig.apiUrl}/translation/`
 
 const useTranslationStream = () => {
   const { input: inputSentence } = useInputWithUrlParam(
