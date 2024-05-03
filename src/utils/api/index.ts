@@ -1,23 +1,7 @@
-import makeSearchQuery, { type SearchRequestProps } from "./search"
-import makeTranslationQuery, {
-  type TranslationRequestProps,
-} from "./translation"
+// import type { SearchRequestProps, TranslationRequestProps } from "./types"
 
-const DM_API = {
-  search: {
-    makeQueryKey: (requestBody: SearchRequestProps) => [
-      "search",
-      JSON.stringify(requestBody),
-    ],
-    call: makeSearchQuery,
-  },
-  translation: {
-    makeQueryKey: (requestBody: TranslationRequestProps) => [
-      "translation",
-      JSON.stringify(requestBody),
-    ],
-    call: makeTranslationQuery,
-  },
-}
+const DM_FETCH_API = {}
 
-export { DM_API, SearchRequestProps, TranslationRequestProps }
+// export { SearchRequestProps, TranslationRequestProps }
+
+export default DM_FETCH_API

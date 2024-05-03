@@ -2,10 +2,10 @@ import React from "react"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
-import { type TranslationRequestProps } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
 import appConfig from "@/config"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { type TranslationRequestProps } from "@/utils/api/params"
 import {
   apiParamsNames,
   InputEncoding,

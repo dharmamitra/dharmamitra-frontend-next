@@ -1,8 +1,9 @@
 import type { components } from "@/lib/api/v1.d"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import { type SearchRequestProps } from "./search"
-import { type TranslationRequestProps } from "./translation"
+export type TranslationRequestProps =
+  components["schemas"]["Body_translation_translation__post"]
+export type SearchRequestProps = components["schemas"]["SearchInput"]
 
 export type InputEncoding = components["schemas"]["InputEncoding"]
 export type ModelName = components["schemas"]["ModelName"]
