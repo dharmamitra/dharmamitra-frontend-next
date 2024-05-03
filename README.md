@@ -16,13 +16,10 @@ This project uses:
 
 - [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 - [`next-intl`](https://next-intl-docs.vercel.app/docs) ([examples](https://github.com/amannn/next-intl/tree/main/examples)).
-  - [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) local codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for `/messages/` files.
-  - `/messages/` files use the convention of title-case keys for page content and camel-case keys for component content.
-- [`@tanstack/react-query`](https://tanstack.com/query/latest/docs/framework/react/overview)
+- query tools: [`openapi-typescript`](https://openapi-ts.pages.dev/introduction), [`openapi-fetch`](https://openapi-ts.pages.dev/openapi-fetch/), and [`@tanstack/react-query`](https://tanstack.com/query/latest/docs/framework/react/overview)
 - [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js App routing integration](https://mui.com/material-ui/integrations/nextjs/)
-- [linting tools](https://medium.com/yavar/setting-up-a-eslint-prettier-husky-and-lint-staged-integration-with-typescript-in-next-js-13-14-68044dfae920#ec5e) (`eslint`, `prettier`, `simple-import-sort`, `husky`, and `lint-staged`)
+- [linting tools](https://medium.com/yavar/setting-up-a-eslint-prettier-husky-and-lint-staged-integration-with-typescript-in-next-js-13-14-68044dfae920#ec5e): `eslint`, `prettier`, `simple-import-sort`, `husky`, and `lint-staged`
   - [`husky`](https://typicode.github.io/husky/) uses v9 config
-  - for code reliability `husky` runs a `pre-push` hook that tests if the project successfully builds
   - all git hooks can be skipped by adding a `-n/--no-verify` option.
 - [`playwrite`](https://playwright.dev/docs/intro) and [`@axe-core/playwright`](https://www.npmjs.com/package/@axe-core/playwright)
 - [`semantic-release`](https://semantic-release.gitbook.io/semantic-release) for releases automation
@@ -36,13 +33,13 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-
 ## Workflow
 
 ### Branches:
 
 - `main`: for production deployment
 - `dev`: for preview deployment
+- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files. 
 - development item branches linked to issue numbers
 
 `dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
@@ -62,13 +59,11 @@ Automated release updates depend on standardized commit messages following the [
 
 `semantic-release` uses commit messages to handle versoning as follows:
 
-|**Commit message** | **Release type** |
-|-------------------|-------------------|
-| `fix: stop graphite breaking when too much pressure applied` | Fix (Patch) Release |
-| `feat: add 'graphiteWidth' option` | Feature (Minor) Release |
-| `perf(pencil): remove graphiteWidth option`<br> <br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.`| Breaking (Major) Release ((Note that the `BREAKING CHANGE`: token must be in the footer of the commit)) |
-
-
+| **Commit message**                                                                                                                                                                        | **Release type**                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `fix: stop graphite breaking when too much pressure applied`                                                                                                                              | Fix (Patch) Release                                                                                     |
+| `feat: add 'graphiteWidth' option`                                                                                                                                                        | Feature (Minor) Release                                                                                 |
+| `perf: remove graphiteWidth option`<br> <br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.` | Breaking (Major) Release ((Note that the `BREAKING CHANGE`: token must be in the footer of the commit)) |
 
 ### Development cycle:
 
@@ -78,7 +73,6 @@ Automated release updates depend on standardized commit messages following the [
 4. When a PR is accepted the new work will be deployed on preview for testing
 5. After final sign-off a PR will be opened from `dev` to `main` and `semantic-release` will handle release versions based on commits.
 6. Deploy to production from `main`.
-
 
 ## Containerization
 
@@ -114,18 +108,11 @@ If you want to see the NGINX logs you can use (press Ctrl-C to exit):
 docker logs nginx -f
 ```
 
-## i18n
-
-### internal navigation
-
-- most internal navigation can be handled with `src/components/LocalLink.tsx`.
-- where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.
-
 ## DharmaMitra API client & typing
 
 [Dharmamitra API docs](https://dharmamitra.org/api/docs#/)
 
-The project uses `[openapi-typescript](https://openapi-ts.pages.dev/introduction)` and `[openapi-fetch](https://openapi-ts.pages.dev/openapi-fetch/)` to interface with the API. In addition, as we need to do client-side fetching, we also use `@tanstack/react-query`.
+The project uses [`openapi-typescript`](https://openapi-ts.pages.dev/introduction) and [`openapi-fetch`](https://openapi-ts.pages.dev/openapi-fetch/) to interface with the API. In addition, as we need to do client-side fetching, we also use `@tanstack/react-query`.
 
 DM API request and response model types are generated from the project's [OpenAPI schema](https://dharmamitra.org/api/openapi.json) by running:
 
@@ -133,11 +120,62 @@ DM API request and response model types are generated from the project's [OpenAP
 yarn api:codegen
 ```
 
-`openapi-fetch`'s api client (instantiated in `utils/api/client.ts`) can then be used to fetch typed data ([see docs](https://openapi-ts.pages.dev/openapi-fetch/)) from the API.
+### Regular fetchs
+
+`openapi-fetch`'s api client (instantiated in `utils/api/client.ts`) is used in dedicated endpoint functions to fetch typed data ([see docs](https://openapi-ts.pages.dev/openapi-fetch/)) from the API.
+
+### SSE fetchs
+
+TODO
+
+## i18n
+
+- The [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) locale codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for the project's locale codes to define the project's supported locales.
+
+- Supported locales are defined in the `supportedLocales` varriable in `src/config.ts` and locale files with matching file names are added to the `messages/` directory.
+- `messages/` files use the convention of title-case keys for page content and camel-case keys for component content.
+
+### Updating locale content
+
+TODO (https://stackoverflow.com/questions/14500240/how-can-i-generate-a-diff-for-a-single-file-between-two-branches-in-github)
+
+
+
+### Internal navigation
+
+- most internal navigation can be handled with `src/components/LocalLink.tsx`.
+- where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.
+
+### Referrences:
+
+- [Locale code list](https://www.alchemysoftware.com/livedocs/ezscript/Topics/Catalyst/Language.htm)
+- [Latest CLDR locale data chart](https://www.unicode.org/cldr/charts/latest/summary/root.html)
+
+## Theming
+
+The project uses [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js integration](https://mui.com/material-ui/integrations/nextjs/).
+
+### Config
+
+The theme is configured in a static `.ts` file (`src/utils/theme/config.ts`) so that custom design tokens can be used in both sever and client components.
+
+For server components **theme-aware** propeties are readily available via component's `sx` prop. Additionally, `customTheming` can be imported to get access to these styles. In client components the same custome styles can be accessed via the theme's `custom` prop:
+
+```
+ sx={{
+  borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
+}}
+```
+
+### References:
+
+- [Mui's default theme object](https://mui.com/material-ui/customization/default-theme/)
+- [MUI's theme-aware propeties](https://mui.com/system/getting-started/the-sx-prop/#theme-aware-properties) - these are props available to any component without importing `theme`
+- [index of color utilities exported from `@mui/material/styles`](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) (see: [cusomizing colours](https://mui.com/material-ui/customization/palette/#custom-colors))
 
 ## Testing
 
-Playwright commands:
+Playwright commands (these tests can be run the script command `yarn test:pw [OPTIONS]`):
 
 ```sh
 # Run the end-to-end tests.
@@ -151,6 +189,9 @@ yarn playwright test --project=chromium
 
 # Runs the tests in a specific file.
 yarn playwright test example
+
+# Runs the tests and opens a browser window
+yarn playwright test --headed
 
 # Runs the tests in debug mode.
 yarn playwright test --debug

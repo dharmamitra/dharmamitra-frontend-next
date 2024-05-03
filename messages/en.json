@@ -1,35 +1,150 @@
 {
   "Home": {
     "title": "Welcome to Dharmamitra",
-    "h1": "Welcome to Dharmamitra",
-    "search": {
-      "heading": "Search 2500 years of Buddhism",
-      "tabLabel": "Search",
-      "placeholder": "Search for something"
-    },
-    "translation": {
-      "heading": "Translate Dharma text",
-      "tabLabel": "Translate",
-      "placeholder": "Translate something"
-    }
+    "h1": "Dharmamitra Translator"
   },
   "About": {
     "title": "About",
-    "h1": "About"
+    "h1": "About",
+    "mission": {
+      "h2": "MITRA's Mission",
+      "p1": "MITRA’s Mission is to harness the rapidly evolving AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications.",
+      "p2": {
+        "line1": "Currently MITRA’s mission is to facilitate the study and practice of dharma through:",
+        "li1": "providing an automated machine translation capability from Sanskrit, classical Tibetan, and classical Chinese into a variety of modern languages including Chinese, Tibetan, Korean, and Japanese;",
+        "li2": "enabling the semantic search of a growing body of texts in Sanskrit, Classical Tibetan, and Classical Chinese;",
+        "li3": "developing tools to facilitate the study of Sanskrit and Classical Tibetan."
+      },
+      "p3": {
+        "line1": "In the future we hope to provide Generative AI tools that enable elevating and transformative experiences through:",
+        "li1": "Immersive 3D experiences in maṇḍala",
+        "li2": "Generation of 2D art based on canonical guildelines"
+      }
+    },
+    "project": {
+      "h2": "The MITRA project",
+      "p1": "The MITRA project, spearheaded by Kurt Keutzer and Sebastian Nehrdich, focuses on bridging the linguistic divide between Buddhist source languages and contemporary languages through the application of advanced Deep Learning and AI technologies.",
+      "p2": "Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, accelerated  by its collaborative efforts with organizations such as monlam.ai and with contributions from a diverse array of sources, including translators and AI researchers. Leveraging a robust corpus of over four million sentence pairs from various sourcesand utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to Buddhist texts.",
+      "p3": "Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
+    },
+    "collaboration": {
+      "h2": "Collaborations",
+      "monlam": {
+        "name": "<monlam>monlam.ai</monlam>",
+        "description": "Machine translation data collection for Tibetan and English"
+      },
+      "kumarajiva": {
+        "name": "<kumarajiva>Kumarajiva project</kumarajiva>",
+        "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
+      },
+      "iitk": {
+        "name": "<iitk>IIT Kharagpur</iitk>",
+        "description": "Development of Sanskrit translation model development. Sanskrit<>English dataset compilation "
+      },
+      "ai4bharat": {
+        "name": "<ai4bharat>AI4Bharat</ai4bharat>",
+        "description": "Development of Sanskrit data collection"
+      }
+    }
   },
   "Team": {
-    "title": "Team",
-    "h1": "Team"
+    "title": "Our Team",
+    "h1": "Our Team",
+    "present": {
+      "h2": "Present"
+    },
+    "past": {
+      "h2": "Past"
+    },
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "websiteDevelopment": "Website development",
+      "websiteDesign": "Website design",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
+    }
+  },
+  "NotFound": {
+    "title": "404 · Page Not Found",
+    "h1": "Oh no! Page Not Found",
+    "message": "No beginning point is found of beings wandering and roaming. <cite>(Assusutta)</cite>",
+    "home": "Go Home"
+  },
+  "metadata": {
+    "title": "Dharmamitra · translating the languages of the Dharma",
+    "description": "Machine translation for the languages of the Dharma"
+  },
+  "generic": {
+    "copy": "Copy",
+    "copied": "Copied!",
+    "error": {
+      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
+      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>"
+    },
+    "clear": "Clear"
   },
   "navigation": {
     "home": "Home",
     "about": "About",
     "team": "Team",
-    "aria-mobile-button": "open navigation menu",
-    "aria-mobile-menu": "navigation menu"
+    "mobileButtonAriaLabel": "open navigation menu",
+    "mobileMenuAriaLabel": "navigation menu"
+  },
+  "footer": {
+    "mission": {
+      "h2": "Dharmamitra",
+      "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
+    },
+    "contact": {
+      "h2": "We value your feedback",
+      "p": "Please take a moment to share your thoughts with us. We appreciate you taking the time to help make Dhammamitra better for everyone",
+      "button": "Email Us"
+    }
   },
   "localeSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, bo {བོད་སྐད་དུ།} en {English} other {Unknown}}"
+    "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "localePlaceholder": "English"
+  },
+  "search": {
+    "heading": "Search 2500 years of Buddhism",
+    "tabLabel": "Search"
+  },
+  "translation": {
+    "heading": "Translate Dharma text",
+    "translate": "Translate",
+    "inputAriaLabel": "Translation input field",
+    "placeholder": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+    "otherLabel": "Other",
+    "encodingSelectLabel": "Transliteration",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "otherEncodingsAriaLabel": "Other encoding options",
+    "targetLanguageSelectLabel": "Output language",
+    "primaryTargetLanguagesAriaLabel": "Primary traget language options",
+    "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "copyTranslation": "Copy translation",
+    "encodings": {
+      "auto": "Autodetect",
+      "dev": "Devanagari",
+      "hk": "Harvard-Kyoto",
+      "iast": "IAST Roman",
+      "itrans": "ITRANS",
+      "tibetan": "Tibetan Unicode",
+      "velthuis": "Velthuis",
+      "wylie": "Wylie"
+    },
+    "targetLanguages": {
+      "tibetan": "Tibetan",
+      "english": "English",
+      "sanskrit": "Sanskrit",
+      "ancient-chinese": "Buddhist Chinese",
+      "japanese": "Japanese",
+      "korean": "Korean",
+      "sanskrit-dev": "Sanskrit (Devanagari)",
+      "sa-en": "SA English",
+      "modern-chinese": "Modern Chinese"
+    }
   }
 }

@@ -5,6 +5,7 @@ import { defaultLocale, localePrefix, supportedLocales } from "@/config"
 
 const handleI18nRouting = createMiddleware({
   locales: supportedLocales,
+  localeDetection: true,
   defaultLocale,
   localePrefix,
 })

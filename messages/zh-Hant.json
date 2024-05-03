@@ -1,0 +1,151 @@
+{
+  "Home": {
+    "title": "歡迎來到法之善友AI計畫",
+    "h1": "法之善友AI翻譯器"
+  },
+  "About": {
+    "title": "計畫介紹",
+    "h1": "計畫介紹",
+    "mission": {
+      "h2": "MITRA's Mission",
+      "p1": "MITRA’s Mission is to harness the rapidly evolving AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications.",
+      "p2": {
+        "line1": "Currently MITRA’s mission is to facilitate the study and practice of dharma through:",
+        "li1": "providing an automated machine translation capability from Sanskrit, classical Tibetan, and classical Chinese into a variety of modern languages including Chinese, Tibetan, Korean, and Japanese;",
+        "li2": "enabling the semantic search of a growing body of texts in Sanskrit, Classical Tibetan, and Classical Chinese;",
+        "li3": "developing tools to facilitate the study of Sanskrit and Classical Tibetan."
+      },
+      "p3": {
+        "line1": "In the future we hope to provide Generative AI tools that enable elevating and transformative experiences through:",
+        "li1": "Immersive 3D experiences in maṇḍala",
+        "li2": "Generation of 2D art based on canonical guildelines"
+      }
+    },
+    "project": {
+      "h2": "法之善友AI計畫",
+      "p1": "The MITRA project, spearheaded by Kurt Keutzer and Sebastian Nehrdich, focuses on bridging the linguistic divide between Buddhist source languages and contemporary languages through the application of advanced Deep Learning and AI technologies.",
+      "p2": "Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, accelerated  by its collaborative efforts with organizations such as monlam.ai and with contributions from a diverse array of sources, including translators and AI researchers. Leveraging a robust corpus of over four million sentence pairs from various sourcesand utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to Buddhist texts.",
+      "p3": "Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
+    },
+    "collaboration": {
+      "h2": "合作夥伴",
+      "monlam": {
+        "name": "<monlam>monlam.ai</monlam>",
+        "description": "Machine translation data collection for Tibetan and English"
+      },
+      "kumarajiva": {
+        "name": "<kumarajiva>Kumarajiva project</kumarajiva>",
+        "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
+      },
+      "iitk": {
+        "name": "<iitk>IIT Kharagpur</iitk>",
+        "description": "Development of Sanskrit translation model development. Sanskrit<>English dataset compilation "
+      },
+      "ai4bharat": {
+        "name": "<ai4bharat>AI4Bharat</ai4bharat>",
+        "description": "Development of Sanskrit data collection"
+      }
+    }
+  },
+  "Team": {
+    "title": "團隊介紹",
+    "h1": "團隊介紹",
+    "present": {
+      "h2": "現在成員"
+    },
+    "past": {
+      "h2": "前期成員"
+    },
+    "roles": {
+      "directorExecutive": "執行長",
+      "directorTechnical": "技術總監",
+      "dataCollectionSanskrit": "梵語數據收集",
+      "projectInfrastructure": "計畫基礎建設",
+      "websiteDevelopment": "網站開發",
+      "websiteDesign": "網站設計",
+      "nlpResearchSanskrit": "梵文自然語言處理研究"
+    }
+  },
+  "NotFound": {
+    "title": "404 · Page Not Found",
+    "h1": "Oh no! Page Not Found",
+    "message": "No beginning point is found of beings wandering and roaming. <cite>(Assusutta)</cite>",
+    "home": "Go Home"
+  },
+  "metadata": {
+    "title": "Dharmamitra · translating the languages of the Dharma",
+    "description": "Machine translation for the languages of the Dharma"
+  },
+  "generic": {
+    "copy": "Copy",
+    "copied": "已复制到剪切板",
+    "error": {
+      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
+      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>"
+    },
+    "clear": "Clear"
+  },
+  "navigation": {
+    "home": "首頁",
+    "about": "計畫介紹",
+    "team": "團隊介紹",
+    "mobileButtonAriaLabel": "开放导航菜单",
+    "mobileMenuAriaLabel": "导航菜单"
+  },
+  "footer": {
+    "mission": {
+      "h2": "Dharmamitra",
+      "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
+    },
+    "contact": {
+      "h2": "We value your feedback",
+      "p": "Please take a moment to share your thoughts with us. We appreciate you taking the time to help make Dhammamitra better for everyone",
+      "button": "Email Us"
+    }
+  },
+  "localeSwitcher": {
+    "label": "切換語言",
+    "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "localePlaceholder": "繁體中文"
+  },
+  "search": {
+    "heading": "搜索2500年的佛教",
+    "tabLabel": "搜索",
+    "placeholder": "搜索一些东西"
+  },
+  "translation": {
+    "heading": "",
+    "translate": "翻譯",
+    "inputAriaLabel": "翻譯欄位",
+    "placeholder": "在此輸入需要翻譯之梵文、藏文或中文…",
+    "otherLabel": "其他",
+    "encodingSelectLabel": "轉寫系統",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "otherEncodingsAriaLabel": "Other encoding options",
+    "targetLanguageSelectLabel": "翻譯目標語",
+    "primaryTargetLanguagesAriaLabel": "Primary traget language options",
+    "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "copyTranslation": "複製翻譯",
+    "encodings": {
+      "auto": "Autodetect",
+      "dev": "Devanagari",
+      "hk": "Harvard-Kyoto",
+      "iast": "IAST Roman",
+      "itrans": "ITRANS",
+      "tibetan": "Tibetan Unicode",
+      "velthuis": "Velthuis",
+      "wylie": "Wylie"
+    },
+    "targetLanguages": {
+      "tibetan": "藏文",
+      "english": "英文",
+      "sanskrit": "梵文",
+      "ancient-chinese": "佛典漢文",
+      "japanese": "日文",
+      "korean": "韓文",
+      "sanskrit-dev": "梵文",
+      "sa-en": "梵文",
+      "modern-chinese": "現代中文"
+    }
+  }
+}

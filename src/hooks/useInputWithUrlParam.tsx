@@ -1,4 +1,5 @@
 import React from "react"
+import { SelectChangeEvent } from "@mui/material"
 
 import useParams from "@/hooks/useParams"
 
@@ -8,9 +9,24 @@ function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
     getSearchParam(paramName) ?? defaultValue,
   )
 
+  React.useEffect(() => {
+    setInput(getSearchParam(paramName) ?? defaultValue)
+  }, [getSearchParam, paramName, defaultValue])
+
   const handleInputChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const newValue = event.target.value
+    (
+      input:
+        | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        | SelectChangeEvent<string>
+        | string,
+      limit?: number,
+    ) => {
+      let newValue = typeof input === "string" ? input : input.target.value
+
+      if (limit && newValue.length > limit) {
+        newValue = newValue.slice(0, limit)
+      }
+
       setInput(newValue)
       updateParams(createQueryString(paramName, newValue))
     },

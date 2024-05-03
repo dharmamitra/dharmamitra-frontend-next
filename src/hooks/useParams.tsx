@@ -1,16 +1,25 @@
 import * as React from "react"
 import { useSearchParams } from "next/navigation"
 
-import { usePathname, useRouter } from "@/navigation"
+import { defaultLocale } from "@/config"
+import { usePathname } from "@/navigation"
+
+function updateQueryParamsWithoutReloading(newUrl: string) {
+  if (typeof window !== "undefined") {
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ""
+    const lang = document.documentElement.lang
+    const path = basePath + (lang === defaultLocale ? "" : "/" + lang) + newUrl
+    window.history.replaceState({ path }, "", path)
+  }
+}
 
 const useParams = () => {
-  const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   const getSearchParam = React.useCallback(
-    (name: string) => {
-      return searchParams.get(name)
+    (paramName: string) => {
+      return searchParams.get(paramName)
     },
     [searchParams],
   )
@@ -18,9 +27,9 @@ const useParams = () => {
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
   const createQueryString = React.useCallback(
-    (name: string, value: string) => {
+    (paramName: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString())
-      params.set(name, value)
+      params.set(paramName, value)
 
       return params.toString()
     },
@@ -29,9 +38,9 @@ const useParams = () => {
 
   const updateParams = React.useCallback(
     (queryString: string) => {
-      router.push(pathname + "?" + queryString)
+      updateQueryParamsWithoutReloading(pathname + "?" + queryString)
     },
-    [router, pathname],
+    [pathname],
   )
 
   return {

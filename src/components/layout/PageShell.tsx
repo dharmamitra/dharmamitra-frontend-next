@@ -1,39 +1,31 @@
 import { ReactNode } from "react"
-import { Container, Typography } from "@mui/material"
+import { Box } from "@mui/material"
+import Container from "@mui/material/Container"
+import { SxProps } from "@mui/material/styles"
 import type { Breakpoint } from "@mui/system"
-import { visuallyHidden } from "@mui/utils"
 
 import Footer from "./Footer"
-import Navigation from "./Navigation"
+import NavigationBar from "./NavigationBar"
 
 type Props = {
   children?: ReactNode
-  title?: ReactNode
-  visuallyHiddenTitle?: boolean
   maxWidth?: Breakpoint | false
+  sx?: SxProps
 }
 
-export default function PageShell({
-  children,
-  title,
-  visuallyHiddenTitle,
-  maxWidth = "md",
-}: Props) {
+export default function PageShell({ children, maxWidth = "lg", sx }: Props) {
   return (
     <>
-      <Navigation />
-      {/* mt for absolute nav offset */}
-      <Container component="main" maxWidth={maxWidth} sx={{ mt: 14 }}>
-        <Typography
-          variant="h3"
-          component="h1"
-          align="center"
-          sx={{ ...(visuallyHiddenTitle && visuallyHidden) }}
+      <NavigationBar />
+      <Box sx={{ mb: 12, ...sx }}>
+        <Container
+          component="main"
+          maxWidth={maxWidth}
+          sx={{ mt: { xs: 6, md: 8 } }}
         >
-          {title}
-        </Typography>
-        {children}
-      </Container>
+          {children}
+        </Container>
+      </Box>
       <Footer />
     </>
   )
