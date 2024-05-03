@@ -8,6 +8,14 @@ export interface paths {
     /** Translation */
     post: operations["translation_translation__post"]
   }
+  "/translation-exp/": {
+    /** Translation */
+    post: operations["translation_translation_exp__post"]
+  }
+  "/tagging/": {
+    /** Tagging */
+    post: operations["tagging_tagging__post"]
+  }
   "/search/": {
     /** Search Endpoint */
     post: operations["search_endpoint_search__post"]
@@ -18,6 +26,25 @@ export type webhooks = Record<string, never>
 
 export interface components {
   schemas: {
+    /** Body_search_endpoint_search__post */
+    Body_search_endpoint_search__post: {
+      search_input: components["schemas"]["SearchInput"]
+      input_encoding: components["schemas"]["InputEncoding"]
+      search_type: components["schemas"]["SearchType"]
+      filter_language: components["schemas"]["FilterLanguage"]
+      search_target: components["schemas"]["SearchTarget"]
+      filter_primary: components["schemas"]["FilterPrimary"]
+      filter_secondary: components["schemas"]["FilterSecondary"]
+      postprocess_model: components["schemas"]["PostProcessModel"]
+      /** Api Key */
+      api_key: string
+    }
+    /** Body_tagging_tagging__post */
+    Body_tagging_tagging__post: {
+      /** Input Sentence */
+      input_sentence: string
+      input_encoding: components["schemas"]["InputEncoding"]
+    }
     /** Body_translation_translation__post */
     Body_translation_translation__post: {
       /** Input Sentence */
@@ -28,6 +55,60 @@ export interface components {
       target_lang: components["schemas"]["TargetLanguage"]
       model: components["schemas"]["ModelName"]
     }
+    /** Body_translation_translation_exp__post */
+    Body_translation_translation_exp__post: {
+      /** Input Sentence */
+      input_sentence: string
+      input_encoding: components["schemas"]["InputEncoding"]
+      /** Do Grammar Explanation */
+      do_grammar_explanation: boolean
+      target_lang: components["schemas"]["TargetLanguageExperimental"]
+      /** Api Key */
+      api_key: string
+      model: components["schemas"]["ModelName"]
+    }
+    /**
+     * FilterLanguage
+     * @enum {string}
+     */
+    FilterLanguage:
+      | "english"
+      | "tibetan"
+      | "sanskrit"
+      | "buddhist-chinese"
+      | "pali"
+    /**
+     * FilterPrimary
+     * @description Limits for Search in primary sources
+     */
+    FilterPrimary: {
+      /**
+       * Category Include
+       * @default []
+       */
+      category_include?: unknown[]
+      /**
+       * Category Exclude
+       * @default []
+       */
+      category_exclude?: unknown[]
+      /**
+       * File Include
+       * @default []
+       */
+      file_include?: unknown[]
+      /**
+       * File Exclude
+       * @default []
+       */
+      file_exclude?: unknown[]
+    }
+    /**
+     * FilterSecondary
+     * @description Limits for Search in secondary sources
+     * @enum {string}
+     */
+    FilterSecondary: ""
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */
@@ -43,11 +124,26 @@ export interface components {
      * @enum {string}
      */
     ModelName: "NO" | "ANALYZE" | "GPT4TRANSLATE"
+    /**
+     * PostProcessModel
+     * @enum {string}
+     */
+    PostProcessModel: "llama3" | "gpt-3.5" | "gpt-4" | "claude" | "none"
     /** SearchInput */
     SearchInput: {
       /** Search Input */
       search_input: string
     }
+    /**
+     * SearchTarget
+     * @enum {string}
+     */
+    SearchTarget: "primary" | "secondary" | "parallel_data"
+    /**
+     * SearchType
+     * @enum {string}
+     */
+    SearchType: "precise" | "fuzzy" | "semantic"
     /**
      * TargetLanguage
      * @enum {string}
@@ -57,8 +153,23 @@ export interface components {
       | "tibetan"
       | "sanskrit"
       | "sanskrit-dev"
-      | "ancient-chinese"
+      | "buddhist-chinese"
       | "korean"
+    /**
+     * TargetLanguageExperimental
+     * @enum {string}
+     */
+    TargetLanguageExperimental:
+      | "english"
+      | "tibetan"
+      | "sanskrit"
+      | "sanskrit-dev"
+      | "buddhist-chinese"
+      | "korean"
+      | "japanese"
+      | "pali"
+      | "sanskrit-knn"
+      | "modern-chinese"
     /** ValidationError */
     ValidationError: {
       /** Location */
@@ -103,11 +214,55 @@ export interface operations {
       }
     }
   }
+  /** Translation */
+  translation_translation_exp__post: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_translation_translation_exp__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  /** Tagging */
+  tagging_tagging__post: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_tagging_tagging__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   /** Search Endpoint */
   search_endpoint_search__post: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["SearchInput"]
+        "application/json": components["schemas"]["Body_search_endpoint_search__post"]
       }
     }
     responses: {

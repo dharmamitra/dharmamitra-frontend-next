@@ -9,35 +9,36 @@ import {
   OtherOptionsInputStyles,
   selectedOptionsStyles,
 } from "@/components/styled"
+import appConfig from "@/config"
 import useInputWithLocalStorage from "@/hooks/useInputWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
-import {
-  apiParamsNames,
-  ServedTargetLanguage,
-  targetLanguages,
-} from "@/utils/api/params"
+import { apiParamsNames } from "@/utils/api/params"
+import { TargetLanguage } from "@/utils/api/types"
 
 import RadioOption from "../RadioOption"
+
+const servedTargetLanguages = appConfig.paramOptions.targetLanguages
 
 export default function TranslationTargetLanguageSelector() {
   const t = useTranslations("translation")
 
   const { input, handleInputChange, isHydrated } = useInputWithLocalStorage({
     paramName: apiParamsNames.translation.target_lang,
-    defaultValue: targetLanguages[0],
+    defaultValue: servedTargetLanguages[0]!,
   })
 
-  const [primaryLanguagesOptions, otherLanguagesOptions] =
-    useResponsiveOptions(targetLanguages)
+  const [primaryLanguagesOptions, otherLanguagesOptions] = useResponsiveOptions(
+    servedTargetLanguages,
+  )
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
-    () => primaryLanguagesOptions.includes(input as ServedTargetLanguage),
+    () => primaryLanguagesOptions.includes(input as TargetLanguage),
     [input, primaryLanguagesOptions],
   )
 
   React.useEffect(() => {
     if (input === "") {
-      handleInputChange(targetLanguages[0])
+      handleInputChange(servedTargetLanguages[0]!)
     }
   }, [input, handleInputChange])
 

@@ -1,5 +1,8 @@
 import { z } from "zod"
 
+import { allTargetLanguages } from "@/utils/api/params"
+import { TargetLanguage } from "@/utils/api/types"
+
 export const appConfigSchema = z.object({
   env: z.enum([
     "local",
@@ -21,6 +24,22 @@ export const appConfigSchema = z.object({
       search: z.boolean().default(false),
     })
     .default({}),
+  paramOptions: z
+    .object({
+      targetLanguages: z
+        .array(
+          z.string().refine(
+            // validates at build & runtime
+            (val) => allTargetLanguages.includes(val as TargetLanguage),
+            {
+              message:
+                "Invalid target language given to app environment config `paramOptions` prop.",
+            },
+          ),
+        )
+        .default(allTargetLanguages),
+    })
+    .default({}),
 })
 
 export type AppConfig = z.infer<typeof appConfigSchema>
@@ -33,6 +52,7 @@ type KeysWithFallbackValue =
   | "basePath"
   | "siteName"
   | "orgEmail"
+  | "paramOptions"
 
 type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
 

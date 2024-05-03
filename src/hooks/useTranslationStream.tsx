@@ -5,15 +5,15 @@ import { SSE, SSEvent } from "sse.js"
 import { triggerTranslationQueryAtom } from "@/atoms"
 import appConfig from "@/config"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { type TranslationRequestProps } from "@/utils/api/params"
+import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 import {
-  apiParamsNames,
   InputEncoding,
-  inputEncodings,
   TargetLanguage,
-  targetLanguages,
-} from "@/utils/api/params"
+  TranslationRequestProps,
+} from "@/utils/api/types"
 import { cleanSSEData } from "@/utils/transformers"
+
+const servedTargetLanguages = appConfig.paramOptions.targetLanguages
 
 const translationEndpoint = `${appConfig.apiUrl}/translation/`
 
@@ -33,16 +33,17 @@ const useTranslationStream = () => {
     inputEncoding ? inputEncoding : inputEncodings[0]
   ) as InputEncoding
   const targetLangParam = (
-    targetLang ? targetLang : targetLanguages[0]
+    targetLang ? targetLang : servedTargetLanguages[0]
   ) as TargetLanguage
 
   const params: TranslationRequestProps = React.useMemo(
     () => ({
       input_sentence: inputSentence,
       input_encoding: inputEncodingParam,
-      level_of_explanation: 0,
+      do_grammar_explanation: false,
       target_lang: targetLangParam,
       model: "NO",
+      api_key: "TODO",
     }),
     [inputSentence, inputEncodingParam, targetLangParam],
   )
