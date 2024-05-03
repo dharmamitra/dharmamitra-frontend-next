@@ -26,7 +26,7 @@ export default function SearchBox({
 
   const { data, isLoading, isError } = useQuery({
     queryKey: DM_API.search.makeQueryKey({ search_input: placeholder }),
-    queryFn: () => DM_API.search.call({ search_input: placeholder }),
+    queryFn: () => DM_API.search.call(),
     enabled: isQueryEnabled,
   })
 
