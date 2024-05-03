@@ -18,7 +18,7 @@ export default function SearchResults() {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: DM_API.search.makeQueryKey({ search_input: input }),
-    queryFn: () => DM_API.search.call({ search_input: input }),
+    queryFn: () => DM_API.search.call(),
     enabled: triggerSearchQuery,
   })
 
