@@ -5,8 +5,8 @@ const withNextIntl = createNextIntlPlugin()
 const envBasePaths = {
   "dm-production": "/dmnext",
   "dm-staging": "/dmnext",
-  "kj-production": "/dmnext",
-  "kj-staging": "/dmnext",
+  "kp-production": "/dmnext",
+  "kp-staging": "/dmnext",
   local: "/dmnext",
   "lab-production": "/dmnext",
   "lab-staging": "/dmnext",
