@@ -1,19 +1,13 @@
 import { AppConfig } from "./defineConfig"
-import createDMProductionConfig from "./envs/dm-production"
-import createDMStagingConfig from "./envs/dm-staging"
-import createKPProductionConfig from "./envs/kp-production"
-import createKPStagingConfig from "./envs/kp-staging"
-import createLabProductionConfig from "./envs/lab-production"
-import createLabStagingConfig from "./envs/lab-staging"
+import createDMProductionConfig from "./envs/dm"
+import createKPProductionConfig from "./envs/kp"
+import createLabProductionConfig from "./envs/lab"
 import createLocalConfig from "./envs/local"
 
 const configCreators: Record<AppConfig["env"], () => AppConfig> = {
-  "dm-production": createDMProductionConfig,
-  "dm-staging": createDMStagingConfig,
-  "kp-production": createKPProductionConfig,
-  "kp-staging": createKPStagingConfig,
-  "lab-production": createLabProductionConfig,
-  "lab-staging": createLabStagingConfig,
+  dm: createDMProductionConfig,
+  kp: createKPProductionConfig,
+  lab: createLabProductionConfig,
   local: createLocalConfig,
 }
 

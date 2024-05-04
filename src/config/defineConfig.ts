@@ -4,15 +4,7 @@ import { allTargetLanguages } from "@/utils/api/params"
 import { TargetLanguage } from "@/utils/api/types"
 
 export const appConfigSchema = z.object({
-  env: z.enum([
-    "local",
-    "lab-staging",
-    "lab-production",
-    "dm-staging",
-    "dm-production",
-    "kp-staging",
-    "kp-production",
-  ]),
+  env: z.enum(["local", "lab", "dm", "kp"]),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
   siteUrl: z.string().default("https://dharmamitra.org"),

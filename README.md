@@ -39,7 +39,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 - adapted from [Best Practices for Handling Per-Environment Configuration in Your JS/TS Applications](https://www.raulmelo.me/en/blog/best-practices-for-handling-per-environment-config-js-ts-applications#the-config-strategy)
 
-- environment specific build scripts set the `NEXT_PUBLIC_APP_ENV` used to define app config for each environment. A prebuild step runs to envoke the env setter, so when eg. `yarn build:dm-production`, is run the `prebuild:dm-production` script executes first, setting. 
+- environment specific build scripts set the `NEXT_PUBLIC_APP_ENV` used to define app config for each environment. A prebuild step runs to envoke the env setter, so when eg. `yarn build:dm`, is run the `prebuild:dm` script executes first, setting. 
   - Next.js automatically loads environment variables from `.env.local`, `.env.development`, `.env.production`, and  `.env.test`  This method allows you to maintain the standard file names and leverage Next.js's built-in environment loading strategy.
 
 ### Branches:
