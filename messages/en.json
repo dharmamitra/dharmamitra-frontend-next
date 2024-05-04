@@ -136,15 +136,17 @@
       "wylie": "Wylie"
     },
     "targetLanguages": {
-      "tibetan": "Tibetan",
+      "buddhist-chinese": "Buddhist Chinese",
       "english": "English",
-      "sanskrit": "Sanskrit",
-      "ancient-chinese": "Buddhist Chinese",
       "japanese": "Japanese",
       "korean": "Korean",
-      "sanskrit-dev": "Sanskrit (Devanagari)",
+      "modern-chinese": "Modern Chinese",
+      "pali": "Pali",
       "sa-en": "SA English",
-      "modern-chinese": "Modern Chinese"
+      "sanskrit-dev": "Sanskrit (Devanagari)",
+      "sanskrit-knn": "Sanskrit (KNN)",
+      "sanskrit": "Sanskrit",
+      "tibetan": "Tibetan"
     }
   }
 }

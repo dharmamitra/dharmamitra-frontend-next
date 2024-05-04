@@ -1,11 +1,9 @@
-// import appConfig from "@/config"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
 import {
   APIParamsNames,
   InputEncoding,
   ModelName,
-  // ServedTargetLanguage,
   TargetLanguage,
 } from "./types"
 
@@ -29,22 +27,13 @@ export const allTargetLanguages = exhaustiveStringTuple<TargetLanguage>()(
   "tibetan",
   "sanskrit",
   "sanskrit-dev",
-  "buddhist-chinese",
-  "korean",
-  "japanese",
   "sanskrit-knn",
   "modern-chinese",
+  "buddhist-chinese",
+  "japanese",
+  "korean",
   "pali",
 )
-
-export const standardTargetLanguages: TargetLanguage[] = [
-  "english",
-  "tibetan",
-  "sanskrit",
-  "sanskrit-dev",
-  "buddhist-chinese",
-  "korean",
-]
 
 export const apiParamsNames: APIParamsNames = {
   search: {

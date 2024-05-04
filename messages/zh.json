@@ -137,15 +137,17 @@
       "wylie": "Wylie"
     },
     "targetLanguages": {
-      "tibetan": "藏文",
+      "buddhist-chinese": "佛典中文",
       "english": "英文",
-      "sanskrit": "梵文",
-      "ancient-chinese": "佛典中文",
       "japanese": "日文",
       "korean": "韩文",
-      "sanskrit-dev": "梵文",
+      "modern-chinese": "现代中文",
+      "pali": "Pali",
       "sa-en": "梵文",
-      "modern-chinese": "现代中文"
+      "sanskrit-dev": "梵文",
+      "sanskrit-knn": "Sanskrit (KNN)",
+      "sanskrit": "梵文",
+      "tibetan": "藏文"
     }
   }
 }
