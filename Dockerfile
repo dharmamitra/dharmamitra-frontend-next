@@ -6,11 +6,8 @@ RUN yarn
 
 COPY . .
 
-# Pseudo-code placeholder for env setup.
-# ARG BUILD_SCRIPT
-# RUN yarn $BUILD_SCRIPT
-
-RUN yarn build
+ARG BUILD_SCRIPT
+RUN yarn $BUILD_SCRIPT
 
 EXPOSE 3000
 CMD [ "yarn", "start" ]

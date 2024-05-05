@@ -39,14 +39,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 - adapted from [Best Practices for Handling Per-Environment Configuration in Your JS/TS Applications](https://www.raulmelo.me/en/blog/best-practices-for-handling-per-environment-config-js-ts-applications#the-config-strategy)
 
-- environment specific build scripts set the `NEXT_PUBLIC_APP_ENV` used to define app config for each environment. A prebuild step runs to envoke the env setter, so when eg. `yarn build:dm`, is run the `prebuild:dm` script executes first, setting. 
-  - Next.js automatically loads environment variables from `.env.local`, `.env.development`, `.env.production`, and  `.env.test`  This method allows you to maintain the standard file names and leverage Next.js's built-in environment loading strategy.
+- environment specific build scripts set the `NEXT_PUBLIC_APP_ENV` used to define app config for each environment. A prebuild step runs to envoke the env setter, so when eg. `yarn build:dm`, is run the `prebuild:dm` script executes first, setting.
+  - Next.js automatically loads environment variables from `.env.local`, `.env.development`, `.env.production`, and `.env.test` This method allows you to maintain the standard file names and leverage Next.js's built-in environment loading strategy.
 
 ### Branches:
 
 - `main`: for production deployment
 - `dev`: for staging deployment
-- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files. 
+- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files.
 - development item branches linked to issue numbers
 
 `dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
@@ -100,8 +100,16 @@ docker stop dmnext
 
 ### Compose setting
 
-```
+Base command:
+
+```sh
 docker compose build --no-cache && docker compose up --force-recreate -d
+```
+
+Set env variables
+
+```sh
+BASE_PATH=lab BUILD_SCRIPT=build:lab docker compose build --no-cache && docker compose up --force-recreate -d
 ```
 
 NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.
@@ -111,7 +119,7 @@ The server (published locally on port 80) functions as a proxy so the same page 
 
 If you want to see the NGINX logs you can use (press Ctrl-C to exit):
 
-```
+```sh
 docker logs nginx -f
 ```
 
@@ -123,7 +131,7 @@ The project uses [`openapi-typescript`](https://openapi-ts.pages.dev/introductio
 
 DM API request and response model types are generated from the project's [OpenAPI schema](https://dharmamitra.org/api/openapi.json) by running:
 
-```
+```sh
 yarn api:codegen
 ```
 
@@ -146,8 +154,6 @@ TODO
 
 TODO (https://stackoverflow.com/questions/14500240/how-can-i-generate-a-diff-for-a-single-file-between-two-branches-in-github)
 
-
-
 ### Internal navigation
 
 - most internal navigation can be handled with `src/components/LocalLink.tsx`.
@@ -168,10 +174,12 @@ The theme is configured in a static `.ts` file (`src/utils/theme/config.ts`) so 
 
 For server components **theme-aware** propeties are readily available via component's `sx` prop. Additionally, `customTheming` can be imported to get access to these styles. In client components the same custome styles can be accessed via the theme's `custom` prop:
 
-```
- sx={{
-  borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
-}}
+```jsx
+<Box
+  sx={{
+    borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
+  }}
+/>
 ```
 
 ### References:

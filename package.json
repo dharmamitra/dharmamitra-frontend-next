@@ -10,6 +10,7 @@
     "build:dm": "next build",
     "prebuild:kp": "sh ./scripts/set_env.sh kp",
     "build:kp": "next build",
+    "build": "next build",
     "start": "next start",
     "test:ts": "tsc --noEmit",
     "test:pw": "playwright test",

@@ -19,6 +19,7 @@ export default function createKPProductionConfig() {
   return defineConfig({
     env: "kp",
     siteUrl: "https://dharmamitra.org/kp",
+    basePath: "/kp",
     paramOptions: {
       targetLanguages,
     },

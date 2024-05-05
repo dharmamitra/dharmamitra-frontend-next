@@ -2,33 +2,15 @@ version: "3.7"
 
 services:
 
-  # Pseudo-code placeholder for env setup.
-  # frontend-dm-production:
-  #   build:
-  #     context: .
-  #     args:
-  #       BUILD_SCRIPT: build:dm-production
-  #   container_name: "dmnext"
-  #   restart: always
-  #   ports:
-  #     - "3333:3000"
-  # frontend-dm-staging:
-  #   build:
-  #     context: .
-  #     args:
-  #       BUILD_SCRIPT: build:dm-staging
-  #   container_name: "dmnext"
-  #   restart: always
-  #   ports:
-  #     - "3333:3000"
-
   frontend:
     build:
       context: .
+      args:
+        BUILD_SCRIPT: ${BUILD_SCRIPT:-build:dm}
     container_name: "dmnext"
     restart: always
     ports:
-    - "3333:3000"
+      - "3333:3000"
 
   nginx:
     build:
@@ -36,3 +18,6 @@ services:
     container_name: "nginx"
     ports:
       - "80:80"
+    environment:
+      # Default to root if not specified
+      - BASE_PATH=${BASE_PATH:-''}  

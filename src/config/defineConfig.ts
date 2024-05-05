@@ -3,11 +3,14 @@ import { z } from "zod"
 import { allTargetLanguages } from "@/utils/api/params"
 import { TargetLanguage } from "@/utils/api/types"
 
+export const envs = ["local", "lab", "dm", "kp"] as const
+
 export const appConfigSchema = z.object({
-  env: z.enum(["local", "lab", "dm", "kp"]),
+  env: z.enum(envs),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
   siteUrl: z.string(),
+  basePath: z.string().default(""),
   logoPath: z.string().default("TODO"),
   endpoints: z
     .object({
@@ -48,6 +51,7 @@ export type AppConfig = z.infer<typeof appConfigSchema>
 type KeysWithFallbackValue =
   | "logoPath"
   | "siteName"
+  | "basePath"
   | "featureFlags"
   | "endpoints"
   | "streamPaths"
