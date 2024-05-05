@@ -1,13 +1,12 @@
 import * as React from "react"
 import { useSearchParams } from "next/navigation"
 
-import appConfig from "@/config"
 import { defaultLocale } from "@/i18n"
 import { usePathname } from "@/navigation"
 
 function updateQueryParamsWithoutReloading(newUrl: string) {
   if (typeof window !== "undefined") {
-    const basePath = appConfig.basePath ?? ""
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ""
     const lang = document.documentElement.lang
     const path = basePath + (lang === defaultLocale ? "" : "/" + lang) + newUrl
     window.history.replaceState({ path }, "", path)

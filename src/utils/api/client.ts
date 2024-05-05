@@ -1,10 +1,11 @@
 import createClient from "openapi-fetch"
 
-import appConfig from "@/config"
 import type { paths } from "@/lib/api/v1.d"
 
+const baseUrl = process.env.NEXT_PUBLIC_DM_API_BASE_URL
+
 const { GET, POST } = createClient<paths>({
-  baseUrl: appConfig.apiUrl,
+  baseUrl,
 })
 
 const apiClient = {

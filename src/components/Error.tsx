@@ -44,7 +44,7 @@ export default function Error({
       >
         <Image
           src={error}
-          alt="Dharmamitra"
+          alt="Error"
           sizes="100vw"
           style={{
             width: "100%",

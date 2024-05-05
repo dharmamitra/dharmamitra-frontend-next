@@ -7,13 +7,17 @@ export const appConfigSchema = z.object({
   env: z.enum(["local", "lab", "dm", "kp"]),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
-  siteUrl: z.string().default("https://dharmamitra.org"),
-  apiUrl: z.string().default("https://dharmamitra.org/api"),
-  basePath: z.string().default("/dmnext"),
+  siteUrl: z.string(),
   logoPath: z.string().default("TODO"),
-  featureFlags: z
+  endpoints: z
     .object({
-      search: z.boolean().default(false),
+      tagging: z.string().default("/tagging/"),
+    })
+    .default({}),
+  streamPaths: z
+    .object({
+      translation: z.string().default("/api/translation-stream"),
+      search: z.string().default("/api/search-stream"),
     })
     .default({}),
   paramOptions: z
@@ -32,19 +36,23 @@ export const appConfigSchema = z.object({
         .default(allTargetLanguages),
     })
     .default({}),
+  featureFlags: z
+    .object({
+      search: z.boolean().default(false),
+    })
+    .default({}),
 })
 
 export type AppConfig = z.infer<typeof appConfigSchema>
 
 type KeysWithFallbackValue =
   | "logoPath"
-  | "featureFlags"
-  | "siteUrl"
-  | "apiUrl"
-  | "basePath"
   | "siteName"
-  | "orgEmail"
+  | "featureFlags"
+  | "endpoints"
+  | "streamPaths"
   | "paramOptions"
+  | "orgEmail"
 
 type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
 

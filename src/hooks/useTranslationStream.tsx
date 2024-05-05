@@ -15,8 +15,6 @@ import { cleanSSEData } from "@/utils/transformers"
 
 const servedTargetLanguages = appConfig.paramOptions.targetLanguages
 
-const translationEndpoint = `${appConfig.apiUrl}/translation/`
-
 const useTranslationStream = () => {
   const { input: inputSentence } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
@@ -43,7 +41,7 @@ const useTranslationStream = () => {
       do_grammar_explanation: false,
       target_lang: targetLangParam,
       model: "NO",
-      api_key: "TODO",
+      api_key: "TODO: should be moved to header on BE",
     }),
     [inputSentence, inputEncodingParam, targetLangParam],
   )
@@ -86,13 +84,16 @@ const useTranslationStream = () => {
       // 7 seconds
     }, 7000)
 
-    const eventSource = new SSE(translationEndpoint, {
-      headers: {
-        "Content-Type": "application/json",
+    const eventSource = new SSE(
+      `${appConfig.siteUrl}${appConfig.streamPaths.translation}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        payload: JSON.stringify(params),
       },
-      method: "POST",
-      payload: JSON.stringify(params),
-    })
+    )
 
     // https://developer.mozilla.org/en-US/docs/Web/API/EventSource
     eventSource.addEventListener("message", (event: MessageEvent) => {
