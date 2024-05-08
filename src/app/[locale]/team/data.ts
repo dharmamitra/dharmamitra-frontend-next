@@ -14,7 +14,7 @@ import imgRheaMehta from "@/assets/team/rhea-mehta.jpg"
 import imgSaiSrinivasan from "@/assets/team/sai-srinivasan.jpg"
 import imgSanjanaSrinivasan from "@/assets/team/sanjana-srinivasan.png"
 import imgSebastianNehrdich from "@/assets/team/sebastian-nehrdich.jpg"
-import imgShivamAgarwal from "@/assets/team/shivam-agarwal.jpg"
+import imgShivamDewan from "@/assets/team/shivam-dewan.jpg"
 import imgSiyaMehta from "@/assets/team/siya-mehta.png"
 import imgSujeetJaiswal from "@/assets/team/sujeet-jaiswal.jpg"
 import imgVarunRao from "@/assets/team/varun-rao.png"
@@ -82,9 +82,9 @@ const members: TeamMembers = {
     },
     {
       id: crypto.randomUUID(),
-      name: "Shivam Agarwal",
-      roles: [{ role: "Website design", i18nRoleKey: "websiteDesign" }],
-      image: imgShivamAgarwal,
+      name: "Shivam Dewan",
+      roles: [{ role: "Product Designer", i18nRoleKey: "productDesigner" }],
+      image: imgShivamDewan,
     },
     {
       id: crypto.randomUUID(),

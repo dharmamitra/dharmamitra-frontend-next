@@ -62,7 +62,7 @@
       "dataCollectionSanskrit": "梵语数据收集",
       "projectInfrastructure": "计划基础建设",
       "websiteDevelopment": "网站开发",
-      "websiteDesign": "网站设计",
+      "productDesigner": "Product Designer",
       "nlpResearchSanskrit": "梵文自然语言处理研究"
     }
   },
@@ -140,7 +140,7 @@
       "tibetan": "藏文",
       "english": "英文",
       "sanskrit": "梵文",
-      "ancient-chinese": "佛典中文",
+      "buddhist-chinese": "佛典中文",
       "japanese": "日文",
       "korean": "韩文",
       "sanskrit-dev": "梵文",

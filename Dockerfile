@@ -1,10 +1,14 @@
 FROM node:20
 WORKDIR /app
 
-COPY ./package.json .
+COPY ./package.json ./yarn.lock ./
 RUN yarn
 
 COPY . .
+
+# Pseudo-code placeholder for env setup.
+# ARG BUILD_SCRIPT
+# RUN yarn $BUILD_SCRIPT
 
 RUN yarn build
 
