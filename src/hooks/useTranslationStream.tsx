@@ -83,16 +83,13 @@ const useTranslationStream = () => {
       // 7 seconds
     }, 7000)
 
-    const eventSource = new SSE(
-      `${appConfig.siteUrl}${appConfig.streamPaths.translation}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        payload: JSON.stringify(params),
+    const eventSource = new SSE(appConfig.streamPaths.translation, {
+      headers: {
+        "Content-Type": "application/json",
       },
-    )
+      method: "POST",
+      payload: JSON.stringify(params),
+    })
 
     // https://developer.mozilla.org/en-US/docs/Web/API/EventSource
     eventSource.addEventListener("message", (event: MessageEvent) => {
