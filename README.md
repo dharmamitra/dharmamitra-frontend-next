@@ -86,16 +86,16 @@ Automated release updates depend on standardized commit messages following the [
 ### Simple setting
 
 ```sh
-docker build . --tag dmnext  --no-cache
-docker run --detach --rm --publish 3333:3000 --name dmnext dmnext
+docker build . --tag {TAG}  --no-cache
+docker run --detach --rm --publish 3333:3000 --name {TAG} {TAG}
 ```
 
 `3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN).
 
-The project will be available at `http://localhost:3333/dmnext`. To shut it down gracefully run:
+The project will be available at `http://localhost:3333/{TAG}`. To shut it down gracefully run:
 
 ```sh
-docker stop dmnext
+docker stop {TAG}
 ```
 
 ### Compose setting
