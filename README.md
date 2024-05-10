@@ -106,10 +106,10 @@ Base command:
 docker compose build --no-cache && docker compose up --force-recreate -d
 ```
 
-Set env variables
-
+Set env variables:
 ```sh
-BASE_PATH=lab BUILD_SCRIPT=build:lab docker compose build --no-cache && docker compose up --force-recreate -d
+export RESTART_POLICY=no
+docker compose build --no-cache && docker compose up --force-recreate -d
 ```
 
 NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.

@@ -11,7 +11,7 @@ export const targetLanguages: TargetLanguage[] = [
   "korean",
 ]
 
-export default function createDMProductionConfig() {
+export default function createDMConfig() {
   return defineConfig({
     env: "dm",
     siteUrl: "https://dharmamitra.org",

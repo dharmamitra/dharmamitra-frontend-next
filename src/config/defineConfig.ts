@@ -5,6 +5,8 @@ import { TargetLanguage } from "@/utils/api/types"
 
 export const envs = ["local", "lab", "dm", "kp"] as const
 
+export type AppEnv = (typeof envs)[number]
+
 export const appConfigSchema = z.object({
   env: z.enum(envs),
   siteName: z.string().default("Dharmamitra"),

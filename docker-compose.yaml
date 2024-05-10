@@ -2,15 +2,35 @@ version: "3.7"
 
 services:
 
-  frontend:
+  dm-public:
     build:
       context: .
       args:
-        BUILD_SCRIPT: ${BUILD_SCRIPT:-build:dm}
-    container_name: "dmnext"
-    restart: always
+        BUILD_SCRIPT: build:dm
+    container_name: "dm-public"
+    restart: ${RESTART_POLICY}
     ports:
       - "3333:3000"
+
+  dm-lab:
+    build:
+      context: .
+      args:
+        BUILD_SCRIPT: build:lab
+    container_name: "dm-lab"
+    restart: ${RESTART_POLICY}
+    ports:
+      - "3334:3000"
+
+  kp:
+    build:
+      context: .
+      args:
+        BUILD_SCRIPT: build:kp
+    container_name: "kp"
+    restart: ${RESTART_POLICY}
+    ports:
+      - "3335:3000"
 
   nginx:
     build:
@@ -18,6 +38,8 @@ services:
     container_name: "nginx"
     ports:
       - "80:80"
-    environment:
-      # Default to root if not specified
-      - BASE_PATH=${BASE_PATH:-''}  
+    depends_on:
+      - dm-public
+      - dm-lab
+      - kp
+

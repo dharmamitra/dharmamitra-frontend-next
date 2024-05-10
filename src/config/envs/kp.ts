@@ -15,7 +15,7 @@ export const targetLanguages: TargetLanguage[] = [
   "pali",
 ]
 
-export default function createKPProductionConfig() {
+export default function createKPConfig() {
   return defineConfig({
     env: "kp",
     siteUrl: "https://dharmamitra.org/kp",
