@@ -1,4 +1,4 @@
-name: Deploy
+name: Test-env
 on:
   workflow_dispatch:
     inputs:
@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 82-env-infrastructure
+          ref: test-env
       - uses: actions/setup-node@v4
 
       - name: Set up Docker Buildx
