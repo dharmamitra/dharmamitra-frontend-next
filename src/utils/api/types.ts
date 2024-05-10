@@ -56,7 +56,7 @@ export type ServedTargetLanguage = Exclude<TargetLanguage, "pali">
 /**
  * API PARAMS
  */
-export type APIParamsNames = {
+export type APIParamNames = {
   search: Record<keyof SearchRequestProps, keyof SearchRequestProps>
   //   translation: Record<
   //     keyof TranslationRequestProps,

@@ -1,7 +1,7 @@
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
 import {
-  APIParamsNames,
+  APIParamNames,
   InputEncoding,
   ModelName,
   TargetLanguage,
@@ -35,9 +35,8 @@ export const allTargetLanguages = exhaustiveStringTuple<TargetLanguage>()(
   "pali",
 )
 
-export const apiParamsNames: APIParamsNames = {
+export const apiParamsNames: APIParamNames = {
   search: {
-    api_key: "api_key",
     filter_language: "filter_language",
     filter_primary: "filter_primary",
     filter_secondary: "filter_secondary",
@@ -53,7 +52,6 @@ export const apiParamsNames: APIParamsNames = {
     do_grammar_explanation: "do_grammar_explanation",
     target_lang: "target_lang",
     model: "model",
-    api_key: "api_key",
   },
   tagging: {
     input_sentence: "input_sentence",

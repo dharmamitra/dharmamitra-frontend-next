@@ -13,25 +13,27 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   const requestBody = await request.json()
 
-  const url = `${process.env.DM_API_BASE_URL}/translation/`
-  // const apiKey = process.env.DM_API_KEY
+  const url = `${process.env.NEXT_PUBLIC_DM_API_BASE_URL}/translation-exp/`
+  const apiKey = process.env.DM_API_KEY ?? ""
 
   try {
-    // Fetch the SSE stream from the external service
     const fetchResponse = await fetch(url, {
       method: "POST",
       headers: {
         Accept: "text/event-stream",
         "Content-Type": "application/json",
-        // "x-api-key": apiKey,
+        "X-Key": apiKey,
       },
       body: JSON.stringify(requestBody),
     })
 
     if (!fetchResponse.ok) {
-      return new NextResponse("Opening stream error: response not ok", {
-        status: fetchResponse.status,
-      })
+      return new NextResponse(
+        `Opening stream error: response not ok. ${fetchResponse.statusText}`,
+        {
+          status: fetchResponse.status,
+        },
+      )
     }
 
     if (

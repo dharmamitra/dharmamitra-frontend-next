@@ -41,7 +41,6 @@ const useTranslationStream = () => {
       do_grammar_explanation: false,
       target_lang: targetLangParam,
       model: "NO",
-      api_key: "TODO: should be moved to header on BE",
     }),
     [inputSentence, inputEncodingParam, targetLangParam],
   )

@@ -36,8 +36,6 @@ export interface components {
       filter_primary: components["schemas"]["FilterPrimary"]
       filter_secondary: components["schemas"]["FilterSecondary"]
       postprocess_model: components["schemas"]["PostProcessModel"]
-      /** Api Key */
-      api_key: string
     }
     /** Body_tagging_tagging__post */
     Body_tagging_tagging__post: {
@@ -63,8 +61,6 @@ export interface components {
       /** Do Grammar Explanation */
       do_grammar_explanation: boolean
       target_lang: components["schemas"]["TargetLanguageExperimental"]
-      /** Api Key */
-      api_key: string
       model: components["schemas"]["ModelName"]
     }
     /**
