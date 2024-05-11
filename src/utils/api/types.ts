@@ -22,10 +22,8 @@ export type TaggingRequestProps =
   components["schemas"]["Body_tagging_tagging__post"]
 
 /**
- * SEARCH PARAMS
+ * SEARCH PARAM OPTIONS
  */
-
-export type APIKey = string
 
 export type FilterLanguage = components["schemas"]["FilterLanguage"]
 
@@ -34,10 +32,6 @@ export type FilterPrimary = components["schemas"]["FilterPrimary"]
 export type FilterSecondary = components["schemas"]["FilterSecondary"]
 
 export type InputEncoding = components["schemas"]["InputEncoding"]
-
-export type InputSentence = string
-
-export type LevelOfExplanation = number
 
 export type ModelName = components["schemas"]["ModelName"]
 
@@ -49,9 +43,7 @@ export type SearchTarget = components["schemas"]["SearchTarget"]
 
 export type SearchType = components["schemas"]["SearchType"]
 
-// TODO: Finalize env selection or use env specific endpoint
 export type TargetLanguage = components["schemas"]["TargetLanguageExperimental"]
-export type ServedTargetLanguage = Exclude<TargetLanguage, "pali">
 
 /**
  * API PARAMS

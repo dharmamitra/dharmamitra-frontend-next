@@ -6,7 +6,6 @@ export default function createLabConfig() {
     siteUrl: "https://dharmamitra.org/lab",
     basePath: "/lab",
     featureFlags: {
-      search: true,
       translateExtendedOptions: true,
     },
   })

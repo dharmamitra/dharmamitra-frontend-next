@@ -1,7 +1,7 @@
 import { z } from "zod"
 
-import { allTargetLanguages } from "@/utils/api/params"
-import { TargetLanguage } from "@/utils/api/types"
+import { allTargetLanguages, modelNames } from "@/utils/api/params"
+import { ModelName, TargetLanguage } from "@/utils/api/types"
 
 export const envs = ["local", "lab", "dm", "kp"] as const
 
@@ -34,13 +34,18 @@ export const appConfigSchema = z.object({
             (val) => allTargetLanguages.includes(val as TargetLanguage),
             {
               message:
-                "Invalid target language given to app environment config `paramOptions` prop.",
+                "Invalid `paramOptions.targetLanguage` value given to app config.",
             },
           ),
         )
         .default(allTargetLanguages),
       doGrammarExplanation: z.boolean().default(false),
-      model: z.string().default("NO"),
+      model: z
+        .string()
+        .refine((val) => modelNames.includes(val as ModelName), {
+          message: "Invalid `paramOptions.model` value given to app config.",
+        })
+        .default("NO" as ModelName),
     })
     .default({}),
   featureFlags: z

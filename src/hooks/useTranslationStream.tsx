@@ -3,19 +3,20 @@ import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
-import appConfig from "@/config"
+import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 import {
   InputEncoding,
+  ModelName,
   TargetLanguage,
   TranslationRequestProps,
 } from "@/utils/api/types"
 import { cleanSSEData } from "@/utils/transformers"
 
-const servedTargetLanguages = appConfig.paramOptions.targetLanguages
-
 const useTranslationStream = () => {
+  const { streamPaths, paramOptions } = useAppConfig()
+
   const { input: inputSentence } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
   )
@@ -25,14 +26,18 @@ const useTranslationStream = () => {
   const { input: targetLang } = useInputWithUrlParam(
     apiParamsNames.translation.target_lang,
   )
+  const { input: model } = useInputWithUrlParam(
+    apiParamsNames.translation.model,
+  )
 
   // TODO: Add typing to useInputWithUrlParam and remove casting
   const inputEncodingParam = (
     inputEncoding ? inputEncoding : inputEncodings[0]
   ) as InputEncoding
   const targetLangParam = (
-    targetLang ? targetLang : servedTargetLanguages[0]
+    targetLang ? targetLang : paramOptions.targetLanguages[0]
   ) as TargetLanguage
+  const modelParam = (model ? model : paramOptions.model) as ModelName
 
   const params: TranslationRequestProps = React.useMemo(
     () => ({
@@ -40,9 +45,9 @@ const useTranslationStream = () => {
       input_encoding: inputEncodingParam,
       do_grammar_explanation: false,
       target_lang: targetLangParam,
-      model: "NO",
+      model: modelParam,
     }),
-    [inputSentence, inputEncodingParam, targetLangParam],
+    [inputSentence, inputEncodingParam, targetLangParam, modelParam],
   )
 
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
@@ -83,7 +88,7 @@ const useTranslationStream = () => {
       // 7 seconds
     }, 7000)
 
-    const eventSource = new SSE(appConfig.streamPaths.translation, {
+    const eventSource = new SSE(streamPaths.translation, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -132,7 +137,12 @@ const useTranslationStream = () => {
         clearTimeout(timeoutIdRef.current)
       }
     }
-  }, [triggerTranslationQuery, setTriggerTranslationQuery, params])
+  }, [
+    triggerTranslationQuery,
+    setTriggerTranslationQuery,
+    params,
+    streamPaths.translation,
+  ])
 
   return { translationStream, isLoading, isError }
 }

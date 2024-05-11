@@ -2,19 +2,23 @@ import Box from "@mui/material/Box"
 import { grey } from "@mui/material/colors"
 import Grid from "@mui/material/Grid"
 
-import appConfig from "@/config"
+import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
 import TranslationInputBox from "./TranslationInputBox"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
+import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
 import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
 
 export default function TranslationFeature() {
+  const { translateExtendedOptions } = useAppConfig().featureFlags
   return (
-    <Box>
-      {appConfig.featureFlags.translateExtendedOptions === true ? (
-        <Box sx={{ p: 4, textAlign: "left" }}>Advanced Options</Box>
+    <>
+      {translateExtendedOptions === true ? (
+        <Box sx={{ my: 6, mx: 2 }}>
+          <TranslationModelSelector />
+        </Box>
       ) : null}
       <Box
         sx={{
@@ -37,6 +41,6 @@ export default function TranslationFeature() {
           <TranslationOutputBox />
         </Grid>
       </Box>
-    </Box>
+    </>
   )
 }

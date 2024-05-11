@@ -32,9 +32,7 @@ export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
     return (
       <NextIntlClientProvider messages={translationMessages}>
         <PageShell maxWidth="xl" sx={{ mb: { xs: 12, md: 34 } }}>
-          <Typography component="h1" align="center" color="primary">
-            <ToolSelectorTabs />
-          </Typography>
+          <ToolSelectorTabs />
         </PageShell>
       </NextIntlClientProvider>
     )

@@ -83,7 +83,9 @@
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>"
     },
-    "clear": "Clear"
+    "clear": "Clear",
+    "on": "On",
+    "off": "Off"
   },
   "navigation": {
     "home": "Home",
@@ -124,6 +126,8 @@
     "targetLanguageSelectLabel": "Output language",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
     "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "modelLabel": "Model",
+    "grammarLabel": "Grammar Analysis",
     "copyTranslation": "Copy translation",
     "encodings": {
       "auto": "Autodetect",
@@ -147,6 +151,11 @@
       "sanskrit-knn": "Sanskrit (KNN)",
       "sanskrit": "Sanskrit",
       "tibetan": "Tibetan"
+    },
+    "models": {
+      "NO": "None",
+      "ANALYZE": "Analyze",
+      "GPT4TRANSLATE": "GPT4 Translate"
     }
   }
 }

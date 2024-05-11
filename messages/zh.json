@@ -148,6 +148,11 @@
       "sanskrit-knn": "Sanskrit (KNN)",
       "sanskrit": "梵文",
       "tibetan": "藏文"
+    },
+    "models": {
+      "NO": "None",
+      "ANALYZE": "Analyze",
+      "GPT4TRANSLATE": "GPT4 Translate"
     }
   }
 }
