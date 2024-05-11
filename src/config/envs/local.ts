@@ -6,6 +6,7 @@ export default function createLocalConfig() {
     siteUrl: "http://localhost:3000",
     featureFlags: {
       search: true,
+      translateExtendedOptions: true,
     },
   })
 }

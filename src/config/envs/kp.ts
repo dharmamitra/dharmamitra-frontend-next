@@ -23,5 +23,9 @@ export default function createKPConfig() {
     paramOptions: {
       targetLanguages,
     },
+    featureFlags: {
+      search: true,
+      translateExtendedOptions: true,
+    },
   })
 }

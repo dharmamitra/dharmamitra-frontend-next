@@ -7,6 +7,7 @@ export default function createLabConfig() {
     basePath: "/lab",
     featureFlags: {
       search: true,
+      translateExtendedOptions: true,
     },
   })
 }

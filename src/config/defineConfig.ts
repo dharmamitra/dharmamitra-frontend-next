@@ -39,33 +39,40 @@ export const appConfigSchema = z.object({
           ),
         )
         .default(allTargetLanguages),
+      doGrammarExplanation: z.boolean().default(false),
+      model: z.string().default("NO"),
     })
     .default({}),
   featureFlags: z
     .object({
       search: z.boolean().default(false),
+      translateExtendedOptions: z.boolean().default(false),
     })
     .default({}),
 })
 
 export type AppConfig = z.infer<typeof appConfigSchema>
 
-type KeysWithFallbackValue =
-  | "logoPath"
-  | "siteName"
-  | "basePath"
-  | "featureFlags"
-  | "endpoints"
-  | "streamPaths"
-  | "paramOptions"
-  | "orgEmail"
+// Recursive Partial type to make all properties optional, including nested objects
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends (infer U)[]
+    ? DeepPartial<U>[]
+    : T[P] extends readonly (infer U)[]
+      ? readonly DeepPartial<U>[]
+      : T[P] extends object
+        ? DeepPartial<T[P]>
+        : T[P]
+}
 
-type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
+type RequiredConfigKeys = {
+  env: AppEnv
+  siteUrl: string
+}
 
-export type DefaultConfig = Pick<AppConfig, KeysWithFallbackValue>
-export type RequiredConfig = Optional<AppConfig, KeysWithFallbackValue>
+export type EnhancedAppConfig = RequiredConfigKeys &
+  DeepPartial<Omit<AppConfig, keyof RequiredConfigKeys>>
 
-function defineConfig(config: RequiredConfig) {
+function defineConfig(config: EnhancedAppConfig) {
   return appConfigSchema.parse(config)
 }
 
