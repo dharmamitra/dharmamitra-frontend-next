@@ -2,23 +2,15 @@ import { NextIntlClientProvider, useMessages, useTranslations } from "next-intl"
 import { unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 
+import ToolSelectorTabs from "@/components/features/ToolSelectorTabs/ToolSelectorTabs"
 import PageShell from "@/components/layout/PageShell"
-// import appConfig from "@/config"
+import appConfig from "@/config"
 import TranslationFeature from "@/features/translation"
 import {
   I18nMetadataHandlerProps,
   pickMessages,
   supportedLocales,
 } from "@/i18n"
-
-/* 
-If we need to use query parameters (as in earlier iterations -
-see diff for 5b3b300b2b) that are only known
-at request time, we need to make sure we're using
-dynamic rendering (i.e. no SSG).
-
-export const dynamic = "force-dynamic"
-*/
 
 // TODO: keep an eye on `next-intl` updates to see when `generateStaticParams` can be removed: https://next-intl-docs.vercel.app/docs/getting-started/app-router#add-generatestaticparams-to-applocalelayouttsx
 export const generateStaticParams = () => {
@@ -33,20 +25,20 @@ export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
   const messages = useMessages() as Messages
   const translationMessages = pickMessages({
     messages,
-    messageKeys: ["translation", "generic"],
+    messageKeys: ["translation", "search", "generic"],
   })
 
-  // if (appConfig.featureFlags.search === true) {
-  //   return (
-  //     <NextIntlClientProvider messages={translationMessages}>
-  //       <PageShell maxWidth="xl" sx={{ mb: { xs: 12, md: 34 } }}>
-  //         <Typography component="h1" align="center" color="primary">
-  //           HELLO ENVIRONMENT! :D
-  //         </Typography>
-  //       </PageShell>
-  //     </NextIntlClientProvider>
-  //   )
-  // }
+  if (appConfig.featureFlags.search === true) {
+    return (
+      <NextIntlClientProvider messages={translationMessages}>
+        <PageShell maxWidth="xl" sx={{ mb: { xs: 12, md: 34 } }}>
+          <Typography component="h1" align="center" color="primary">
+            <ToolSelectorTabs />
+          </Typography>
+        </PageShell>
+      </NextIntlClientProvider>
+    )
+  }
 
   return (
     <NextIntlClientProvider messages={translationMessages}>

@@ -107,7 +107,7 @@ export default function TranslationInput() {
           <Tooltip
             title={
               <span>
-                {`${t("translation.translate")}`} (Ctrl +
+                {t("translation.translate")} (Ctrl +
                 <span
                   style={{
                     fontSize: "1.1rem",

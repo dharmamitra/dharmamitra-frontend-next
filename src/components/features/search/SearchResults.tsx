@@ -8,7 +8,7 @@ export default function SearchResults() {
   return (
     <Box sx={{ mt: 3 }}>
       <Typography component="p" variant="h5" sx={{ mt: 6 }}>
-        Coming soon...
+        {/* Coming soon... */}
       </Typography>
     </Box>
   )

@@ -109,13 +109,13 @@
     "localePlaceholder": "简体中文"
   },
   "search": {
+    "search": "搜索",
     "heading": "搜索2500年的佛教",
-    "tabLabel": "搜索",
     "placeholder": "搜索一些东西"
   },
   "translation": {
-    "heading": "",
     "translate": "翻译",
+    "heading": "",
     "inputAriaLabel": "翻译栏位",
     "placeholder": "在此输入需要翻译之梵文、藏文或中文…",
     "otherLabel": "其他",

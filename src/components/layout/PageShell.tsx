@@ -17,11 +17,18 @@ export default function PageShell({ children, maxWidth = "lg", sx }: Props) {
   return (
     <>
       <NavigationBar />
-      <Box sx={{ mb: 12, ...sx }}>
+      <Box
+        sx={{
+          minHeight: "50vh",
+          display: "flex",
+          flexDirection: "column",
+          ...sx,
+        }}
+      >
         <Container
           component="main"
           maxWidth={maxWidth}
-          sx={{ mt: { xs: 6, md: 8 } }}
+          sx={{ flexGrow: 1, mt: { xs: 6, md: 8 } }}
         >
           {children}
         </Container>
