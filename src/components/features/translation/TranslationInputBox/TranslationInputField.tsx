@@ -18,9 +18,9 @@ import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import { apiParamsNames } from "@/utils/api/params"
 import { translationInputLimit } from "@/utils/ui"
 
-import BoxBottomElementsRow from "../BoxBottomElementsRow"
+import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 
-export default function TranslationInput() {
+export default function TranslationInputField() {
   const t = useTranslations()
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
@@ -107,7 +107,7 @@ export default function TranslationInput() {
           <Tooltip
             title={
               <span>
-                {t("translation.translate")} (Ctrl +
+                {`${t("translation.translate")}`} (Ctrl +
                 <span
                   style={{
                     fontSize: "1.1rem",

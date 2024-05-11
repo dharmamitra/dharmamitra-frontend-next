@@ -13,7 +13,7 @@ import useInputWithLocalStorage from "@/hooks/useInputWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 
-import RadioOption from "../RadioOption"
+import RadioOption from "../common/RadioOption"
 
 export default function TranslationInputEncodingSelector() {
   const t = useTranslations("translation")

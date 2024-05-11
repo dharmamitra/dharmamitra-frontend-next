@@ -9,7 +9,7 @@ import Error from "@/components/Error"
 import LoadingDots from "@/components/LoadingDots"
 import useTranslationStream from "@/hooks/useTranslationStream"
 
-import BoxBottomElementsRow from "../BoxBottomElementsRow"
+import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 
 export default function TranslationOutput() {
   const t = useTranslations()

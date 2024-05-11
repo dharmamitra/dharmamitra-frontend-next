@@ -15,7 +15,7 @@ import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { apiParamsNames } from "@/utils/api/params"
 import { TargetLanguage } from "@/utils/api/types"
 
-import RadioOption from "../RadioOption"
+import RadioOption from "../common/RadioOption"
 
 const servedTargetLanguages = appConfig.paramOptions.targetLanguages
 

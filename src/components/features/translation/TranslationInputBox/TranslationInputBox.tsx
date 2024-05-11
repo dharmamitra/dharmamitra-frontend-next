@@ -5,10 +5,10 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 
 import customTheming from "@/utils/theme/config"
 
-import BoxBottomElementsRow from "../BoxBottomElementsRow"
-import TranslationContentBox from "../TranslationContentBox"
+import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
+import TranslationContentBox from "../common/TranslationContentBox"
 
-const TranslationInput = dynamic(() => import("./TranslationInput"), {
+const TranslationInput = dynamic(() => import("./TranslationInputField"), {
   loading: () => (
     <TranslationContentBox
       testId="translation-input"

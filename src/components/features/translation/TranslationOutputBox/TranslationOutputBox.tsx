@@ -3,7 +3,7 @@ import dynamic from "next/dynamic"
 
 import customTheming from "@/utils/theme/config"
 
-import TranslationContentBox from "../TranslationContentBox"
+import TranslationContentBox from "../common/TranslationContentBox"
 
 const TranslationOutput = dynamic(() => import("./TranslationOutput"))
 
