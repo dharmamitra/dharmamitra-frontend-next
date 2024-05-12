@@ -11,6 +11,46 @@ import useTranslationStream from "@/hooks/useTranslationStream"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 
+const FormatedStream = ({
+  translationStream,
+}: {
+  translationStream: string
+}) => {
+  const paragraphs = translationStream?.split(/🔽/g).filter((p) => p)
+
+  return paragraphs.map((paragraph, index) => {
+    const idiomaticContent = paragraph.match(/(^.*?)(\s-\s.*)$/)
+
+    if (idiomaticContent) {
+      return (
+        <Typography
+          key={`formated-translation-stream-${index}`}
+          component="p"
+          sx={{
+            whiteSpace: "pre-wrap",
+          }}
+        >
+          <i style={{ fontWeight: 500 }}>{idiomaticContent[1]}</i>
+          {idiomaticContent[2]}
+        </Typography>
+      )
+    }
+
+    return (
+      <Typography
+        key={`formated-translation-stream-${index}`}
+        component="p"
+        sx={{
+          whiteSpace: "pre-wrap",
+          my: index === 0 ? 0 : 1,
+        }}
+      >
+        {paragraph}
+      </Typography>
+    )
+  })
+}
+
 export default function TranslationOutput() {
   const t = useTranslations()
   const { translationStream, isError, isLoading } = useTranslationStream()
@@ -29,14 +69,7 @@ export default function TranslationOutput() {
       {isLoading ? <LoadingDots sx={{ m: 2 }} /> : null}
       {isError ? <Error message={errorMessage} /> : null}
       {translationStream ? (
-        <Typography
-          data-testid="request-translation"
-          variant="reader"
-          component="p"
-          mt={0}
-        >
-          {translationStream}
-        </Typography>
+        <FormatedStream translationStream={translationStream} />
       ) : null}
       <BoxBottomElementsRow sx={{ justifyContent: "flex-end" }}>
         <CopyText
