@@ -59,20 +59,52 @@ export default function ToolSelectorTabs() {
   })
 
   return (
-    <Box sx={{ width: "100%", py: 3, position: "relative" }}>
-      <div style={{ height: "1px", width: "1px" }} ref={scrollMarkerRef}></div>
+    <>
       <Tabs
         value={tabIndex}
         aria-label="navigation tabs"
         centered
         onChange={(event, newValue) => setTabIndex(newValue)}
-        className={scrollMarkerInView ? undefined : styles.stickyTabs}
+        className={
+          scrollMarkerInView
+            ? styles.stickyTabs
+            : `${styles.stickyTabs} ${styles.stickyTabsDesktop}`
+        }
+        TabIndicatorProps={{
+          sx: { display: "none" },
+        }}
+        sx={{
+          borderRadius: "50px",
+          border: "1px solid rgba(0, 0, 0, 0.05)",
+          backgroundColor: "#eeeeee",
+          "& button": {
+            minHeight: "48px",
+            maxHeight: "48px",
+            margin: "8px",
+            borderRadius: "50px",
+            transition:
+              "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
+          },
+          "& button:active": {
+            backgroundColor: "transparent",
+          },
+          "& button.Mui-selected": {
+            backgroundColor: "#fff",
+            boxShadow: "0px 4px 4px 0px #0000001C",
+            transition:
+              "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
+          },
+          "&.Mui-focusVisible": {
+            backgroundColor: "transparent",
+          },
+        }}
       >
         <Tab
           icon={<TranslateOutlinedIcon />}
           iconPosition="start"
           label={t("translation.translate")}
           {...a11yProps(1)}
+          disableRipple
         />
 
         <Tab
@@ -80,28 +112,35 @@ export default function ToolSelectorTabs() {
           iconPosition="start"
           label={t("search.search")}
           {...a11yProps(0)}
+          disableRipple
         />
       </Tabs>
+      <Box sx={{ width: "100%", py: 3, position: "relative" }}>
+        <div
+          style={{ height: "1px", width: "1px" }}
+          ref={scrollMarkerRef}
+        ></div>
 
-      <Box sx={{ height: "100%" }}>
-        <FeatureTabPanel value={tabIndex} index={0}>
-          <Box sx={{ mt: 6 }}>
-            <TranslationFeature />
-          </Box>
-        </FeatureTabPanel>
+        <Box sx={{ height: "100%" }}>
+          <FeatureTabPanel value={tabIndex} index={0}>
+            <Box sx={{ mt: 6 }}>
+              <TranslationFeature />
+            </Box>
+          </FeatureTabPanel>
 
-        <FeatureTabPanel value={tabIndex} index={1}>
-          <Box sx={{ maxWidth: "960px", mx: "auto", mt: 6 }}>
-            <SearchInput
-              className={scrollMarkerInView ? undefined : styles.stickyInput}
-              placeholder="TODO: placeholder"
-              isScrolling={!scrollMarkerInView}
-            />
+          <FeatureTabPanel value={tabIndex} index={1}>
+            <Box sx={{ maxWidth: "960px", mx: "auto", mt: 6 }}>
+              <SearchInput
+                className={scrollMarkerInView ? undefined : styles.stickyInput}
+                placeholder="TODO: placeholder"
+                isScrolling={!scrollMarkerInView}
+              />
 
-            <SearchResults />
-          </Box>
-        </FeatureTabPanel>
+              <SearchResults />
+            </Box>
+          </FeatureTabPanel>
+        </Box>
       </Box>
-    </Box>
+    </>
   )
 }
