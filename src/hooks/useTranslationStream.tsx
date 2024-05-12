@@ -29,6 +29,9 @@ const useTranslationStream = () => {
   const { input: model } = useInputWithUrlParam(
     apiParamsNames.translation.model,
   )
+  const { input: doGrammarExplanation } = useInputWithUrlParam(
+    apiParamsNames.translation.do_grammar_explanation,
+  )
 
   // TODO: Add typing to useInputWithUrlParam and remove casting
   const inputEncodingParam = (
@@ -38,16 +41,23 @@ const useTranslationStream = () => {
     targetLang ? targetLang : paramOptions.targetLanguages[0]
   ) as TargetLanguage
   const modelParam = (model ? model : paramOptions.model) as ModelName
+  const grammarParam = doGrammarExplanation === "on"
 
   const params: TranslationRequestProps = React.useMemo(
     () => ({
       input_sentence: inputSentence,
       input_encoding: inputEncodingParam,
-      do_grammar_explanation: false,
+      do_grammar_explanation: grammarParam,
       target_lang: targetLangParam,
       model: modelParam,
     }),
-    [inputSentence, inputEncodingParam, targetLangParam, modelParam],
+    [
+      inputSentence,
+      inputEncodingParam,
+      targetLangParam,
+      modelParam,
+      grammarParam,
+    ],
   )
 
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(

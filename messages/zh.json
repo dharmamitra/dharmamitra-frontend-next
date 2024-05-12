@@ -153,6 +153,10 @@
       "NO": "None",
       "ANALYZE": "Analyze",
       "GPT4TRANSLATE": "GPT4 Translate"
+    },
+    "grammar": {
+      "on": "On",
+      "off": "Off"
     }
   }
 }

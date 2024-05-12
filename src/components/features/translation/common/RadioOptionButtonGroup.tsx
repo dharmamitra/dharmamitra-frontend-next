@@ -10,7 +10,7 @@ export default function RadioOptionButtonGroup({
   option,
   isSelected,
 }: {
-  i18nKey: "models"
+  i18nKey: "models" | "grammar"
   option: string
   isSelected: boolean
 }) {

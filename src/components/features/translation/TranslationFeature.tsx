@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid"
 import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
+import TranslationGrammarSelector from "./TranslationGrammarSelector"
 import TranslationInputBox from "./TranslationInputBox"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
 import TranslationModelSelector from "./TranslationModelSelector"
@@ -16,8 +17,9 @@ export default function TranslationFeature() {
   return (
     <>
       {translateExtendedOptions === true ? (
-        <Box sx={{ my: 6, mx: 2 }}>
+        <Box sx={{ display: "flex", gap: 6, my: 6, mx: 2 }}>
           <TranslationModelSelector />
+          <TranslationGrammarSelector />
         </Box>
       ) : null}
       <Box
