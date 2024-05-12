@@ -14,6 +14,7 @@ import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelect
 
 export default function TranslationFeature() {
   const { translateExtendedOptions } = useAppConfig().featureFlags
+
   return (
     <>
       {translateExtendedOptions === true ? (

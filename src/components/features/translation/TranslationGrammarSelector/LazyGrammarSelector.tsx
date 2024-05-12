@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import { useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { RadioGroup } from "@mui/material"
 
@@ -12,6 +13,11 @@ import RadioOptionButtonGroup from "../common/RadioOptionButtonGroup"
 
 export default function LazyModelSelector() {
   const t = useTranslations("translation")
+
+  const searchParams = useSearchParams()
+  const targetLanguage = searchParams.get(
+    apiParamsNames.translation.target_lang,
+  )
 
   const { doGrammarExplanation } = useAppConfig().paramOptions
 
@@ -28,7 +34,8 @@ export default function LazyModelSelector() {
     }
   }, [input, handleInputChange, defaultValue])
 
-  console.log("input", input)
+  if (targetLanguage !== "sanskrit-knn") return null
+
   return (
     <>
       <RadioGroup
