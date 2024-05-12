@@ -32,6 +32,11 @@ export default function LazyModelSelector() {
         aria-label={t("modelLabel")}
         value={input ? input : model}
         onChange={(e) => handleInputChange(e.target.value)}
+        sx={{
+          display: "flex",
+          flexWrap: "nowrap",
+          columnGap: 1,
+        }}
         row
       >
         {translationModels.map((model) => (

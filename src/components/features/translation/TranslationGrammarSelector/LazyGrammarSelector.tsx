@@ -3,7 +3,8 @@
 import React from "react"
 import { useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { RadioGroup } from "@mui/material"
+import { RadioGroup, Typography } from "@mui/material"
+import Box from "@mui/material/Box"
 
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithLocalStorage from "@/hooks/useInputWithLocalStorage"
@@ -37,11 +38,34 @@ export default function LazyModelSelector() {
   if (targetLanguage !== "sanskrit-knn") return null
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "nowrap",
+        alignItems: "center",
+        height: "min-content",
+        gap: 1,
+      }}
+    >
+      <Typography
+        sx={{
+          color: "text.secondary",
+          fontSize: "14px !important",
+          mb: 0.5,
+          width: "max-content",
+        }}
+      >
+        {t("grammarLabel")}:
+      </Typography>
       <RadioGroup
         aria-label={t("modelLabel")}
         value={input ? input : defaultValue}
         onChange={(e) => handleInputChange(e.target.value)}
+        sx={{
+          display: "flex",
+          flexWrap: "nowrap",
+          gap: 1,
+        }}
         row
       >
         {["off", "on"].map((value) => (
@@ -53,6 +77,6 @@ export default function LazyModelSelector() {
           />
         ))}
       </RadioGroup>
-    </>
+    </Box>
   )
 }

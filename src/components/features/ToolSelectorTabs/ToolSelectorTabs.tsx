@@ -75,7 +75,6 @@ export default function ToolSelectorTabs() {
         }}
         sx={{
           borderRadius: "50px",
-          border: "1px solid rgba(0, 0, 0, 0.05)",
           backgroundColor: "#eeeeee",
           "& button": {
             minHeight: "48px",
@@ -85,17 +84,11 @@ export default function ToolSelectorTabs() {
             transition:
               "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
           },
-          "& button:active": {
-            backgroundColor: "transparent",
-          },
           "& button.Mui-selected": {
             backgroundColor: "#fff",
             boxShadow: "0px 4px 4px 0px #0000001C",
             transition:
               "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
-          },
-          "&.Mui-focusVisible": {
-            backgroundColor: "transparent",
           },
         }}
       >

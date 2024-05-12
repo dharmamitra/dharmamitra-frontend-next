@@ -17,17 +17,12 @@ export default function TranslationFeature() {
 
   return (
     <>
-      {translateExtendedOptions === true ? (
-        <Box sx={{ display: "flex", gap: 6, my: 6, mx: 2 }}>
-          <TranslationModelSelector />
-          <TranslationGrammarSelector />
-        </Box>
-      ) : null}
       <Box
         sx={{
           display: "flex",
           width: "100%",
           height: "100%",
+          mt: 8,
           border: "1px solid",
           borderColor: "divider",
           borderRadius: customTheming.shape.inputRadius,
@@ -44,6 +39,20 @@ export default function TranslationFeature() {
           <TranslationOutputBox />
         </Grid>
       </Box>
+      {translateExtendedOptions === true ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            columnGap: 4,
+            rowGap: 2,
+            mt: 3,
+          }}
+        >
+          <TranslationModelSelector />
+          <TranslationGrammarSelector />
+        </Box>
+      ) : null}
     </>
   )
 }
