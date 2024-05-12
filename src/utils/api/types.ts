@@ -33,7 +33,7 @@ export type FilterSecondary = components["schemas"]["FilterSecondary"]
 
 export type InputEncoding = components["schemas"]["InputEncoding"]
 
-export type ModelName = components["schemas"]["ModelName"]
+export type TranslationModel = components["schemas"]["TranslationModel"]
 
 export type PostProcessModel = components["schemas"]["PostProcessModel"]
 

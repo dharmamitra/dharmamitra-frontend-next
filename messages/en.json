@@ -151,9 +151,9 @@
       "tibetan": "Tibetan"
     },
     "models": {
-      "NO": "None",
-      "ANALYZE": "Analyze",
-      "GPT4TRANSLATE": "GPT4 Translate"
+      "none": "None",
+      "madlad": "Madlad",
+      "llama3": "Llama3"
     },
     "grammar": {
       "on": "On",

@@ -3,8 +3,8 @@ import { exhaustiveStringTuple } from "@/utils/typescript"
 import {
   APIParamNames,
   InputEncoding,
-  ModelName,
   TargetLanguage,
+  TranslationModel,
 } from "./types"
 
 export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
@@ -16,10 +16,10 @@ export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
   "wylie",
 )
 
-export const modelNames = exhaustiveStringTuple<ModelName>()(
-  "NO",
-  "ANALYZE",
-  "GPT4TRANSLATE",
+export const translationModels = exhaustiveStringTuple<TranslationModel>()(
+  "none",
+  "madlad",
+  "llama3",
 )
 
 export const allTargetLanguages = exhaustiveStringTuple<TargetLanguage>()(

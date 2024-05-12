@@ -125,6 +125,8 @@
     "targetLanguageSelectLabel": "翻译目标语",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
     "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "modelLabel": "Model",
+    "grammarLabel": "Grammar Analysis",
     "copyTranslation": "复制翻译",
     "encodings": {
       "auto": "Autodetect",
@@ -150,9 +152,9 @@
       "tibetan": "藏文"
     },
     "models": {
-      "NO": "None",
-      "ANALYZE": "Analyze",
-      "GPT4TRANSLATE": "GPT4 Translate"
+      "none": "None",
+      "madlad": "Madlad",
+      "llama3": "Llama3"
     },
     "grammar": {
       "on": "On",

@@ -1,7 +1,7 @@
 import { z } from "zod"
 
-import { allTargetLanguages, modelNames } from "@/utils/api/params"
-import { ModelName, TargetLanguage } from "@/utils/api/types"
+import { allTargetLanguages, translationModels } from "@/utils/api/params"
+import { TargetLanguage, TranslationModel } from "@/utils/api/types"
 
 export const envs = ["local", "lab", "dm", "kp"] as const
 
@@ -42,10 +42,10 @@ export const appConfigSchema = z.object({
       doGrammarExplanation: z.boolean().default(false),
       model: z
         .string()
-        .refine((val) => modelNames.includes(val as ModelName), {
+        .refine((val) => translationModels.includes(val as TranslationModel), {
           message: "Invalid `paramOptions.model` value given to app config.",
         })
-        .default("NO" as ModelName),
+        .default("none" as TranslationModel),
     })
     .default({}),
   featureFlags: z

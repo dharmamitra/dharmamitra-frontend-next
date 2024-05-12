@@ -6,7 +6,7 @@ import { RadioGroup } from "@mui/material"
 
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithLocalStorage from "@/hooks/useInputWithLocalStorage"
-import { apiParamsNames, modelNames } from "@/utils/api/params"
+import { apiParamsNames, translationModels } from "@/utils/api/params"
 
 import RadioOptionButtonGroup from "../common/RadioOptionButtonGroup"
 
@@ -34,7 +34,7 @@ export default function LazyModelSelector() {
         onChange={(e) => handleInputChange(e.target.value)}
         row
       >
-        {modelNames.map((model) => (
+        {translationModels.map((model) => (
           <RadioOptionButtonGroup
             key={model + "-model-option"}
             i18nKey="models"
