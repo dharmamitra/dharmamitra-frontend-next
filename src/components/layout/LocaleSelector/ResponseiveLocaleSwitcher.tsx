@@ -1,10 +1,7 @@
 "use client"
 
 import React, { ReactNode } from "react"
-import { useTheme } from "@mui/material/styles"
-import useMediaQuery from "@mui/material/useMediaQuery"
 
-import DesktopLocaleSwitcher from "./DesktopLocaleSwitcher"
 import MobileLocaleSwitcher from "./MobileLocaleSwitcher"
 
 export type LocaleSwitcherProps = {
@@ -13,16 +10,9 @@ export type LocaleSwitcherProps = {
   label: string
 }
 
-// This is used to make sure only the necessary JS is for the users viewport.
+// TODO: Refactor
 const ResponsiveLocaleSwitcher = (props: LocaleSwitcherProps) => {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
-
-  if (isMobile) {
-    return <MobileLocaleSwitcher {...props} />
-  }
-
-  return <DesktopLocaleSwitcher {...props} />
+  return <MobileLocaleSwitcher {...props} />
 }
 
 export default ResponsiveLocaleSwitcher

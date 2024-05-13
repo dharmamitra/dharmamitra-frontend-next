@@ -27,8 +27,7 @@ export default function NavigationBar() {
           height: { xs: "78px", sm: "85px", md: "96px" },
           py: "0.2rem",
           backgroundColor: "background.default",
-          borderBottom: "1px solid",
-          borderColor: "secondary.main",
+          boxShadow: "0px 4px 4px 0px #0000001A",
         }}
       >
         <Toolbar>

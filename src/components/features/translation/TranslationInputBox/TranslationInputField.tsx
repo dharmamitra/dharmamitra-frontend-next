@@ -38,7 +38,6 @@ export default function TranslationInputField() {
         sx={{
           width: "100%",
           height: "100%",
-          // overflow: "clip",
           alignItems: "flex-start",
           borderTopRightRadius: "none",
           borderBottomRightRadius: "none",

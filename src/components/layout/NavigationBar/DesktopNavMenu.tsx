@@ -1,8 +1,7 @@
 import React from "react"
 import dynamic from "next/dynamic"
+import LanguageIcon from "@mui/icons-material/Language"
 import { Box } from "@mui/material"
-
-import DesktopLocaleSwitcherLoading from "@/components/layout/LocaleSelector/DesktopLocaleSwitcherLoading"
 
 import { NavItemButtonsLoading } from "./NavItemButtons"
 
@@ -11,7 +10,7 @@ const NavItemButtons = dynamic(() => import("./NavItemButtons"), {
 })
 
 const LocaleSelector = dynamic(() => import("../LocaleSelector"), {
-  loading: () => <DesktopLocaleSwitcherLoading />,
+  loading: () => <LanguageIcon color="action" />,
 })
 
 export default function DesktopNavMenu() {

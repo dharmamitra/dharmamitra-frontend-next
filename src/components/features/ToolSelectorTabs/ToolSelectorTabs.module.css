@@ -12,7 +12,7 @@
     top: 112px;
   }
   @media (min-width: 899px) {
-    top: 124px;
+    top: 139px;
   }
 
   transition: top 0.2s ease-in-out;
