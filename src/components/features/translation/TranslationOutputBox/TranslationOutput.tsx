@@ -54,6 +54,7 @@ const FormatedStream = ({
 export default function TranslationOutput() {
   const t = useTranslations()
   const { translationStream, isError, isLoading } = useTranslationStream()
+  const outputRef = React.useRef<HTMLDivElement>(null)
 
   const errorMessage =
     isError && isError.errorCode === 504
@@ -69,11 +70,13 @@ export default function TranslationOutput() {
       {isLoading ? <LoadingDots sx={{ m: 2 }} /> : null}
       {isError ? <Error message={errorMessage} /> : null}
       {translationStream ? (
-        <FormatedStream translationStream={translationStream} />
+        <div ref={outputRef}>
+          <FormatedStream translationStream={translationStream} />
+        </div>
       ) : null}
       <BoxBottomElementsRow sx={{ justifyContent: "flex-end" }}>
         <CopyText
-          string={translationStream ?? ""}
+          contentRef={outputRef}
           ariaLabel={t("translation.copyTranslation")}
         />
       </BoxBottomElementsRow>
