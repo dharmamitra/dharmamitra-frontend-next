@@ -13,8 +13,7 @@ export const targetLanguages: TargetLanguage[] = [
 
 export default function createDMConfig() {
   return defineConfig({
-    env: "dm",
-    siteUrl: "https://dharmamitra.org",
+    env: "pub",
     paramOptions: {
       targetLanguages,
     },

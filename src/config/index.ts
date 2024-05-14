@@ -1,8 +1,7 @@
-import { AppConfig, AppEnv, envs } from "./defineConfig"
-import createDMConfig from "./envs/dm"
-import createKPConfig from "./envs/kp"
+import { AppConfig, AppEnv, SUPPORTED_ENVS } from "./defineConfig"
 import createLabConfig from "./envs/lab"
-import createLocalConfig from "./envs/local"
+import createDMConfig from "./envs/pub"
+import createLocalConfig from "./envs/rnd"
 
 function getConfig() {
   const setEnv = process.env.NEXT_PUBLIC_APP_ENV as AppEnv
@@ -11,7 +10,7 @@ function getConfig() {
     throw new Error(`NEXT_PUBLIC_APP_ENV is not set`)
   }
 
-  if (!envs.includes(setEnv)) {
+  if (!SUPPORTED_ENVS.includes(setEnv)) {
     throw new Error(`Invalid NEXT_PUBLIC_APP_ENV value: "${setEnv}"`)
   }
 
@@ -21,22 +20,18 @@ function getConfig() {
 
   // Loop preferred over a switch statement to guard against
   // missing config creators.
-  envs.forEach((env) => {
+  SUPPORTED_ENVS.forEach((env) => {
     if (env !== setEnv) return
 
-    if (env === "dm") {
+    if (env === "pub") {
       configCreator = createDMConfig
-    }
-
-    if (env === "kp") {
-      configCreator = createKPConfig
     }
 
     if (env === "lab") {
       configCreator = createLabConfig
     }
 
-    if (env === "local") {
+    if (env === "rnd") {
       configCreator = createLocalConfig
     }
   })

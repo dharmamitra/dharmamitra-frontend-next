@@ -2,8 +2,7 @@ import defineConfig from "../defineConfig"
 
 export default function createLocalConfig() {
   return defineConfig({
-    env: "local",
-    siteUrl: "http://localhost:3000",
+    env: "rnd",
     featureFlags: {
       search: true,
       translateExtendedOptions: true,

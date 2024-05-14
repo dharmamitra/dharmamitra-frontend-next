@@ -3,15 +3,15 @@ import { z } from "zod"
 import { allTargetLanguages, translationModels } from "@/utils/api/params"
 import { TargetLanguage, TranslationModel } from "@/utils/api/types"
 
-export const envs = ["local", "lab", "dm", "kp"] as const
+export const SUPPORTED_ENVS = ["pub", "lab", "rnd", "local"] as const
 
-export type AppEnv = (typeof envs)[number]
+export type AppEnv = (typeof SUPPORTED_ENVS)[number]
 
 export const appConfigSchema = z.object({
-  env: z.enum(envs),
+  env: z.enum(SUPPORTED_ENVS),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
-  siteUrl: z.string(),
+  siteUrl: z.string().default("https://dharmamitra.org"),
   basePath: z.string().default(""),
   logoPath: z.string().default("TODO"),
   endpoints: z
@@ -71,7 +71,6 @@ type DeepPartial<T> = {
 
 type RequiredConfigKeys = {
   env: AppEnv
-  siteUrl: string
 }
 
 export type EnhancedAppConfig = RequiredConfigKeys &

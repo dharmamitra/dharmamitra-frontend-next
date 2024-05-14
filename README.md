@@ -33,14 +33,39 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Project config & workflow (UNDER DEVELOPMENT)
+## Project config, workflow & deployment (UNDER DEVELOPMENT)
 
 ### Config
 
 - adapted from [Best Practices for Handling Per-Environment Configuration in Your JS/TS Applications](https://www.raulmelo.me/en/blog/best-practices-for-handling-per-environment-config-js-ts-applications#the-config-strategy)
 
-- environment specific build scripts set the `NEXT_PUBLIC_APP_ENV` used to define app config for each environment. A prebuild step runs to envoke the env setter, so when eg. `yarn build:dm`, is run the `prebuild:dm` script executes first, setting.
-  - Next.js automatically loads environment variables from `.env.local`, `.env.development`, `.env.production`, and `.env.test` This method allows you to maintain the standard file names and leverage Next.js's built-in environment loading strategy.
+- environment specific build scripts (in `package.json`) set the `NEXT_PUBLIC_APP_ENV` used to define app config (including features, options to render) for each environment. 
+  - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env.production`. **note**: This overwrites the `.env.production` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_env.sh`
+  - Next.js automatically loads environment variables from `.env.local`, `.env.development`, `.env.production`, and `.env.test`. The prebuild step allows us to maintain the standard file names and use Next.js's built-in environment loading strategy.
+
+#### Config foundation
+
+- in config property must be set in all env config files add it to the `RequiredConfigKeys` type in `src/config/defineConfig.ts`
+
+#### Adding a new environment
+
+This steps can also be adjusted for renaming an environment. 
+
+- add the env alias to `SUPPORTED_ENVS` in `src/config/defineConfig.ts`
+- create an new env specific config file in `src/config/envs` (adjust settings as needed, with `defineConfig` as a ref.)
+- import the env's config file to `src/config/index.ts` and add the env alias to config getter ("if section")
+- add environment alias to the `servedAtRoot` in `next.config.mjs` if the environment's base path is `/` (*this should only be applicable in the case of renaming*)
+- add an env specific build script to `package.json`. Eg. for the `lab` env:
+   
+  ```
+  "prebuild:lab": "sh ./scripts/set_env.sh lab",
+  "build:lab": "next build",
+  ```
+
+- add a new service block for the env to `docker-compose.yaml`
+  - the env needs to be mapped to a new port
+  - the env container name needs to be added to the `nginx` service dependency list. 
+- add the env to `nginx/default.conf`
 
 ### Branches:
 
