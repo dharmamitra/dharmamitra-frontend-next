@@ -4,7 +4,10 @@ export default function createLabConfig() {
   return defineConfig({
     env: "lab",
     siteUrl: "https://dharmamitra.org/lab",
-    basePath: "/lab",
+    streamPaths: {
+      translation: "/lab/api/translation-stream",
+      search: "/lab/api/search-stream",
+    },
     featureFlags: {
       translateExtendedOptions: true,
     },

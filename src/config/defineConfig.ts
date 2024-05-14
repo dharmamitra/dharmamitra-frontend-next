@@ -71,6 +71,10 @@ type DeepPartial<T> = {
 
 type RequiredConfigKeys = {
   env: AppEnv
+  streamPaths: {
+    translation: string
+    search: string
+  }
 }
 
 export type EnhancedAppConfig = RequiredConfigKeys &
