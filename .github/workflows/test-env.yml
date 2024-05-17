@@ -31,4 +31,4 @@ jobs:
         with:
           build-args: DMENV=${{ github.event.inputs.flavour }}-${{ github.event.inputs.stage }}
           push: true
-          tags: "${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.flavour }}-${{ steps.timestamp.outputs.NOW }},${{ secrets.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.flavour }}-latest"
+          tags: "${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.flavour }}-${{ steps.timestamp.outputs.NOW }},${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.flavour }}-latest"
