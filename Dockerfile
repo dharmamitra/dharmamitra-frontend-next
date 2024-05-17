@@ -6,8 +6,8 @@ RUN yarn
 
 COPY . .
 
-ARG BUILD_SCRIPT
-RUN yarn $BUILD_SCRIPT
+ARG FLAVOUR
+RUN yarn build:$FLAVOUR
 
 EXPOSE 3000
 CMD [ "yarn", "start" ]
