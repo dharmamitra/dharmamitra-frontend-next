@@ -1,24 +1,11 @@
 name: Test-env
 on:
   workflow_dispatch:
-    inputs:
-      flavour:
-        type: choice
-        description: flavour
-        options: 
-          - lab
-          - dm
-          - kp
-      stage:
-        type: choice
-        description: stage
-        options: 
-          - production
-          - staging
-  # pull_request:
-  #   branches: [dev]
 jobs:
   build-and-test:
+    strategy:
+      matrix:
+        flavour: [pub, lab]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,12 +23,12 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.VA_DOCKERHUB_USERNAME }}
-          password: ${{ secrets.VA_DOCKERHUB_TOKEN }}
+          username: ${{ vars.DM_DH_USER }}
+          password: ${{ secrets.DM_DH_TOKEN }}
 
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           build-args: DMENV=${{ github.event.inputs.flavour }}-${{ github.event.inputs.stage }}
           push: true
-          tags: "${{ secrets.VA_DOCKERHUB_USERNAME }}/dmtest:${{ github.event.inputs.flavour }}-${{ steps.timestamp.outputs.NOW }},${{ secrets.VA_DOCKERHUB_USERNAME }}/dmtest:${{ github.event.inputs.flavour }}-latest"
+          tags: "${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.flavour }}-${{ steps.timestamp.outputs.NOW }},${{ secrets.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.flavour }}-latest"
