@@ -1,11 +1,11 @@
-name: Test-env
+name: staging-build
 on:
   workflow_dispatch:
 jobs:
   build-and-test:
     strategy:
       matrix:
-        flavour: [pub, lab]
+        version: [rnb]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,6 +29,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          build-args: FLAVOUR=${{ matrix.flavour }}
+          build-args: version=${{ matrix.version }}
           push: true
-          tags: "${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.flavour }}-${{ steps.timestamp.outputs.NOW }},${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.flavour }}-latest"
+          tags: "${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.version }}-${{ steps.timestamp.outputs.NOW }},${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.version }}-latest"
