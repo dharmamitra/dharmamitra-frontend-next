@@ -6,8 +6,8 @@ RUN yarn
 
 COPY . .
 
-ARG FLAVOUR
-RUN yarn build:$FLAVOUR
+ARG VERSION
+RUN yarn build:$VERSION
 
 EXPOSE 3000
 CMD [ "yarn", "start" ]
