@@ -1,11 +1,11 @@
-name: staging-build
+name: testing-build
 on:
   workflow_dispatch:
 jobs:
   build-and-test:
     strategy:
       matrix:
-        version: [lab, pub]
+        version: [rnd]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
