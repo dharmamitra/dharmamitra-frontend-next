@@ -15,7 +15,7 @@ import {
 import { cleanSSEData } from "@/utils/transformers"
 
 const useTranslationStream = () => {
-  const { streamPaths, paramOptions } = useAppConfig()
+  const { basePath, streamPaths, paramOptions } = useAppConfig()
 
   const { input: inputSentence } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
@@ -98,7 +98,7 @@ const useTranslationStream = () => {
       // 7 seconds
     }, 7000)
 
-    const eventSource = new SSE(streamPaths.translation, {
+    const eventSource = new SSE(basePath + streamPaths.translation, {
       headers: {
         "Content-Type": "application/json",
       },

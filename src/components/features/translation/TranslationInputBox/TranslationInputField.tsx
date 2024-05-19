@@ -24,7 +24,7 @@ export default function TranslationInputField() {
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
   )
-  const limitReached = React.useMemo(
+  const characterLimitReached = React.useMemo(
     () => input.length >= translationInputLimit,
     [input],
   )
@@ -87,8 +87,8 @@ export default function TranslationInputField() {
         >
           <CharacterCount
             charcaters={input.length}
-            limit={translationInputLimit}
-            limitReached={limitReached}
+            characterLimit={translationInputLimit}
+            characterLimitReached={characterLimitReached}
           />
           <Tooltip
             title={

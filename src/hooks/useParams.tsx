@@ -15,7 +15,7 @@ function updateQueryParamsWithoutReloading(newUrl: string) {
 }
 
 const useParams = () => {
-  const pathname = usePathname()
+  const pathname = usePathname().replace(/\/$/, "")
   const searchParams = useSearchParams()
 
   const getSearchParam = React.useCallback(

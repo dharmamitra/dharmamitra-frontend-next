@@ -3,7 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin"
 const withNextIntl = createNextIntlPlugin()
 
 const env = process.env.NEXT_PUBLIC_APP_ENV
-const servedAtRoot = ["pub", "rnd"].includes(env)
+const servedAtRoot = env === "pub"
 const basePath = servedAtRoot ? undefined : "/" + env
 
 /** @type {import('next').NextConfig} */

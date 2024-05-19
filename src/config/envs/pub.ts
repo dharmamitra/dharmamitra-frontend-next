@@ -14,10 +14,7 @@ export const targetLanguages: TargetLanguage[] = [
 export default function createDMConfig() {
   return defineConfig({
     env: "pub",
-    streamPaths: {
-      translation: "api/translation-stream",
-      search: "/api/search-stream",
-    },
+    basePath: "",
     paramOptions: {
       targetLanguages,
     },

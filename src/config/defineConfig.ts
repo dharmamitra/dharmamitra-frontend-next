@@ -3,7 +3,7 @@ import { z } from "zod"
 import { allTargetLanguages, translationModels } from "@/utils/api/params"
 import { TargetLanguage, TranslationModel } from "@/utils/api/types"
 
-export const SUPPORTED_ENVS = ["pub", "lab", "rnd", "local"] as const
+export const SUPPORTED_ENVS = ["pub", "lab", "rnd"] as const
 
 export type AppEnv = (typeof SUPPORTED_ENVS)[number]
 
@@ -12,7 +12,7 @@ export const appConfigSchema = z.object({
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
   siteUrl: z.string().default("https://dharmamitra.org"),
-  basePath: z.string().default(""),
+  basePath: z.string(),
   logoPath: z.string().default("TODO"),
   endpoints: z
     .object({
@@ -71,10 +71,8 @@ type DeepPartial<T> = {
 
 type RequiredConfigKeys = {
   env: AppEnv
-  streamPaths: {
-    translation: string
-    search: string
-  }
+  // basePath has src/hooks/useParams.tsx as dependent
+  basePath: string
 }
 
 export type EnhancedAppConfig = RequiredConfigKeys &
