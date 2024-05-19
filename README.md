@@ -137,6 +137,11 @@ export RESTART_POLICY=no
 docker compose build --no-cache && docker compose up --force-recreate -d
 ```
 
+Disable the progress indicator and get more detailed output
+```sh
+docker compose build --no-cache --progress=plain
+```
+
 NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.
 The app is again available under `localhost:3333` e.g. `http://localhost:3333/dmnext/bo/about`.
 
