@@ -1,5 +1,3 @@
-export const playwrightBasePath = "/dmnext"
-
 export const translationRequests: string[] = [
   "Kacci pana vo, anuruddhā, samaggā sammodamānā avivadamānā khīrodakībhūtā أñamañā piyacakkhūhi sampassantā viharathā”ti",
   "「我般泥洹後，阿難從佛口受聞經戒師法。阿難當道言：『我從佛口聞是法，當為後比丘僧說之。",

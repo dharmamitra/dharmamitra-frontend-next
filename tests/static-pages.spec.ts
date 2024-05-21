@@ -2,12 +2,12 @@ import AxeBuilder from "@axe-core/playwright"
 import { expect, test } from "@playwright/test"
 
 import { defaultLocale, supportedLocales } from "@/i18n"
-import { playwrightBasePath as basePath } from "@/utils/tests"
 import { makeCleanRoute } from "@/utils/transformers"
 
 import enMessages from "../messages/en.json"
 import zhMessages from "../messages/zh.json"
 import zhHantMessages from "../messages/zh-Hant.json"
+import { getBasePath } from "../next.config.mjs"
 
 const messages = {
   en: enMessages,
@@ -24,7 +24,7 @@ const pathnames = {
 Object.entries(pathnames).forEach(([pathname, pagename]) => {
   supportedLocales.forEach((locale) => {
     const route = makeCleanRoute([
-      basePath,
+      getBasePath(),
       locale === defaultLocale ? "" : locale,
       pathname,
     ])
