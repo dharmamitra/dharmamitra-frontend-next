@@ -7,10 +7,10 @@ import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 import {
+  APITranslationRequestBody,
   InputEncoding,
   TargetLanguage,
   TranslationModel,
-  TranslationRequestProps,
 } from "@/utils/api/types"
 import { cleanSSEData } from "@/utils/transformers"
 
@@ -43,7 +43,7 @@ const useTranslationStream = () => {
   const modelParam = (model ? model : paramOptions.model) as TranslationModel
   const grammarParam = doGrammarExplanation === "on"
 
-  const params: TranslationRequestProps = React.useMemo(
+  const params: APITranslationRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentence,
       input_encoding: inputEncodingParam,

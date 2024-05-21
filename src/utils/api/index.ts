@@ -1,5 +1,5 @@
-import type { SearchRequestProps, TranslationRequestProps } from "./types"
+import type { APISearchRequestBody, APITranslationRequestBody } from "./types"
 
 const DM_FETCH_API = {}
 
-export { DM_FETCH_API, SearchRequestProps, TranslationRequestProps }
+export { APISearchRequestBody, APITranslationRequestBody, DM_FETCH_API }

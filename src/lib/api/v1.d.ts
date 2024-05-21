@@ -41,6 +41,7 @@ export interface components {
     Body_tagging_tagging__post: {
       /** Input Sentence */
       input_sentence: string
+      mode: components["schemas"]["GrammarModes"]
       input_encoding: components["schemas"]["InputEncoding"]
     }
     /** Body_translation_translation__post */
@@ -105,6 +106,16 @@ export interface components {
      * @enum {string}
      */
     FilterSecondary: ""
+    /**
+     * GrammarModes
+     * @enum {string}
+     */
+    GrammarModes:
+      | "lemma"
+      | "lemma-morphosyntax"
+      | "unsandhied-lemma-morphosyntax"
+      | "unsandhied"
+      | "unsandhied-morphosyntax"
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */
@@ -165,7 +176,7 @@ export interface components {
      * TranslationModel
      * @enum {string}
      */
-    TranslationModel: "madlad" | "llama3" | "none"
+    TranslationModel: "NO" | "madlad" | "llama3" | "none"
     /** ValidationError */
     ValidationError: {
       /** Location */
