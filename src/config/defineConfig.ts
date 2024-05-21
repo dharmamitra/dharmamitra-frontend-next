@@ -3,7 +3,7 @@ import { z } from "zod"
 import { allTargetLanguages, translationModels } from "@/utils/api/params"
 import { TargetLanguage, TranslationModel } from "@/utils/api/types"
 
-export const SUPPORTED_ENVS = ["pub", "lab", "rnd"] as const
+export const SUPPORTED_ENVS = ["pub", "lab", "rnd", "local"] as const
 
 export type AppEnv = (typeof SUPPORTED_ENVS)[number]
 

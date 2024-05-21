@@ -1,7 +1,8 @@
 import { AppConfig, AppEnv, SUPPORTED_ENVS } from "./defineConfig"
 import createLabConfig from "./envs/lab"
-import createDMConfig from "./envs/pub"
-import createLocalConfig from "./envs/rnd"
+import createLocalConfig from "./envs/local"
+import createPubConfig from "./envs/pub"
+import createRNDConfig from "./envs/rnd"
 
 function getConfig() {
   const setEnv = process.env.NEXT_PUBLIC_APP_ENV as AppEnv
@@ -24,7 +25,7 @@ function getConfig() {
     if (env !== setEnv) return
 
     if (env === "pub") {
-      configCreator = createDMConfig
+      configCreator = createPubConfig
     }
 
     if (env === "lab") {
@@ -32,6 +33,10 @@ function getConfig() {
     }
 
     if (env === "rnd") {
+      configCreator = createRNDConfig
+    }
+
+    if (env === "local") {
       configCreator = createLocalConfig
     }
   })
