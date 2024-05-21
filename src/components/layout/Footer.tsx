@@ -4,10 +4,11 @@ import { Box, Button, Grid, Typography } from "@mui/material"
 
 import fullLogo from "@/assets/dm-logo-full.png"
 import LocalLink from "@/components/LocalLink"
-import appConfig from "@/config"
+import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
 export default function Footer() {
+  const { orgEmail } = useAppConfig()
   const t = useTranslations("footer")
 
   return (
@@ -90,7 +91,7 @@ export default function Footer() {
                 variant="outlined"
                 color="secondary"
                 sx={{ mt: 2 }}
-                href={`mailto:${appConfig.orgEmail}`}
+                href={`mailto:${orgEmail}`}
               >
                 {t("contact.button")}
               </Button>

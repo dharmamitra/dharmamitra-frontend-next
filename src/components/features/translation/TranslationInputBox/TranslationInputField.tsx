@@ -13,20 +13,21 @@ import { useSetAtom } from "jotai"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
 import CharacterCount from "@/components/CharacterCount"
+import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames } from "@/utils/api/params"
-import { translationInputLimit } from "@/utils/ui"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 
 export default function TranslationInputField() {
+  const { translationInputLimit } = useAppConfig()
   const t = useTranslations()
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
   )
   const characterLimitReached = React.useMemo(
     () => input.length >= translationInputLimit,
-    [input],
+    [input, translationInputLimit],
   )
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 

@@ -4,8 +4,8 @@ import { Typography } from "@mui/material"
 
 import ToolSelectorTabs from "@/components/features/ToolSelectorTabs/ToolSelectorTabs"
 import PageShell from "@/components/layout/PageShell"
-import appConfig from "@/config"
 import TranslationFeature from "@/features/translation"
+import useAppConfig from "@/hooks/useAppConfig"
 import {
   I18nMetadataHandlerProps,
   pickMessages,
@@ -19,7 +19,7 @@ export const generateStaticParams = () => {
 
 export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
   unstable_setRequestLocale(locale)
-
+  const { search } = useAppConfig().featureFlags
   const t = useTranslations("Home")
 
   const messages = useMessages() as Messages
@@ -28,7 +28,7 @@ export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
     messageKeys: ["translation", "search", "generic"],
   })
 
-  if (appConfig.featureFlags.search === true) {
+  if (search === true) {
     return (
       <NextIntlClientProvider messages={translationMessages}>
         <PageShell maxWidth="xl" sx={{ mb: { xs: 12, md: 34 } }}>

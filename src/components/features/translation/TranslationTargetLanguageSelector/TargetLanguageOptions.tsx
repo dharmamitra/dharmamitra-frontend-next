@@ -9,7 +9,7 @@ import {
   OtherOptionsInputStyles,
   selectedOptionsStyles,
 } from "@/components/styled"
-import appConfig from "@/config"
+import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithLocalStorage from "@/hooks/useInputWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { apiParamsNames } from "@/utils/api/params"
@@ -17,9 +17,8 @@ import { TargetLanguage } from "@/utils/api/types"
 
 import RadioOption from "../common/RadioOption"
 
-const servedTargetLanguages = appConfig.paramOptions.targetLanguages
-
 export default function TranslationTargetLanguageSelector() {
+  const { targetLanguages: servedTargetLanguages } = useAppConfig().paramOptions
   const t = useTranslations("translation")
 
   const { input, handleInputChange, isHydrated } = useInputWithLocalStorage({
@@ -40,7 +39,7 @@ export default function TranslationTargetLanguageSelector() {
     if (input === "") {
       handleInputChange(servedTargetLanguages[0]!)
     }
-  }, [input, handleInputChange])
+  }, [input, handleInputChange, servedTargetLanguages])
 
   return (
     <>

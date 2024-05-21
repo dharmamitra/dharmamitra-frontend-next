@@ -95,8 +95,8 @@ const useTranslationStream = () => {
         setIsError({ errorCode: 504, error: "timeout" })
         eventSource.close()
       }
-      // 7 seconds
-    }, 7000)
+      // 10 seconds
+    }, 10000)
 
     const eventSource = new SSE(basePath + streamPaths.translation, {
       headers: {
@@ -152,6 +152,7 @@ const useTranslationStream = () => {
     setTriggerTranslationQuery,
     params,
     streamPaths.translation,
+    basePath,
   ])
 
   return { translationStream, isLoading, isError }
