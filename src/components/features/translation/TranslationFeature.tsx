@@ -11,6 +11,7 @@ import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector
 import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
 import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
+import TranslationTaggingOutput from "./TranslationTaggingOutput"
 
 export default function TranslationFeature() {
   const { translateExtendedOptions } = useAppConfig().featureFlags
@@ -53,6 +54,7 @@ export default function TranslationFeature() {
           <TranslationGrammarSelector />
         </Box>
       ) : null}
+      <TranslationTaggingOutput />
     </>
   )
 }

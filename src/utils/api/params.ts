@@ -17,6 +17,7 @@ export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
 )
 
 export const translationModels = exhaustiveStringTuple<TranslationModel>()(
+  "NO",
   "none",
   "madlad",
   "llama3",
@@ -56,5 +57,6 @@ export const apiParamsNames: APIParamNames = {
   tagging: {
     input_sentence: "input_sentence",
     input_encoding: "input_encoding",
+    mode: "mode",
   },
 }

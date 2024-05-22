@@ -1,17 +1,17 @@
 import type { components, operations } from "@/lib/api/v1.d"
 
-type APISchema = components["schemas"]
+type Schema = components["schemas"]
 
-type APIRequestBody<OperationName extends keyof operations> =
+type RequestBody<OperationName extends keyof operations> =
   operations[OperationName]["requestBody"]["content"]["application/json"]
 
-type APIResponse<OperationName extends keyof operations> =
+type Response<OperationName extends keyof operations> =
   200 extends keyof operations[OperationName]["responses"]
     ? operations[OperationName]["responses"][200]["content"]["application/json"]
     : never
 
 /**
- * REQUEST PROPS & API RESPONSE MODELS
+ * REQUEST PROPS &  APIRESPONSE MODELS
  */
 
 // ENDPOINT: /translation/
@@ -19,45 +19,43 @@ type APIResponse<OperationName extends keyof operations> =
 
 // ENDPOINT: /translation-exp/
 // TODO: coordinate renaming to "translation" once env setup has been deployed
-export type APITranslationRequestBody =
-  APIRequestBody<"translation_translation_exp__post">
+export type TranslationRequestBody =
+  RequestBody<"translation_translation_exp__post">
 // stream response
-export type APITranslationRresponse =
-  APIResponse<"search_endpoint_search__post">
+export type TranslationRresponse = Response<"search_endpoint_search__post">
 
 // ENDPOINT: /tagging/
-export type APITaggingRequestBody = APIRequestBody<"tagging_tagging__post">
-export type APITaggingResponse = APIRequestBody<"tagging_tagging__post">
+export type TaggingRequestBody = RequestBody<"tagging_tagging__post">
+export type TaggingResponse = RequestBody<"tagging_tagging__post">
 
 // ENDPOINT: /search/
-export type APISearchRequestBody =
-  APIRequestBody<"search_endpoint_search__post">
+export type SearchRequestBody = RequestBody<"search_endpoint_search__post">
 // stream response
-export type APISearchRresponse = APIResponse<"search_endpoint_search__post">
+export type SearchRresponse = Response<"search_endpoint_search__post">
 
 /**
  * SEARCH PARAM OPTIONS
  */
 
-export type FilterLanguage = APISchema["FilterLanguage"]
-export type FilterPrimary = APISchema["FilterPrimary"]
-export type FilterSecondary = APISchema["FilterSecondary"]
-export type InputEncoding = APISchema["InputEncoding"]
-export type TranslationModel = APISchema["TranslationModel"]
-export type PostProcessModel = APISchema["PostProcessModel"]
-export type SearchInput = APISchema["SearchInput"]
-export type SearchTarget = APISchema["SearchTarget"]
-export type SearchType = APISchema["SearchType"]
-export type TargetLanguage = APISchema["TargetLanguageExperimental"]
+export type FilterLanguage = Schema["FilterLanguage"]
+export type FilterPrimary = Schema["FilterPrimary"]
+export type FilterSecondary = Schema["FilterSecondary"]
+export type InputEncoding = Schema["InputEncoding"]
+export type TranslationModel = Schema["TranslationModel"]
+export type PostProcessModel = Schema["PostProcessModel"]
+export type SearchInput = Schema["SearchInput"]
+export type SearchTarget = Schema["SearchTarget"]
+export type SearchType = Schema["SearchType"]
+export type TargetLanguage = Schema["TargetLanguageExperimental"]
 
 /**
- * API PARAMS
+ *  APIPARAMS
  */
 export type APIParamNames = {
-  search: Record<keyof APISearchRequestBody, keyof APISearchRequestBody>
+  search: Record<keyof SearchRequestBody, keyof SearchRequestBody>
   translation: Record<
-    keyof APITranslationRequestBody,
-    keyof APITranslationRequestBody
+    keyof TranslationRequestBody,
+    keyof TranslationRequestBody
   >
-  tagging: Record<keyof APITaggingRequestBody, keyof APITaggingRequestBody>
+  tagging: Record<keyof TaggingRequestBody, keyof TaggingRequestBody>
 }

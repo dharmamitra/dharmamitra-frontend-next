@@ -2,16 +2,13 @@ import React from "react"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
+import { useQuery } from "@tanstack/react-query"
+
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
-import {
-  APITranslationRequestBody,
-  InputEncoding,
-  TargetLanguage,
-  TranslationModel,
-} from "@/utils/api/types"
+import { DMApi, DM_FETCH_API } from "@/utils/api"
 import { cleanSSEData } from "@/utils/transformers"
 
 const useTranslationStream = () => {
@@ -36,14 +33,16 @@ const useTranslationStream = () => {
   // TODO: Add typing to useInputWithUrlParam and remove casting
   const inputEncodingParam = (
     inputEncoding ? inputEncoding : inputEncodings[0]
-  ) as InputEncoding
+  ) as DMApi.InputEncoding
   const targetLangParam = (
     targetLang ? targetLang : paramOptions.targetLanguages[0]
-  ) as TargetLanguage
-  const modelParam = (model ? model : paramOptions.model) as TranslationModel
+  ) as DMApi.TargetLanguage
+  const modelParam = (
+    model ? model : paramOptions.model
+  ) as DMApi.TranslationModel
   const grammarParam = doGrammarExplanation === "on"
 
-  const params: APITranslationRequestBody = React.useMemo(
+  const params: DMApi.TranslationRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentence,
       input_encoding: inputEncodingParam,
@@ -64,9 +63,25 @@ const useTranslationStream = () => {
     triggerTranslationQueryAtom,
   )
 
+  const { target_lang, do_grammar_explanation, ...taggingParams } = params
+  const { data: taggingData } = useQuery({
+    queryKey: DM_FETCH_API.tagging.makeQueryKey({
+      mode: "lemma",
+      ...taggingParams,
+    }),
+    queryFn: () =>
+      DM_FETCH_API.tagging.call({
+        mode: "lemma",
+        ...taggingParams,
+        input_encoding: "auto",
+      }),
+    enabled: !!params.input_sentence,
+  })
+
   const [translationStream, setTranslationStream] = React.useState<
     string | undefined
   >("")
+
   const [isLoading, setIsLoading] = React.useState(false)
   const [isError, setIsError] = React.useState<
     { errorCode: 400 | 500 | 504; error: string; data?: SSEvent } | undefined
@@ -155,7 +170,14 @@ const useTranslationStream = () => {
     basePath,
   ])
 
-  return { translationStream, isLoading, isError }
+  // TODO: cleanup WIP
+  const tagging = taggingData as any[]
+  return {
+    translationStream,
+    isLoading,
+    isError,
+    taggingData: (tagging ? tagging[0] : []) as any[],
+  }
 }
 
 export default useTranslationStream

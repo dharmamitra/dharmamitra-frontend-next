@@ -152,6 +152,7 @@
       "tibetan": "藏文"
     },
     "models": {
+      "NO": "No",
       "none": "None",
       "madlad": "Madlad",
       "llama3": "Llama3"
