@@ -1,57 +1,63 @@
-import type { components, operations } from "@/lib/api/v1.d"
+import type { components, paths } from "@/lib/api/v1.d"
 
-type Schema = components["schemas"]
+export type Schema = components["schemas"]
 
-type RequestBody<OperationName extends keyof operations> =
-  operations[OperationName]["requestBody"]["content"]["application/json"]
+/**
+ * HELPERS
+ */
 
-type Response<OperationName extends keyof operations> =
-  200 extends keyof operations[OperationName]["responses"]
-    ? operations[OperationName]["responses"][200]["content"]["application/json"]
+type APIRequestBody<operation> = "requestBody" extends keyof operation
+  ? "content" extends keyof operation["requestBody"]
+    ? "application/json" extends keyof operation["requestBody"]["content"]
+      ? operation["requestBody"]["content"]["application/json"]
+      : never
     : never
+  : never
+
+// type APIRequestParams<operation> = "parameters" extends keyof operation
+//   ? "query" extends keyof operation["parameters"]
+//     ? operation["parameters"]["query"]
+//     : never
+//   : never
+
+type APIResponse<operation> = "responses" extends keyof operation
+  ? 200 extends keyof operation["responses"]
+    ? "content" extends keyof operation["responses"][200]
+      ? "application/json" extends keyof operation["responses"][200]["content"]
+        ? operation["responses"][200]["content"]["application/json"]
+        : never
+      : never
+    : never
+  : never
 
 /**
- * REQUEST PROPS &  APIRESPONSE MODELS
+ * REQUEST & RESPONSE MODELS
  */
 
-// ENDPOINT: /translation/
-// TO BE REPLACED WITH current "/translation-exp/"
+// /translation/ TO BE REPLACED WITH current "/translation-exp/"
 
-// ENDPOINT: /translation-exp/
 // TODO: coordinate renaming to "translation" once env setup has been deployed
-export type TranslationRequestBody =
-  RequestBody<"translation_translation_exp__post">
-// stream response
-export type TranslationRresponse = Response<"search_endpoint_search__post">
+export type TranslationRequestBody = APIRequestBody<
+  paths["/translation-exp/"]["post"]
+>
+export type TranslationRresponse = APIResponse<
+  // stream response
+  paths["/translation-exp/"]["post"]
+>
 
-// ENDPOINT: /tagging/
-export type TaggingRequestBody = RequestBody<"tagging_tagging__post">
-export type TaggingResponse = RequestBody<"tagging_tagging__post">
+export type TaggingRequestBody = APIRequestBody<paths["/tagging/"]["post"]>
+export type TaggingResponse = APIResponse<paths["/tagging/"]["post"]>
 
-// ENDPOINT: /search/
-export type SearchRequestBody = RequestBody<"search_endpoint_search__post">
-// stream response
-export type SearchRresponse = Response<"search_endpoint_search__post">
-
-/**
- * SEARCH PARAM OPTIONS
- */
-
-export type FilterLanguage = Schema["FilterLanguage"]
-export type FilterPrimary = Schema["FilterPrimary"]
-export type FilterSecondary = Schema["FilterSecondary"]
-export type InputEncoding = Schema["InputEncoding"]
-export type TranslationModel = Schema["TranslationModel"]
-export type PostProcessModel = Schema["PostProcessModel"]
-export type SearchInput = Schema["SearchInput"]
-export type SearchTarget = Schema["SearchTarget"]
-export type SearchType = Schema["SearchType"]
-export type TargetLanguage = Schema["TargetLanguageExperimental"]
+export type SearchRequestBody = APIRequestBody<paths["/search/"]["post"]>
+export type SearchRresponse = APIResponse<
+  // stream response
+  paths["/search/"]["post"]
+>
 
 /**
- *  APIPARAMS
+ *  API PARAMS NAMES
  */
-export type APIParamNames = {
+export type ParamNames = {
   search: Record<keyof SearchRequestBody, keyof SearchRequestBody>
   translation: Record<
     keyof TranslationRequestBody,

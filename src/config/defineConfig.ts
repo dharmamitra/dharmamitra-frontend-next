@@ -1,11 +1,14 @@
 import { z } from "zod"
 
+import { DMApi } from "@/api"
 import { allTargetLanguages, translationModels } from "@/utils/api/params"
-import { TargetLanguage, TranslationModel } from "@/utils/api/types"
 
 export const SUPPORTED_ENVS = ["pub", "lab", "rnd", "local"] as const
 
 export type AppEnv = (typeof SUPPORTED_ENVS)[number]
+
+type TargetLanguage = DMApi.Schema["TargetLanguageExperimental"]
+type TranslationModel = DMApi.Schema["TranslationModel"]
 
 export const appConfigSchema = z.object({
   env: z.enum(SUPPORTED_ENVS),

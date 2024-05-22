@@ -1,14 +1,13 @@
 import React from "react"
+import { useQuery } from "@tanstack/react-query"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
-import { useQuery } from "@tanstack/react-query"
-
+import { DM_FETCH_API, DMApi } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
-import { DMApi, DM_FETCH_API } from "@/utils/api"
 import { cleanSSEData } from "@/utils/transformers"
 
 const useTranslationStream = () => {
@@ -33,13 +32,13 @@ const useTranslationStream = () => {
   // TODO: Add typing to useInputWithUrlParam and remove casting
   const inputEncodingParam = (
     inputEncoding ? inputEncoding : inputEncodings[0]
-  ) as DMApi.InputEncoding
+  ) as DMApi.Schema["InputEncoding"]
   const targetLangParam = (
     targetLang ? targetLang : paramOptions.targetLanguages[0]
-  ) as DMApi.TargetLanguage
+  ) as DMApi.Schema["TargetLanguage"]
   const modelParam = (
     model ? model : paramOptions.model
-  ) as DMApi.TranslationModel
+  ) as DMApi.Schema["TranslationModel"]
   const grammarParam = doGrammarExplanation === "on"
 
   const params: DMApi.TranslationRequestBody = React.useMemo(
@@ -63,6 +62,7 @@ const useTranslationStream = () => {
     triggerTranslationQueryAtom,
   )
 
+  // eslint-disable-next-line no-unused-vars
   const { target_lang, do_grammar_explanation, ...taggingParams } = params
   const { data: taggingData } = useQuery({
     queryKey: DM_FETCH_API.tagging.makeQueryKey({
@@ -170,13 +170,11 @@ const useTranslationStream = () => {
     basePath,
   ])
 
-  // TODO: cleanup WIP
-  const tagging = taggingData as any[]
   return {
     translationStream,
     isLoading,
     isError,
-    taggingData: (tagging ? tagging[0] : []) as any[],
+    taggingData,
   }
 }
 

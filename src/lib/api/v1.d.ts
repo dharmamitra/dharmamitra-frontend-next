@@ -126,6 +126,15 @@ export interface components {
      * @enum {string}
      */
     InputEncoding: "auto" | "tibetan" | "wylie" | "dev" | "iast" | "hk"
+    /** Lemma */
+    Lemma: {
+      /** Lemma */
+      lemma: string
+      /** Unsandhied */
+      unsandhied: string
+      /** Meanings */
+      meanings: string[]
+    }
     /**
      * PostProcessModel
      * @enum {string}
@@ -146,6 +155,10 @@ export interface components {
      * @enum {string}
      */
     SearchType: "precise" | "fuzzy" | "semantic"
+    /** Sentence */
+    Sentence: components["schemas"]["Lemma"][]
+    /** TaggerResponseModel */
+    TaggerResponseModel: components["schemas"]["Sentence"][]
     /**
      * TargetLanguage
      * @enum {string}
@@ -176,7 +189,7 @@ export interface components {
      * TranslationModel
      * @enum {string}
      */
-    TranslationModel: "NO" | "madlad" | "llama3" | "none"
+    TranslationModel: "NO" | "madlad" | "llama3"
     /** ValidationError */
     ValidationError: {
       /** Location */
@@ -254,7 +267,7 @@ export interface operations {
       /** @description Successful Response */
       200: {
         content: {
-          "application/json": unknown
+          "application/json": components["schemas"]["TaggerResponseModel"]
         }
       }
       /** @description Validation Error */

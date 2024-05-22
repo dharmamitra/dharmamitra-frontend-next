@@ -1,29 +1,17 @@
+import { DMApi } from "@/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import {
-  APIParamNames,
-  InputEncoding,
-  TargetLanguage,
-  TranslationModel,
-} from "./types"
+export const inputEncodings = exhaustiveStringTuple<
+  DMApi.Schema["InputEncoding"]
+>()("auto", "dev", "hk", "iast", "tibetan", "wylie")
 
-export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
-  "auto",
-  "dev",
-  "hk",
-  "iast",
-  "tibetan",
-  "wylie",
-)
+export const translationModels = exhaustiveStringTuple<
+  DMApi.Schema["TranslationModel"]
+>()("NO", "madlad", "llama3")
 
-export const translationModels = exhaustiveStringTuple<TranslationModel>()(
-  "NO",
-  "none",
-  "madlad",
-  "llama3",
-)
-
-export const allTargetLanguages = exhaustiveStringTuple<TargetLanguage>()(
+export const allTargetLanguages = exhaustiveStringTuple<
+  DMApi.Schema["TargetLanguageExperimental"]
+>()(
   "english",
   "tibetan",
   "sanskrit",
@@ -36,7 +24,7 @@ export const allTargetLanguages = exhaustiveStringTuple<TargetLanguage>()(
   "pali",
 )
 
-export const apiParamsNames: APIParamNames = {
+export const apiParamsNames: DMApi.ParamNames = {
   search: {
     filter_language: "filter_language",
     filter_primary: "filter_primary",

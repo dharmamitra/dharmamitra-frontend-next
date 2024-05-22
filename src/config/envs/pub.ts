@@ -1,8 +1,8 @@
-import { TargetLanguage } from "@/utils/api/types"
+import { DMApi } from "@/api"
 
 import defineConfig from "../defineConfig"
 
-export const targetLanguages: TargetLanguage[] = [
+export const targetLanguages: DMApi.Schema["TargetLanguageExperimental"][] = [
   "english",
   "tibetan",
   "sanskrit",
