@@ -3,7 +3,7 @@ import dynamic from "next/dynamic"
 
 import customTheming from "@/utils/theme/config"
 
-import TranslationContentBox from "../TranslationContentBox"
+import TranslationContentBox from "../common/TranslationContentBox"
 
 const TranslationOutput = dynamic(() => import("./TranslationOutput"))
 
@@ -13,7 +13,6 @@ export default function TranslationOutputBox() {
       testId="translation-output"
       sx={{
         backgroundColor: "grey.100",
-        overflow: "clip",
         p: 2,
         borderBottomLeftRadius: { xs: customTheming.shape.inputRadius, md: 0 },
         borderBottomRightRadius: customTheming.shape.inputRadius,

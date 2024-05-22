@@ -21,8 +21,8 @@ export default function RadioOption({
       value={option}
       control={
         <VisuallyHiddenRadio
-          id={`${option}-input-encoding-option`}
-          data-testid={`${option}-input-encoding-option`}
+          id={`${option}-${i18nKey}-option`}
+          data-testid={`${option}-${i18nKey}-option`}
         />
       }
       // TODO: remove casting on enpoint update

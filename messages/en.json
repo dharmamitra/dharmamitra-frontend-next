@@ -109,12 +109,12 @@
     "localePlaceholder": "English"
   },
   "search": {
-    "heading": "Search 2500 years of Buddhism",
-    "tabLabel": "Search"
+    "search": "Search",
+    "heading": "Search 2500 years of Buddhism"
   },
   "translation": {
-    "heading": "Translate Dharma text",
     "translate": "Translate",
+    "heading": "Translate Dharma text",
     "inputAriaLabel": "Translation input field",
     "placeholder": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
     "otherLabel": "Other",
@@ -124,6 +124,8 @@
     "targetLanguageSelectLabel": "Output language",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
     "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "modelLabel": "Model",
+    "grammarLabel": "Grammar Analysis",
     "copyTranslation": "Copy translation",
     "encodings": {
       "auto": "Autodetect",
@@ -136,15 +138,26 @@
       "wylie": "Wylie"
     },
     "targetLanguages": {
-      "tibetan": "Tibetan",
-      "english": "English",
-      "sanskrit": "Sanskrit",
       "buddhist-chinese": "Buddhist Chinese",
+      "english": "English",
       "japanese": "Japanese",
       "korean": "Korean",
-      "sanskrit-dev": "Sanskrit (Devanagari)",
+      "modern-chinese": "Modern Chinese",
+      "pali": "Pali",
       "sa-en": "SA English",
-      "modern-chinese": "Modern Chinese"
+      "sanskrit-dev": "Sanskrit (Devanagari)",
+      "sanskrit-knn": "Sanskrit (KNN)",
+      "sanskrit": "Sanskrit",
+      "tibetan": "Tibetan"
+    },
+    "models": {
+      "none": "None",
+      "madlad": "Madlad",
+      "llama3": "Llama3"
+    },
+    "grammar": {
+      "on": "On",
+      "off": "Off"
     }
   }
 }

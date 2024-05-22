@@ -2,21 +2,21 @@ import React from "react"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
-import { type TranslationRequestProps } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
+import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 import {
-  apiParamsNames,
   InputEncoding,
-  inputEncodings,
   TargetLanguage,
-  targetLanguages,
-} from "@/utils/api/params"
+  TranslationModel,
+  TranslationRequestProps,
+} from "@/utils/api/types"
 import { cleanSSEData } from "@/utils/transformers"
 
-const translationEndpoint = `${process.env.NEXT_PUBLIC_API_URL}/translation/`
-
 const useTranslationStream = () => {
+  const { basePath, streamPaths, paramOptions } = useAppConfig()
+
   const { input: inputSentence } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
   )
@@ -26,24 +26,38 @@ const useTranslationStream = () => {
   const { input: targetLang } = useInputWithUrlParam(
     apiParamsNames.translation.target_lang,
   )
+  const { input: model } = useInputWithUrlParam(
+    apiParamsNames.translation.model,
+  )
+  const { input: doGrammarExplanation } = useInputWithUrlParam(
+    apiParamsNames.translation.do_grammar_explanation,
+  )
 
   // TODO: Add typing to useInputWithUrlParam and remove casting
   const inputEncodingParam = (
     inputEncoding ? inputEncoding : inputEncodings[0]
   ) as InputEncoding
   const targetLangParam = (
-    targetLang ? targetLang : targetLanguages[0]
+    targetLang ? targetLang : paramOptions.targetLanguages[0]
   ) as TargetLanguage
+  const modelParam = (model ? model : paramOptions.model) as TranslationModel
+  const grammarParam = doGrammarExplanation === "on"
 
   const params: TranslationRequestProps = React.useMemo(
     () => ({
       input_sentence: inputSentence,
       input_encoding: inputEncodingParam,
-      level_of_explanation: 0,
+      do_grammar_explanation: grammarParam,
       target_lang: targetLangParam,
-      model: "NO",
+      model: modelParam,
     }),
-    [inputSentence, inputEncodingParam, targetLangParam],
+    [
+      inputSentence,
+      inputEncodingParam,
+      targetLangParam,
+      modelParam,
+      grammarParam,
+    ],
   )
 
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
@@ -81,10 +95,10 @@ const useTranslationStream = () => {
         setIsError({ errorCode: 504, error: "timeout" })
         eventSource.close()
       }
-      // 7 seconds
-    }, 7000)
+      // 10 seconds
+    }, 10000)
 
-    const eventSource = new SSE(translationEndpoint, {
+    const eventSource = new SSE(basePath + streamPaths.translation, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -133,7 +147,13 @@ const useTranslationStream = () => {
         clearTimeout(timeoutIdRef.current)
       }
     }
-  }, [triggerTranslationQuery, setTriggerTranslationQuery, params])
+  }, [
+    triggerTranslationQuery,
+    setTriggerTranslationQuery,
+    params,
+    streamPaths.translation,
+    basePath,
+  ])
 
   return { translationStream, isLoading, isError }
 }

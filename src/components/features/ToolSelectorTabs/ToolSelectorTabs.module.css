@@ -1,9 +1,27 @@
 .stickyTabs {
-  position: sticky;
-  top: 78px;
-  padding-top: 12px;
-  z-index: 5;
-  transition: top 0.3s ease-in-out;
+  position: fixed;
+  top: 104px;
+  left: 50%;
+
+  transform: translateX(-50%);
+  z-index: 5000 !important;
+  min-height: 210px;
+  min-width: 210px;
+
+  @media (min-width: 590px) {
+    top: 112px;
+  }
+  @media (min-width: 899px) {
+    top: 139px;
+  }
+
+  transition: top 0.2s ease-in-out;
+}
+
+.stickyTabsDesktop {
+  @media (min-width: 1100px) {
+    top: 1rem;
+  }
 }
 
 .hiddenHeading {

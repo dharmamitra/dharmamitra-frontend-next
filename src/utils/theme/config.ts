@@ -1,4 +1,5 @@
 import { Noto_Sans } from "next/font/google"
+import { grey } from "@mui/material/colors"
 import { CustomTheming, ThemeOptions } from "@mui/material/styles"
 
 const notoSans = Noto_Sans({
@@ -9,7 +10,7 @@ const notoSans = Noto_Sans({
 })
 
 const rgbCodes = {
-  primary: "6, 49, 95", // #06315f
+  primary: "0, 0, 0", // #000
   secondary: "151, 46, 58", // #972e3a
   light: "251, 238, 235", // #FBEEEB
 }
@@ -65,18 +66,21 @@ export const baseTheme: ThemeOptions = {
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          backgroundColor: colours.primary,
+          backgroundColor: grey[600],
         },
       },
     },
     MuiButton: {
       styleOverrides: {
-        contained: {
-          "&:hover": {
-            // replicates MUI's `darken` function for SSR
-            backgroundColor: `rgba(${rgbCodes.primary}, 0.9)`,
-          },
-        },
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === "contained" &&
+            ownerState.color === "primary" && {
+              "&:hover": {
+                // replicates MUI's `darken` function for SSR
+                backgroundColor: `rgba(${rgbCodes.primary}, 0.9)`,
+              },
+            }),
+        }),
       },
     },
   },

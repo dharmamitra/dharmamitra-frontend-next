@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next"
 
+// import appConfig from "@/config"
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
@@ -7,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/TODO"],
     },
-    // sitemap: `${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`,
+    // sitemap: `${appConfig.siteUrl}/sitemap.xml`,
   }
 }

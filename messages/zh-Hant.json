@@ -109,13 +109,13 @@
     "localePlaceholder": "繁體中文"
   },
   "search": {
+    "search": "搜索",
     "heading": "搜索2500年的佛教",
-    "tabLabel": "搜索",
     "placeholder": "搜索一些东西"
   },
   "translation": {
-    "heading": "",
     "translate": "翻譯",
+    "heading": "",
     "inputAriaLabel": "翻譯欄位",
     "placeholder": "在此輸入需要翻譯之梵文、藏文或中文…",
     "otherLabel": "其他",
@@ -125,6 +125,8 @@
     "targetLanguageSelectLabel": "翻譯目標語",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
     "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "modelLabel": "Model",
+    "grammarLabel": "Grammar Analysis",
     "copyTranslation": "複製翻譯",
     "encodings": {
       "auto": "Autodetect",
@@ -137,15 +139,26 @@
       "wylie": "Wylie"
     },
     "targetLanguages": {
-      "tibetan": "藏文",
-      "english": "英文",
-      "sanskrit": "梵文",
       "buddhist-chinese": "佛典漢文",
+      "english": "英文",
       "japanese": "日文",
       "korean": "韓文",
-      "sanskrit-dev": "梵文",
+      "modern-chinese": "現代中文",
+      "pali": "Pali",
       "sa-en": "梵文",
-      "modern-chinese": "現代中文"
+      "sanskrit-dev": "梵文",
+      "sanskrit-knn": "Sanskrit (KNN)",
+      "sanskrit": "梵文",
+      "tibetan": "藏文"
+    },
+    "models": {
+      "none": "None",
+      "madlad": "Madlad",
+      "llama3": "Llama3"
+    },
+    "grammar": {
+      "on": "On",
+      "off": "Off"
     }
   }
 }

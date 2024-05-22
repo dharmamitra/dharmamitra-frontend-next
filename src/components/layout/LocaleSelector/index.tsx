@@ -2,7 +2,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { Typography } from "@mui/material"
 import MenuItem from "@mui/material/MenuItem"
 
-import { supportedLocales } from "@/config"
+import { supportedLocales } from "@/i18n"
 
 import ResponsiveLocaleSelector from "./ResponseiveLocaleSwitcher"
 

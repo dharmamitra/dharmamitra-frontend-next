@@ -73,9 +73,11 @@ const importRules = {
   "import/first": "error",
   "import/newline-after-import": "error",
   "import/no-duplicates": "error",
+  "import/no-anonymous-default-export": "off",
 }
 
 module.exports = {
+  root: true,
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
@@ -89,7 +91,6 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  root: true,
   extends: [
     "next",
     "eslint:recommended",

@@ -18,8 +18,7 @@ import Link from "@mui/material/Link"
 import logoFull from "@/assets/dm-logo-full.png"
 import { PageShell } from "@/components/layout"
 import Section from "@/components/Section"
-import { supportedLocales } from "@/config"
-import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
+import { I18nMetadataHandlerProps, Metadata, supportedLocales } from "@/i18n"
 import { linkAttrs } from "@/utils/ui"
 
 export async function generateMetadata({

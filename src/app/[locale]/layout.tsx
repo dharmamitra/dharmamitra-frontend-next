@@ -3,6 +3,7 @@ import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter"
 
+import appConfig from "@/config"
 import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
 import QueryProvider from "@/utils/QueryProvider"
 import theme from "@/utils/theme"
@@ -13,11 +14,12 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "metadata" })
 
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "/"),
+    metadataBase: new URL(appConfig.siteUrl),
     title: {
       default: t("title"),
-      template: `%s · Dharmamitra`,
+      template: `%s · ${appConfig.siteName}`,
     },
+    // TODO: handle description for envs.
     description: t("description"),
     twitter: {
       card: "summary_large_image",

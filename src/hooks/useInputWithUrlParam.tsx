@@ -5,12 +5,12 @@ import useParams from "@/hooks/useParams"
 
 function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
   const { getSearchParam, createQueryString, updateParams } = useParams()
-  const [input, setInput] = React.useState<string>(
+  const [currentInput, setCurrentInput] = React.useState<string>(
     getSearchParam(paramName) ?? defaultValue,
   )
 
   React.useEffect(() => {
-    setInput(getSearchParam(paramName) ?? defaultValue)
+    setCurrentInput(getSearchParam(paramName) ?? defaultValue)
   }, [getSearchParam, paramName, defaultValue])
 
   const handleInputChange = React.useCallback(
@@ -19,21 +19,21 @@ function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
         | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
         | SelectChangeEvent<string>
         | string,
-      limit?: number,
+      characterLimit?: number,
     ) => {
       let newValue = typeof input === "string" ? input : input.target.value
 
-      if (limit && newValue.length > limit) {
-        newValue = newValue.slice(0, limit)
+      if (characterLimit && newValue.length > characterLimit) {
+        newValue = newValue.slice(0, characterLimit)
       }
 
-      setInput(newValue)
+      setCurrentInput(newValue)
       updateParams(createQueryString(paramName, newValue))
     },
     [updateParams, createQueryString, paramName],
   )
 
-  return { input, handleInputChange }
+  return { input: currentInput, handleInputChange }
 }
 
 export default useInputWithUrlParam

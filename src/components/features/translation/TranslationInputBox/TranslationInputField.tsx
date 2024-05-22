@@ -13,25 +13,24 @@ import { useSetAtom } from "jotai"
 
 import { triggerTranslationQueryAtom } from "@/atoms"
 import CharacterCount from "@/components/CharacterCount"
+import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import useResponsiveContentRows from "@/hooks/useResponsiveContentRows"
 import { apiParamsNames } from "@/utils/api/params"
-import { translationInputLimit } from "@/utils/ui"
 
-import BoxBottomElementsRow from "../BoxBottomElementsRow"
+import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 
-export default function TranslationInput() {
+export default function TranslationInputField() {
+  const { translationInputLimit } = useAppConfig()
   const t = useTranslations()
   const { input, handleInputChange } = useInputWithUrlParam(
     apiParamsNames.translation.input_sentence,
   )
-  const limitReached = React.useMemo(
+  const characterLimitReached = React.useMemo(
     () => input.length >= translationInputLimit,
-    [input],
+    [input, translationInputLimit],
   )
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
-  const rows = useResponsiveContentRows()
   const theme = useTheme()
 
   return (
@@ -40,7 +39,6 @@ export default function TranslationInput() {
         sx={{
           width: "100%",
           height: "100%",
-          overflow: "clip",
           alignItems: "flex-start",
           borderTopRightRadius: "none",
           borderBottomRightRadius: "none",
@@ -54,21 +52,10 @@ export default function TranslationInput() {
           "data-testid": "translation-input",
           "aria-label": t("translation.inputAriaLabel"),
           sx: {
-            // TODO: fix quick and dirty `reader` theme font-size hack!
-            height: {
-              xs: `calc(${rows} * 1.56rem) !important`,
-              sm: `calc(${rows} * 1.4rem) !important`,
-              md: `calc(${rows} * 1.58rem) !important`,
-            },
-            fontSize: {
-              xs: "1.15rem !important",
-              sm: `1.25rem !important`,
-              md: `1.35rem !important`,
-            },
-            lineHeight: `1.5 !important`,
+            height: "calc(fit-content) !important",
+            mb: "2.5rem !important",
           },
         }}
-        rows={rows}
         multiline
         value={input}
         onChange={(e) => handleInputChange(e, translationInputLimit)}
@@ -101,8 +88,8 @@ export default function TranslationInput() {
         >
           <CharacterCount
             charcaters={input.length}
-            limit={translationInputLimit}
-            limitReached={limitReached}
+            characterLimit={translationInputLimit}
+            characterLimitReached={characterLimitReached}
           />
           <Tooltip
             title={

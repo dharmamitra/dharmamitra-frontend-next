@@ -30,7 +30,7 @@ export default function OptionsLoading({
   i18nKey,
 }: {
   options: string[]
-  i18nKey: "encodings" | "targetLanguages"
+  i18nKey: "encodings" | "targetLanguages" | "models" | "grammar"
 }) {
   const t = useTranslations(`translation.${i18nKey}`)
   return (

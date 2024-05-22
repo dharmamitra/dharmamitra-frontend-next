@@ -33,13 +33,45 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Workflow
+## Project config, workflow & deployment (UNDER DEVELOPMENT)
+
+### Config
+
+- adapted from [Best Practices for Handling Per-Environment Configuration in Your JS/TS Applications](https://www.raulmelo.me/en/blog/best-practices-for-handling-per-environment-config-js-ts-applications#the-config-strategy)
+
+- environment specific build scripts (in `package.json`) set the `NEXT_PUBLIC_APP_ENV` used to define app config (including features, options to render) for each environment. 
+  - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env.production`. **note**: This overwrites the `.env.production` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_env.sh`
+  - Next.js automatically loads environment variables from `.env.local`, `.env.development`, `.env.production`, and `.env.test`. The prebuild step allows us to maintain the standard file names and use Next.js's built-in environment loading strategy.
+
+#### Config foundation
+
+- in config property must be set in all env config files add it to the `RequiredConfigKeys` type in `src/config/defineConfig.ts`
+
+#### Adding a new environment
+
+This steps can also be adjusted for renaming an environment. 
+
+- add the env alias to `SUPPORTED_ENVS` in `src/config/defineConfig.ts`
+- create an new env specific config file in `src/config/envs` (adjust settings as needed, with `defineConfig` as a ref.)
+- import the env's config file to `src/config/index.ts` and add the env alias to config getter ("if section")
+- add environment alias to the `servedAtRoot` in `next.config.mjs` if the environment's base path is `/` (*this should only be applicable in the case of renaming*)
+- add an env specific build script to `package.json`. Eg. for the `lab` env:
+   
+  ```
+  "prebuild:lab": "sh ./scripts/set_env.sh lab",
+  "build:lab": "next build",
+  ```
+
+- add a new service block for the env to `docker-compose.yaml`
+  - the env needs to be mapped to a new port
+  - the env container name needs to be added to the `nginx` service dependency list. 
+- add the env to `nginx/default.conf`
 
 ### Branches:
 
 - `main`: for production deployment
-- `dev`: for preview deployment
-- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files. 
+- `dev`: for staging deployment
+- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files.
 - development item branches linked to issue numbers
 
 `dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
@@ -70,7 +102,7 @@ Automated release updates depend on standardized commit messages following the [
 1. New item specification defined in an issue with clear acceptance criteria
 2. A new branch under the issue number is created for the work
 3. On completion a PR will be opened against `dev`
-4. When a PR is accepted the new work will be deployed on preview for testing
+4. When a PR is accepted the new work will be deployed on staging for testing
 5. After final sign-off a PR will be opened from `dev` to `main` and `semantic-release` will handle release versions based on commits.
 6. Deploy to production from `main`.
 
@@ -79,22 +111,35 @@ Automated release updates depend on standardized commit messages following the [
 ### Simple setting
 
 ```sh
-docker build . --tag dmnext  --no-cache
-docker run --detach --rm --publish 3333:3000 --name dmnext dmnext
+docker build . --tag {TAG}  --no-cache
+docker run --detach --rm --publish 3333:3000 --name {TAG} {TAG}
 ```
 
 `3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN).
 
-The project will be available at `http://localhost:3333/dmnext`. To shut it down gracefully run:
+The project will be available at `http://localhost:3333/{TAG}`. To shut it down gracefully run:
 
 ```sh
-docker stop dmnext
+docker stop {TAG}
 ```
 
 ### Compose setting
 
-```
+Base command:
+
+```sh
 docker compose build --no-cache && docker compose up --force-recreate -d
+```
+
+Set env variables:
+```sh
+export RESTART_POLICY=no
+docker compose build --no-cache && docker compose up --force-recreate -d
+```
+
+Disable the progress indicator and get more detailed output
+```sh
+docker compose build --no-cache --progress=plain
 ```
 
 NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.
@@ -104,7 +149,7 @@ The server (published locally on port 80) functions as a proxy so the same page 
 
 If you want to see the NGINX logs you can use (press Ctrl-C to exit):
 
-```
+```sh
 docker logs nginx -f
 ```
 
@@ -116,7 +161,7 @@ The project uses [`openapi-typescript`](https://openapi-ts.pages.dev/introductio
 
 DM API request and response model types are generated from the project's [OpenAPI schema](https://dharmamitra.org/api/openapi.json) by running:
 
-```
+```sh
 yarn api:codegen
 ```
 
@@ -139,8 +184,6 @@ TODO
 
 TODO (https://stackoverflow.com/questions/14500240/how-can-i-generate-a-diff-for-a-single-file-between-two-branches-in-github)
 
-
-
 ### Internal navigation
 
 - most internal navigation can be handled with `src/components/LocalLink.tsx`.
@@ -161,10 +204,12 @@ The theme is configured in a static `.ts` file (`src/utils/theme/config.ts`) so 
 
 For server components **theme-aware** propeties are readily available via component's `sx` prop. Additionally, `customTheming` can be imported to get access to these styles. In client components the same custome styles can be accessed via the theme's `custom` prop:
 
-```
- sx={{
-  borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
-}}
+```jsx
+<Box
+  sx={{
+    borderBottomRightRadius: (theme) => theme.custom.shape.inputRadius,
+  }}
+/>
 ```
 
 ### References:

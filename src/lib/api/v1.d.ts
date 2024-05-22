@@ -36,8 +36,6 @@ export interface components {
       filter_primary: components["schemas"]["FilterPrimary"]
       filter_secondary: components["schemas"]["FilterSecondary"]
       postprocess_model: components["schemas"]["PostProcessModel"]
-      /** Api Key */
-      api_key: string
     }
     /** Body_tagging_tagging__post */
     Body_tagging_tagging__post: {
@@ -53,7 +51,7 @@ export interface components {
       /** Level Of Explanation */
       level_of_explanation: number
       target_lang: components["schemas"]["TargetLanguage"]
-      model: components["schemas"]["ModelName"]
+      model: components["schemas"]["TranslationModel"]
     }
     /** Body_translation_translation_exp__post */
     Body_translation_translation_exp__post: {
@@ -63,9 +61,7 @@ export interface components {
       /** Do Grammar Explanation */
       do_grammar_explanation: boolean
       target_lang: components["schemas"]["TargetLanguageExperimental"]
-      /** Api Key */
-      api_key: string
-      model: components["schemas"]["ModelName"]
+      model: components["schemas"]["TranslationModel"]
     }
     /**
      * FilterLanguage
@@ -120,11 +116,6 @@ export interface components {
      */
     InputEncoding: "auto" | "tibetan" | "wylie" | "dev" | "iast" | "hk"
     /**
-     * ModelName
-     * @enum {string}
-     */
-    ModelName: "NO" | "ANALYZE" | "GPT4TRANSLATE"
-    /**
      * PostProcessModel
      * @enum {string}
      */
@@ -170,6 +161,11 @@ export interface components {
       | "pali"
       | "sanskrit-knn"
       | "modern-chinese"
+    /**
+     * TranslationModel
+     * @enum {string}
+     */
+    TranslationModel: "madlad" | "llama3" | "none"
     /** ValidationError */
     ValidationError: {
       /** Location */

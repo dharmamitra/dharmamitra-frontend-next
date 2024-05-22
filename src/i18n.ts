@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation"
 import { getRequestConfig } from "next-intl/server"
 
-import { supportedLocales } from "@/config"
-
 export type { Metadata } from "next"
+
+export const supportedLocales = ["en", "zh", "zh-Hant"] as const
+export const defaultLocale = "en" as const
+export const localePrefix = "as-needed"
 
 export type I18nMetadataHandlerProps = {
   params: { locale: SupportedLocale }

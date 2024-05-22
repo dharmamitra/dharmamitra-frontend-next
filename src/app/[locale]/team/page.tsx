@@ -5,8 +5,7 @@ import { Typography } from "@mui/material"
 import { PageShell } from "@/components/layout"
 import Members from "@/components/Members"
 import Section from "@/components/Section"
-import { supportedLocales } from "@/config"
-import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
+import { I18nMetadataHandlerProps, Metadata, supportedLocales } from "@/i18n"
 
 import membersData from "./data"
 

@@ -1,21 +1,11 @@
-import type { components } from "@/lib/api/v1.d"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import { type SearchRequestProps } from "./search"
-import { type TranslationRequestProps } from "./translation"
-
-export type InputEncoding = components["schemas"]["InputEncoding"]
-export type ModelName = components["schemas"]["ModelName"]
-export type TargetLanguage = components["schemas"]["TargetLanguage"]
-export type APIParamsNames = {
-  search: Record<keyof SearchRequestProps, keyof SearchRequestProps>
-  translation: Record<
-    keyof TranslationRequestProps,
-    keyof TranslationRequestProps
-  >
-}
-
-export type InputEncodingParamMap = Record<string, InputEncoding>
+import {
+  APIParamNames,
+  InputEncoding,
+  TargetLanguage,
+  TranslationModel,
+} from "./types"
 
 export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
   "auto",
@@ -26,31 +16,45 @@ export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
   "wylie",
 )
 
-export const modelNames = exhaustiveStringTuple<ModelName>()(
-  "NO",
-  "ANALYZE",
-  "GPT4TRANSLATE",
+export const translationModels = exhaustiveStringTuple<TranslationModel>()(
+  "none",
+  "madlad",
+  "llama3",
 )
 
-export type ServedTargetLanguage = Exclude<TargetLanguage, "pali">
-export const targetLanguages = exhaustiveStringTuple<ServedTargetLanguage>()(
+export const allTargetLanguages = exhaustiveStringTuple<TargetLanguage>()(
   "english",
   "tibetan",
   "sanskrit",
   "sanskrit-dev",
+  "sanskrit-knn",
+  "modern-chinese",
   "buddhist-chinese",
+  "japanese",
   "korean",
+  "pali",
 )
 
-export const apiParamsNames: APIParamsNames = {
+export const apiParamsNames: APIParamNames = {
   search: {
+    filter_language: "filter_language",
+    filter_primary: "filter_primary",
+    filter_secondary: "filter_secondary",
+    input_encoding: "input_encoding",
+    postprocess_model: "postprocess_model",
     search_input: "search_input",
+    search_target: "search_target",
+    search_type: "search_type",
   },
   translation: {
     input_sentence: "input_sentence",
     input_encoding: "input_encoding",
-    level_of_explanation: "level_of_explanation",
+    do_grammar_explanation: "do_grammar_explanation",
     target_lang: "target_lang",
     model: "model",
+  },
+  tagging: {
+    input_sentence: "input_sentence",
+    input_encoding: "input_encoding",
   },
 }
