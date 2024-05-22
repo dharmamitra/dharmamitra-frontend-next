@@ -1,5 +1,5 @@
-import * as DMApi from "./types"
 import apiClient from "./client"
+import * as DMApi from "./types"
 
 const DM_FETCH_API = {
   tagging: {
@@ -17,4 +17,4 @@ const DM_FETCH_API = {
   },
 }
 
-export { DMApi, DM_FETCH_API }
+export { DM_FETCH_API, DMApi }

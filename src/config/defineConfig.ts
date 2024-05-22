@@ -7,9 +7,6 @@ export const SUPPORTED_ENVS = ["pub", "lab", "rnd", "local"] as const
 
 export type AppEnv = (typeof SUPPORTED_ENVS)[number]
 
-type TargetLanguage = DMApi.Schema["TargetLanguageExperimental"]
-type TranslationModel = DMApi.Schema["TranslationModel"]
-
 export const appConfigSchema = z.object({
   env: z.enum(SUPPORTED_ENVS),
   siteName: z.string().default("Dharmamitra"),
@@ -34,7 +31,10 @@ export const appConfigSchema = z.object({
         .array(
           z.string().refine(
             // validates at build & runtime
-            (val) => allTargetLanguages.includes(val as TargetLanguage),
+            (val) =>
+              allTargetLanguages.includes(
+                val as DMApi.Schema["TargetLanguageExperimental"],
+              ),
             {
               message:
                 "Invalid `paramOptions.targetLanguage` value given to app config.",
@@ -45,10 +45,14 @@ export const appConfigSchema = z.object({
       doGrammarExplanation: z.boolean().default(false),
       model: z
         .string()
-        .refine((val) => translationModels.includes(val as TranslationModel), {
-          message: "Invalid `paramOptions.model` value given to app config.",
-        })
-        .default("none" as TranslationModel),
+        .refine(
+          (val) =>
+            translationModels.includes(val as DMApi.Schema["TranslationModel"]),
+          {
+            message: "Invalid `paramOptions.model` value given to app config.",
+          },
+        )
+        .default("NO" as DMApi.Schema["TranslationModel"]),
     })
     .default({}),
   featureFlags: z

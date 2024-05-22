@@ -3,9 +3,9 @@ import { SelectChangeEvent } from "@mui/material"
 
 import useParams from "@/hooks/useParams"
 
-function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
+function useInputWithUrlParam<T>(paramName: string, defaultValue: string = "") {
   const { getSearchParam, createQueryString, updateParams } = useParams()
-  const [currentInput, setCurrentInput] = React.useState<string>(
+  const [currentInput, setCurrentInput] = React.useState(
     getSearchParam(paramName) ?? defaultValue,
   )
 
@@ -33,7 +33,7 @@ function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
     [updateParams, createQueryString, paramName],
   )
 
-  return { input: currentInput, handleInputChange }
+  return { input: currentInput as T, handleInputChange }
 }
 
 export default useInputWithUrlParam

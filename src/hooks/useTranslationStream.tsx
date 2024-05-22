@@ -1,58 +1,52 @@
 import React from "react"
-import { useQuery } from "@tanstack/react-query"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
-import { DM_FETCH_API, DMApi } from "@/api"
+import { DMApi } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { apiParamsNames, inputEncodings } from "@/utils/api/params"
+import {
+  apiParamsNames,
+  inputEncodings,
+  translationModels,
+} from "@/utils/api/params"
 import { cleanSSEData } from "@/utils/transformers"
 
 const useTranslationStream = () => {
   const { basePath, streamPaths, paramOptions } = useAppConfig()
 
-  const { input: inputSentence } = useInputWithUrlParam(
+  const { input: inputSentenceParam } = useInputWithUrlParam<string>(
     apiParamsNames.translation.input_sentence,
   )
-  const { input: inputEncoding } = useInputWithUrlParam(
-    apiParamsNames.translation.input_encoding,
-  )
-  const { input: targetLang } = useInputWithUrlParam(
-    apiParamsNames.translation.target_lang,
-  )
-  const { input: model } = useInputWithUrlParam(
-    apiParamsNames.translation.model,
-  )
-  const { input: doGrammarExplanation } = useInputWithUrlParam(
+  const { input: inputEncodingParam } = useInputWithUrlParam<
+    DMApi.Schema["InputEncoding"]
+  >(apiParamsNames.translation.input_encoding)
+  const { input: targetLangParam } = useInputWithUrlParam<
+    DMApi.Schema["TargetLanguage"]
+  >(apiParamsNames.translation.target_lang)
+  const { input: modelParam } = useInputWithUrlParam<
+    DMApi.Schema["TranslationModel"]
+  >(apiParamsNames.translation.model)
+  const { input: grammarParam } = useInputWithUrlParam<"on" | "off">(
     apiParamsNames.translation.do_grammar_explanation,
   )
 
-  // TODO: Add typing to useInputWithUrlParam and remove casting
-  const inputEncodingParam = (
-    inputEncoding ? inputEncoding : inputEncodings[0]
-  ) as DMApi.Schema["InputEncoding"]
-  const targetLangParam = (
-    targetLang ? targetLang : paramOptions.targetLanguages[0]
-  ) as DMApi.Schema["TargetLanguage"]
-  const modelParam = (
-    model ? model : paramOptions.model
-  ) as DMApi.Schema["TranslationModel"]
-  const grammarParam = doGrammarExplanation === "on"
-
   const params: DMApi.TranslationRequestBody = React.useMemo(
     () => ({
-      input_sentence: inputSentence,
-      input_encoding: inputEncodingParam,
-      do_grammar_explanation: grammarParam,
-      target_lang: targetLangParam,
-      model: modelParam,
+      input_sentence: inputSentenceParam ?? "",
+      input_encoding: inputEncodingParam ?? inputEncodings[0],
+      do_grammar_explanation: grammarParam === "on",
+      target_lang:
+        targetLangParam ??
+        (paramOptions.targetLanguages[0] as DMApi.Schema["TargetLanguage"]),
+      model: modelParam ?? translationModels[0],
     }),
     [
-      inputSentence,
+      inputSentenceParam,
       inputEncodingParam,
       targetLangParam,
+      paramOptions,
       modelParam,
       grammarParam,
     ],
@@ -61,22 +55,6 @@ const useTranslationStream = () => {
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
     triggerTranslationQueryAtom,
   )
-
-  // eslint-disable-next-line no-unused-vars
-  const { target_lang, do_grammar_explanation, ...taggingParams } = params
-  const { data: taggingData } = useQuery({
-    queryKey: DM_FETCH_API.tagging.makeQueryKey({
-      mode: "lemma",
-      ...taggingParams,
-    }),
-    queryFn: () =>
-      DM_FETCH_API.tagging.call({
-        mode: "lemma",
-        ...taggingParams,
-        input_encoding: "auto",
-      }),
-    enabled: !!params.input_sentence,
-  })
 
   const [translationStream, setTranslationStream] = React.useState<
     string | undefined
@@ -89,7 +67,7 @@ const useTranslationStream = () => {
 
   React.useEffect(() => {
     setTranslationStream("")
-  }, [inputSentence])
+  }, [inputSentenceParam])
 
   const timeoutIdRef = React.useRef<NodeJS.Timeout | null>(null)
 
@@ -174,7 +152,6 @@ const useTranslationStream = () => {
     translationStream,
     isLoading,
     isError,
-    taggingData,
   }
 }
 

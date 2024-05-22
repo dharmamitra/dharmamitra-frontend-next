@@ -22,7 +22,7 @@ import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 export default function TranslationInputField() {
   const { translationInputLimit } = useAppConfig()
   const t = useTranslations()
-  const { input, handleInputChange } = useInputWithUrlParam(
+  const { input, handleInputChange } = useInputWithUrlParam<string>(
     apiParamsNames.translation.input_sentence,
   )
   const characterLimitReached = React.useMemo(

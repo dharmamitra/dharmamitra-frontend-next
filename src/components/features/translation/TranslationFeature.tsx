@@ -10,8 +10,8 @@ import TranslationInputBox from "./TranslationInputBox"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
 import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
-import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
 import TranslationTaggingOutput from "./TranslationTaggingOutput"
+import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
 
 export default function TranslationFeature() {
   const { translateExtendedOptions } = useAppConfig().featureFlags

@@ -24,6 +24,16 @@ export const allTargetLanguages = exhaustiveStringTuple<
   "pali",
 )
 
+export const grammarModes = exhaustiveStringTuple<
+  DMApi.Schema["GrammarModes"]
+>()(
+  "lemma",
+  "lemma-morphosyntax",
+  "unsandhied-lemma-morphosyntax",
+  "unsandhied",
+  "unsandhied-morphosyntax",
+)
+
 export const apiParamsNames: DMApi.ParamNames = {
   search: {
     filter_language: "filter_language",
