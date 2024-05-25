@@ -7,12 +7,15 @@ import { inputEncodings } from "@/utils/api/params"
 import OptionsLoading from "../common/OptionsLoading"
 import SettingBlock from "../common/SettingBlock"
 
-const InputEncodingOptions = dynamic(() => import("./InputEncodingOptions"), {
-  loading: () => (
-    <OptionsLoading options={inputEncodings} i18nKey="encodings" />
-  ),
-  ssr: false,
-})
+const LazyTranslationInputEncodingSelector = dynamic(
+  () => import("./LazyTranslationInputEncodingSelector"),
+  {
+    loading: () => (
+      <OptionsLoading options={inputEncodings} i18nKey="encodings" />
+    ),
+    ssr: false,
+  },
+)
 
 export default function TranslationInputEncodingSelector() {
   const t = useTranslations("translation")
@@ -23,7 +26,7 @@ export default function TranslationInputEncodingSelector() {
       placement="start"
       testId="input-encoding-selector"
     >
-      <InputEncodingOptions />
+      <LazyTranslationInputEncodingSelector />
     </SettingBlock>
   )
 }

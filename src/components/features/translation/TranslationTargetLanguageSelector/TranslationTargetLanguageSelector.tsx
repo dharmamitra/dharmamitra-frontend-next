@@ -7,15 +7,18 @@ import appConfig from "@/config"
 import OptionsLoading from "../common/OptionsLoading"
 import SettingBlock from "../common/SettingBlock"
 
-const TargetLanguageOptions = dynamic(() => import("./TargetLanguageOptions"), {
-  loading: () => (
-    <OptionsLoading
-      options={appConfig.paramOptions.targetLanguages}
-      i18nKey="targetLanguages"
-    />
-  ),
-  ssr: false,
-})
+const LazyTargetLanguageOptionsSelector = dynamic(
+  () => import("./LazyTargetLanguageOptionsSelector"),
+  {
+    loading: () => (
+      <OptionsLoading
+        options={appConfig.paramOptions.targetLanguages}
+        i18nKey="targetLanguages"
+      />
+    ),
+    ssr: false,
+  },
+)
 
 export default function TranslationTargetLanguageSelector() {
   const t = useTranslations("translation")
@@ -26,7 +29,7 @@ export default function TranslationTargetLanguageSelector() {
       placement="end"
       testId="input-encoding-selector"
     >
-      <TargetLanguageOptions />
+      <LazyTargetLanguageOptionsSelector />
     </SettingBlock>
   )
 }

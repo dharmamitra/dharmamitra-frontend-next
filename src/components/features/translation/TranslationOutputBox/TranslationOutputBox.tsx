@@ -5,7 +5,9 @@ import customTheming from "@/utils/theme/config"
 
 import TranslationContentBox from "../common/TranslationContentBox"
 
-const TranslationOutput = dynamic(() => import("./TranslationOutput"))
+const LazyTranslationOutput = dynamic(
+  () => import("./LazyTranslationOutputBox"),
+)
 
 export default function TranslationOutputBox() {
   return (
@@ -18,7 +20,7 @@ export default function TranslationOutputBox() {
         borderBottomRightRadius: customTheming.shape.inputRadius,
       }}
     >
-      <TranslationOutput />
+      <LazyTranslationOutput />
     </TranslationContentBox>
   )
 }

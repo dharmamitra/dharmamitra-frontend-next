@@ -6,7 +6,7 @@ import useDebouncedValue from "@/hooks/useDebouncedValue"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 
-const useTranslationStream = () => {
+const useTaggingData = () => {
   const { input: inputSentence } = useInputWithUrlParam<string>(
     apiParamsNames.translation.input_sentence,
   )
@@ -25,9 +25,11 @@ const useTranslationStream = () => {
 
   const [triggerQuery, setTriggerQuery] = React.useState(false)
 
+  const debouncedInputSentence = useDebouncedValue(inputSentence, 500)
+
   React.useEffect(() => {
-    setTriggerQuery(Boolean(inputSentence))
-  }, [useDebouncedValue(inputSentence, 500)])
+    setTriggerQuery(Boolean(debouncedInputSentence))
+  }, [debouncedInputSentence])
 
   const {
     data: taggingData,
@@ -49,4 +51,4 @@ const useTranslationStream = () => {
   }
 }
 
-export default useTranslationStream
+export default useTaggingData

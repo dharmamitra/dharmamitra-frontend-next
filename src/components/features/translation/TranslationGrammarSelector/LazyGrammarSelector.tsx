@@ -37,7 +37,7 @@ export default function LazyGrammarSelector() {
     if (input === "") {
       handleInputChange(defaultValue)
     }
-  }, [input, handleInputChange, doGrammarExplanation])
+  }, [input, handleInputChange, defaultValue])
 
   return (
     <Switch

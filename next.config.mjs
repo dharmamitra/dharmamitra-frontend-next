@@ -11,6 +11,9 @@ export const getBasePath = () => {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: getBasePath(),
+  eslint: {
+    ignoreDuringBuilds: process.env.NEXT_DISABLE_ESLINT === "true",
+  },
 }
 
 export default withNextIntl(nextConfig)
