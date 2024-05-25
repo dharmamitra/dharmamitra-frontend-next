@@ -10,7 +10,9 @@ import TranslationInputBox from "./TranslationInputBox"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
 import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
-import TranslationTaggingOutput from "./TranslationTaggingOutput"
+import TranslationTaggingOutput, {
+  TranslationTaggingSwitch,
+} from "./TranslationTagging"
 import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
 
 export default function TranslationFeature() {
@@ -52,6 +54,7 @@ export default function TranslationFeature() {
         >
           <TranslationModelSelector />
           <TranslationGrammarSelector />
+          <TranslationTaggingSwitch />
         </Box>
       ) : null}
       <TranslationTaggingOutput />

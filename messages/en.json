@@ -126,6 +126,9 @@
     "otherTargetLanguagesAriaLabel": "Other traget language options",
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
+    "taggingLabel": "Tagging",
+    "taggingAriaLabel": "Enable grammatical tagging",
+    "taggingHeading": "Grammatical Tagging",
     "copyTranslation": "Copy translation",
     "encodings": {
       "auto": "Autodetect",

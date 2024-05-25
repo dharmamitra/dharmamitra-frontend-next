@@ -28,7 +28,7 @@ const useTranslationStream = () => {
   const { input: modelParam } = useInputWithUrlParam<
     DMApi.Schema["TranslationModel"]
   >(apiParamsNames.translation.model)
-  const { input: grammarParam } = useInputWithUrlParam<"on" | "off">(
+  const { input: grammarParam } = useInputWithUrlParam<"false" | "true">(
     apiParamsNames.translation.do_grammar_explanation,
   )
 
@@ -36,7 +36,7 @@ const useTranslationStream = () => {
     () => ({
       input_sentence: inputSentenceParam ?? "",
       input_encoding: inputEncodingParam ?? inputEncodings[0],
-      do_grammar_explanation: grammarParam === "on",
+      do_grammar_explanation: grammarParam === "true",
       target_lang:
         targetLangParam ??
         (paramOptions.targetLanguages[0] as DMApi.Schema["TargetLanguage"]),
