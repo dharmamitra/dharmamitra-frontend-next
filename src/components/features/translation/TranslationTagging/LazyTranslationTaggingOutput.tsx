@@ -20,18 +20,17 @@ type HandleChangeProps = {
 }
 
 type HandleSentenceLammaChangeProps = HandleChangeProps & {
-  lemmaIndex: number
+  unsandhiedIndex: number
 }
 
 export default function TranslationTaggingOutput() {
   const { taggingData } = useTaggingData()
   const t = useTranslations("translation")
 
-  const [sentenceLemmaIndecies, setSentenceLemmaIndecies] = React.useState<
-    [number, number] | []
-  >([])
+  const [sentenceUnsandhiedIndecies, setSentenceUnsandhiedIndecies] =
+    React.useState<[number, number] | []>([0, 0])
 
-  const [expandIndecies, setExpandIndecies] = React.useState([0])
+  const [expandIndecies, setExpandIndecies] = React.useState<number[]>([0])
 
   const handleSentenceExpansionChange = ({
     event,
@@ -54,10 +53,10 @@ export default function TranslationTaggingOutput() {
     }
   }
 
-  const handleSentenceLemmaChange = ({
+  const handleSentenceUnsandhiedChange = ({
     event,
     sentenceIndex,
-    lemmaIndex,
+    unsandhiedIndex,
   }: HandleSentenceLammaChangeProps) => {
     if (
       (event.type === "keydown" &&
@@ -65,9 +64,14 @@ export default function TranslationTaggingOutput() {
       event.type === "click"
     ) {
       event.preventDefault()
-      setSentenceLemmaIndecies([sentenceIndex, lemmaIndex])
+      if (!expandIndecies.includes(sentenceIndex)) {
+        setExpandIndecies([...expandIndecies, sentenceIndex])
+      }
+      setSentenceUnsandhiedIndecies([sentenceIndex, unsandhiedIndex])
     }
   }
+
+  if (!taggingData) return null
 
   return (
     <Box
@@ -80,7 +84,7 @@ export default function TranslationTaggingOutput() {
         variant="h5"
         sx={{ fontWeight: "bold", mb: 4 }}
       >
-        {t("taggingHeading")}
+        {t("tagging.heading")}
       </Typography>
 
       <Box
@@ -93,11 +97,13 @@ export default function TranslationTaggingOutput() {
       >
         <>
           {taggingData?.map((sentence, sentenceIndex) => {
-            const [, selecetedLemmaIndex] = sentenceLemmaIndecies
-            const sentenceLemma =
-              selecetedLemmaIndex !== undefined
-                ? sentence[selecetedLemmaIndex]
+            const [, selecetedUnsandhiedIndex] = sentenceUnsandhiedIndecies
+            const selectedSentence =
+              selecetedUnsandhiedIndex !== undefined
+                ? sentence[selecetedUnsandhiedIndex]
                 : null
+
+            const { lemma, tag, meanings } = selectedSentence || {}
 
             return (
               <Accordion
@@ -124,41 +130,42 @@ export default function TranslationTaggingOutput() {
                     sx={{
                       display: "flex",
                       flexWrap: "wrap",
-                      gap: 3,
+                      rowGap: 2,
+                      columnGap: 0.5,
                       mr: 3,
                     }}
                   >
-                    {sentence.map((item, lemmaIndex) => {
+                    {sentence.map((item, unsandhiedIndex) => {
+                      const { unsandhied } = item
+                      const isSelected =
+                        sentenceUnsandhiedIndecies[0] === sentenceIndex &&
+                        unsandhiedIndex === sentenceUnsandhiedIndecies[1]
                       return (
                         <Button
-                          key={`translation-tagging-sentence-${lemmaIndex}`}
-                          variant="outlined"
-                          color={
-                            sentenceLemmaIndecies[0] === sentenceIndex &&
-                            lemmaIndex === sentenceLemmaIndecies[1]
-                              ? "secondary"
-                              : "primary"
-                          }
-                          onClick={(event) =>
-                            handleSentenceLemmaChange({
-                              event,
-                              sentenceIndex,
-                              lemmaIndex,
-                            })
-                          }
-                          onKeyDown={(event) =>
-                            handleSentenceLemmaChange({
-                              event,
-                              sentenceIndex,
-                              lemmaIndex,
-                            })
-                          }
+                          key={`translation-tagging-sentence-${unsandhiedIndex}`}
+                          variant={isSelected ? "contained" : "outlined"}
+                          color="primary"
                           sx={{
+                            mr: !unsandhied.endsWith("-") ? 3 : undefined,
                             textTransform: "none",
                             fontWeight: "bold",
                           }}
+                          onClick={(event) =>
+                            handleSentenceUnsandhiedChange({
+                              event,
+                              sentenceIndex,
+                              unsandhiedIndex,
+                            })
+                          }
+                          onKeyDown={(event) =>
+                            handleSentenceUnsandhiedChange({
+                              event,
+                              sentenceIndex,
+                              unsandhiedIndex,
+                            })
+                          }
                         >
-                          {item.lemma}
+                          {unsandhied}
                         </Button>
                       )
                     })}
@@ -166,15 +173,32 @@ export default function TranslationTaggingOutput() {
                 </AccordionSummary>
 
                 <AccordionDetails>
-                  <Box>{sentenceLemma?.unsandhied}</Box>
+                  <Typography mb={1}>
+                    <Typography fontWeight={600} component="span">
+                      {t("tagging.lemma")}:{" "}
+                    </Typography>
+                    {lemma}
+                  </Typography>
+                  <Typography mb={1}>
+                    <Typography fontWeight={600} component="span">
+                      {t("tagging.tag")}:{" "}
+                    </Typography>
+                    {tag}
+                  </Typography>
                   <Box>
-                    {sentenceLemma?.meanings.map((meaning, meaningIndex) => (
-                      <Typography
-                        key={`translation-tagging-meaning-${meaningIndex}`}
-                      >
-                        {meaning}
-                      </Typography>
-                    ))}
+                    <Typography fontWeight={600} component="span">
+                      {t("tagging.meanings")}:
+                    </Typography>
+                    <Box component="ul" mt={1}>
+                      {meanings?.map((meaning, meaningIndex) => (
+                        <Typography
+                          key={`translation-tagging-meaning-${meaningIndex}`}
+                          component="li"
+                        >
+                          {meaning}
+                        </Typography>
+                      ))}
+                    </Box>
                   </Box>
                 </AccordionDetails>
               </Accordion>

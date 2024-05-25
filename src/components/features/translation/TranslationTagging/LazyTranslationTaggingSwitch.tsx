@@ -26,7 +26,7 @@ export default function LazyTranslationTaggingSwitch() {
     <Switch
       checked={checked}
       onChange={handleChange}
-      inputProps={{ "aria-label": t("taggingAriaLabel") }}
+      inputProps={{ "aria-label": t("tagging.ariaLabel") }}
       color="secondary"
       disabled={!checked && (!taggingData || taggingData.length === 0)}
     />

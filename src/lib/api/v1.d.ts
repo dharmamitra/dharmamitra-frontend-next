@@ -132,6 +132,8 @@ export interface components {
       lemma: string
       /** Unsandhied */
       unsandhied: string
+      /** Tag */
+      tag: string
       /** Meanings */
       meanings: string[]
     }

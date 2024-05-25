@@ -17,7 +17,7 @@ export default function TranslationTaggingSwitch() {
   const t = useTranslations("translation")
 
   return (
-    <LabelledSetting label={t("taggingLabel")} labelSx={{ ml: 1, mb: 0 }}>
+    <LabelledSetting label={t("tagging.label")} labelSx={{ ml: 1, mb: 0 }}>
       <LazyTranslationTaggingSwitch />
     </LabelledSetting>
   )

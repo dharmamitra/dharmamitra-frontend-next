@@ -126,10 +126,15 @@
     "otherTargetLanguagesAriaLabel": "Other traget language options",
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
-    "taggingLabel": "Tagging",
-    "taggingAriaLabel": "Enable grammatical tagging",
-    "taggingHeading": "Grammatical Tagging",
     "copyTranslation": "Copy translation",
+    "tagging": {
+      "label": "tagging",
+      "ariaLabel": "Grammar Analysis",
+      "heading": "Grammatical Analysis",
+      "lemma": "Lemma",
+      "tag": "Tag",
+      "meanings": "Meanings"
+    },
     "encodings": {
       "auto": "Autodetect",
       "dev": "Devanagari",
