@@ -13,17 +13,20 @@ const rgbCodes = {
   primary: "0, 0, 0", // #000
   secondary: "151, 46, 58", // #972e3a
   light: "251, 238, 235", // #FBEEEB
+  "grey-100": "247, 247, 247", // #F7F7F7
 }
 
 const colours = {
   primary: `rgb(${rgbCodes.primary}, 1)`,
   secondary: `rgb(${rgbCodes.secondary}, 1)`,
   soft: `rgb(${rgbCodes.light}, 0.5)`,
+  panel: `rgb(${rgbCodes["grey-100"]}, 1)`,
 }
 
 const customTheming: CustomTheming = {
   palette: {
     soft: colours.soft,
+    panel: colours.panel,
   },
   shape: {
     inputRadius: "24px",

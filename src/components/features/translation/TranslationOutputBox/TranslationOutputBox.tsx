@@ -12,7 +12,7 @@ export default function TranslationOutputBox() {
     <TranslationContentBox
       testId="translation-output"
       sx={{
-        backgroundColor: "grey.100",
+        backgroundColor: customTheming.palette.panel,
         p: 2,
         borderBottomLeftRadius: { xs: customTheming.shape.inputRadius, md: 0 },
         borderBottomRightRadius: customTheming.shape.inputRadius,

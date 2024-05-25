@@ -12,7 +12,7 @@ import { apiParamsNames } from "@/utils/api/params"
 
 import RadioOptionButtonGroup from "../common/RadioOptionButtonGroup"
 
-export default function LazyModelSelector() {
+export default function LazyGrammarSelector() {
   const t = useTranslations("translation")
 
   const searchParams = useSearchParams()

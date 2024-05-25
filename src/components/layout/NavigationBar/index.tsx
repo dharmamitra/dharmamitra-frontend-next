@@ -26,7 +26,7 @@ export default function NavigationBar() {
         sx={{
           height: { xs: "78px", sm: "85px", md: "96px" },
           py: "0.2rem",
-          backgroundColor: "background.default",
+          backgroundColor: "common.white",
           boxShadow: "0px 4px 4px 0px #0000001A",
         }}
       >

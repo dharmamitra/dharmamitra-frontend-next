@@ -1,9 +1,8 @@
 import React from "react"
 import { useQuery } from "@tanstack/react-query"
-import { useAtom } from "jotai"
 
 import { DM_FETCH_API, DMApi } from "@/api"
-import { triggerTranslationQueryAtom } from "@/atoms"
+import useDebouncedValue from "@/hooks/useDebouncedValue"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 
@@ -24,7 +23,11 @@ const useTranslationStream = () => {
     [inputSentence, inputEncoding],
   )
 
-  const [triggerTranslationQuery] = useAtom(triggerTranslationQueryAtom)
+  const [triggerQuery, setTriggerQuery] = React.useState(false)
+
+  React.useEffect(() => {
+    setTriggerQuery(Boolean(inputSentence))
+  }, [useDebouncedValue(inputSentence, 500)])
 
   const {
     data: taggingData,
@@ -32,8 +35,11 @@ const useTranslationStream = () => {
     isError,
   } = useQuery({
     queryKey: DM_FETCH_API.tagging.makeQueryKey(taggingParams),
-    queryFn: () => DM_FETCH_API.tagging.call(taggingParams),
-    enabled: triggerTranslationQuery,
+    queryFn: () => {
+      setTriggerQuery(false)
+      return DM_FETCH_API.tagging.call(taggingParams)
+    },
+    enabled: triggerQuery,
   })
 
   return {
