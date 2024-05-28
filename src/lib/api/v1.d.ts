@@ -43,6 +43,8 @@ export interface components {
       input_sentence: string
       mode: components["schemas"]["GrammarModes"]
       input_encoding: components["schemas"]["InputEncoding"]
+      /** Human Readable Tags */
+      human_readable_tags: boolean
     }
     /** Body_translation_translation__post */
     Body_translation_translation__post: {
@@ -158,7 +160,12 @@ export interface components {
      */
     SearchType: "precise" | "fuzzy" | "semantic"
     /** Sentence */
-    Sentence: components["schemas"]["Lemma"][]
+    Sentence: {
+      /** Sentence */
+      sentence: string
+      /** Grammatical Analysis */
+      grammatical_analysis: components["schemas"]["Lemma"][]
+    }
     /** TaggerResponseModel */
     TaggerResponseModel: components["schemas"]["Sentence"][]
     /**
