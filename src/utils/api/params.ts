@@ -56,5 +56,6 @@ export const apiParamsNames: DMApi.ParamNames = {
     input_sentence: "input_sentence",
     input_encoding: "input_encoding",
     mode: "mode",
+    human_readable_tags: "human_readable_tags",
   },
 }
