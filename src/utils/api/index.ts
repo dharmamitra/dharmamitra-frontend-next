@@ -1,7 +1,7 @@
 import apiClient from "./client"
 import * as DMApi from "./types"
 
-const DM_FETCH_API = {
+const DMFetchApi = {
   tagging: {
     makeQueryKey: (body: DMApi.TaggingRequestBody) => [
       "tagging",
@@ -17,4 +17,4 @@ const DM_FETCH_API = {
   },
 }
 
-export { DM_FETCH_API, DMApi }
+export { DMApi, DMFetchApi }

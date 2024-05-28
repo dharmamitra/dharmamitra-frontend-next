@@ -1,7 +1,7 @@
 import React from "react"
 import { useQuery } from "@tanstack/react-query"
 
-import { DM_FETCH_API, DMApi } from "@/api"
+import { DMApi, DMFetchApi } from "@/api"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
@@ -14,11 +14,12 @@ const useTaggingData = () => {
     DMApi.Schema["InputEncoding"]
   >(apiParamsNames.translation.input_encoding)
 
-  const taggingParams: DMApi.TaggingRequestBody = React.useMemo(
+  const requestBody: DMApi.TaggingRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentence ?? "",
       input_encoding: inputEncoding ?? inputEncodings[0],
       mode: "unsandhied-lemma-morphosyntax",
+      human_readable_tags: true,
     }),
     [inputSentence, inputEncoding],
   )
@@ -36,10 +37,10 @@ const useTaggingData = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: DM_FETCH_API.tagging.makeQueryKey(taggingParams),
+    queryKey: DMFetchApi.tagging.makeQueryKey(requestBody),
     queryFn: () => {
       setTriggerQuery(false)
-      return DM_FETCH_API.tagging.call(taggingParams)
+      return DMFetchApi.tagging.call(requestBody)
     },
     enabled: triggerQuery,
   })
