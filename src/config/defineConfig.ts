@@ -61,7 +61,6 @@ export const appConfigSchema = z.object({
       translateExtendedOptions: z.boolean().default(false),
     })
     .default({}),
-  translationInputLimit: z.number().default(1024),
 })
 
 export type AppConfig = z.infer<typeof appConfigSchema>

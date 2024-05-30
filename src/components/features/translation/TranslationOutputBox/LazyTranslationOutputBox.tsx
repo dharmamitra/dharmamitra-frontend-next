@@ -45,7 +45,7 @@ const FormatedStream = ({
           my: index === 0 ? 0 : 1,
         }}
       >
-        {paragraph}
+        {paragraph.trim()}
       </Typography>
     )
   })

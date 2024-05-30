@@ -19,13 +19,8 @@ function useInputWithUrlParam<T>(paramName: string, defaultValue: string = "") {
         | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
         | SelectChangeEvent<string>
         | string,
-      characterLimit?: number,
     ) => {
-      let newValue = typeof input === "string" ? input : input.target.value
-
-      if (characterLimit && newValue.length > characterLimit) {
-        newValue = newValue.slice(0, characterLimit)
-      }
+      const newValue = typeof input === "string" ? input : input.target.value
 
       setCurrentInput(newValue)
       updateParams(createQueryString(paramName, newValue))
