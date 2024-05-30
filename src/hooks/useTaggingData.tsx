@@ -1,7 +1,7 @@
 import React from "react"
 import { useQuery } from "@tanstack/react-query"
 
-import { DMApi, DMFetchApi } from "@/api"
+import { type DMApi, DMFetchApi } from "@/api"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
@@ -28,8 +28,17 @@ const useTaggingData = () => {
 
   const debouncedInputSentence = useDebouncedValue(inputSentence, 500)
 
+  const timeoutIdRef = React.useRef<NodeJS.Timeout | null>(null)
+  const [isTaggingCheckElapsed, setIsTaggingCheckElapsed] =
+    React.useState(false)
+
   React.useEffect(() => {
     setTriggerQuery(Boolean(debouncedInputSentence))
+    setIsTaggingCheckElapsed(false)
+
+    timeoutIdRef.current = setTimeout(() => {
+      setIsTaggingCheckElapsed(true)
+    }, 1000)
   }, [debouncedInputSentence])
 
   const {
@@ -45,10 +54,18 @@ const useTaggingData = () => {
     enabled: triggerQuery,
   })
 
+  const hasTaggingData = React.useMemo(() => {
+    return (
+      Boolean(taggingData && taggingData.length > 0) ||
+      Boolean(isLoading && isTaggingCheckElapsed)
+    )
+  }, [taggingData, isTaggingCheckElapsed, isLoading])
+
   return {
     isLoading,
     isError,
     taggingData,
+    hasTaggingData,
   }
 }
 

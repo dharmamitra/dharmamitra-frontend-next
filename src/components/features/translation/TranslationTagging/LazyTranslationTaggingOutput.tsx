@@ -5,12 +5,15 @@ import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 
-import useTaggingData from "@/hooks/useTaggingData"
+import { type DMApi } from "@/api"
 
 import SentenceAccordion from "./SentenceAccordion"
 
-export default function TranslationTaggingOutput() {
-  const { taggingData } = useTaggingData()
+export default function TranslationTaggingOutput({
+  taggingData,
+}: {
+  taggingData: DMApi.TaggingResponse
+}) {
   const t = useTranslations("translation")
 
   if (!taggingData) return null
@@ -18,7 +21,9 @@ export default function TranslationTaggingOutput() {
   return (
     <Box
       sx={{
-        marginTop: 8,
+        maxWidth: "1100px",
+        mt: 3,
+        p: 3,
       }}
     >
       <Typography

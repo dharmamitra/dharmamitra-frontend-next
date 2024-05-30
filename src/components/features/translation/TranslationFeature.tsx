@@ -9,7 +9,7 @@ import TranslationInputBox from "./TranslationInputBox"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
 import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
-import TranslationTaggingOutput from "./TranslationTagging"
+import TranslationTaggingDeawerButton from "./TranslationTagging/TranslationTaggingDeawerButton"
 import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
 
 export default function TranslationFeature() {
@@ -39,20 +39,21 @@ export default function TranslationFeature() {
           <TranslationOutputBox />
         </Grid>
       </Box>
-      {translateExtendedOptions === true ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            columnGap: 4,
-            rowGap: 2,
-            mt: 3,
-          }}
-        >
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          columnGap: 4,
+          rowGap: 2,
+          mt: 3,
+        }}
+      >
+        {translateExtendedOptions === true ? (
           <TranslationModelSelector />
-        </Box>
-      ) : null}
-      <TranslationTaggingOutput />
+        ) : null}
+        <TranslationTaggingDeawerButton />
+      </Box>
     </>
   )
 }
