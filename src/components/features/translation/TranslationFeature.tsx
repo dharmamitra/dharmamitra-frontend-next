@@ -42,16 +42,16 @@ export default function TranslationFeature() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: translateExtendedOptions
+            ? "space-between"
+            : "flex-end",
           flexWrap: "wrap",
           columnGap: 4,
           rowGap: 2,
           mt: 3,
         }}
       >
-        {translateExtendedOptions === true ? (
-          <TranslationModelSelector />
-        ) : null}
+        {translateExtendedOptions ? <TranslationModelSelector /> : null}
         <TranslationTaggingDeawerButton />
       </Box>
     </>
