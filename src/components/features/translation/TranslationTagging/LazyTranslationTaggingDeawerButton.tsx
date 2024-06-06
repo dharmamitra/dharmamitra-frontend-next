@@ -19,17 +19,15 @@ export default function LazyTranslationTaggingDeawerButton() {
   return (
     <>
       {taggingData ? (
-        <div>
-          <Button
-            variant="outlined"
-            onClick={() => setOpen((prev) => !prev)}
-            color="secondary"
-            aria-label={t("tagging.ariaLabel")}
-            className={styles.button}
-          >
-            {t("tagging.heading")}
-          </Button>
-        </div>
+        <Button
+          variant="outlined"
+          onClick={() => setOpen((prev) => !prev)}
+          color="secondary"
+          aria-label={t("tagging.ariaLabel")}
+          className={styles.button}
+        >
+          {t("tagging.label")}
+        </Button>
       ) : null}
       <Drawer open={open} onClose={() => setOpen((prev) => !prev)}>
         <TranslationTaggingOutput taggingData={taggingData ?? []} />

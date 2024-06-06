@@ -42,9 +42,6 @@ export default function TranslationFeature() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: translateExtendedOptions
-            ? "space-between"
-            : "flex-end",
           flexWrap: "wrap",
           columnGap: 4,
           rowGap: 2,

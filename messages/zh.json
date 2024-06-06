@@ -129,7 +129,7 @@
     "grammarLabel": "Grammar Analysis",
     "copyTranslation": "复制翻译",
     "tagging": {
-      "label": "tagging",
+      "label": "Grammar",
       "ariaLabel": "Grammar Analysis",
       "heading": "Grammatical Analysis",
       "lemma": "Lemma",
@@ -160,8 +160,8 @@
       "tibetan": "藏文"
     },
     "models": {
-      "NO": "None",
-      "none": "None",
+      "NO": "No model",
+      "none": "No model",
       "madlad": "Madlad",
       "llama3": "Llama3"
     },
