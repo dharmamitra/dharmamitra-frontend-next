@@ -22,7 +22,6 @@ export default function TranslationTaggingOutput({
     <Box
       sx={{
         maxWidth: "1100px",
-        mt: 3,
         p: 3,
       }}
     >

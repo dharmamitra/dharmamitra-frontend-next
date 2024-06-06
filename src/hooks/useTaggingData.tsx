@@ -52,6 +52,7 @@ const useTaggingData = () => {
       return DMFetchApi.tagging.call(requestBody)
     },
     enabled: triggerQuery,
+    retry: 2,
   })
 
   const hasTaggingData = React.useMemo(() => {
