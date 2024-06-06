@@ -9,7 +9,7 @@ import TranslationInputBox from "./TranslationInputBox"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
 import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
-import TranslationTaggingDrawer from "./TranslationTagging/TranslationTaggingDrawer"
+import TranslationTaggingDrawer from "./TranslationTagging"
 import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
 
 export default function TranslationFeature() {
