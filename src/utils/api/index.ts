@@ -1,6 +1,11 @@
 import apiClient from "./client"
 import * as DMApi from "./types"
 
+const streamPaths = {
+  translation: "/api/translation-stream",
+  search: "/api/search-stream",
+}
+
 const DMFetchApi = {
   tagging: {
     makeQueryKey: (body: DMApi.TaggingRequestBody) => [
@@ -17,4 +22,4 @@ const DMFetchApi = {
   },
 }
 
-export { DMApi, DMFetchApi }
+export { DMApi, DMFetchApi, streamPaths }

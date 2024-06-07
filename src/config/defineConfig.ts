@@ -15,22 +15,39 @@ export type AppEnv = (typeof SUPPORTED_ENVS)[number]
 
 export const appConfigSchema = z.object({
   env: z.enum(SUPPORTED_ENVS),
+  isClient: z.boolean().default(false),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
   siteUrl: z.string().default("https://dharmamitra.org"),
   basePath: z.string(),
-  logoPath: z.string().default("TODO"),
-  endpoints: z
+  assetPaths: z
+    // relative to `/public`, dimentions for aspect ratio
     .object({
-      tagging: z.string().default("/tagging/"),
+      // used in app bar
+      logo: z.object({
+        src: z.string(),
+        width: z.number(),
+        height: z.number(),
+      }),
+      // used in footer
+      logoLarge: z.object({
+        src: z.string(),
+        width: z.number(),
+        height: z.number(),
+      }),
     })
-    .default({}),
-  streamPaths: z
-    .object({
-      translation: z.string().default("/api/translation-stream"),
-      search: z.string().default("/api/search-stream"),
-    })
-    .default({}),
+    .default({
+      logo: {
+        src: "/assets/dm-logo-flat.png",
+        width: 240,
+        height: 66,
+      },
+      logoLarge: {
+        src: "/assets/dm-logo-full.png",
+        width: 334,
+        height: 182,
+      },
+    }),
   paramOptions: z
     .object({
       targetLanguages: z

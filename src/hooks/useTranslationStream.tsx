@@ -2,7 +2,7 @@ import React from "react"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
-import { DMApi } from "@/api"
+import { DMApi, streamPaths } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
@@ -14,7 +14,7 @@ import {
 import { cleanSSEData } from "@/utils/transformers"
 
 const useTranslationStream = () => {
-  const { basePath, streamPaths, paramOptions } = useAppConfig()
+  const { basePath, paramOptions } = useAppConfig()
 
   const { input: inputSentenceParam } = useInputWithUrlParam<string>(
     apiParamsNames.translation.input_sentence,
