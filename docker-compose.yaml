@@ -32,6 +32,16 @@ services:
     ports:
       - "3335:3000"
 
+  kumarajiva:
+    build:
+      context: .
+      args:
+        BUILD_SCRIPT: build:kumarajiva
+    container_name: "kumarajiva"
+    restart: ${RESTART_POLICY}
+    ports:
+      - "3336:3000"
+
   nginx:
     build:
       context: ./nginx
@@ -42,4 +52,5 @@ services:
       - pub
       - lab
       - rnd
+      - kumarajiva
 

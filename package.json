@@ -10,6 +10,8 @@
     "build:lab": "next build",
     "prebuild:rnd": "sh ./scripts/set_env.sh rnd",
     "build:rnd": "next build",
+    "prebuild:kumarajiva": "sh ./scripts/set_env.sh kumarajiva",
+    "build:kumarajiva": "next build",
     "build": "next build",
     "start": "next start",
     "test:ts": "tsc --noEmit",

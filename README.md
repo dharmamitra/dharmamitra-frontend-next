@@ -57,12 +57,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 #### Adding a new environment
 
-This steps can also be adjusted for renaming an environment. 
+These steps can also be adjusted and used for renaming an environment. 
 
 - add the env alias to `SUPPORTED_ENVS` in `src/config/defineConfig.ts`
-- create an new env specific config file in `src/config/envs` (adjust settings as needed, with `defineConfig` as a ref.)
+- create an new env specific config file in `src/config/envs` (adjust settings as required, with `defineConfig` as a ref.)
 - import the env's config file to `src/config/index.ts` and add the env alias to config getter ("if section")
-- add environment alias to the `servedAtRoot` in `next.config.mjs` if the environment's base path is `/` (*this should only be applicable in the case of renaming*)
+- add environment alias to the `servedAtRoot` in `next.config.mjs` if the environment's base path is `/` (*this shouldn't be applicable in most cases*)
 - add an env specific build script to `package.json`. Eg. for the `lab` env:
    
   ```

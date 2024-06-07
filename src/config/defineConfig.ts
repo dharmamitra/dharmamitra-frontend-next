@@ -3,7 +3,13 @@ import { z } from "zod"
 import { DMApi } from "@/api"
 import { allTargetLanguages, translationModels } from "@/utils/api/params"
 
-export const SUPPORTED_ENVS = ["pub", "lab", "rnd", "local"] as const
+export const SUPPORTED_ENVS = [
+  "pub",
+  "lab",
+  "rnd",
+  "local",
+  "kumarajiva",
+] as const
 
 export type AppEnv = (typeof SUPPORTED_ENVS)[number]
 
