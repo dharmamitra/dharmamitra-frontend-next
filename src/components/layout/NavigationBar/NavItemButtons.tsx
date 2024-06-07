@@ -26,7 +26,7 @@ export default function NavItemButtons() {
       {navItems.map((item) => {
         const { id, label, href } = item
         return (
-          <LocalLink key={id} href={href} variant="text-button">
+          <LocalLink key={id} href={href} variant="button" buttonVariant="text">
             {label}
           </LocalLink>
         )

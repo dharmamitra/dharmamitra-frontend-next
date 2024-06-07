@@ -8,7 +8,7 @@ import { useNavItems } from "@/hooks/useNavItems"
 
 import LocaleSelector from "../LocaleSelector"
 import DesktopNavMenu from "./DesktopNavMenu"
-import MobileNavMenuLoading from "./MobileNavMenuLoading"
+import MobileNavMenuLoading from "./LazyMobileNavMenu"
 
 const MobileNavMenu = dynamic(() => import("./MobileNavMenuRenderer"), {
   loading: () => <MobileNavMenuLoading />,

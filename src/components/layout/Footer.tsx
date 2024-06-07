@@ -58,7 +58,7 @@ export default function Footer() {
         </Grid>
 
         {isClient ? (
-          <Grid item xs={12} md={6} lg={4}></Grid>
+          <Grid item xs={12} md={6} lg={4} />
         ) : (
           <Grid item xs={12} md={6} lg={4}>
             <Box
@@ -93,7 +93,7 @@ export default function Footer() {
                 maxWidth: { lg: "455px" },
               }}
             >
-              <Typography variant="h5" component="h2" color="primary" mb={1}>
+              <Typography variant="h5" component="h2" mb={1}>
                 {t("contact.h2")}
               </Typography>
               <Typography variant="body2">{t("contact.p")}</Typography>

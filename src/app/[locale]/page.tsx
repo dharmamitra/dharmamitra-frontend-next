@@ -45,7 +45,6 @@ export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
           variant="h4"
           component="h1"
           align="center"
-          color="primary"
           sx={{
             mb: { xs: 4, lg: 10 },
           }}

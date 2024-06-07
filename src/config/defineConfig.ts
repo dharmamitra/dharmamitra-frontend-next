@@ -11,8 +11,6 @@ export const SUPPORTED_ENVS = [
   "kumarajiva",
 ] as const
 
-export type AppEnv = (typeof SUPPORTED_ENVS)[number]
-
 export const appConfigSchema = z.object({
   env: z.enum(SUPPORTED_ENVS),
   isClient: z.boolean().default(false),

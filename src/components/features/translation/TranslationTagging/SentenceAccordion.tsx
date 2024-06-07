@@ -60,16 +60,11 @@ export default function SentenceAccordion({
             return (
               <Button
                 key={`translation-tagging-sentence-${unsandhiedIndex}`}
-                variant={isSelected ? "contained" : "outlined"}
+                variant="outlined"
                 color="secondary"
                 sx={(theme) => ({
                   mr: !item.unsandhied.endsWith("-") ? 3 : undefined,
                   textTransform: "none",
-                  color: "primary.main",
-                  border: "1px solid",
-                  borderColor: "secondary.main",
-                  boxShadow: "none",
-                  fontWeight: 500,
                   backgroundColor: isSelected
                     ? alpha(theme.palette.secondary.main, 0.15)
                     : undefined,
