@@ -23,7 +23,12 @@ import imgVladimirAngirov from "@/assets/team/vladimir-angirov.jpg"
 export type Member = {
   id: string
   name: string
-  roles: { role: string; i18nRoleKey: keyof Messages["Team"]["roles"] }[] | null
+  roles:
+    | {
+        role: string
+        i18nRoleKey: keyof Messages["Team"]["dharmamitra"]["roles"]
+      }[]
+    | null
   image: StaticImport
 }
 

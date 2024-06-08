@@ -46,12 +46,10 @@ const envRgbCodes: EnvRGBCodes = {
   },
 }
 
-const rgbCodes = Object.prototype.hasOwnProperty.call(
-  envRgbCodes,
-  appConfig.env,
-)
-  ? (envRgbCodes[appConfig.env] as ThemeRGBCodes)
-  : envRgbCodes.default
+const rgbCodes =
+  appConfig.env in envRgbCodes
+    ? envRgbCodes[appConfig.env]!
+    : envRgbCodes.default
 
 const colours = {
   primary: `rgb(${rgbCodes.primary}, 1)`,
@@ -103,7 +101,9 @@ export const baseTheme: ThemeOptions = {
       marginTop: "2rem",
     },
     h2: {
+      fontSize: "3rem",
       marginTop: "2rem",
+      fontWeight: 500,
     },
     reader: {
       marginBlock: "1rem",

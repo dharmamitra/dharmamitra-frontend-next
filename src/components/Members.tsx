@@ -3,10 +3,11 @@ import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Box, Typography } from "@mui/material"
 
-import { Member as MemberType } from "@/app/[locale]/team/data"
+import { Member as MemberType } from "@/app/[locale]/team/@dharmamitra/data"
 
 export function Member({ id, name, roles, image }: MemberType) {
-  const t = useTranslations("Team")
+  // TODO: Generalize (this should not be specific to dharmamitra)
+  const t = useTranslations("Team.dharmamitra")
 
   return (
     <Box

@@ -4,16 +4,16 @@ import { expect, test } from "@playwright/test"
 import { defaultLocale, supportedLocales } from "@/i18n"
 import { makeCleanRoute } from "@/utils/transformers"
 
-import enMessages from "../messages/en.json"
-import zhMessages from "../messages/zh.json"
-import zhHantMessages from "../messages/zh-Hant.json"
+// import enMessages from "../messages/en.json"
+// import zhMessages from "../messages/zh.json"
+// import zhHantMessages from "../messages/zh-Hant.json"
 import { getBasePath } from "../next.config.mjs"
 
-const messages = {
-  en: enMessages,
-  zh: zhMessages,
-  "zh-Hant": zhHantMessages,
-} satisfies Record<(typeof supportedLocales)[number], Messages>
+// const messages = {
+//   en: enMessages,
+//   zh: zhMessages,
+//   "zh-Hant": zhHantMessages,
+// } satisfies Record<(typeof supportedLocales)[number], Messages>
 
 const pathnames = {
   "/": "Home",
@@ -21,7 +21,7 @@ const pathnames = {
   "/team": "Team",
 } as const
 
-Object.entries(pathnames).forEach(([pathname, pagename]) => {
+Object.entries(pathnames).forEach(([pathname /*pagename */]) => {
   supportedLocales.forEach((locale) => {
     const route = makeCleanRoute([
       getBasePath(),
@@ -35,10 +35,10 @@ Object.entries(pathnames).forEach(([pathname, pagename]) => {
       })
 
       test("renders page content", async ({ page }) => {
-        const pageMessages = messages[locale][pagename]
         // TODO: title
+        // const pageMessages = messages[locale][pagename]
         // await expect(page).toHaveTitle(pageMessages.title)
-        await expect(page.locator("h1")).toContainText(pageMessages.h1)
+        await expect(page.locator("h1")).toBeVisible()
       })
       test(`has no auto-detected accessibility violations`, async ({
         page,

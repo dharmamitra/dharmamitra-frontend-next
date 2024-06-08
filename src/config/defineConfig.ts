@@ -11,6 +11,10 @@ export const SUPPORTED_ENVS = [
   "kumarajiva",
 ] as const
 
+type Page = keyof Messages["pages"]
+export const allPages = ["home", "about", "team"] as const
+export const defaultSubPages: Page[] = ["about", "team"]
+
 export const appConfigSchema = z.object({
   env: z.enum(SUPPORTED_ENVS),
   isClient: z.boolean().default(false),
@@ -46,6 +50,7 @@ export const appConfigSchema = z.object({
         height: 182,
       },
     }),
+  subPages: z.array(z.enum(allPages)).default(defaultSubPages),
   paramOptions: z
     .object({
       targetLanguages: z

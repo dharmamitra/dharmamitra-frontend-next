@@ -17,7 +17,9 @@ export const generateStaticParams = () => {
   return supportedLocales.map((locale) => ({ locale }))
 }
 
-export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
+export default function HomePage({
+  params: { locale },
+}: I18nMetadataHandlerProps) {
   unstable_setRequestLocale(locale)
   const { search } = useAppConfig().featureFlags
   const t = useTranslations("Home")

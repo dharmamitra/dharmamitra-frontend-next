@@ -4,8 +4,9 @@ export default function createKumarajivaConfig() {
   return defineConfig({
     env: "kumarajiva",
     isClient: true,
-    basePath: "/kumarajiva",
+    siteName: "Kumarajiva's Dharmamitra",
     siteUrl: "https://dharmamitra.org/kumarajiva",
+    basePath: "/kumarajiva",
     assetPaths: {
       logo: {
         src: "/tenent/kumarajiva/kp-logo.png",
@@ -18,6 +19,7 @@ export default function createKumarajivaConfig() {
         height: 182,
       },
     },
+    subPages: ["about"],
     featureFlags: {
       translateExtendedOptions: true,
     },

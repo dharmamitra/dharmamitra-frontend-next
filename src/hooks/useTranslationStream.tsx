@@ -140,13 +140,7 @@ const useTranslationStream = () => {
         clearTimeout(timeoutIdRef.current)
       }
     }
-  }, [
-    triggerTranslationQuery,
-    setTriggerTranslationQuery,
-    params,
-    streamPaths.translation,
-    basePath,
-  ])
+  }, [triggerTranslationQuery, setTriggerTranslationQuery, params, basePath])
 
   return {
     translationStream,
