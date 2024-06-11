@@ -66,6 +66,11 @@ export interface components {
       target_lang: components["schemas"]["TargetLanguageExperimental"]
       model: components["schemas"]["TranslationModel"]
     }
+    /** ErrorResponseModel */
+    ErrorResponseModel: {
+      /** Detail */
+      detail: string
+    }
     /**
      * FilterLanguage
      * @enum {string}
@@ -276,7 +281,9 @@ export interface operations {
       /** @description Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["TaggerResponseModel"]
+          "application/json":
+            | components["schemas"]["TaggerResponseModel"]
+            | components["schemas"]["ErrorResponseModel"]
         }
       }
       /** @description Validation Error */

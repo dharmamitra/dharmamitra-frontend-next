@@ -33,7 +33,7 @@ export default function HomePage({
   if (search === true) {
     return (
       <NextIntlClientProvider messages={translationMessages}>
-        <PageShell maxWidth="xl" sx={{ mb: { xs: 12, md: 34 } }}>
+        <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
           <ToolSelectorTabs />
         </PageShell>
       </NextIntlClientProvider>
@@ -42,7 +42,7 @@ export default function HomePage({
 
   return (
     <NextIntlClientProvider messages={translationMessages}>
-      <PageShell maxWidth="xl" sx={{ mb: { xs: 12, md: 34 } }}>
+      <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
         <Typography
           variant="h4"
           component="h1"

@@ -56,7 +56,8 @@
       "heading": "Grammatical Analysis",
       "lemma": "Lemma",
       "tag": "Tag",
-      "meanings": "Meanings"
+      "meanings": "Meanings",
+      "unsuccessful": "Grammar analysis was not successful."
     },
     "encodings": {
       "auto": "Autodetect",

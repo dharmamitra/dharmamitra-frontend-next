@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { DMApi } from "@/api"
+import { DMApiTypes } from "@/api"
 import { allTargetLanguages, translationModels } from "@/utils/api/params"
 
 export const SUPPORTED_ENVS = [
@@ -59,7 +59,7 @@ export const appConfigSchema = z.object({
             // validates at build & runtime
             (val) =>
               allTargetLanguages.includes(
-                val as DMApi.Schema["TargetLanguageExperimental"],
+                val as DMApiTypes.Schema["TargetLanguageExperimental"],
               ),
             {
               message:
@@ -73,12 +73,14 @@ export const appConfigSchema = z.object({
         .string()
         .refine(
           (val) =>
-            translationModels.includes(val as DMApi.Schema["TranslationModel"]),
+            translationModels.includes(
+              val as DMApiTypes.Schema["TranslationModel"],
+            ),
           {
             message: "Invalid `paramOptions.model` value given to app config.",
           },
         )
-        .default("NO" as DMApi.Schema["TranslationModel"]),
+        .default("NO" as DMApiTypes.Schema["TranslationModel"]),
     })
     .default({}),
   featureFlags: z

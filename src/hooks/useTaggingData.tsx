@@ -1,9 +1,10 @@
 import React from "react"
 import { useQuery } from "@tanstack/react-query"
 
-import { type DMApi, DMFetchApi } from "@/api"
+import { DMApiTypes, DMFetchApi } from "@/api"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { TimedError } from "@/utils/api/endpoints/tagging"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 
 const useTaggingData = () => {
@@ -11,10 +12,21 @@ const useTaggingData = () => {
     apiParamsNames.translation.input_sentence,
   )
   const { input: inputEncoding } = useInputWithUrlParam<
-    DMApi.Schema["InputEncoding"]
+    DMApiTypes.Schema["InputEncoding"]
   >(apiParamsNames.translation.input_encoding)
 
-  const requestBody: DMApi.TaggingRequestBody = React.useMemo(
+  const { input: targetLang } = useInputWithUrlParam<
+    DMApiTypes.Schema["TargetLanguage"]
+  >(apiParamsNames.translation.target_lang)
+
+  const debouncedInputSentence = useDebouncedValue(inputSentence, 500)
+  const [triggerQuery, setTriggerQuery] = React.useState(false)
+
+  React.useEffect(() => {
+    setTriggerQuery(Boolean(debouncedInputSentence && targetLang === "english"))
+  }, [debouncedInputSentence, targetLang])
+
+  const requestBody: DMApiTypes.TaggingRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentence ?? "",
       input_encoding: inputEncoding ?? inputEncodings[0],
@@ -24,49 +36,50 @@ const useTaggingData = () => {
     [inputSentence, inputEncoding],
   )
 
-  const [triggerQuery, setTriggerQuery] = React.useState(false)
-
-  const debouncedInputSentence = useDebouncedValue(inputSentence, 500)
-
-  const timeoutIdRef = React.useRef<NodeJS.Timeout | null>(null)
-  const [isTaggingCheckElapsed, setIsTaggingCheckElapsed] =
-    React.useState(false)
-
-  React.useEffect(() => {
-    setTriggerQuery(Boolean(debouncedInputSentence))
-    setIsTaggingCheckElapsed(false)
-
-    timeoutIdRef.current = setTimeout(() => {
-      setIsTaggingCheckElapsed(true)
-    }, 1000)
-  }, [debouncedInputSentence])
-
-  const {
-    data: taggingData,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: DMFetchApi.tagging.makeQueryKey(requestBody),
     queryFn: () => {
       setTriggerQuery(false)
       return DMFetchApi.tagging.call(requestBody)
     },
     enabled: triggerQuery,
-    retry: 2,
+    retry: false,
   })
 
-  const hasTaggingData = React.useMemo(() => {
-    return (
-      Boolean(taggingData && taggingData.length > 0) ||
-      Boolean(isLoading && isTaggingCheckElapsed)
-    )
-  }, [taggingData, isTaggingCheckElapsed, isLoading])
+  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+  const [isValidQuery, setIsValidQuery] = React.useState(false)
+
+  React.useEffect(() => {
+    setIsValidQuery(false)
+
+    if (!triggerQuery) {
+      return
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      const { queryDuration } = (error as TimedError) ?? {}
+      if (
+        (error && error instanceof TypeError) ||
+        (queryDuration && queryDuration < 500)
+      ) {
+        setIsValidQuery(false)
+      } else {
+        setIsValidQuery(true)
+      }
+    }, 500)
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [error, triggerQuery, setIsValidQuery])
 
   return {
     isLoading,
     isError,
-    taggingData,
-    hasTaggingData,
+    data,
+    isValidQuery,
   }
 }
 

@@ -4,18 +4,20 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import Typography from "@mui/material/Typography"
 
-import { type DMApi } from "@/api"
+import Error from "@/components/Error"
+import SkeletonGroup from "@/components/SkeletonGroup"
+import useTaggingData from "@/hooks/useTaggingData"
 
 import SentenceAccordion from "./SentenceAccordion"
 
-export default function TranslationTaggingOutput({
-  taggingData,
-}: {
-  taggingData: DMApi.TaggingResponse
-}) {
-  const t = useTranslations("translation")
+export default function TranslationTaggingOutput() {
+  const t = useTranslations()
 
-  if (!taggingData) return null
+  const { data, isLoading, isError } = useTaggingData()
+
+  if (isError) {
+    return <Error message={t("translation.tagging.unsuccessful")} />
+  }
 
   return (
     <>
@@ -24,10 +26,12 @@ export default function TranslationTaggingOutput({
         variant="h5"
         sx={{ fontWeight: "bold", mb: 4 }}
       >
-        {t("tagging.heading")}
+        {t("translation.tagging.heading")}
       </Typography>
 
-      {taggingData?.map((sentenceData, sentenceIndex) => (
+      {isLoading ? <SkeletonGroup /> : null}
+
+      {data?.sentences?.map((sentenceData, sentenceIndex) => (
         <SentenceAccordion
           key={`translation-tagging-sentence-${sentenceIndex}`}
           sentenceIndex={sentenceIndex}

@@ -4,7 +4,7 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import { MenuItem, RadioGroup, Select } from "@mui/material"
 
-import { DMApi } from "@/api"
+import { DMApiTypes } from "@/api"
 import {
   OtherOptionsButtonIcon,
   OtherOptionsInputStyles,
@@ -32,7 +32,9 @@ export default function TranslationTargetLanguageSelector() {
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
     () =>
-      primaryLanguagesOptions.includes(input as DMApi.Schema["TargetLanguage"]),
+      primaryLanguagesOptions.includes(
+        input as DMApiTypes.Schema["TargetLanguage"],
+      ),
     [input, primaryLanguagesOptions],
   )
 

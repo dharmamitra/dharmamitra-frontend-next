@@ -1,16 +1,16 @@
-import { DMApi } from "@/api"
+import { DMApiTypes } from "@/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
 export const inputEncodings = exhaustiveStringTuple<
-  DMApi.Schema["InputEncoding"]
+  DMApiTypes.Schema["InputEncoding"]
 >()("auto", "dev", "hk", "iast", "tibetan", "wylie")
 
 export const translationModels = exhaustiveStringTuple<
-  DMApi.Schema["TranslationModel"]
+  DMApiTypes.Schema["TranslationModel"]
 >()("NO", "madlad", "llama3")
 
 export const allTargetLanguages = exhaustiveStringTuple<
-  DMApi.Schema["TargetLanguageExperimental"]
+  DMApiTypes.Schema["TargetLanguageExperimental"]
 >()(
   "english",
   "tibetan",
@@ -25,7 +25,7 @@ export const allTargetLanguages = exhaustiveStringTuple<
 )
 
 export const grammarModes = exhaustiveStringTuple<
-  DMApi.Schema["GrammarModes"]
+  DMApiTypes.Schema["GrammarModes"]
 >()(
   "lemma",
   "lemma-morphosyntax",
@@ -34,7 +34,7 @@ export const grammarModes = exhaustiveStringTuple<
   "unsandhied-morphosyntax",
 )
 
-export const apiParamsNames: DMApi.ParamNames = {
+export const apiParamsNames: DMApiTypes.ParamNames = {
   search: {
     filter_language: "filter_language",
     filter_primary: "filter_primary",

@@ -10,11 +10,11 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 
-import { DMApi } from "@/utils/api"
+import { DMApiTypes } from "@/utils/api"
 
 import SentenceAnalysis from "./SentenceAnalysis"
 
-type Props = DMApi.Schema["Sentence"] & {
+type Props = DMApiTypes.Schema["Sentence"] & {
   sentenceIndex?: number
 }
 
@@ -39,9 +39,14 @@ export default function SentenceAccordion({
         expandIcon={<ExpandMoreIcon />}
         aria-controls={`sentence-${sentenceIndex}-content`}
         id={`sentence-${sentenceIndex}-summary`}
-        style={{ userSelect: "text" }}
+        sx={{
+          userSelect: "text",
+          "& .MuiAccordionSummary-content": { maxWidth: "calc(100% - 8px)" },
+        }}
       >
-        <Typography variant="body2">{sentence}</Typography>
+        <Typography variant="body2" sx={{ overflow: "auto" }}>
+          {sentence}
+        </Typography>
       </AccordionSummary>
 
       <AccordionDetails>

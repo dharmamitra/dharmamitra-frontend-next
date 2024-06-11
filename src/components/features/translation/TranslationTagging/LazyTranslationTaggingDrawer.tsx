@@ -9,7 +9,10 @@ import Drawer from "@mui/material/Drawer"
 import IconButton from "@mui/material/IconButton"
 import Stack from "@mui/material/Stack"
 
+import { DMApiTypes } from "@/api"
+import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useTaggingData from "@/hooks/useTaggingData"
+import { apiParamsNames } from "@/utils/api/params"
 
 import styles from "./LazyTranslationTaggingDrawer.module.css"
 import TranslationTaggingOutput from "./TranslationTaggingOutput"
@@ -67,7 +70,12 @@ const ResizeHandle = ({
 export default function LazyTranslationTaggingDrawer() {
   const t = useTranslations("translation")
 
-  const { taggingData } = useTaggingData()
+  const { input: targetLang } = useInputWithUrlParam<
+    DMApiTypes.Schema["TargetLanguage"]
+  >(apiParamsNames.translation.target_lang)
+
+  const { data, isValidQuery } = useTaggingData()
+
   const [open, setOpen] = React.useState(false)
 
   const [drawerWidth, setDrawerWidth] = React.useState(defaultDrawerWidth)
@@ -101,7 +109,7 @@ export default function LazyTranslationTaggingDrawer() {
 
   return (
     <>
-      {taggingData ? (
+      {targetLang === "english" && (isValidQuery || data?.sentences) ? (
         <Button
           variant="outlined"
           onClick={() => setOpen((prev) => !prev)}
@@ -140,8 +148,15 @@ export default function LazyTranslationTaggingDrawer() {
           >
             <ResizeHandle setDrawerWidth={setDrawerWidth} />
 
-            <Stack direction="row" justifyContent="flex-end" pt={2} pr={2}>
-              <IconButton aria-label="close">
+            <Stack
+              sx={{
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                position: "sticky",
+                top: "12px",
+              }}
+            >
+              <IconButton aria-label="close" sx={{ mx: 1 }}>
                 <CloseIcon onClick={() => setOpen((prev) => !prev)} />
               </IconButton>
             </Stack>
@@ -152,7 +167,7 @@ export default function LazyTranslationTaggingDrawer() {
                 pr: 6,
               }}
             >
-              <TranslationTaggingOutput taggingData={taggingData ?? []} />
+              <TranslationTaggingOutput />
             </Box>
           </Box>
         </Drawer>

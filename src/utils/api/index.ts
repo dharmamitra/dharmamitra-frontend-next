@@ -1,5 +1,5 @@
-import apiClient from "./client"
-import * as DMApi from "./types"
+import { getTaggingData } from "./endpoints/tagging"
+import * as DMApiTypes from "./types"
 
 const streamPaths = {
   translation: "/api/translation-stream",
@@ -8,18 +8,12 @@ const streamPaths = {
 
 const DMFetchApi = {
   tagging: {
-    makeQueryKey: (body: DMApi.TaggingRequestBody) => [
+    makeQueryKey: (body: DMApiTypes.TaggingRequestBody) => [
       "tagging",
       JSON.stringify(body),
     ],
-    call: async (body: DMApi.TaggingRequestBody) => {
-      const { data } = await apiClient.POST(`/tagging/`, {
-        body,
-      })
-
-      return data
-    },
+    call: getTaggingData,
   },
 }
 
-export { DMApi, DMFetchApi, streamPaths }
+export { DMApiTypes, DMFetchApi, streamPaths }

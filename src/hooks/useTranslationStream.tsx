@@ -2,7 +2,7 @@ import React from "react"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
-import { DMApi, streamPaths } from "@/api"
+import { DMApiTypes, streamPaths } from "@/api"
 import { triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
@@ -20,26 +20,27 @@ const useTranslationStream = () => {
     apiParamsNames.translation.input_sentence,
   )
   const { input: inputEncodingParam } = useInputWithUrlParam<
-    DMApi.Schema["InputEncoding"]
+    DMApiTypes.Schema["InputEncoding"]
   >(apiParamsNames.translation.input_encoding)
   const { input: targetLangParam } = useInputWithUrlParam<
-    DMApi.Schema["TargetLanguage"]
+    DMApiTypes.Schema["TargetLanguage"]
   >(apiParamsNames.translation.target_lang)
   const { input: modelParam } = useInputWithUrlParam<
-    DMApi.Schema["TranslationModel"]
+    DMApiTypes.Schema["TranslationModel"]
   >(apiParamsNames.translation.model)
   const { input: grammarParam } = useInputWithUrlParam<"false" | "true">(
     apiParamsNames.translation.do_grammar_explanation,
   )
 
-  const params: DMApi.TranslationRequestBody = React.useMemo(
+  const params: DMApiTypes.TranslationRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentenceParam ?? "",
       input_encoding: inputEncodingParam ?? inputEncodings[0],
       do_grammar_explanation: grammarParam === "true",
       target_lang:
         targetLangParam ??
-        (paramOptions.targetLanguages[0] as DMApi.Schema["TargetLanguage"]),
+        (paramOptions
+          .targetLanguages[0] as DMApiTypes.Schema["TargetLanguage"]),
       model: modelParam ?? translationModels[0],
     }),
     [
