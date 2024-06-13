@@ -10,29 +10,26 @@ export default function AboutKumarajivaPage({
   params: { locale: string }
 }) {
   unstable_setRequestLocale(locale)
-  const t = useTranslations("About.kumarajiva")
+  const t = useTranslations("Guide.kumarajiva")
 
   return (
     <>
       <Typography variant="h1">{t("h1")}</Typography>
 
       <Section>
-        <Typography variant="h2">{t("background.h2")}</Typography>
+        <Typography variant="h2">{t("intro.h2")}</Typography>
         <Typography variant="reader" component="p">
-          {t("background.p1")}
-        </Typography>
-        <Typography variant="reader" component="p">
-          {t("background.p2")}
+          {t("intro.p1")}
         </Typography>
       </Section>
 
       <Section sx={{ mb: 10 }}>
         <Typography variant="h2" mb={3}>
-          {t("collaboration.h2")}
+          {t("features.h2")}
         </Typography>
 
         <Typography variant="reader" component="p">
-          {t("collaboration.p1")}
+          {t("features.p1")}
         </Typography>
       </Section>
     </>

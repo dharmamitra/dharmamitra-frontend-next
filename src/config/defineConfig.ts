@@ -12,7 +12,7 @@ export const SUPPORTED_ENVS = [
 ] as const
 
 type Page = keyof Messages["pages"]
-export const allPages = ["home", "about", "team"] as const
+export const allPages = ["home", "about", "team", "guide"] as const
 export const defaultSubPages: Page[] = ["about", "team"]
 
 export const appConfigSchema = z.object({

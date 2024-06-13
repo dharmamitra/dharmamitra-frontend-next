@@ -102,29 +102,17 @@
   "pages": {
     "home": "Home",
     "about": "About",
-    "team": "Team"
+    "team": "Team",
+    "guide": "Guide"
   },
   "Home": {
     "title": "欢迎来到法之善友AI计划",
     "h1": "法之善友AI翻译器"
   },
   "About": {
-    "kumarajiva": {
-      "title": "计划介绍",
-      "h1": "计划介绍",
-      "background": {
-        "h2": "The Kumarajiva Project",
-        "p1": "Khyentse Foundation launched the Kumarajiva Project to translate canonical Buddhist texts from Tibetan into Chinese. Buddhism is often described as a “religion of translation.” Indeed the Buddha himself encouraged his followers to widely translate the Buddha dharma into other languages, which helped fuel the transmission of the religion throughout Asia.",
-        "p2": "Chinese Buddhism would not have developed were it not for the 800 years of translation from the mid second through ninth centuries. Translation is also crucial to Buddhism in that, the vitality of the tradition is periodically reinvigorated by the influx of additional scriptures. In this spirit, the Kumarajiva Project trains and employs a new generation of Buddhist translators in order to make freely available dozens of canonical scriptures from India that were not translated into Chinese during earlier eras."
-      },
-      "collaboration": {
-        "h2": "Kumarajiva's Mitra",
-        "p1": "In 2024, the Kumarajiva Project and Dharmamitra teamed up to develop tools to support Kumarajiva's translators in their work."
-      }
-    },
     "dharmamitra": {
-      "title": "计划介绍",
-      "h1": "计划介绍",
+      "title": "About",
+      "h1": "About",
       "mission": {
         "h2": "MITRA's Mission",
         "p1": "MITRA’s Mission is to harness the rapidly evolving AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications.",
@@ -141,13 +129,13 @@
         }
       },
       "project": {
-        "h2": "法之善友AI计划",
+        "h2": "The MITRA project",
         "p1": "The MITRA project, spearheaded by Kurt Keutzer and Sebastian Nehrdich, focuses on bridging the linguistic divide between ancient wisdom source languages and contemporary languages through the application of advanced Deep Learning and AI technologies.",
         "p2": "Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, accelerated  by its collaborative efforts with organizations such as monlam.ai and with contributions from a diverse array of sources, including translators and AI researchers. Leveraging a robust corpus of over four million sentence pairs from various sourcesand utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to ancient wisdom texts.",
         "p3": "Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
       },
       "collaboration": {
-        "h2": "合作伙伴",
+        "h2": "Collaborations",
         "monlam": {
           "name": "<monlam>monlam.ai</monlam>",
           "description": "Machine translation data collection for Tibetan and English"
@@ -164,6 +152,20 @@
           "name": "<ai4bharat>AI4Bharat</ai4bharat>",
           "description": "Development of Sanskrit data collection"
         }
+      }
+    }
+  },
+  "Guide": {
+    "kumarajiva": {
+      "title": "Guide",
+      "h1": "Guide",
+      "intro": {
+        "h2": "Introduction",
+        "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+      },
+      "features": {
+        "h2": "Features",
+        "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source matiral and modern research literature."
       }
     }
   },

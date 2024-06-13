@@ -6,17 +6,19 @@ import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
 export async function generateMetadata({
   params: { locale },
 }: I18nMetadataHandlerProps): Promise<Metadata> {
-  const t = await getTranslations({ locale, namespace: "About" })
+  const t = await getTranslations({ locale, namespace: "Guide" })
 
   switch (appConfig.env) {
-    default:
+    case "kumarajiva":
       return {
-        title: t("dharmamitra.title"),
+        title: t("kumarajiva.title"),
       }
+    default:
+      return {}
   }
 }
 
-export default function AboutPage({
+export default function GuidePage({
   params: { locale },
 }: {
   params: { locale: string }

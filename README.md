@@ -79,10 +79,18 @@ These steps can also be adjusted and used for renaming an environment.
 
 - all possible sub pages need to be 
   - defined in `allPages` in `src/config/defineConfig.ts`
-  - added to the `pages` prop of each i18n file (ie. `messages/en.json` etc.)
+  - added to the `pages` prop of each i18n file (ie. `messages/en.json` etc.) 
+  - have a corresponding page prop in each i18n file with sub keys for each applicable environment. eg:
+    
+    ```json
+    "About": {
+      "dharmamitra": {...},
+      "envname": {...},
+    }
+    ```
 - sub page configuration:
   - dharmamitra envs can rely on `defaultSubPages` and need no further configuration;
-  - the `subPages` prop of the env config file needs to be set for customer sub pages with either an array of sub pages (`["about]`), or an empty array.
+  - the `subPages` prop of the env config file needs to be set for customer sub pages with either an array of sub pages (`["guide"]`), or an empty array.
 
 
 ##### Nav

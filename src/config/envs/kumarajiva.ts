@@ -19,7 +19,7 @@ export default function createKumarajivaConfig() {
         height: 182,
       },
     },
-    subPages: ["about"],
+    subPages: ["guide"],
     featureFlags: {
       translateExtendedOptions: true,
     },
