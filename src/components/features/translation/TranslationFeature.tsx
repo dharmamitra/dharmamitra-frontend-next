@@ -7,6 +7,7 @@ import customTheming from "@/utils/theme/config"
 
 import TranslationInputBox from "./TranslationInputBox"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
+import TranslationKeyboardControls from "./TranslationKeyboardControls"
 import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
 import TranslationTaggingDrawer from "./TranslationTagging"
@@ -51,6 +52,8 @@ export default function TranslationFeature() {
         {translateExtendedOptions ? <TranslationModelSelector /> : null}
         <TranslationTaggingDrawer />
       </Box>
+
+      <TranslationKeyboardControls />
     </>
   )
 }

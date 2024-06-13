@@ -3,27 +3,22 @@
 import React from "react"
 import { useTranslations } from "next-intl"
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight"
-import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { useTheme } from "@mui/material/styles"
 import Tooltip from "@mui/material/Tooltip"
-import { useSetAtom } from "jotai"
 
-import { triggerTranslationQueryAtom } from "@/atoms"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames } from "@/utils/api/params"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
+import StartStopButton from "../TranslationStartStopButton"
 
 export default function TranslationInputField() {
   const t = useTranslations()
   const { input, handleInputChange } = useInputWithUrlParam<string>(
     apiParamsNames.translation.input_sentence,
   )
-
-  const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
 
   const theme = useTheme()
 
@@ -53,12 +48,8 @@ export default function TranslationInputField() {
         multiline
         value={input}
         onChange={(e) => handleInputChange(e)}
-        onKeyUp={(event) => {
-          if (event.key === "Enter" && event.ctrlKey && input.length > 0) {
-            setTriggerTranslationQuery(true)
-          }
-        }}
       />
+
       <BoxBottomElementsRow sx={{ justifyContent: "space-between" }}>
         <Tooltip title={t("generic.clear")} placement="top">
           <IconButton
@@ -72,56 +63,7 @@ export default function TranslationInputField() {
           </IconButton>
         </Tooltip>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            gap: 0.7,
-          }}
-        >
-          <Tooltip
-            title={
-              <span>
-                {`${t("translation.translate")}`} (Ctrl +
-                <span
-                  style={{
-                    fontSize: "1.1rem",
-                    lineHeight: 0.75,
-                    paddingBottom: "0.1rem",
-                    verticalAlign: "middle",
-                  }}
-                >
-                  ↵
-                </span>
-                )
-              </span>
-            }
-            placement="top"
-            slotProps={{
-              popper: {
-                modifiers: [
-                  {
-                    name: "offset",
-                    options: {
-                      offset: [-24, 0],
-                    },
-                  },
-                ],
-              },
-            }}
-          >
-            <IconButton
-              aria-label={t("translation.translate")}
-              color="secondary"
-              onClick={() => {
-                setTriggerTranslationQuery(true)
-              }}
-            >
-              <KeyboardDoubleArrowRightIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
+        <StartStopButton />
       </BoxBottomElementsRow>
     </>
   )

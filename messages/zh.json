@@ -6,7 +6,8 @@
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>"
     },
-    "clear": "Clear"
+    "clear": "Clear",
+    "stop": "Stop"
   },
   "navigation": {
     "home": "首页",

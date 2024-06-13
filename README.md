@@ -263,6 +263,17 @@ yarn api:codegen
 
 TODO
 
+#### Stream formatting markers
+
+Unique characters from unicode emojis (https://emojipedia.org/)
+
+| Marker | Name  | Description           |
+| ------ | ----- | --------------------- |
+| `🔽`  | downwards-button | line break |
+| `⏮️`  | last-track-button | start of meta formating |
+| `⏭️`  | next-track-button | end of meta formating |
+
+
 ## 🌐 Internationalization (i18n)
 
 - The [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) locale codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for the project's locale codes to define the project's supported locales.

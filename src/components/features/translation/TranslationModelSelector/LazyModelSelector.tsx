@@ -31,7 +31,7 @@ export default function LazyModelSelector() {
       value={input}
       exclusive
       onChange={(event, value) => handleInputChange(value)}
-      aria-label="Platform"
+      aria-label="Model"
     >
       {translationModels.map((model) => (
         <ToggleButton key={model + "-model-option-loader"} value={model}>

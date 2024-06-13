@@ -3,7 +3,7 @@ import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
 import { DMApiTypes, streamPaths } from "@/api"
-import { triggerTranslationQueryAtom } from "@/atoms"
+import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import {
@@ -62,37 +62,41 @@ const useTranslationStream = () => {
   >("")
 
   const [isLoading, setIsLoading] = React.useState(false)
-  const [isError, setIsError] = React.useState<
+  const [isStreaming, setIsStreaming] = React.useState(false)
+  const [error, setError] = React.useState<
     { errorCode: 400 | 500 | 504; error: string; data?: SSEvent } | undefined
   >(undefined)
 
-  React.useEffect(() => {
-    setTranslationStream("")
-  }, [inputSentenceParam])
-
+  const [eventSource, setEventSource] = React.useState<SSE | null>(null)
   const timeoutIdRef = React.useRef<NodeJS.Timeout | null>(null)
 
-  React.useEffect(() => {
-    if (!triggerTranslationQuery || !params.input_sentence) {
-      return
+  const [abortTranslationQuery, setAbortTranslationQuery] = useAtom(
+    abortTranslationQueryAtom,
+  )
+
+  const startStream = React.useCallback(() => {
+    // Close any existing connection before starting a new one
+    if (eventSource) {
+      eventSource.close()
     }
-    setTriggerTranslationQuery(false)
+
     setTranslationStream("")
     setIsLoading(true)
-    setIsError(undefined)
+    setIsStreaming(true)
+    setError(undefined)
 
     let responseReceived = false
 
     timeoutIdRef.current = setTimeout(() => {
       if (!responseReceived) {
         setIsLoading(false)
-        setIsError({ errorCode: 504, error: "timeout" })
-        eventSource.close()
+        setError({ errorCode: 504, error: "timeout" })
+        eventSource?.close()
       }
       // 10 seconds
     }, 10000)
 
-    const eventSource = new SSE(basePath + streamPaths.translation, {
+    const newEventSource = new SSE(basePath + streamPaths.translation, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -100,53 +104,77 @@ const useTranslationStream = () => {
       payload: JSON.stringify(params),
     })
 
-    // https://developer.mozilla.org/en-US/docs/Web/API/EventSource
-    eventSource.addEventListener("message", (event: MessageEvent) => {
+    newEventSource.addEventListener("message", (event: MessageEvent) => {
       responseReceived = true
-
-      if (event.data === "[DONE]") {
-        // TODO: confirm this runs
-        eventSource.close()
-      }
 
       setIsLoading(false)
       setTranslationStream((prev) => prev + cleanSSEData(event.data))
     })
 
-    eventSource.addEventListener("readystatechange", (event: EventSource) => {
-      if (event.readyState >= 2) {
-        setIsLoading(false)
-      }
-    })
+    newEventSource.addEventListener(
+      "readystatechange",
+      (event: EventSource) => {
+        // 2 = CLOSED; https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events
+        if (event.readyState >= 2) {
+          setIsLoading(false)
+          setIsStreaming(false)
+        }
+      },
+    )
 
-    eventSource.onerror = (err) => {
-      // An error response was received from the server.
+    newEventSource.onerror = (err) => {
       responseReceived = true
       clearTimeout(timeoutIdRef.current!)
 
       setIsLoading(false)
 
-      setIsError((prev) =>
+      setError((prev) =>
         prev
           ? { ...prev, data: err }
           : { errorCode: 500, error: "unknown", data: err },
       )
     }
 
-    eventSource.stream()
+    newEventSource.stream()
+    setEventSource(newEventSource)
 
-    // Cleanup function to clear the timeout if the component unmounts
     return () => {
-      if (timeoutIdRef.current && responseReceived) {
-        clearTimeout(timeoutIdRef.current)
-      }
+      clearTimeout(timeoutIdRef.current!)
     }
-  }, [triggerTranslationQuery, setTriggerTranslationQuery, params, basePath])
+  }, [basePath, params, eventSource])
+
+  const stopStream = React.useCallback(() => {
+    if (eventSource) {
+      eventSource.close()
+      setEventSource(null)
+      setIsLoading(false)
+      setIsStreaming(false)
+    }
+  }, [eventSource])
+
+  React.useEffect(() => {
+    setTranslationStream("")
+  }, [params.input_sentence])
+
+  React.useEffect(() => {
+    if (triggerTranslationQuery && params.input_sentence) {
+      startStream()
+      setTriggerTranslationQuery(false)
+    }
+  }, [triggerTranslationQuery, params, startStream, setTriggerTranslationQuery])
+
+  React.useEffect(() => {
+    if (abortTranslationQuery) {
+      setAbortTranslationQuery(false)
+      stopStream()
+    }
+  }, [abortTranslationQuery, stopStream, setAbortTranslationQuery])
 
   return {
     translationStream,
     isLoading,
-    isError,
+    isStreaming,
+    error,
   }
 }
 
