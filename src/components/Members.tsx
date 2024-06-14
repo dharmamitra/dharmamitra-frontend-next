@@ -2,60 +2,78 @@ import * as React from "react"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Box, Typography } from "@mui/material"
+import Grid from "@mui/material/Unstable_Grid2"
 
 import { Member as MemberType } from "@/app/[locale]/team/@dharmamitra/data"
+import customTheming from "@/utils/theme/config"
 
 export function Member({ id, name, roles, image }: MemberType) {
-  // TODO: Generalize (this should not be specific to dharmamitra)
-  const t = useTranslations("Team.dharmamitra")
+  const t = useTranslations("staticContent")
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: { sm: "column" },
-        alignItems: "center",
-        width: { xs: "100%", sm: "45%", md: "unset" },
-      }}
-    >
+    <Grid xs={12} sm={6} md={4} lg={3}>
       <Box
         sx={{
           position: "relative",
-          width: { xs: "100px", sm: "225px", md: "200px" },
-          height: { xs: "100px", sm: "225px", md: "200px" },
-        }}
-      >
-        <Image
-          src={image}
-          alt={name}
-          style={{
-            borderRadius: "50%",
-            width: "100%",
-            height: "100%",
-          }}
-        />
-      </Box>
-
-      <Box
-        sx={{
           display: "flex",
           flexDirection: "column",
-          pl: 2,
-          alignItems: { sm: "center" },
+          alignItems: "center",
+          bgcolor: customTheming.palette.soft,
+          borderRadius: "14px",
+          p: 2,
+          pt: { xs: 6, md: 10 },
+          mt: { xs: 4, md: 10 },
+          maxWidth: { xs: "380px", sm: "unset" },
+          mx: { xs: "auto", sm: "unset" },
+          height: "clamp(135px, 18vw, 175px)",
         }}
       >
-        <Typography variant="h6" component="p">
-          {name}
-        </Typography>
-        {roles &&
-          roles.map(({ i18nRoleKey }, index) => (
-            <Typography key={id + "-" + i18nRoleKey} color="text.secondary">
-              {t(`roles.${i18nRoleKey}`)}
-              {index < roles.length - 1 && ","}
-            </Typography>
-          ))}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: { xs: "68px", md: "100px" },
+            height: { xs: "68px", md: "100px" },
+          }}
+        >
+          <Image
+            src={image}
+            alt={name}
+            style={{
+              borderRadius: "50%",
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            pl: 2,
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h3" component="p">
+            {name}
+          </Typography>
+          {roles &&
+            roles.map(({ i18nRoleKey }, index) => (
+              <Typography
+                key={id + "-" + i18nRoleKey}
+                variant="body2"
+                color="text.secondary"
+              >
+                {t(`roles.${i18nRoleKey}`)}
+                {index < roles.length - 1 && ","}
+              </Typography>
+            ))}
+        </Box>
       </Box>
-    </Box>
+    </Grid>
   )
 }
 
@@ -66,13 +84,15 @@ export default function Members({ members }: { members: MemberType[] }) {
         display: "flex",
         width: "100%",
         rowGap: { xs: 3, sm: 8 },
-        columnGap: { sm: 4, lg: 8 },
+        columnGap: { sm: 4, lg: 5 },
         flexWrap: "wrap",
       }}
     >
-      {members.map((member) => (
-        <Member key={member.id} {...member} />
-      ))}
+      <Grid container spacing={{ xs: 3, sm: 4, lg: 5 }}>
+        {members.map((member) => (
+          <Member key={member.id} {...member} />
+        ))}
+      </Grid>
     </Box>
   )
 }

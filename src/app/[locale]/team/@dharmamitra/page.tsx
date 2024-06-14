@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
-import { Typography } from "@mui/material"
+import { Box, Divider, Typography } from "@mui/material"
 
 import Members from "@/components/Members"
 import Section from "@/components/Section"
@@ -22,6 +22,22 @@ export async function generateMetadata({
   }
 }
 
+const DividedSectionHeader = ({ heading }: { heading: string }) => (
+  <Box mt={{ xs: 3, sm: 4.5 }} mb={{ xs: 4, sm: 4 }}>
+    <Divider>
+      <Typography
+        variant="h2"
+        textAlign="center"
+        m={0}
+        px={2}
+        sx={{ fontSize: "1.5rem", fontWeight: "normal" }}
+      >
+        {heading}
+      </Typography>
+    </Divider>
+  </Box>
+)
+
 export default function TeamPage({
   params: { locale },
 }: {
@@ -36,20 +52,17 @@ export default function TeamPage({
 
   return (
     <>
-      <Typography variant="h1">{t("h1")}</Typography>
+      <Typography variant="h1" textAlign="center">
+        {t("h1")}
+      </Typography>
 
       <Section>
-        <Typography variant="h2" mt={{ xs: 2, sm: 4 }} mb={4}>
-          {t("present.h2")}
-        </Typography>
-
+        <DividedSectionHeader heading={t("present.h2")} />
         <Members members={membersData.current} />
       </Section>
 
-      <Section>
-        <Typography variant="h2" mb={4}>
-          {t("past.h2")}
-        </Typography>
+      <Section sx={{ mt: 10, pb: 12 }}>
+        <DividedSectionHeader heading={t("past.h2")} />
 
         <Members members={membersData.past} />
       </Section>

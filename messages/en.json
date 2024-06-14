@@ -104,6 +104,17 @@
     "team": "Team",
     "guide": "Guide"
   },
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "websiteDevelopment": "Website development",
+      "productDesigner": "Product Designer",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
+    }
+  },
   "Home": {
     "title": "Welcome to Dharmamitra",
     "h1": "Dharmamitra Translator"
@@ -180,22 +191,13 @@
   },
   "Team": {
     "dharmamitra": {
-      "title": "Our Team",
-      "h1": "Our Team",
+      "title": "Meet Our Team",
+      "h1": "Meet Our Team",
       "present": {
         "h2": "Present"
       },
       "past": {
         "h2": "Past"
-      },
-      "roles": {
-        "directorExecutive": "Executive Director",
-        "directorTechnical": "Technical Director",
-        "dataCollectionSanskrit": "Sanskrit data collection",
-        "projectInfrastructure": "Project infrastructure",
-        "websiteDevelopment": "Website development",
-        "productDesigner": "Product Designer",
-        "nlpResearchSanskrit": "Sanskrit NLP research"
       }
     }
   },

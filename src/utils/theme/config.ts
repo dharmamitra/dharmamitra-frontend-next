@@ -100,7 +100,8 @@ export const baseTheme: ThemeOptions = {
     // Adjusts the root HTML font size for rem calculations
     // htmlFontSize: 14,
     h1: {
-      fontSize: "4.5rem",
+      fontSize: "3rem",
+      fontWeight: 500,
     },
     h2: {
       fontSize: "2.2rem",

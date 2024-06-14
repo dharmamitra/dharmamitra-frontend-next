@@ -26,7 +26,7 @@ export type Member = {
   roles:
     | {
         role: string
-        i18nRoleKey: keyof Messages["Team"]["dharmamitra"]["roles"]
+        i18nRoleKey: keyof Messages["staticContent"]["roles"]
       }[]
     | null
   image: StaticImport

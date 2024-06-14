@@ -105,6 +105,17 @@
     "team": "Team",
     "guide": "Guide"
   },
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "websiteDevelopment": "Website development",
+      "productDesigner": "Product Designer",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
+    }
+  },
   "Home": {
     "title": "歡迎來到法之善友AI計畫",
     "h1": "法之善友AI翻譯器"
@@ -188,15 +199,6 @@
       },
       "past": {
         "h2": "前期成員"
-      },
-      "roles": {
-        "directorExecutive": "執行長",
-        "directorTechnical": "技術總監",
-        "dataCollectionSanskrit": "梵語數據收集",
-        "projectInfrastructure": "計畫基礎建設",
-        "websiteDevelopment": "網站開發",
-        "productDesigner": "Product Designer",
-        "nlpResearchSanskrit": "梵文自然語言處理研究"
       }
     }
   },
