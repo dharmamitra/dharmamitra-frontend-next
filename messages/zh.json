@@ -113,19 +113,27 @@
     "dharmamitra": {
       "title": "About",
       "h1": "About",
-      "mission": {
-        "h2": "MITRA's Mission",
+      "about": {
+        "h2": "About us",
         "p1": "MITRA’s Mission is to harness the rapidly evolving AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications.",
-        "p2": {
-          "line1": "Currently MITRA’s mission is to facilitate the study and practice of dharma through:",
-          "li1": "providing an automated machine translation capability from Sanskrit, classical Tibetan, and classical Chinese into a variety of modern languages including Chinese, Tibetan, Korean, and Japanese;",
-          "li2": "enabling the semantic search of a growing body of texts in Sanskrit, Classical Tibetan, and Classical Chinese;",
-          "li3": "developing tools to facilitate the study of Sanskrit and Classical Tibetan."
+        "features": {
+          "auto-translation": {
+            "title": "Automated Translation",
+            "description": "Sanskrit, classical Tibetan, and classical Chinese to modern languages including Chinese, Tibetan, Korean, and Japanese"
+          },
+          "semantic-search": {
+            "title": "Semantic Search",
+            "description": "Refining semantic search across a growing body of Sanskrit, Classical Tibetan, and Classical Chinese texts"
+          },
+          "toolkit": {
+            "title": "Philologist's Toolkit",
+            "description": "Develop tools to facilitate the study of Sanskrit and Classical Tibetan"
+          }
         },
-        "p3": {
-          "line1": "In the future we hope to provide Generative AI tools that enable elevating and transformative experiences through:",
-          "li1": "Immersive 3D experiences in maṇḍala",
-          "li2": "Generation of 2D art based on canonical guildelines"
+        "p2": "In the future we hope to provide Generative AI tools that enable elevating and transformative experiences through:",
+        "roadmap": {
+          "1": "Immersive 3D experiences in maṇḍala",
+          "2": "Generation of 2D art based on canonical guildelines"
         }
       },
       "project": {
@@ -136,21 +144,23 @@
       },
       "collaboration": {
         "h2": "Collaborations",
-        "monlam": {
-          "name": "<monlam>monlam.ai</monlam>",
-          "description": "Machine translation data collection for Tibetan and English"
-        },
-        "kumarajiva": {
-          "name": "<kumarajiva>Kumarajiva project</kumarajiva>",
-          "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
-        },
-        "iitk": {
-          "name": "<iitk>IIT Kharagpur</iitk>",
-          "description": "Development of Sanskrit translation model development. Sanskrit<>English dataset compilation "
-        },
-        "ai4bharat": {
-          "name": "<ai4bharat>AI4Bharat</ai4bharat>",
-          "description": "Development of Sanskrit data collection"
+        "collaborators": {
+          "monlam": {
+            "name": "<link>monlam.ai</link>",
+            "description": "Machine translation data collection for Tibetan and English"
+          },
+          "kumarajiva": {
+            "name": "<link>Kumarajiva project</link>",
+            "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
+          },
+          "iitk": {
+            "name": "<link>IIT Kharagpur</link>",
+            "description": "Development of Sanskrit translation model development. Sanskrit<>English dataset compilation "
+          },
+          "ai4bharat": {
+            "name": "<link>AI4Bharat</link>",
+            "description": "Development of Sanskrit data collection"
+          }
         }
       }
     }

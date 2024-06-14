@@ -31,6 +31,6 @@ export default function AboutLayout({
 
   switch (appConfig.env) {
     default:
-      return <PageShell>{dharmamitra}</PageShell>
+      return <PageShell contained={false}>{dharmamitra}</PageShell>
   }
 }

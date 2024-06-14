@@ -1,23 +1,27 @@
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { unstable_setRequestLocale } from "next-intl/server"
-import AutoFixHighOutlinedIcon from "@mui/icons-material/AutoFixHighOutlined"
-import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined"
-import SavedSearchOutlinedIcon from "@mui/icons-material/SavedSearchOutlined"
-import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined"
-import ViewInArOutlinedIcon from "@mui/icons-material/ViewInArOutlined"
+import CheckIcon from "@mui/icons-material/Check"
 import {
+  Box,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Typography,
 } from "@mui/material"
+import Container from "@mui/material/Container"
 import Link from "@mui/material/Link"
+import Grid from "@mui/material/Unstable_Grid2"
+import { visuallyHidden } from "@mui/utils"
 
-import logoFull from "@/assets/dm-logo-full.png"
+import dmLogoFull from "@/assets/logos/dm-logo-full.png"
+import IconCard from "@/components/IconCard"
 import Section from "@/components/Section"
+import customTheming from "@/utils/theme/config"
 import { linkAttrs } from "@/utils/ui"
+
+import data from "./data"
 
 export default function AboutDharmamitraPage({
   params: { locale },
@@ -27,144 +31,160 @@ export default function AboutDharmamitraPage({
   unstable_setRequestLocale(locale)
   const t = useTranslations("About.dharmamitra")
 
-  const listKeys = ["li1", "li2", "li3"] as const
-
   return (
-    <>
-      <Typography variant="h1">{t("h1")}</Typography>
-
-      <Section>
-        <Typography variant="h2">{t("mission.h2")}</Typography>
-        <Typography variant="reader" component="p">
-          {t("mission.p1")}
+    <main>
+      <Container maxWidth="lg" sx={{ flexGrow: 1, mt: { xs: 6, md: 8 } }}>
+        <Typography variant="h1" sx={visuallyHidden}>
+          {t("h1")}
         </Typography>
 
-        <Typography variant="reader" component="p">
-          {t("mission.p2.line1")}
-        </Typography>
-        <List>
-          <ListItem>
-            <ListItemIcon>
-              <SmartToyOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary={t(`mission.p2.${listKeys[0]}`)} />
-          </ListItem>
+        <Section>
+          <Typography variant="h2">{t("about.h2")}</Typography>
+          <Typography>{t("about.p1")}</Typography>
 
-          <ListItem>
-            <ListItemIcon>
-              <SavedSearchOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary={t(`mission.p2.${listKeys[1]}`)} />
-          </ListItem>
+          <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", my: 4 }}>
+            {data.features.map((feature) => (
+              <IconCard
+                key={`dharmamitra-feature-${feature.i18nKey}`}
+                icon={feature.icon}
+                title={t(`about.features.${feature.i18nKey}.title`)}
+                description={t(`about.features.${feature.i18nKey}.description`)}
+              />
+            ))}
+          </Box>
 
-          <ListItem>
-            <ListItemIcon>
-              <AutoFixHighOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary={t(`mission.p2.${listKeys[2]}`)} />
-          </ListItem>
-        </List>
+          <Typography>{t("about.p2")}</Typography>
 
-        <Typography variant="reader" component="p">
-          {t("mission.p3.line1")}
-        </Typography>
+          <List>
+            {data.roadmapItemKeys.map((key) => (
+              <ListItem key={`roadmap-item-${key}`}>
+                <Box
+                  sx={{
+                    display: "grid",
+                    placeItems: "center",
+                    borderRadius: "50%",
+                    height: "28px",
+                    width: "28px",
+                    mr: 2,
+                    border: "1px solid",
+                    borderColor: "secondary.main",
+                    bgcolor: customTheming.palette.soft,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: "unset",
+                    }}
+                  >
+                    <CheckIcon color="secondary" fontSize="small" />
+                  </ListItemIcon>
+                </Box>
+                <ListItemText primary={t(`about.roadmap.${key}`)} />
+              </ListItem>
+            ))}
+          </List>
+        </Section>
+      </Container>
 
-        <List>
-          <ListItem>
-            <ListItemIcon>
-              <ViewInArOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary={t(`mission.p3.${listKeys[0]}`)} />
-          </ListItem>
+      <Section sx={{ bgcolor: customTheming.palette.soft }}>
+        <Box
+          sx={{
+            display: "inline-flex",
+            width: "100%",
+            mx: "auto",
+          }}
+        >
+          <Grid container>
+            <Grid xs={12} lg={5}>
+              <Box
+                sx={{
+                  display: { xs: "none", lg: "grid" },
+                  placeItems: "center",
+                  height: "100%",
+                  backgroundColor: customTheming.baseColors.light,
+                }}
+              >
+                <Image
+                  src={dmLogoFull}
+                  alt="Dharmamitra"
+                  width={450}
+                  height={240}
+                />
+              </Box>
+            </Grid>
 
-          <ListItem>
-            <ListItemIcon>
-              <ColorLensOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary={t(`mission.p3.${listKeys[1]}`)} />
-          </ListItem>
-        </List>
+            <Grid xs={12} lg={7}>
+              <Container sx={{ py: 5 }}>
+                <Typography variant="h2">{t("project.h2")}</Typography>
+                <Typography mb={2}>{t("project.p1")}</Typography>
+                <Typography mb={2}>{t("project.p2")}</Typography>
+                <Typography mb={2}>{t("project.p3")}</Typography>
+              </Container>
+            </Grid>
+          </Grid>
+        </Box>
       </Section>
 
-      <Section>
-        <Typography variant="h2">{t("project.h2")}</Typography>
+      <Container maxWidth="lg" sx={{ flexGrow: 1, my: { xs: 6, md: 10 } }}>
+        <Section>
+          <Typography variant="h2" mb={4}>
+            {t("collaboration.h2")}
+          </Typography>
 
-        <Typography variant="reader" component="p">
-          {t("project.p1")}
-        </Typography>
-
-        <Image
-          src={logoFull}
-          alt="Dharmamitra"
-          style={{ width: "100%", height: "auto" }}
-          priority
-        />
-
-        <Typography variant="reader" component="p">
-          {t("project.p2")}
-        </Typography>
-        <Typography variant="reader" component="p">
-          {t("project.p3")}
-        </Typography>
-      </Section>
-
-      <Section>
-        <Typography variant="h2" mb={3}>
-          {t("collaboration.h2")}
-        </Typography>
-
-        <Typography variant="h5" component="h3">
-          {t.rich("collaboration.monlam.name", {
-            monlam: (chunks) => (
-              <Link href="https://monlam.ai" {...linkAttrs}>
-                {chunks}
-              </Link>
-            ),
-          })}
-        </Typography>
-        <Typography variant="reader" component="p">
-          {t("collaboration.monlam.description")}
-        </Typography>
-
-        <Typography variant="h5" component="h3" mt={4}>
-          {t.rich("collaboration.kumarajiva.name", {
-            kumarajiva: (chunks) => (
-              <Link href="https://www.ymfz.org/" {...linkAttrs}>
-                {chunks}
-              </Link>
-            ),
-          })}
-        </Typography>
-        <Typography variant="reader" component="p">
-          {t("collaboration.kumarajiva.description")}
-        </Typography>
-
-        <Typography variant="h5" component="h3" mt={4}>
-          {t.rich("collaboration.iitk.name", {
-            iitk: (chunks) => (
-              <Link href="https://www.iitkgp.ac.in/" {...linkAttrs}>
-                {chunks}
-              </Link>
-            ),
-          })}
-        </Typography>
-        <Typography variant="reader" component="p">
-          {t("collaboration.iitk.description")}
-        </Typography>
-
-        <Typography variant="h5" component="h3" mt={4}>
-          {t.rich("collaboration.ai4bharat.name", {
-            ai4bharat: (chunks) => (
-              <Link href="https://ai4bharat.iitm.ac.in/" {...linkAttrs}>
-                {chunks}
-              </Link>
-            ),
-          })}
-        </Typography>
-        <Typography variant="reader" component="p">
-          {t("collaboration.ai4bharat.description")}
-        </Typography>
-      </Section>
-    </>
+          <Grid
+            container
+            columnSpacing={{ xs: 3, sm: 1, md: 8 }}
+            rowSpacing={6}
+            columns={16}
+          >
+            {data.collaborators.map((collaborator) => (
+              <Grid
+                key={`colaborator-${collaborator.i18nKey}`}
+                xs={16}
+                sm={8}
+                md={7}
+              >
+                <div>
+                  <Grid container spacing={{ xs: 3 }}>
+                    <Grid xs={2}>
+                      <Image
+                        src={collaborator.logo.src}
+                        alt={collaborator.logo.alt}
+                        width={56}
+                        height={56}
+                        style={{ width: "100%" }}
+                      />
+                    </Grid>
+                    <Grid xs={10}>
+                      <Typography variant="h5" component="h3" mb={1}>
+                        {t.rich(
+                          `collaboration.collaborators.${collaborator.i18nKey}.name`,
+                          {
+                            link: (chunks) => (
+                              <Link
+                                sx={{ color: "text.primary", fontWeight: 500 }}
+                                href={collaborator.url}
+                                {...linkAttrs}
+                              >
+                                {chunks}
+                              </Link>
+                            ),
+                          },
+                        )}
+                      </Typography>
+                      <Typography variant="body2">
+                        {t(
+                          `collaboration.collaborators.${collaborator.i18nKey}.description`,
+                        )}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </div>
+              </Grid>
+            ))}
+          </Grid>
+        </Section>
+      </Container>
+    </main>
   )
 }

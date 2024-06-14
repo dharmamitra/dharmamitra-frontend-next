@@ -54,6 +54,7 @@ const rgbCodes =
 const colours = {
   primary: `rgb(${rgbCodes.primary}, 1)`,
   secondary: `rgb(${rgbCodes.secondary}, 1)`,
+  light: `rgb(${rgbCodes.light}, 1)`,
   soft: `rgb(${rgbCodes.light}, 0.5)`,
   panel: `rgb(${rgbCodes["grey-100"]}, 1)`,
   text: {
@@ -65,6 +66,7 @@ const colours = {
 }
 
 const customTheming: CustomTheming = {
+  baseColors: colours,
   palette: {
     soft: colours.soft,
     panel: colours.panel,
@@ -98,11 +100,15 @@ export const baseTheme: ThemeOptions = {
     // Adjusts the root HTML font size for rem calculations
     // htmlFontSize: 14,
     h1: {
-      marginTop: "2rem",
+      fontSize: "4.5rem",
     },
     h2: {
-      fontSize: "3rem",
-      marginTop: "2rem",
+      fontSize: "2.2rem",
+      fontWeight: 500,
+      marginBlockEnd: "1rem",
+    },
+    h3: {
+      fontSize: "1.25rem",
       fontWeight: 500,
     },
     reader: {
