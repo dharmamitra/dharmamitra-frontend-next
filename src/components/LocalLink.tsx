@@ -6,6 +6,7 @@ import { Button, Link as MuiLink, SxProps, Theme } from "@mui/material"
 import { ButtonProps } from "@mui/material/Button"
 
 import { Link as NavigationLink } from "@/navigation"
+import { linkAttrs } from "@/utils/ui"
 
 const NavigationLinkForwardRef = React.forwardRef<
   HTMLAnchorElement,
@@ -18,10 +19,11 @@ export default function LocalLink({
   children,
   sx,
   variant = "link",
-  // eslint-disable-next-line no-unused-vars -- this is just to exclude the "as" prop
-  as,
   buttonVariant,
   buttoColor = "inherit",
+  // eslint-disable-next-line no-unused-vars -- this is just to exclude unused props
+  as,
+  // eslint-disable-next-line no-unused-vars
   ...rest
 }: ComponentProps<typeof NavigationLink> & {
   sx?: SxProps<Theme>
@@ -33,10 +35,6 @@ export default function LocalLink({
   const pathname = selectedLayoutSegment ? `/${selectedLayoutSegment}` : "/"
   const isActive = pathname === href
 
-  if (href.toString().startsWith("http")) {
-    Object.assign(rest, { target: "_blank", rel: "noopener noreferrer" })
-  }
-
   return (
     <>
       {variant === "link" ? (
@@ -44,7 +42,7 @@ export default function LocalLink({
           sx={sx}
           href={href}
           aria-current={isActive ? "page" : undefined}
-          {...rest}
+          {...(href.toString().startsWith("http") && linkAttrs)}
           component={NavigationLinkForwardRef}
         >
           {children}
