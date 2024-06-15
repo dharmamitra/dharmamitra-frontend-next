@@ -93,8 +93,8 @@ const useTranslationStream = () => {
         setError({ errorCode: 504, error: "timeout" })
         eventSource?.close()
       }
-      // 10 seconds
-    }, 10000)
+      // 15 seconds
+    }, 15000)
 
     const newEventSource = new SSE(basePath + streamPaths.translation, {
       headers: {
