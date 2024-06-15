@@ -6,6 +6,9 @@ import { MenuItem, RadioGroup, Select } from "@mui/material"
 
 import { DMApiTypes } from "@/api"
 import {
+  flatRadioGroupStyles,
+  focusBgColor,
+  getFocusedBgStyles,
   OtherOptionsButtonIcon,
   OtherOptionsInputStyles,
   selectedOptionsStyles,
@@ -51,6 +54,13 @@ export default function TranslationTargetLanguageSelector() {
         value={input}
         onChange={handleInputChange}
         row
+        sx={{
+          ...flatRadioGroupStyles,
+          ...getFocusedBgStyles({
+            color: focusBgColor,
+            inset: "2px 4px -2px 4px",
+          }),
+        }}
       >
         {primaryLanguagesOptions.map((language) => (
           <RadioOption
@@ -72,12 +82,17 @@ export default function TranslationTargetLanguageSelector() {
         }}
         IconComponent={() => <OtherOptionsButtonIcon />}
         sx={{
+          ...OtherOptionsInputStyles,
           ...(isHydrated && !isPrimaryValueSelected
             ? { ...selectedOptionsStyles, color: "secondary.main" }
             : {}),
           "& .MuiOutlinedInput-notchedOutline": {
             border: "none",
           },
+          ...getFocusedBgStyles({
+            color: focusBgColor,
+            inset: "8px -4px 8px -8px",
+          }),
         }}
         displayEmpty
       >

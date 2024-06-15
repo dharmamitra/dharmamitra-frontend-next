@@ -5,6 +5,9 @@ import { useTranslations } from "next-intl"
 import { MenuItem, RadioGroup, Select } from "@mui/material"
 
 import {
+  flatRadioGroupStyles,
+  focusBgColor,
+  getFocusedBgStyles,
   OtherOptionsButtonIcon,
   OtherOptionsInputStyles,
   selectedOptionsStyles,
@@ -44,6 +47,13 @@ export default function TranslationInputEncodingSelector() {
         value={input ? input : inputEncodings[0]}
         onChange={(e) => handleInputChange(e.target.value)}
         row
+        sx={{
+          ...flatRadioGroupStyles,
+          ...getFocusedBgStyles({
+            color: focusBgColor,
+            inset: "2px 4px -2px 4px",
+          }),
+        }}
       >
         {primaryEncodingOptions.map((encoding) => (
           <RadioOption
@@ -64,12 +74,17 @@ export default function TranslationInputEncodingSelector() {
         }}
         IconComponent={() => <OtherOptionsButtonIcon />}
         sx={{
+          ...OtherOptionsInputStyles,
           ...(isHydrated && !isPrimaryValueSelected
             ? { ...selectedOptionsStyles, color: "secondary.main" }
             : {}),
           "& .MuiOutlinedInput-notchedOutline": {
             border: "none",
           },
+          ...getFocusedBgStyles({
+            color: focusBgColor,
+            inset: "8px -4px 8px -8px",
+          }),
         }}
         displayEmpty
       >

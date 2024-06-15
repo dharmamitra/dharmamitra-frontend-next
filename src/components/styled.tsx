@@ -8,6 +8,9 @@ import {
   Radio,
   styled,
 } from "@mui/material"
+import { alpha } from "@mui/material/styles"
+
+import customTheming from "@/utils/theme/config"
 
 export const VisuallyHiddenRadio = styled(Radio)({
   position: "absolute",
@@ -17,6 +20,46 @@ export const VisuallyHiddenRadio = styled(Radio)({
   height: "1px",
   overflow: "hidden",
 })
+
+export const getFocusedBgStyles = ({
+  color,
+  inset = "0",
+}: {
+  color: string
+  inset?: string
+}) => ({
+  "&:focus-within::before": {
+    content: `' '`,
+    position: "absolute",
+    inset,
+    borderRadius: "8px",
+    transition: "all 255ms ease-in",
+    backgroundColor: color,
+    animation: "focus 3s ease-in-out infinite",
+  },
+  "@keyframes focus": {
+    "0%": {
+      transform: "scale(1)",
+    },
+    "50%": {
+      transform: "scale(1.02, 1.06)",
+    },
+    "100%": {
+      transform: "scale(1)",
+    },
+  },
+})
+
+export const focusBgColor = alpha(customTheming.baseColors.secondary!, 0.05)
+
+export const flatRadioGroupStyles = {
+  position: "relative",
+  display: "flex",
+  gap: 2,
+  borderRadius: "8px",
+  padding: "8px 0 8px 24px",
+  marginInline: "-16px 8px",
+}
 
 export const selectedOptionsStyles = {
   textDecoration: "underline",
@@ -28,7 +71,7 @@ export const selectedOptionsStyles = {
 
 export const CustomFormControlLabel = styled(FormControlLabel)(
   ({ theme, checked }) => ({
-    paddingInline: theme.spacing(1),
+    // paddingInline: theme.spacing(1),
     ".MuiFormControlLabel-label": checked && {
       color: theme.palette.secondary.main,
       ...selectedOptionsStyles,

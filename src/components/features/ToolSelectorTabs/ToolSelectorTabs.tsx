@@ -81,14 +81,19 @@ export default function ToolSelectorTabs() {
             maxHeight: "48px",
             margin: "8px",
             borderRadius: "50px",
+            border: "3px solid transparent",
             transition:
               "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
           },
+
           "& button.Mui-selected": {
             backgroundColor: "#fff",
             boxShadow: "0px 4px 4px 0px #0000001C",
             transition:
               "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
+          },
+          "& button:focus": {
+            border: (theme) => `3px solid ${theme.palette.secondary.main}`,
           },
         }}
       >
