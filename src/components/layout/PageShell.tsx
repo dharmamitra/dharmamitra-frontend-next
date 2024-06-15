@@ -11,20 +11,37 @@ type Props = {
   children?: ReactNode
   maxWidth?: Breakpoint | false
   sx?: SxProps
+  contained?: boolean
 }
 
-export default function PageShell({ children, maxWidth = "lg", sx }: Props) {
+export default function PageShell({
+  children,
+  maxWidth = "lg",
+  contained = true,
+  sx,
+}: Props) {
   return (
     <>
       <NavigationBar />
-      <Box sx={{ mb: 12, ...sx }}>
-        <Container
-          component="main"
-          maxWidth={maxWidth}
-          sx={{ mt: { xs: 6, md: 8 } }}
-        >
-          {children}
-        </Container>
+      <Box
+        sx={{
+          minHeight: "50vh",
+          display: "flex",
+          flexDirection: "column",
+          ...sx,
+        }}
+      >
+        {contained ? (
+          <Container
+            component="main"
+            maxWidth={maxWidth}
+            sx={{ flexGrow: 1, mt: { xs: 6, md: 8 } }}
+          >
+            {children}
+          </Container>
+        ) : (
+          children
+        )}
       </Box>
       <Footer />
     </>

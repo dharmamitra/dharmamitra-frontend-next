@@ -2,48 +2,55 @@ import React from "react"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
-import { type TranslationRequestProps } from "@/api"
-import { triggerTranslationQueryAtom } from "@/atoms"
+import { DMApiTypes, streamPaths } from "@/api"
+import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
+import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import {
   apiParamsNames,
-  InputEncoding,
   inputEncodings,
-  TargetLanguage,
-  targetLanguages,
+  translationModels,
 } from "@/utils/api/params"
 import { cleanSSEData } from "@/utils/transformers"
 
-const translationEndpoint = `${process.env.NEXT_PUBLIC_API_URL}/translation/`
-
 const useTranslationStream = () => {
-  const { input: inputSentence } = useInputWithUrlParam(
+  const { basePath, paramOptions } = useAppConfig()
+
+  const { input: inputSentenceParam } = useInputWithUrlParam<string>(
     apiParamsNames.translation.input_sentence,
   )
-  const { input: inputEncoding } = useInputWithUrlParam(
-    apiParamsNames.translation.input_encoding,
-  )
-  const { input: targetLang } = useInputWithUrlParam(
-    apiParamsNames.translation.target_lang,
+  const { input: inputEncodingParam } = useInputWithUrlParam<
+    DMApiTypes.Schema["InputEncoding"]
+  >(apiParamsNames.translation.input_encoding)
+  const { input: targetLangParam } = useInputWithUrlParam<
+    DMApiTypes.Schema["TargetLanguage"]
+  >(apiParamsNames.translation.target_lang)
+  const { input: modelParam } = useInputWithUrlParam<
+    DMApiTypes.Schema["TranslationModel"]
+  >(apiParamsNames.translation.model)
+  const { input: grammarParam } = useInputWithUrlParam<"false" | "true">(
+    apiParamsNames.translation.do_grammar_explanation,
   )
 
-  // TODO: Add typing to useInputWithUrlParam and remove casting
-  const inputEncodingParam = (
-    inputEncoding ? inputEncoding : inputEncodings[0]
-  ) as InputEncoding
-  const targetLangParam = (
-    targetLang ? targetLang : targetLanguages[0]
-  ) as TargetLanguage
-
-  const params: TranslationRequestProps = React.useMemo(
+  const params: DMApiTypes.TranslationRequestBody = React.useMemo(
     () => ({
-      input_sentence: inputSentence,
-      input_encoding: inputEncodingParam,
-      level_of_explanation: 0,
-      target_lang: targetLangParam,
-      model: "NO",
+      input_sentence: inputSentenceParam ?? "",
+      input_encoding: inputEncodingParam ?? inputEncodings[0],
+      do_grammar_explanation: grammarParam === "true",
+      target_lang:
+        targetLangParam ??
+        (paramOptions
+          .targetLanguages[0] as DMApiTypes.Schema["TargetLanguage"]),
+      model: modelParam ?? translationModels[0],
     }),
-    [inputSentence, inputEncodingParam, targetLangParam],
+    [
+      inputSentenceParam,
+      inputEncodingParam,
+      targetLangParam,
+      paramOptions,
+      modelParam,
+      grammarParam,
+    ],
   )
 
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
@@ -53,38 +60,43 @@ const useTranslationStream = () => {
   const [translationStream, setTranslationStream] = React.useState<
     string | undefined
   >("")
+
   const [isLoading, setIsLoading] = React.useState(false)
-  const [isError, setIsError] = React.useState<
+  const [isStreaming, setIsStreaming] = React.useState(false)
+  const [error, setError] = React.useState<
     { errorCode: 400 | 500 | 504; error: string; data?: SSEvent } | undefined
   >(undefined)
 
-  React.useEffect(() => {
-    setTranslationStream("")
-  }, [inputSentence])
-
+  const [eventSource, setEventSource] = React.useState<SSE | null>(null)
   const timeoutIdRef = React.useRef<NodeJS.Timeout | null>(null)
 
-  React.useEffect(() => {
-    if (!triggerTranslationQuery || !params.input_sentence) {
-      return
+  const [abortTranslationQuery, setAbortTranslationQuery] = useAtom(
+    abortTranslationQueryAtom,
+  )
+
+  const startStream = React.useCallback(() => {
+    // Close any existing connection before starting a new one
+    if (eventSource) {
+      eventSource.close()
     }
-    setTriggerTranslationQuery(false)
+
     setTranslationStream("")
     setIsLoading(true)
-    setIsError(undefined)
+    setIsStreaming(true)
+    setError(undefined)
 
     let responseReceived = false
 
     timeoutIdRef.current = setTimeout(() => {
       if (!responseReceived) {
         setIsLoading(false)
-        setIsError({ errorCode: 504, error: "timeout" })
-        eventSource.close()
+        setError({ errorCode: 504, error: "timeout" })
+        eventSource?.close()
       }
-      // 7 seconds
-    }, 7000)
+      // 15 seconds
+    }, 15000)
 
-    const eventSource = new SSE(translationEndpoint, {
+    const newEventSource = new SSE(basePath + streamPaths.translation, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -92,50 +104,78 @@ const useTranslationStream = () => {
       payload: JSON.stringify(params),
     })
 
-    // https://developer.mozilla.org/en-US/docs/Web/API/EventSource
-    eventSource.addEventListener("message", (event: MessageEvent) => {
+    newEventSource.addEventListener("message", (event: MessageEvent) => {
       responseReceived = true
-
-      if (event.data === "[DONE]") {
-        // TODO: confirm this runs
-        eventSource.close()
-      }
 
       setIsLoading(false)
       setTranslationStream((prev) => prev + cleanSSEData(event.data))
     })
 
-    eventSource.addEventListener("readystatechange", (event: EventSource) => {
-      if (event.readyState >= 2) {
-        setIsLoading(false)
-      }
-    })
+    newEventSource.addEventListener(
+      "readystatechange",
+      (event: EventSource) => {
+        // 2 = CLOSED; https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events
+        if (event.readyState >= 2) {
+          setIsLoading(false)
+          setIsStreaming(false)
+        }
+      },
+    )
 
-    eventSource.onerror = (err) => {
-      // An error response was received from the server.
+    newEventSource.onerror = (err) => {
       responseReceived = true
       clearTimeout(timeoutIdRef.current!)
 
       setIsLoading(false)
 
-      setIsError((prev) =>
+      setError((prev) =>
         prev
           ? { ...prev, data: err }
           : { errorCode: 500, error: "unknown", data: err },
       )
     }
 
-    eventSource.stream()
+    newEventSource.stream()
+    setEventSource(newEventSource)
 
-    // Cleanup function to clear the timeout if the component unmounts
     return () => {
-      if (timeoutIdRef.current && responseReceived) {
-        clearTimeout(timeoutIdRef.current)
-      }
+      clearTimeout(timeoutIdRef.current!)
     }
-  }, [triggerTranslationQuery, setTriggerTranslationQuery, params])
+  }, [basePath, params, eventSource])
 
-  return { translationStream, isLoading, isError }
+  const stopStream = React.useCallback(() => {
+    if (eventSource) {
+      eventSource.close()
+      setEventSource(null)
+      setIsLoading(false)
+      setIsStreaming(false)
+    }
+  }, [eventSource])
+
+  React.useEffect(() => {
+    setTranslationStream("")
+  }, [params.input_sentence])
+
+  React.useEffect(() => {
+    if (triggerTranslationQuery && params.input_sentence) {
+      startStream()
+      setTriggerTranslationQuery(false)
+    }
+  }, [triggerTranslationQuery, params, startStream, setTriggerTranslationQuery])
+
+  React.useEffect(() => {
+    if (abortTranslationQuery) {
+      setAbortTranslationQuery(false)
+      stopStream()
+    }
+  }, [abortTranslationQuery, stopStream, setAbortTranslationQuery])
+
+  return {
+    translationStream,
+    isLoading,
+    isStreaming,
+    error,
+  }
 }
 
 export default useTranslationStream

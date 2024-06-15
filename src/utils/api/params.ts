@@ -1,56 +1,61 @@
-import type { components } from "@/lib/api/v1.d"
+import { DMApiTypes } from "@/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import { type SearchRequestProps } from "./search"
-import { type TranslationRequestProps } from "./translation"
+export const inputEncodings = exhaustiveStringTuple<
+  DMApiTypes.Schema["InputEncoding"]
+>()("auto", "dev", "hk", "iast", "tibetan", "wylie")
 
-export type InputEncoding = components["schemas"]["InputEncoding"]
-export type ModelName = components["schemas"]["ModelName"]
-export type TargetLanguage = components["schemas"]["TargetLanguage"]
-export type APIParamsNames = {
-  search: Record<keyof SearchRequestProps, keyof SearchRequestProps>
-  translation: Record<
-    keyof TranslationRequestProps,
-    keyof TranslationRequestProps
-  >
-}
+export const translationModels = exhaustiveStringTuple<
+  DMApiTypes.Schema["TranslationModel"]
+>()("NO", "madlad", "llama3")
 
-export type InputEncodingParamMap = Record<string, InputEncoding>
-
-export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
-  "auto",
-  "dev",
-  "hk",
-  "iast",
-  "tibetan",
-  "wylie",
-)
-
-export const modelNames = exhaustiveStringTuple<ModelName>()(
-  "NO",
-  "ANALYZE",
-  "GPT4TRANSLATE",
-)
-
-export type ServedTargetLanguage = Exclude<TargetLanguage, "pali">
-export const targetLanguages = exhaustiveStringTuple<ServedTargetLanguage>()(
+export const allTargetLanguages = exhaustiveStringTuple<
+  DMApiTypes.Schema["TargetLanguageExperimental"]
+>()(
   "english",
   "tibetan",
   "sanskrit",
   "sanskrit-dev",
+  "sanskrit-knn",
+  "modern-chinese",
   "buddhist-chinese",
+  "japanese",
   "korean",
+  "pali",
 )
 
-export const apiParamsNames: APIParamsNames = {
+export const grammarModes = exhaustiveStringTuple<
+  DMApiTypes.Schema["GrammarModes"]
+>()(
+  "lemma",
+  "lemma-morphosyntax",
+  "unsandhied-lemma-morphosyntax",
+  "unsandhied",
+  "unsandhied-morphosyntax",
+)
+
+export const apiParamsNames: DMApiTypes.ParamNames = {
   search: {
+    filter_language: "filter_language",
+    filter_primary: "filter_primary",
+    filter_secondary: "filter_secondary",
+    input_encoding: "input_encoding",
+    postprocess_model: "postprocess_model",
     search_input: "search_input",
+    search_target: "search_target",
+    search_type: "search_type",
   },
   translation: {
     input_sentence: "input_sentence",
     input_encoding: "input_encoding",
-    level_of_explanation: "level_of_explanation",
+    do_grammar_explanation: "do_grammar_explanation",
     target_lang: "target_lang",
     model: "model",
+  },
+  tagging: {
+    input_sentence: "input_sentence",
+    input_encoding: "input_encoding",
+    mode: "mode",
+    human_readable_tags: "human_readable_tags",
   },
 }

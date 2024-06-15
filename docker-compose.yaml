@@ -2,13 +2,45 @@ version: "3.7"
 
 services:
 
-  frontend:
+  pub:
     build:
       context: .
-    container_name: "dmnext"
-    restart: always
+      args:
+        BUILD_SCRIPT: build:pub
+    container_name: "pub"
+    restart: ${RESTART_POLICY}
     ports:
-    - "3333:3000"
+      - "3333:3000"
+
+  lab:
+    build:
+      context: .
+      args:
+        BUILD_SCRIPT: build:lab
+    container_name: "lab"
+    restart: ${RESTART_POLICY}
+    ports:
+      - "3334:3000"
+
+  rnd:
+    build:
+      context: .
+      args:
+        BUILD_SCRIPT: build:rnd
+    container_name: "rnd"
+    restart: ${RESTART_POLICY}
+    ports:
+      - "3335:3000"
+
+  kumarajiva:
+    build:
+      context: .
+      args:
+        BUILD_SCRIPT: build:kumarajiva
+    container_name: "kumarajiva"
+    restart: ${RESTART_POLICY}
+    ports:
+      - "3336:3000"
 
   nginx:
     build:
@@ -16,3 +48,9 @@ services:
     container_name: "nginx"
     ports:
       - "80:80"
+    depends_on:
+      - pub
+      - lab
+      - rnd
+      - kumarajiva
+

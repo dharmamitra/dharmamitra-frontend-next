@@ -3,14 +3,14 @@ import { SelectChangeEvent } from "@mui/material"
 
 import useParams from "@/hooks/useParams"
 
-function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
+function useInputWithUrlParam<T>(paramName: string, defaultValue: string = "") {
   const { getSearchParam, createQueryString, updateParams } = useParams()
-  const [input, setInput] = React.useState<string>(
+  const [currentInput, setCurrentInput] = React.useState(
     getSearchParam(paramName) ?? defaultValue,
   )
 
   React.useEffect(() => {
-    setInput(getSearchParam(paramName) ?? defaultValue)
+    setCurrentInput(getSearchParam(paramName) ?? defaultValue)
   }, [getSearchParam, paramName, defaultValue])
 
   const handleInputChange = React.useCallback(
@@ -19,21 +19,16 @@ function useInputWithUrlParam(paramName: string, defaultValue: string = "") {
         | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
         | SelectChangeEvent<string>
         | string,
-      limit?: number,
     ) => {
-      let newValue = typeof input === "string" ? input : input.target.value
+      const newValue = typeof input === "string" ? input : input.target.value
 
-      if (limit && newValue.length > limit) {
-        newValue = newValue.slice(0, limit)
-      }
-
-      setInput(newValue)
+      setCurrentInput(newValue)
       updateParams(createQueryString(paramName, newValue))
     },
     [updateParams, createQueryString, paramName],
   )
 
-  return { input, handleInputChange }
+  return { input: currentInput as T, handleInputChange }
 }
 
 export default useInputWithUrlParam

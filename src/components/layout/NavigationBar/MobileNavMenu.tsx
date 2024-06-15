@@ -51,10 +51,17 @@ export default function MobileNavMenu({
         {navItems.map((item) => {
           const { id, label, href } = item
           return (
-            <ListItem key={id + "-mobile-menu-item"} disablePadding>
-              <ListItemButton>
-                <LocalLink href={href} sx={{ textDecoration: "none" }}>
-                  <ListItemText primary={label} />
+            <ListItem
+              key={id + "-mobile-menu-item"}
+              disablePadding
+              color="text.primary"
+            >
+              <ListItemButton color="inherit">
+                <LocalLink
+                  href={href}
+                  sx={{ textDecoration: "none", color: "text.primary" }}
+                >
+                  <ListItemText>{label}</ListItemText>
                 </LocalLink>
               </ListItemButton>
             </ListItem>
@@ -68,7 +75,6 @@ export default function MobileNavMenu({
     <Box sx={{ display: { sm: "none" } }}>
       <Box>
         <IconButton
-          color="primary"
           aria-label={messages.ariaButton}
           edge="start"
           sx={{ ml: 1 }}

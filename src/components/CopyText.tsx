@@ -6,15 +6,23 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy"
 import { IconButton } from "@mui/material"
 import Tooltip from "@mui/material/Tooltip"
 
-export default function CopyText({
-  string,
-  ariaLabel,
-}: {
-  string: string
+interface CopyTextProps {
+  contentRef: React.RefObject<HTMLElement>
   ariaLabel: string
-}) {
+}
+
+export default function CopyText({ contentRef, ariaLabel }: CopyTextProps) {
   const t = useTranslations("generic")
   const [toolTip, setToolTip] = React.useState<string>(t("copy"))
+
+  const copyContent = React.useCallback(async () => {
+    const element = contentRef.current
+    if (element) {
+      const text = element.innerText
+      await navigator.clipboard.writeText(text)
+      setToolTip(t("copied"))
+    }
+  }, [contentRef, t])
 
   return (
     <>
@@ -23,10 +31,7 @@ export default function CopyText({
           data-testid={"copy-button"}
           aria-label={ariaLabel}
           color="secondary"
-          onClick={async () => {
-            setToolTip(t("copied"))
-            await navigator.clipboard.writeText(string)
-          }}
+          onClick={copyContent}
           onMouseLeave={() =>
             setTimeout(() => {
               setToolTip(t("copy"))

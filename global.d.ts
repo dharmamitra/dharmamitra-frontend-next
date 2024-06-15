@@ -1,5 +1,7 @@
-type SupportedLocale =
-  (typeof import("./src/config.ts").supportedLocales)[number]
+type SupportedLocale = (typeof import("./src/i18n.ts").supportedLocales)[number]
+
+type AppEnv =
+  (typeof import("src/utils/theme/config.ts").SUPPORTED_ENVS)[number]
 
 // Enables type safety for message keys with `next-intl`
 type Messages = typeof import("./messages/en.json")

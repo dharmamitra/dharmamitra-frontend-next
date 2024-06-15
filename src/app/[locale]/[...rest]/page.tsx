@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
-import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
+import { I18nMetadataHandlerProps, Metadata, supportedLocales } from "@/i18n"
 
 export async function generateMetadata({
   params: { locale },
@@ -13,6 +13,15 @@ export async function generateMetadata({
   }
 }
 
-export default function CatchAllPage() {
+export const generateStaticParams = () => {
+  return supportedLocales.map((locale) => ({ locale }))
+}
+
+export default function CatchAllPage({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
   notFound()
 }

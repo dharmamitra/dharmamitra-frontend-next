@@ -11,8 +11,20 @@ declare module "@mui/material/styles" {
   }
 
   interface CustomTheming {
+    baseColors: {
+      primary?: string
+      secondary?: string
+      light?: string
+      text?: {
+        primary?: string
+      }
+      link?: {
+        primary?: string
+      }
+    }
     palette: {
       soft?: string
+      panel?: string
     }
     shape: {
       inputRadius?: string

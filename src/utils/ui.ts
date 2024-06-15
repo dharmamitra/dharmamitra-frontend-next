@@ -6,8 +6,6 @@ export const getSettingPriotiryGroups = <T>(params: {
   return [setting.slice(0, noOfPrimaryItems), setting.slice(noOfPrimaryItems)]
 }
 
-export const translationInputLimit = 524 as const
-
 export const linkAttrs = {
   color: "secondary",
   target: "_blank",

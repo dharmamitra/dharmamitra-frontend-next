@@ -46,9 +46,8 @@ export default function MobileLocaleSwitcher({
         aria-controls="locale-menu"
         aria-haspopup="true"
         onClick={handleClick}
-        color="primary"
       >
-        <LanguageIcon />
+        <LanguageIcon color="action" />
       </IconButton>
       <Menu
         id="locale-menu"
