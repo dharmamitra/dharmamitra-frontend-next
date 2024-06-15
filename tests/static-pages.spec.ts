@@ -50,6 +50,7 @@ Object.entries(pathnames).forEach(([pathname /*pagename */]) => {
           // TODO: the current client inititalization handling triggers a false positive error that does not affect the user (a loading opacity is set and removed on hydration). However, client state initialization needs to be refactored anyway and the problem with this test should be resolved automatically. It can be reinstated after the refactor.
           .disableRules(["color-contrast"])
           .analyze()
+
         expect(accessibilityScanResults.violations).toEqual([])
       })
     })

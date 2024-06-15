@@ -29,8 +29,16 @@ export default function AboutLayout({
     notFound()
   }
 
+  let content
+
   switch (appConfig.env) {
     default:
-      return <PageShell contained={false}>{dharmamitra}</PageShell>
+      content = <PageShell contained={false}>{dharmamitra}</PageShell>
   }
+
+  return (
+    <html lang={locale}>
+      <body>{content}</body>
+    </html>
+  )
 }

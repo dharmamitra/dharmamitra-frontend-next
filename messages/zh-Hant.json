@@ -143,8 +143,8 @@
         },
         "p2": "In the future we hope to provide Generative AI tools that enable elevating and transformative experiences through:",
         "roadmap": {
-          "1": "Immersive 3D experiences in maṇḍala",
-          "2": "Generation of 2D art based on canonical guildelines"
+          "mandala": "Immersive 3D experiences in maṇḍala",
+          "art": "Generation of 2D art based on canonical guildelines"
         }
       },
       "project": {

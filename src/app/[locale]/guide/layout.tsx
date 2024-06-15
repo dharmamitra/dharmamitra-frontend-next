@@ -29,10 +29,19 @@ export default function GuideLayout({
     notFound()
   }
 
+  let content
+
   switch (appConfig.env) {
     case "kumarajiva":
-      return <PageShell>{kumarajiva}</PageShell>
+      content = <PageShell>{kumarajiva}</PageShell>
+      break
     default:
-      return <></>
+      content = <></>
   }
+
+  return (
+    <html lang={locale}>
+      <body>{content}</body>
+    </html>
+  )
 }
