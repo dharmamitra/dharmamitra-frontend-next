@@ -52,7 +52,7 @@ export default function SettingBlock({
           px: 1,
           paddingBlock: "1px",
           color: "text.secondary",
-          backgroundColor: "background.default",
+          backgroundColor: "common.white",
           fontSize: "14px !important",
           borderRadius: "50px",
         }}

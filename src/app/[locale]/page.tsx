@@ -17,7 +17,9 @@ export const generateStaticParams = () => {
   return supportedLocales.map((locale) => ({ locale }))
 }
 
-export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
+export default function HomePage({
+  params: { locale },
+}: I18nMetadataHandlerProps) {
   unstable_setRequestLocale(locale)
   const { search } = useAppConfig().featureFlags
   const t = useTranslations("Home")
@@ -31,7 +33,7 @@ export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
   if (search === true) {
     return (
       <NextIntlClientProvider messages={translationMessages}>
-        <PageShell maxWidth="xl" sx={{ mb: { xs: 12, md: 34 } }}>
+        <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
           <ToolSelectorTabs />
         </PageShell>
       </NextIntlClientProvider>
@@ -40,12 +42,11 @@ export default function Home({ params: { locale } }: I18nMetadataHandlerProps) {
 
   return (
     <NextIntlClientProvider messages={translationMessages}>
-      <PageShell maxWidth="xl" sx={{ mb: { xs: 12, md: 34 } }}>
+      <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
         <Typography
           variant="h4"
           component="h1"
           align="center"
-          color="primary"
           sx={{
             mb: { xs: 4, lg: 10 },
           }}

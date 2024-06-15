@@ -1,8 +1,10 @@
 import * as React from "react"
 import { useTranslations } from "next-intl"
 
+import appConfig from "@/config"
+
 export const useNavItems = () => {
-  const t = useTranslations("navigation")
+  const t = useTranslations("pages")
 
   return React.useMemo<{ id: string; label: string; href: string }[]>(
     () => [
@@ -11,16 +13,11 @@ export const useNavItems = () => {
       //   label: "Explore",
       //   href: "https://buddhanexus2.kc-tbts.uni-hamburg.de/",
       // },
-      {
+      ...appConfig.subPages.map((page) => ({
         id: crypto.randomUUID(),
-        label: t("about"),
-        href: "/about",
-      },
-      {
-        id: crypto.randomUUID(),
-        label: t("team"),
-        href: "/team",
-      },
+        label: t(page),
+        href: `/${page}`,
+      })),
     ],
     [t],
   )

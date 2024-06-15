@@ -2,6 +2,8 @@ import { Noto_Sans } from "next/font/google"
 import { grey } from "@mui/material/colors"
 import { CustomTheming, ThemeOptions } from "@mui/material/styles"
 
+import appConfig from "@/config"
+
 const notoSans = Noto_Sans({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin", "latin-ext"],
@@ -9,21 +11,65 @@ const notoSans = Noto_Sans({
   fallback: ["Helvetica", "Arial", "sans-serif"],
 })
 
-const rgbCodes = {
+const getDefaultColors = () => ({
   primary: "0, 0, 0", // #000
   secondary: "151, 46, 58", // #972e3a
   light: "251, 238, 235", // #FBEEEB
+  "grey-100": "247, 247, 247", // #F7F7F7
+  text: {
+    primary: "0, 0, 0", // #000
+  },
+  link: {
+    primary: "151, 46, 58", // #972e3a
+  },
+})
+
+type ThemeRGBCodes = ReturnType<typeof getDefaultColors>
+
+type EnvRGBCodes = {
+  default: ThemeRGBCodes
+} & Record<AppEnv, ThemeRGBCodes>
+
+const envRgbCodes: EnvRGBCodes = {
+  default: getDefaultColors(),
+  kumarajiva: {
+    primary: "246, 220, 31", // #f6dc1f
+    secondary: "4, 60, 133", // #043c85
+    light: "255, 252, 231", //  #fffce7
+    "grey-100": "247, 247, 247", // #F7F7F7
+    text: {
+      primary: "53, 52, 50", // #353432
+    },
+    link: {
+      primary: "4, 60, 133", // #043c85
+    },
+  },
 }
+
+const rgbCodes =
+  appConfig.env in envRgbCodes
+    ? envRgbCodes[appConfig.env]!
+    : envRgbCodes.default
 
 const colours = {
   primary: `rgb(${rgbCodes.primary}, 1)`,
   secondary: `rgb(${rgbCodes.secondary}, 1)`,
+  light: `rgb(${rgbCodes.light}, 1)`,
   soft: `rgb(${rgbCodes.light}, 0.5)`,
+  panel: `rgb(${rgbCodes["grey-100"]}, 1)`,
+  text: {
+    primary: `rgb(${rgbCodes.text.primary}, 1)`,
+  },
+  link: {
+    primary: `rgb(${rgbCodes.link.primary}, 1)`,
+  },
 }
 
 const customTheming: CustomTheming = {
+  baseColors: colours,
   palette: {
     soft: colours.soft,
+    panel: colours.panel,
   },
   shape: {
     inputRadius: "24px",
@@ -43,6 +89,9 @@ export const baseTheme: ThemeOptions = {
     secondary: {
       main: colours.secondary,
     },
+    text: {
+      primary: colours.text.primary,
+    },
   },
   typography: {
     fontFamily: notoSans.style.fontFamily,
@@ -51,12 +100,17 @@ export const baseTheme: ThemeOptions = {
     // Adjusts the root HTML font size for rem calculations
     // htmlFontSize: 14,
     h1: {
-      color: colours.primary,
-      marginTop: "2rem",
+      fontSize: "3rem",
+      fontWeight: 500,
     },
     h2: {
-      color: colours.primary,
-      marginTop: "2rem",
+      fontSize: "2.2rem",
+      fontWeight: 500,
+      marginBlockEnd: "1rem",
+    },
+    h3: {
+      fontSize: "1.25rem",
+      fontWeight: 500,
     },
     reader: {
       marginBlock: "1rem",
@@ -70,16 +124,12 @@ export const baseTheme: ThemeOptions = {
         },
       },
     },
-    MuiButton: {
+    MuiLink: {
       styleOverrides: {
         root: ({ ownerState }) => ({
-          ...(ownerState.variant === "contained" &&
-            ownerState.color === "primary" && {
-              "&:hover": {
-                // replicates MUI's `darken` function for SSR
-                backgroundColor: `rgba(${rgbCodes.primary}, 0.9)`,
-              },
-            }),
+          ...(ownerState.color === "primary" && {
+            color: `rgb(${rgbCodes.link.primary}, 1)`,
+          }),
         }),
       },
     },

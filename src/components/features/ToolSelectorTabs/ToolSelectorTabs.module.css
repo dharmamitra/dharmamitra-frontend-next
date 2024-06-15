@@ -4,7 +4,7 @@
   left: 50%;
 
   transform: translateX(-50%);
-  z-index: 5000 !important;
+  z-index: 1100 !important;
   min-height: 210px;
   min-width: 210px;
 

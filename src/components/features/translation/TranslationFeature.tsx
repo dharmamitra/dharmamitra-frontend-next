@@ -5,11 +5,12 @@ import Grid from "@mui/material/Grid"
 import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
-import TranslationGrammarSelector from "./TranslationGrammarSelector"
 import TranslationInputBox from "./TranslationInputBox"
 import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
+import TranslationKeyboardControls from "./TranslationKeyboardControls"
 import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
+import TranslationTaggingDrawer from "./TranslationTagging"
 import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
 
 export default function TranslationFeature() {
@@ -39,20 +40,20 @@ export default function TranslationFeature() {
           <TranslationOutputBox />
         </Grid>
       </Box>
-      {translateExtendedOptions === true ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            columnGap: 4,
-            rowGap: 2,
-            mt: 3,
-          }}
-        >
-          <TranslationModelSelector />
-          <TranslationGrammarSelector />
-        </Box>
-      ) : null}
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          columnGap: 4,
+          rowGap: 2,
+          mt: 3,
+        }}
+      >
+        {translateExtendedOptions ? <TranslationModelSelector /> : null}
+        <TranslationTaggingDrawer />
+      </Box>
+
+      <TranslationKeyboardControls />
     </>
   )
 }

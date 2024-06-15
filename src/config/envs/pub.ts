@@ -1,15 +1,16 @@
-import { TargetLanguage } from "@/utils/api/types"
+import { DMApiTypes } from "@/api"
 
 import defineConfig from "../defineConfig"
 
-export const targetLanguages: TargetLanguage[] = [
-  "english",
-  "tibetan",
-  "sanskrit",
-  "sanskrit-dev",
-  "buddhist-chinese",
-  "korean",
-]
+export const targetLanguages: DMApiTypes.Schema["TargetLanguageExperimental"][] =
+  [
+    "english",
+    "tibetan",
+    "sanskrit",
+    "sanskrit-dev",
+    "buddhist-chinese",
+    "korean",
+  ]
 
 export default function createDMConfig() {
   return defineConfig({

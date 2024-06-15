@@ -1,4 +1,5 @@
-import { AppConfig, AppEnv, SUPPORTED_ENVS } from "./defineConfig"
+import { AppConfig, SUPPORTED_ENVS } from "./defineConfig"
+import createKumarajivaConfig from "./envs/kumarajiva"
 import createLabConfig from "./envs/lab"
 import createLocalConfig from "./envs/local"
 import createPubConfig from "./envs/pub"
@@ -38,6 +39,10 @@ function getConfig() {
 
     if (env === "local") {
       configCreator = createLocalConfig
+    }
+
+    if (env === "kumarajiva") {
+      configCreator = createKumarajivaConfig
     }
   })
 

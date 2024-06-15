@@ -8,24 +8,27 @@ import customTheming from "@/utils/theme/config"
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 import TranslationContentBox from "../common/TranslationContentBox"
 
-const TranslationInput = dynamic(() => import("./TranslationInputField"), {
-  loading: () => (
-    <TranslationContentBox
-      testId="translation-input"
-      sx={{
-        borderBottomLeftRadius: { md: customTheming.shape.inputRadius },
-        width: "100%",
-      }}
-      isLoader
-    >
-      <BoxBottomElementsRow sx={{ justifyContent: "space-between", p: 1 }}>
-        <HighlightOffIcon color="secondary" />
-        <KeyboardDoubleArrowRightIcon color="secondary" />
-      </BoxBottomElementsRow>
-    </TranslationContentBox>
-  ),
-  ssr: false,
-})
+const LazyTranslationInputBox = dynamic(
+  () => import("./LazyTranslationInputBox"),
+  {
+    loading: () => (
+      <TranslationContentBox
+        testId="translation-input"
+        sx={{
+          borderBottomLeftRadius: { md: customTheming.shape.inputRadius },
+          width: "100%",
+        }}
+        isLoader
+      >
+        <BoxBottomElementsRow sx={{ justifyContent: "space-between", p: 1 }}>
+          <HighlightOffIcon color="secondary" />
+          <KeyboardDoubleArrowRightIcon color="secondary" />
+        </BoxBottomElementsRow>
+      </TranslationContentBox>
+    ),
+    ssr: false,
+  },
+)
 
 export default function TranslationInputBox() {
   return (
@@ -35,7 +38,7 @@ export default function TranslationInputBox() {
         borderBottomLeftRadius: { md: customTheming.shape.inputRadius },
       }}
     >
-      <TranslationInput />
+      <LazyTranslationInputBox />
     </TranslationContentBox>
   )
 }

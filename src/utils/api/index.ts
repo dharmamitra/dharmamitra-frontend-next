@@ -1,5 +1,19 @@
-import type { SearchRequestProps, TranslationRequestProps } from "./types"
+import { getTaggingData } from "./endpoints/tagging"
+import * as DMApiTypes from "./types"
 
-const DM_FETCH_API = {}
+const streamPaths = {
+  translation: "/api/translation-stream",
+  search: "/api/search-stream",
+}
 
-export { DM_FETCH_API, SearchRequestProps, TranslationRequestProps }
+const DMFetchApi = {
+  tagging: {
+    makeQueryKey: (body: DMApiTypes.TaggingRequestBody) => [
+      "tagging",
+      JSON.stringify(body),
+    ],
+    call: getTaggingData,
+  },
+}
+
+export { DMApiTypes, DMFetchApi, streamPaths }

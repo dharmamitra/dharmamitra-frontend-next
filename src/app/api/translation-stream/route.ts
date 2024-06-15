@@ -11,12 +11,12 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const requestBody = await request.json()
-
-  const url = `${process.env.NEXT_PUBLIC_DM_API_BASE_URL}/translation-exp/`
-  const apiKey = process.env.DM_API_KEY ?? ""
-
   try {
+    const requestBody = await request.json()
+
+    const url = `${process.env.NEXT_PUBLIC_DM_API_BASE_URL}/translation-exp/`
+    const apiKey = process.env.DM_API_KEY ?? ""
+
     const fetchResponse = await fetch(url, {
       method: "POST",
       headers: {
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
       },
     })
   } catch (error) {
-    return new NextResponse(`Opening stream error: ${JSON.stringify(error)}`, {
+    return new NextResponse(`Streaming aborted, or failed. ${error}`, {
       status: 500,
     })
   }

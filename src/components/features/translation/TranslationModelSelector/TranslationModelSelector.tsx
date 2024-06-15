@@ -1,43 +1,27 @@
 import React from "react"
 import dynamic from "next/dynamic"
-import { useTranslations } from "next-intl"
-import { Typography } from "@mui/material"
-import Box from "@mui/material/Box"
+import ToggleButton from "@mui/material/ToggleButton"
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
 import { translationModels } from "@/utils/api/params"
 
-import OptionsLoading from "../common/OptionsLoading"
-
 const LazyModelSelector = dynamic(() => import("./LazyModelSelector"), {
   loading: () => (
-    <OptionsLoading options={translationModels} i18nKey="models" />
+    <ToggleButtonGroup color="secondary" value={0} exclusive aria-label="Model">
+      {translationModels.map((model, index) => (
+        <ToggleButton
+          key={model + "-model-option-loader"}
+          value={index}
+          sx={{ filter: "blur(1px)" }}
+        >
+          {model === "NO" ? "no Model" : model}
+        </ToggleButton>
+      ))}
+    </ToggleButtonGroup>
   ),
   ssr: false,
 })
 
 export default function TranslationModelSelector() {
-  const t = useTranslations("translation")
-
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        flexWrap: "nowrap",
-        alignItems: "center",
-        height: "min-content",
-        gap: 1,
-      }}
-    >
-      <Typography
-        sx={{
-          color: "text.secondary",
-          fontSize: "14px !important",
-        }}
-        component="span"
-      >
-        {t("modelLabel")}:
-      </Typography>
-      <LazyModelSelector />
-    </Box>
-  )
+  return <LazyModelSelector />
 }

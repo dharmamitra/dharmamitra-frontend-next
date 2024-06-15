@@ -1,28 +1,17 @@
+import { DMApiTypes } from "@/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import {
-  APIParamNames,
-  InputEncoding,
-  TargetLanguage,
-  TranslationModel,
-} from "./types"
+export const inputEncodings = exhaustiveStringTuple<
+  DMApiTypes.Schema["InputEncoding"]
+>()("auto", "dev", "hk", "iast", "tibetan", "wylie")
 
-export const inputEncodings = exhaustiveStringTuple<InputEncoding>()(
-  "auto",
-  "dev",
-  "hk",
-  "iast",
-  "tibetan",
-  "wylie",
-)
+export const translationModels = exhaustiveStringTuple<
+  DMApiTypes.Schema["TranslationModel"]
+>()("NO", "madlad", "llama3")
 
-export const translationModels = exhaustiveStringTuple<TranslationModel>()(
-  "none",
-  "madlad",
-  "llama3",
-)
-
-export const allTargetLanguages = exhaustiveStringTuple<TargetLanguage>()(
+export const allTargetLanguages = exhaustiveStringTuple<
+  DMApiTypes.Schema["TargetLanguageExperimental"]
+>()(
   "english",
   "tibetan",
   "sanskrit",
@@ -35,7 +24,17 @@ export const allTargetLanguages = exhaustiveStringTuple<TargetLanguage>()(
   "pali",
 )
 
-export const apiParamsNames: APIParamNames = {
+export const grammarModes = exhaustiveStringTuple<
+  DMApiTypes.Schema["GrammarModes"]
+>()(
+  "lemma",
+  "lemma-morphosyntax",
+  "unsandhied-lemma-morphosyntax",
+  "unsandhied",
+  "unsandhied-morphosyntax",
+)
+
+export const apiParamsNames: DMApiTypes.ParamNames = {
   search: {
     filter_language: "filter_language",
     filter_primary: "filter_primary",
@@ -56,5 +55,7 @@ export const apiParamsNames: APIParamNames = {
   tagging: {
     input_sentence: "input_sentence",
     input_encoding: "input_encoding",
+    mode: "mode",
+    human_readable_tags: "human_readable_tags",
   },
 }

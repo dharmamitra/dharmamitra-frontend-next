@@ -17,7 +17,7 @@ export default function SearchBox({
   className?: string
   isScrolling?: boolean
 }) {
-  const { input, handleInputChange } = useInputWithUrlParam(
+  const { input, handleInputChange } = useInputWithUrlParam<string>(
     apiParamsNames.search.search_input,
   )
 

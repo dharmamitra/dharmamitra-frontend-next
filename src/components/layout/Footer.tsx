@@ -2,13 +2,17 @@ import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Box, Button, Grid, Typography } from "@mui/material"
 
-import fullLogo from "@/assets/dm-logo-full.png"
 import LocalLink from "@/components/LocalLink"
 import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
 export default function Footer() {
-  const { orgEmail } = useAppConfig()
+  const {
+    orgEmail,
+    isClient,
+    basePath,
+    assetPaths: { logoLarge },
+  } = useAppConfig()
   const t = useTranslations("footer")
 
   return (
@@ -39,36 +43,42 @@ export default function Footer() {
               }}
             >
               <Image
-                src={fullLogo}
-                alt="Dharmamitra Logo"
+                src={basePath + logoLarge.src}
+                alt="Logo"
                 sizes="100vw"
                 style={{
                   width: "100%",
                   height: "100%",
                 }}
+                width={logoLarge.width}
+                height={logoLarge.height}
               />
             </Box>
           </LocalLink>
         </Grid>
 
-        <Grid item xs={12} md={6} lg={4}>
-          <Box
-            sx={{
-              maxWidth: { lg: "455px" },
-            }}
-          >
-            <Typography
-              variant="h5"
-              component="h2"
-              fontWeight="500"
-              color="primary"
-              mb={1}
+        {isClient ? (
+          <Grid item xs={12} md={6} lg={4} />
+        ) : (
+          <Grid item xs={12} md={6} lg={4}>
+            <Box
+              sx={{
+                maxWidth: { lg: "455px" },
+              }}
             >
-              {t("mission.h2")}
-            </Typography>
-            <Typography variant="body2">{t("mission.p")}</Typography>
-          </Box>
-        </Grid>
+              <Typography
+                variant="h5"
+                component="h2"
+                fontWeight="500"
+                color="primary"
+                mb={1}
+              >
+                {t("mission.h2")}
+              </Typography>
+              <Typography variant="body2">{t("mission.p")}</Typography>
+            </Box>
+          </Grid>
+        )}
 
         <Grid item xs={12} md={6} lg={4}>
           <Box
@@ -83,7 +93,7 @@ export default function Footer() {
                 maxWidth: { lg: "455px" },
               }}
             >
-              <Typography variant="h5" component="h2" color="primary" mb={1}>
+              <Typography variant="h5" component="h2" mb={1}>
                 {t("contact.h2")}
               </Typography>
               <Typography variant="body2">{t("contact.p")}</Typography>

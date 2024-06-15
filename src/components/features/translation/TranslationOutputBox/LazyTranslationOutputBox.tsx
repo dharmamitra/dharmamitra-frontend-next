@@ -45,7 +45,7 @@ const FormatedStream = ({
           my: index === 0 ? 0 : 1,
         }}
       >
-        {paragraph}
+        {paragraph.trim()}
       </Typography>
     )
   })
@@ -53,11 +53,11 @@ const FormatedStream = ({
 
 export default function TranslationOutput() {
   const t = useTranslations()
-  const { translationStream, isError, isLoading } = useTranslationStream()
+  const { translationStream, error, isLoading } = useTranslationStream()
   const outputRef = React.useRef<HTMLDivElement>(null)
 
   const errorMessage =
-    isError && isError.errorCode === 504
+    error && error.errorCode === 504
       ? t.rich("generic.error.timeout", {
           newline: (chunks) => (
             <span style={{ display: "block" }}>{chunks}</span>
@@ -68,7 +68,7 @@ export default function TranslationOutput() {
   return (
     <>
       {isLoading ? <LoadingDots sx={{ m: 2 }} /> : null}
-      {isError ? <Error message={errorMessage} /> : null}
+      {error ? <Error message={errorMessage} /> : null}
       {translationStream ? (
         <div ref={outputRef}>
           <FormatedStream translationStream={translationStream} />

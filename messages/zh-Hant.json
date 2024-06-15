@@ -1,81 +1,4 @@
 {
-  "Home": {
-    "title": "歡迎來到法之善友AI計畫",
-    "h1": "法之善友AI翻譯器"
-  },
-  "About": {
-    "title": "計畫介紹",
-    "h1": "計畫介紹",
-    "mission": {
-      "h2": "MITRA's Mission",
-      "p1": "MITRA’s Mission is to harness the rapidly evolving AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications.",
-      "p2": {
-        "line1": "Currently MITRA’s mission is to facilitate the study and practice of dharma through:",
-        "li1": "providing an automated machine translation capability from Sanskrit, classical Tibetan, and classical Chinese into a variety of modern languages including Chinese, Tibetan, Korean, and Japanese;",
-        "li2": "enabling the semantic search of a growing body of texts in Sanskrit, Classical Tibetan, and Classical Chinese;",
-        "li3": "developing tools to facilitate the study of Sanskrit and Classical Tibetan."
-      },
-      "p3": {
-        "line1": "In the future we hope to provide Generative AI tools that enable elevating and transformative experiences through:",
-        "li1": "Immersive 3D experiences in maṇḍala",
-        "li2": "Generation of 2D art based on canonical guildelines"
-      }
-    },
-    "project": {
-      "h2": "法之善友AI計畫",
-      "p1": "The MITRA project, spearheaded by Kurt Keutzer and Sebastian Nehrdich, focuses on bridging the linguistic divide between ancient wisdom source languages and contemporary languages through the application of advanced Deep Learning and AI technologies.",
-      "p2": "Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, accelerated  by its collaborative efforts with organizations such as monlam.ai and with contributions from a diverse array of sources, including translators and AI researchers. Leveraging a robust corpus of over four million sentence pairs from various sourcesand utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to ancient wisdom texts.",
-      "p3": "Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
-    },
-    "collaboration": {
-      "h2": "合作夥伴",
-      "monlam": {
-        "name": "<monlam>monlam.ai</monlam>",
-        "description": "Machine translation data collection for Tibetan and English"
-      },
-      "kumarajiva": {
-        "name": "<kumarajiva>Kumarajiva project</kumarajiva>",
-        "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
-      },
-      "iitk": {
-        "name": "<iitk>IIT Kharagpur</iitk>",
-        "description": "Development of Sanskrit translation model development. Sanskrit<>English dataset compilation "
-      },
-      "ai4bharat": {
-        "name": "<ai4bharat>AI4Bharat</ai4bharat>",
-        "description": "Development of Sanskrit data collection"
-      }
-    }
-  },
-  "Team": {
-    "title": "團隊介紹",
-    "h1": "團隊介紹",
-    "present": {
-      "h2": "現在成員"
-    },
-    "past": {
-      "h2": "前期成員"
-    },
-    "roles": {
-      "directorExecutive": "執行長",
-      "directorTechnical": "技術總監",
-      "dataCollectionSanskrit": "梵語數據收集",
-      "projectInfrastructure": "計畫基礎建設",
-      "websiteDevelopment": "網站開發",
-      "productDesigner": "Product Designer",
-      "nlpResearchSanskrit": "梵文自然語言處理研究"
-    }
-  },
-  "NotFound": {
-    "title": "404 · Page Not Found",
-    "h1": "Oh no! Page Not Found",
-    "message": "No beginning point is found of beings wandering and roaming. <cite>(Assusutta)</cite>",
-    "home": "Go Home"
-  },
-  "metadata": {
-    "title": "Dharmamitra · translating the languages of the Dharma",
-    "description": "Machine translation for the languages of the Dharma"
-  },
   "generic": {
     "copy": "Copy",
     "copied": "已复制到剪切板",
@@ -83,7 +6,8 @@
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>"
     },
-    "clear": "Clear"
+    "clear": "Clear",
+    "stop": "Stop"
   },
   "navigation": {
     "home": "首頁",
@@ -128,6 +52,15 @@
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
     "copyTranslation": "複製翻譯",
+    "tagging": {
+      "label": "Grammar",
+      "ariaLabel": "Grammar Analysis",
+      "heading": "Grammatical Analysis",
+      "lemma": "Lemma",
+      "tag": "Tag",
+      "meanings": "Meanings",
+      "unsuccessful": "Grammar analysis was not successful."
+    },
     "encodings": {
       "auto": "Autodetect",
       "dev": "Devanagari",
@@ -152,7 +85,8 @@
       "tibetan": "藏文"
     },
     "models": {
-      "none": "None",
+      "NO": "No model",
+      "none": "No model",
       "madlad": "Madlad",
       "llama3": "Llama3"
     },
@@ -160,5 +94,118 @@
       "on": "On",
       "off": "Off"
     }
+  },
+  "metadata": {
+    "title": "Dharmamitra · translating the languages of the Dharma",
+    "description": "Machine translation for the languages of the Dharma"
+  },
+  "pages": {
+    "home": "Home",
+    "about": "About",
+    "team": "Team",
+    "guide": "Guide"
+  },
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "websiteDevelopment": "Website development",
+      "productDesigner": "Product Designer",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
+    }
+  },
+  "Home": {
+    "title": "歡迎來到法之善友AI計畫",
+    "h1": "法之善友AI翻譯器"
+  },
+  "About": {
+    "dharmamitra": {
+      "title": "About",
+      "h1": "About",
+      "about": {
+        "h2": "About us",
+        "p1": "MITRA’s Mission is to harness the rapidly evolving AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications.",
+        "features": {
+          "auto-translation": {
+            "title": "Automated Translation",
+            "description": "Sanskrit, classical Tibetan, and classical Chinese to modern languages including Chinese, Tibetan, Korean, and Japanese"
+          },
+          "semantic-search": {
+            "title": "Semantic Search",
+            "description": "Refining semantic search across a growing body of Sanskrit, Classical Tibetan, and Classical Chinese texts"
+          },
+          "toolkit": {
+            "title": "Philologist's Toolkit",
+            "description": "Develop tools to facilitate the study of Sanskrit and Classical Tibetan"
+          }
+        },
+        "p2": "In the future we hope to provide Generative AI tools that enable elevating and transformative experiences through:",
+        "roadmap": {
+          "mandala": "Immersive 3D experiences in maṇḍala",
+          "art": "Generation of 2D art based on canonical guildelines"
+        }
+      },
+      "project": {
+        "h2": "The MITRA project",
+        "p1": "The MITRA project, spearheaded by Kurt Keutzer and Sebastian Nehrdich, focuses on bridging the linguistic divide between ancient wisdom source languages and contemporary languages through the application of advanced Deep Learning and AI technologies.",
+        "p2": "Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, accelerated  by its collaborative efforts with organizations such as monlam.ai and with contributions from a diverse array of sources, including translators and AI researchers. Leveraging a robust corpus of over four million sentence pairs from various sourcesand utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to ancient wisdom texts.",
+        "p3": "Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
+      },
+      "collaboration": {
+        "h2": "Collaborations",
+        "collaborators": {
+          "monlam": {
+            "name": "<link>monlam.ai</link>",
+            "description": "Machine translation data collection for Tibetan and English"
+          },
+          "kumarajiva": {
+            "name": "<link>Kumarajiva project</link>",
+            "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
+          },
+          "iitk": {
+            "name": "<link>IIT Kharagpur</link>",
+            "description": "Development of Sanskrit translation model development. Sanskrit<>English dataset compilation "
+          },
+          "ai4bharat": {
+            "name": "<link>AI4Bharat</link>",
+            "description": "Development of Sanskrit data collection"
+          }
+        }
+      }
+    }
+  },
+  "Guide": {
+    "kumarajiva": {
+      "title": "Guide",
+      "h1": "Guide",
+      "intro": {
+        "h2": "Introduction",
+        "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+      },
+      "features": {
+        "h2": "Features",
+        "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source matiral and modern research literature."
+      }
+    }
+  },
+  "Team": {
+    "dharmamitra": {
+      "title": "團隊介紹",
+      "h1": "團隊介紹",
+      "present": {
+        "h2": "現在成員"
+      },
+      "past": {
+        "h2": "前期成員"
+      }
+    }
+  },
+  "NotFound": {
+    "title": "404 · Page Not Found",
+    "h1": "Oh no! Page Not Found",
+    "message": "No beginning point is found of beings wandering and roaming. <cite>(Assusutta)</cite>",
+    "home": "Go Home"
   }
 }

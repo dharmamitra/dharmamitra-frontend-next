@@ -18,7 +18,7 @@ export default function SearchBox({
   className?: string
 }) {
   const [, setIsQueryEnabled] = React.useState(false)
-  const { input, handleInputChange } = useInputWithUrlParam(
+  const { input, handleInputChange } = useInputWithUrlParam<string>(
     apiParamsNames.search.search_input,
   )
 

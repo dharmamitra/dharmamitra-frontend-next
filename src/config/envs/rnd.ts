@@ -1,6 +1,6 @@
 import defineConfig from "../defineConfig"
 
-export default function createLocalConfig() {
+export default function createRNDConfig() {
   return defineConfig({
     env: "rnd",
     basePath: "/rnd",

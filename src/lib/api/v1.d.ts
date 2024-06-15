@@ -41,7 +41,10 @@ export interface components {
     Body_tagging_tagging__post: {
       /** Input Sentence */
       input_sentence: string
+      mode: components["schemas"]["GrammarModes"]
       input_encoding: components["schemas"]["InputEncoding"]
+      /** Human Readable Tags */
+      human_readable_tags: boolean
     }
     /** Body_translation_translation__post */
     Body_translation_translation__post: {
@@ -62,6 +65,11 @@ export interface components {
       do_grammar_explanation: boolean
       target_lang: components["schemas"]["TargetLanguageExperimental"]
       model: components["schemas"]["TranslationModel"]
+    }
+    /** ErrorResponseModel */
+    ErrorResponseModel: {
+      /** Detail */
+      detail: string
     }
     /**
      * FilterLanguage
@@ -105,6 +113,16 @@ export interface components {
      * @enum {string}
      */
     FilterSecondary: ""
+    /**
+     * GrammarModes
+     * @enum {string}
+     */
+    GrammarModes:
+      | "lemma"
+      | "lemma-morphosyntax"
+      | "unsandhied-lemma-morphosyntax"
+      | "unsandhied"
+      | "unsandhied-morphosyntax"
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */
@@ -115,6 +133,17 @@ export interface components {
      * @enum {string}
      */
     InputEncoding: "auto" | "tibetan" | "wylie" | "dev" | "iast" | "hk"
+    /** Lemma */
+    Lemma: {
+      /** Lemma */
+      lemma: string
+      /** Unsandhied */
+      unsandhied: string
+      /** Tag */
+      tag: string
+      /** Meanings */
+      meanings: string[]
+    }
     /**
      * PostProcessModel
      * @enum {string}
@@ -135,6 +164,15 @@ export interface components {
      * @enum {string}
      */
     SearchType: "precise" | "fuzzy" | "semantic"
+    /** Sentence */
+    Sentence: {
+      /** Sentence */
+      sentence: string
+      /** Grammatical Analysis */
+      grammatical_analysis: components["schemas"]["Lemma"][]
+    }
+    /** TaggerResponseModel */
+    TaggerResponseModel: components["schemas"]["Sentence"][]
     /**
      * TargetLanguage
      * @enum {string}
@@ -165,7 +203,7 @@ export interface components {
      * TranslationModel
      * @enum {string}
      */
-    TranslationModel: "madlad" | "llama3" | "none"
+    TranslationModel: "NO" | "madlad" | "llama3"
     /** ValidationError */
     ValidationError: {
       /** Location */
@@ -243,7 +281,9 @@ export interface operations {
       /** @description Successful Response */
       200: {
         content: {
-          "application/json": unknown
+          "application/json":
+            | components["schemas"]["TaggerResponseModel"]
+            | components["schemas"]["ErrorResponseModel"]
         }
       }
       /** @description Validation Error */
