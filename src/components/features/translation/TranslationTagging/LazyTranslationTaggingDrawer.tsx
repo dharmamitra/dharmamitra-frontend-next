@@ -3,6 +3,7 @@
 import * as React from "react"
 import { useTranslations } from "next-intl"
 import CloseIcon from "@mui/icons-material/Close"
+import DragHandleIcon from "@mui/icons-material/DragHandle"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Drawer from "@mui/material/Drawer"
@@ -48,19 +49,39 @@ const ResizeHandle = ({
   }, [handleMouseMove, handleMouseUp])
 
   return (
-    <Box
-      onMouseDown={handleMouseDown}
-      sx={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 1000,
-        width: "16px",
-        minHeight: "100vh",
-        cursor: "ew-resize",
-      }}
-    />
+    <>
+      <Box
+        onMouseDown={handleMouseDown}
+        sx={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1000,
+          width: "16px",
+          minHeight: "100vh",
+          cursor: "ew-resize",
+        }}
+      >
+        <Box
+          sx={{
+            position: "sticky",
+            top: "50%",
+            transform: "translateY(100%)",
+            marginLeft: "-12px",
+            zIndex: 999,
+          }}
+        >
+          <DragHandleIcon
+            sx={{
+              transform: "rotate(90deg)",
+              cursor: "ew-resize",
+              color: "grey.400",
+            }}
+          />
+        </Box>
+      </Box>
+    </>
   )
 }
 
