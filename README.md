@@ -1,10 +1,61 @@
-# dharmamitra-frontend-next
+TOC:
 
-Dharmamitra frontend v2 — a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+- [ℹ️ About](#ℹ️-about)
+- [✨ Getting Started](#-getting-started)
+- [🏗️ Workflow](#️-workflow)
+  - [Branches](#branches)
+  - [Commit messages](#commit-messages)
+  - [Development cycle](#development-cycle)
+- [🔧 Environment setup](#-environment-setup)
+  - [Env config](#env-config)
+  - [Adding a new environment](#adding-a-new-environment)
+  - [Required config](#required-config)
+  - [Env customization](#env-customization)
+    - [Nav \& sub pages](#nav--sub-pages)
+      - [Nav](#nav)
+      - [Sub page creation](#sub-page-creation)
+    - [Theming](#theming)
+    - [Images](#images)
+- [📡 DharmaMitra API client \& typing](#-dharmamitra-api-client--typing)
+  - [Regular fetchs](#regular-fetchs)
+  - [SSE fetchs](#sse-fetchs)
+    - [Stream formatting markers](#stream-formatting-markers)
+- [🌐 Internationalization (i18n)](#-internationalization-i18n)
+  - [Locale content update workflow](#locale-content-update-workflow)
+  - [Internal navigation](#internal-navigation)
+  - [Referrences](#referrences)
+- [🎨 Theming](#-theming)
+  - [Config](#config)
+  - [Env specific theming](#env-specific-theming)
+  - [References](#references)
+- [🧪 Testing](#-testing)
+- [📦 Containerization](#-containerization)
+  - [Simple setting](#simple-setting)
+  - [Compose setting](#compose-setting)
+- [🚢 Deployment](#-deployment)
+
+## ℹ️ About
+
+Dharmamitra frontend v2 — a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). The project uses:
+
+- [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [`next-intl`](https://next-intl-docs.vercel.app/docs) ([examples](https://github.com/amannn/next-intl/tree/main/examples)).
+- query tools: [`openapi-typescript`](https://openapi-ts.pages.dev/introduction), [`openapi-fetch`](https://openapi-ts.pages.dev/openapi-fetch/), and [`@tanstack/react-query`](https://tanstack.com/query/latest/docs/framework/react/overview)
+- [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js App routing integration](https://mui.com/material-ui/integrations/nextjs/)
+- [linting tools](https://medium.com/yavar/setting-up-a-eslint-prettier-husky-and-lint-staged-integration-with-typescript-in-next-js-13-14-68044dfae920#ec5e): `eslint`, `prettier`, `simple-import-sort`, `husky`, and `lint-staged`
+  - [`husky`](https://typicode.github.io/husky/) uses v9 config
+  - all git hooks can be skipped by adding a `-n/--no-verify` option.
+- [`playwrite`](https://playwright.dev/docs/intro) and [`@axe-core/playwright`](https://www.npmjs.com/package/@axe-core/playwright)
+- [`semantic-release`](https://semantic-release.gitbook.io/semantic-release) for releases automation
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 ## ✨ Getting Started
 
-First, run the development server:
+To get started, run the development server:
 
 ```bash
 yarn dev
@@ -18,30 +69,55 @@ Build testing by-passing eslint:
 NEXT_DISABLE_ESLINT=true yarn build
 ```
 
-This project uses:
+## 🏗️ Workflow
 
-- [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-- [`next-intl`](https://next-intl-docs.vercel.app/docs) ([examples](https://github.com/amannn/next-intl/tree/main/examples)).
-- query tools: [`openapi-typescript`](https://openapi-ts.pages.dev/introduction), [`openapi-fetch`](https://openapi-ts.pages.dev/openapi-fetch/), and [`@tanstack/react-query`](https://tanstack.com/query/latest/docs/framework/react/overview)
-- [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js App routing integration](https://mui.com/material-ui/integrations/nextjs/)
-- [linting tools](https://medium.com/yavar/setting-up-a-eslint-prettier-husky-and-lint-staged-integration-with-typescript-in-next-js-13-14-68044dfae920#ec5e): `eslint`, `prettier`, `simple-import-sort`, `husky`, and `lint-staged`
-  - [`husky`](https://typicode.github.io/husky/) uses v9 config
-  - all git hooks can be skipped by adding a `-n/--no-verify` option.
-- [`playwrite`](https://playwright.dev/docs/intro) and [`@axe-core/playwright`](https://www.npmjs.com/package/@axe-core/playwright)
-- [`semantic-release`](https://semantic-release.gitbook.io/semantic-release) for releases automation
+### Branches
 
-### NEXT.JS
+- `main`: for production deployment
+- `dev`: for staging deployment
+- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files.
+- development item branches linked to issue numbers
 
-To learn more about Next.js, take a look at the following resources:
+`dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Commit messages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Automated release updates depend on standardized commit messages following the [Angular Commit Message Conventions](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#-commit-message-format):
+
+> - **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+> - **ci**: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)
+> - **docs**: Documentation only changes
+> - **feat**: A (completed) new feature
+> - **fix**: A bug fix
+> - **perf**: A code change that improves performance
+> - **refactor**: A code change that neither fixes a bug nor adds a feature
+> - **test**: Adding missing tests or correcting existing tests
+
+In addition to the Angular converntion:
+
+**wip**: work in progress for a feature or fix
+**content**: content updates (TODO: configure semantic-release for this)
+
+`semantic-release` uses commit messages to handle versoning as follows:
+
+| **Commit message**                                                                                                                                                                        | **Release type**                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `fix: stop graphite breaking when too much pressure applied`                                                                                                                              | Fix (Patch) Release                                                                                     |
+| `feat: add 'graphiteWidth' option`                                                                                                                                                        | Feature (Minor) Release                                                                                 |
+| `perf: remove graphiteWidth option`<br> <br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.` | Breaking (Major) Release ((Note that the `BREAKING CHANGE`: token must be in the footer of the commit)) |
+
+### Development cycle
+
+1. New item specification defined in an issue with clear acceptance criteria
+2. A new branch under the issue number is created for the work
+3. On completion a PR will be opened against `dev`
+4. When a PR is accepted the new work will be deployed on staging for testing
+5. After final sign-off a PR will be opened from `dev` to `main` and `semantic-release` will handle release versions based on commits.
+6. Deploy to production from `main`.
 
 ## 🔧 Environment setup
 
-### ENV CONFIG
+### Env config
 
 - adapted from [Best Practices for Handling Per-Environment Configuration in Your JS/TS Applications](https://www.raulmelo.me/en/blog/best-practices-for-handling-per-environment-config-js-ts-applications#the-config-strategy)
 
@@ -49,7 +125,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
   - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env.production`. **note**: This overwrites the `.env.production` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_env.sh`
   - Next.js automatically loads environment variables from `.env.local`, `.env.development`, `.env.production`, and `.env.test`. The prebuild step allows us to maintain the standard file names and use Next.js's built-in environment loading strategy.
 
-#### Adding a new environment
+### Adding a new environment
 
 These steps can also be adjusted and used for renaming an environment.
 
@@ -69,33 +145,34 @@ These steps can also be adjusted and used for renaming an environment.
   - the env container name needs to be added to the `nginx` service dependency list.
 - add the env to `nginx/default.conf`
 
-#### Required config
+### Required config
 
 - if a config property needs to be set in all env config files add it to the `RequiredConfigKeys` type in `src/config/defineConfig.ts`
 
-### ENV CUSTOMIZATION
+### Env customization
 
 #### Nav & sub pages
 
-- all possible sub pages need to be 
+- all possible sub pages need to be
+
   - defined in `allPages` in `src/config/defineConfig.ts`
-  - added to the `pages` prop of each i18n file (ie. `messages/en.json` etc.) 
+  - added to the `pages` prop of each i18n file (ie. `messages/en.json` etc.)
   - have a corresponding page prop in each i18n file with sub keys for each applicable environment. eg:
-    
+
     ```json
     "About": {
       "dharmamitra": {...},
       "envname": {...},
     }
     ```
+
 - sub page configuration:
   - dharmamitra envs can rely on `defaultSubPages` and need no further configuration;
   - the `subPages` prop of the env config file needs to be set for customer sub pages with either an array of sub pages (`["guide"]`), or an empty array.
 
-
 ##### Nav
 
-The above configuration feeds into the `useNavItems` hook and takes care of app bar navigation. 
+The above configuration feeds into the `useNavItems` hook and takes care of app bar navigation.
 
 ##### Sub page creation
 
@@ -104,6 +181,7 @@ The above configuration feeds into the `useNavItems` hook and takes care of app 
 Custom env sub pages are handled with Next Js's [Parallel Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) which allows env specific content to be slotted into a page's `layout.tsx` file.
 
 - The page group `layout.tsx` needs to:
+
   - export a `generateStaticParams` function that returns an array of `params` for each page in the group, including the `locale` param.
   - include a param for each env content page (corresponding to `@envcontent` directory)
   - include a check if the env has the given route:
@@ -115,17 +193,17 @@ Custom env sub pages are handled with Next Js's [Parallel Routes](https://nextjs
     ```
 
 - The page group top-level `page.tsx`:
+
   - only handles page metadata
   - returns nothing
 
 - Slot directories need to be created for each env content page (eg `@dharmamitra`) which will render the actual content for the given env.
 
-
 In addidition to enable static rendering it's necessary to follow the [next-intl static rendering guide](https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-routing#static-rendering)
 
 #### Theming
 
-Environment specific theme colours can be set in `envRgbCodes` in `src/config/defineConfig.ts`
+See: [🎨 Theming](#-theming)
 
 #### Images
 
@@ -156,102 +234,7 @@ example usage
 
 ```
 
-## 🏗️ Workflow
-
-### BRANCHES:
-
-- `main`: for production deployment
-- `dev`: for staging deployment
-- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files.
-- development item branches linked to issue numbers
-
-`dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
-
-### COMMIT MESSAGES
-
-Automated release updates depend on standardized commit messages following the [Angular Commit Message Conventions](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#-commit-message-format):
-
-> - **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-> - **ci**: Changes to our CI configuration files and scripts (examples: CircleCi, SauceLabs)
-> - **docs**: Documentation only changes
-> - **feat**: A (completed) new feature
-> - **fix**: A bug fix
-> - **perf**: A code change that improves performance
-> - **refactor**: A code change that neither fixes a bug nor adds a feature
-> - **test**: Adding missing tests or correcting existing tests
-
-In addition to the Angular converntion:
-
-**wip**: work in progress for a feature or fix
-**content**: content updates (TODO: configure semantic-release for this)
-
-`semantic-release` uses commit messages to handle versoning as follows:
-
-| **Commit message**                                                                                                                                                                        | **Release type**                                                                                        |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `fix: stop graphite breaking when too much pressure applied`                                                                                                                              | Fix (Patch) Release                                                                                     |
-| `feat: add 'graphiteWidth' option`                                                                                                                                                        | Feature (Minor) Release                                                                                 |
-| `perf: remove graphiteWidth option`<br> <br>`BREAKING CHANGE: The graphiteWidth option has been removed.`<br>`The default graphite width of 10mm is always used for performance reasons.` | Breaking (Major) Release ((Note that the `BREAKING CHANGE`: token must be in the footer of the commit)) |
-
-### DEVELOPMENT CYCLE:
-
-1. New item specification defined in an issue with clear acceptance criteria
-2. A new branch under the issue number is created for the work
-3. On completion a PR will be opened against `dev`
-4. When a PR is accepted the new work will be deployed on staging for testing
-5. After final sign-off a PR will be opened from `dev` to `main` and `semantic-release` will handle release versions based on commits.
-6. Deploy to production from `main`.
-
-## 📦 Containerization
-
-### SIMPLE SETTING
-
-```sh
-docker build . --tag {TAG}  --no-cache
-docker run --detach --rm --publish 3333:3000 --name {TAG} {TAG}
-```
-
-`3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN).
-
-The project will be available at `http://localhost:3333/{TAG}`. To shut it down gracefully run:
-
-```sh
-docker stop {TAG}
-```
-
-### COMPOSE SETTING
-
-Base command:
-
-```sh
-docker compose build --no-cache && docker compose up --force-recreate -d
-```
-
-Set env variables:
-
-```sh
-export RESTART_POLICY=no
-docker compose build --no-cache && docker compose up --force-recreate -d
-```
-
-Disable the progress indicator and get more detailed output
-
-```sh
-docker compose build --no-cache --progress=plain
-```
-
-NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.
-The app is again available under `localhost:3333` e.g. `http://localhost:3333/dmnext/bo/about`.
-
-The server (published locally on port 80) functions as a proxy so the same page should be reachable over `http://localhost/dmnext/bo/about`
-
-If you want to see the NGINX logs you can use (press Ctrl-C to exit):
-
-```sh
-docker logs nginx -f
-```
-
-## 🗃️ DharmaMitra API client & typing
+## 📡 DharmaMitra API client & typing
 
 [Dharmamitra API docs](https://dharmamitra.org/api/docs#/)
 
@@ -263,11 +246,11 @@ DM API request and response model types are generated from the project's [OpenAP
 yarn api:codegen
 ```
 
-### REGULAR FETCHS
+### Regular fetchs
 
 `openapi-fetch`'s api client (instantiated in `utils/api/client.ts`) is used in dedicated endpoint functions to fetch typed data ([see docs](https://openapi-ts.pages.dev/openapi-fetch/)) from the API.
 
-### SSE FETCHS
+### SSE fetchs
 
 TODO
 
@@ -275,12 +258,11 @@ TODO
 
 Unique characters from unicode emojis (https://emojipedia.org/)
 
-| Marker | Name  | Description           |
-| ------ | ----- | --------------------- |
-| `🔽`  | downwards-button | line break |
-| `⏮️`  | last-track-button | start of meta formating |
-| `⏭️`  | next-track-button | end of meta formating |
-
+| Marker | Name              | Description             |
+| ------ | ----------------- | ----------------------- |
+| `🔽`   | downwards-button  | line break              |
+| `⏮️`   | last-track-button | start of meta formating |
+| `⏭️`   | next-track-button | end of meta formating   |
 
 ## 🌐 Internationalization (i18n)
 
@@ -289,7 +271,7 @@ Unique characters from unicode emojis (https://emojipedia.org/)
 - Supported locales are defined in the `supportedLocales` varriable in `src/config.ts` and locale files with matching file names are added to the `messages/` directory.
 - `messages/` files use the convention of title-case keys for page content and camel-case keys for component content.
 
-### UPDATING LOCALE CONTENT
+### Locale content update workflow
 
 TODO (https://stackoverflow.com/questions/14500240/how-can-i-generate-a-diff-for-a-single-file-between-two-branches-in-github)
 
@@ -305,12 +287,12 @@ DRAFT model (consideration of special needs for translation updates pending)
 8. If all looks good, open a PR from `dev` to `main`
 9. On PR merge, the updates will be ready for production deploy.
 
-### INTERNAL NAVIGATION
+### Internal navigation
 
 - most internal navigation can be handled with `src/components/LocalLink.tsx`.
 - where needed `redirect`, `usePathname`, `useRouter` exported from `src/navigation.ts` can be used to make sure internationalized routes are correctly handled.
 
-### REFERRENCES:
+### Referrences
 
 - [Locale code list](https://www.alchemysoftware.com/livedocs/ezscript/Topics/Catalyst/Language.htm)
 - [Latest CLDR locale data chart](https://www.unicode.org/cldr/charts/latest/summary/root.html)
@@ -319,7 +301,7 @@ DRAFT model (consideration of special needs for translation updates pending)
 
 The project uses [`Material UI`](https://mui.com/material-ui/getting-started/) with [Next.js integration](https://mui.com/material-ui/integrations/nextjs/).
 
-### CONFIG
+### Config
 
 The theme is configured in a static `.ts` file (`src/utils/theme/config.ts`) so that custom design tokens can be used in both sever and client components.
 
@@ -333,7 +315,11 @@ For server components **theme-aware** propeties are readily available via compon
 />
 ```
 
-### REFERENCES:
+### Env specific theming
+
+Environment specific theme colours can be set in `envRgbCodes` in `src/config/defineConfig.ts`
+
+### References
 
 - [Mui's default theme object](https://mui.com/material-ui/customization/default-theme/)
 - [MUI's theme-aware propeties](https://mui.com/system/getting-started/the-sx-prop/#theme-aware-properties) - these are props available to any component without importing `theme`
@@ -372,6 +358,55 @@ If you want to use visual comparison to test pages render:
 - when there is a change to the UI, existing base comparison images will need to be updated with `yarn playwright test --update-snapshots`.
 
 Visit https://playwright.dev/docs/intro for more information
+
+## 📦 Containerization
+
+### Simple setting
+
+```sh
+docker build . --tag {TAG}  --no-cache
+docker run --detach --rm --publish 3333:3000 --name {TAG} {TAG}
+```
+
+`3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN).
+
+The project will be available at `http://localhost:3333/{TAG}`. To shut it down gracefully run:
+
+```sh
+docker stop {TAG}
+```
+
+### Compose setting
+
+Base command:
+
+```sh
+docker compose build --no-cache && docker compose up --force-recreate -d
+```
+
+Set env variables:
+
+```sh
+export RESTART_POLICY=no
+docker compose build --no-cache && docker compose up --force-recreate -d
+```
+
+Disable the progress indicator and get more detailed output
+
+```sh
+docker compose build --no-cache --progress=plain
+```
+
+NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.
+The app is again available under `localhost:3333` e.g. `http://localhost:3333/dmnext/bo/about`.
+
+The server (published locally on port 80) functions as a proxy so the same page should be reachable over `http://localhost/dmnext/bo/about`
+
+If you want to see the NGINX logs you can use (press Ctrl-C to exit):
+
+```sh
+docker logs nginx -f
+```
 
 ## 🚢 Deployment
 

@@ -9,10 +9,7 @@ import Drawer from "@mui/material/Drawer"
 import IconButton from "@mui/material/IconButton"
 import Stack from "@mui/material/Stack"
 
-import { DMApiTypes } from "@/api"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useTaggingData from "@/hooks/useTaggingData"
-import { apiParamsNames } from "@/utils/api/params"
 
 import styles from "./LazyTranslationTaggingDrawer.module.css"
 import TranslationTaggingOutput from "./TranslationTaggingOutput"
@@ -70,10 +67,6 @@ const ResizeHandle = ({
 export default function LazyTranslationTaggingDrawer() {
   const t = useTranslations("translation")
 
-  const { input: targetLang } = useInputWithUrlParam<
-    DMApiTypes.Schema["TargetLanguage"]
-  >(apiParamsNames.translation.target_lang)
-
   const { data, isValidQuery } = useTaggingData()
 
   const [open, setOpen] = React.useState(false)
@@ -109,7 +102,7 @@ export default function LazyTranslationTaggingDrawer() {
 
   return (
     <>
-      {targetLang === "english" && (isValidQuery || data?.sentences) ? (
+      {isValidQuery || data?.sentences ? (
         <Button
           variant="outlined"
           onClick={() => setOpen((prev) => !prev)}

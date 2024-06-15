@@ -19,11 +19,17 @@ const useTaggingData = () => {
     DMApiTypes.Schema["TargetLanguage"]
   >(apiParamsNames.translation.target_lang)
 
-  const debouncedInputSentence = useDebouncedValue(inputSentence, 500)
+  const debouncedInputSentence = useDebouncedValue(inputSentence, 1000)
   const [triggerQuery, setTriggerQuery] = React.useState(false)
 
   React.useEffect(() => {
-    setTriggerQuery(Boolean(debouncedInputSentence && targetLang === "english"))
+    setTriggerQuery(
+      Boolean(
+        debouncedInputSentence &&
+          debouncedInputSentence.length > 5 &&
+          targetLang === "english",
+      ),
+    )
   }, [debouncedInputSentence, targetLang])
 
   const requestBody: DMApiTypes.TaggingRequestBody = React.useMemo(
@@ -50,9 +56,8 @@ const useTaggingData = () => {
   const [isValidQuery, setIsValidQuery] = React.useState(false)
 
   React.useEffect(() => {
-    setIsValidQuery(false)
-
-    if (!triggerQuery) {
+    if (!triggerQuery || targetLang !== "english") {
+      setIsValidQuery(false)
       return
     }
 
@@ -73,7 +78,7 @@ const useTaggingData = () => {
         clearTimeout(timeoutRef.current)
       }
     }
-  }, [error, triggerQuery, setIsValidQuery])
+  }, [error, triggerQuery, setIsValidQuery, targetLang])
 
   return {
     isLoading,
