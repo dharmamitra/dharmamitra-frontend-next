@@ -4,14 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild:pub": "sh ./scripts/set_env.sh pub",
-    "build:pub": "next build",
-    "prebuild:lab": "sh ./scripts/set_env.sh lab",
-    "build:lab": "next build",
-    "prebuild:rnd": "sh ./scripts/set_env.sh rnd",
-    "build:rnd": "next build",
-    "prebuild:kumarajiva": "sh ./scripts/set_env.sh kumarajiva",
-    "build:kumarajiva": "next build",
+    "build:pub": "sh ./scripts/set_env.sh pub && next build",
+    "build:lab": "sh ./scripts/set_env.sh lab && next build",
+    "build:rnd": "sh ./scripts/set_env.sh rnd &&next build",
+    "build:kumarajiva": "sh ./scripts/set_env.sh kumarajiva && next build",
     "build": "next build",
     "start": "next start",
     "test:ts": "tsc --noEmit",
@@ -71,5 +67,6 @@
     "prettier": "^3.2.5",
     "semantic-release": "^23.0.8",
     "typescript": "^5.4.5"
-  }
+  },
+  "packageManager": "yarn@4.3.0"
 }
