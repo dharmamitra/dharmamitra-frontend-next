@@ -2407,7 +2407,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:~4.9.1":
+"axe-core@npm:^4.9.1, axe-core@npm:~4.9.1":
   version: 4.9.1
   resolution: "axe-core@npm:4.9.1"
   checksum: 10c0/ac9e5a0c6fa115a43ebffc32a1d2189e1ca6431b5a78e88cdcf94a72a25c5964185682edd94fe6bdb1cb4266c0d06301b022866e0e50dcdf6e3cefe556470110
@@ -3114,6 +3114,7 @@ __metadata:
     "@types/react-dom": "npm:^18.3.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.13.0"
     "@typescript-eslint/parser": "npm:^7.13.0"
+    axe-core: "npm:^4.9.1"
     axe-html-reporter: "npm:^2.2.3"
     dotenv: "npm:^16.4.5"
     eslint: "npm:^8.57.0"
@@ -3121,7 +3122,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-prettier: "npm:^5.1.3"
     eslint-plugin-simple-import-sort: "npm:^12.1.0"
-    globals: "npm:^15.4.0"
+    globals: "npm:^15.5.0"
     husky: "npm:^9.0.11"
     jotai: "npm:^2.8.3"
     lint-staged: "npm:^15.2.7"
@@ -3129,11 +3130,12 @@ __metadata:
     next-intl: "npm:^3.15.0"
     openapi-fetch: "npm:^0.9.7"
     openapi-typescript: "npm:^6.7.6"
+    playwright-core: "npm:^1.44.1"
     prettier: "npm:^3.3.2"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     react-intersection-observer: "npm:^9.10.3"
-    semantic-release: "npm:^23.0.8"
+    semantic-release: "npm:^23.1.1"
     sharp: "npm:^0.33.4"
     sse.js: "npm:^2.5.0"
     typescript: "npm:^5.4.5"
@@ -4300,10 +4302,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^15.4.0":
-  version: 15.4.0
-  resolution: "globals@npm:15.4.0"
-  checksum: 10c0/19041b8fd49deb154e1cb706c82756ab7184c8ae3495aab183efcad9edd1b6320cc54af1a9110d8699245bef124834b004a8156ca988ba7814c25ec71a43f6a4
+"globals@npm:^15.5.0":
+  version: 15.5.0
+  resolution: "globals@npm:15.5.0"
+  checksum: 10c0/f13c3cb0c6d49b9d23e447b86e33ca6139753087060c3063863c0dd2b5d79f4a114c48d20e321916e6c3701adb3f6b67d6ac8d8ed2bae6da45482c968532d4e2
   languageName: node
   linkType: hard
 
@@ -6736,7 +6738,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.44.1":
+"playwright-core@npm:1.44.1, playwright-core@npm:^1.44.1":
   version: 1.44.1
   resolution: "playwright-core@npm:1.44.1"
   bin:
@@ -7304,7 +7306,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release@npm:^23.0.8":
+"semantic-release@npm:^23.1.1":
   version: 23.1.1
   resolution: "semantic-release@npm:23.1.1"
   dependencies:
