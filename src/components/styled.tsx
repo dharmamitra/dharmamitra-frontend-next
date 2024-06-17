@@ -21,36 +21,8 @@ export const VisuallyHiddenRadio = styled(Radio)({
   overflow: "hidden",
 })
 
-export const getFocusedBgStyles = ({
-  color,
-  inset = "0",
-}: {
-  color: string
-  inset?: string
-}) => ({
-  "&:focus-within::before": {
-    content: `' '`,
-    position: "absolute",
-    inset,
-    borderRadius: "8px",
-    transition: "all 255ms ease-in",
-    backgroundColor: color,
-    animation: "focus 3s ease-in-out infinite",
-  },
-  "@keyframes focus": {
-    "0%": {
-      transform: "scale(1)",
-    },
-    "50%": {
-      transform: "scale(1.02, 1.06)",
-    },
-    "100%": {
-      transform: "scale(1)",
-    },
-  },
-})
-
-export const focusBgColor = alpha(customTheming.baseColors.secondary!, 0.05)
+export const focusBgColor = alpha(customTheming.baseColors.secondary!, 0.1)
+export const focusBgColorDark = alpha(customTheming.baseColors.secondary!, 0.25)
 
 export const flatRadioGroupStyles = {
   position: "relative",
@@ -79,14 +51,14 @@ export const CustomFormControlLabel = styled(FormControlLabel)(
   }),
 )
 
-export const OtherOptionsInputStyles = {
+export const secondaryOptionsInputStyles = {
   position: "relative",
   zIndex: 2,
   pl: "0 !important",
   pr: 1,
 }
 
-export const OtherOptionsButtonIcon = styled(KeyboardArrowDownIcon)({
+export const SecondaryOptionsButtonIcon = styled(KeyboardArrowDownIcon)({
   position: "absolute",
   right: 0,
   color: "gray",

@@ -47,7 +47,7 @@
     "otherEncodingsAriaLabel": "Other encoding options",
     "targetLanguageSelectLabel": "Output language",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
-    "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "secondaryTargetLanguagesAriaLabel": "Other traget language options",
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
     "copyTranslation": "Copy translation",

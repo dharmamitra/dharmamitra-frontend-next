@@ -48,7 +48,7 @@
     "otherEncodingsAriaLabel": "Other encoding options",
     "targetLanguageSelectLabel": "翻譯目標語",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
-    "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "secondaryTargetLanguagesAriaLabel": "Other traget language options",
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
     "copyTranslation": "複製翻譯",
