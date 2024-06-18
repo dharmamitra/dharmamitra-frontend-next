@@ -14,7 +14,7 @@ import {
 } from "@/components/styled"
 import useAppConfig from "@/hooks/useAppConfig"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
-import useInputWithLocalStorage from "@/hooks/useInputWithLocalStorage"
+import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { apiParamsNames } from "@/utils/api/params"
 
@@ -24,10 +24,11 @@ export default function TranslationTargetLanguageSelector() {
   const { targetLanguages: servedTargetLanguages } = useAppConfig().paramOptions
   const t = useTranslations("translation")
 
-  const { input, handleInputChange, isHydrated } = useInputWithLocalStorage({
-    paramName: apiParamsNames.translation.target_lang,
-    defaultValue: servedTargetLanguages[0]!,
-  })
+  const { value, handleValueChange, isHydrated } =
+    useParamValueWithLocalStorage({
+      paramName: apiParamsNames.translation.target_lang,
+      defaultValue: servedTargetLanguages[0]!,
+    })
 
   const primaryOptionsSelectorId = "primary-target-language-options"
   useFocusHighlight({
@@ -48,24 +49,24 @@ export default function TranslationTargetLanguageSelector() {
   const isPrimaryValueSelected = React.useMemo<boolean>(
     () =>
       primaryLanguagesOptions.includes(
-        input as DMApiTypes.Schema["TargetLanguage"],
+        value as DMApiTypes.Schema["TargetLanguage"],
       ),
-    [input, primaryLanguagesOptions],
+    [value, primaryLanguagesOptions],
   )
 
   React.useEffect(() => {
-    if (input === "") {
-      handleInputChange(servedTargetLanguages[0]!)
+    if (value === "") {
+      handleValueChange(servedTargetLanguages[0]!)
     }
-  }, [input, handleInputChange, servedTargetLanguages])
+  }, [value, handleValueChange, servedTargetLanguages])
 
   return (
     <>
       <RadioGroup
         id={primaryOptionsSelectorId}
         aria-label={t("primaryTargetLanguagesAriaLabel")}
-        value={input}
-        onChange={handleInputChange}
+        value={value}
+        onChange={handleValueChange}
         row
         sx={{
           ...flatRadioGroupStyles,
@@ -78,7 +79,7 @@ export default function TranslationTargetLanguageSelector() {
             id={language + "-primary-target-language-option"}
             i18nKey="targetLanguages"
             option={language}
-            isSelected={isHydrated && input === language}
+            isSelected={isHydrated && value === language}
           />
         ))}
       </RadioGroup>
@@ -92,8 +93,8 @@ export default function TranslationTargetLanguageSelector() {
           id={secondaryOptionsSelectorId}
           data-testid="secondary-target-language-options"
           aria-label={t("secondaryTargetLanguagesAriaLabel")}
-          value={isPrimaryValueSelected ? "" : input}
-          onChange={handleInputChange}
+          value={isPrimaryValueSelected ? "" : value}
+          onChange={handleValueChange}
           inputProps={{
             "aria-label": t("secondaryTargetLanguagesAriaLabel"),
             sx: secondaryOptionsInputStyles,

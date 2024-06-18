@@ -12,7 +12,7 @@ import {
   selectedOptionsStyles,
 } from "@/components/styled"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
-import useInputWithLocalStorage from "@/hooks/useInputWithLocalStorage"
+import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 
@@ -21,10 +21,11 @@ import RadioOption from "../common/RadioOption"
 export default function TranslationInputEncodingSelector() {
   const t = useTranslations("translation")
 
-  const { input, handleInputChange, isHydrated } = useInputWithLocalStorage({
-    paramName: apiParamsNames.translation.input_encoding,
-    defaultValue: inputEncodings[0],
-  })
+  const { value, handleValueChange, isHydrated } =
+    useParamValueWithLocalStorage({
+      paramName: apiParamsNames.translation.input_encoding,
+      defaultValue: inputEncodings[0],
+    })
 
   const primaryOptionsSelectorId = "primary-encoding-options"
   useFocusHighlight({
@@ -43,23 +44,23 @@ export default function TranslationInputEncodingSelector() {
     useResponsiveOptions(inputEncodings)
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
-    () => primaryEncodingOptions.includes(input),
-    [input, primaryEncodingOptions],
+    () => primaryEncodingOptions.includes(value),
+    [value, primaryEncodingOptions],
   )
 
   React.useEffect(() => {
-    if (input === "") {
-      handleInputChange(inputEncodings[0])
+    if (value === "") {
+      handleValueChange(inputEncodings[0])
     }
-  }, [input, handleInputChange])
+  }, [value, handleValueChange])
 
   return (
     <>
       <RadioGroup
         id={primaryOptionsSelectorId}
         aria-label={t("primaryEncodingsAriaLabel")}
-        value={input ? input : inputEncodings[0]}
-        onChange={(e) => handleInputChange(e.target.value)}
+        value={value ? value : inputEncodings[0]}
+        onChange={(e) => handleValueChange(e.target.value)}
         row
         sx={{
           ...flatRadioGroupStyles,
@@ -72,7 +73,7 @@ export default function TranslationInputEncodingSelector() {
             id={encoding + "-primary-encoding-option"}
             i18nKey="encodings"
             option={encoding}
-            isSelected={isHydrated && input === encoding}
+            isSelected={isHydrated && value === encoding}
           />
         ))}
       </RadioGroup>
@@ -84,8 +85,8 @@ export default function TranslationInputEncodingSelector() {
         <Select
           id={secondaryOptionsSelectorId}
           data-testid="other-input-encoding-options"
-          value={isPrimaryValueSelected ? "" : input}
-          onChange={(e) => handleInputChange(e.target.value)}
+          value={isPrimaryValueSelected ? "" : value}
+          onChange={(e) => handleValueChange(e.target.value)}
           inputProps={{
             "aria-label": t("otherEncodingsAriaLabel"),
             sx: secondaryOptionsInputStyles,
