@@ -23,6 +23,7 @@ export const VisuallyHiddenRadio = styled(Radio)({
 
 export const focusBgColor = alpha(customTheming.baseColors.secondary!, 0.1)
 export const focusBgColorDark = alpha(customTheming.baseColors.secondary!, 0.25)
+export const warningBgFactory = 0.1
 
 export const flatRadioGroupStyles = {
   position: "relative",

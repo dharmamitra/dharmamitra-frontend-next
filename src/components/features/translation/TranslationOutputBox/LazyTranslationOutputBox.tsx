@@ -4,9 +4,11 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import Typography from "@mui/material/Typography"
 
+import { streamMarkers } from "@/api"
 import CopyText from "@/components/CopyText"
 import Error from "@/components/Error"
 import LoadingDots from "@/components/LoadingDots"
+import Warning from "@/components/Warning"
 import useTranslationStream from "@/hooks/useTranslationStream"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
@@ -16,23 +18,42 @@ const FormatedStream = ({
 }: {
   translationStream: string
 }) => {
-  const paragraphs = translationStream?.split(/🔽/g).filter((p) => p)
+  const t = useTranslations()
+  const paragraphs = translationStream
+    ?.split(streamMarkers.lineBreak)
+    .filter((p) => p)
 
   return paragraphs.map((paragraph, index) => {
-    const idiomaticContent = paragraph.match(/(^.*?)(\s-\s.*)$/)
+    const warningPattern = new RegExp(
+      String.raw`(^.*?)(${streamMarkers.warning}.*)$`,
+    )
+    const streamWarningCheck = paragraph.match(warningPattern)
 
-    if (idiomaticContent) {
+    const [, content, warning] = streamWarningCheck ?? ["", "", ""]
+
+    if (warning) {
+      // cast without type checking because next-intl error handling will catch invalid keys.
+      const warningI18nKey = warning.replace(
+        /[\W]/g,
+        "",
+      ) as keyof Messages["generic"]["error"]
+
       return (
-        <Typography
-          key={`formated-translation-stream-${index}`}
-          component="p"
-          sx={{
-            whiteSpace: "pre-wrap",
-          }}
-        >
-          <i style={{ fontWeight: 500 }}>{idiomaticContent[1]}</i>
-          {idiomaticContent[2]}
-        </Typography>
+        <React.Fragment key={`formated-translation-stream-${index}`}>
+          {content ? (
+            <Typography
+              key={`formated-translation-stream-${index}`}
+              component="p"
+              sx={{
+                whiteSpace: "pre-wrap",
+                my: index === 0 ? 0 : 1,
+              }}
+            >
+              {content.trim()}
+            </Typography>
+          ) : null}
+          <Warning message={t(`generic.error.${warningI18nKey}`)} />
+        </React.Fragment>
       )
     }
 

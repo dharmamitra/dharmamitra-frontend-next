@@ -6,6 +6,14 @@ const streamPaths = {
   search: "/api/search-stream",
 }
 
+const streamMarkers = {
+  lineBreak: "🔽",
+  metaLineStart: "⏮️",
+  metaLineEnd: "⏭️",
+  warning: "⚠️",
+  error: "🚫",
+} as const
+
 const DMFetchApi = {
   tagging: {
     makeQueryKey: (body: DMApiTypes.TaggingRequestBody) => [
@@ -16,4 +24,4 @@ const DMFetchApi = {
   },
 }
 
-export { DMApiTypes, DMFetchApi, streamPaths }
+export { DMApiTypes, DMFetchApi, streamMarkers, streamPaths }
