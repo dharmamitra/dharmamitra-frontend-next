@@ -18,7 +18,7 @@ export default function SearchBox({
   className?: string
 }) {
   const [, setIsQueryEnabled] = React.useState(false)
-  const { input, handleInputChange } = useInputWithUrlParam<string>(
+  const { input, handleValueChange } = useInputWithUrlParam<string>(
     apiParamsNames.search.search_input,
   )
 
@@ -37,7 +37,7 @@ export default function SearchBox({
         value={input}
         rows={setRows(input)}
         multiline
-        onChange={handleInputChange}
+        onChange={handleValueChange}
         onKeyUp={(event) => {
           if (event.key === "Enter" && input.length > 0) {
             setIsQueryEnabled(true)

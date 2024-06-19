@@ -34,7 +34,7 @@ export default function MobileLocaleSwitcher({
   const onSelectChange = (nextLocale: string) => {
     setValue(nextLocale)
     router.replace(`${pathname}?${searchParams.toString()}`, {
-      locale: nextLocale,
+      locale: nextLocale as SupportedLocale,
     })
     handleClose()
   }

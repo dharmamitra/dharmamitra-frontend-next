@@ -16,7 +16,7 @@ import StartStopButton from "../TranslationStartStopButton"
 
 export default function TranslationInputField() {
   const t = useTranslations()
-  const { input, handleInputChange } = useInputWithUrlParam<string>(
+  const { input, handleValueChange } = useInputWithUrlParam<string>(
     apiParamsNames.translation.input_sentence,
   )
 
@@ -47,7 +47,7 @@ export default function TranslationInputField() {
         }}
         multiline
         value={input}
-        onChange={(e) => handleInputChange(e)}
+        onChange={(e) => handleValueChange(e)}
       />
 
       <BoxBottomElementsRow sx={{ justifyContent: "space-between" }}>
@@ -56,7 +56,7 @@ export default function TranslationInputField() {
             aria-label={t("generic.clear")}
             color="secondary"
             onClick={() => {
-              handleInputChange("")
+              handleValueChange("")
             }}
           >
             <HighlightOffIcon />

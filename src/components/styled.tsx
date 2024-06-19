@@ -8,6 +8,9 @@ import {
   Radio,
   styled,
 } from "@mui/material"
+import { alpha } from "@mui/material/styles"
+
+import customTheming from "@/utils/theme/config"
 
 export const VisuallyHiddenRadio = styled(Radio)({
   position: "absolute",
@@ -17,6 +20,19 @@ export const VisuallyHiddenRadio = styled(Radio)({
   height: "1px",
   overflow: "hidden",
 })
+
+export const focusBgColor = alpha(customTheming.baseColors.secondary!, 0.1)
+export const focusBgColorDark = alpha(customTheming.baseColors.secondary!, 0.25)
+export const warningBgFactory = 0.1
+
+export const flatRadioGroupStyles = {
+  position: "relative",
+  display: "flex",
+  gap: 2,
+  borderRadius: "8px",
+  padding: "8px 0 8px 24px",
+  marginInline: "-16px 8px",
+}
 
 export const selectedOptionsStyles = {
   textDecoration: "underline",
@@ -28,7 +44,7 @@ export const selectedOptionsStyles = {
 
 export const CustomFormControlLabel = styled(FormControlLabel)(
   ({ theme, checked }) => ({
-    paddingInline: theme.spacing(1),
+    // paddingInline: theme.spacing(1),
     ".MuiFormControlLabel-label": checked && {
       color: theme.palette.secondary.main,
       ...selectedOptionsStyles,
@@ -36,14 +52,14 @@ export const CustomFormControlLabel = styled(FormControlLabel)(
   }),
 )
 
-export const OtherOptionsInputStyles = {
+export const secondaryOptionsInputStyles = {
   position: "relative",
   zIndex: 2,
   pl: "0 !important",
   pr: 1,
 }
 
-export const OtherOptionsButtonIcon = styled(KeyboardArrowDownIcon)({
+export const SecondaryOptionsButtonIcon = styled(KeyboardArrowDownIcon)({
   position: "absolute",
   right: 0,
   color: "gray",

@@ -12,7 +12,7 @@ function getSearchParam({
   return searchParams.get(paramName)
 }
 
-function useInputWithLocalStorage({
+function useParamValueWithLocalStorage({
   paramName,
   defaultValue = "",
 }: {
@@ -25,7 +25,7 @@ function useInputWithLocalStorage({
     [searchParams, paramName],
   )
 
-  const [input, setInput] = React.useState(() => {
+  const [value, setValue] = React.useState(() => {
     return paramValue ?? defaultValue
   })
   const [isHydrated, setIsHydrated] = React.useState(Boolean(paramValue))
@@ -34,7 +34,7 @@ function useInputWithLocalStorage({
   React.useEffect(() => {
     const storedValue = localStorage.getItem(paramName)
     if (storedValue) {
-      setInput(storedValue)
+      setValue(storedValue)
     }
     setIsHydrated(true)
   }, [paramName])
@@ -42,27 +42,27 @@ function useInputWithLocalStorage({
   // Effect for updates after initialization
   React.useEffect(() => {
     if (isHydrated) {
-      localStorage.setItem(paramName, input)
+      localStorage.setItem(paramName, value)
       const url = new URL(window.location.href)
-      url.searchParams.set(paramName, input)
+      url.searchParams.set(paramName, value)
       window.history.replaceState(null, "", url.toString())
     }
-  }, [input, paramName, isHydrated])
+  }, [value, paramName, isHydrated])
 
-  const handleInputChange = React.useCallback(
+  const handleValueChange = React.useCallback(
     (
-      input:
+      value:
         | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
         | SelectChangeEvent<string>
         | string,
     ) => {
-      const newValue = typeof input === "string" ? input : input.target.value
-      setInput(newValue)
+      const newValue = typeof value === "string" ? value : value.target.value
+      setValue(newValue)
     },
     [],
   )
 
-  return { input, handleInputChange, isHydrated }
+  return { value, handleValueChange, isHydrated }
 }
 
-export default useInputWithLocalStorage
+export default useParamValueWithLocalStorage

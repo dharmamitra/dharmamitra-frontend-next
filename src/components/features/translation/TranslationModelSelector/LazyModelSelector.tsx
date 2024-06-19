@@ -6,7 +6,7 @@ import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
 import useAppConfig from "@/hooks/useAppConfig"
-import useInputWithLocalStorage from "@/hooks/useInputWithLocalStorage"
+import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { apiParamsNames, translationModels } from "@/utils/api/params"
 
 export default function LazyModelSelector() {
@@ -14,23 +14,23 @@ export default function LazyModelSelector() {
 
   const { model } = useAppConfig().paramOptions
 
-  const { input, handleInputChange } = useInputWithLocalStorage({
+  const { value, handleValueChange } = useParamValueWithLocalStorage({
     paramName: apiParamsNames.translation.model,
     defaultValue: model,
   })
 
   React.useEffect(() => {
-    if (input === "") {
-      handleInputChange(model)
+    if (value === "") {
+      handleValueChange(model)
     }
-  }, [input, handleInputChange, model])
+  }, [value, handleValueChange, model])
 
   return (
     <ToggleButtonGroup
       color="secondary"
-      value={input}
+      value={value}
       exclusive
-      onChange={(event, value) => handleInputChange(value)}
+      onChange={(event, value) => handleValueChange(value)}
       aria-label="Model"
     >
       {translationModels.map((model) => (

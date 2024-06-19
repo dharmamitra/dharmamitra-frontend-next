@@ -4,7 +4,9 @@
     "copied": "已复制到剪贴板",
     "error": {
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
-      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>"
+      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
+      "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
+      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
     },
     "clear": "Clear",
     "stop": "Stop"
@@ -48,7 +50,7 @@
     "otherEncodingsAriaLabel": "Other encoding options",
     "targetLanguageSelectLabel": "翻译目标语",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
-    "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "secondaryTargetLanguagesAriaLabel": "Other traget language options",
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
     "copyTranslation": "复制翻译",

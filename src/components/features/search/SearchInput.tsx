@@ -17,7 +17,7 @@ export default function SearchBox({
   className?: string
   isScrolling?: boolean
 }) {
-  const { input, handleInputChange } = useInputWithUrlParam<string>(
+  const { input, handleValueChange } = useInputWithUrlParam<string>(
     apiParamsNames.search.search_input,
   )
 
@@ -38,7 +38,7 @@ export default function SearchBox({
         value={input}
         rows={isScrolling ? 1 : setRows(input)}
         multiline
-        onChange={handleInputChange}
+        onChange={handleValueChange}
         onKeyUp={(event) => {
           if (event.key === "Enter" && input.length > 0) {
             setTriggerSearchQuery(true)

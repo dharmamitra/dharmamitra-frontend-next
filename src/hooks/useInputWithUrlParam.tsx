@@ -13,7 +13,7 @@ function useInputWithUrlParam<T>(paramName: string, defaultValue: string = "") {
     setCurrentInput(getSearchParam(paramName) ?? defaultValue)
   }, [getSearchParam, paramName, defaultValue])
 
-  const handleInputChange = React.useCallback(
+  const handleValueChange = React.useCallback(
     (
       input:
         | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,7 +28,7 @@ function useInputWithUrlParam<T>(paramName: string, defaultValue: string = "") {
     [updateParams, createQueryString, paramName],
   )
 
-  return { input: currentInput as T, handleInputChange }
+  return { input: currentInput as T, handleValueChange }
 }
 
 export default useInputWithUrlParam

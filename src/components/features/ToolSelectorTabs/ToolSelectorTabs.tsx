@@ -13,6 +13,7 @@ import SearchInput from "@/features/search/SearchInput"
 import SearchResults from "@/features/search/SearchResults"
 import TranslationFeature from "@/features/translation"
 
+import LoadingToolSelectorTabs from "./LoadingToolSelectorTabs"
 import styles from "./ToolSelectorTabs.module.css"
 
 interface TabPanelProps {
@@ -20,6 +21,31 @@ interface TabPanelProps {
   index: number
   value: number
 }
+
+export const minToolBoxHeight = "70vh"
+
+export const tabsStyles = {
+  borderRadius: "50px",
+  backgroundColor: "#eeeeee",
+  "& button": {
+    minHeight: "48px",
+    maxHeight: "48px",
+    margin: "8px",
+    borderRadius: "50px",
+    border: "3px solid transparent",
+    transition:
+      "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
+  },
+}
+
+export function a11yProps(index: number) {
+  return {
+    id: `feature-selector-tab-${index}`,
+    "aria-controls": `feature-selector-tabpanel-${index}`,
+  }
+}
+
+const viewStorageKey = "view-tab"
 
 export function FeatureTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
@@ -40,16 +66,22 @@ export function FeatureTabPanel(props: TabPanelProps) {
   )
 }
 
-function a11yProps(index: number) {
-  return {
-    id: `feature-selector-tab-${index}`,
-    "aria-controls": `feature-selector-tabpanel-${index}`,
-  }
-}
-
 export default function ToolSelectorTabs() {
-  // TODO: get from localStorage
-  const [tabIndex, setTabIndex] = React.useState(0)
+  const [tabIndex, setTabIndex] = React.useState(-1)
+
+  React.useEffect(() => {
+    const storedTabIndex = localStorage.getItem(viewStorageKey)
+    if (storedTabIndex !== null) {
+      setTabIndex(Number(storedTabIndex))
+    } else {
+      setTabIndex(0)
+    }
+  }, [setTabIndex])
+
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setTabIndex(newValue)
+    localStorage.setItem(viewStorageKey, String(newValue))
+  }
 
   const t = useTranslations()
 
@@ -58,32 +90,23 @@ export default function ToolSelectorTabs() {
     initialInView: true,
   })
 
+  if (tabIndex === -1) {
+    return <LoadingToolSelectorTabs />
+  }
+
   return (
     <>
       <Tabs
         value={tabIndex}
         aria-label="navigation tabs"
         centered
-        onChange={(event, newValue) => setTabIndex(newValue)}
-        className={
-          scrollMarkerInView
-            ? styles.stickyTabs
-            : `${styles.stickyTabs} ${styles.stickyTabsDesktop}`
-        }
+        onChange={handleTabChange}
+        className={`${styles.stickyTabs}${!scrollMarkerInView ? ` ${styles.stickyTabsDesktop}` : ""}`}
         TabIndicatorProps={{
           sx: { display: "none" },
         }}
         sx={{
-          borderRadius: "50px",
-          backgroundColor: "#eeeeee",
-          "& button": {
-            minHeight: "48px",
-            maxHeight: "48px",
-            margin: "8px",
-            borderRadius: "50px",
-            transition:
-              "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
-          },
+          ...tabsStyles,
           "& button.Mui-selected": {
             backgroundColor: "#fff",
             boxShadow: "0px 4px 4px 0px #0000001C",
@@ -93,22 +116,27 @@ export default function ToolSelectorTabs() {
         }}
       >
         <Tab
-          icon={<TranslateOutlinedIcon />}
-          iconPosition="start"
-          label={t("translation.translate")}
-          {...a11yProps(1)}
-          disableRipple
-        />
-
-        <Tab
           icon={<ScreenSearchDesktopOutlinedIcon />}
           iconPosition="start"
           label={t("search.search")}
           {...a11yProps(0)}
-          disableRipple
+        />
+
+        <Tab
+          icon={<TranslateOutlinedIcon />}
+          iconPosition="start"
+          label={t("translation.translate")}
+          {...a11yProps(1)}
         />
       </Tabs>
-      <Box sx={{ width: "100%", py: 3, position: "relative" }}>
+      <Box
+        sx={{
+          width: "100%",
+          minHeight: minToolBoxHeight,
+          py: 3,
+          position: "relative",
+        }}
+      >
         <div
           style={{ height: "1px", width: "1px" }}
           ref={scrollMarkerRef}
@@ -116,12 +144,6 @@ export default function ToolSelectorTabs() {
 
         <Box sx={{ height: "100%" }}>
           <FeatureTabPanel value={tabIndex} index={0}>
-            <Box sx={{ mt: 6 }}>
-              <TranslationFeature />
-            </Box>
-          </FeatureTabPanel>
-
-          <FeatureTabPanel value={tabIndex} index={1}>
             <Box sx={{ maxWidth: "960px", mx: "auto", mt: 6 }}>
               <SearchInput
                 className={scrollMarkerInView ? undefined : styles.stickyInput}
@@ -130,6 +152,12 @@ export default function ToolSelectorTabs() {
               />
 
               <SearchResults />
+            </Box>
+          </FeatureTabPanel>
+
+          <FeatureTabPanel value={tabIndex} index={1}>
+            <Box sx={{ mt: 6 }}>
+              <TranslationFeature />
             </Box>
           </FeatureTabPanel>
         </Box>
