@@ -266,7 +266,7 @@ The list of unique characters from unicode emojis (https://emojipedia.org/) used
 | `⏮️`   | last-track-button | start of meta formating                        |
 | `⏭️`   | next-track-button | end of meta formating                          |
 | `⚠️`   | warning           | warning (followed by i18n warning message key matching the pattern `\w+`) |
-| `🚫`   | prohibited        | failure (followed by i18n --"--)   |
+| `↯`   | prohibited        | failure (followed by i18n --"--)   |
 
 ## 🌐 Internationalization (i18n)
 

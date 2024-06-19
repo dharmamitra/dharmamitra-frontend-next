@@ -13,6 +13,27 @@ import useTranslationStream from "@/hooks/useTranslationStream"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 
+type ErrorMessageKey = keyof Messages["generic"]["error"]
+
+const warningPattern = new RegExp(
+  String.raw`(^.*?)(${streamMarkers.warning}.*)$`,
+)
+
+const errorPattern = new RegExp(String.raw`(^.*?)(${streamMarkers.error}.*)$`)
+
+const pasrseStreamContent = (string: string, regExp: RegExp) => {
+  const exceptionCheck = string.match(regExp)
+  const [, content, exception] = exceptionCheck ?? ["", "", ""]
+  let exceptionI18nKey: ErrorMessageKey | undefined
+
+  if (exception) {
+    // cast without type checking because next-intl error handling will catch invalid keys.
+    exceptionI18nKey = exception.replace(/[\W]/g, "") as ErrorMessageKey
+  }
+
+  return { content, exceptionI18nKey }
+}
+
 const FormatedStream = ({
   translationStream,
 }: {
@@ -24,20 +45,12 @@ const FormatedStream = ({
     .filter((p) => p)
 
   return paragraphs.map((paragraph, index) => {
-    const warningPattern = new RegExp(
-      String.raw`(^.*?)(${streamMarkers.warning}.*)$`,
+    const { content, exceptionI18nKey } = pasrseStreamContent(
+      paragraph,
+      warningPattern,
     )
-    const streamWarningCheck = paragraph.match(warningPattern)
 
-    const [, content, warning] = streamWarningCheck ?? ["", "", ""]
-
-    if (warning) {
-      // cast without type checking because next-intl error handling will catch invalid keys.
-      const warningI18nKey = warning.replace(
-        /[\W]/g,
-        "",
-      ) as keyof Messages["generic"]["error"]
-
+    if (exceptionI18nKey) {
       return (
         <React.Fragment key={`formated-translation-stream-${index}`}>
           {content ? (
@@ -52,7 +65,7 @@ const FormatedStream = ({
               {content.trim()}
             </Typography>
           ) : null}
-          <Warning message={t(`generic.error.${warningI18nKey}`)} />
+          <Warning message={t(`generic.error.${exceptionI18nKey}`)} />
         </React.Fragment>
       )
     }
@@ -86,15 +99,29 @@ export default function TranslationOutput() {
         })
       : undefined
 
+  const { exceptionI18nKey } = pasrseStreamContent(
+    translationStream ?? "",
+    errorPattern,
+  )
+
+  if (error) {
+    return <Error message={errorMessage} />
+  }
+
+  if (exceptionI18nKey) {
+    return <Error message={t(`generic.error.${exceptionI18nKey}`)} />
+  }
+
   return (
     <>
       {isLoading ? <LoadingDots sx={{ m: 2 }} /> : null}
-      {error ? <Error message={errorMessage} /> : null}
+
       {translationStream ? (
         <div ref={outputRef}>
           <FormatedStream translationStream={translationStream} />
         </div>
       ) : null}
+
       <BoxBottomElementsRow sx={{ justifyContent: "flex-end" }}>
         <CopyText
           contentRef={outputRef}

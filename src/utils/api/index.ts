@@ -11,7 +11,7 @@ const streamMarkers = {
   metaLineStart: "⏮️",
   metaLineEnd: "⏭️",
   warning: "⚠️",
-  error: "🚫",
+  error: "↯",
 } as const
 
 const DMFetchApi = {
