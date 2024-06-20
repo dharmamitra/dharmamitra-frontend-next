@@ -1,7 +1,7 @@
 FROM node:20
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock ./
+COPY ./package.json ./.yarnrc.yml ./yarn.lock ./
 
 RUN corepack enable
 
