@@ -7,7 +7,16 @@ RUN corepack enable
 
 RUN yarn set version stable
 
+# debug step:
+RUN yarn --version
+
 RUN yarn install --immutable
+
+# debug step:
+RUN ls -la /app
+
+# debug step:
+RUN if [ ! -d "node_modules" ]; then echo "node_modules directory is missing"; exit 1; fi
 
 COPY . .
 
