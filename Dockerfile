@@ -1,13 +1,15 @@
 FROM node:20
 WORKDIR /app
 
-COPY ./package.json ./yarn.lock ./
+COPY ./package.json ./.yarnrc.yml ./yarn.lock ./
 
 RUN corepack enable
 
 RUN yarn set version stable
 
 RUN yarn install --immutable
+
+RUN ls -la /app
 
 COPY . .
 
