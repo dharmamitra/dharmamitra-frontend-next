@@ -154,7 +154,7 @@ const useTranslationStream = () => {
 
   React.useEffect(() => {
     setTranslationStream("")
-  }, [params.input_sentence])
+  }, [setTranslationStream, params.input_sentence, params.target_lang])
 
   React.useEffect(() => {
     if (triggerTranslationQuery && params.input_sentence) {
