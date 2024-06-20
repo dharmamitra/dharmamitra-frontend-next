@@ -6,12 +6,6 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle"
 import StopCircleIcon from "@mui/icons-material/StopCircle"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
-import { useSetAtom } from "jotai"
-
-import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import useTranslationStream from "@/hooks/useTranslationStream"
-import { apiParamsNames } from "@/utils/api/params"
 
 const tooltipEnterStyles = {
   fontSize: "1.1rem",
@@ -20,17 +14,20 @@ const tooltipEnterStyles = {
   verticalAlign: "middle",
 }
 
-export default function LazyStartStopButton() {
+interface StartStopStreamButtonProps {
+  input: string
+  isStreaming: boolean
+  onStart: () => void
+  onStop: () => void
+}
+
+export default function StartStopStreamButton({
+  input,
+  isStreaming,
+  onStart,
+  onStop,
+}: StartStopStreamButtonProps) {
   const t = useTranslations()
-
-  const { input } = useInputWithUrlParam<string>(
-    apiParamsNames.translation.input_sentence,
-  )
-
-  const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
-  const setAbortTranslationQuery = useSetAtom(abortTranslationQueryAtom)
-
-  const { isStreaming } = useTranslationStream()
 
   return (
     <>
@@ -39,7 +36,7 @@ export default function LazyStartStopButton() {
           <IconButton
             aria-label={t("generic.stop")}
             color="secondary"
-            onClick={() => setAbortTranslationQuery(true)}
+            onClick={onStop}
           >
             <StopCircleIcon />
           </IconButton>
@@ -70,9 +67,7 @@ export default function LazyStartStopButton() {
             <IconButton
               aria-label={t("translation.translate")}
               color="secondary"
-              onClick={() => {
-                setTriggerTranslationQuery(true)
-              }}
+              onClick={onStart}
               disabled={!input.match(/\S+/g)?.length}
             >
               <PlayCircleIcon />

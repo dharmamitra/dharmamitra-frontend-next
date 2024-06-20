@@ -1,19 +1,19 @@
 import React from "react"
 import { useSetAtom } from "jotai"
 
-import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
+import { abortSearchQueryAtom, triggerSearchQueryAtom } from "@/atoms"
 import StartStopStreamButton from "@/components/StartStopStreamButton"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useTranslationStream from "@/hooks/useTranslationStream"
 import { apiParamsNames } from "@/utils/api/params"
 
-export default function TranslationStartStopButton() {
+export default function SearchStartStopButton() {
   const { input } = useInputWithUrlParam<string>(
-    apiParamsNames.translation.input_sentence,
+    apiParamsNames.search.search_input,
   )
 
-  const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
-  const setAbortTranslationQuery = useSetAtom(abortTranslationQueryAtom)
+  const setTriggerTranslationQuery = useSetAtom(triggerSearchQueryAtom)
+  const setAbortTranslationQuery = useSetAtom(abortSearchQueryAtom)
 
   return (
     <StartStopStreamButton

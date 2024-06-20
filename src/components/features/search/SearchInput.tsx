@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { useSetAtom } from "jotai"
 
@@ -7,6 +6,8 @@ import { triggerSearchQueryAtom } from "@/atoms"
 import { setRows } from "@/features/utils"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames } from "@/utils/api/params"
+
+import StartStopButton from "./SearchStartStopButton"
 
 export default function SearchBox({
   placeholder,
@@ -30,6 +31,7 @@ export default function SearchBox({
           width: "100%",
           backgroundColor: "background.paper",
           overflow: "clip",
+          py: 1.2,
         }}
         placeholder={placeholder}
         inputProps={{
@@ -44,17 +46,8 @@ export default function SearchBox({
             setTriggerSearchQuery(true)
           }
         }}
+        endAdornment={<StartStopButton />}
       />
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-        <Button
-          variant="contained"
-          onClick={() => {
-            setTriggerSearchQuery(true)
-          }}
-        >
-          Search
-        </Button>
-      </Box>
     </Box>
   )
 }
