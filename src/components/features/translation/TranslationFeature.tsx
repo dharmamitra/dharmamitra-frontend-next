@@ -5,8 +5,8 @@ import Grid from "@mui/material/Grid"
 import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
+import TranslationInputEncodingSelector from "../TranslationInputEncodingSelector"
 import TranslationInputBox from "./TranslationInputBox"
-import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
 import TranslationKeyboardControls from "./TranslationKeyboardControls"
 import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
@@ -34,7 +34,7 @@ export default function TranslationFeature() {
         }}
       >
         <Grid container>
-          <TranslationInputEncodingSelector />
+          <TranslationInputEncodingSelector labelled />
           <TranslationTargetLanguageSelector />
           <TranslationInputBox />
           <TranslationOutputBox />

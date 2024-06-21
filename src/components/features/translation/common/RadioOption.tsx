@@ -5,6 +5,7 @@ import {
   CustomFormControlLabel,
   VisuallyHiddenRadio,
 } from "@/components/styled"
+import { CustomSelectOption } from "@/utils/api/types"
 
 export default function RadioOption({
   id,
@@ -13,19 +14,18 @@ export default function RadioOption({
   isSelected,
 }: {
   id: string
-  i18nKey: "encodings" | "targetLanguages"
+  i18nKey: "commonStreamParams.encodings" | "translation.targetLanguages"
   option: string
   isSelected: boolean
 }) {
-  const t = useTranslations(`translation.${i18nKey}`)
+  const t = useTranslations(i18nKey)
 
   return (
     <CustomFormControlLabel
       id={`styled-${id}`}
       value={option}
       control={<VisuallyHiddenRadio id={id} data-testid={id} />}
-      // TODO: remove casting on enpoint update
-      label={t(option as keyof Messages["translation"][typeof i18nKey])}
+      label={t(option as CustomSelectOption)}
       checked={isSelected}
     />
   )

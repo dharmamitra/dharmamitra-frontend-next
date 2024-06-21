@@ -9,8 +9,7 @@ import Box from "@mui/material/Box"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
-import SearchInput from "@/features/search/SearchInput"
-import SearchResults from "@/features/search/SearchResults"
+import SearchFeature from "@/features/search"
 import TranslationFeature from "@/features/translation"
 
 import LoadingToolSelectorTabs from "./LoadingToolSelectorTabs"
@@ -145,13 +144,7 @@ export default function ToolSelectorTabs() {
         <Box sx={{ height: "100%" }}>
           <FeatureTabPanel value={tabIndex} index={0}>
             <Box sx={{ maxWidth: "960px", mx: "auto", mt: 6 }}>
-              <SearchInput
-                className={scrollMarkerInView ? undefined : styles.stickyInput}
-                placeholder="TODO: placeholder"
-                isScrolling={!scrollMarkerInView}
-              />
-
-              <SearchResults />
+              <SearchFeature />
             </Box>
           </FeatureTabPanel>
 

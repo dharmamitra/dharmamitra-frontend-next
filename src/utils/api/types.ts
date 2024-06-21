@@ -65,3 +65,22 @@ export type ParamNames = {
   >
   tagging: Record<keyof TaggingRequestBody, keyof TaggingRequestBody>
 }
+
+type CommonProperties<T, U> = {
+  [K in keyof T & keyof U]: T[K] | U[K]
+}
+
+export type CommonStreamParams = {
+  commonStreamParams: CommonProperties<
+    ParamNames["search"],
+    ParamNames["translation"]
+  >
+}
+
+/**
+ *
+ */
+
+type Encoding = keyof Messages["commonStreamParams"]["encodings"]
+type TargetLanguage = keyof Messages["translation"]["targetLanguages"]
+export type CustomSelectOption = Encoding | TargetLanguage

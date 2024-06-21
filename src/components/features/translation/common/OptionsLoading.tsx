@@ -3,6 +3,8 @@ import { useTranslations } from "next-intl"
 import { Box, RadioGroup } from "@mui/material"
 import Typography from "@mui/material/Typography"
 
+import { CustomSelectOption } from "@/utils/api/types"
+
 export const boxSx = {
   "@keyframes shimmer": {
     xs: {
@@ -30,9 +32,11 @@ export default function OptionsLoading({
   i18nKey,
 }: {
   options: string[]
-  i18nKey: "encodings" | "targetLanguages" | "models" | "grammar"
+  i18nKey: "commonStreamParams.encodings" | "translation.targetLanguages"
 }) {
-  const t = useTranslations(`translation.${i18nKey}`)
+  const t = useTranslations(i18nKey)
+  const g = useTranslations("generic")
+
   return (
     <RadioGroup
       aria-label="loading"
@@ -46,7 +50,7 @@ export default function OptionsLoading({
     >
       <Box sx={{ display: "flex" }}>
         <Typography component="div" variant="body1">
-          {t(options[0] as keyof Messages["translation"][typeof i18nKey])}
+          {t(options[0] as CustomSelectOption)}
         </Typography>
       </Box>
 
@@ -58,15 +62,14 @@ export default function OptionsLoading({
           }}
         >
           <Typography component="div" variant="body1">
-            {t(option as keyof Messages["translation"][typeof i18nKey])}
+            {t(option as CustomSelectOption)}
           </Typography>
         </Box>
       ))}
 
       <Box sx={{ display: "flex" }}>
         <Typography component="div" variant="body1">
-          {/* TODO: i18n */}
-          Other
+          {g("other")}
         </Typography>
       </Box>
     </RadioGroup>

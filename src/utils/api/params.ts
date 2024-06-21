@@ -1,6 +1,8 @@
 import { DMApiTypes } from "@/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
+import { CommonStreamParams } from "./types"
+
 export const inputEncodings = exhaustiveStringTuple<
   DMApiTypes.Schema["InputEncoding"]
 >()("auto", "dev", "hk", "iast", "tibetan", "wylie")
@@ -34,7 +36,10 @@ export const grammarModes = exhaustiveStringTuple<
   "unsandhied-morphosyntax",
 )
 
-export const apiParamsNames: DMApiTypes.ParamNames = {
+export const apiParamsNames: DMApiTypes.ParamNames & CommonStreamParams = {
+  commonStreamParams: {
+    input_encoding: "input_encoding",
+  },
   search: {
     filter_language: "filter_language",
     filter_primary: "filter_primary",

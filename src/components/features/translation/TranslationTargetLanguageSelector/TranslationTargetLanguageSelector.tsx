@@ -13,7 +13,7 @@ const LazyTargetLanguageOptionsSelector = dynamic(
     loading: () => (
       <OptionsLoading
         options={appConfig.paramOptions.targetLanguages}
-        i18nKey="targetLanguages"
+        i18nKey="translation.targetLanguages"
       />
     ),
     ssr: false,

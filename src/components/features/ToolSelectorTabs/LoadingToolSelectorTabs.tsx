@@ -47,7 +47,7 @@ export default function LoadingToolSelectorTabs() {
         sx={{
           width: "100%",
           minHeight: minToolBoxHeight,
-          py: 3,
+          py: 11,
           position: "relative",
         }}
       >

@@ -1,26 +1,29 @@
-"use client"
-
-import React from "react"
+import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
 import OutlinedInput from "@mui/material/OutlinedInput"
-import Typography from "@mui/material/Typography"
+import { useSetAtom } from "jotai"
 
+import { triggerSearchQueryAtom } from "@/atoms"
 import { setRows } from "@/features/utils"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { apiParamsNames } from "@/utils/api/params"
 
+import StartStopButton from "../SearchStartStopButton"
+
 export default function SearchBox({
-  placeholder,
   className,
+  isScrolling,
 }: {
-  placeholder: string
   className?: string
+  isScrolling?: boolean
 }) {
-  const [, setIsQueryEnabled] = React.useState(false)
+  const t = useTranslations("search")
+
   const { input, handleValueChange } = useInputWithUrlParam<string>(
     apiParamsNames.search.search_input,
   )
+
+  const setTriggerSearchQuery = useSetAtom(triggerSearchQueryAtom)
 
   return (
     <Box className={className}>
@@ -29,34 +32,23 @@ export default function SearchBox({
           width: "100%",
           backgroundColor: "background.paper",
           overflow: "clip",
+          py: 1.2,
         }}
-        placeholder={placeholder}
+        placeholder={t("placeholder")}
         inputProps={{
           "aria-label": "search",
         }}
         value={input}
-        rows={setRows(input)}
+        rows={isScrolling ? 1 : setRows(input)}
         multiline
         onChange={handleValueChange}
         onKeyUp={(event) => {
           if (event.key === "Enter" && input.length > 0) {
-            setIsQueryEnabled(true)
+            setTriggerSearchQuery(true)
           }
         }}
+        endAdornment={<StartStopButton />}
       />
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-        <Button
-          variant="contained"
-          onClick={() => {
-            setIsQueryEnabled(true)
-          }}
-        >
-          Search
-        </Button>
-      </Box>
-      <Box sx={{ mt: 3 }}>
-        <Typography>Coming soon...</Typography>
-      </Box>
     </Box>
   )
 }

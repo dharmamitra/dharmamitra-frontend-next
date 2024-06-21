@@ -8,6 +8,7 @@
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
       "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
     },
+    "other": "其他",
     "clear": "Clear",
     "stop": "Stop"
   },
@@ -45,9 +46,6 @@
     "inputAriaLabel": "翻譯欄位",
     "placeholder": "在此輸入需要翻譯之梵文、藏文或中文…",
     "otherLabel": "其他",
-    "encodingSelectLabel": "轉寫系統",
-    "primaryEncodingsAriaLabel": "Primary encoding options",
-    "otherEncodingsAriaLabel": "Other encoding options",
     "targetLanguageSelectLabel": "翻譯目標語",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
     "secondaryTargetLanguagesAriaLabel": "Other traget language options",
@@ -62,16 +60,6 @@
       "tag": "Tag",
       "meanings": "Meanings",
       "unsuccessful": "Grammar analysis was not successful."
-    },
-    "encodings": {
-      "auto": "Autodetect",
-      "dev": "Devanagari",
-      "hk": "Harvard-Kyoto",
-      "iast": "IAST Roman",
-      "itrans": "ITRANS",
-      "tibetan": "Tibetan Unicode",
-      "velthuis": "Velthuis",
-      "wylie": "Wylie"
     },
     "targetLanguages": {
       "buddhist-chinese": "佛典漢文",
@@ -95,6 +83,21 @@
     "grammar": {
       "on": "On",
       "off": "Off"
+    }
+  },
+  "commonStreamParams": {
+    "encodingSelectLabel": "轉寫系統",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "secondaryEncodingsAriaLabel": "Other encoding options",
+    "encodings": {
+      "auto": "Autodetect",
+      "dev": "Devanagari",
+      "hk": "Harvard-Kyoto",
+      "iast": "IAST Roman",
+      "itrans": "ITRANS",
+      "tibetan": "Tibetan Unicode",
+      "velthuis": "Velthuis",
+      "wylie": "Wylie"
     }
   },
   "metadata": {

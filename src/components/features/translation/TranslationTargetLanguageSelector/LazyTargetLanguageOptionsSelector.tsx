@@ -77,7 +77,7 @@ export default function TranslationTargetLanguageSelector() {
           <RadioOption
             key={language + "-primary-target-language-option"}
             id={language + "-primary-target-language-option"}
-            i18nKey="targetLanguages"
+            i18nKey="translation.targetLanguages"
             option={language}
             isSelected={isHydrated && value === language}
           />

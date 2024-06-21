@@ -8,6 +8,7 @@
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
       "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
     },
+    "other": "Other",
     "clear": "Clear",
     "stop": "Stop"
   },
@@ -36,7 +37,8 @@
   },
   "search": {
     "search": "Search",
-    "heading": "Search 2500 years of Buddhism"
+    "heading": "Search 2500 years of Buddhism",
+    "placeholder": "Enter a search term in Sanskrit, Tibetan, Buddhist scriptural Chinese or English."
   },
   "translation": {
     "translate": "Translate",
@@ -44,9 +46,6 @@
     "inputAriaLabel": "Translation input field",
     "placeholder": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
     "otherLabel": "Other",
-    "encodingSelectLabel": "Transliteration",
-    "primaryEncodingsAriaLabel": "Primary encoding options",
-    "otherEncodingsAriaLabel": "Other encoding options",
     "targetLanguageSelectLabel": "Output language",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
     "secondaryTargetLanguagesAriaLabel": "Other traget language options",
@@ -61,16 +60,6 @@
       "tag": "Tag",
       "meanings": "Meanings",
       "unsuccessful": "Grammar analysis was not successful."
-    },
-    "encodings": {
-      "auto": "Autodetect",
-      "dev": "Devanagari",
-      "hk": "Harvard-Kyoto",
-      "iast": "IAST Roman",
-      "itrans": "ITRANS",
-      "tibetan": "Tibetan Unicode",
-      "velthuis": "Velthuis",
-      "wylie": "Wylie"
     },
     "targetLanguages": {
       "buddhist-chinese": "Buddhist Chinese",
@@ -94,6 +83,21 @@
     "grammar": {
       "on": "On",
       "off": "Off"
+    }
+  },
+  "commonStreamParams": {
+    "encodingSelectLabel": "Transliteration",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "secondaryEncodingsAriaLabel": "Other encoding options",
+    "encodings": {
+      "auto": "Autodetect",
+      "dev": "Devanagari",
+      "hk": "Harvard-Kyoto",
+      "iast": "IAST Roman",
+      "itrans": "ITRANS",
+      "tibetan": "Tibetan Unicode",
+      "velthuis": "Velthuis",
+      "wylie": "Wylie"
     }
   },
   "metadata": {

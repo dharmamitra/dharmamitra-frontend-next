@@ -16,14 +16,14 @@ import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { apiParamsNames, inputEncodings } from "@/utils/api/params"
 
-import RadioOption from "../common/RadioOption"
+import RadioOption from "../translation/common/RadioOption"
 
 export default function TranslationInputEncodingSelector() {
-  const t = useTranslations("translation")
+  const t = useTranslations()
 
   const { value, handleValueChange, isHydrated } =
     useParamValueWithLocalStorage({
-      paramName: apiParamsNames.translation.input_encoding,
+      paramName: apiParamsNames.commonStreamParams.input_encoding,
       defaultValue: inputEncodings[0],
     })
 
@@ -58,7 +58,7 @@ export default function TranslationInputEncodingSelector() {
     <>
       <RadioGroup
         id={primaryOptionsSelectorId}
-        aria-label={t("primaryEncodingsAriaLabel")}
+        aria-label={t("commonStreamParams.primaryEncodingsAriaLabel")}
         value={value ? value : inputEncodings[0]}
         onChange={(e) => handleValueChange(e.target.value)}
         row
@@ -71,7 +71,7 @@ export default function TranslationInputEncodingSelector() {
           <RadioOption
             key={encoding + "-primary-encoding-option"}
             id={encoding + "-primary-encoding-option"}
-            i18nKey="encodings"
+            i18nKey="commonStreamParams.encodings"
             option={encoding}
             isSelected={isHydrated && value === encoding}
           />
@@ -88,7 +88,7 @@ export default function TranslationInputEncodingSelector() {
           value={isPrimaryValueSelected ? "" : value}
           onChange={(e) => handleValueChange(e.target.value)}
           inputProps={{
-            "aria-label": t("otherEncodingsAriaLabel"),
+            "aria-label": t("commonStreamParams.secondaryEncodingsAriaLabel"),
             sx: secondaryOptionsInputStyles,
           }}
           IconComponent={() => <SecondaryOptionsButtonIcon />}
@@ -104,7 +104,7 @@ export default function TranslationInputEncodingSelector() {
           displayEmpty
         >
           <MenuItem disabled value="">
-            {t("otherLabel")}
+            {t("generic.other")}
           </MenuItem>
           {otherEncodingOptions.map((encoding) => (
             <MenuItem
@@ -113,7 +113,7 @@ export default function TranslationInputEncodingSelector() {
               value={encoding}
             >
               {t(
-                `encodings.${encoding as keyof Messages["translation"]["encodings"]}`,
+                `commonStreamParams.encodings.${encoding as keyof Messages["commonStreamParams"]["encodings"]}`,
               )}
             </MenuItem>
           ))}
