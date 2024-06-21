@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl"
 import { Box, RadioGroup } from "@mui/material"
 import Typography from "@mui/material/Typography"
 
+import { flatRadioGroupStyles } from "@/components/styled"
 import { CustomSelectOption } from "@/utils/api/types"
 
 export const boxSx = {
@@ -41,12 +42,8 @@ export default function OptionsLoading({
     <RadioGroup
       aria-label="loading"
       value="option"
-      sx={{
-        gap: 2.65,
-        pl: 0,
-        ml: "-3px",
-      }}
       row
+      sx={{ ...flatRadioGroupStyles }}
     >
       <Box sx={{ display: "flex" }}>
         <Typography component="div" variant="body1">

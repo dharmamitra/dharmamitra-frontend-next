@@ -39,7 +39,12 @@ export default function TranslationInputEncodingSelector({
           <LazyTranslationInputEncodingSelector />
         </SettingBlock>
       ) : (
-        <Box sx={{ display: "inline-flex", px: 1, minHeight: "58px" }}>
+        <Box
+          sx={{
+            display: "inline-flex",
+            px: 1,
+          }}
+        >
           <LazyTranslationInputEncodingSelector />
         </Box>
       )}

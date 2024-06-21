@@ -38,7 +38,8 @@
   "search": {
     "search": "Search",
     "heading": "Search 2500 years of Buddhism",
-    "placeholder": "Enter a search term in Sanskrit, Tibetan, Buddhist scriptural Chinese or English."
+    "placeholder": "Enter a search term.",
+    "modeSwitchLabel": "Advanced mode"
   },
   "translation": {
     "translate": "Translate",

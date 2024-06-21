@@ -38,7 +38,8 @@
   "search": {
     "search": "搜索",
     "heading": "搜索2500年的佛教",
-    "placeholder": "搜索一些东西"
+    "placeholder": "搜索一些东西",
+    "modeSwitchLabel": "Advanced mode"
   },
   "translation": {
     "translate": "翻译",

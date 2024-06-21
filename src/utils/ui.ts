@@ -11,3 +11,8 @@ export const linkAttrs = {
   target: "_blank",
   rel: "noopener noreferrer",
 }
+
+export const localStorageKeys = {
+  view: "view-tab",
+  searchMode: "advanced-search-mode",
+}

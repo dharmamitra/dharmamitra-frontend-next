@@ -62,9 +62,7 @@ export default function TranslationInputEncodingSelector() {
         value={value ? value : inputEncodings[0]}
         onChange={(e) => handleValueChange(e.target.value)}
         row
-        sx={{
-          ...flatRadioGroupStyles,
-        }}
+        sx={{ ...flatRadioGroupStyles }}
         className={styles.customFocusVisible}
       >
         {primaryEncodingOptions.map((encoding) => (

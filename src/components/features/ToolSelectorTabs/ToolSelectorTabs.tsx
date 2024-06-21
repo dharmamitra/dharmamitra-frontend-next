@@ -11,6 +11,7 @@ import Tabs from "@mui/material/Tabs"
 
 import SearchFeature from "@/features/search"
 import TranslationFeature from "@/features/translation"
+import { localStorageKeys } from "@/utils/ui"
 
 import LoadingToolSelectorTabs from "./LoadingToolSelectorTabs"
 import styles from "./ToolSelectorTabs.module.css"
@@ -44,8 +45,6 @@ export function a11yProps(index: number) {
   }
 }
 
-const viewStorageKey = "view-tab"
-
 export function FeatureTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
 
@@ -67,19 +66,22 @@ export function FeatureTabPanel(props: TabPanelProps) {
 
 export default function ToolSelectorTabs() {
   const [tabIndex, setTabIndex] = React.useState(-1)
+  const [isAdvancedSearchMode, setIsAdvancedSearchMode] = React.useState(false)
 
   React.useEffect(() => {
-    const storedTabIndex = localStorage.getItem(viewStorageKey)
+    const storedTabIndex = localStorage.getItem(localStorageKeys.view)
     if (storedTabIndex !== null) {
       setTabIndex(Number(storedTabIndex))
     } else {
       setTabIndex(0)
     }
-  }, [setTabIndex])
+
+    setIsAdvancedSearchMode(!!localStorage.getItem(localStorageKeys.searchMode))
+  }, [setTabIndex, setIsAdvancedSearchMode])
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue)
-    localStorage.setItem(viewStorageKey, String(newValue))
+    localStorage.setItem(localStorageKeys.view, String(newValue))
   }
 
   const t = useTranslations()
@@ -144,7 +146,10 @@ export default function ToolSelectorTabs() {
         <Box sx={{ height: "100%" }}>
           <FeatureTabPanel value={tabIndex} index={0}>
             <Box sx={{ maxWidth: "960px", mx: "auto", mt: 6 }}>
-              <SearchFeature />
+              <SearchFeature
+                isAdvancedSearchMode={isAdvancedSearchMode}
+                setIsAdvancedSearchMode={setIsAdvancedSearchMode}
+              />
             </Box>
           </FeatureTabPanel>
 
