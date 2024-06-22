@@ -23,37 +23,50 @@ const defaultDataSource = translationModels[0]
 export default function SearchDataTargetOptions() {
   const t = useTranslations("search")
 
-  const { value: dataSource, handleValueChange: handleDataSourceChange } =
+  const { value: dataSource, handleValueChange: updateDataTarget } =
     useParamValueWithLocalStorage({
       paramName: apiParamsNames.search.filter_primary,
       defaultValue: defaultDataSource,
     })
+
   React.useEffect(() => {
     if (dataSource === "") {
-      handleDataSourceChange(defaultDataSource)
+      updateDataTarget(defaultDataSource)
     }
-  }, [dataSource, handleDataSourceChange])
+  }, [dataSource, updateDataTarget])
 
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
   const primaryLanguageFilter = getSearchParam(
     apiParamsNames.search.filter_language,
   )
+  const secondaryLanguageFilter = getSearchParam(`filter_language_secondary`)
 
   const [showLanguagesFilters, setShowLanguagesFilters] = React.useState(
     Boolean(primaryLanguageFilter),
   )
 
-  const handlePrimaryLanguageFilterChange = (value: string | null) => {
-    updateParams(
-      createQueryString(apiParamsNames.search.filter_language, value),
-    )
-  }
+  const handleLanguageFilterChange = React.useCallback(
+    (value: string | null) => {
+      updateParams(
+        createQueryString(apiParamsNames.search.filter_language, value),
+      )
+    },
+    [createQueryString, updateParams],
+  )
 
-  const closePrimaryLanguageFilter = () => {
+  const closePrimaryLanguageFilter = React.useCallback(() => {
     setShowLanguagesFilters(false)
-    handlePrimaryLanguageFilterChange(null)
-  }
+    handleLanguageFilterChange(null)
+  }, [setShowLanguagesFilters, handleLanguageFilterChange])
+
+  const handleDataSourceChange = React.useCallback(
+    (value: string) => {
+      updateDataTarget(value)
+      handleLanguageFilterChange(null)
+    },
+    [setShowLanguagesFilters, handleLanguageFilterChange],
+  )
 
   const isSmallScreen = useMediaQuery("(max-width:500px)")
 
@@ -85,8 +98,9 @@ export default function SearchDataTargetOptions() {
       <LanguageFilterOptions
         isShown={Boolean(showLanguagesFilters || primaryLanguageFilter)}
         isSmallScreen={isSmallScreen}
-        value={primaryLanguageFilter}
-        hangleChange={handlePrimaryLanguageFilterChange}
+        dataSource={dataSource}
+        value={primaryLanguageFilter || secondaryLanguageFilter}
+        hangleChange={handleLanguageFilterChange}
         isSubOptionOpen={false}
         setShowSubOption={setShowLanguagesFilters}
         closeFilterOptions={closePrimaryLanguageFilter}

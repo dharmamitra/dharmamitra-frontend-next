@@ -11,10 +11,23 @@ import { primaryFilterLanguages } from "@/utils/api/params"
 
 import OpenSubOptionsButton from "./OpenSubOptionsButton"
 
+const tempSecondaryFilterLanguages = [
+  "Tibetan-Chinese",
+  "Tibetan-English",
+  "Sanskrit-English",
+  "Sanskrit-Tibetan",
+]
+
+const languages = {
+  primary: primaryFilterLanguages,
+  secondary: tempSecondaryFilterLanguages,
+}
+
 type Props = {
   isShown: boolean
   isSmallScreen: boolean
   value: string | null
+  dataSource: string
   /* eslint-disable-next-line no-unused-vars */
   hangleChange: (value: string | null) => void
   isSubOptionOpen: boolean
@@ -26,13 +39,15 @@ export default function LanguageFilterOptions({
   isShown,
   isSmallScreen,
   value,
+  dataSource,
   hangleChange,
   isSubOptionOpen,
   setShowSubOption,
   closeFilterOptions,
 }: Props) {
-  if (!isShown) return null
+  if (!isShown || !(dataSource in languages)) return null
 
+  const languagesFilters = languages[dataSource as keyof typeof languages]
   //   const t = useTranslations("search")
 
   return (
@@ -46,7 +61,7 @@ export default function LanguageFilterOptions({
         onChange={(event, value) => hangleChange(value)}
         aria-label="Data Source"
       >
-        {primaryFilterLanguages.map((language) => (
+        {languagesFilters.map((language) => (
           <ToggleButton
             key={language + "data-language-option"}
             value={language}

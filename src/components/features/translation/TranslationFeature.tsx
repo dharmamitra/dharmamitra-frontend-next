@@ -49,7 +49,7 @@ export default function TranslationFeature() {
           mt: 3,
         }}
       >
-        {translateExtendedOptions ? <TranslationModelSelector /> : null}
+        <TranslationModelSelector isEnabled={translateExtendedOptions} />
         <TranslationTaggingDrawer />
       </Box>
 

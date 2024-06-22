@@ -9,7 +9,7 @@ import { localStorageKeys } from "@/utils/ui"
 import TranslationInputEncodingSelector from "../TranslationInputEncodingSelector"
 // import useAppConfig from "@/hooks/useAppConfig"
 import SearchInput from "./SearchInput"
-import SearchAdvancedOptions from "./SearchOptions"
+import SearchOptions from "./SearchOptions"
 // import TranslationKeyboardControls from "./TranslationKeyboardControls"
 import SearchResults from "./SearchResults"
 
@@ -65,7 +65,7 @@ export default function TranslationFeature({
       </Box>
       <SearchInput />
 
-      <SearchAdvancedOptions isOpen={isSearchOptionsOpen} />
+      <SearchOptions isOpen={isSearchOptionsOpen} />
 
       <SearchResults />
 

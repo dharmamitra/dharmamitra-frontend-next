@@ -22,6 +22,12 @@ const LazyModelSelector = dynamic(() => import("./LazyModelSelector"), {
   ssr: false,
 })
 
-export default function TranslationModelSelector() {
+type Props = {
+  isEnabled: boolean
+}
+
+export default function TranslationModelSelector({ isEnabled }: Props) {
+  if (!isEnabled) return null
+
   return <LazyModelSelector />
 }
