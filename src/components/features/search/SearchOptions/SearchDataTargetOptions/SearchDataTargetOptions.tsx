@@ -17,6 +17,7 @@ import {
 
 import LanguageFilterOptions from "./LanguageFilterOptions"
 import OpenSubOptionsButton from "./OpenSubOptionsButton"
+import LimitFilters from "./LimitFilters/LimitFilters"
 
 const defaultDataSource = translationModels[0]
 
@@ -105,6 +106,7 @@ export default function SearchDataTargetOptions() {
         setShowSubOption={setShowLanguagesFilters}
         closeFilterOptions={closePrimaryLanguageFilter}
       />
+      <LimitFilters language={primaryLanguageFilter} />
     </Box>
   )
 }

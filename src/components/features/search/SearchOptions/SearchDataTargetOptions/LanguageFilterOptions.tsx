@@ -1,6 +1,5 @@
-// import { useTranslations } from "next-intl"
-
 import React from "react"
+import { useTranslations } from "next-intl"
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"
 import { IconButton } from "@mui/material"
 import Box from "@mui/material/Box"
@@ -19,9 +18,20 @@ const tempSecondaryFilterLanguages = [
 ]
 
 const languages = {
-  primary: primaryFilterLanguages,
-  secondary: tempSecondaryFilterLanguages,
-}
+  primary: { list: primaryFilterLanguages, i18nKey: "search.primaryLanguages" },
+  secondary: {
+    list: tempSecondaryFilterLanguages,
+    i18nKey: "search.secondaryLanguages",
+  },
+} as const
+
+type I18nKey =
+  | typeof languages.primary.i18nKey
+  | typeof languages.secondary.i18nKey
+
+type Language = keyof Messages["search"][I18nKey extends `search.${infer K}`
+  ? K
+  : never]
 
 type Props = {
   isShown: boolean
@@ -47,8 +57,9 @@ export default function LanguageFilterOptions({
 }: Props) {
   if (!isShown || !(dataSource in languages)) return null
 
-  const languagesFilters = languages[dataSource as keyof typeof languages]
-  //   const t = useTranslations("search")
+  const optionSet = languages[dataSource as keyof typeof languages]
+  const options = optionSet.list
+  const t = useTranslations(optionSet.i18nKey)
 
   return (
     <Box sx={{ display: "flex", gap: 1 }}>
@@ -61,13 +72,12 @@ export default function LanguageFilterOptions({
         onChange={(event, value) => hangleChange(value)}
         aria-label="Data Source"
       >
-        {languagesFilters.map((language) => (
+        {options.map((language) => (
           <ToggleButton
             key={language + "data-language-option"}
             value={language}
           >
-            {/* {t(`sources.${source}`)} */}
-            {language}
+            {t(`${language as Language}`)}
           </ToggleButton>
         ))}
       </ToggleButtonGroup>

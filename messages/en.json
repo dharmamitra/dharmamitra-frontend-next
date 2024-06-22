@@ -44,7 +44,21 @@
       "primary": "Traditional",
       "secondary": "Modern",
       "parallels": "Parallels"
+    },
+    "primaryLanguages": {
+      "pli": "Pali",
+      "san": "Sanskrit",
+      "tib": "Tibetan",
+      "chn": "Chinese"
+    },
+    "secondaryLanguages": {
+      "san": "Sanskrit"
+    },
+    "limits": {
+      "category": "Category",
+      "text": "Text"
     }
+
   },
   "translation": {
     "translate": "Translate",

@@ -6,7 +6,7 @@ export type Schema = components["schemas"]
  * HELPERS
  */
 
-type APIRequestBody<operation> = "requestBody" extends keyof operation
+export type APIRequestBody<operation> = "requestBody" extends keyof operation
   ? "content" extends keyof operation["requestBody"]
     ? "application/json" extends keyof operation["requestBody"]["content"]
       ? operation["requestBody"]["content"]["application/json"]
@@ -14,13 +14,13 @@ type APIRequestBody<operation> = "requestBody" extends keyof operation
     : never
   : never
 
-// type APIRequestParams<operation> = "parameters" extends keyof operation
-//   ? "query" extends keyof operation["parameters"]
-//     ? operation["parameters"]["query"]
-//     : never
-//   : never
+export type APIRequestParams<operation> = "parameters" extends keyof operation
+  ? "query" extends keyof operation["parameters"]
+    ? operation["parameters"]["query"]
+    : never
+  : never
 
-type APIResponse<operation> = "responses" extends keyof operation
+export type APIResponse<operation> = "responses" extends keyof operation
   ? 200 extends keyof operation["responses"]
     ? "content" extends keyof operation["responses"][200]
       ? "application/json" extends keyof operation["responses"][200]["content"]

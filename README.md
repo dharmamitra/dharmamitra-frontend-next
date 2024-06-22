@@ -124,8 +124,8 @@ In addition to the Angular converntion:
 - adapted from [Best Practices for Handling Per-Environment Configuration in Your JS/TS Applications](https://www.raulmelo.me/en/blog/best-practices-for-handling-per-environment-config-js-ts-applications#the-config-strategy)
 
 - environment specific build scripts (in `package.json`) set the `NEXT_PUBLIC_APP_ENV` used to define app config (including features, options to render) for each environment.
-  - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env.production`. **note**: This overwrites the `.env.production` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_env.sh`
-  - Next.js automatically loads environment variables from `.env.local`, `.env.development`, `.env.production`, and `.env.test`. The prebuild step allows us to maintain the standard file names and use Next.js's built-in environment loading strategy.
+  - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env`. **note**: This overwrites the `.env` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_env.sh`
+
 
 ### Adding a new environment
 
