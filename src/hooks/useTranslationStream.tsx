@@ -2,7 +2,7 @@ import React from "react"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
-import { DMApiTypes, streamPaths } from "@/api"
+import { DMApiTypes, streamUtils } from "@/api"
 import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
@@ -96,7 +96,7 @@ const useTranslationStream = () => {
       // 15 seconds
     }, 15000)
 
-    const newEventSource = new SSE(basePath + streamPaths.translation, {
+    const newEventSource = new SSE(basePath + streamUtils.paths.translation, {
       headers: {
         "Content-Type": "application/json",
       },

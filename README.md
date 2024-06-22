@@ -258,15 +258,7 @@ TODO
 
 #### Stream formatting markers
 
-The list of unique characters from unicode emojis (https://emojipedia.org/) used to format stream responses is maintained in `streamMarkers` in `src/components/styled.tsx`
-
-| Marker | Emoji Name        | Description                                    |
-| ------ | ----------------- | ---------------------------------------------- |
-| `🔽`   | downwards-button  | line break                                     |
-| `⏮️`   | last-track-button | start of meta formating                        |
-| `⏭️`   | next-track-button | end of meta formating                          |
-| `⚠️`   | warning           | warning (followed by i18n warning message key matching the pattern `\w+`) |
-| `↯`   | prohibited        | failure (followed by i18n --"--)   |
+The list of unique characters from unicode emojis (https://emojipedia.org/) used to format stream responses is maintained in `markers` in `src/utils/api/stream.ts` and consumed throughout the app via `streamUtils` expirted from `src/utils/api/index.ts`.
 
 ## 🌐 Internationalization (i18n)
 

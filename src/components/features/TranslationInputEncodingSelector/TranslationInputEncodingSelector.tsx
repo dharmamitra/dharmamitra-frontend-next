@@ -21,12 +21,18 @@ const LazyTranslationInputEncodingSelector = dynamic(
   },
 )
 
+type Props = {
+  labelled?: boolean
+  isOpen?: boolean
+}
+
 export default function TranslationInputEncodingSelector({
   labelled,
-}: {
-  labelled?: boolean
-}) {
+  isOpen = true,
+}: Props) {
   const t = useTranslations("commonStreamParams")
+
+  if (!isOpen) return null
 
   return (
     <>

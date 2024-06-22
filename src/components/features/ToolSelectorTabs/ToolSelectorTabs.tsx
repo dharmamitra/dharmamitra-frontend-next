@@ -66,7 +66,7 @@ export function FeatureTabPanel(props: TabPanelProps) {
 
 export default function ToolSelectorTabs() {
   const [tabIndex, setTabIndex] = React.useState(-1)
-  const [isAdvancedSearchMode, setIsAdvancedSearchMode] = React.useState(false)
+  const [isSearchOptionsOpen, setIsAdvancedSearchMode] = React.useState(false)
 
   React.useEffect(() => {
     const storedTabIndex = localStorage.getItem(localStorageKeys.view)
@@ -147,7 +147,7 @@ export default function ToolSelectorTabs() {
           <FeatureTabPanel value={tabIndex} index={0}>
             <Box sx={{ maxWidth: "960px", mx: "auto", mt: 6 }}>
               <SearchFeature
-                isAdvancedSearchMode={isAdvancedSearchMode}
+                isSearchOptionsOpen={isSearchOptionsOpen}
                 setIsAdvancedSearchMode={setIsAdvancedSearchMode}
               />
             </Box>

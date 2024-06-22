@@ -39,7 +39,12 @@
     "search": "搜索",
     "heading": "搜索2500年的佛教",
     "placeholder": "搜索一些东西",
-    "modeSwitchLabel": "Advanced mode"
+    "modeSwitchLabel": "Advanced mode",
+    "sources": {
+      "primary": "Traditional",
+      "secondary": "Modern",
+      "parallels": "Parallels"
+    }
   },
   "translation": {
     "translate": "翻譯",

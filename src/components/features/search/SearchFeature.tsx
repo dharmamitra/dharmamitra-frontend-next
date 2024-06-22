@@ -9,16 +9,17 @@ import { localStorageKeys } from "@/utils/ui"
 import TranslationInputEncodingSelector from "../TranslationInputEncodingSelector"
 // import useAppConfig from "@/hooks/useAppConfig"
 import SearchInput from "./SearchInput"
+import SearchAdvancedOptions from "./SearchOptions"
 // import TranslationKeyboardControls from "./TranslationKeyboardControls"
 import SearchResults from "./SearchResults"
 
 type TranslationFeatureProps = {
-  isAdvancedSearchMode: boolean
+  isSearchOptionsOpen: boolean
   setIsAdvancedSearchMode: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function TranslationFeature({
-  isAdvancedSearchMode,
+  isSearchOptionsOpen,
   setIsAdvancedSearchMode,
 }: TranslationFeatureProps) {
   const t = useTranslations("search")
@@ -43,17 +44,17 @@ export default function TranslationFeature({
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: isAdvancedSearchMode ? "space-between" : "flex-end",
+          justifyContent: isSearchOptionsOpen ? "space-between" : "flex-end",
           flexWrap: "wrap",
           minHeight: "60px",
         }}
       >
-        {isAdvancedSearchMode ? <TranslationInputEncodingSelector /> : null}
+        <TranslationInputEncodingSelector isOpen={isSearchOptionsOpen} />
 
         <FormControlLabel
           control={
             <Switch
-              checked={isAdvancedSearchMode}
+              checked={isSearchOptionsOpen}
               onChange={handleChange}
               color="secondary"
             />
@@ -63,6 +64,9 @@ export default function TranslationFeature({
         />
       </Box>
       <SearchInput />
+
+      <SearchAdvancedOptions isOpen={isSearchOptionsOpen} />
+
       <SearchResults />
 
       {/* <TranslationKeyboardControls /> */}

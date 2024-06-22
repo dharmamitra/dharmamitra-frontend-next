@@ -36,6 +36,17 @@ export const grammarModes = exhaustiveStringTuple<
   "unsandhied-morphosyntax",
 )
 
+export const primaryFilterLanguages = exhaustiveStringTuple<
+  DMApiTypes.Schema["FilterLanguage"]
+>()("english", "tibetan", "sanskrit", "buddhist-chinese", "pali")
+
+// TODO: update with new query param
+export const searchDataSources: (keyof Messages["search"]["sources"])[] = [
+  "primary",
+  "secondary",
+  "parallels",
+]
+
 export const apiParamsNames: DMApiTypes.ParamNames & CommonStreamParams = {
   commonStreamParams: {
     input_encoding: "input_encoding",

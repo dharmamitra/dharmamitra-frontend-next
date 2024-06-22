@@ -4,7 +4,7 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import Typography from "@mui/material/Typography"
 
-import { streamMarkers } from "@/api"
+import { streamUtils } from "@/api"
 import CopyText from "@/components/CopyText"
 import Error from "@/components/Error"
 import LoadingDots from "@/components/LoadingDots"
@@ -16,10 +16,12 @@ import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 type ErrorMessageKey = keyof Messages["generic"]["error"]
 
 const warningPattern = new RegExp(
-  String.raw`(^.*?)(${streamMarkers.warning}.*)$`,
+  String.raw`(^.*?)(${streamUtils.markers.warning}.*)$`,
 )
 
-const errorPattern = new RegExp(String.raw`(^.*?)(${streamMarkers.error}.*)$`)
+const errorPattern = new RegExp(
+  String.raw`(^.*?)(${streamUtils.markers.error}.*)$`,
+)
 
 const pasrseStreamContent = (string: string, regExp: RegExp) => {
   const exceptionCheck = string.match(regExp)
@@ -41,7 +43,7 @@ const FormatedStream = ({
 }) => {
   const t = useTranslations()
   const paragraphs = translationStream
-    ?.split(streamMarkers.lineBreak)
+    ?.split(streamUtils.markers.lineBreak)
     .filter((p) => p)
 
   return paragraphs.map((paragraph, index) => {

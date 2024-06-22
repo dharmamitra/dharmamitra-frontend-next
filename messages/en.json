@@ -39,7 +39,12 @@
     "search": "Search",
     "heading": "Search 2500 years of Buddhism",
     "placeholder": "Enter a search term.",
-    "modeSwitchLabel": "Advanced mode"
+    "modeSwitchLabel": "Advanced mode",
+    "sources": {
+      "primary": "Traditional",
+      "secondary": "Modern",
+      "parallels": "Parallels"
+    }
   },
   "translation": {
     "translate": "Translate",

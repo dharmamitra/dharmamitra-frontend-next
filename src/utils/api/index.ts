@@ -1,18 +1,6 @@
 import { getTaggingData } from "./endpoints/tagging"
+import * as streamUtils from "./stream"
 import * as DMApiTypes from "./types"
-
-const streamPaths = {
-  translation: "/api/translation-stream",
-  search: "/api/search-stream",
-}
-
-const streamMarkers = {
-  lineBreak: "🔽",
-  metaLineStart: "⏮️",
-  metaLineEnd: "⏭️",
-  warning: "⚠️",
-  error: "↯",
-} as const
 
 const DMFetchApi = {
   tagging: {
@@ -24,4 +12,4 @@ const DMFetchApi = {
   },
 }
 
-export { DMApiTypes, DMFetchApi, streamMarkers, streamPaths }
+export { DMApiTypes, DMFetchApi, streamUtils }

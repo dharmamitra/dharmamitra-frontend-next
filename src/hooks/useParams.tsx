@@ -5,7 +5,7 @@ import appConfig from "@/config"
 import { defaultLocale } from "@/i18n"
 import { usePathname } from "@/navigation"
 
-function updateQueryParamsWithoutReloading(newUrl: string) {
+function updateQueryParamsWithoutReload(newUrl: string) {
   if (typeof window !== "undefined") {
     const lang = document.documentElement.lang
     const path =
@@ -28,9 +28,14 @@ const useParams = () => {
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
   const createQueryString = React.useCallback(
-    (paramName: string, value: string) => {
+    (paramName: string, value: string | null) => {
       const params = new URLSearchParams(searchParams.toString())
-      params.set(paramName, value)
+
+      if (value) {
+        params.set(paramName, value)
+      } else {
+        params.delete(paramName)
+      }
 
       return params.toString()
     },
@@ -39,7 +44,7 @@ const useParams = () => {
 
   const updateParams = React.useCallback(
     (queryString: string) => {
-      updateQueryParamsWithoutReloading(pathname + "?" + queryString)
+      updateQueryParamsWithoutReload(pathname + "?" + queryString)
     },
     [pathname],
   )
