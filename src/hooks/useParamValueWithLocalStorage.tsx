@@ -54,8 +54,10 @@ function useParamValueWithLocalStorage({
       value:
         | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
         | SelectChangeEvent<string>
-        | string,
+        | string
+        | null,
     ) => {
+      if (value === null) return
       const newValue = typeof value === "string" ? value : value.target.value
       setValue(newValue)
     },

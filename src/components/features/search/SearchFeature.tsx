@@ -59,7 +59,7 @@ export default function TranslationFeature({
               color="secondary"
             />
           }
-          label={t("modeSwitchLabel")}
+          label={t("optionsSwitchLabel")}
           labelPlacement="start"
         />
       </Box>

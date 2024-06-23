@@ -12,13 +12,13 @@ import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage
 import {
   apiParamsNames,
   DataTargetLanguage,
+  disabledSearchDataTargets,
   SearchDataTarget,
   searchDataTargets,
 } from "@/utils/api/params"
 import { getValidDefaultValue } from "@/utils/ui"
 
 import LimitFilters from "./LimitFilters/LimitFilters"
-import OpenSubOptionsButton from "./OpenSubOptionsButton"
 import TargetDataLanguageFilter from "./TargetDataLanguageFilter"
 
 const defaultValue = getValidDefaultValue(searchDataTargets[0])
@@ -47,10 +47,6 @@ export default function SearchDataTargetOptions() {
     `filter_language_secondary`,
   ) as DataTargetLanguage
 
-  const [showLanguagesFilters, setShowLanguagesFilters] = React.useState(
-    Boolean(primaryLanguageFilter),
-  )
-
   const handleLanguageFilterChange = React.useCallback(
     (value: string | null) => {
       updateParams(
@@ -59,11 +55,6 @@ export default function SearchDataTargetOptions() {
     },
     [createQueryString, updateParams],
   )
-
-  const closePrimaryLanguageFilter = React.useCallback(() => {
-    setShowLanguagesFilters(false)
-    handleLanguageFilterChange(null)
-  }, [setShowLanguagesFilters, handleLanguageFilterChange])
 
   const handleDataSourceChange = React.useCallback(
     (value: string) => {
@@ -77,38 +68,32 @@ export default function SearchDataTargetOptions() {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-      <Box sx={{ display: "flex", gap: 1 }}>
-        <ToggleButtonGroup
-          orientation={isSmallScreen ? "vertical" : "horizontal"}
-          color="secondary"
-          value={searchTarget}
-          exclusive
-          onChange={(event, value) => handleDataSourceChange(value)}
-          aria-label="Data Source"
-        >
-          {searchDataTargets.map((target) => (
-            <ToggleButton key={target + "data-target-option"} value={target}>
-              {t(`targets.${target}`)}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-
-        <OpenSubOptionsButton
-          isShown={!showLanguagesFilters}
-          setShowSubOption={setShowLanguagesFilters}
-          sx={{ alignSelf: "flex-end" }}
-        />
-      </Box>
+      <ToggleButtonGroup
+        orientation={isSmallScreen ? "vertical" : "horizontal"}
+        color="secondary"
+        value={searchTarget}
+        exclusive
+        onChange={(event, value) => handleDataSourceChange(value)}
+        aria-label="Data Source"
+      >
+        {searchDataTargets.map((target) => (
+          <ToggleButton
+            key={target + "data-target-option"}
+            value={target}
+            disabled={disabledSearchDataTargets.includes(target)}
+          >
+            {t(`targets.${target}`)}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
 
       <TargetDataLanguageFilter
         isSmallScreen={isSmallScreen}
         searchTarget={searchTarget as SearchDataTarget}
         value={primaryLanguageFilter || secondaryLanguageFilter}
         hangleChange={handleLanguageFilterChange}
-        isSubOptionOpen={false}
-        setShowSubOption={setShowLanguagesFilters}
-        closeFilterOptions={closePrimaryLanguageFilter}
       />
+
       <LimitFilters language={primaryLanguageFilter} />
     </Box>
   )

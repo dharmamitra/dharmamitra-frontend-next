@@ -36,7 +36,9 @@ export type SearchDataTarget = DMApiTypes.Schema["SearchTarget"] &
   keyof Messages["search"]["targets"]
 export const searchDataTargets: SearchDataTarget[] = exhaustiveStringTuple<
   DMApiTypes.Schema["SearchTarget"]
->()("primary", "secondary", "parallel_data")
+>()("parallel_data", "primary", "secondary")
+
+export const disabledSearchDataTargets = ["primary", "secondary"]
 
 // TODO: update with new query param
 export type PrimaryDataTargetLanguage =
@@ -48,9 +50,9 @@ export const primaryDataTargetLanguages: PrimaryDataTargetLanguage[] = [
   "pli",
 ]
 
-export type SecondaryDataTargetLanguage =
-  keyof Messages["search"]["secondaryLanguages"]
-export const tempSecondaryDataTargetLanguages: SecondaryDataTargetLanguage[] = [
+export type ParallelDataTargetLanguage =
+  keyof Messages["search"]["parallelLanguages"]
+export const tempParallelDataTargetLanguages: ParallelDataTargetLanguage[] = [
   "tib-chn",
   "tib-eng",
   "san-eng",
@@ -59,7 +61,7 @@ export const tempSecondaryDataTargetLanguages: SecondaryDataTargetLanguage[] = [
 
 export type DataTargetLanguage =
   | PrimaryDataTargetLanguage
-  | SecondaryDataTargetLanguage
+  | ParallelDataTargetLanguage
 
 export const apiParamsNames: DMApiTypes.ParamNames & CommonStreamParams = {
   commonStreamParams: {

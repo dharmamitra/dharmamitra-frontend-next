@@ -39,7 +39,7 @@
     "search": "Search",
     "heading": "Search 2500 years of Buddhism",
     "placeholder": "Enter a search term.",
-    "modeSwitchLabel": "Advanced mode",
+    "optionsSwitchLabel": "Search options",
     "targets": {
       "primary": "Traditional",
       "secondary": "Modern",
@@ -51,7 +51,7 @@
       "tib": "Tibetan",
       "chn": "Chinese"
     },
-    "secondaryLanguages": {
+    "parallelLanguages": {
       "tib-chn": "Tibetan-Chinese",
       "tib-eng": "Tibetan-English",
       "san-eng": "Sanskrit-English",
