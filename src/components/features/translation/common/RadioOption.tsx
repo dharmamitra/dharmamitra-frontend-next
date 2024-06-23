@@ -5,27 +5,39 @@ import {
   CustomFormControlLabel,
   VisuallyHiddenRadio,
 } from "@/components/styled"
-import { CustomSelectOption } from "@/utils/api/types"
+import {
+  allTargetLanguages,
+  InputEncoding,
+  inputEncodings,
+  TargetLanguage,
+} from "@/utils/api/params"
+
+const getI18nKey = (option: InputEncoding | TargetLanguage) => {
+  if (inputEncodings.includes(option as InputEncoding))
+    return "commonStreamParams.encodings"
+  if (allTargetLanguages.includes(option as TargetLanguage))
+    return "translation.targetLanguages"
+
+  throw new Error("Invalid InputEncoding or TargetLanguage option")
+}
 
 export default function RadioOption({
   id,
-  i18nKey,
   option,
   isSelected,
 }: {
   id: string
-  i18nKey: "commonStreamParams.encodings" | "translation.targetLanguages"
-  option: string
+  option: InputEncoding | TargetLanguage
   isSelected: boolean
 }) {
-  const t = useTranslations(i18nKey)
+  const t = useTranslations(getI18nKey(option))
 
   return (
     <CustomFormControlLabel
       id={`styled-${id}`}
       value={option}
       control={<VisuallyHiddenRadio id={id} data-testid={id} />}
-      label={t(option as CustomSelectOption)}
+      label={t(option)}
       checked={isSelected}
     />
   )

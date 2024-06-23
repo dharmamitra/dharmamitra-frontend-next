@@ -1,6 +1,6 @@
-import { getTaggingData } from "./endpoints/tagging"
-import { getTextFileMenuData } from "./endpoints/menus/files"
 import { getCategoryMenuData } from "./endpoints/menus/category"
+import { getTextFileMenuData } from "./endpoints/menus/files"
+import { getTaggingData } from "./endpoints/tagging"
 import * as streamUtils from "./stream"
 import * as DMApiTypes from "./types"
 

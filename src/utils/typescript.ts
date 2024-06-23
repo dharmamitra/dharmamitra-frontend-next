@@ -13,3 +13,7 @@ export const exhaustiveStringTuple =
       : never
   ) =>
     x
+
+export type ExtendProperty<T, K extends keyof T, V> = {
+  [P in keyof T]: P extends K ? V : T[P]
+}

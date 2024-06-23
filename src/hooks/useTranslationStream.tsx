@@ -14,7 +14,7 @@ import {
 import { cleanSSEData } from "@/utils/transformers"
 
 const useTranslationStream = () => {
-  const { basePath, paramOptions } = useAppConfig()
+  const { basePath, customParamOptions } = useAppConfig()
 
   const { input: inputSentenceParam } = useInputWithUrlParam<string>(
     apiParamsNames.translation.input_sentence,
@@ -39,7 +39,7 @@ const useTranslationStream = () => {
       do_grammar_explanation: grammarParam === "true",
       target_lang:
         targetLangParam ??
-        (paramOptions
+        (customParamOptions
           .targetLanguages[0] as DMApiTypes.Schema["TargetLanguage"]),
       model: modelParam ?? translationModels[0],
     }),
@@ -47,7 +47,7 @@ const useTranslationStream = () => {
       inputSentenceParam,
       inputEncodingParam,
       targetLangParam,
-      paramOptions,
+      customParamOptions,
       modelParam,
       grammarParam,
     ],

@@ -34,16 +34,18 @@ const parseCategoryMenuData = (data: MenuFilterCategoriesResponseData) => {
 
 export type ParsedCategoryMenuData = ReturnType<typeof parseCategoryMenuData>
 
+const fallbackReturn: ParsedCategoryMenuData = new Map()
+
 export async function getCategoryMenuData(
-  query: MenuFilterCategoriesRequestQuery,
+  query: MenuFilterCategoriesRequestQuery | undefined,
 ) {
-  if (!query.language) {
-    return new Map()
+  if (!query) {
+    return fallbackReturn
   }
 
   const { data } = await apiClient.GET("/menus/category/", {
     params: { query },
   })
 
-  return data ? parseCategoryMenuData(data) : new Map()
+  return data ? parseCategoryMenuData(data) : fallbackReturn
 }

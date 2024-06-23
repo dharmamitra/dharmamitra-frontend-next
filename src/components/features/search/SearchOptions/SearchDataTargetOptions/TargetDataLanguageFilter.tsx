@@ -6,38 +6,36 @@ import Box from "@mui/material/Box"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
-import { primaryFilterLanguages } from "@/utils/api/params"
+import {
+  DataTargetLanguage,
+  primaryDataTargetLanguages,
+  SearchDataTarget,
+  tempSecondaryDataTargetLanguages,
+} from "@/utils/api/params"
 
 import OpenSubOptionsButton from "./OpenSubOptionsButton"
 
-const tempSecondaryFilterLanguages = [
-  "Tibetan-Chinese",
-  "Tibetan-English",
-  "Sanskrit-English",
-  "Sanskrit-Tibetan",
-]
+const getOptions = (searchTarget: SearchDataTarget) => {
+  switch (searchTarget) {
+    case "primary":
+      return {
+        options: primaryDataTargetLanguages,
+        i18nKey: "search.primaryLanguages" as const,
+      }
+    case "secondary":
+      return {
+        options: tempSecondaryDataTargetLanguages,
+        i18nKey: "search.secondaryLanguages" as const,
+      }
+    default:
+      return {}
+  }
+}
 
-const languages = {
-  primary: { list: primaryFilterLanguages, i18nKey: "search.primaryLanguages" },
-  secondary: {
-    list: tempSecondaryFilterLanguages,
-    i18nKey: "search.secondaryLanguages",
-  },
-} as const
-
-type I18nKey =
-  | typeof languages.primary.i18nKey
-  | typeof languages.secondary.i18nKey
-
-type Language = keyof Messages["search"][I18nKey extends `search.${infer K}`
-  ? K
-  : never]
-
-type Props = {
-  isShown: boolean
+type TargetDataLanguageFilterProps = {
   isSmallScreen: boolean
-  value: string | null
-  dataSource: string
+  value: DataTargetLanguage | null
+  searchTarget: SearchDataTarget
   /* eslint-disable-next-line no-unused-vars */
   hangleChange: (value: string | null) => void
   isSubOptionOpen: boolean
@@ -45,21 +43,25 @@ type Props = {
   closeFilterOptions: () => void
 }
 
-export default function LanguageFilterOptions({
-  isShown,
+type LanguageSelectorProps = Omit<
+  TargetDataLanguageFilterProps,
+  "searchTarget"
+> & {
+  options: DataTargetLanguage[]
+  i18nKey: "search.primaryLanguages" | "search.secondaryLanguages"
+}
+
+const LanguageSelector = ({
   isSmallScreen,
   value,
-  dataSource,
   hangleChange,
   isSubOptionOpen,
   setShowSubOption,
   closeFilterOptions,
-}: Props) {
-  if (!isShown || !(dataSource in languages)) return null
-
-  const optionSet = languages[dataSource as keyof typeof languages]
-  const options = optionSet.list
-  const t = useTranslations(optionSet.i18nKey)
+  options,
+  i18nKey,
+}: LanguageSelectorProps) => {
+  const t = useTranslations(i18nKey)
 
   return (
     <Box sx={{ display: "flex", gap: 1 }}>
@@ -77,7 +79,7 @@ export default function LanguageFilterOptions({
             key={language + "data-language-option"}
             value={language}
           >
-            {t(`${language as Language}`)}
+            {t(`${language}`)}
           </ToggleButton>
         ))}
       </ToggleButtonGroup>
@@ -98,4 +100,15 @@ export default function LanguageFilterOptions({
       </Box>
     </Box>
   )
+}
+
+export default function TargetDataLanguageFilter({
+  searchTarget,
+  ...rest
+}: TargetDataLanguageFilterProps) {
+  const { options, i18nKey } = getOptions(searchTarget)
+
+  if (!options) return null
+
+  return <LanguageSelector {...rest} options={options} i18nKey={i18nKey} />
 }

@@ -4,8 +4,8 @@ import {
   type BoxProps,
   Popper,
   Typography,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
+} from "@mui/material"
+import { styled } from "@mui/material/styles"
 
 export const StyledPopper = styled(Popper)({
   [`& .${autocompleteClasses.listbox}`]: {
@@ -15,10 +15,10 @@ export const StyledPopper = styled(Popper)({
       margin: 0,
     },
   },
-});
+})
 
 interface RowProps extends BoxProps {
-  inheretedstyles: React.CSSProperties;
+  inheretedstyles: React.CSSProperties
 }
 export const RowItem = styled(Box)<RowProps>(({ inheretedstyles }) => ({
   ...inheretedstyles,
@@ -29,11 +29,11 @@ export const RowItem = styled(Box)<RowProps>(({ inheretedstyles }) => ({
     bgcolor: "background.accent",
   },
   "&:hover": { textDecoration: "underline" },
-}));
+}))
 
 interface ListItemLabelWapper {
-  maxLines: number;
-  children: React.ReactNode;
+  maxLines: number
+  children: React.ReactNode
 }
 export const ListItemLabelWapper = styled("div")<ListItemLabelWapper>(
   ({ maxLines }) => ({
@@ -44,10 +44,10 @@ export const ListItemLabelWapper = styled("div")<ListItemLabelWapper>(
     overflow: "hidden",
     textOverflow: "ellipsis",
   }),
-);
+)
 
 export const ListItemLabel = styled(Typography)({
   display: "inline",
   whiteSpace: "normal",
   wordBreak: "break-all",
-});
+})

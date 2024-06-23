@@ -1,20 +1,25 @@
 import React from "react"
 import { useQuery } from "@tanstack/react-query"
+
 import { DMFetchApi } from "@/api"
 import type { ParsedCategoryMenuItem } from "@/utils/api/endpoints/menus/category"
 import type { ParsedTextFileMenuItem } from "@/utils/api/endpoints/menus/files"
 
-export const useDbMenus = ({ sourceLanguage }: { sourceLanguage: string }) => {
+export const useDbMenus = (params: { language: string } | undefined) => {
   const { data: textsData, isLoading: isLoadingTexts } = useQuery({
-    queryKey: DMFetchApi.tempMenuSourceTexts.makeQueryKey(sourceLanguage),
-    queryFn: () =>
-      DMFetchApi.tempMenuSourceTexts.call({ language: sourceLanguage }),
+    queryKey: DMFetchApi.tempMenuSourceTexts.makeQueryKey(
+      JSON.stringify(params),
+    ),
+    queryFn: () => DMFetchApi.tempMenuSourceTexts.call(params),
+    enabled: !!params,
   })
 
   const { data: categoriesData, isLoading: isLoadingCategories } = useQuery({
-    queryKey: DMFetchApi.tempMenuSourceCategories.makeQueryKey(sourceLanguage),
-    queryFn: () =>
-      DMFetchApi.tempMenuSourceCategories.call({ language: sourceLanguage }),
+    queryKey: DMFetchApi.tempMenuSourceCategories.makeQueryKey(
+      JSON.stringify(params),
+    ),
+    queryFn: () => DMFetchApi.tempMenuSourceCategories.call(params),
+    enabled: !!params,
   })
 
   const texts = React.useMemo(() => {

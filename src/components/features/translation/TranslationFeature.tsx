@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid"
 import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
-import TranslationInputEncodingSelector from "../TranslationInputEncodingSelector"
+import TranslationInputEncodingSelector from "../InputEncodingSelector"
 import TranslationInputBox from "./TranslationInputBox"
 import TranslationKeyboardControls from "./TranslationKeyboardControls"
 import TranslationModelSelector from "./TranslationModelSelector"

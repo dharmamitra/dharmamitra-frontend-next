@@ -39,3 +39,7 @@ export type MenuSidebarRequestQuery = APIRequestParams<
 export type MenuSidebarResponseData = APIResponse<
   paths["/menus/sidebar/"]["get"]
 >
+
+/**
+ * COMMON
+ */

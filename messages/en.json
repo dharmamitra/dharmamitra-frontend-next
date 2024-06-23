@@ -40,10 +40,10 @@
     "heading": "Search 2500 years of Buddhism",
     "placeholder": "Enter a search term.",
     "modeSwitchLabel": "Advanced mode",
-    "sources": {
+    "targets": {
       "primary": "Traditional",
       "secondary": "Modern",
-      "parallels": "Parallels"
+      "parallel_data": "Parallels"
     },
     "primaryLanguages": {
       "pli": "Pali",
@@ -52,13 +52,17 @@
       "chn": "Chinese"
     },
     "secondaryLanguages": {
-      "san": "Sanskrit"
+      "tib-chn": "Tibetan-Chinese",
+      "tib-eng": "Tibetan-English",
+      "san-eng": "Sanskrit-English",
+      "san-tib": "Sanskrit-Tibetan"
     },
     "limits": {
-      "category": "Category",
-      "text": "Text"
+      "labels": {
+        "category_include": "Select target categories",
+        "file_include": "Select target texts"
+      }
     }
-
   },
   "translation": {
     "translate": "Translate",

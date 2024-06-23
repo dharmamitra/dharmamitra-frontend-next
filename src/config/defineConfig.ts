@@ -1,7 +1,6 @@
 import { z } from "zod"
 
-import { DMApiTypes } from "@/api"
-import { allTargetLanguages, translationModels } from "@/utils/api/params"
+import { allTargetLanguages, TargetLanguage } from "@/utils/api/params"
 
 export const SUPPORTED_ENVS = [
   "pub",
@@ -51,36 +50,21 @@ export const appConfigSchema = z.object({
       },
     }),
   subPages: z.array(z.enum(allPages)).default(defaultSubPages),
-  paramOptions: z
+  customParamOptions: z
     .object({
       targetLanguages: z
         .array(
           z.string().refine(
             // validates at build & runtime
-            (val) =>
-              allTargetLanguages.includes(
-                val as DMApiTypes.Schema["TargetLanguageExperimental"],
-              ),
+            (val): val is TargetLanguage =>
+              allTargetLanguages.includes(val as TargetLanguage),
             {
               message:
-                "Invalid `paramOptions.targetLanguage` value given to app config.",
+                "Invalid `customParamOptions.targetLanguage` value given to app config.",
             },
           ),
         )
         .default(allTargetLanguages),
-      doGrammarExplanation: z.boolean().default(false),
-      model: z
-        .string()
-        .refine(
-          (val) =>
-            translationModels.includes(
-              val as DMApiTypes.Schema["TranslationModel"],
-            ),
-          {
-            message: "Invalid `paramOptions.model` value given to app config.",
-          },
-        )
-        .default("NO" as DMApiTypes.Schema["TranslationModel"]),
     })
     .default({}),
   featureFlags: z

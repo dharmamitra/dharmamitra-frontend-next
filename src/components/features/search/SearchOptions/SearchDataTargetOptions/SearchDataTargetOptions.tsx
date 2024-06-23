@@ -11,37 +11,41 @@ import useParams from "@/hooks/useParams"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
   apiParamsNames,
-  searchDataSources,
-  translationModels,
+  DataTargetLanguage,
+  SearchDataTarget,
+  searchDataTargets,
 } from "@/utils/api/params"
+import { getValidDefaultValue } from "@/utils/ui"
 
-import LanguageFilterOptions from "./LanguageFilterOptions"
-import OpenSubOptionsButton from "./OpenSubOptionsButton"
 import LimitFilters from "./LimitFilters/LimitFilters"
+import OpenSubOptionsButton from "./OpenSubOptionsButton"
+import TargetDataLanguageFilter from "./TargetDataLanguageFilter"
 
-const defaultDataSource = translationModels[0]
+const defaultValue = getValidDefaultValue(searchDataTargets[0])
 
 export default function SearchDataTargetOptions() {
   const t = useTranslations("search")
 
-  const { value: dataSource, handleValueChange: updateDataTarget } =
+  const { value: searchTarget, handleValueChange: updateDataTarget } =
     useParamValueWithLocalStorage({
-      paramName: apiParamsNames.search.filter_primary,
-      defaultValue: defaultDataSource,
+      paramName: apiParamsNames.search.search_target,
+      defaultValue,
     })
 
   React.useEffect(() => {
-    if (dataSource === "") {
-      updateDataTarget(defaultDataSource)
+    if (searchTarget === "") {
+      updateDataTarget(defaultValue)
     }
-  }, [dataSource, updateDataTarget])
+  }, [searchTarget, updateDataTarget])
 
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
   const primaryLanguageFilter = getSearchParam(
     apiParamsNames.search.filter_language,
-  )
-  const secondaryLanguageFilter = getSearchParam(`filter_language_secondary`)
+  ) as DataTargetLanguage
+  const secondaryLanguageFilter = getSearchParam(
+    `filter_language_secondary`,
+  ) as DataTargetLanguage
 
   const [showLanguagesFilters, setShowLanguagesFilters] = React.useState(
     Boolean(primaryLanguageFilter),
@@ -66,7 +70,7 @@ export default function SearchDataTargetOptions() {
       updateDataTarget(value)
       handleLanguageFilterChange(null)
     },
-    [setShowLanguagesFilters, handleLanguageFilterChange],
+    [handleLanguageFilterChange, updateDataTarget],
   )
 
   const isSmallScreen = useMediaQuery("(max-width:500px)")
@@ -77,14 +81,14 @@ export default function SearchDataTargetOptions() {
         <ToggleButtonGroup
           orientation={isSmallScreen ? "vertical" : "horizontal"}
           color="secondary"
-          value={dataSource}
+          value={searchTarget}
           exclusive
           onChange={(event, value) => handleDataSourceChange(value)}
           aria-label="Data Source"
         >
-          {searchDataSources.map((source) => (
-            <ToggleButton key={source + "data-source-option"} value={source}>
-              {t(`sources.${source}`)}
+          {searchDataTargets.map((target) => (
+            <ToggleButton key={target + "data-target-option"} value={target}>
+              {t(`targets.${target}`)}
             </ToggleButton>
           ))}
         </ToggleButtonGroup>
@@ -96,10 +100,9 @@ export default function SearchDataTargetOptions() {
         />
       </Box>
 
-      <LanguageFilterOptions
-        isShown={Boolean(showLanguagesFilters || primaryLanguageFilter)}
+      <TargetDataLanguageFilter
         isSmallScreen={isSmallScreen}
-        dataSource={dataSource}
+        searchTarget={searchTarget as SearchDataTarget}
         value={primaryLanguageFilter || secondaryLanguageFilter}
         hangleChange={handleLanguageFilterChange}
         isSubOptionOpen={false}

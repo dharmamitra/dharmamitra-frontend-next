@@ -14,17 +14,25 @@ import {
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
-import { apiParamsNames, inputEncodings } from "@/utils/api/params"
+import {
+  apiParamsNames,
+  InputEncoding,
+  inputEncodings,
+} from "@/utils/api/params"
+import { getValidDefaultValue } from "@/utils/ui"
 
 import RadioOption from "../translation/common/RadioOption"
 
+const defaultValue = getValidDefaultValue(inputEncodings[0])
+
 export default function TranslationInputEncodingSelector() {
-  const t = useTranslations()
+  const t = useTranslations("commonStreamParams")
+  const g = useTranslations("generic")
 
   const { value, handleValueChange, isHydrated } =
     useParamValueWithLocalStorage({
       paramName: apiParamsNames.commonStreamParams.input_encoding,
-      defaultValue: inputEncodings[0],
+      defaultValue,
     })
 
   const primaryOptionsSelectorId = "primary-encoding-options"
@@ -44,13 +52,13 @@ export default function TranslationInputEncodingSelector() {
     useResponsiveOptions(inputEncodings)
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
-    () => primaryEncodingOptions.includes(value),
+    () => primaryEncodingOptions.includes(value as InputEncoding),
     [value, primaryEncodingOptions],
   )
 
   React.useEffect(() => {
     if (value === "") {
-      handleValueChange(inputEncodings[0])
+      handleValueChange(defaultValue)
     }
   }, [value, handleValueChange])
 
@@ -58,8 +66,8 @@ export default function TranslationInputEncodingSelector() {
     <>
       <RadioGroup
         id={primaryOptionsSelectorId}
-        aria-label={t("commonStreamParams.primaryEncodingsAriaLabel")}
-        value={value ? value : inputEncodings[0]}
+        aria-label={t("primaryEncodingsAriaLabel")}
+        value={value ?? defaultValue}
         onChange={(e) => handleValueChange(e.target.value)}
         row
         sx={{ ...flatRadioGroupStyles }}
@@ -69,7 +77,6 @@ export default function TranslationInputEncodingSelector() {
           <RadioOption
             key={encoding + "-primary-encoding-option"}
             id={encoding + "-primary-encoding-option"}
-            i18nKey="commonStreamParams.encodings"
             option={encoding}
             isSelected={isHydrated && value === encoding}
           />
@@ -86,7 +93,7 @@ export default function TranslationInputEncodingSelector() {
           value={isPrimaryValueSelected ? "" : value}
           onChange={(e) => handleValueChange(e.target.value)}
           inputProps={{
-            "aria-label": t("commonStreamParams.secondaryEncodingsAriaLabel"),
+            "aria-label": t("secondaryEncodingsAriaLabel"),
             sx: secondaryOptionsInputStyles,
           }}
           IconComponent={() => <SecondaryOptionsButtonIcon />}
@@ -102,7 +109,7 @@ export default function TranslationInputEncodingSelector() {
           displayEmpty
         >
           <MenuItem disabled value="">
-            {t("generic.other")}
+            {g("other")}
           </MenuItem>
           {otherEncodingOptions.map((encoding) => (
             <MenuItem
@@ -110,9 +117,7 @@ export default function TranslationInputEncodingSelector() {
               data-testid={`${encoding}-input-encoding-option`}
               value={encoding}
             >
-              {t(
-                `commonStreamParams.encodings.${encoding as keyof Messages["commonStreamParams"]["encodings"]}`,
-              )}
+              {t(`encodings.${encoding}`)}
             </MenuItem>
           ))}
         </Select>

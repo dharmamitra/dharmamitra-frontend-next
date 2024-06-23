@@ -3,15 +3,21 @@ import { exhaustiveStringTuple } from "@/utils/typescript"
 
 import { CommonStreamParams } from "./types"
 
-export const inputEncodings = exhaustiveStringTuple<
+export type InputEncoding = DMApiTypes.Schema["InputEncoding"] &
+  keyof Messages["commonStreamParams"]["encodings"]
+export const inputEncodings: InputEncoding[] = exhaustiveStringTuple<
   DMApiTypes.Schema["InputEncoding"]
 >()("auto", "dev", "hk", "iast", "tibetan", "wylie")
 
-export const translationModels = exhaustiveStringTuple<
+export type TranslationModel = DMApiTypes.Schema["TranslationModel"] &
+  keyof Messages["translation"]["models"]
+export const translationModels: TranslationModel[] = exhaustiveStringTuple<
   DMApiTypes.Schema["TranslationModel"]
 >()("NO", "madlad", "llama3")
 
-export const allTargetLanguages = exhaustiveStringTuple<
+export type TargetLanguage = DMApiTypes.Schema["TargetLanguageExperimental"] &
+  keyof Messages["translation"]["targetLanguages"]
+export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
   DMApiTypes.Schema["TargetLanguageExperimental"]
 >()(
   "english",
@@ -26,32 +32,34 @@ export const allTargetLanguages = exhaustiveStringTuple<
   "pali",
 )
 
-export const grammarModes = exhaustiveStringTuple<
-  DMApiTypes.Schema["GrammarModes"]
->()(
-  "lemma",
-  "lemma-morphosyntax",
-  "unsandhied-lemma-morphosyntax",
-  "unsandhied",
-  "unsandhied-morphosyntax",
-)
-
-// export const primaryFilterLanguages = exhaustiveStringTuple<
-//   DMApiTypes.Schema["FilterLanguage"]
-// >()("english", "tibetan", "sanskrit", "buddhist-chinese", "pali")
-
+export type SearchDataTarget = DMApiTypes.Schema["SearchTarget"] &
+  keyof Messages["search"]["targets"]
+export const searchDataTargets: SearchDataTarget[] = exhaustiveStringTuple<
+  DMApiTypes.Schema["SearchTarget"]
+>()("primary", "secondary", "parallel_data")
 
 // TODO: update with new query param
-export const searchDataSources: (keyof Messages["search"]["sources"])[] = [
-  "primary",
-  "secondary",
-  "parallels",
+export type PrimaryDataTargetLanguage =
+  keyof Messages["search"]["primaryLanguages"]
+export const primaryDataTargetLanguages: PrimaryDataTargetLanguage[] = [
+  "san",
+  "tib",
+  "chn",
+  "pli",
 ]
 
-// TODO: update with new query param
-export const primaryFilterLanguages: (keyof Messages["search"]["primaryLanguages"])[] = [
-  "san", "tib", "chn", "pli",
+export type SecondaryDataTargetLanguage =
+  keyof Messages["search"]["secondaryLanguages"]
+export const tempSecondaryDataTargetLanguages: SecondaryDataTargetLanguage[] = [
+  "tib-chn",
+  "tib-eng",
+  "san-eng",
+  "san-tib",
 ]
+
+export type DataTargetLanguage =
+  | PrimaryDataTargetLanguage
+  | SecondaryDataTargetLanguage
 
 export const apiParamsNames: DMApiTypes.ParamNames & CommonStreamParams = {
   commonStreamParams: {

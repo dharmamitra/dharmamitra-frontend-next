@@ -20,8 +20,10 @@ export type ParsedTextFileMenuItem = ReturnType<
 >[number]
 export type ParsedTextFileMenuData = ParsedTextFileMenuItem[]
 
-export async function getTextFileMenuData(query: MenuFilesRequestQuery) {
-  if (!query.language) {
+export async function getTextFileMenuData(
+  query: MenuFilesRequestQuery | undefined,
+) {
+  if (!query) {
     return []
   }
 

@@ -6,7 +6,7 @@ import Switch from "@mui/material/Switch"
 
 import { localStorageKeys } from "@/utils/ui"
 
-import TranslationInputEncodingSelector from "../TranslationInputEncodingSelector"
+import TranslationInputEncodingSelector from "../InputEncodingSelector"
 // import useAppConfig from "@/hooks/useAppConfig"
 import SearchInput from "./SearchInput"
 import SearchOptions from "./SearchOptions"

@@ -1,7 +1,7 @@
 import createClient from "openapi-fetch"
 
-import type { paths } from "@/lib/api/v1.d"
 import type { paths as tempBNv2Paths } from "@/lib/api/bnv2"
+import type { paths } from "@/lib/api/v1.d"
 
 const baseUrl = process.env.NEXT_PUBLIC_DM_API_BASE_URL
 
