@@ -1,6 +1,6 @@
 export const paths = {
-  translation: "/api/translation-stream",
-  search: "/api/search-stream",
+  translation: "/next/api/translation-stream",
+  search: "/next/api/search-stream",
 }
 
 export const markers = {
