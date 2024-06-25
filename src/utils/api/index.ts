@@ -2,8 +2,8 @@ import { getTaggingData } from "./endpoints/tagging"
 import * as DMApiTypes from "./types"
 
 const streamPaths = {
-  translation: "/api/translation-stream",
-  search: "/api/search-stream",
+  translation: "/next/api/translation-stream",
+  search: "/next/api/search-stream",
 }
 
 const streamMarkers = {
