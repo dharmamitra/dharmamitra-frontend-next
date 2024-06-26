@@ -9,20 +9,22 @@ import Button from "@mui/material/Button"
 import Drawer from "@mui/material/Drawer"
 import IconButton from "@mui/material/IconButton"
 import Stack from "@mui/material/Stack"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 import useTaggingData from "@/hooks/useTaggingData"
 
 import styles from "./LazyTranslationTaggingDrawer.module.css"
 import TranslationTaggingOutput from "./TranslationTaggingOutput"
 
-export const defaultDrawerWidth = 700
+export const defaultSmDrawerWidth = "95%"
+export const defaultLgDrawerWidth = 700
 const minDrawerWidth = 300
 const maxDrawerWidth = 1200
 
 const ResizeHandle = ({
   setDrawerWidth,
 }: {
-  setDrawerWidth: React.Dispatch<React.SetStateAction<number>>
+  setDrawerWidth: React.Dispatch<React.SetStateAction<number | string>>
 }) => {
   const handleMouseMove = React.useCallback(
     (e: MouseEvent) => {
@@ -92,7 +94,11 @@ export default function LazyTranslationTaggingDrawer() {
 
   const [open, setOpen] = React.useState(false)
 
-  const [drawerWidth, setDrawerWidth] = React.useState(defaultDrawerWidth)
+  const isSmallScreen = useMediaQuery("(max-width:750px)")
+
+  const [drawerWidth, setDrawerWidth] = React.useState<string | number>(
+    defaultSmDrawerWidth,
+  )
 
   const handleKeyDown = React.useCallback(
     (e: KeyboardEvent) => {
@@ -111,6 +117,8 @@ export default function LazyTranslationTaggingDrawer() {
   }, [handleKeyDown])
 
   React.useEffect(() => {
+    setDrawerWidth(isSmallScreen ? defaultSmDrawerWidth : defaultLgDrawerWidth)
+
     if (open) {
       document.body.style.overflow = "hidden"
     } else {
@@ -119,7 +127,7 @@ export default function LazyTranslationTaggingDrawer() {
     return () => {
       document.body.style.overflow = "unset"
     }
-  }, [open])
+  }, [open, isSmallScreen])
 
   return (
     <>
