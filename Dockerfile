@@ -7,7 +7,6 @@ ENV NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production
 RUN apk update && apk upgrade && apk add --no-cache libc6-compat && apk add dumb-init
 
 RUN corepack enable
-
 RUN yarn set version berry
 
 # add the group and user needed in the final image
@@ -19,9 +18,8 @@ FROM base AS builder
 WORKDIR /app
 
 COPY . .
-COPY package.json yarn.lock .yarnrc.yml ./
 
-COPY .yarn ./.yarn
+COPY package.json yarn.lock .yarnrc.yml ./
 RUN yarn install --immutable
 
 ARG BUILD_VARIANT
