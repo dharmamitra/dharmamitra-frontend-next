@@ -4,6 +4,7 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import { MenuItem, RadioGroup, Select } from "@mui/material"
 
+import { DMApiTypes } from "@/api"
 import styles from "@/components/customFocusVisible.module.css"
 import {
   flatRadioGroupStyles,
@@ -11,77 +12,78 @@ import {
   secondaryOptionsInputStyles,
   selectedOptionsStyles,
 } from "@/components/styled"
+import useAppConfig from "@/hooks/useAppConfig"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
-import {
-  apiParamsNames,
-  InputEncoding,
-  inputEncodings,
-} from "@/utils/api/params"
-import { getValidDefaultValue } from "@/utils/ui"
+import { apiParamsNames } from "@/utils/api/params"
+import { getOptionI18nKeyPath } from "@/utils/ui"
 
-import RadioOption from "../translation/common/RadioOption"
+import RadioOption from "../common/RadioOption"
 
-const defaultValue = getValidDefaultValue(inputEncodings[0])
-
-export default function TranslationInputEncodingSelector() {
-  const t = useTranslations("commonStreamParams")
-  const g = useTranslations("generic")
+export default function LazyTranslationTargetLanguageSelector() {
+  const { targetLanguages: servedTargetLanguages } =
+    useAppConfig().customParamOptions
+  const t = useTranslations()
 
   const { value, handleValueChange, isHydrated } =
     useParamValueWithLocalStorage({
-      paramName: apiParamsNames.commonStreamParams.input_encoding,
-      defaultValue,
+      paramName: apiParamsNames.translation.target_lang,
+      defaultValue: servedTargetLanguages[0]!,
     })
 
-  const primaryOptionsSelectorId = "primary-encoding-options"
+  const primaryOptionsSelectorId = "primary-target-language-options"
   useFocusHighlight({
     targetId: primaryOptionsSelectorId,
     styledTargetId: primaryOptionsSelectorId,
     focusInset: "0 4px",
   })
-  const secondaryOptionsSelectorId = "secondary-encoding-options"
+  const secondaryOptionsSelectorId = "secondary-target-language-options"
   useFocusHighlight({
     targetId: secondaryOptionsSelectorId,
     styledTargetId: secondaryOptionsSelectorId + "-wrapper",
     focusInset: "8px -4px 8px -8px",
   })
 
-  const [primaryEncodingOptions, otherEncodingOptions] =
-    useResponsiveOptions(inputEncodings)
+  const [primaryLanguagesOptions, secondaryLanguagesOptions] =
+    useResponsiveOptions(servedTargetLanguages)
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
-    () => primaryEncodingOptions.includes(value as InputEncoding),
-    [value, primaryEncodingOptions],
+    () =>
+      primaryLanguagesOptions.includes(
+        value as DMApiTypes.Schema["TargetLanguage"],
+      ),
+    [value, primaryLanguagesOptions],
   )
 
   React.useEffect(() => {
     if (value === "") {
-      handleValueChange(defaultValue)
+      handleValueChange(servedTargetLanguages[0]!)
     }
-  }, [value, handleValueChange])
+  }, [value, handleValueChange, servedTargetLanguages])
 
   return (
     <>
       <RadioGroup
         id={primaryOptionsSelectorId}
-        aria-label={t("primaryEncodingsAriaLabel")}
-        value={value ?? defaultValue}
-        onChange={(e) => handleValueChange(e.target.value)}
+        aria-label={t("translation.primaryTargetLanguagesAriaLabel")}
+        value={value}
+        onChange={handleValueChange}
         row
         sx={{ ...flatRadioGroupStyles }}
         className={styles.customFocusVisible}
       >
-        {primaryEncodingOptions.map((encoding) => (
+        {primaryLanguagesOptions.map((language) => (
           <RadioOption
-            key={encoding + "-primary-encoding-option"}
-            id={encoding + "-primary-encoding-option"}
-            option={encoding}
-            isSelected={isHydrated && value === encoding}
+            key={language + "-primary-target-language-option"}
+            id={language + "-primary-target-language-option"}
+            option={language}
+            label={t(getOptionI18nKeyPath(language))}
+            isSelected={isHydrated && value === language}
           />
         ))}
       </RadioGroup>
+
       <div
         id={secondaryOptionsSelectorId + "-wrapper"}
         className={styles.customFocusVisible}
@@ -89,11 +91,12 @@ export default function TranslationInputEncodingSelector() {
       >
         <Select
           id={secondaryOptionsSelectorId}
-          data-testid="other-input-encoding-options"
+          data-testid="secondary-target-language-options"
+          aria-label={t("translation.secondaryTargetLanguagesAriaLabel")}
           value={isPrimaryValueSelected ? "" : value}
-          onChange={(e) => handleValueChange(e.target.value)}
+          onChange={handleValueChange}
           inputProps={{
-            "aria-label": t("secondaryEncodingsAriaLabel"),
+            "aria-label": t("translation.secondaryTargetLanguagesAriaLabel"),
             sx: secondaryOptionsInputStyles,
           }}
           IconComponent={() => <SecondaryOptionsButtonIcon />}
@@ -106,18 +109,21 @@ export default function TranslationInputEncodingSelector() {
               border: "none",
             },
           }}
+          //
           displayEmpty
         >
-          <MenuItem disabled value="">
-            {g("other")}
+          <MenuItem disabled value="" className={styles.test}>
+            {t("generic.other")}
           </MenuItem>
-          {otherEncodingOptions.map((encoding) => (
+          {secondaryLanguagesOptions.map((language) => (
             <MenuItem
-              key={encoding + "-other-encoding-option"}
-              data-testid={`${encoding}-input-encoding-option`}
-              value={encoding}
+              key={language + "-secondary-target-language-option"}
+              data-testid={`${language}-target-language-option`}
+              value={language}
             >
-              {t(`encodings.${encoding}`)}
+              {t(
+                `translation.targetLanguages.${language as keyof Messages["translation"]["targetLanguages"]}`,
+              )}
             </MenuItem>
           ))}
         </Select>

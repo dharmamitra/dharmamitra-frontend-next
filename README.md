@@ -31,6 +31,7 @@ TOC:
 - [🧪 Testing](#-testing)
 - [👷 Building](#-building)
   - [Running a test build by-passing eslint](#running-a-test-build-by-passing-eslint)
+  - [Running a local build](#running-a-local-build)
 - [📦 Containerization](#-containerization)
   - [Single project variant](#single-project-variant)
   - [Multiple Docker services](#multiple-docker-services)
@@ -367,6 +368,18 @@ Note the `configure experimental.outputFileTracingExcludes` and `experimental.ou
 
 ```sh
 NEXT_DISABLE_ESLINT=true yarn build
+```
+
+### Running a local build
+
+[`dumb-init`](https://github.com/Yelp/dumb-init) needs to be installed to run the server.
+
+
+```sh
+cp .env.local .next/standalone/.env.local
+cp -r public .next/standalone/public
+cp -r .next/static .next/standalone/.next/static
+dumb-init node .next/standalone/server.js
 ```
 
 ## 📦 Containerization

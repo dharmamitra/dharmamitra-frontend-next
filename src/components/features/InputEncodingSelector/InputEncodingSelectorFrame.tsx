@@ -1,9 +1,22 @@
 import React from "react"
+import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 import { Box } from "@mui/material"
 
+import { inputEncodings } from "@/utils/api/params"
+
+import OptionsLoading from "../translation/common/OptionsLoading"
 import SettingBlock from "../translation/common/SettingBlock"
-import InputEncodingSelector from "./InputEncodingSelector"
+
+const InputEncodingSelector = dynamic(
+  () => import("./LazyInputEncodingSelector"),
+  {
+    loading: () => (
+      <OptionsLoading options={inputEncodings} keyBase="input-encoding" />
+    ),
+    ssr: false,
+  },
+)
 
 const LabledInputEncodingSelector = () => {
   const t = useTranslations("commonStreamParams")
@@ -24,7 +37,7 @@ type Props = {
   isOpen?: boolean
 }
 
-export default function TranslationInputEncodingSelector({
+export default function InputEncodingSelectorFrame({
   labelled,
   isOpen = true,
 }: Props) {

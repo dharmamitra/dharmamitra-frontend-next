@@ -76,11 +76,3 @@ export type CommonStreamParams = {
     ParamNames["translation"]
   >
 }
-
-/**
- *
- */
-
-type Encoding = keyof Messages["commonStreamParams"]["encodings"]
-type TargetLanguage = keyof Messages["translation"]["targetLanguages"]
-export type CustomSelectOption = Encoding | TargetLanguage

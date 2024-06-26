@@ -1,3 +1,10 @@
+import {
+  allTargetLanguages,
+  InputEncoding,
+  inputEncodings,
+  TargetLanguage,
+} from "@/utils/api/params"
+
 export const linkAttrs = {
   color: "secondary",
   target: "_blank",
@@ -22,4 +29,19 @@ export const getValidDefaultValue = <T>(value: T) => {
     throw new Error("default input encoding is undefined")
   }
   return value
+}
+
+type OptionI18nKeyPath =
+  | `commonStreamParams.encodings.${keyof Messages["commonStreamParams"]["encodings"]}`
+  | `translation.targetLanguages.${keyof Messages["translation"]["targetLanguages"]}`
+
+export const getOptionI18nKeyPath = (
+  option: InputEncoding | TargetLanguage | undefined,
+) => {
+  if (inputEncodings.includes(option as InputEncoding))
+    return `commonStreamParams.encodings.${option}` as OptionI18nKeyPath
+  if (allTargetLanguages.includes(option as TargetLanguage))
+    return `translation.targetLanguages.${option}` as OptionI18nKeyPath
+
+  throw new Error("Invalid InputEncoding, or TargetLanguage option")
 }
