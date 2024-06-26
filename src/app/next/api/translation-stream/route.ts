@@ -17,6 +17,12 @@ export async function POST(request: NextRequest) {
     const url = `${process.env.NEXT_PUBLIC_DM_API_BASE_URL}/translation-exp/`
     const apiKey = process.env.DM_API_KEY ?? ""
 
+    if (!apiKey) {
+      return new NextResponse("API key not found", {
+        status: 500,
+      })
+    }
+
     const fetchResponse = await fetch(url, {
       method: "POST",
       headers: {
@@ -29,7 +35,7 @@ export async function POST(request: NextRequest) {
 
     if (!fetchResponse.ok) {
       return new NextResponse(
-        `Opening stream error: response not ok. ${fetchResponse.statusText}`,
+        `¡Failed to open stream!\nResponse not ok.\nStatus: ${fetchResponse.statusText}`,
         {
           status: fetchResponse.status,
         },
@@ -41,9 +47,12 @@ export async function POST(request: NextRequest) {
         .get("content-type")
         ?.startsWith("text/event-stream")
     ) {
-      return new NextResponse("Opening stream error: invalid event stream", {
-        status: fetchResponse.status,
-      })
+      return new NextResponse(
+        "¡Failed to open stream!\nContent type is not a valid event stream.",
+        {
+          status: fetchResponse.status,
+        },
+      )
     }
 
     // Stream the response back to the client

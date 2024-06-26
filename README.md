@@ -29,9 +29,11 @@ TOC:
   - [Env specific theming](#env-specific-theming)
   - [References](#references)
 - [🧪 Testing](#-testing)
+- [👷 Building](#-building)
+  - [Running a test build by-passing eslint](#running-a-test-build-by-passing-eslint)
 - [📦 Containerization](#-containerization)
-  - [Simple setting](#simple-setting)
-  - [Compose setting](#compose-setting)
+  - [Single project variant](#single-project-variant)
+  - [Multiple Docker services](#multiple-docker-services)
 - [🚢 Deployment](#-deployment)
 
 ## ℹ️ About
@@ -323,12 +325,6 @@ Environment specific theme colours can be set in `envRgbCodes` in `src/config/de
 
 ## 🧪 Testing
 
-Build testing by-passing eslint:
-
-```sh
-NEXT_DISABLE_ESLINT=true yarn build
-```
-
 Playwright commands (these tests can be run the script command `yarn test:pw [OPTIONS]`):
 
 ```sh
@@ -361,50 +357,58 @@ If you want to use visual comparison to test pages render:
 
 Visit https://playwright.dev/docs/intro for more information
 
-## 📦 Containerization
+## 👷 Building
 
-### Simple setting
+For reduced production build size the project has been configured for [`standalone` output](https://nextjs.org/docs/app/api-reference/next-config-js/output) based on https://calvinf.com/blog/2023/11/10/node-js-20-yarn-4-and-next-js-on-docker/.
+
+Note the `configure experimental.outputFileTracingExcludes` and `experimental.outputFileTracingIncludes` as needed.
+
+### Running a test build by-passing eslint
 
 ```sh
-docker build . --tag {TAG}  --no-cache
-docker run --detach --rm --publish 3333:3000 --name {TAG} {TAG}
+NEXT_DISABLE_ESLINT=true yarn build
 ```
 
-`3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN).
+## 📦 Containerization
 
-The project will be available at `http://localhost:3333/{TAG}`. To shut it down gracefully run:
+### Single project variant
+
+```sh
+docker build . --build-arg BUILD_VARIANT={BUILD_VARIANT} --tag {TAG} --no-cache
+docker run --detach --rm --env-file .env.local --publish 3333:3000 --name {CONTATINER_NAME} {TAG}
+```
+
+The project will be available at `http://localhost:3333/{VARIAENT_BASE_PATH}`. As `3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN). 
+
+To shut down gracefully run:
 
 ```sh
 docker stop {TAG}
 ```
 
-### Compose setting
-
-Base command:
+### Multiple Docker services
 
 ```sh
-docker compose build --no-cache && docker compose up --force-recreate -d
+export RESTART_POLICY=no # optional variable
+docker compose build --no-cache 
+docker compose up --force-recreate -d
 ```
 
-Set env variables:
-
-```sh
-export RESTART_POLICY=no
-docker compose build --no-cache && docker compose up --force-recreate -d
-```
-
-Disable the progress indicator and get more detailed output
-
-```sh
-docker compose build --no-cache --progress=plain
-```
+To disable the progress indicator and get more detailed output add the `--progress=plain` argument between the compose and build commands.
 
 NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.
-The app is again available under `localhost:3333` e.g. `http://localhost:3333/dmnext/bo/about`.
 
-The server (published locally on port 80) functions as a proxy so the same page should be reachable over `http://localhost/dmnext/bo/about`
+The project with all build variants will be available at `http://localhost/{VARIAENT_BASE_PATH}`
 
-If you want to see the NGINX logs you can use (press Ctrl-C to exit):
+
+
+To shut down:
+
+```sh
+docker compose down
+```
+
+To see the NGINX logs exit (Ctrl-C) and run:
 
 ```sh
 docker logs nginx -f
@@ -412,4 +416,6 @@ docker logs nginx -f
 
 ## 🚢 Deployment
 
-[Deploument workflow](https://www.figma.com/board/1H4N9FXyp0C0Vf7whd2aCK/Deployment-workflow?node-id=0-1&t=4E1ZQIDxTzHlmdMB-0) model.
+- [Deploument workflow model](https://www.figma.com/board/1H4N9FXyp0C0Vf7whd2aCK/Deployment-workflow?node-id=0-1&t=4E1ZQIDxTzHlmdMB-0)
+- [server config](https://github.com/dharmamitra/server_conf/blob/master/devops/watchtower/README.md)
+  - The DM api key is set in [the server docker-compose file](https://github.com/dharmamitra/server_conf/blob/master/devops/watchtower/docker-compose.yaml)
