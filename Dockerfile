@@ -2,11 +2,13 @@
 FROM node:20-alpine AS base
 
 # https://nextjs.org/telemetry
-ENV NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production YARN_VERSION=4.3.0
+ENV NEXT_TELEMETRY_DISABLED=1 NODE_ENV=production
 
 RUN apk update && apk upgrade && apk add --no-cache libc6-compat && apk add dumb-init
 
-RUN corepack enable && corepack prepare yarn@${YARN_VERSION}
+RUN corepack enable
+
+RUN yarn set version berry
 
 # add the group and user needed in the final image
 RUN addgroup --system --gid 1001 nodejs
@@ -19,7 +21,6 @@ WORKDIR /app
 COPY . .
 COPY package.json yarn.lock .yarnrc.yml ./
 
-RUN yarn set version berry
 COPY .yarn ./.yarn
 RUN yarn install --immutable
 
