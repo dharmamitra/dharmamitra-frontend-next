@@ -18,8 +18,10 @@ WORKDIR /app
 
 COPY . .
 COPY package.json yarn.lock .yarnrc.yml ./
-RUN yarn install --immutable
+
+RUN yarn set version berry
 COPY .yarn ./.yarn
+RUN yarn install --immutable
 
 ARG BUILD_VARIANT
 RUN yarn build:${BUILD_VARIANT}
@@ -37,7 +39,7 @@ USER nextjs
 
 # Expose ports (for orchestrators and dynamic reverse proxies)
 EXPOSE 3000
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 CMD ["dumb-init","node","server.js"]
