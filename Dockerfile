@@ -18,8 +18,8 @@ WORKDIR /app
 
 COPY . .
 COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn ./.yarn
 RUN yarn install --immutable
+COPY .yarn ./.yarn
 
 ARG BUILD_VARIANT
 RUN yarn build:${BUILD_VARIANT}
