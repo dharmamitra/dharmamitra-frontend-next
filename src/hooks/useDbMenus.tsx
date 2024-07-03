@@ -2,8 +2,8 @@ import React from "react"
 import { useQuery } from "@tanstack/react-query"
 
 import { DMFetchApi } from "@/api"
-import type { ParsedCategoryMenuItem } from "@/utils/api/endpoints/menus/category"
-import type { ParsedTextFileMenuItem } from "@/utils/api/endpoints/menus/files"
+import type { ParsedCategoryMenuItem } from "@/utils/api/search/endpoints/menus/category"
+import type { ParsedTextFileMenuItem } from "@/utils/api/search/endpoints/menus/files"
 
 export const useDbMenus = (params: { language: string } | undefined) => {
   const { data: textsData, isLoading: isLoadingTexts } = useQuery({

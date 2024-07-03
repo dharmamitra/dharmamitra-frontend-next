@@ -2,37 +2,37 @@ import React from "react"
 import { useAtom } from "jotai"
 import { SSE, SSEvent } from "sse.js"
 
-import { DMApiTypes, streamUtils } from "@/api"
+import { streamUtils, TranslationApiTypes } from "@/api"
 import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import {
-  apiParamsNames,
   inputEncodings,
   translationModels,
-} from "@/utils/api/params"
+  translationParamsNames,
+} from "@/utils/api/translation/params"
 import { cleanSSEData } from "@/utils/transformers"
 
 const useTranslationStream = () => {
   const { basePath, customParamOptions } = useAppConfig()
 
   const { input: inputSentenceParam } = useInputWithUrlParam<string>(
-    apiParamsNames.translation.input_sentence,
+    translationParamsNames.translation.input_sentence,
   )
   const { input: inputEncodingParam } = useInputWithUrlParam<
-    DMApiTypes.Schema["InputEncoding"]
-  >(apiParamsNames.translation.input_encoding)
+    TranslationApiTypes.Schema["InputEncoding"]
+  >(translationParamsNames.translation.input_encoding)
   const { input: targetLangParam } = useInputWithUrlParam<
-    DMApiTypes.Schema["TargetLanguage"]
-  >(apiParamsNames.translation.target_lang)
+    TranslationApiTypes.Schema["TargetLanguage"]
+  >(translationParamsNames.translation.target_lang)
   const { input: modelParam } = useInputWithUrlParam<
-    DMApiTypes.Schema["TranslationModel"]
-  >(apiParamsNames.translation.model)
+    TranslationApiTypes.Schema["TranslationModel"]
+  >(translationParamsNames.translation.model)
   const { input: grammarParam } = useInputWithUrlParam<"false" | "true">(
-    apiParamsNames.translation.do_grammar_explanation,
+    translationParamsNames.translation.do_grammar_explanation,
   )
 
-  const params: DMApiTypes.TranslationRequestBody = React.useMemo(
+  const params: TranslationApiTypes.TranslationRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentenceParam ?? "",
       input_encoding: inputEncodingParam ?? inputEncodings[0],
@@ -40,7 +40,7 @@ const useTranslationStream = () => {
       target_lang:
         targetLangParam ??
         (customParamOptions
-          .targetLanguages[0] as DMApiTypes.Schema["TargetLanguage"]),
+          .targetLanguages[0] as TranslationApiTypes.Schema["TargetLanguage"]),
       model: modelParam ?? translationModels[0],
     }),
     [

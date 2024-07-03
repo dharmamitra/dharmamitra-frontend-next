@@ -2,7 +2,7 @@ import React from "react"
 import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 
-import { allTargetLanguages } from "@/utils/api/params"
+import { allTargetLanguages } from "@/utils/api/translation/params"
 
 import OptionsLoading from "../common/OptionsLoading"
 import SettingBlock from "../common/SettingBlock"

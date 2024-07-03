@@ -3,7 +3,7 @@ import dynamic from "next/dynamic"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
-import { translationModels } from "@/utils/api/params"
+import { translationModels } from "@/utils/api/translation/params"
 
 const LazyModelSelector = dynamic(() => import("./LazyModelSelector"), {
   loading: () => (

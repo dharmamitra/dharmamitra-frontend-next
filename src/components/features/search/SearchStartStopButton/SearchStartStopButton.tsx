@@ -5,11 +5,12 @@ import { abortSearchQueryAtom, triggerSearchQueryAtom } from "@/atoms"
 import StartStopStreamButton from "@/components/StartStopStreamButton"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useTranslationStream from "@/hooks/useTranslationStream"
-import { apiParamsNames } from "@/utils/api/params"
+// import { translationParamsNames } from "@/utils/api/translation/params"
 
 export default function SearchStartStopButton() {
   const { input } = useInputWithUrlParam<string>(
-    apiParamsNames.search.search_input,
+    // translationParamsNames.search.search_input,
+    "TODO",
   )
 
   const setTriggerTranslationQuery = useSetAtom(triggerSearchQueryAtom)

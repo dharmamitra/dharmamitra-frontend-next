@@ -4,8 +4,8 @@ import { Autocomplete, Box, CircularProgress, TextField } from "@mui/material"
 
 import { useDbMenus } from "@/hooks/useDbMenus"
 import useParams from "@/hooks/useParams"
-import type { ParsedCategoryMenuItem } from "@/utils/api/endpoints/menus/category"
-import type { ParsedTextFileMenuItem } from "@/utils/api/endpoints/menus/files"
+import type { ParsedCategoryMenuItem } from "@/utils/api/search/endpoints/menus/category"
+import type { ParsedTextFileMenuItem } from "@/utils/api/search/endpoints/menus/files"
 
 import ListboxComponent from "./ListboxComponent"
 import { StyledPopper } from "./muiStyledComponents"
@@ -175,7 +175,8 @@ const LimitFilters = ({ language }: { language: string | null }) => {
             <Autocomplete
               id={filterName}
               multiple={true}
-              value={filterValue ?? []}
+              // TODO: remove casting after search api updates
+              value={(filterValue as LimitValueOption) ?? []}
               isOptionEqualToValue={(option, value) => option.id === value.id}
               PopperComponent={StyledPopper}
               // sets the rendered option label

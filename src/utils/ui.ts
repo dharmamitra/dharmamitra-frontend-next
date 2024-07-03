@@ -3,7 +3,7 @@ import {
   InputEncoding,
   inputEncodings,
   TargetLanguage,
-} from "@/utils/api/params"
+} from "@/utils/api/translation/params"
 
 export const linkAttrs = {
   color: "secondary",

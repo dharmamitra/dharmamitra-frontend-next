@@ -1,6 +1,9 @@
 import { z } from "zod"
 
-import { allTargetLanguages, TargetLanguage } from "@/utils/api/params"
+import {
+  allTargetLanguages,
+  TargetLanguage,
+} from "@/utils/api/translation/params"
 
 export const SUPPORTED_ENVS = [
   "pub",

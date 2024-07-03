@@ -4,7 +4,7 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import { MenuItem, RadioGroup, Select } from "@mui/material"
 
-import { DMApiTypes } from "@/api"
+import { TranslationApiTypes } from "@/api"
 import styles from "@/components/customFocusVisible.module.css"
 import {
   flatRadioGroupStyles,
@@ -16,7 +16,7 @@ import useAppConfig from "@/hooks/useAppConfig"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
-import { apiParamsNames } from "@/utils/api/params"
+import { translationParamsNames } from "@/utils/api/translation/params"
 import { getOptionI18nKeyPath } from "@/utils/ui"
 
 import RadioOption from "../common/RadioOption"
@@ -28,7 +28,7 @@ export default function LazyTranslationTargetLanguageSelector() {
 
   const { value, handleValueChange, isHydrated } =
     useParamValueWithLocalStorage({
-      paramName: apiParamsNames.translation.target_lang,
+      paramName: translationParamsNames.translation.target_lang,
       defaultValue: servedTargetLanguages[0]!,
     })
 
@@ -51,7 +51,7 @@ export default function LazyTranslationTargetLanguageSelector() {
   const isPrimaryValueSelected = React.useMemo<boolean>(
     () =>
       primaryLanguagesOptions.includes(
-        value as DMApiTypes.Schema["TargetLanguage"],
+        value as TranslationApiTypes.Schema["TargetLanguage"],
       ),
     [value, primaryLanguagesOptions],
   )

@@ -1,4 +1,4 @@
-import { tempBNv2Client as apiClient } from "../../client"
+import { tempBNv2Client as apiClient } from "../../../client"
 import type {
   MenuFilterCategoriesRequestQuery,
   MenuFilterCategoriesResponseData,
@@ -12,7 +12,8 @@ export interface ParsedCategoryMenuItem {
 
 const parseCategoryMenuData = (data: MenuFilterCategoriesResponseData) => {
   return data.categoryitems.reduce(
-    (map: Map<string, ParsedCategoryMenuItem>, currentCategory) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (map: Map<string, ParsedCategoryMenuItem>, currentCategory: any) => {
       const { category, categoryname } = currentCategory
 
       if (!category || !categoryname) {

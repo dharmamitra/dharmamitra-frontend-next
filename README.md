@@ -16,7 +16,9 @@ TOC:
       - [Sub page creation](#sub-page-creation)
     - [Theming](#theming)
     - [Images](#images)
-- [📡 DharmaMitra API client \& typing](#-dharmamitra-api-client--typing)
+- [📡 DharmaMitra API client \& typing (UPDATE IN PROGRESS)](#-dharmamitra-api-client--typing-update-in-progress)
+  - [APIs](#apis)
+  - [API models](#api-models)
   - [Regular fetchs](#regular-fetchs)
   - [SSE fetchs](#sse-fetchs)
     - [Stream formatting markers](#stream-formatting-markers)
@@ -129,7 +131,6 @@ In addition to the Angular converntion:
 - environment specific build scripts (in `package.json`) set the `NEXT_PUBLIC_APP_ENV` used to define app config (including features, options to render) for each environment.
   - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env`. **note**: This overwrites the `.env` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_env.sh`
 
-
 ### Adding a new environment
 
 These steps can also be adjusted and used for renaming an environment.
@@ -239,16 +240,27 @@ example usage
 
 ```
 
-## 📡 DharmaMitra API client & typing
+## 📡 DharmaMitra API client & typing (UPDATE IN PROGRESS)
 
-[Dharmamitra API docs](https://dharmamitra.org/api/docs#/)
+### APIs
+
+- **Translation**:
+  - [docs](https://dharmamitra.org/api/docs#/)
+  - [schema](https://dharmamitra.org/api/openapi.json)
+- **Search**:
+  - [docs](https://dharmamitra.org/api-search/docs#/)
+  - [schema](https://dharmamitra.org/api-search/openapi.json)
+
+### API models
 
 The project uses [`openapi-typescript`](https://openapi-ts.pages.dev/introduction) and [`openapi-fetch`](https://openapi-ts.pages.dev/openapi-fetch/) to interface with the API. In addition, as we need to do client-side fetching, we also use `@tanstack/react-query`.
 
-DM API request and response model types are generated from the project's [OpenAPI schema](https://dharmamitra.org/api/openapi.json) by running:
+DM API request and response model types are generated from the project's OpenAPI JSON schemas
 
 ```sh
-yarn api:codegen
+yarn api:codegen # generates all models
+yarn api:codegen:translation
+yarn api:codegen:search
 ```
 
 ### Regular fetchs
@@ -374,7 +386,6 @@ NEXT_DISABLE_ESLINT=true yarn build
 
 [`dumb-init`](https://github.com/Yelp/dumb-init) needs to be installed to run the server.
 
-
 ```sh
 cp .env.local .next/standalone/.env.local
 cp -r public .next/standalone/public
@@ -391,7 +402,7 @@ docker build . --build-arg BUILD_VARIANT={BUILD_VARIANT} --tag {TAG} --no-cache
 docker run --detach --rm --env-file .env.local --publish 3333:3000 --name {CONTATINER_NAME} {TAG}
 ```
 
-The project will be available at `http://localhost:3333/{VARIAENT_BASE_PATH}`. As `3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN). 
+The project will be available at `http://localhost:3333/{VARIAENT_BASE_PATH}`. As `3000` is the default port for Next.js apps so here we publish it on local port `3333` to avoid port conflics with other locally deployed apps (i.e. BN).
 
 To shut down gracefully run:
 
@@ -403,7 +414,7 @@ docker stop {TAG}
 
 ```sh
 export RESTART_POLICY=no # optional variable
-docker compose build --no-cache 
+docker compose build --no-cache
 docker compose up --force-recreate -d
 ```
 
@@ -412,8 +423,6 @@ To disable the progress indicator and get more detailed output add the `--progre
 NGINX is added to the docker-compose setting so that the environment is more production-like with a webserver in front of the app.
 
 The project with all build variants will be available at `http://localhost/{VARIAENT_BASE_PATH}`
-
-
 
 To shut down:
 

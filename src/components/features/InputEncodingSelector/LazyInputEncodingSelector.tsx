@@ -15,10 +15,10 @@ import useFocusHighlight from "@/hooks/useFocusHighlight"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import {
-  apiParamsNames,
   InputEncoding,
   inputEncodings,
-} from "@/utils/api/params"
+  translationParamsNames,
+} from "@/utils/api/translation/params"
 import { getOptionI18nKeyPath, getValidDefaultValue } from "@/utils/ui"
 
 import RadioOption from "../translation/common/RadioOption"
@@ -30,7 +30,7 @@ export default function LazyInputEncodingSelector() {
 
   const { value, handleValueChange, isHydrated } =
     useParamValueWithLocalStorage({
-      paramName: apiParamsNames.commonStreamParams.input_encoding,
+      paramName: translationParamsNames.translation.input_encoding,
       defaultValue,
     })
 

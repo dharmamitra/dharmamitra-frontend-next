@@ -1,6 +1,6 @@
-import { DMApiTypes } from "@/api"
+import { TranslationApiTypes } from "@/api"
 
-import apiClient from "../client"
+import apiClient from "../../client"
 
 /**
  * The `endpoints/tagging` getter throws a custom error with a `duration` property.
@@ -8,7 +8,9 @@ import apiClient from "../client"
  */
 export type TimedError = Error & { queryDuration: number; response: Response }
 
-export const getTaggingData = async (body: DMApiTypes.TaggingRequestBody) => {
+export const getTaggingData = async (
+  body: TranslationApiTypes.TaggingRequestBody,
+) => {
   const queryStart = performance.now()
 
   const { data, error, response } = await apiClient.POST(`/tagging/`, {

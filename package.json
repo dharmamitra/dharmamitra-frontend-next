@@ -17,7 +17,9 @@
     "lint:strict": "next lint '*/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
     "prepare": "husky",
-    "api:codegen": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/v1.d.ts",
+    "api:codegen": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/translation.v1.d.ts && openapi-typescript https://dharmamitra.org/api-search/openapi.json -o ./src/lib/api/search.v1.d.ts",
+    "api:codegen:translation": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/translation.v1.d.ts",
+    "api:codegen:search": "openapi-typescript https://dharmamitra.org/api-search/openapi.json -o ./src/lib/api/search.v1.d.ts",
     "bn-temp-api:codegen": "openapi-typescript https://dharmamitra.org/api-db/openapi.json -o ./src/lib/api/bnv2.d.ts"
   },
   "hooks": {

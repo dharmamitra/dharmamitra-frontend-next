@@ -1,12 +1,12 @@
-import { getCategoryMenuData } from "./endpoints/menus/category"
-import { getTextFileMenuData } from "./endpoints/menus/files"
-import { getTaggingData } from "./endpoints/tagging"
+import { getCategoryMenuData } from "./search/endpoints/menus/category"
+import { getTextFileMenuData } from "./search/endpoints/menus/files"
 import * as streamUtils from "./stream"
-import * as DMApiTypes from "./types"
+import { getTaggingData } from "./translation/endpoints/tagging"
+import * as TranslationApiTypes from "./translation/types"
 
 const DMFetchApi = {
   tagging: {
-    makeQueryKey: (body: DMApiTypes.TaggingRequestBody) => [
+    makeQueryKey: (body: TranslationApiTypes.TaggingRequestBody) => [
       "tagging",
       JSON.stringify(body),
     ],
@@ -28,4 +28,4 @@ const DMFetchApi = {
   },
 }
 
-export { DMApiTypes, DMFetchApi, streamUtils }
+export { DMFetchApi, streamUtils, TranslationApiTypes }

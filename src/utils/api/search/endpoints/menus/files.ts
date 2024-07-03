@@ -1,8 +1,9 @@
-import { tempBNv2Client as apiClient } from "../../client"
+import { tempBNv2Client as apiClient } from "../../../client"
 import type { MenuFilesRequestQuery, MenuFilesResponseData } from "./tempTypes"
 
 const parseTextFileMenuData = (data: MenuFilesResponseData) => {
-  return data.results?.map((text) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return data.results?.map((text: any) => {
     const { displayName, search_field, textname, filename, category } = text
     return {
       id: filename,

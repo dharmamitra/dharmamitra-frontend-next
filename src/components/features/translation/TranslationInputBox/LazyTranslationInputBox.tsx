@@ -9,7 +9,7 @@ import { useTheme } from "@mui/material/styles"
 import Tooltip from "@mui/material/Tooltip"
 
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { apiParamsNames } from "@/utils/api/params"
+import { translationParamsNames } from "@/utils/api/translation/params"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 import StartStopButton from "../TranslationStartStopButton"
@@ -17,7 +17,7 @@ import StartStopButton from "../TranslationStartStopButton"
 export default function TranslationInputField() {
   const t = useTranslations()
   const { input, handleValueChange } = useInputWithUrlParam<string>(
-    apiParamsNames.translation.input_sentence,
+    translationParamsNames.translation.input_sentence,
   )
 
   const theme = useTheme()

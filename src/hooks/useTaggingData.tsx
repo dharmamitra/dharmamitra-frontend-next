@@ -1,23 +1,26 @@
 import React from "react"
 import { useQuery } from "@tanstack/react-query"
 
-import { DMApiTypes, DMFetchApi } from "@/api"
+import { DMFetchApi, TranslationApiTypes } from "@/api"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { TimedError } from "@/utils/api/endpoints/tagging"
-import { apiParamsNames, inputEncodings } from "@/utils/api/params"
+import { TimedError } from "@/utils/api/translation/endpoints/tagging"
+import {
+  inputEncodings,
+  translationParamsNames,
+} from "@/utils/api/translation/params"
 
 const useTaggingData = () => {
   const { input: inputSentence } = useInputWithUrlParam<string>(
-    apiParamsNames.translation.input_sentence,
+    translationParamsNames.translation.input_sentence,
   )
   const { input: inputEncoding } = useInputWithUrlParam<
-    DMApiTypes.Schema["InputEncoding"]
-  >(apiParamsNames.translation.input_encoding)
+    TranslationApiTypes.Schema["InputEncoding"]
+  >(translationParamsNames.translation.input_encoding)
 
   const { input: targetLang } = useInputWithUrlParam<
-    DMApiTypes.Schema["TargetLanguage"]
-  >(apiParamsNames.translation.target_lang)
+    TranslationApiTypes.Schema["TargetLanguage"]
+  >(translationParamsNames.translation.target_lang)
 
   const debouncedInputSentence = useDebouncedValue(inputSentence, 1000)
   const [triggerQuery, setTriggerQuery] = React.useState(false)
@@ -32,7 +35,7 @@ const useTaggingData = () => {
     )
   }, [debouncedInputSentence, targetLang])
 
-  const requestBody: DMApiTypes.TaggingRequestBody = React.useMemo(
+  const requestBody: TranslationApiTypes.TaggingRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentence ?? "",
       input_encoding: inputEncoding ?? inputEncodings[0],

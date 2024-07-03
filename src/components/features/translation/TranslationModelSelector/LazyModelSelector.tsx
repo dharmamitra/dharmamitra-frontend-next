@@ -6,7 +6,10 @@ import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
-import { apiParamsNames, translationModels } from "@/utils/api/params"
+import {
+  translationModels,
+  translationParamsNames,
+} from "@/utils/api/translation/params"
 import { getValidDefaultValue } from "@/utils/ui"
 
 const defaultValue = getValidDefaultValue(translationModels[0])
@@ -15,7 +18,7 @@ export default function LazyModelSelector() {
   const t = useTranslations("translation")
 
   const { value, handleValueChange } = useParamValueWithLocalStorage({
-    paramName: apiParamsNames.translation.model,
+    paramName: translationParamsNames.translation.model,
     defaultValue,
   })
 

@@ -99,10 +99,12 @@
       "tibetan": "Tibetan"
     },
     "models": {
+      "": "",
       "NO": "No model",
       "none": "No model",
       "madlad": "Madlad",
-      "llama3": "Llama3"
+      "llama3": "Llama3",
+      "llama3-fgs": "Llama3-fgs"
     },
     "grammar": {
       "on": "On",

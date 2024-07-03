@@ -1,4 +1,4 @@
-import { TargetLanguage } from "@/utils/api/params"
+import { TargetLanguage } from "@/utils/api/translation/params"
 
 import defineConfig from "../defineConfig"
 

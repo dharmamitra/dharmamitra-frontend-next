@@ -5,11 +5,11 @@ import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
 import StartStopStreamButton from "@/components/StartStopStreamButton"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useTranslationStream from "@/hooks/useTranslationStream"
-import { apiParamsNames } from "@/utils/api/params"
+import { translationParamsNames } from "@/utils/api/translation/params"
 
 export default function TranslationStartStopButton() {
   const { input } = useInputWithUrlParam<string>(
-    apiParamsNames.translation.input_sentence,
+    translationParamsNames.translation.input_sentence,
   )
 
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)

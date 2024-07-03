@@ -10,11 +10,11 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 
-import { DMApiTypes } from "@/utils/api"
+import { TranslationApiTypes } from "@/utils/api"
 
 import SentenceAnalysis from "./SentenceAnalysis"
 
-type Props = DMApiTypes.Schema["Sentence"] & {
+type Props = TranslationApiTypes.Schema["Sentence"] & {
   sentenceIndex?: number
 }
 
