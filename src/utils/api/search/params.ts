@@ -7,19 +7,6 @@ import {
   SearchParamNames,
 } from "./types"
 
-export type SearchInputEncoding = CommonSearchParams["input_encoding"] &
-  keyof Messages["search"]["commonParams"]["inputEncodings"]
-
-export const searchInputEncodings: SearchInputEncoding[] =
-  exhaustiveStringTuple<SearchInputEncoding>()(
-    "auto",
-    "dev",
-    "hk",
-    "iast",
-    "tibetan",
-    "wylie",
-  )
-
 export type SearchType = CommonSearchParams["search_type"] &
   keyof Messages["search"]["commonParams"]["searchTypes"]
 

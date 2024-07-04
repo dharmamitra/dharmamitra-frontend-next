@@ -4,10 +4,8 @@ import {
   CustomFormControlLabel,
   VisuallyHiddenRadio,
 } from "@/components/styled"
-import {
-  TargetLanguage,
-  TranslationInputEncoding,
-} from "@/utils/api/translation/params"
+import { InputEncoding } from "@/utils/api/global/params"
+import { TargetLanguage } from "@/utils/api/translation/params"
 
 export default function RadioOption({
   id,
@@ -16,7 +14,7 @@ export default function RadioOption({
   label,
 }: {
   id: string
-  option: TranslationInputEncoding | TargetLanguage
+  option: InputEncoding | TargetLanguage
   isSelected: boolean
   label: string
 }) {

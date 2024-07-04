@@ -139,7 +139,7 @@
       "off": "Off"
     }
   },
-  "commonStreamParams": {
+  "globalParams": {
     "encodingSelectLabel": "Transliteration",
     "primaryEncodingsAriaLabel": "Primary encoding options",
     "secondaryEncodingsAriaLabel": "Other encoding options",

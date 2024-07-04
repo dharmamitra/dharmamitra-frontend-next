@@ -3,7 +3,7 @@ import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 import { Box } from "@mui/material"
 
-import { translationInputEncodings } from "@/utils/api/translation/params"
+import { globalParams } from "@/api"
 
 import OptionsLoading from "../translation/common/OptionsLoading"
 import SettingBlock from "../translation/common/SettingBlock"
@@ -13,7 +13,7 @@ const InputEncodingSelector = dynamic(
   {
     loading: () => (
       <OptionsLoading
-        options={translationInputEncodings}
+        options={globalParams.inputEncodings}
         keyBase="input-encoding"
       />
     ),
@@ -22,7 +22,7 @@ const InputEncodingSelector = dynamic(
 )
 
 const LabledInputEncodingSelector = () => {
-  const t = useTranslations("commonStreamParams")
+  const t = useTranslations("globalParams")
 
   return (
     <SettingBlock

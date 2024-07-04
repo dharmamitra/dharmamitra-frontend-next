@@ -4,10 +4,8 @@ import { Box, RadioGroup } from "@mui/material"
 import Typography from "@mui/material/Typography"
 
 import { flatRadioGroupStyles } from "@/components/styled"
-import {
-  TargetLanguage,
-  TranslationInputEncoding,
-} from "@/utils/api/translation/params"
+import { InputEncoding } from "@/utils/api/global/params"
+import { TargetLanguage } from "@/utils/api/translation/params"
 import { getOptionI18nKeyPath } from "@/utils/ui"
 
 export const boxSx = {
@@ -36,7 +34,7 @@ export default function OptionsLoading({
   options,
   keyBase,
 }: {
-  options: (TranslationInputEncoding | TargetLanguage)[]
+  options: (InputEncoding | TargetLanguage)[]
   keyBase: "input-encoding" | "target-language"
 }) {
   const t = useTranslations()

@@ -1,3 +1,4 @@
+import * as globalParams from "./global/params"
 import { getCategoryMenuData } from "./search/endpoints/menus/category"
 import { getTextFileMenuData } from "./search/endpoints/menus/files"
 import * as SearchApiTypes from "./search/types"
@@ -29,4 +30,10 @@ const DMFetchApi = {
   },
 }
 
-export { DMFetchApi, SearchApiTypes, streamUtils, TranslationApiTypes }
+export {
+  DMFetchApi,
+  globalParams,
+  SearchApiTypes,
+  streamUtils,
+  TranslationApiTypes,
+}

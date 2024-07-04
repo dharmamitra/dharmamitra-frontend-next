@@ -27,7 +27,7 @@ export default function HomePage({
   const messages = useMessages() as Messages
   const translationMessages = pickMessages({
     messages,
-    messageKeys: ["translation", "search", "commonStreamParams", "generic"],
+    messageKeys: ["translation", "search", "globalParams", "generic"],
   })
 
   if (search === true) {

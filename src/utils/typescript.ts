@@ -17,3 +17,8 @@ export const exhaustiveStringTuple =
 export type ExtendProperty<T, K extends keyof T, V> = {
   [P in keyof T]: P extends K ? V : T[P]
 }
+
+export type IsIdentical<T, U> =
+  (<G>() => G extends T ? 1 : 2) extends <G>() => G extends U ? 1 : 2
+    ? true
+    : false

@@ -4,11 +4,9 @@ import { useQuery } from "@tanstack/react-query"
 import { DMFetchApi, TranslationApiTypes } from "@/api"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
+import { inputEncodings } from "@/utils/api/global/params"
 import { TimedError } from "@/utils/api/translation/endpoints/tagging"
-import {
-  translationInputEncodings,
-  translationParamsNames,
-} from "@/utils/api/translation/params"
+import { translationParamsNames } from "@/utils/api/translation/params"
 
 const useTaggingData = () => {
   const { input: inputSentence } = useInputWithUrlParam<string>(
@@ -38,7 +36,7 @@ const useTaggingData = () => {
   const requestBody: TranslationApiTypes.TaggingRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentence ?? "",
-      input_encoding: inputEncoding ?? translationInputEncodings[0],
+      input_encoding: inputEncoding ?? inputEncodings[0],
       mode: "unsandhied-lemma-morphosyntax",
       human_readable_tags: true,
     }),

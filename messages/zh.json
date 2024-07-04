@@ -91,7 +91,7 @@
       "off": "Off"
     }
   },
-  "commonStreamParams": {
+  "globalParams": {
     "encodingSelectLabel": "转写系统",
     "primaryEncodingsAriaLabel": "Primary encoding options",
     "secondaryEncodingsAriaLabel": "Other encoding options",
