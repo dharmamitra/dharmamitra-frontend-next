@@ -4,8 +4,21 @@ import { exhaustiveStringTuple } from "@/utils/typescript"
 import {
   CommonSearchParamNames,
   CommonSearchParams,
+  SearchEndpoint,
   SearchParamNames,
+  SearchTarget,
 } from "./types"
+
+export type SearchDataTarget = SearchEndpoint &
+  keyof Messages["search"]["targets"]
+
+export const searchDataTargets: SearchDataTarget[] =
+  exhaustiveStringTuple<SearchEndpoint>()("parallel", "primary", "secondary")
+
+export const disabledSearchDataTargets: SearchDataTarget[] = [
+  "primary",
+  "secondary",
+]
 
 export type SearchType = CommonSearchParams["search_type"] &
   keyof Messages["search"]["commonParams"]["searchTypes"]
@@ -45,35 +58,37 @@ export const searchFilterLanguages: SearchFilterLanguage[] =
 export type SearchLimitsPrimary =
   SearchApiTypes.PrimaryRequestBody["filter_primary"]
 
-export const translationParamsNames: SearchParamNames & CommonSearchParamNames =
-  {
-    common: {
-      search_input: "search_input",
-      input_encoding: "input_encoding",
-      search_type: "search_type",
-      postprocess_model: "postprocess_model",
-    },
-    parallel: {
-      search_input: "search_input",
-      input_encoding: "input_encoding",
-      search_type: "search_type",
-      filter_source_language: "filter_source_language",
-      filter_source_data: "filter_source_data",
-      postprocess_model: "postprocess_model",
-    },
-    primary: {
-      search_input: "search_input",
-      input_encoding: "input_encoding",
-      search_type: "search_type",
-      filter_language: "filter_language",
-      filter_primary: "filter_primary",
-      postprocess_model: "postprocess_model",
-    },
-    secondary: {
-      search_input: "search_input",
-      input_encoding: "input_encoding",
-      search_type: "search_type",
-      filter_secondary: "filter_secondary",
-      postprocess_model: "postprocess_model",
-    },
-  }
+export const searchParamsNames: SearchParamNames &
+  CommonSearchParamNames &
+  SearchTarget = {
+  target: "search_target",
+  common: {
+    search_input: "search_input",
+    input_encoding: "input_encoding",
+    search_type: "search_type",
+    postprocess_model: "postprocess_model",
+  },
+  parallel: {
+    search_input: "search_input",
+    input_encoding: "input_encoding",
+    search_type: "search_type",
+    filter_source_language: "filter_source_language",
+    filter_source_data: "filter_source_data",
+    postprocess_model: "postprocess_model",
+  },
+  primary: {
+    search_input: "search_input",
+    input_encoding: "input_encoding",
+    search_type: "search_type",
+    filter_language: "filter_language",
+    filter_primary: "filter_primary",
+    postprocess_model: "postprocess_model",
+  },
+  secondary: {
+    search_input: "search_input",
+    input_encoding: "input_encoding",
+    search_type: "search_type",
+    filter_secondary: "filter_secondary",
+    postprocess_model: "postprocess_model",
+  },
+}

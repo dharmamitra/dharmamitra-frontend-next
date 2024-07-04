@@ -1,92 +1,82 @@
-/* eslint-disable */
+import React from "react"
+import { useTranslations } from "next-intl"
+import ToggleButton from "@mui/material/ToggleButton"
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
-// import React from "react"
-// import { useTranslations } from "next-intl"
-// import ToggleButton from "@mui/material/ToggleButton"
-// import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
+import {
+  SearchDataTarget,
+  SearchFilterLanguage,
+  searchFilterLanguages,
+} from "@/utils/api/search/params"
 
-// import {
-//   DataTargetLanguage,
-//   primaryDataTargetLanguages,
-//   SearchDataTarget,
-//   tempParallelDataTargetLanguages,
-// } from "@/utils/api/translation/params"
+const getOptions = (searchTarget: SearchDataTarget) => {
+  switch (searchTarget) {
+    // case "primary":
+    //   return {
+    //     options: primaryDataTargetLanguages,
+    //     i18nKey: "search.primaryLanguages" as const,
+    //   }
+    case "parallel":
+      return {
+        options: searchFilterLanguages,
+        i18nKey: "search.commonParams.filterLanguages" as const,
+      }
+    default:
+      return {}
+  }
+}
 
-// const getOptions = (searchTarget: SearchDataTarget) => {
-//   switch (searchTarget) {
-//     case "primary":
-//       return {
-//         options: primaryDataTargetLanguages,
-//         i18nKey: "search.primaryLanguages" as const,
-//       }
-//     case "parallel_data":
-//       return {
-//         options: tempParallelDataTargetLanguages,
-//         i18nKey: "search.parallelLanguages" as const,
-//       }
-//     default:
-//       return {}
-//   }
-// }
+type LanguageSelectorProps = Omit<
+  TargetDataLanguageFilterProps,
+  "searchTarget"
+> & {
+  options: SearchFilterLanguage[]
+  i18nKey: "search.commonParams.filterLanguages"
+}
 
-// type TargetDataLanguageFilterProps = {
-//   isSmallScreen: boolean
-//   value: DataTargetLanguage | null
-//   searchTarget: SearchDataTarget
-//   /* eslint-disable-next-line no-unused-vars */
-//   hangleChange: (value: string | null) => void
-// }
+const LanguageSelector = ({
+  isSmallScreen,
+  value,
+  hangleChange,
+  options,
+  i18nKey,
+}: LanguageSelectorProps) => {
+  const t = useTranslations(i18nKey)
 
-// type LanguageSelectorProps = Omit<
-//   TargetDataLanguageFilterProps,
-//   "searchTarget"
-// > & {
-//   options: DataTargetLanguage[]
-//   i18nKey: "search.primaryLanguages" | "search.parallelLanguages"
-// }
+  return (
+    <ToggleButtonGroup
+      orientation={isSmallScreen ? "vertical" : "horizontal"}
+      color="secondary"
+      size="small"
+      value={value}
+      exclusive
+      onChange={(event, value) => hangleChange(value)}
+      aria-label="Data Source"
+    >
+      {options.map((language) => (
+        <ToggleButton key={language + "data-language-option"} value={language}>
+          {t(`${language}`)}
+        </ToggleButton>
+      ))}
+    </ToggleButtonGroup>
+  )
+}
 
-// const LanguageSelector = ({
-//   isSmallScreen,
-//   value,
-//   hangleChange,
-//   options,
-//   i18nKey,
-// }: LanguageSelectorProps) => {
-//   const t = useTranslations(i18nKey)
-
-//   return (
-//     <ToggleButtonGroup
-//       orientation={isSmallScreen ? "vertical" : "horizontal"}
-//       color="secondary"
-//       size="small"
-//       value={value}
-//       exclusive
-//       onChange={(event, value) => hangleChange(value)}
-//       aria-label="Data Source"
-//     >
-//       {options.map((language) => (
-//         <ToggleButton key={language + "data-language-option"} value={language}>
-//           {t(`${language}`)}
-//         </ToggleButton>
-//       ))}
-//     </ToggleButtonGroup>
-//   )
-// }
-
-// export default function TargetDataLanguageFilter({
-//   searchTarget,
-//   ...rest
-// }: TargetDataLanguageFilterProps) {
-//   const { options, i18nKey } = getOptions(searchTarget)
-
-//   if (!options) return null
-
-//   return <LanguageSelector {...rest} options={options} i18nKey={i18nKey} />
-// }
+type TargetDataLanguageFilterProps = {
+  isSmallScreen: boolean
+  value: SearchFilterLanguage | null
+  searchTarget: SearchDataTarget
+  /* eslint-disable-next-line no-unused-vars */
+  hangleChange: (value: string | null) => void
+}
 
 export default function TargetDataLanguageFilter({
   searchTarget,
   ...rest
-}: any) {
-  return null
+}: TargetDataLanguageFilterProps) {
+  const { options, i18nKey } = getOptions(searchTarget)
+
+  if (!options) return null
+
+  return <LanguageSelector {...rest} options={options} i18nKey={i18nKey} />
 }

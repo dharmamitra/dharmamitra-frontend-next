@@ -43,13 +43,7 @@
     "targets": {
       "primary": "Traditional",
       "secondary": "Modern",
-      "parallel_data": "Parallels"
-    },
-    "primaryLanguages": {
-      "pli": "Pali",
-      "san": "Sanskrit",
-      "tib": "Tibetan",
-      "chn": "Chinese"
+      "parallel": "Parallels"
     },
     "parallelLanguages": {
       "tib-chn": "Tibetan-Chinese",

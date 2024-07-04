@@ -21,8 +21,11 @@ export type SecondaryRequestBody = APIRequestBody<paths["/secondary/"]["post"]>
 export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
 
 // /**
-//  *  API PARAMS NAMES
+//  *  API ENDPPOINTS & PARAMS NAMES
 //  */
+
+type Endpoint = keyof paths
+export type SearchEndpoint = Endpoint extends `/${infer Key}/` ? Key : never
 
 export type CommonSearchParams = CommonProperties<
   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
@@ -42,4 +45,8 @@ export type SearchParamNames = {
 
 export type CommonSearchParamNames = {
   common: Record<keyof CommonSearchParams, keyof CommonSearchParams>
+}
+
+export type SearchTarget = {
+  target: "search_target"
 }
