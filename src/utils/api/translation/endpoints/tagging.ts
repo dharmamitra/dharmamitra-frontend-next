@@ -1,6 +1,6 @@
 import { TranslationApiTypes } from "@/api"
 
-import apiClient from "../../client"
+import apiClients from "../../client"
 
 /**
  * The `endpoints/tagging` getter throws a custom error with a `duration` property.
@@ -13,9 +13,12 @@ export const getTaggingData = async (
 ) => {
   const queryStart = performance.now()
 
-  const { data, error, response } = await apiClient.POST(`/tagging/`, {
-    body,
-  })
+  const { data, error, response } = await apiClients.Translation.POST(
+    `/tagging/`,
+    {
+      body,
+    },
+  )
 
   const queryDuration = performance.now() - queryStart
 

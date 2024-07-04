@@ -6,7 +6,7 @@ import useDebouncedValue from "@/hooks/useDebouncedValue"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { TimedError } from "@/utils/api/translation/endpoints/tagging"
 import {
-  inputEncodings,
+  translationInputEncodings,
   translationParamsNames,
 } from "@/utils/api/translation/params"
 
@@ -38,7 +38,7 @@ const useTaggingData = () => {
   const requestBody: TranslationApiTypes.TaggingRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentence ?? "",
-      input_encoding: inputEncoding ?? inputEncodings[0],
+      input_encoding: inputEncoding ?? translationInputEncodings[0],
       mode: "unsandhied-lemma-morphosyntax",
       human_readable_tags: true,
     }),

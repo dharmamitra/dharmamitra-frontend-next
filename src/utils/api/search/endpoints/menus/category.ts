@@ -1,4 +1,4 @@
-import { tempBNv2Client as apiClient } from "../../../client"
+import apiClients from "../../../client"
 import type {
   MenuFilterCategoriesRequestQuery,
   MenuFilterCategoriesResponseData,
@@ -44,7 +44,7 @@ export async function getCategoryMenuData(
     return fallbackReturn
   }
 
-  const { data } = await apiClient.GET("/menus/category/", {
+  const { data } = await apiClients.TempBNv2.GET("/menus/category/", {
     params: { query },
   })
 

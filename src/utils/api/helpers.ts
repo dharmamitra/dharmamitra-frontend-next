@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export type APIRequestBody<operation> = "requestBody" extends keyof operation
   ? "content" extends keyof operation["requestBody"]
     ? "application/json" extends keyof operation["requestBody"]["content"]
@@ -22,6 +24,27 @@ export type APIResponse<operation> = "responses" extends keyof operation
     : never
   : never
 
-export type CommonProperties<T, U> = {
-  [K in keyof T & keyof U]: T[K] | U[K]
+type CommonKeys<T extends any[]> = T extends [infer F, ...infer R]
+  ? keyof F & CommonKeys<R>
+  : keyof any
+
+export type CommonProperties<T extends any[]> = {
+  [K in CommonKeys<T>]: T[number][K]
 }
+// export type PropertiesCommonToAll<T extends any[]> = {
+//   [K in CommonKeys<T>]: T[number][K]
+// }
+
+// type UnionKeys<T extends any[]> = T extends [infer F, ...infer R]
+//   ? keyof F | UnionKeys<R>
+//   : never
+
+// type ExtractType<T, K> = T extends any
+//   ? K extends keyof T
+//     ? T[K]
+//     : never
+//   : never
+
+// export type CommonProperties<T extends any[]> = {
+//   [K in UnionKeys<T>]: ExtractType<T[number], K>
+// }

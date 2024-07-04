@@ -141,7 +141,7 @@ These steps can also be adjusted and used for renaming an environment.
 - add environment alias to the `servedAtRoot` in `next.config.mjs` if the environment's base path is `/` (_this shouldn't be applicable in most cases_)
 - add an env specific build script to `package.json`. Eg. for the `lab` env:
 
-  ```
+  ```json
   "prebuild:lab": "sh ./scripts/set_env.sh lab",
   "build:lab": "next build",
   ```

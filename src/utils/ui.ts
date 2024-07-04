@@ -1,8 +1,8 @@
 import {
   allTargetLanguages,
-  InputEncoding,
-  inputEncodings,
   TargetLanguage,
+  TranslationInputEncoding,
+  translationInputEncodings,
 } from "@/utils/api/translation/params"
 
 export const linkAttrs = {
@@ -36,12 +36,12 @@ type OptionI18nKeyPath =
   | `translation.targetLanguages.${keyof Messages["translation"]["targetLanguages"]}`
 
 export const getOptionI18nKeyPath = (
-  option: InputEncoding | TargetLanguage | undefined,
+  option: TranslationInputEncoding | TargetLanguage | undefined,
 ) => {
-  if (inputEncodings.includes(option as InputEncoding))
+  if (translationInputEncodings.includes(option as TranslationInputEncoding))
     return `commonStreamParams.encodings.${option}` as OptionI18nKeyPath
   if (allTargetLanguages.includes(option as TargetLanguage))
     return `translation.targetLanguages.${option}` as OptionI18nKeyPath
 
-  throw new Error("Invalid InputEncoding, or TargetLanguage option")
+  throw new Error("Invalid TranslationInputEncoding, or TargetLanguage option")
 }

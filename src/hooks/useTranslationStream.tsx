@@ -7,7 +7,7 @@ import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import {
-  inputEncodings,
+  translationInputEncodings,
   translationModels,
   translationParamsNames,
 } from "@/utils/api/translation/params"
@@ -35,7 +35,7 @@ const useTranslationStream = () => {
   const params: TranslationApiTypes.TranslationRequestBody = React.useMemo(
     () => ({
       input_sentence: inputSentenceParam ?? "",
-      input_encoding: inputEncodingParam ?? inputEncodings[0],
+      input_encoding: inputEncodingParam ?? translationInputEncodings[0],
       do_grammar_explanation: grammarParam === "true",
       target_lang:
         targetLangParam ??

@@ -1,11 +1,18 @@
 import { TranslationApiTypes } from "@/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-export type InputEncoding = TranslationApiTypes.Schema["InputEncoding"] &
-  keyof Messages["commonStreamParams"]["encodings"]
-export const inputEncodings: InputEncoding[] = exhaustiveStringTuple<
-  TranslationApiTypes.Schema["InputEncoding"]
->()("auto", "dev", "hk", "iast", "tibetan", "wylie")
+export type TranslationInputEncoding =
+  TranslationApiTypes.Schema["InputEncoding"] &
+    keyof Messages["commonStreamParams"]["encodings"]
+export const translationInputEncodings: TranslationInputEncoding[] =
+  exhaustiveStringTuple<TranslationApiTypes.Schema["InputEncoding"]>()(
+    "auto",
+    "dev",
+    "hk",
+    "iast",
+    "tibetan",
+    "wylie",
+  )
 
 export type TranslationModel = TranslationApiTypes.Schema["TranslationModel"] &
   keyof Messages["translation"]["models"]

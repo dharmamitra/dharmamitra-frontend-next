@@ -4,17 +4,17 @@
  */
 
 export interface paths {
-  "/parallel": {
+  "/parallel/": {
     /** Search Endpoint Parallel */
-    post: operations["search_endpoint_parallel_parallel_post"]
+    post: operations["search_endpoint_parallel_parallel__post"]
   }
-  "/primary": {
+  "/primary/": {
     /** Search Endpoint Primary */
-    post: operations["search_endpoint_primary_primary_post"]
+    post: operations["search_endpoint_primary_primary__post"]
   }
-  "/secondary": {
+  "/secondary/": {
     /** Search Endpoint Secondary */
-    post: operations["search_endpoint_secondary_secondary_post"]
+    post: operations["search_endpoint_secondary_secondary__post"]
   }
 }
 
@@ -22,8 +22,8 @@ export type webhooks = Record<string, never>
 
 export interface components {
   schemas: {
-    /** Body_search_endpoint_parallel_parallel_post */
-    Body_search_endpoint_parallel_parallel_post: {
+    /** Body_search_endpoint_parallel_parallel__post */
+    Body_search_endpoint_parallel_parallel__post: {
       /** Search Input */
       search_input: string
       input_encoding: components["schemas"]["InputEncoding"]
@@ -32,8 +32,8 @@ export interface components {
       filter_source_data: components["schemas"]["FilterPrimary"]
       postprocess_model: components["schemas"]["PostProcessModel"]
     }
-    /** Body_search_endpoint_primary_primary_post */
-    Body_search_endpoint_primary_primary_post: {
+    /** Body_search_endpoint_primary_primary__post */
+    Body_search_endpoint_primary_primary__post: {
       /** Search Input */
       search_input: string
       input_encoding: components["schemas"]["InputEncoding"]
@@ -42,8 +42,8 @@ export interface components {
       filter_primary: components["schemas"]["FilterPrimary"]
       postprocess_model: components["schemas"]["PostProcessModel"]
     }
-    /** Body_search_endpoint_secondary_secondary_post */
-    Body_search_endpoint_secondary_secondary_post: {
+    /** Body_search_endpoint_secondary_secondary__post */
+    Body_search_endpoint_secondary_secondary__post: {
       /** Search Input */
       search_input: string
       input_encoding: components["schemas"]["InputEncoding"]
@@ -218,7 +218,7 @@ export type external = Record<string, never>
 
 export interface operations {
   /** Search Endpoint Parallel */
-  search_endpoint_parallel_parallel_post: {
+  search_endpoint_parallel_parallel__post: {
     parameters: {
       query?: {
         filter_target_language?: components["schemas"]["FilterLanguage"] | null
@@ -226,7 +226,7 @@ export interface operations {
     }
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Body_search_endpoint_parallel_parallel_post"]
+        "application/json": components["schemas"]["Body_search_endpoint_parallel_parallel__post"]
       }
     }
     responses: {
@@ -245,10 +245,10 @@ export interface operations {
     }
   }
   /** Search Endpoint Primary */
-  search_endpoint_primary_primary_post: {
+  search_endpoint_primary_primary__post: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Body_search_endpoint_primary_primary_post"]
+        "application/json": components["schemas"]["Body_search_endpoint_primary_primary__post"]
       }
     }
     responses: {
@@ -267,10 +267,10 @@ export interface operations {
     }
   }
   /** Search Endpoint Secondary */
-  search_endpoint_secondary_secondary_post: {
+  search_endpoint_secondary_secondary__post: {
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Body_search_endpoint_secondary_secondary_post"]
+        "application/json": components["schemas"]["Body_search_endpoint_secondary_secondary__post"]
       }
     }
     responses: {

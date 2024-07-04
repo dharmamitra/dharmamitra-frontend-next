@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json()
 
-    const url = `${process.env.NEXT_PUBLIC_DM_API_BASE_URL}/translation-exp/`
+    const url = `${process.env.NEXT_PUBLIC_DM_TRANSLATION_API_BASE_URL}/translation-exp/`
     const apiKey = process.env.DM_API_KEY ?? ""
 
     if (!apiKey) {

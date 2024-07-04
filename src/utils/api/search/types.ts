@@ -1,50 +1,45 @@
-// import type { components, paths } from "@/lib/api/v1.d"
+import type { components, paths } from "@/lib/api/search.v1.d"
+import type {
+  APIRequestBody,
+  APIResponse,
+  CommonProperties,
+} from "@/utils/api/helpers"
 
-// export type Schema = components["schemas"]
+export type Schema = components["schemas"]
 
 // /**
 //  * REQUEST & RESPONSE MODELS
 //  */
 
-// // /translation/ TO BE REPLACED WITH current "/translation-exp/"
+export type ParallelRequestBody = APIRequestBody<paths["/parallel/"]["post"]>
+export type ParallelRresponse = APIResponse<paths["/parallel/"]["post"]>
 
-// // TODO: coordinate renaming to "translation" once env setup has been deployed
-// export type TranslationRequestBody = APIRequestBody<
-//   paths["/translation-exp/"]["post"]
-// >
-// export type TranslationRresponse = APIResponse<
-//   // stream response
-//   paths["/translation-exp/"]["post"]
-// >
+export type PrimaryRequestBody = APIRequestBody<paths["/primary/"]["post"]>
+export type PrimaryRresponse = APIResponse<paths["/primary/"]["post"]>
 
-// export type TaggingRequestBody = APIRequestBody<paths["/tagging/"]["post"]>
-// export type TaggingResponse = APIResponse<paths["/tagging/"]["post"]>
-
-// export type SearchRequestBody = APIRequestBody<paths["/search/"]["post"]>
-// export type SearchRresponse = APIResponse<
-//   // stream response
-//   paths["/search/"]["post"]
-// >
+export type SecondaryRequestBody = APIRequestBody<paths["/secondary/"]["post"]>
+export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
 
 // /**
 //  *  API PARAMS NAMES
 //  */
-// export type TranslationParamNames = {
-//   search: Record<keyof SearchRequestBody, keyof SearchRequestBody>
-//   translation: Record<
-//     keyof TranslationRequestBody,
-//     keyof TranslationRequestBody
-//   >
-//   tagging: Record<keyof TaggingRequestBody, keyof TaggingRequestBody>
-// }
 
-// type CommonProperties<T, U> = {
-//   [K in keyof T & keyof U]: T[K] | U[K]
-// }
+export type CommonSearchParams = CommonProperties<
+  [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
+>
+// export type SearchParamsCommonToAll = PropertiesCommonToAll<
+//   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
+// >
+// export type CommonSearchParams = CommonProperties<
+//   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
+// >
 
-// export type CommonStreamParams = {
-//   commonStreamParams: CommonProperties<
-//     TranslationParamNames["search"],
-//     TranslationParamNames["translation"]
-//   >
-// }
+export type SearchParamNames = {
+  parallel: Record<keyof ParallelRequestBody, keyof ParallelRequestBody>
+  primary: Record<keyof PrimaryRequestBody, keyof PrimaryRequestBody>
+  secondary: Record<keyof SecondaryRequestBody, keyof SecondaryRequestBody>
+}
+
+export type CommonSearchParamNames = {
+  common: Record<keyof CommonSearchParams, keyof CommonSearchParams>
+}

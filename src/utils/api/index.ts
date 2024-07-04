@@ -1,5 +1,6 @@
 import { getCategoryMenuData } from "./search/endpoints/menus/category"
 import { getTextFileMenuData } from "./search/endpoints/menus/files"
+import * as SearchApiTypes from "./search/types"
 import * as streamUtils from "./stream"
 import { getTaggingData } from "./translation/endpoints/tagging"
 import * as TranslationApiTypes from "./translation/types"
@@ -28,4 +29,4 @@ const DMFetchApi = {
   },
 }
 
-export { DMFetchApi, streamUtils, TranslationApiTypes }
+export { DMFetchApi, SearchApiTypes, streamUtils, TranslationApiTypes }

@@ -1,4 +1,4 @@
-import { tempBNv2Client as apiClient } from "../../../client"
+import apiClients from "../../../client"
 import type { MenuFilesRequestQuery, MenuFilesResponseData } from "./tempTypes"
 
 const parseTextFileMenuData = (data: MenuFilesResponseData) => {
@@ -28,7 +28,7 @@ export async function getTextFileMenuData(
     return []
   }
 
-  const { data } = await apiClient.GET("/menus/files/", {
+  const { data } = await apiClients.TempBNv2.GET("/menus/files/", {
     params: { query },
   })
 

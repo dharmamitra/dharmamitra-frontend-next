@@ -62,6 +62,34 @@
         "category_include": "Select target categories",
         "file_include": "Select target texts"
       }
+    },
+    "commonParams": {
+      "inputEncodings": {
+        "auto": "Autodetect",
+        "tibetan": "Tibetan",
+        "wylie": "Wylie",
+        "dev": "Devanagari",
+        "iast": "IAST Roman",
+        "hk": "Harvard-Kyoto"
+      },
+      "searchTypes": { "regular": "Regular", "semantic": "Semantic" },
+      "postProcessModels": {
+        "llama3": "Llama3",
+        "gpt-4": "gpt-4",
+        "claude": "Claude",
+        "none": "None"
+      },
+      "filterLanguages": {
+        "tibetan": "Tibetan",
+        "sanskrit": "Sanskrit",
+        "buddhist-chinese": "Buddhist Chinese",
+        "pali": "Pali",
+        "all": "All"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "Select target categories",
+        "file_include": "Select target texts"
+      }
     }
   },
   "translation": {

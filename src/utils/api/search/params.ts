@@ -1,94 +1,92 @@
-// import { TranslationApiTypes } from "@/api"
-// import { exhaustiveStringTuple } from "@/utils/typescript"
+import { SearchApiTypes } from "@/api"
+import { exhaustiveStringTuple } from "@/utils/typescript"
 
-// import { CommonStreamParams } from "./types"
+import {
+  CommonSearchParamNames,
+  CommonSearchParams,
+  SearchParamNames,
+} from "./types"
 
-// export type InputEncoding = TranslationApiTypes.Schema["InputEncoding"] &
-//   keyof Messages["commonStreamParams"]["encodings"]
-// export const inputEncodings: InputEncoding[] = exhaustiveStringTuple<
-//   TranslationApiTypes.Schema["InputEncoding"]
-// >()("auto", "dev", "hk", "iast", "tibetan", "wylie")
+export type SearchInputEncoding = CommonSearchParams["input_encoding"] &
+  keyof Messages["search"]["commonParams"]["inputEncodings"]
 
-// export type TranslationModel = TranslationApiTypes.Schema["TranslationModel"] &
-//   keyof Messages["translation"]["models"]
-// export const translationModels: TranslationModel[] = exhaustiveStringTuple<
-//   TranslationApiTypes.Schema["TranslationModel"]
-// >()("NO", "madlad", "llama3")
+export const searchInputEncodings: SearchInputEncoding[] =
+  exhaustiveStringTuple<SearchInputEncoding>()(
+    "auto",
+    "dev",
+    "hk",
+    "iast",
+    "tibetan",
+    "wylie",
+  )
 
-// export type TargetLanguage = TranslationApiTypes.Schema["TargetLanguageExperimental"] &
-//   keyof Messages["translation"]["targetLanguages"]
-// export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
-//   TranslationApiTypes.Schema["TargetLanguageExperimental"]
-// >()(
-//   "english",
-//   "tibetan",
-//   "sanskrit",
-//   "sanskrit-dev",
-//   "sanskrit-knn",
-//   "modern-chinese",
-//   "buddhist-chinese",
-//   "japanese",
-//   "korean",
-//   "pali",
-// )
+export type SearchType = CommonSearchParams["search_type"] &
+  keyof Messages["search"]["commonParams"]["searchTypes"]
 
-// export type SearchDataTarget = TranslationApiTypes.Schema["SearchTarget"] &
-//   keyof Messages["search"]["targets"]
-// export const searchDataTargets: SearchDataTarget[] = exhaustiveStringTuple<
-//   TranslationApiTypes.Schema["SearchTarget"]
-// >()("parallel_data", "primary", "secondary")
+export const searchTypes: SearchType[] = exhaustiveStringTuple<
+  CommonSearchParams["search_type"]
+>()("regular", "semantic")
 
-// export const disabledSearchDataTargets = ["primary", "secondary"]
+export type SearchPostProcessModel = CommonSearchParams["postprocess_model"] &
+  keyof Messages["search"]["commonParams"]["postProcessModels"]
 
-// // TODO: update with new query param
-// export type PrimaryDataTargetLanguage =
-//   keyof Messages["search"]["primaryLanguages"]
-// export const primaryDataTargetLanguages: PrimaryDataTargetLanguage[] = [
-//   "san",
-//   "tib",
-//   "chn",
-//   "pli",
-// ]
+export const searchPostProcessModels: SearchPostProcessModel[] =
+  // TODO: update tuple typing to enforce parity once `.` key error is addressed
+  exhaustiveStringTuple<SearchPostProcessModel>()(
+    "llama3",
+    // "gpt-3.5", TODO: excluded due to `.` key error
+    "gpt-4",
+    "claude",
+    "none",
+  )
 
-// export type ParallelDataTargetLanguage =
-//   keyof Messages["search"]["parallelLanguages"]
-// export const tempParallelDataTargetLanguages: ParallelDataTargetLanguage[] = [
-//   "tib-chn",
-//   "tib-eng",
-//   "san-eng",
-//   "san-tib",
-// ]
+// TODO: should be updated to common param on backend update
+export type SearchFilterLanguage =
+  SearchApiTypes.PrimaryRequestBody["filter_language"] &
+    keyof Messages["search"]["commonParams"]["filterLanguages"]
 
-// export type DataTargetLanguage =
-//   | PrimaryDataTargetLanguage
-//   | ParallelDataTargetLanguage
+export const searchFilterLanguages: SearchFilterLanguage[] =
+  exhaustiveStringTuple<SearchApiTypes.PrimaryRequestBody["filter_language"]>()(
+    "tibetan",
+    "sanskrit",
+    "buddhist-chinese",
+    "pali",
+    "all",
+  )
 
-// export const translationParamsNames: TranslationApiTypes.TranslationParamNames &
-//   CommonStreamParams = {
-//   commonStreamParams: {
-//     input_encoding: "input_encoding",
-//   },
-//   search: {
-//     filter_language: "filter_language",
-//     filter_primary: "filter_primary",
-//     filter_secondary: "filter_secondary",
-//     input_encoding: "input_encoding",
-//     postprocess_model: "postprocess_model",
-//     search_input: "search_input",
-//     search_target: "search_target",
-//     search_type: "search_type",
-//   },
-//   translation: {
-//     input_sentence: "input_sentence",
-//     input_encoding: "input_encoding",
-//     do_grammar_explanation: "do_grammar_explanation",
-//     target_lang: "target_lang",
-//     model: "model",
-//   },
-//   tagging: {
-//     input_sentence: "input_sentence",
-//     input_encoding: "input_encoding",
-//     mode: "mode",
-//     human_readable_tags: "human_readable_tags",
-//   },
-// }
+// TODO: should be updated to common param on backend update
+export type SearchLimitsPrimary =
+  SearchApiTypes.PrimaryRequestBody["filter_primary"]
+
+export const translationParamsNames: SearchParamNames & CommonSearchParamNames =
+  {
+    common: {
+      search_input: "search_input",
+      input_encoding: "input_encoding",
+      search_type: "search_type",
+      postprocess_model: "postprocess_model",
+    },
+    parallel: {
+      search_input: "search_input",
+      input_encoding: "input_encoding",
+      search_type: "search_type",
+      filter_source_language: "filter_source_language",
+      filter_source_data: "filter_source_data",
+      postprocess_model: "postprocess_model",
+    },
+    primary: {
+      search_input: "search_input",
+      input_encoding: "input_encoding",
+      search_type: "search_type",
+      filter_language: "filter_language",
+      filter_primary: "filter_primary",
+      postprocess_model: "postprocess_model",
+    },
+    secondary: {
+      search_input: "search_input",
+      input_encoding: "input_encoding",
+      search_type: "search_type",
+      filter_secondary: "filter_secondary",
+      postprocess_model: "postprocess_model",
+    },
+  }

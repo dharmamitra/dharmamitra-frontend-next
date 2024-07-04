@@ -15,15 +15,15 @@ import useFocusHighlight from "@/hooks/useFocusHighlight"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import {
-  InputEncoding,
-  inputEncodings,
+  TranslationInputEncoding,
+  translationInputEncodings,
   translationParamsNames,
 } from "@/utils/api/translation/params"
 import { getOptionI18nKeyPath, getValidDefaultValue } from "@/utils/ui"
 
 import RadioOption from "../translation/common/RadioOption"
 
-const defaultValue = getValidDefaultValue(inputEncodings[0])
+const defaultValue = getValidDefaultValue(translationInputEncodings[0])
 
 export default function LazyInputEncodingSelector() {
   const t = useTranslations()
@@ -47,11 +47,12 @@ export default function LazyInputEncodingSelector() {
     focusInset: "8px -4px 8px -8px",
   })
 
-  const [primaryEncodingOptions, otherEncodingOptions] =
-    useResponsiveOptions(inputEncodings)
+  const [primaryEncodingOptions, otherEncodingOptions] = useResponsiveOptions(
+    translationInputEncodings,
+  )
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
-    () => primaryEncodingOptions.includes(value as InputEncoding),
+    () => primaryEncodingOptions.includes(value as TranslationInputEncoding),
     [value, primaryEncodingOptions],
   )
 
