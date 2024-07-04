@@ -5,12 +5,15 @@ import { DMFetchApi } from "@/api"
 import type { ParsedCategoryMenuItem } from "@/utils/api/search/endpoints/menus/category"
 import type { ParsedTextFileMenuItem } from "@/utils/api/search/endpoints/menus/files"
 
-export const useDbMenus = (params: { language: string } | undefined) => {
+export const useSourceTextMenus = (
+  params: { language: string } | undefined,
+) => {
   const { data: textsData, isLoading: isLoadingTexts } = useQuery({
     queryKey: DMFetchApi.tempMenuSourceTexts.makeQueryKey(
       JSON.stringify(params),
     ),
-    queryFn: () => DMFetchApi.tempMenuSourceTexts.call(params),
+    // TODO: update with language when backend supports it & add error handling
+    queryFn: () => DMFetchApi.tempMenuSourceTexts.call({ language: "pli" }),
     enabled: !!params,
   })
 
@@ -18,7 +21,9 @@ export const useDbMenus = (params: { language: string } | undefined) => {
     queryKey: DMFetchApi.tempMenuSourceCategories.makeQueryKey(
       JSON.stringify(params),
     ),
-    queryFn: () => DMFetchApi.tempMenuSourceCategories.call(params),
+    // TODO: update with language when backend supports it & add error handling
+    queryFn: () =>
+      DMFetchApi.tempMenuSourceCategories.call({ language: "pli" }),
     enabled: !!params,
   })
 

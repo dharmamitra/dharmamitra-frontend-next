@@ -54,12 +54,14 @@ const Rows = (props: ListChildComponentProps) => {
     fontWeight: 700,
   }
   const [dataSetProps, { name, id }] = dataSet
+  // eslint-disable-next-line no-unused-vars
+  const { key, ...rowItemProps } = dataSetProps
 
   const lable = createMenuItemLabel(id, name)
   const isTruncated = lable.length > charsPerLine * maxLines + 12
 
   return (
-    <RowItem inheretedstyles={inlineStyle} {...dataSetProps} component="li">
+    <RowItem inheretedstyles={inlineStyle} {...rowItemProps} component="li">
       <ListItemLabelWapper maxLines={maxLines}>
         <Tooltip
           title={<Typography>{lable}</Typography>}

@@ -47,11 +47,11 @@ export type SearchFilterLanguage =
 
 export const searchFilterLanguages: SearchFilterLanguage[] =
   exhaustiveStringTuple<SearchApiTypes.PrimaryRequestBody["filter_language"]>()(
+    "all",
     "tibetan",
     "sanskrit",
     "buddhist-chinese",
     "pali",
-    "all",
   )
 
 // TODO: should be updated to common param on backend update

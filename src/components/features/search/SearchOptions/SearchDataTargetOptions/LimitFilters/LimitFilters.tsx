@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import { Autocomplete, Box, CircularProgress, TextField } from "@mui/material"
 
-import { useDbMenus } from "@/hooks/useDbMenus"
 import useParams from "@/hooks/useParams"
+import { useSourceTextMenus } from "@/hooks/useSourceTextMenus"
 import type { ParsedCategoryMenuItem } from "@/utils/api/search/endpoints/menus/category"
 import type { ParsedTextFileMenuItem } from "@/utils/api/search/endpoints/menus/files"
+import { SearchFilterLanguage } from "@/utils/api/search/params"
 
 import ListboxComponent from "./ListboxComponent"
 import { StyledPopper } from "./muiStyledComponents"
@@ -61,12 +62,15 @@ function getParamsFromValues(
   }
 }
 
-const LimitFilters = ({ language }: { language: string | null }) => {
+const LimitFilters = ({
+  language,
+}: {
+  language: SearchFilterLanguage | null
+}) => {
   const t = useTranslations("search")
 
-  const { texts, isLoadingTexts, categories, isLoadingCategories } = useDbMenus(
-    language ? { language } : undefined,
-  )
+  const { texts, isLoadingTexts, categories, isLoadingCategories } =
+    useSourceTextMenus(language ? { language } : undefined)
 
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
@@ -158,7 +162,7 @@ const LimitFilters = ({ language }: { language: string | null }) => {
     })
   }, [categories, texts, isLoadingTexts, isLoadingCategories])
 
-  if (!language) return null
+  if (language === "all" || !language) return null
 
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>

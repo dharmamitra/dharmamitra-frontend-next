@@ -18,25 +18,28 @@ type TranslationFeatureProps = {
   setIsAdvancedSearchMode: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function TranslationFeature({
+export default function SearchFeature({
   isSearchOptionsOpen,
   setIsAdvancedSearchMode,
 }: TranslationFeatureProps) {
   const t = useTranslations("search")
   // const { translateExtendedOptions } = useAppConfig().featureFlags
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsAdvancedSearchMode(event.target.checked)
+  const handleChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsAdvancedSearchMode(event.target.checked)
 
-    if (event.target.checked) {
-      localStorage.setItem(
-        localStorageKeys.searchMode,
-        String(event.target.checked),
-      )
-    } else {
-      localStorage.removeItem(localStorageKeys.searchMode)
-    }
-  }
+      if (event.target.checked) {
+        localStorage.setItem(
+          localStorageKeys.searchMode,
+          String(event.target.checked),
+        )
+      } else {
+        localStorage.removeItem(localStorageKeys.searchMode)
+      }
+    },
+    [setIsAdvancedSearchMode],
+  )
 
   return (
     <>
