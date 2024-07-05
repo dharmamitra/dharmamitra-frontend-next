@@ -1,6 +1,5 @@
 import { TranslationApiTypes } from "@/api"
-
-import apiClients from "../../client"
+import apiClients from "@/utils/api/client"
 
 /**
  * The `endpoints/tagging` getter throws a custom error with a `duration` property.

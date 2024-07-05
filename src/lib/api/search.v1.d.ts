@@ -56,7 +56,7 @@ export interface components {
      * @description For primary and parallel data, we can filter by these languages.
      * @enum {string}
      */
-    FilterLanguage: "tibetan" | "sanskrit" | "buddhist-chinese" | "pali" | "all"
+    FilterLanguage: "tib" | "skt" | "chn" | "pli" | "all"
     /**
      * FilterPrimary
      * @description Limits for Search in primary sources. This is identical to the filter model of the xnexus endpoints.

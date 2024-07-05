@@ -15,6 +15,8 @@ export const localStorageKeys = {
   searchMode: "advanced-search-mode",
 }
 
+export const smMediaQuery = "(max-width: 500px)"
+
 export const getSettingPriotiryGroups = <T>(params: {
   setting: T[]
   noOfPrimaryItems: number

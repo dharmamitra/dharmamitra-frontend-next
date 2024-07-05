@@ -66,7 +66,7 @@
         "iast": "IAST Roman",
         "hk": "Harvard-Kyoto"
       },
-      "searchTypes": { "regular": "Regular", "semantic": "Semantic" },
+      "searchTypes": { "regular": "Regular", "semantic": "Semantic search" },
       "postProcessModels": {
         "llama3": "Llama3",
         "gpt-4": "gpt-4",
@@ -74,10 +74,10 @@
         "none": "None"
       },
       "filterLanguages": {
-        "tibetan": "Tibetan",
-        "sanskrit": "Sanskrit",
-        "buddhist-chinese": "Buddhist Chinese",
-        "pali": "Pali",
+        "tib": "Tibetan",
+        "skt": "Sanskrit",
+        "chn": "Buddhist Chinese",
+        "pli": "Pali",
         "all": "All"
       },
       "limitsPrimaryLabels": {
