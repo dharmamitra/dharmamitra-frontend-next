@@ -1,11 +1,27 @@
 import { TranslationApiTypes } from "@/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-export type TranslationModel = TranslationApiTypes.Schema["TranslationModel"] &
+type TEMPORARYLabTestingModels =
+  | ""
+  | "NO"
+  | "madlad"
+  | "madlad2"
+  | "llama3"
+  | "llama3-fgs"
+
+// export type TranslationModel = TranslationApiTypes.Schema["TranslationModel"] &
+//   keyof Messages["translation"]["models"]
+export type TranslationModel = TEMPORARYLabTestingModels &
   keyof Messages["translation"]["models"]
-export const translationModels: TranslationModel[] = exhaustiveStringTuple<
-  TranslationApiTypes.Schema["TranslationModel"]
->()("", "NO", "madlad", "llama3", "llama3-fgs")
+export const translationModels: TranslationModel[] =
+  exhaustiveStringTuple<TEMPORARYLabTestingModels>()(
+    "",
+    "NO",
+    "madlad",
+    "madlad2",
+    "llama3",
+    "llama3-fgs",
+  )
 
 export type TargetLanguage =
   TranslationApiTypes.Schema["TargetLanguageExperimental"] &
