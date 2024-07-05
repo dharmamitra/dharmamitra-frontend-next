@@ -56,11 +56,7 @@ export default function SearchFeature({
 
         <FormControlLabel
           control={
-            <Switch
-              checked={isSearchOptionsOpen}
-              onChange={handleChange}
-              color="secondary"
-            />
+            <Switch checked={isSearchOptionsOpen} onChange={handleChange} />
           }
           label={t("optionsSwitchLabel")}
           labelPlacement="start"

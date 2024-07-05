@@ -1,5 +1,6 @@
 import { SearchApiTypes } from "@/api"
 import apiClients from "@/utils/api/client"
+import { parseAPIRequestBody } from "@/utils/api/helpers"
 
 export const getSearchParallelData = async (
   body: SearchApiTypes.ParallelRequestBody,
@@ -9,7 +10,7 @@ export const getSearchParallelData = async (
   }
 
   const { data } = await apiClients.Search.POST(`/parallel/`, {
-    body,
+    body: parseAPIRequestBody(body),
   })
 
   return data ?? {}

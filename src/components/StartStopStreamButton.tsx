@@ -7,12 +7,7 @@ import StopCircleIcon from "@mui/icons-material/StopCircle"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
 
-const tooltipEnterStyles = {
-  fontSize: "1.1rem",
-  lineHeight: 0.75,
-  paddingBottom: "0.1rem",
-  verticalAlign: "middle",
-}
+import { tooltipEnterStyles } from "@/components/styled"
 
 interface StartStopStreamButtonProps {
   input: string

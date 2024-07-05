@@ -1,7 +1,11 @@
 import React from "react"
+import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
+import { useAtom } from "jotai"
 
 import { DMFetchApi, globalParams, SearchApiTypes } from "@/api"
+import { triggerSearchQueryAtom } from "@/atoms"
+import SkeletonGroup from "@/components/SkeletonGroup"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { searchParamsNames } from "@/utils/api/search/params"
 
@@ -58,9 +62,17 @@ export default function ParallelQueryResults() {
     ],
   )
 
+  const [isSearchTriggered, setTriggerSearchQuery] = useAtom(
+    triggerSearchQueryAtom,
+  )
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: DMFetchApi.searchParallel.makeQueryKey(requestBody),
-    queryFn: () => DMFetchApi.searchParallel.call(requestBody),
+    queryFn: () => {
+      setTriggerSearchQuery(false)
+      return DMFetchApi.searchParallel.call(requestBody)
+    },
+    enabled: isSearchTriggered,
   })
 
   const processedData = React.useMemo(() => {
@@ -73,12 +85,20 @@ export default function ParallelQueryResults() {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <SkeletonGroup />
   }
 
   if (!data) {
-    return <div>No data</div>
+    return null
   }
 
-  return <div>{processedData}</div>
+  return (
+    <div>
+      <Typography component="h2" variant="h4" sx={{ mt: 7, mb: 2 }}>
+        Search results
+      </Typography>
+
+      {processedData ?? "No results found."}
+    </div>
+  )
 }

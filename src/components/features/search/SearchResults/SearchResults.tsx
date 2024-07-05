@@ -2,7 +2,6 @@
 
 import React from "react"
 import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
 
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
@@ -23,22 +22,18 @@ const results: Record<SearchDataTarget, JSX.Element> = {
 }
 
 export default function SearchResults() {
-  const { value } = useParamValueWithLocalStorage({
+  const { value: target } = useParamValueWithLocalStorage({
     paramName: searchParamsNames.target,
     defaultValue,
   })
-  const target = value as SearchDataTarget
-  const triggerAtom = true
 
-  if (!triggerAtom || !results[target]) return null
+  if (!results[target as SearchDataTarget]) {
+    throw new Error(`Invalid search target: ${target}`)
+  }
 
   return (
-    <Box sx={{ mt: 3 }}>
-      <Typography component="p" variant="h5" sx={{ mt: 6 }}>
-        Search results
-      </Typography>
-
-      {results[target]}
+    <Box sx={{ pt: { xs: 4, lg: 10 } }}>
+      {results[target as SearchDataTarget]}
     </Box>
   )
 }

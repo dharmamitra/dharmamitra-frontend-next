@@ -12,6 +12,13 @@ import { alpha } from "@mui/material/styles"
 
 import customTheming from "@/utils/theme/config"
 
+export const tooltipEnterStyles = {
+  fontSize: "1.1rem",
+  lineHeight: 0.75,
+  paddingBottom: "0.1rem",
+  verticalAlign: "middle",
+}
+
 export const VisuallyHiddenRadio = styled(Radio)({
   position: "absolute",
   left: "-10000px",
