@@ -9,6 +9,8 @@ import SkeletonGroup from "@/components/SkeletonGroup"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { searchParamsNames } from "@/utils/api/search/params"
 
+import ParralelSearchResultItems from "./ParralelSearchResultItems"
+
 export default function ParallelQueryResults() {
   const {
     parallel: {
@@ -75,11 +77,6 @@ export default function ParallelQueryResults() {
     enabled: isSearchTriggered,
   })
 
-  const processedData = React.useMemo(() => {
-    if (!data) return null
-    return JSON.stringify(data)
-  }, [data])
-
   if (isError) {
     return <div>Error: {error.message}</div>
   }
@@ -94,11 +91,13 @@ export default function ParallelQueryResults() {
 
   return (
     <div>
-      <Typography component="h2" variant="h4" sx={{ mt: 7, mb: 2 }}>
-        Search results
+      <Typography component="h2" variant="h5" fontWeight={500} mb={2}>
+        Results
       </Typography>
 
-      {processedData ?? "No results found."}
+      {data.length === 0 ? "No results found." : null}
+
+      <ParralelSearchResultItems results={data} />
     </div>
   )
 }

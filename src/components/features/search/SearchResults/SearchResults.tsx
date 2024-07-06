@@ -31,9 +31,5 @@ export default function SearchResults() {
     throw new Error(`Invalid search target: ${target}`)
   }
 
-  return (
-    <Box sx={{ pt: { xs: 4, lg: 10 } }}>
-      {results[target as SearchDataTarget]}
-    </Box>
-  )
+  return <Box sx={{ pt: 5 }}>{results[target as SearchDataTarget]}</Box>
 }

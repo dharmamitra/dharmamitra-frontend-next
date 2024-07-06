@@ -13,5 +13,9 @@ export const getSearchParallelData = async (
     body: parseAPIRequestBody(body),
   })
 
-  return data ?? {}
+  if (!data) {
+    return data
+  }
+
+  return data?.results ? data.results : []
 }
