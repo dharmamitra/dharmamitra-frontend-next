@@ -8,9 +8,17 @@ export interface paths {
     /** Search Endpoint Parallel */
     post: operations["search_endpoint_parallel_parallel__post"]
   }
+  "/parallel-stream/": {
+    /** Search Endpoint Parallel */
+    post: operations["search_endpoint_parallel_parallel_stream__post"]
+  }
   "/primary/": {
     /** Search Endpoint Primary */
     post: operations["search_endpoint_primary_primary__post"]
+  }
+  "/primary-stream/": {
+    /** Search Endpoint Primary */
+    post: operations["search_endpoint_primary_primary_stream__post"]
   }
   "/secondary/": {
     /** Search Endpoint Secondary */
@@ -29,11 +37,31 @@ export interface components {
       input_encoding: components["schemas"]["InputEncoding"]
       search_type: components["schemas"]["SearchType"]
       filter_source_language: components["schemas"]["FilterLanguage"]
+      source_limits: components["schemas"]["FilterPrimary"]
+      postprocess_model: components["schemas"]["PostProcessModel"]
+    }
+    /** Body_search_endpoint_parallel_parallel_stream__post */
+    Body_search_endpoint_parallel_parallel_stream__post: {
+      /** Search Input */
+      search_input: string
+      input_encoding: components["schemas"]["InputEncoding"]
+      search_type: components["schemas"]["SearchType"]
+      filter_source_language: components["schemas"]["FilterLanguage"]
       filter_source_data: components["schemas"]["FilterPrimary"]
       postprocess_model: components["schemas"]["PostProcessModel"]
     }
     /** Body_search_endpoint_primary_primary__post */
     Body_search_endpoint_primary_primary__post: {
+      /** Search Input */
+      search_input: string
+      input_encoding: components["schemas"]["InputEncoding"]
+      search_type: components["schemas"]["SearchType"]
+      filter_language: components["schemas"]["FilterLanguage"]
+      limits: components["schemas"]["FilterPrimary"]
+      postprocess_model: components["schemas"]["PostProcessModel"]
+    }
+    /** Body_search_endpoint_primary_primary_stream__post */
+    Body_search_endpoint_primary_primary_stream__post: {
       /** Search Input */
       search_input: string
       input_encoding: components["schemas"]["InputEncoding"]
@@ -68,20 +96,10 @@ export interface components {
        */
       category_include?: unknown[]
       /**
-       * Category Exclude
-       * @default []
-       */
-      category_exclude?: unknown[]
-      /**
        * File Include
        * @default []
        */
       file_include?: unknown[]
-      /**
-       * File Exclude
-       * @default []
-       */
-      file_exclude?: unknown[]
     }
     /**
      * FilterSecondary
@@ -244,11 +262,60 @@ export interface operations {
       }
     }
   }
+  /** Search Endpoint Parallel */
+  search_endpoint_parallel_parallel_stream__post: {
+    parameters: {
+      query?: {
+        filter_target_language?: components["schemas"]["FilterLanguage"] | null
+      }
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_search_endpoint_parallel_parallel_stream__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ParallelDataSearchResponse"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   /** Search Endpoint Primary */
   search_endpoint_primary_primary__post: {
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_search_endpoint_primary_primary__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PrimarySearchResponse"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  /** Search Endpoint Primary */
+  search_endpoint_primary_primary_stream__post: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_search_endpoint_primary_primary_stream__post"]
       }
     }
     responses: {

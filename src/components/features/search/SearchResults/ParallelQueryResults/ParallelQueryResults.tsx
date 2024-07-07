@@ -17,8 +17,9 @@ export default function ParallelQueryResults() {
       search_input,
       search_type,
       input_encoding,
-      filter_source_data,
+      source_limits,
       filter_source_language,
+      filter_target_language,
       postprocess_model,
     },
   } = searchParamsNames
@@ -31,14 +32,16 @@ export default function ParallelQueryResults() {
   const { input: inputEncoding } =
     useInputWithUrlParam<globalParams.InputEncoding>(input_encoding)
 
-  const { input: filterSrcData } =
-    useInputWithUrlParam<SearchApiTypes.Schema["FilterPrimary"]>(
-      filter_source_data,
-    )
+  const { input: sourceLimits } =
+    useInputWithUrlParam<SearchApiTypes.Schema["FilterPrimary"]>(source_limits)
 
-  const { input: filterLanguage } = useInputWithUrlParam<
+  const { input: filterSourceLanguage } = useInputWithUrlParam<
     SearchApiTypes.Schema["FilterLanguage"]
   >(filter_source_language)
+
+  const { input: filterTargetLanguage } = useInputWithUrlParam<
+    SearchApiTypes.Schema["FilterLanguage"]
+  >(filter_target_language)
 
   const { input: postProcessModel } =
     useInputWithUrlParam<SearchApiTypes.Schema["PostProcessModel"]>(
@@ -50,16 +53,18 @@ export default function ParallelQueryResults() {
       search_input: searchInput,
       search_type: searchType,
       input_encoding: inputEncoding,
-      filter_source_data: filterSrcData,
-      filter_source_language: filterLanguage,
+      source_limits: sourceLimits,
+      filter_source_language: filterSourceLanguage,
+      filter_target_language: filterTargetLanguage,
       postprocess_model: postProcessModel,
     }),
     [
       searchInput,
       searchType,
       inputEncoding,
-      filterSrcData,
-      filterLanguage,
+      sourceLimits,
+      filterSourceLanguage,
+      filterTargetLanguage,
       postProcessModel,
     ],
   )

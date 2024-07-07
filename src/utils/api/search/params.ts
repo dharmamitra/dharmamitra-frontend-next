@@ -1,24 +1,25 @@
-import { SearchApiTypes } from "@/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
 import {
   CommonSearchParamNames,
   CommonSearchParams,
+  Schema,
   SearchEndpoint,
   SearchParamNames,
   SearchTarget,
 } from "./types"
 
-export type SearchDataTarget = SearchEndpoint &
-  keyof Messages["search"]["targets"]
+// eslint-disable-next-line no-unused-vars
+type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
+
+type Targets = Exclude<SearchEndpoint, ExcludeStreams<SearchEndpoint>>
+
+export type SearchDataTarget = Targets & keyof Messages["search"]["targets"]
 
 export const searchDataTargets: SearchDataTarget[] =
-  exhaustiveStringTuple<SearchEndpoint>()("parallel", "primary", "secondary")
+  exhaustiveStringTuple<Targets>()("parallel", "primary", "secondary")
 
-export const disabledSearchDataTargets: SearchDataTarget[] = [
-  "primary",
-  "secondary",
-]
+export const disabledSearchDataTargets: SearchDataTarget[] = ["secondary"]
 
 export type SearchType = CommonSearchParams["search_type"] &
   keyof Messages["search"]["commonParams"]["searchTypes"]
@@ -40,23 +41,17 @@ export const searchPostProcessModels: SearchPostProcessModel[] =
     "none",
   )
 
-// TODO: should be updated to common param on backend update
-export type SearchFilterLanguage =
-  SearchApiTypes.PrimaryRequestBody["filter_language"] &
-    keyof Messages["search"]["commonParams"]["filterLanguages"]
+export type SearchFilterLanguage = Schema["FilterLanguage"] &
+  keyof Messages["search"]["commonParams"]["filterLanguages"]
 
 export const searchFilterLanguages: SearchFilterLanguage[] =
-  exhaustiveStringTuple<SearchApiTypes.PrimaryRequestBody["filter_language"]>()(
+  exhaustiveStringTuple<Schema["FilterLanguage"]>()(
     "all",
     "tib",
     "skt",
     "chn",
     "pli",
   )
-
-// TODO: should be updated to common param on backend update
-export type SearchLimitsPrimary =
-  SearchApiTypes.PrimaryRequestBody["filter_primary"]
 
 export const searchParamsNames: SearchParamNames &
   CommonSearchParamNames &
@@ -73,7 +68,8 @@ export const searchParamsNames: SearchParamNames &
     input_encoding: "input_encoding",
     search_type: "search_type",
     filter_source_language: "filter_source_language",
-    filter_source_data: "filter_source_data",
+    filter_target_language: "filter_target_language",
+    source_limits: "source_limits",
     postprocess_model: "postprocess_model",
   },
   primary: {
@@ -81,7 +77,7 @@ export const searchParamsNames: SearchParamNames &
     input_encoding: "input_encoding",
     search_type: "search_type",
     filter_language: "filter_language",
-    filter_primary: "filter_primary",
+    limits: "limits",
     postprocess_model: "postprocess_model",
   },
   secondary: {

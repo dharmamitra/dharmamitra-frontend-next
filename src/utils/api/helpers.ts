@@ -53,12 +53,22 @@ export type CommonProperties<T extends any[]> = {
 
 export function parseAPIRequestBody<
   T extends {
-    filter_source_data?: SearchApiTypes.ParallelRequestBody["filter_source_data"]
+    source_limits?: SearchApiTypes.SearchLimits
+    limits?: SearchApiTypes.SearchLimits
   },
 >(body: T) {
-  const filter_source_data = body?.filter_source_data
-    ? JSON.parse(body.filter_source_data as string)
+  const source_limits = body?.source_limits
+    ? JSON.parse(body.source_limits as string)
     : {}
+  const limits = body?.limits ? JSON.parse(body.limits as string) : {}
 
-  return { ...body, filter_source_data }
+  if (Object.keys(source_limits).length > 0) {
+    return { ...body, source_limits }
+  }
+
+  if (Object.keys(limits).length > 0) {
+    return { ...body, limits }
+  }
+
+  return body
 }
