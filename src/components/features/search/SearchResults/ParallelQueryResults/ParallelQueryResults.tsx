@@ -33,7 +33,7 @@ export default function ParallelQueryResults() {
     useInputWithUrlParam<globalParams.InputEncoding>(input_encoding)
 
   const { input: sourceLimits } =
-    useInputWithUrlParam<SearchApiTypes.Schema["FilterPrimary"]>(source_limits)
+    useInputWithUrlParam<SearchApiTypes.SearchLimits>(source_limits)
 
   const { input: filterSourceLanguage } = useInputWithUrlParam<
     SearchApiTypes.Schema["FilterLanguage"]

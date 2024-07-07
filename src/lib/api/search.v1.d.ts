@@ -37,7 +37,7 @@ export interface components {
       input_encoding: components["schemas"]["InputEncoding"]
       search_type: components["schemas"]["SearchType"]
       filter_source_language: components["schemas"]["FilterLanguage"]
-      source_limits: components["schemas"]["FilterPrimary"]
+      source_limits: components["schemas"]["Limits"]
       postprocess_model: components["schemas"]["PostProcessModel"]
     }
     /** Body_search_endpoint_parallel_parallel_stream__post */
@@ -47,7 +47,7 @@ export interface components {
       input_encoding: components["schemas"]["InputEncoding"]
       search_type: components["schemas"]["SearchType"]
       filter_source_language: components["schemas"]["FilterLanguage"]
-      filter_source_data: components["schemas"]["FilterPrimary"]
+      source_limits: components["schemas"]["Limits"]
       postprocess_model: components["schemas"]["PostProcessModel"]
     }
     /** Body_search_endpoint_primary_primary__post */
@@ -57,7 +57,7 @@ export interface components {
       input_encoding: components["schemas"]["InputEncoding"]
       search_type: components["schemas"]["SearchType"]
       filter_language: components["schemas"]["FilterLanguage"]
-      limits: components["schemas"]["FilterPrimary"]
+      limits: components["schemas"]["Limits"]
       postprocess_model: components["schemas"]["PostProcessModel"]
     }
     /** Body_search_endpoint_primary_primary_stream__post */
@@ -67,7 +67,7 @@ export interface components {
       input_encoding: components["schemas"]["InputEncoding"]
       search_type: components["schemas"]["SearchType"]
       filter_language: components["schemas"]["FilterLanguage"]
-      filter_primary: components["schemas"]["FilterPrimary"]
+      limits: components["schemas"]["Limits"]
       postprocess_model: components["schemas"]["PostProcessModel"]
     }
     /** Body_search_endpoint_secondary_secondary__post */
@@ -76,7 +76,7 @@ export interface components {
       search_input: string
       input_encoding: components["schemas"]["InputEncoding"]
       search_type: components["schemas"]["SearchType"]
-      filter_secondary: components["schemas"]["FilterSecondary"]
+      filter_secondary: components["schemas"]["LimitsSecondary"]
       postprocess_model: components["schemas"]["PostProcessModel"]
     }
     /**
@@ -85,11 +85,21 @@ export interface components {
      * @enum {string}
      */
     FilterLanguage: "tib" | "skt" | "chn" | "pli" | "all"
+    /** HTTPValidationError */
+    HTTPValidationError: {
+      /** Detail */
+      detail?: components["schemas"]["ValidationError"][]
+    }
     /**
-     * FilterPrimary
+     * InputEncoding
+     * @enum {string}
+     */
+    InputEncoding: "auto" | "tibetan" | "wylie" | "dev" | "iast" | "hk"
+    /**
+     * Limits
      * @description Limits for Search in primary sources. This is identical to the filter model of the xnexus endpoints.
      */
-    FilterPrimary: {
+    Limits: {
       /**
        * Category Include
        * @default []
@@ -102,21 +112,11 @@ export interface components {
       file_include?: unknown[]
     }
     /**
-     * FilterSecondary
+     * LimitsSecondary
      * @description Limits for Search in secondary sources
      * @enum {string}
      */
-    FilterSecondary: ""
-    /** HTTPValidationError */
-    HTTPValidationError: {
-      /** Detail */
-      detail?: components["schemas"]["ValidationError"][]
-    }
-    /**
-     * InputEncoding
-     * @enum {string}
-     */
-    InputEncoding: "auto" | "tibetan" | "wylie" | "dev" | "iast" | "hk"
+    LimitsSecondary: ""
     /**
      * ParallelDataSearchResponse
      * @description List of individual search results for the parallel search.
@@ -239,7 +239,7 @@ export interface operations {
   search_endpoint_parallel_parallel__post: {
     parameters: {
       query?: {
-        filter_target_language?: components["schemas"]["FilterLanguage"] | null
+        filter_target_language?: components["schemas"]["FilterLanguage"]
       }
     }
     requestBody: {
@@ -266,7 +266,7 @@ export interface operations {
   search_endpoint_parallel_parallel_stream__post: {
     parameters: {
       query?: {
-        filter_target_language?: components["schemas"]["FilterLanguage"] | null
+        filter_target_language?: components["schemas"]["FilterLanguage"]
       }
     }
     requestBody: {

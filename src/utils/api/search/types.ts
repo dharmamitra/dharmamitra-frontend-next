@@ -31,8 +31,7 @@ export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
 //  *  API ENDPPOINTS & PARAMS NAMES
 //  */
 
-// TODO: Model name should be fixed on backend `FilterPrimary` > `Limits
-export type SearchLimits = Schema["FilterPrimary"]
+export type SearchLimits = Schema["Limits"]
 
 type Endpoint = keyof paths
 export type SearchEndpoint = Endpoint extends `/${infer Key}/` ? Key : never
