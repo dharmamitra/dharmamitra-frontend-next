@@ -1,28 +1,23 @@
 import React from "react"
 
+import useParams from "@/hooks/useParams"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
-  searchTargets,
-  SearchTarget,
   searchParamsNames,
-  searchTypes,
+  SearchTarget,
+  searchTargets,
   SearchType,
-  searchPostProcessModels,
-  SearchPostProcessModel,
+  searchTypes,
 } from "@/utils/api/search/params"
 import { getValidDefaultValue } from "@/utils/ui"
-import useParams from "@/hooks/useParams"
 
 const defaultSearchTargetValue = getValidDefaultValue(searchTargets[0])
 const defaultSearchTypeValue = getValidDefaultValue(searchTypes[0])
-const defaultSearchPostProcessModelValue = getValidDefaultValue(
-  searchPostProcessModels[0],
-)
 
 const useSearchCommonParams = () => {
   const {
     target,
-    common: { search_input, input_encoding, search_type, postprocess_model },
+    common: { search_input, search_type },
   } = searchParamsNames
 
   const { getSearchParam } = useParams()
@@ -61,21 +56,6 @@ const useSearchCommonParams = () => {
     }
   }, [searchType, updateSearchType])
 
-  const searchPostProcessModel = getSearchParam(
-    postprocess_model,
-  ) as SearchPostProcessModel
-  const { handleValueChange: updateSearchPostProcessModel } =
-    useParamValueWithLocalStorage({
-      paramName: postprocess_model,
-      defaultValue: defaultSearchPostProcessModelValue,
-    })
-
-  React.useEffect(() => {
-    if (!searchPostProcessModel) {
-      updateSearchPostProcessModel(defaultSearchPostProcessModelValue)
-    }
-  }, [searchPostProcessModel, updateSearchType])
-
   return {
     searchTarget,
     updateSearchTarget,
@@ -83,8 +63,6 @@ const useSearchCommonParams = () => {
     updateSearchInput,
     searchType,
     updateSearchType,
-    searchPostProcessModel,
-    updateSearchPostProcessModel,
   }
 }
 

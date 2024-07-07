@@ -6,13 +6,12 @@ import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
 import { searchPostProcessModels } from "@/utils/api/search/params"
-import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
 export default function SearchPostProcessModelButtons() {
   const t = useTranslations("search.commonParams.postProcessModels")
 
-  const { searchPostProcessModel, updateSearchPostProcessModel } =
-    useSearchCommonParams()
+  const searchPostProcessModel = "TODO"
+  const updateSearchPostProcessModel = (value: string) => value
 
   return (
     <div>

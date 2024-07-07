@@ -1,91 +1,71 @@
 import React from "react"
 
+import useParams from "@/hooks/useParams"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
-  searchTargets,
-  SearchTarget,
+  SearchFilterLanguage,
+  searchFilterLanguages,
   searchParamsNames,
-  searchTypes,
-  SearchType,
-  searchPostProcessModels,
-  SearchPostProcessModel,
 } from "@/utils/api/search/params"
+import { SearchLimits } from "@/utils/api/search/types"
 import { getValidDefaultValue } from "@/utils/ui"
-import useParams from "@/hooks/useParams"
 
-const defaultSearchTargetValue = getValidDefaultValue(searchTargets[0])
-const defaultSearchTypeValue = getValidDefaultValue(searchTypes[0])
-const defaultSearchPostProcessModelValue = getValidDefaultValue(
-  searchPostProcessModels[0],
+const defaultFilterLanguageValue = getValidDefaultValue(
+  searchFilterLanguages[0],
 )
 
-const useSearchCommonParams = () => {
+const useSearchParallelParams = () => {
   const {
-    target,
-    common: { search_input, input_encoding, search_type, postprocess_model },
+    parallel: { filter_source_language, filter_target_language, source_limits },
   } = searchParamsNames
 
   const { getSearchParam } = useParams()
 
-  const searchTarget = getSearchParam(target) as SearchTarget
-  const { handleValueChange: updateSearchTarget } =
+  const filterSourceLanguage = getSearchParam(
+    filter_source_language,
+  ) as SearchFilterLanguage
+  const { handleValueChange: updateFilterSourceLanguage } =
     useParamValueWithLocalStorage({
-      paramName: target,
-      defaultValue: defaultSearchTargetValue,
+      paramName: filter_source_language,
+      defaultValue: defaultFilterLanguageValue,
     })
 
   React.useEffect(() => {
-    if (!searchTarget) {
-      updateSearchTarget(defaultSearchTargetValue)
+    if (!filterSourceLanguage) {
+      updateFilterSourceLanguage(defaultFilterLanguageValue)
     }
-  }, [searchTarget, updateSearchTarget])
+  }, [filterSourceLanguage, updateFilterSourceLanguage])
 
-  const searchInput = getSearchParam(search_input)
-  const { handleValueChange: updateSearchInput } =
+  const filterTargetLanguage = getSearchParam(
+    filter_target_language,
+  ) as SearchFilterLanguage
+  const { handleValueChange: updateFilterTargetLanguage } =
     useParamValueWithLocalStorage({
-      paramName: search_input,
+      paramName: filter_target_language,
+      defaultValue: defaultFilterLanguageValue,
+    })
+
+  React.useEffect(() => {
+    if (!filterTargetLanguage) {
+      updateFilterTargetLanguage(defaultFilterLanguageValue)
+    }
+  }, [filterTargetLanguage, updateFilterTargetLanguage])
+
+  const sourceLimits = getSearchParam(source_limits) as SearchLimits
+  const { handleValueChange: updateSourceLimits } =
+    useParamValueWithLocalStorage({
+      paramName: source_limits,
       defaultValue: "",
     })
 
-  const searchType = getSearchParam(search_type) as SearchType
-  const { handleValueChange: updateSearchType } = useParamValueWithLocalStorage(
-    {
-      paramName: search_type,
-      defaultValue: defaultSearchTypeValue,
-    },
-  )
-
-  React.useEffect(() => {
-    if (!searchType) {
-      updateSearchType(defaultSearchTypeValue)
-    }
-  }, [searchType, updateSearchType])
-
-  const searchPostProcessModel = getSearchParam(
-    postprocess_model,
-  ) as SearchPostProcessModel
-  const { handleValueChange: updateSearchPostProcessModel } =
-    useParamValueWithLocalStorage({
-      paramName: postprocess_model,
-      defaultValue: defaultSearchPostProcessModelValue,
-    })
-
-  React.useEffect(() => {
-    if (!searchPostProcessModel) {
-      updateSearchPostProcessModel(defaultSearchPostProcessModelValue)
-    }
-  }, [searchPostProcessModel, updateSearchType])
-
   return {
-    searchTarget,
-    updateSearchTarget,
-    searchInput,
-    updateSearchInput,
-    searchType,
-    updateSearchType,
-    searchPostProcessModel,
-    updateSearchPostProcessModel,
+    filterSourceLanguage,
+    updateFilterSourceLanguage,
+    filterTargetLanguage,
+    updateFilterTargetLanguage,
+    sourceLimits,
+    updateSourceLimits,
   }
 }
 
-export default useSearchCommonParams
+export default useSearchParallelParams

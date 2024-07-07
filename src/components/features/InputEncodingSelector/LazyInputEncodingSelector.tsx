@@ -13,22 +13,16 @@ import {
   selectedOptionsStyles,
 } from "@/components/styled"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
-import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
+import useGlobalParams from "@/hooks/useGlobalParams"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
-import { getOptionI18nKeyPath, getValidDefaultValue } from "@/utils/ui"
+import { getOptionI18nKeyPath } from "@/utils/ui"
 
 import RadioOption from "../translation/common/RadioOption"
-
-const defaultValue = getValidDefaultValue(globalParams.inputEncodings[0])
 
 export default function LazyInputEncodingSelector() {
   const t = useTranslations()
 
-  const { value, handleValueChange, isHydrated } =
-    useParamValueWithLocalStorage({
-      paramName: globalParams.globalParamsNames.input_encoding,
-      defaultValue,
-    })
+  const { inputEncoding, updateInputEncoding } = useGlobalParams()
 
   const primaryOptionsSelectorId = "primary-encoding-options"
   useFocusHighlight({
@@ -48,23 +42,20 @@ export default function LazyInputEncodingSelector() {
   )
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
-    () => primaryEncodingOptions.includes(value as globalParams.InputEncoding),
-    [value, primaryEncodingOptions],
+    () =>
+      primaryEncodingOptions.includes(
+        inputEncoding as globalParams.InputEncoding,
+      ),
+    [inputEncoding, primaryEncodingOptions],
   )
-
-  React.useEffect(() => {
-    if (value === "") {
-      handleValueChange(defaultValue)
-    }
-  }, [value, handleValueChange])
 
   return (
     <>
       <RadioGroup
         id={primaryOptionsSelectorId}
         aria-label={t("globalParams.primaryEncodingsAriaLabel")}
-        value={value ?? defaultValue}
-        onChange={(e) => handleValueChange(e.target.value)}
+        value={inputEncoding}
+        onChange={(e) => updateInputEncoding(e.target.value)}
         row
         sx={{ ...flatRadioGroupStyles }}
         className={styles.customFocusVisible}
@@ -75,7 +66,7 @@ export default function LazyInputEncodingSelector() {
             id={encoding + "-primary-encoding-option"}
             option={encoding}
             label={t(getOptionI18nKeyPath(encoding))}
-            isSelected={isHydrated && value === encoding}
+            isSelected={inputEncoding === encoding}
           />
         ))}
       </RadioGroup>
@@ -87,8 +78,8 @@ export default function LazyInputEncodingSelector() {
         <Select
           id={secondaryOptionsSelectorId}
           data-testid="other-input-encoding-options"
-          value={isPrimaryValueSelected ? "" : value}
-          onChange={(e) => handleValueChange(e.target.value)}
+          value={isPrimaryValueSelected ? "" : inputEncoding}
+          onChange={(e) => updateInputEncoding(e.target.value)}
           inputProps={{
             "aria-label": t("globalParams.secondaryEncodingsAriaLabel"),
             sx: secondaryOptionsInputStyles,
@@ -96,7 +87,7 @@ export default function LazyInputEncodingSelector() {
           IconComponent={() => <SecondaryOptionsButtonIcon />}
           sx={{
             ...secondaryOptionsInputStyles,
-            ...(isHydrated && !isPrimaryValueSelected
+            ...(!isPrimaryValueSelected
               ? { ...selectedOptionsStyles, color: "secondary.main" }
               : {}),
             "& .MuiOutlinedInput-notchedOutline": {

@@ -3,60 +3,29 @@ import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 import { useAtom } from "jotai"
 
-import { DMFetchApi, globalParams, SearchApiTypes } from "@/api"
+import { DMFetchApi, SearchApiTypes } from "@/api"
 import { triggerSearchQueryAtom } from "@/atoms"
 import SkeletonGroup from "@/components/SkeletonGroup"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { searchParamsNames } from "@/utils/api/search/params"
+import useGlobalParams from "@/hooks/useGlobalParams"
+import useSearchCommonParams from "@/hooks/useSearchCommonParams"
+import useSearchParallelParams from "@/hooks/useSearchParallelParams"
 
 import ParralelSearchResultItems from "./ParralelSearchResultItems"
 
 export default function ParallelQueryResults() {
-  const {
-    parallel: {
-      search_input,
-      search_type,
-      input_encoding,
-      source_limits,
-      filter_source_language,
-      filter_target_language,
-      postprocess_model,
-    },
-  } = searchParamsNames
-
-  const { input: searchInput } = useInputWithUrlParam<string>(search_input)
-
-  const { input: searchType } =
-    useInputWithUrlParam<SearchApiTypes.Schema["SearchType"]>(search_type)
-
-  const { input: inputEncoding } =
-    useInputWithUrlParam<globalParams.InputEncoding>(input_encoding)
-
-  const { input: sourceLimits } =
-    useInputWithUrlParam<SearchApiTypes.SearchLimits>(source_limits)
-
-  const { input: filterSourceLanguage } = useInputWithUrlParam<
-    SearchApiTypes.Schema["FilterLanguage"]
-  >(filter_source_language)
-
-  const { input: filterTargetLanguage } = useInputWithUrlParam<
-    SearchApiTypes.Schema["FilterLanguage"]
-  >(filter_target_language)
-
-  const { input: postProcessModel } =
-    useInputWithUrlParam<SearchApiTypes.Schema["PostProcessModel"]>(
-      postprocess_model,
-    )
+  const { searchInput, searchType } = useSearchCommonParams()
+  const { inputEncoding } = useGlobalParams()
+  const { sourceLimits, filterSourceLanguage, filterTargetLanguage } =
+    useSearchParallelParams()
 
   const requestBody: SearchApiTypes.ParallelRequestBody = React.useMemo(
     () => ({
-      search_input: searchInput,
+      search_input: searchInput ?? "",
       search_type: searchType,
       input_encoding: inputEncoding,
       source_limits: sourceLimits,
       filter_source_language: filterSourceLanguage,
       filter_target_language: filterTargetLanguage,
-      postprocess_model: postProcessModel,
     }),
     [
       searchInput,
@@ -65,7 +34,6 @@ export default function ParallelQueryResults() {
       sourceLimits,
       filterSourceLanguage,
       filterTargetLanguage,
-      postProcessModel,
     ],
   )
 

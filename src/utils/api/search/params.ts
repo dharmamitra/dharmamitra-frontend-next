@@ -31,7 +31,7 @@ export const searchTypes: SearchType[] = exhaustiveStringTuple<
   CommonSearchParams["search_type"]
 >()("regular", "semantic")
 
-export type SearchPostProcessModel = CommonSearchParams["postprocess_model"] &
+export type SearchPostProcessModel = Schema["PostProcessModel"] &
   keyof Messages["search"]["commonParams"]["postProcessModels"]
 
 export const searchPostProcessModels: SearchPostProcessModel[] =
@@ -64,7 +64,6 @@ export const searchParamsNames: SearchParamNames &
     search_input: "search_input",
     input_encoding: "input_encoding",
     search_type: "search_type",
-    postprocess_model: "postprocess_model",
   },
   parallel: {
     filter_source_language: "filter_source_language",
@@ -77,5 +76,6 @@ export const searchParamsNames: SearchParamNames &
   },
   secondary: {
     filter_secondary: "filter_secondary",
+    postprocess_model: "postprocess_model",
   },
 }

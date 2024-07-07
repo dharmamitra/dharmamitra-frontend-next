@@ -8,17 +8,9 @@ export interface paths {
     /** Search Endpoint Parallel */
     post: operations["search_endpoint_parallel_parallel__post"]
   }
-  "/parallel-stream/": {
-    /** Search Endpoint Parallel */
-    post: operations["search_endpoint_parallel_parallel_stream__post"]
-  }
   "/primary/": {
     /** Search Endpoint Primary */
     post: operations["search_endpoint_primary_primary__post"]
-  }
-  "/primary-stream/": {
-    /** Search Endpoint Primary */
-    post: operations["search_endpoint_primary_primary_stream__post"]
   }
   "/secondary/": {
     /** Search Endpoint Secondary */
@@ -38,17 +30,7 @@ export interface components {
       search_type: components["schemas"]["SearchType"]
       filter_source_language: components["schemas"]["FilterLanguage"]
       source_limits: components["schemas"]["Limits"]
-      postprocess_model: components["schemas"]["PostProcessModel"]
-    }
-    /** Body_search_endpoint_parallel_parallel_stream__post */
-    Body_search_endpoint_parallel_parallel_stream__post: {
-      /** Search Input */
-      search_input: string
-      input_encoding: components["schemas"]["InputEncoding"]
-      search_type: components["schemas"]["SearchType"]
-      filter_source_language: components["schemas"]["FilterLanguage"]
-      source_limits: components["schemas"]["Limits"]
-      postprocess_model: components["schemas"]["PostProcessModel"]
+      filter_target_language: components["schemas"]["FilterLanguage"]
     }
     /** Body_search_endpoint_primary_primary__post */
     Body_search_endpoint_primary_primary__post: {
@@ -58,17 +40,6 @@ export interface components {
       search_type: components["schemas"]["SearchType"]
       filter_language: components["schemas"]["FilterLanguage"]
       limits: components["schemas"]["Limits"]
-      postprocess_model: components["schemas"]["PostProcessModel"]
-    }
-    /** Body_search_endpoint_primary_primary_stream__post */
-    Body_search_endpoint_primary_primary_stream__post: {
-      /** Search Input */
-      search_input: string
-      input_encoding: components["schemas"]["InputEncoding"]
-      search_type: components["schemas"]["SearchType"]
-      filter_language: components["schemas"]["FilterLanguage"]
-      limits: components["schemas"]["Limits"]
-      postprocess_model: components["schemas"]["PostProcessModel"]
     }
     /** Body_search_endpoint_secondary_secondary__post */
     Body_search_endpoint_secondary_secondary__post: {
@@ -212,6 +183,8 @@ export interface components {
       text_main: string
       /** Text After */
       text_after: string
+      /** Translation */
+      translation: string
     }
     /** ValidationError */
     ValidationError: {
@@ -237,41 +210,9 @@ export type external = Record<string, never>
 export interface operations {
   /** Search Endpoint Parallel */
   search_endpoint_parallel_parallel__post: {
-    parameters: {
-      query?: {
-        filter_target_language?: components["schemas"]["FilterLanguage"]
-      }
-    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_search_endpoint_parallel_parallel__post"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        content: {
-          "application/json": components["schemas"]["ParallelDataSearchResponse"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  /** Search Endpoint Parallel */
-  search_endpoint_parallel_parallel_stream__post: {
-    parameters: {
-      query?: {
-        filter_target_language?: components["schemas"]["FilterLanguage"]
-      }
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["Body_search_endpoint_parallel_parallel_stream__post"]
       }
     }
     responses: {
@@ -294,28 +235,6 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_search_endpoint_primary_primary__post"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        content: {
-          "application/json": components["schemas"]["PrimarySearchResponse"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  /** Search Endpoint Primary */
-  search_endpoint_primary_primary_stream__post: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["Body_search_endpoint_primary_primary_stream__post"]
       }
     }
     responses: {
