@@ -33,6 +33,30 @@ type CommonKeys<T extends any[]> = T extends [infer F, ...infer R]
 export type CommonProperties<T extends any[]> = {
   [K in CommonKeys<T>]: T[number][K]
 }
+
+type UnionKeys<T extends any[]> = T extends [infer F, ...infer R]
+  ? keyof F | UnionKeys<R>
+  : never
+
+type UniqueKeys<
+  T extends any[],
+  AllKeys = UnionKeys<T>,
+> = AllKeys extends keyof any
+  ? AllKeys extends keyof T[number]
+    ? never
+    : AllKeys
+  : never
+
+type ExtractType<T, K> = T extends any
+  ? K extends keyof T
+    ? T[K]
+    : never
+  : never
+
+export type UniqueProperties<T extends any[]> = {
+  [K in UniqueKeys<T>]: ExtractType<T[number], K>
+}
+
 // export type PropertiesCommonToAll<T extends any[]> = {
 //   [K in CommonKeys<T>]: T[number][K]
 // }

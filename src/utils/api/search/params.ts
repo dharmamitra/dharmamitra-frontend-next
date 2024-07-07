@@ -67,27 +67,15 @@ export const searchParamsNames: SearchParamNames &
     postprocess_model: "postprocess_model",
   },
   parallel: {
-    search_input: "search_input",
-    input_encoding: "input_encoding",
-    search_type: "search_type",
     filter_source_language: "filter_source_language",
     filter_target_language: "filter_target_language",
     source_limits: "source_limits",
-    postprocess_model: "postprocess_model",
   },
   primary: {
-    search_input: "search_input",
-    input_encoding: "input_encoding",
-    search_type: "search_type",
     filter_language: "filter_language",
     limits: "limits",
-    postprocess_model: "postprocess_model",
   },
   secondary: {
-    search_input: "search_input",
-    input_encoding: "input_encoding",
-    search_type: "search_type",
     filter_secondary: "filter_secondary",
-    postprocess_model: "postprocess_model",
   },
 }

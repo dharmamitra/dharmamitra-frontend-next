@@ -3,6 +3,7 @@ import type {
   APIRequestBody,
   APIResponse,
   CommonProperties,
+  UniqueProperties,
 } from "@/utils/api/helpers"
 
 export type Schema = components["schemas"]
@@ -46,14 +47,41 @@ export type CommonSearchParams = CommonProperties<
 //   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
 // >
 
-export type SearchParamNames = {
-  parallel: Record<keyof ParallelRequestBody, keyof ParallelRequestBody>
-  primary: Record<keyof PrimaryRequestBody, keyof PrimaryRequestBody>
-  secondary: Record<keyof SecondaryRequestBody, keyof SecondaryRequestBody>
-}
+export type UniqueParallelParams = UniqueProperties<
+  [CommonSearchParams, ParallelRequestBody]
+>
+
+export type UniquePrimaryParams = UniqueProperties<
+  [CommonSearchParams, PrimaryRequestBody]
+>
+
+export type UniqueSecondaryParams = UniqueProperties<
+  [CommonSearchParams, SecondaryRequestBody]
+>
 
 export type CommonSearchParamNames = {
   common: Record<keyof CommonSearchParams, keyof CommonSearchParams>
+}
+
+type UniqueParallelParamNames = Record<
+  keyof UniqueParallelParams,
+  keyof UniqueParallelParams
+>
+
+type UniquePrimaryParamNames = Record<
+  keyof UniquePrimaryParams,
+  keyof UniquePrimaryParams
+>
+
+type UniqueSecondaryParamNames = Record<
+  keyof UniqueSecondaryParams,
+  keyof UniqueSecondaryParams
+>
+
+export type SearchParamNames = {
+  parallel: UniqueParallelParamNames
+  primary: UniquePrimaryParamNames
+  secondary: UniqueSecondaryParamNames
 }
 
 export type SearchTargetLocalParamName = {
