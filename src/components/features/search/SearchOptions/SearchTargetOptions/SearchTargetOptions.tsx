@@ -9,11 +9,13 @@ import {
   searchParamsNames,
 } from "@/utils/api/search/params"
 
-import DataTargetButtons from "./DataTargetButtons"
+import SearchTargetButtons from "./SearchTargetButtons"
 import LimitFilters from "./LimitFilters/LimitFilters"
 import TargetDataLanguageButtons from "./TargetDataLanguageButtons"
+import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
 export default function SearchTargetOptions() {
+  const { searchTarget } = useSearchCommonParams()
   const { getSearchParam } = useParams()
 
   const selectedLanguage = getSearchParam(
@@ -32,7 +34,7 @@ export default function SearchTargetOptions() {
         gap: 2,
       }}
     >
-      <DataTargetButtons />
+      <SearchTargetButtons />
 
       <TargetDataLanguageButtons />
 

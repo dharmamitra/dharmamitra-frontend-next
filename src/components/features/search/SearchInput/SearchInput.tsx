@@ -7,6 +7,7 @@ import { triggerSearchQueryAtom } from "@/atoms"
 import { setRows } from "@/features/utils"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { searchParamsNames } from "@/utils/api/search/params"
+import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
 import StartStopButton from "../SearchStartStopButton"
 
@@ -19,9 +20,7 @@ export default function SearchBox({
 }) {
   const t = useTranslations("search")
 
-  const { input, handleValueChange } = useInputWithUrlParam<string>(
-    searchParamsNames.common.search_input,
-  )
+  const { searchInput, updateSearchInput } = useSearchCommonParams()
 
   const setTriggerSearchQuery = useSetAtom(triggerSearchQueryAtom)
 
@@ -38,12 +37,12 @@ export default function SearchBox({
         inputProps={{
           "aria-label": "search",
         }}
-        value={input}
-        rows={isScrolling ? 1 : setRows(input)}
+        value={searchInput}
+        rows={isScrolling ? 1 : setRows(searchInput ?? "")}
         multiline
-        onChange={handleValueChange}
+        onChange={updateSearchInput}
         onKeyUp={(event) => {
-          if (event.key === "Enter" && input.length > 0) {
+          if (event.key === "Enter" && searchInput && searchInput.length > 0) {
             setTriggerSearchQuery(true)
           }
         }}

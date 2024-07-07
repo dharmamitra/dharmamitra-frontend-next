@@ -57,6 +57,6 @@ export type CommonSearchParamNames = {
   common: Record<keyof CommonSearchParams, keyof CommonSearchParams>
 }
 
-export type SearchTarget = {
+export type SearchTargetLocalParamName = {
   target: "search_target"
 }

@@ -6,7 +6,7 @@ import {
   Schema,
   SearchEndpoint,
   SearchParamNames,
-  SearchTarget,
+  SearchTargetLocalParamName,
 } from "./types"
 
 // eslint-disable-next-line no-unused-vars
@@ -14,12 +14,15 @@ type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
 
 type Targets = Exclude<SearchEndpoint, ExcludeStreams<SearchEndpoint>>
 
-export type SearchDataTarget = Targets & keyof Messages["search"]["targets"]
+export type SearchTarget = Targets & keyof Messages["search"]["targets"]
 
-export const searchDataTargets: SearchDataTarget[] =
-  exhaustiveStringTuple<Targets>()("parallel", "primary", "secondary")
+export const searchTargets: SearchTarget[] = exhaustiveStringTuple<Targets>()(
+  "parallel",
+  "primary",
+  "secondary",
+)
 
-export const disabledSearchDataTargets: SearchDataTarget[] = ["secondary"]
+export const disabledSearchTargets: SearchTarget[] = ["secondary"]
 
 export type SearchType = CommonSearchParams["search_type"] &
   keyof Messages["search"]["commonParams"]["searchTypes"]
@@ -55,7 +58,7 @@ export const searchFilterLanguages: SearchFilterLanguage[] =
 
 export const searchParamsNames: SearchParamNames &
   CommonSearchParamNames &
-  SearchTarget = {
+  SearchTargetLocalParamName = {
   target: "search_target",
   common: {
     search_input: "search_input",

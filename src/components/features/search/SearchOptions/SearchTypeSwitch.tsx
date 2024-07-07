@@ -4,35 +4,25 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
+import { SearchType } from "@/utils/api/search/params"
+import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
-import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
-import { searchParamsNames, searchTypes } from "@/utils/api/search/params"
-import { getValidDefaultValue } from "@/utils/ui"
-
-const defaultValue = getValidDefaultValue(searchTypes[0])
+const switchValues: Record<SearchType, SearchType> = {
+  regular: "semantic",
+  semantic: "regular",
+}
 
 export default function SearchTypeSwitch() {
   const t = useTranslations("search.commonParams.searchTypes")
 
-  const { value, handleValueChange } = useParamValueWithLocalStorage({
-    paramName: searchParamsNames.common.search_type,
-    defaultValue,
-  })
-
-  React.useEffect(() => {
-    if (value === "") {
-      handleValueChange(defaultValue)
-    }
-  }, [value, handleValueChange])
+  const { searchType, updateSearchType } = useSearchCommonParams()
 
   return (
     <FormControlLabel
       control={
         <Switch
-          checked={value === "semantic"}
-          onChange={() =>
-            handleValueChange(value === "regular" ? "semantic" : "regular")
-          }
+          checked={searchType === "semantic"}
+          onChange={() => updateSearchType(switchValues[searchType])}
           color="secondary"
         />
       }

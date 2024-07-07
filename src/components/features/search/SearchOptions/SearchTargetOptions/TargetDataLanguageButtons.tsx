@@ -6,17 +6,18 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
-  SearchDataTarget,
-  searchDataTargets,
+  SearchTarget,
+  searchTargets,
   searchFilterLanguages,
   searchParamsNames,
 } from "@/utils/api/search/params"
 import { getValidDefaultValue, smMediaQuery } from "@/utils/ui"
+import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
-const defaultSearchTarget = getValidDefaultValue(searchDataTargets[0])
+const defaultSearchTarget = getValidDefaultValue(searchTargets[0])
 const defaultFilterLanguage = getValidDefaultValue(searchFilterLanguages[0])
 
-const getSelectedTargetLanguageOptions = (searchTarget: SearchDataTarget) => {
+const getSelectedTargetLanguageOptions = (searchTarget: SearchTarget) => {
   switch (searchTarget) {
     case "primary":
       return {
@@ -37,21 +38,10 @@ const getSelectedTargetLanguageOptions = (searchTarget: SearchDataTarget) => {
 }
 
 export default function TargetDataLanguageButtons() {
-  const { value: searchTarget, handleValueChange: updateDataTarget } =
-    useParamValueWithLocalStorage({
-      paramName: searchParamsNames.target,
-      defaultValue: defaultSearchTarget,
-    })
+  const { searchTarget } = useSearchCommonParams()
 
-  React.useEffect(() => {
-    if (searchTarget === "") {
-      updateDataTarget(defaultFilterLanguage)
-    }
-  }, [searchTarget, updateDataTarget])
-
-  const { options, paramName, i18nKey } = getSelectedTargetLanguageOptions(
-    searchTarget as SearchDataTarget,
-  )
+  const { options, paramName, i18nKey } =
+    getSelectedTargetLanguageOptions(searchTarget)
 
   const t = useTranslations(i18nKey)
 

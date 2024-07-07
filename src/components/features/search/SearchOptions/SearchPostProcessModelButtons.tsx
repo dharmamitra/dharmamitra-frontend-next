@@ -5,36 +5,22 @@ import { useTranslations } from "next-intl"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
-import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
-import {
-  searchParamsNames,
-  searchPostProcessModels,
-} from "@/utils/api/search/params"
-import { getValidDefaultValue } from "@/utils/ui"
-
-const defaultValue = getValidDefaultValue(searchPostProcessModels[0])
+import { searchPostProcessModels } from "@/utils/api/search/params"
+import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
 export default function SearchPostProcessModelButtons() {
   const t = useTranslations("search.commonParams.postProcessModels")
 
-  const { value, handleValueChange } = useParamValueWithLocalStorage({
-    paramName: searchParamsNames.common.postprocess_model,
-    defaultValue,
-  })
-
-  React.useEffect(() => {
-    if (value === "") {
-      handleValueChange(defaultValue)
-    }
-  }, [value, handleValueChange])
+  const { searchPostProcessModel, updateSearchPostProcessModel } =
+    useSearchCommonParams()
 
   return (
     <div>
       <ToggleButtonGroup
         color="secondary"
-        value={value}
+        value={searchPostProcessModel}
         exclusive
-        onChange={(event, value) => handleValueChange(value)}
+        onChange={(event, value) => updateSearchPostProcessModel(value)}
         aria-label="Model"
       >
         {searchPostProcessModels.map((model) => (
