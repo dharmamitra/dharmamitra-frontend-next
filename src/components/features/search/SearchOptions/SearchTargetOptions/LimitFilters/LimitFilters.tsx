@@ -95,7 +95,14 @@ const LimitFilters = ({
       setLimitsValue(values)
       isInitilized.current = true
     }
-  }, [isLoadingTexts, isLoadingCategories, texts, categories, setLimitsValue])
+  }, [
+    isLoadingTexts,
+    isLoadingCategories,
+    texts,
+    categories,
+    setLimitsValue,
+    limitParamStringValue,
+  ])
 
   const handleGlobalParamReset = React.useCallback(() => {
     // `isValueSet` deals with param-value setting cycle
@@ -116,7 +123,12 @@ const LimitFilters = ({
     }
 
     updateLimitsValue()
-  }, [updateLimitsValue, isValueSet, handleGlobalParamReset])
+  }, [
+    updateLimitsValue,
+    isValueSet,
+    handleGlobalParamReset,
+    limitParamStringValue,
+  ])
 
   const handleInputChange = (limit: Limit, value: LimitValueOption) => {
     // eslint-disable-next-line no-unused-vars

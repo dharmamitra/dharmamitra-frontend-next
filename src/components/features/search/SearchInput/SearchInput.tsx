@@ -5,8 +5,6 @@ import { useSetAtom } from "jotai"
 
 import { triggerSearchQueryAtom } from "@/atoms"
 import { setRows } from "@/features/utils"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { searchParamsNames } from "@/utils/api/search/params"
 import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
 import StartStopButton from "../SearchStartStopButton"
