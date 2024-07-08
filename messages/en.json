@@ -10,7 +10,9 @@
     },
     "other": "Other",
     "clear": "Clear",
-    "stop": "Stop"
+    "stop": "Stop",
+    "source": "Source",
+    "target": "Target"
   },
   "navigation": {
     "home": "Home",
@@ -58,6 +60,10 @@
       }
     },
     "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "Select source categories",
+        "sourceTextLimit": "Select source texts"
+      },
       "inputEncodings": {
         "auto": "Autodetect",
         "tibetan": "Tibetan",
@@ -66,13 +72,7 @@
         "iast": "IAST Roman",
         "hk": "Harvard-Kyoto"
       },
-      "searchTypes": { "regular": "Regular", "semantic": "Semantic search" },
-      "postProcessModels": {
-        "llama3": "Llama3",
-        "gpt-4": "gpt-4",
-        "claude": "Claude",
-        "none": "None"
-      },
+      "searchTypes": { "regular": "Regular", "semantic": "Semantic" },
       "filterLanguages": {
         "tib": "Tibetan",
         "skt": "Sanskrit",

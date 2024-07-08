@@ -4,27 +4,35 @@ import { useQuery } from "@tanstack/react-query"
 import { DMFetchApi } from "@/api"
 import type { ParsedCategoryMenuItem } from "@/utils/api/search/endpoints/menus/category"
 import type { ParsedTextFileMenuItem } from "@/utils/api/search/endpoints/menus/files"
+import { SearchFilterLanguage } from "@/utils/api/search/params"
 
-export const useSourceTextMenus = (
-  params: { language: string } | undefined,
-) => {
+export type UseSourceTextMenusProps = {
+  language: SearchFilterLanguage
+}
+
+const isEnabled = (params: UseSourceTextMenusProps) => {
+  if (Object.keys(params).length === 0) return false
+  if (params.language === "all") return false
+  return true
+}
+
+export const useSourceTextMenus = (params: UseSourceTextMenusProps) => {
   const { data: textsData, isLoading: isLoadingTexts } = useQuery({
     queryKey: DMFetchApi.tempMenuSourceTexts.makeQueryKey(
       JSON.stringify(params),
     ),
-    // TODO: update with language when backend supports it & add error handling
-    queryFn: () => DMFetchApi.tempMenuSourceTexts.call({ language: "pli" }),
-    enabled: !!params,
+    // TODO: error handling
+    queryFn: () => DMFetchApi.tempMenuSourceTexts.call(params),
+    enabled: isEnabled(params),
   })
 
   const { data: categoriesData, isLoading: isLoadingCategories } = useQuery({
     queryKey: DMFetchApi.tempMenuSourceCategories.makeQueryKey(
       JSON.stringify(params),
     ),
-    // TODO: update with language when backend supports it & add error handling
-    queryFn: () =>
-      DMFetchApi.tempMenuSourceCategories.call({ language: "pli" }),
-    enabled: !!params,
+    // TODO: error handling
+    queryFn: () => DMFetchApi.tempMenuSourceCategories.call(params),
+    enabled: isEnabled(params),
   })
 
   const texts = React.useMemo(() => {

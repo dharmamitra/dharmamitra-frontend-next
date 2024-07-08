@@ -17,7 +17,7 @@ function useParamValueWithLocalStorage({
   defaultValue = "",
 }: {
   paramName: string
-  defaultValue: string
+  defaultValue: string | undefined
 }) {
   const searchParams = useSearchParams()
   const paramValue = React.useMemo(
@@ -42,9 +42,16 @@ function useParamValueWithLocalStorage({
   // Effect for updates after initialization
   React.useEffect(() => {
     if (isHydrated) {
-      localStorage.setItem(paramName, value)
       const url = new URL(window.location.href)
-      url.searchParams.set(paramName, value)
+
+      if (value) {
+        url.searchParams.set(paramName, value)
+        localStorage.setItem(paramName, value)
+      } else {
+        url.searchParams.delete(paramName)
+        localStorage.setItem(paramName, "")
+      }
+
       window.history.replaceState(null, "", url.toString())
     }
   }, [value, paramName, isHydrated])

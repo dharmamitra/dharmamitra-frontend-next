@@ -3,27 +3,60 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
-import useParams from "@/hooks/useParams"
-import {
-  SearchFilterLanguage,
-  searchParamsNames,
-} from "@/utils/api/search/params"
-
-import SearchTargetButtons from "./SearchTargetButtons"
-import LimitFilters from "./LimitFilters/LimitFilters"
-import TargetDataLanguageButtons from "./TargetDataLanguageButtons"
 import useSearchCommonParams from "@/hooks/useSearchCommonParams"
+import useSearchParallelParams from "@/hooks/useSearchParallelParams"
+import useSearchPrimaryParams from "@/hooks/useSearchPrimaryParams"
+import { searchParamsNames } from "@/utils/api/search/params"
+
+import LanguageFilterSelector from "./LanguageFilterSelector"
+import LimitFilters, { LimitFiltersProps } from "./LimitFilters/LimitFilters"
+import SearchTargetButtons from "./SearchTargetButtons"
+
+const {
+  parallel: { source_limits },
+  primary: { limits: limits_param_name },
+} = searchParamsNames
 
 export default function SearchTargetOptions() {
   const { searchTarget } = useSearchCommonParams()
-  const { getSearchParam } = useParams()
+  const { filterSourceLanguage, sourceLimits } = useSearchParallelParams()
+  const { filterLanguage, limits } = useSearchPrimaryParams()
 
-  const selectedLanguage = getSearchParam(
-    // TODO: update placeholder when available as common param
-    searchParamsNames.parallel.filter_source_language,
-  ) as SearchFilterLanguage
+  const [limitProps, setLimitProps] = React.useState<
+    LimitFiltersProps | undefined
+  >()
 
-  const showLimitFilters = selectedLanguage && selectedLanguage !== "all"
+  const showLimits = React.useRef<boolean>(false)
+
+  React.useEffect(() => {
+    if (searchTarget === "parallel") {
+      showLimits.current = filterSourceLanguage === "all" ? false : true
+
+      setLimitProps({
+        limitParamName: source_limits,
+        limitParamStringValue: sourceLimits,
+        language: filterSourceLanguage,
+      })
+    } else if (searchTarget === "primary") {
+      showLimits.current = filterLanguage === "all" ? false : true
+      setLimitProps({
+        limitParamName: limits_param_name,
+        limitParamStringValue: limits,
+        language: filterLanguage,
+      })
+    } else {
+      showLimits.current = false
+      setLimitProps(undefined)
+    }
+  }, [
+    source_limits,
+    sourceLimits,
+    limits_param_name,
+    limits,
+    searchTarget,
+    filterSourceLanguage,
+    filterLanguage,
+  ])
 
   return (
     <Box
@@ -36,9 +69,11 @@ export default function SearchTargetOptions() {
     >
       <SearchTargetButtons />
 
-      <TargetDataLanguageButtons />
+      <LanguageFilterSelector />
 
-      {showLimitFilters ? <LimitFilters language={selectedLanguage} /> : null}
+      {showLimits.current && limitProps ? (
+        <LimitFilters {...limitProps} />
+      ) : null}
     </Box>
   )
 }

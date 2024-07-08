@@ -1,6 +1,5 @@
 import { SearchApiTypes } from "@/api"
 import apiClients from "@/utils/api/client"
-import { parseAPIRequestBody } from "@/utils/api/helpers"
 
 export const getSearchParallelData = async (
   body: SearchApiTypes.ParallelRequestBody,
@@ -9,13 +8,15 @@ export const getSearchParallelData = async (
     throw new Error("Search input string is required")
   }
 
-  const { data } = await apiClients.Search.POST(`/parallel/`, {
-    body: parseAPIRequestBody(body),
+  const { data, error } = await apiClients.Search.POST(`/parallel/`, {
+    body,
   })
 
-  if (!data) {
-    return data
+  if (error) {
+    throw new Error(JSON.stringify(error))
   }
+
+  if (!data) return
 
   return data?.results ? data.results : []
 }

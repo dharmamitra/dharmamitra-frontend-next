@@ -32,7 +32,7 @@ const LISTBOX_PADDING_PX = 8
 const maxLines = 3
 const defaultItemHeight = 56
 const lineHeight = 37
-const charsPerLine = 28
+const charsPerLine = 24
 
 const trimName = (name: string) => {
   return name.replaceAll(/^•\s/g, "")

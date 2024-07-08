@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { SearchApiTypes } from "@/api"
-
 export type APIRequestBody<operation> = "requestBody" extends keyof operation
   ? "content" extends keyof operation["requestBody"]
     ? "application/json" extends keyof operation["requestBody"]["content"]
@@ -74,25 +72,3 @@ export type UniqueProperties<T extends any[]> = {
 // export type CommonProperties<T extends any[]> = {
 //   [K in UnionKeys<T>]: ExtractType<T[number], K>
 // }
-
-export function parseAPIRequestBody<
-  T extends {
-    source_limits?: SearchApiTypes.SearchLimits
-    limits?: SearchApiTypes.SearchLimits
-  },
->(body: T) {
-  const source_limits = body?.source_limits
-    ? JSON.parse(body.source_limits as string)
-    : {}
-  const limits = body?.limits ? JSON.parse(body.limits as string) : {}
-
-  if (Object.keys(source_limits).length > 0) {
-    return { ...body, source_limits }
-  }
-
-  if (Object.keys(limits).length > 0) {
-    return { ...body, limits }
-  }
-
-  return body
-}

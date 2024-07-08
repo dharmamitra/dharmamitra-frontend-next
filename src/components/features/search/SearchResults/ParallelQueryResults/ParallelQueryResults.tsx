@@ -23,7 +23,9 @@ export default function ParallelQueryResults() {
       search_input: searchInput ?? "",
       search_type: searchType,
       input_encoding: inputEncoding,
-      source_limits: sourceLimits,
+      source_limits: sourceLimits
+        ? (JSON.parse(sourceLimits) as SearchApiTypes.Schema["Limits"])
+        : {},
       filter_source_language: filterSourceLanguage,
       filter_target_language: filterTargetLanguage,
     }),

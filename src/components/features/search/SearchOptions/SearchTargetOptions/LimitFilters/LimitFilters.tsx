@@ -3,10 +3,12 @@ import { useTranslations } from "next-intl"
 import { Autocomplete, Box, CircularProgress, TextField } from "@mui/material"
 
 import useParams from "@/hooks/useParams"
-import { useSourceTextMenus } from "@/hooks/useSourceTextMenus"
+import {
+  useSourceTextMenus,
+  UseSourceTextMenusProps,
+} from "@/hooks/useSourceTextMenus"
 import type { ParsedCategoryMenuItem } from "@/utils/api/search/endpoints/menus/category"
 import type { ParsedTextFileMenuItem } from "@/utils/api/search/endpoints/menus/files"
-import { SearchFilterLanguage } from "@/utils/api/search/params"
 
 import ListboxComponent from "./ListboxComponent"
 import { StyledPopper } from "./muiStyledComponents"
@@ -62,19 +64,19 @@ function getParamsFromValues(
   }
 }
 
-const LimitFilters = ({
-  language,
-}: {
-  language: SearchFilterLanguage | null
-}) => {
+export type LimitFiltersProps = {
+  limitParamName: string
+  limitParamStringValue: string
+} & UseSourceTextMenusProps
+
+const LimitFilters = (props: LimitFiltersProps) => {
+  const { limitParamName, limitParamStringValue, ...textMenuParams } = props
   const t = useTranslations("search")
 
   const { texts, isLoadingTexts, categories, isLoadingCategories } =
-    useSourceTextMenus(language ? { language } : undefined)
+    useSourceTextMenus(textMenuParams)
 
-  const { getSearchParam, createQueryString, updateParams } = useParams()
-
-  const limitsParam = getSearchParam("limits")
+  const { createQueryString, updateParams } = useParams()
 
   const [limitsValue, setLimitsValue] = useState<LimitsFilterValue>({})
   const isInitilized = React.useRef(false)
@@ -83,21 +85,14 @@ const LimitFilters = ({
   const updateLimitsValue = React.useCallback(() => {
     if (!isInitilized.current && !isLoadingTexts && !isLoadingCategories) {
       const values = getValuesFromParams(
-        JSON.parse(limitsParam || "{}"),
+        JSON.parse(limitParamStringValue || "{}"),
         texts,
         categories,
       )
       setLimitsValue(values)
       isInitilized.current = true
     }
-  }, [
-    isLoadingTexts,
-    isLoadingCategories,
-    texts,
-    categories,
-    limitsParam,
-    setLimitsValue,
-  ])
+  }, [isLoadingTexts, isLoadingCategories, texts, categories, setLimitsValue])
 
   const handleGlobalParamReset = React.useCallback(() => {
     // `isValueSet` deals with param-value setting cycle
@@ -107,26 +102,18 @@ const LimitFilters = ({
   }, [isValueSet, setLimitsValue])
 
   useEffect(() => {
-    if (!language) return
-
-    if (!isValueSet.current && limitsParam) {
+    if (!isValueSet.current && limitParamStringValue) {
       isValueSet.current = true
       return
     }
 
-    if (isValueSet.current && !limitsParam) {
+    if (isValueSet.current && !limitParamStringValue) {
       handleGlobalParamReset()
       return
     }
 
     updateLimitsValue()
-  }, [
-    language,
-    updateLimitsValue,
-    limitsParam,
-    isValueSet,
-    handleGlobalParamReset,
-  ])
+  }, [updateLimitsValue, isValueSet, handleGlobalParamReset])
 
   const handleInputChange = (limit: Limit, value: LimitValueOption) => {
     // eslint-disable-next-line no-unused-vars
@@ -141,9 +128,11 @@ const LimitFilters = ({
     const updatedParams = getParamsFromValues(
       limit,
       value,
-      JSON.parse(limitsParam || "{}"),
+      JSON.parse(limitParamStringValue || "{}"),
     )
-    updateParams(createQueryString("limits", JSON.stringify(updatedParams)))
+    updateParams(
+      createQueryString(limitParamName, JSON.stringify(updatedParams)),
+    )
   }
 
   const limitFilters = React.useMemo(() => {

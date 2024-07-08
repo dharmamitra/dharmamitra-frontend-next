@@ -1,9 +1,9 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
-import SearchPostProcessModelButtons from "./SearchPostProcessModelButtons"
+// import SearchPostProcessModelButtons from "./SearchPostProcessModelButtons"
 import SearchTargetOptions from "./SearchTargetOptions"
-import SearchTypeSwitch from "./SearchTypeSwitch"
+import SearchTypeButtons from "./SearchTypeButtons"
 
 type Props = {
   isOpen: boolean
@@ -28,8 +28,8 @@ export default function SearchOptions({ isOpen }: Props) {
           gap: 2,
         }}
       >
-        <SearchPostProcessModelButtons />
-        <SearchTypeSwitch />
+        {/* TODO: <SearchPostProcessModelButtons /> awaiting BE */}
+        <SearchTypeButtons />
       </Box>
 
       <SearchTargetOptions />

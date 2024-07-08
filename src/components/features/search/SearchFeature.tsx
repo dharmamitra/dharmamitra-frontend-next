@@ -31,11 +31,11 @@ export default function SearchFeature({
 
       if (event.target.checked) {
         localStorage.setItem(
-          localStorageKeys.searchMode,
+          localStorageKeys.showSearchOptions,
           String(event.target.checked),
         )
       } else {
-        localStorage.removeItem(localStorageKeys.searchMode)
+        localStorage.removeItem(localStorageKeys.showSearchOptions)
       }
     },
     [setIsAdvancedSearchMode],

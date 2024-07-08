@@ -1,5 +1,6 @@
 import React from "react"
 
+import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useParams from "@/hooks/useParams"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
@@ -12,14 +13,13 @@ import {
 import { getValidDefaultValue } from "@/utils/ui"
 
 const defaultSearchTargetValue = getValidDefaultValue(searchTargets[0])
-const defaultSearchTypeValue = getValidDefaultValue(searchTypes[0])
+const defaultSearchTypeValue = getValidDefaultValue(searchTypes[1])
+const {
+  target,
+  common: { search_input, search_type },
+} = searchParamsNames
 
 const useSearchCommonParams = () => {
-  const {
-    target,
-    common: { search_input, search_type },
-  } = searchParamsNames
-
   const { getSearchParam } = useParams()
 
   const searchTarget = getSearchParam(target) as SearchTarget
@@ -35,12 +35,8 @@ const useSearchCommonParams = () => {
     }
   }, [searchTarget, updateSearchTarget])
 
-  const searchInput = getSearchParam(search_input)
-  const { handleValueChange: updateSearchInput } =
-    useParamValueWithLocalStorage({
-      paramName: search_input,
-      defaultValue: "",
-    })
+  const { input: searchInput, handleValueChange: updateSearchInput } =
+    useInputWithUrlParam<string>(search_input)
 
   const searchType = getSearchParam(search_type) as SearchType
   const { handleValueChange: updateSearchType } = useParamValueWithLocalStorage(

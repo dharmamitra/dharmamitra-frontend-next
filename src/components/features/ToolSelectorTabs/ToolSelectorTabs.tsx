@@ -76,7 +76,9 @@ export default function ToolSelectorTabs() {
       setTabIndex(0)
     }
 
-    setIsAdvancedSearchMode(!!localStorage.getItem(localStorageKeys.searchMode))
+    setIsAdvancedSearchMode(
+      !!localStorage.getItem(localStorageKeys.showSearchOptions),
+    )
   }, [setTabIndex, setIsAdvancedSearchMode])
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {

@@ -12,15 +12,8 @@ export type Schema = components["schemas"]
 //  * REQUEST & RESPONSE MODELS
 //  */
 
-// TODO: update when fixed on backend
-type TempParallelRequestFix = {
-  filter_target_language: Schema["FilterLanguage"] | undefined
-}
-
-export type ParallelRequestBody = APIRequestBody<paths["/parallel/"]["post"]> &
-  TempParallelRequestFix
-export type ParallelRresponse = APIResponse<paths["/parallel/"]["post"]> &
-  TempParallelRequestFix
+export type ParallelRequestBody = APIRequestBody<paths["/parallel/"]["post"]>
+export type ParallelRresponse = APIResponse<paths["/parallel/"]["post"]>
 
 export type PrimaryRequestBody = APIRequestBody<paths["/primary/"]["post"]>
 export type PrimaryRresponse = APIResponse<paths["/primary/"]["post"]>
@@ -32,21 +25,12 @@ export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
 //  *  API ENDPPOINTS & PARAMS NAMES
 //  */
 
-export type SearchLimits = Schema["Limits"]
-
 type Endpoint = keyof paths
 export type SearchEndpoint = Endpoint extends `/${infer Key}/` ? Key : never
 
 export type CommonSearchParams = CommonProperties<
   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
 >
-// export type SearchParamsCommonToAll = PropertiesCommonToAll<
-//   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
-// >
-// export type CommonSearchParams = CommonProperties<
-//   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
-// >
-
 export type UniqueParallelParams = UniqueProperties<
   [CommonSearchParams, ParallelRequestBody]
 >

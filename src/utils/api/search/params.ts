@@ -31,14 +31,13 @@ export const searchTypes: SearchType[] = exhaustiveStringTuple<
   CommonSearchParams["search_type"]
 >()("regular", "semantic")
 
-export type SearchPostProcessModel = Schema["PostProcessModel"] &
-  keyof Messages["search"]["commonParams"]["postProcessModels"]
+export type SearchPostProcessModel = Schema["PostProcessModel"]
 
 export const searchPostProcessModels: SearchPostProcessModel[] =
   // TODO: update tuple typing to enforce parity once `.` key error is addressed
   exhaustiveStringTuple<SearchPostProcessModel>()(
     "llama3",
-    // "gpt-3.5", TODO: excluded due to `.` key error
+    "gpt-3.5", // TODO: see if needs to be included in Messages following BE update ( excluded due to `.` key error)
     "gpt-4",
     "claude",
     "none",

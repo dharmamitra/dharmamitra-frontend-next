@@ -12,7 +12,7 @@ export const linkAttrs = {
 
 export const localStorageKeys = {
   view: "view-tab",
-  searchMode: "advanced-search-mode",
+  showSearchOptions: "show-search-options",
 }
 
 export const smMediaQuery = "(max-width: 500px)"
