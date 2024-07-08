@@ -7,36 +7,27 @@ import { triggerSearchQueryAtom } from "@/atoms"
 import SkeletonGroup from "@/components/SkeletonGroup"
 import useGlobalParams from "@/hooks/useGlobalParams"
 import useSearchCommonParams from "@/hooks/useSearchCommonParams"
-import useSearchParallelParams from "@/hooks/useSearchParallelParams"
+import useSearchPrimaryParams from "@/hooks/useSearchPrimaryParams"
 
 import ResultsHeading from "../ResultsHeading"
-import ParralelSearchResultItems from "./ParralelSearchResultItems"
+import PrimarySearchResultItems from "./PrimaryQueryResultItems"
 
-export default function ParallelQueryResults() {
+export default function PrimaryQueryResults() {
   const { searchInput, searchType } = useSearchCommonParams()
   const { inputEncoding } = useGlobalParams()
-  const { sourceLimits, filterSourceLanguage, filterTargetLanguage } =
-    useSearchParallelParams()
+  const { limits, filterLanguage } = useSearchPrimaryParams()
 
-  const requestBody: SearchApiTypes.ParallelRequestBody = React.useMemo(
+  const requestBody: SearchApiTypes.PrimaryRequestBody = React.useMemo(
     () => ({
       search_input: searchInput ?? "",
       search_type: searchType,
       input_encoding: inputEncoding,
-      source_limits: sourceLimits
-        ? (JSON.parse(sourceLimits) as SearchApiTypes.Schema["Limits"])
+      limits: limits
+        ? (JSON.parse(limits) as SearchApiTypes.Schema["Limits"])
         : {},
-      filter_source_language: filterSourceLanguage,
-      filter_target_language: filterTargetLanguage,
+      filter_language: filterLanguage,
     }),
-    [
-      searchInput,
-      searchType,
-      inputEncoding,
-      sourceLimits,
-      filterSourceLanguage,
-      filterTargetLanguage,
-    ],
+    [searchInput, searchType, inputEncoding, limits, filterLanguage],
   )
 
   const [isSearchTriggered, setTriggerSearchQuery] = useAtom(
@@ -44,10 +35,10 @@ export default function ParallelQueryResults() {
   )
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: DMFetchApi.searchParallel.makeQueryKey(requestBody),
+    queryKey: DMFetchApi.searchPrimary.makeQueryKey(requestBody),
     queryFn: () => {
       setTriggerSearchQuery(false)
-      return DMFetchApi.searchParallel.call(requestBody)
+      return DMFetchApi.searchPrimary.call(requestBody)
     },
     enabled: isSearchTriggered,
   })
@@ -70,7 +61,7 @@ export default function ParallelQueryResults() {
 
       {data.length === 0 ? "No results found." : null}
 
-      <ParralelSearchResultItems results={data} />
+      <PrimarySearchResultItems results={data} />
     </div>
   )
 }

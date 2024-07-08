@@ -2,6 +2,7 @@ import * as globalParams from "./global/params"
 import { getCategoryMenuData } from "./search/endpoints/menus/category"
 import { getTextFileMenuData } from "./search/endpoints/menus/files"
 import { getSearchParallelData } from "./search/endpoints/parallel"
+import { getSearchPrimaryData } from "./search/endpoints/primary"
 import * as SearchApiTypes from "./search/types"
 import * as streamUtils from "./stream"
 import { getTaggingData } from "./translation/endpoints/tagging"
@@ -35,6 +36,13 @@ const DMFetchApi = {
       JSON.stringify(body),
     ],
     call: getSearchParallelData,
+  },
+  searchPrimary: {
+    makeQueryKey: (body: SearchApiTypes.PrimaryRequestBody) => [
+      "searchPrimary",
+      JSON.stringify(body),
+    ],
+    call: getSearchPrimaryData,
   },
 }
 

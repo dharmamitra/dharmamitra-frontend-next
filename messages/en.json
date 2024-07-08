@@ -39,6 +39,7 @@
   },
   "search": {
     "search": "Search",
+    "results": "Search results",
     "heading": "Search 2500 years of Buddhism",
     "placeholder": "Enter a search term.",
     "optionsSwitchLabel": "Show options",
