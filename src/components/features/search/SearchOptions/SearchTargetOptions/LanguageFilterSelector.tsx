@@ -29,7 +29,7 @@ const LanguageSelect = ({
   const t = useTranslations("search.commonParams.filterLanguages")
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+    <FormControl sx={{ minWidth: 120 }} size="small">
       <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
       <Select
         labelId={`${label}-select-label`}

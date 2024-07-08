@@ -48,22 +48,13 @@ export default function SearchTargetOptions() {
       showLimits.current = false
       setLimitProps(undefined)
     }
-  }, [
-    source_limits,
-    sourceLimits,
-    limits_param_name,
-    limits,
-    searchTarget,
-    filterSourceLanguage,
-    filterLanguage,
-  ])
+  }, [sourceLimits, limits, searchTarget, filterSourceLanguage, filterLanguage])
 
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: { lg: "flex-end" },
         gap: 2,
       }}
     >

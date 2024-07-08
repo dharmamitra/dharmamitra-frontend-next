@@ -11,7 +11,7 @@ import Tabs from "@mui/material/Tabs"
 
 import SearchFeature from "@/features/search"
 import TranslationFeature from "@/features/translation"
-import { localStorageKeys } from "@/utils/ui"
+import { localStorageKeys } from "@/utils/constants"
 
 import LoadingToolSelectorTabs from "./LoadingToolSelectorTabs"
 import styles from "./ToolSelectorTabs.module.css"

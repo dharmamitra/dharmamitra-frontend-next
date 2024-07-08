@@ -6,7 +6,7 @@ import { Button, Link as MuiLink, SxProps, Theme } from "@mui/material"
 import { ButtonProps } from "@mui/material/Button"
 
 import { Link as NavigationLink } from "@/navigation"
-import { linkAttrs } from "@/utils/ui"
+import { linkAttrs } from "@/utils/constants"
 
 const NavigationLinkForwardRef = React.forwardRef<
   HTMLAnchorElement,

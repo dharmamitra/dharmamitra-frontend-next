@@ -18,9 +18,12 @@ export default function SearchOptions({ isOpen }: Props) {
         display: "flex",
         justifyContent: "space-between",
         flexWrap: "wrap",
+        gap: 2,
         my: 4,
       }}
     >
+      <SearchTargetOptions />
+
       <Box
         sx={{
           display: "flex",
@@ -31,8 +34,6 @@ export default function SearchOptions({ isOpen }: Props) {
         {/* TODO: <SearchPostProcessModelButtons /> awaiting BE */}
         <SearchTypeButtons />
       </Box>
-
-      <SearchTargetOptions />
     </Box>
   )
 }

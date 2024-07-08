@@ -4,19 +4,6 @@ import {
   TargetLanguage,
 } from "@/utils/api/translation/params"
 
-export const linkAttrs = {
-  color: "secondary",
-  target: "_blank",
-  rel: "noopener noreferrer",
-}
-
-export const localStorageKeys = {
-  view: "view-tab",
-  showSearchOptions: "show-search-options",
-}
-
-export const smMediaQuery = "(max-width: 500px)"
-
 export const getSettingPriotiryGroups = <T>(params: {
   setting: T[]
   noOfPrimaryItems: number

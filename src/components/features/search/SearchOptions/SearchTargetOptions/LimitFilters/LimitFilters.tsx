@@ -69,8 +69,11 @@ export type LimitFiltersProps = {
   limitParamStringValue: string
 } & UseSourceTextMenusProps
 
-const LimitFilters = (props: LimitFiltersProps) => {
-  const { limitParamName, limitParamStringValue, ...textMenuParams } = props
+const LimitFilters = ({
+  limitParamName,
+  limitParamStringValue,
+  ...textMenuParams
+}: LimitFiltersProps) => {
   const t = useTranslations("search")
 
   const { texts, isLoadingTexts, categories, isLoadingCategories } =
@@ -152,77 +155,71 @@ const LimitFilters = (props: LimitFiltersProps) => {
   }, [categories, texts, isLoadingTexts, isLoadingCategories])
 
   return (
-    <Box sx={{ position: "relative", mb: 4 }}>
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: "-3.7rem",
-          right: { xs: "unset", lg: 0 },
-          left: { xs: 0, lg: "unset" },
-          width: { lg: "max-content" },
-          display: "flex",
-          justifyContent: "flex-end",
-          flexWrap: "wrap",
-        }}
-      >
-        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
-          {limitFilters.map((limit) => {
-            const {
-              filterName,
-              filter: { options, isLoading },
-            } = limit
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "flex-end",
+        flexWrap: "wrap",
+        borderRadius: 2,
+        bgcolor: "background.paper",
+      }}
+    >
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
+        {limitFilters.map((limit) => {
+          const {
+            filterName,
+            filter: { options, isLoading },
+          } = limit
 
-            const filterValue = limitsValue[filterName]
+          const filterValue = limitsValue[filterName]
 
-            return (
-              <Box key={`limit-filter-${filterName}`} sx={{ width: 300 }}>
-                <Autocomplete
-                  id={filterName}
-                  multiple={true}
-                  // TODO: remove casting after search api updates
-                  value={(filterValue as LimitValueOption) ?? []}
-                  isOptionEqualToValue={(option, value) =>
-                    option.id === value.id
-                  }
-                  PopperComponent={StyledPopper}
-                  // sets the rendered option label
-                  ListboxComponent={ListboxComponent}
-                  options={options}
-                  getOptionLabel={(option) =>
-                    `${option.id.toUpperCase()} ${option.name}`
-                  }
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label={t(`limits.labels.${filterName}`)}
-                      InputProps={{
-                        ...params.InputProps,
-                        endAdornment: (
-                          <>
-                            {isLoading ? (
-                              <CircularProgress color="inherit" size={20} />
-                            ) : null}
-                            {params.InputProps.endAdornment}
-                          </>
-                        ),
-                      }}
-                    />
-                  )}
-                  renderOption={(props, option) =>
-                    [props, option] as React.ReactNode
-                  }
-                  renderGroup={(params) => params as unknown as React.ReactNode}
-                  loading={isLoading}
-                  filterSelectedOptions
-                  disablePortal
-                  onChange={(event, value) =>
-                    handleInputChange(filterName, value)
-                  }
-                />
-              </Box>
-            )
-          })}
-        </Box>
+          return (
+            <Box key={`limit-filter-${filterName}`} sx={{ width: 300 }}>
+              <Autocomplete
+                id={filterName}
+                multiple={true}
+                value={(filterValue as LimitValueOption) ?? []}
+                isOptionEqualToValue={(option, value) => option.id === value.id}
+                PopperComponent={StyledPopper}
+                // sets the rendered option label
+                ListboxComponent={ListboxComponent}
+                options={options}
+                getOptionLabel={(option) =>
+                  `${option.id.toUpperCase()} ${option.name}`
+                }
+                limitTags={3}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    color="secondary"
+                    label={t(`limits.labels.${filterName}`)}
+                    InputProps={{
+                      ...params.InputProps,
+                      endAdornment: (
+                        <>
+                          {isLoading ? (
+                            <CircularProgress color="inherit" size={20} />
+                          ) : null}
+                          {params.InputProps.endAdornment}
+                        </>
+                      ),
+                    }}
+                  />
+                )}
+                renderOption={(props, option) =>
+                  [props, option] as React.ReactNode
+                }
+                renderGroup={(params) => params as unknown as React.ReactNode}
+                loading={isLoading}
+                filterSelectedOptions
+                disablePortal
+                onChange={(event, value) =>
+                  handleInputChange(filterName, value)
+                }
+              />
+            </Box>
+          )
+        })}
       </Box>
     </Box>
   )

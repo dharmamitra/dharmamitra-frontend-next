@@ -4,6 +4,9 @@ import Chip from "@mui/material/Chip"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 
+import { SourceLanguage } from "@/utils/api/search/types"
+import { sourceLangColors } from "@/utils/constants"
+
 type Result = {
   language: string
   segmentnr: string
@@ -38,6 +41,7 @@ export default function ResultItem({
             alignItems: "flex-start",
             bgcolor: "grey.200",
             p: 1,
+            gap: 1,
             borderRadius: "4px",
           }}
         >
@@ -46,7 +50,7 @@ export default function ResultItem({
               variant="subtitle1"
               fontWeight={600}
               p="0"
-              mb="1"
+              mb={1}
               color="grey.900"
               sx={{ display: "inline-block", lineHeight: "1.25" }}
             >
@@ -67,7 +71,16 @@ export default function ResultItem({
               {segmentnr}
             </Typography>
           </div>
-          <Chip label={language} variant="outlined" />
+          <Chip
+            label={language}
+            variant="filled"
+            sx={{
+              bgcolor: sourceLangColors[language as SourceLanguage],
+              color: "white",
+              fontWeight: 500,
+            }}
+            size="small"
+          />
         </Box>
 
         <Typography>{text}</Typography>

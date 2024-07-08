@@ -8,7 +8,7 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 
 import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 import { disabledSearchTargets, searchTargets } from "@/utils/api/search/params"
-import { smMediaQuery } from "@/utils/ui"
+import { smMediaQuery } from "@/utils/constants"
 
 export default function SearchTargetButtons() {
   const t = useTranslations("search")

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
 
-import { localStorageKeys } from "@/utils/ui"
+import { localStorageKeys } from "@/utils/constants"
 
 import TranslationInputEncodingSelector from "../InputEncodingSelector"
 // import useAppConfig from "@/hooks/useAppConfig"

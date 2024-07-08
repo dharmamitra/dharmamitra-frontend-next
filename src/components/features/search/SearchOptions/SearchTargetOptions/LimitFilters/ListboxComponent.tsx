@@ -124,7 +124,6 @@ const ListboxComponent = React.forwardRef<
   return (
     <ul ref={ref} style={{ padding: "0" }}>
       <OuterElementContext.Provider value={other}>
-        {/* TODO: replace react-window with newer package */}
         <VariableSizeList
           ref={gridRef}
           itemData={itemData}

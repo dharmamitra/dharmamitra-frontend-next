@@ -18,8 +18,8 @@ import { visuallyHidden } from "@mui/utils"
 import dmLogoFull from "@/assets/logos/dm-logo-full.png"
 import IconCard from "@/components/IconCard"
 import Section from "@/components/Section"
+import { linkAttrs } from "@/utils/constants"
 import customTheming from "@/utils/theme/config"
-import { linkAttrs } from "@/utils/ui"
 
 import data from "./data"
 

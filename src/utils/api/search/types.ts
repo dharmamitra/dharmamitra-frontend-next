@@ -28,6 +28,8 @@ export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
 type Endpoint = keyof paths
 export type SearchEndpoint = Endpoint extends `/${infer Key}/` ? Key : never
 
+export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all">
+
 export type CommonSearchParams = CommonProperties<
   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
 >
