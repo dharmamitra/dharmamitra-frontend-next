@@ -1,17 +1,14 @@
 import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
 import OutlinedInput from "@mui/material/OutlinedInput"
-import { useSetAtom } from "jotai"
 
-import { triggerSearchQueryAtom } from "@/atoms"
-import { setRows } from "@/features/utils"
 import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
 import StartStopButton from "../SearchStartStopButton"
 
 export default function SearchBox({
   className,
-  isScrolling,
+  // isScrolling,
 }: {
   className?: string
   isScrolling?: boolean
@@ -19,8 +16,6 @@ export default function SearchBox({
   const t = useTranslations("search")
 
   const { searchInput, updateSearchInput } = useSearchCommonParams()
-
-  const setTriggerSearchQuery = useSetAtom(triggerSearchQueryAtom)
 
   return (
     <Box className={className}>
@@ -36,14 +31,8 @@ export default function SearchBox({
           "aria-label": "search",
         }}
         value={searchInput}
-        rows={isScrolling ? 1 : setRows(searchInput ?? "")}
         multiline
         onChange={updateSearchInput}
-        onKeyUp={(event) => {
-          if (event.key === "Enter" && searchInput && searchInput.length > 0) {
-            setTriggerSearchQuery(true)
-          }
-        }}
         endAdornment={<StartStopButton />}
       />
     </Box>

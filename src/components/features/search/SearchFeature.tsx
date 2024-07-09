@@ -9,8 +9,8 @@ import { localStorageKeys } from "@/utils/constants"
 import TranslationInputEncodingSelector from "../InputEncodingSelector"
 // import useAppConfig from "@/hooks/useAppConfig"
 import SearchInput from "./SearchInput"
+import SearchKeyboardControls from "./SearchKeyboardControls"
 import SearchOptions from "./SearchOptions"
-// import TranslationKeyboardControls from "./TranslationKeyboardControls"
 import SearchResults from "./SearchResults"
 
 type TranslationFeatureProps = {
@@ -68,7 +68,7 @@ export default function SearchFeature({
 
       <SearchResults />
 
-      {/* <TranslationKeyboardControls /> */}
+      <SearchKeyboardControls />
     </>
   )
 }
