@@ -4,16 +4,13 @@ import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useParams from "@/hooks/useParams"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
+  defaultSearchTarget,
+  defaultSearchType,
   searchParamsNames,
   SearchTarget,
-  searchTargets,
   SearchType,
-  searchTypes,
 } from "@/utils/api/search/params"
-import { getValidDefaultValue } from "@/utils/ui"
 
-const defaultSearchTargetValue = getValidDefaultValue(searchTargets[0])
-const defaultSearchTypeValue = getValidDefaultValue(searchTypes[1])
 const {
   target,
   common: { search_input, search_type },
@@ -26,12 +23,12 @@ const useSearchCommonParams = () => {
   const { handleValueChange: updateSearchTarget } =
     useParamValueWithLocalStorage({
       paramName: target,
-      defaultValue: defaultSearchTargetValue,
+      defaultValue: defaultSearchTarget,
     })
 
   React.useEffect(() => {
     if (!searchTarget) {
-      updateSearchTarget(defaultSearchTargetValue)
+      updateSearchTarget(defaultSearchTarget)
     }
   }, [searchTarget, updateSearchTarget])
 
@@ -42,18 +39,18 @@ const useSearchCommonParams = () => {
   const { handleValueChange: updateSearchType } = useParamValueWithLocalStorage(
     {
       paramName: search_type,
-      defaultValue: defaultSearchTypeValue,
+      defaultValue: defaultSearchType,
     },
   )
 
   React.useEffect(() => {
     if (!searchType) {
-      updateSearchType(defaultSearchTypeValue)
+      updateSearchType(defaultSearchType)
     }
   }, [searchType, updateSearchType])
 
   return {
-    searchTarget,
+    searchTarget: searchTarget ?? defaultSearchTarget,
     updateSearchTarget,
     searchInput,
     updateSearchInput,

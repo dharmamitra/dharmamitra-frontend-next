@@ -2,6 +2,7 @@ import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useParams from "@/hooks/useParams"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
+  defaultSearchFilterLanguage,
   SearchFilterLanguage,
   searchParamsNames,
 } from "@/utils/api/search/params"
@@ -17,7 +18,7 @@ const useSearchPrimaryParams = () => {
   const { handleValueChange: updateFilterLanguage } =
     useParamValueWithLocalStorage({
       paramName: filter_language,
-      defaultValue: undefined,
+      defaultValue: defaultSearchFilterLanguage,
     })
 
   const { input: limits, handleValueChange: updateLimits } =

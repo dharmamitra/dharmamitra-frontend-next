@@ -14,7 +14,7 @@ export const getSettingPriotiryGroups = <T>(params: {
 
 export const getValidDefaultValue = <T>(value: T) => {
   if (value === undefined) {
-    throw new Error("default input encoding is undefined")
+    throw new Error("a default param value is undefined")
   }
   return value
 }

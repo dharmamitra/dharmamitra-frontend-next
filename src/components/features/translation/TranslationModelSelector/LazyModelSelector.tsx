@@ -7,24 +7,22 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
+  defaultTranslationModel,
   translationModels,
   translationParamsNames,
 } from "@/utils/api/translation/params"
-import { getValidDefaultValue } from "@/utils/ui"
-
-const defaultValue = getValidDefaultValue(translationModels[0])
 
 export default function LazyModelSelector() {
   const t = useTranslations("translation")
 
   const { value, handleValueChange } = useParamValueWithLocalStorage({
     paramName: translationParamsNames.translation.model,
-    defaultValue,
+    defaultValue: defaultTranslationModel,
   })
 
   React.useEffect(() => {
     if (value === "") {
-      handleValueChange(defaultValue)
+      handleValueChange(defaultTranslationModel)
     }
   }, [value, handleValueChange])
 

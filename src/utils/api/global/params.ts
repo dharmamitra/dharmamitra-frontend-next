@@ -22,6 +22,7 @@ export const inputEncodings: InputEncoding[] =
     "tibetan",
     "wylie",
   )
+export const defaultInputEncoding: InputEncoding = "auto"
 
 export const globalParamsNames = {
   input_encoding: "input_encoding",

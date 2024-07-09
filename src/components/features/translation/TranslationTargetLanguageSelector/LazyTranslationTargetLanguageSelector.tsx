@@ -17,7 +17,7 @@ import useFocusHighlight from "@/hooks/useFocusHighlight"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { translationParamsNames } from "@/utils/api/translation/params"
-import { getOptionI18nKeyPath } from "@/utils/ui"
+import { getOptionI18nKeyPath, getValidDefaultValue } from "@/utils/ui"
 
 import RadioOption from "../common/RadioOption"
 
@@ -29,7 +29,7 @@ export default function LazyTranslationTargetLanguageSelector() {
   const { value, handleValueChange, isHydrated } =
     useParamValueWithLocalStorage({
       paramName: translationParamsNames.translation.target_lang,
-      defaultValue: servedTargetLanguages[0]!,
+      defaultValue: getValidDefaultValue(servedTargetLanguages[0]),
     })
 
   const primaryOptionsSelectorId = "primary-target-language-options"

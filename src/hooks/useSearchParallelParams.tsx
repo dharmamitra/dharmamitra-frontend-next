@@ -2,6 +2,7 @@ import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useParams from "@/hooks/useParams"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
+  defaultSearchFilterLanguage,
   SearchFilterLanguage,
   searchParamsNames,
 } from "@/utils/api/search/params"
@@ -19,7 +20,7 @@ const useSearchParallelParams = () => {
   const { handleValueChange: updateFilterSourceLanguage } =
     useParamValueWithLocalStorage({
       paramName: filter_source_language,
-      defaultValue: undefined,
+      defaultValue: defaultSearchFilterLanguage,
     })
 
   const filterTargetLanguage = getSearchParam(
@@ -28,7 +29,7 @@ const useSearchParallelParams = () => {
   const { handleValueChange: updateFilterTargetLanguage } =
     useParamValueWithLocalStorage({
       paramName: filter_target_language,
-      defaultValue: undefined,
+      defaultValue: defaultSearchFilterLanguage,
     })
 
   const { input: sourceLimits, handleValueChange: updateSourceLimits } =

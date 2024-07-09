@@ -9,10 +9,10 @@ import Select, { SelectChangeEvent } from "@mui/material/Select"
 import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 import useSearchParallelParams from "@/hooks/useSearchParallelParams"
 import useSearchPrimaryParams from "@/hooks/useSearchPrimaryParams"
-import { searchFilterLanguages } from "@/utils/api/search/params"
-import { getValidDefaultValue } from "@/utils/ui"
-
-const defaultFilterLanguage = getValidDefaultValue(searchFilterLanguages[0])
+import {
+  defaultSearchFilterLanguage,
+  searchFilterLanguages,
+} from "@/utils/api/search/params"
 
 type LanguageSelectProps = {
   label: string
@@ -34,7 +34,7 @@ const LanguageSelect = ({
       <Select
         labelId={`${label}-select-label`}
         id={`${label}-select`}
-        value={value || defaultFilterLanguage}
+        value={value || defaultSearchFilterLanguage}
         label={label}
         onChange={handleChange}
         color="secondary"

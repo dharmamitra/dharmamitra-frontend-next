@@ -21,7 +21,7 @@ export const searchTargets: SearchTarget[] = exhaustiveStringTuple<Targets>()(
   "primary",
   "secondary",
 )
-
+export const defaultSearchTarget: SearchTarget = "parallel"
 export const disabledSearchTargets: SearchTarget[] = ["secondary"]
 
 export type SearchType = CommonSearchParams["search_type"] &
@@ -30,6 +30,7 @@ export type SearchType = CommonSearchParams["search_type"] &
 export const searchTypes: SearchType[] = exhaustiveStringTuple<
   CommonSearchParams["search_type"]
 >()("regular", "semantic")
+export const defaultSearchType: SearchType = "regular"
 
 export type SearchPostProcessModel = Schema["PostProcessModel"]
 
@@ -54,6 +55,7 @@ export const searchFilterLanguages: SearchFilterLanguage[] =
     "chn",
     "pli",
   )
+export const defaultSearchFilterLanguage: SearchFilterLanguage = "all"
 
 export const searchParamsNames: SearchParamNames &
   CommonSearchParamNames &

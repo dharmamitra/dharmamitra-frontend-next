@@ -22,7 +22,5 @@ export default function SearchResults() {
     throw new Error(`Invalid search target: ${searchTarget}`)
   }
 
-  console.log("target", searchTarget)
-
   return <Box sx={{ pt: 4 }}>{results[searchTarget]}</Box>
 }

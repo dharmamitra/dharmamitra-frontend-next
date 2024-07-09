@@ -23,6 +23,8 @@ export const translationModels: TranslationModel[] =
     "llama3-fgs",
   )
 
+export const defaultTranslationModel: TranslationModel = "NO"
+
 export type TargetLanguage =
   TranslationApiTypes.Schema["TargetLanguageExperimental"] &
     keyof Messages["translation"]["targetLanguages"]

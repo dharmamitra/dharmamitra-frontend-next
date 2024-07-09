@@ -3,10 +3,8 @@ import React from "react"
 import { globalParams } from "@/api"
 import useParams from "@/hooks/useParams"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
-import { getValidDefaultValue } from "@/utils/ui"
 
-const { inputEncodings, globalParamsNames } = globalParams
-const defaultInputEncoding = getValidDefaultValue(inputEncodings[0])
+const { defaultInputEncoding, globalParamsNames } = globalParams
 
 const useGlobalParams = () => {
   const { getSearchParam } = useParams()
