@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
 import OutlinedInput from "@mui/material/OutlinedInput"
 
+import ClearButton from "@/components/ClearButton"
 import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
 import StartStopButton from "../SearchStartStopButton"
@@ -33,7 +34,21 @@ export default function SearchBox({
         value={searchInput}
         multiline
         onChange={updateSearchInput}
-        endAdornment={<StartStopButton />}
+        endAdornment={
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <StartStopButton />
+
+            <ClearButton
+              value={searchInput}
+              handleValueChange={updateSearchInput}
+            />
+          </Box>
+        }
       />
     </Box>
   )

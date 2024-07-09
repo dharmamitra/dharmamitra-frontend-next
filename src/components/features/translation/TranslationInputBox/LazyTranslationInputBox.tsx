@@ -2,12 +2,10 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import HighlightOffIcon from "@mui/icons-material/HighlightOff"
-import IconButton from "@mui/material/IconButton"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { useTheme } from "@mui/material/styles"
-import Tooltip from "@mui/material/Tooltip"
 
+import ClearButton from "@/components/ClearButton"
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import { translationParamsNames } from "@/utils/api/translation/params"
 
@@ -51,17 +49,7 @@ export default function TranslationInputField() {
       />
 
       <BoxBottomElementsRow sx={{ justifyContent: "space-between" }}>
-        <Tooltip title={t("generic.clear")} placement="top">
-          <IconButton
-            aria-label={t("generic.clear")}
-            color="secondary"
-            onClick={() => {
-              handleValueChange("")
-            }}
-          >
-            <HighlightOffIcon />
-          </IconButton>
-        </Tooltip>
+        <ClearButton value={input} handleValueChange={handleValueChange} />
 
         <StartStopButton />
       </BoxBottomElementsRow>
