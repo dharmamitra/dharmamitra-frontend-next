@@ -12,7 +12,8 @@
     "clear": "Clear",
     "stop": "Stop",
     "source": "Source",
-    "target": "Target"
+    "target": "Target",
+    "englishTranslation": "English Translation"
   },
   "navigation": {
     "home": "Home",

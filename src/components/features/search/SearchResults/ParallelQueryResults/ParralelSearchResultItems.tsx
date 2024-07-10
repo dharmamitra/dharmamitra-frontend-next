@@ -27,6 +27,7 @@ export default function ParralelSearchResultItems({
               result.src_text.text_main,
               result.src_text.text_after,
             ].join("")}
+            translation={result.tgt_text.translation}
           />
           <ResultItem
             xs={12}
@@ -40,6 +41,7 @@ export default function ParralelSearchResultItems({
               result.tgt_text.text_main,
               result.tgt_text.text_after,
             ].join("")}
+            translation={result.tgt_text.translation}
           />
         </ResultItemsFrame>
       ))}
