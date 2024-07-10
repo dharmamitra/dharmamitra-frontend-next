@@ -4,6 +4,7 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
+import Tooltip from "@mui/material/Tooltip"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
 import useSearchCommonParams from "@/hooks/useSearchCommonParams"
@@ -26,13 +27,20 @@ export default function SearchTargetButtons() {
       aria-label="Data Source"
     >
       {searchTargets.map((target) => (
-        <ToggleButton
+        <Tooltip
           key={target + "data-target-option"}
-          value={target}
-          disabled={disabledSearchTargets.includes(target)}
+          title={t(`targetTips.${target}`)}
+          placement="top"
         >
-          {t(`targets.${target}`)}
-        </ToggleButton>
+          <span>
+            <ToggleButton
+              value={target}
+              disabled={disabledSearchTargets.includes(target)}
+            >
+              {t(`targets.${target}`)}
+            </ToggleButton>
+          </span>
+        </Tooltip>
       ))}
     </ToggleButtonGroup>
   )

@@ -44,6 +44,11 @@
     "heading": "Search 2500 years of Buddhism",
     "placeholder": "Enter a search term.",
     "optionsSwitchLabel": "Show options",
+    "targetTips": {
+      "primary": "Search canonical and traditional source texts",
+      "secondary": "Search modern commentarial literature",
+      "parallel": "Search cross-tradition text parallel compiled dataset"
+    },
     "targets": {
       "primary": "Traditional",
       "secondary": "Modern",
