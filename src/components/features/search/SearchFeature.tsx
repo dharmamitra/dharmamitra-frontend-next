@@ -15,19 +15,19 @@ import SearchResults from "./SearchResults"
 
 type TranslationFeatureProps = {
   isSearchOptionsOpen: boolean
-  setIsAdvancedSearchMode: React.Dispatch<React.SetStateAction<boolean>>
+  setIsSearchOptionsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function SearchFeature({
   isSearchOptionsOpen,
-  setIsAdvancedSearchMode,
+  setIsSearchOptionsOpen,
 }: TranslationFeatureProps) {
   const t = useTranslations("search")
   // const { translateExtendedOptions } = useAppConfig().featureFlags
 
   const handleChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsAdvancedSearchMode(event.target.checked)
+      setIsSearchOptionsOpen(event.target.checked)
 
       if (event.target.checked) {
         localStorage.setItem(
@@ -38,7 +38,7 @@ export default function SearchFeature({
         localStorage.removeItem(localStorageKeys.showSearchOptions)
       }
     },
-    [setIsAdvancedSearchMode],
+    [setIsSearchOptionsOpen],
   )
 
   return (

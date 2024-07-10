@@ -66,7 +66,7 @@ export function FeatureTabPanel(props: TabPanelProps) {
 
 export default function ToolSelectorTabs() {
   const [tabIndex, setTabIndex] = React.useState(-1)
-  const [isSearchOptionsOpen, setIsAdvancedSearchMode] = React.useState(false)
+  const [isSearchOptionsOpen, setIsSearchOptionsOpen] = React.useState(false)
 
   React.useEffect(() => {
     const storedTabIndex = localStorage.getItem(localStorageKeys.view)
@@ -76,12 +76,13 @@ export default function ToolSelectorTabs() {
       setTabIndex(0)
     }
 
-    setIsAdvancedSearchMode(
+    setIsSearchOptionsOpen(
       !!localStorage.getItem(localStorageKeys.showSearchOptions),
     )
-  }, [setTabIndex, setIsAdvancedSearchMode])
+  }, [setTabIndex, setIsSearchOptionsOpen])
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    window.scrollTo(0, 0)
     setTabIndex(newValue)
     localStorage.setItem(localStorageKeys.view, String(newValue))
   }
@@ -150,7 +151,7 @@ export default function ToolSelectorTabs() {
             <Box sx={{ maxWidth: "960px", mx: "auto", mt: 6 }}>
               <SearchFeature
                 isSearchOptionsOpen={isSearchOptionsOpen}
-                setIsAdvancedSearchMode={setIsAdvancedSearchMode}
+                setIsSearchOptionsOpen={setIsSearchOptionsOpen}
               />
             </Box>
           </FeatureTabPanel>
