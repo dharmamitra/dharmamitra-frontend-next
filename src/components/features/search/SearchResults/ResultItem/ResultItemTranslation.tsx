@@ -4,6 +4,7 @@ import { Divider } from "@mui/material"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 
+import { cssNames } from "@/components/features/search/SearchResults/ParallelQueryResults/ShowEngishSwitch"
 import EnIcon from "@/components/icons/EnIcon"
 
 type Result = {
@@ -16,7 +17,13 @@ export default function ResultItemTranslation({ translation }: Result) {
   if (!translation) return null
 
   return (
-    <Box sx={{ mb: 2 }}>
+    <Box
+      className={cssNames.target}
+      style={{
+        display: `var(${cssNames.displayVar})`,
+      }}
+      pb={2}
+    >
       <Divider />
       <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
         <div>

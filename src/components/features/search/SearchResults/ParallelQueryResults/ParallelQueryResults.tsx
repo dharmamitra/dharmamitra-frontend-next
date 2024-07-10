@@ -1,4 +1,5 @@
 import React from "react"
+import Box from "@mui/material/Box"
 import { useQuery } from "@tanstack/react-query"
 import { useAtom } from "jotai"
 
@@ -11,6 +12,7 @@ import useSearchParallelParams from "@/hooks/useSearchParallelParams"
 
 import ResultsHeading from "../ResultsHeading"
 import ParralelSearchResultItems from "./ParralelSearchResultItems"
+import ShowEngishSwitch from "./ShowEngishSwitch"
 
 export default function ParallelQueryResults() {
   const { searchInput, searchType } = useSearchCommonParams()
@@ -66,7 +68,17 @@ export default function ParallelQueryResults() {
 
   return (
     <div>
-      <ResultsHeading />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: 2,
+          flexWrap: "wrap",
+        }}
+      >
+        <ResultsHeading />
+        <ShowEngishSwitch />
+      </Box>
 
       {data.length === 0 ? "No results found." : null}
 

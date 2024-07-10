@@ -3,8 +3,7 @@ import Box from "@mui/material/Box"
 
 import { SearchApiTypes } from "@/api"
 
-import ResultItem from "../ResultItem"
-import ResultItemsFrame from "../ResultItemsFrame"
+import ResultItem, { ResultItemsFrame } from "../ResultItem"
 
 export default function PrimarySearchResultItems({
   results,

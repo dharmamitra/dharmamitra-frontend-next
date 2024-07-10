@@ -33,6 +33,7 @@ export default function SearchBox({
         }}
         value={searchInput}
         multiline
+        type="search"
         onChange={updateSearchInput}
         endAdornment={
           <Box
