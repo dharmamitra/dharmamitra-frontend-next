@@ -100,44 +100,50 @@ export default function ToolSelectorTabs() {
 
   return (
     <>
-      <Tabs
-        value={tabIndex}
-        aria-label="navigation tabs"
-        centered
-        onChange={handleTabChange}
-        className={`${styles.stickyTabs}${!scrollMarkerInView ? ` ${styles.stickyTabsDesktop}` : ""}`}
-        TabIndicatorProps={{
-          sx: { display: "none" },
-        }}
-        sx={{
-          ...tabsStyles,
-          "& button.Mui-selected": {
-            backgroundColor: "#fff",
-            boxShadow: "0px 4px 4px 0px #0000001C",
-            transition:
-              "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
-          },
-        }}
-      >
-        <Tab
-          icon={<ScreenSearchDesktopOutlinedIcon />}
-          iconPosition="start"
-          label={t("search.search")}
-          {...a11yProps(0)}
-        />
-
-        <Tab
-          icon={<TranslateOutlinedIcon />}
-          iconPosition="start"
-          label={t("translation.translate")}
-          {...a11yProps(1)}
-        />
-      </Tabs>
       <Box
+        className={!scrollMarkerInView ? ` ${styles.stickyTabsWrapper}` : ""}
+      >
+        <Tabs
+          value={tabIndex}
+          aria-label="navigation tabs"
+          centered
+          onChange={handleTabChange}
+          className={styles.stickyTabs}
+          TabIndicatorProps={{
+            sx: { display: "none" },
+          }}
+          sx={{
+            ...tabsStyles,
+            "& button.Mui-selected": {
+              backgroundColor: "#fff",
+              boxShadow: "0px 4px 4px 0px #0000001C",
+              transition:
+                "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
+            },
+          }}
+        >
+          <Tab
+            icon={<ScreenSearchDesktopOutlinedIcon />}
+            iconPosition="start"
+            label={t("search.search")}
+            {...a11yProps(0)}
+          />
+
+          <Tab
+            icon={<TranslateOutlinedIcon />}
+            iconPosition="start"
+            label={t("translation.translate")}
+            {...a11yProps(1)}
+          />
+        </Tabs>
+      </Box>
+
+      <Box
+        id="tool-box"
         sx={{
           width: "100%",
           minHeight: minToolBoxHeight,
-          py: 3,
+          py: { md: 6 },
           position: "relative",
         }}
       >
@@ -148,7 +154,10 @@ export default function ToolSelectorTabs() {
 
         <Box sx={{ height: "100%" }}>
           <FeatureTabPanel value={tabIndex} index={0}>
-            <Box sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}>
+            <Box
+              id="search-external-feature-wrapper"
+              sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
+            >
               <SearchFeature
                 isSearchOptionsOpen={isSearchOptionsOpen}
                 setIsSearchOptionsOpen={setIsSearchOptionsOpen}

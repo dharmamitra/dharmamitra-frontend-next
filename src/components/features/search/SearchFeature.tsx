@@ -3,11 +3,11 @@ import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 import { localStorageKeys } from "@/utils/constants"
 
 import TranslationInputEncodingSelector from "../InputEncodingSelector"
-// import useAppConfig from "@/hooks/useAppConfig"
 import SearchInput from "./SearchInput"
 import SearchKeyboardControls from "./SearchKeyboardControls"
 import SearchOptions from "./SearchOptions"
@@ -23,7 +23,7 @@ export default function SearchFeature({
   setIsSearchOptionsOpen,
 }: TranslationFeatureProps) {
   const t = useTranslations("search")
-  // const { translateExtendedOptions } = useAppConfig().featureFlags
+  const isSmallScreen = useMediaQuery("(max-width:750px)")
 
   const handleToggleShowOptions = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,17 +70,21 @@ export default function SearchFeature({
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [handleScroll])
+
   return (
     <>
       <Box
         id="search-input-wrapper"
         sx={{
           bgcolor: "background.paper",
-          py: 3,
+          py: {
+            xs: 2,
+            md: 3,
+          },
           zIndex: 10,
           transition: "position 1s ease-in-out",
           top: {
-            xs: "148px",
+            xs: "78px",
             md: "96px",
           },
         }}
@@ -88,8 +92,15 @@ export default function SearchFeature({
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
-            justifyContent: isSearchOptionsOpen ? "space-between" : "flex-end",
+            flexDirection: {
+              xs: "column-reverse",
+              md: "row",
+            },
+            alignItems: { xs: "flex-start", md: "center" },
+            justifyContent: {
+              xs: "flex-start",
+              md: isSearchOptionsOpen ? "space-between" : "flex-end",
+            },
             flexWrap: "wrap",
             minHeight: "60px",
           }}
@@ -104,7 +115,7 @@ export default function SearchFeature({
               />
             }
             label={t("optionsSwitchLabel")}
-            labelPlacement="start"
+            labelPlacement={isSmallScreen ? "end" : "start"}
           />
         </Box>
         <SearchInput />

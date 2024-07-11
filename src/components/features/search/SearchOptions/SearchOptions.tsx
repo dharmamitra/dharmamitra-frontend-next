@@ -16,6 +16,7 @@ export default function SearchOptions({ isOpen }: Props) {
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column-reverse", md: "row" },
         justifyContent: "space-between",
         flexWrap: "wrap",
         gap: 2,
