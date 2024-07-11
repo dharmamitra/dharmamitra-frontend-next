@@ -43,6 +43,12 @@ export default function PrimaryQueryResults() {
     enabled: isSearchTriggered,
   })
 
+  React.useEffect(() => {
+    if (!data) {
+      window.scrollTo(0, 0)
+    }
+  }, [data])
+
   if (isError) {
     return <div>Error: {error.message}</div>
   }

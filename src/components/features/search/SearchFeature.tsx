@@ -25,7 +25,7 @@ export default function SearchFeature({
   const t = useTranslations("search")
   // const { translateExtendedOptions } = useAppConfig().featureFlags
 
-  const handleChange = React.useCallback(
+  const handleToggleShowOptions = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsSearchOptionsOpen(event.target.checked)
 
@@ -41,30 +41,76 @@ export default function SearchFeature({
     [setIsSearchOptionsOpen],
   )
 
+  const lastScrollY = React.useRef(0)
+  const lastHeight = React.useRef(0)
+
+  const handleScroll = React.useCallback(() => {
+    const target = document.getElementById("search-input-wrapper")
+    if (!target) return
+
+    const currentScrollY = window.scrollY
+    const currentHeight = target.offsetHeight
+    let direction = currentScrollY > lastScrollY.current ? "down" : "up"
+
+    if (currentHeight > lastHeight.current) {
+      direction = "up"
+    }
+
+    if (direction === "up") {
+      target.setAttribute("style", "position: sticky;")
+    } else if (direction === "down") {
+      target.setAttribute("style", "position: static;")
+    }
+
+    lastScrollY.current = currentScrollY
+    lastHeight.current = currentHeight
+  }, [lastScrollY, lastHeight])
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [handleScroll])
   return (
     <>
       <Box
+        id="search-input-wrapper"
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: isSearchOptionsOpen ? "space-between" : "flex-end",
-          flexWrap: "wrap",
-          minHeight: "60px",
+          bgcolor: "background.paper",
+          py: 3,
+          zIndex: 10,
+          transition: "position 1s ease-in-out",
+          top: {
+            xs: "148px",
+            md: "96px",
+          },
         }}
       >
-        <TranslationInputEncodingSelector isOpen={isSearchOptionsOpen} />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: isSearchOptionsOpen ? "space-between" : "flex-end",
+            flexWrap: "wrap",
+            minHeight: "60px",
+          }}
+        >
+          <TranslationInputEncodingSelector isOpen={isSearchOptionsOpen} />
 
-        <FormControlLabel
-          control={
-            <Switch checked={isSearchOptionsOpen} onChange={handleChange} />
-          }
-          label={t("optionsSwitchLabel")}
-          labelPlacement="start"
-        />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={isSearchOptionsOpen}
+                onChange={handleToggleShowOptions}
+              />
+            }
+            label={t("optionsSwitchLabel")}
+            labelPlacement="start"
+          />
+        </Box>
+        <SearchInput />
+
+        <SearchOptions isOpen={isSearchOptionsOpen} />
       </Box>
-      <SearchInput />
-
-      <SearchOptions isOpen={isSearchOptionsOpen} />
 
       <SearchResults />
 

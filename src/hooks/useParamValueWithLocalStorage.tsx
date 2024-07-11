@@ -52,7 +52,7 @@ function useParamValueWithLocalStorage({
         localStorage.setItem(paramName, "")
       }
 
-      window.history.replaceState(null, "", url.toString())
+      window.history.pushState(null, "", url.toString())
     }
   }, [value, paramName, isHydrated])
 

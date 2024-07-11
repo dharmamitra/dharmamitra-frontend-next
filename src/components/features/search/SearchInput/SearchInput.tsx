@@ -1,3 +1,4 @@
+import * as React from "react"
 import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
 import OutlinedInput from "@mui/material/OutlinedInput"
@@ -7,13 +8,7 @@ import useSearchCommonParams from "@/hooks/useSearchCommonParams"
 
 import StartStopButton from "../SearchStartStopButton"
 
-export default function SearchBox({
-  className,
-  // isScrolling,
-}: {
-  className?: string
-  isScrolling?: boolean
-}) {
+export default function SearchInput({ className }: { className?: string }) {
   const t = useTranslations("search")
 
   const { searchInput, updateSearchInput } = useSearchCommonParams()

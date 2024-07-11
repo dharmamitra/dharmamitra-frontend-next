@@ -148,7 +148,7 @@ export default function ToolSelectorTabs() {
 
         <Box sx={{ height: "100%" }}>
           <FeatureTabPanel value={tabIndex} index={0}>
-            <Box sx={{ maxWidth: "960px", mx: "auto", mt: 6 }}>
+            <Box sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}>
               <SearchFeature
                 isSearchOptionsOpen={isSearchOptionsOpen}
                 setIsSearchOptionsOpen={setIsSearchOptionsOpen}
