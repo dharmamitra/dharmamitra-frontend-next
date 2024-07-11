@@ -143,7 +143,7 @@ export default function ToolSelectorTabs() {
         sx={{
           width: "100%",
           minHeight: minToolBoxHeight,
-          py: { md: 6 },
+          py: { md: 2 },
           position: "relative",
         }}
       >

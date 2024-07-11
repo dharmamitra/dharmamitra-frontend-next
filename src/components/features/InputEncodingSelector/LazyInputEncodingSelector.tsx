@@ -15,7 +15,7 @@ import {
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import useGlobalParams from "@/hooks/useGlobalParams"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
-import { getOptionI18nKeyPath } from "@/utils/ui"
+import { getOptionI18nKeyPath } from "@/utils"
 
 import RadioOption from "../translation/common/RadioOption"
 

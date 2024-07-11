@@ -1,7 +1,7 @@
 import * as React from "react"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
-import { getSettingPriotiryGroups } from "@/utils/ui"
+import { getSettingPriotiryGroups } from "@/utils"
 
 export const useResponsiveOptions = <T extends string>(options: T[]) => {
   const isMobile = useMediaQuery("(max-width: 510px)")

@@ -16,8 +16,8 @@ import useAppConfig from "@/hooks/useAppConfig"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
+import { getOptionI18nKeyPath, getValidDefaultValue } from "@/utils"
 import { translationParamsNames } from "@/utils/api/translation/params"
-import { getOptionI18nKeyPath, getValidDefaultValue } from "@/utils/ui"
 
 import RadioOption from "../common/RadioOption"
 

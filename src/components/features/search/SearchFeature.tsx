@@ -5,6 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
+import { debounce } from "@/utils"
 import { localStorageKeys } from "@/utils/constants"
 
 import TranslationInputEncodingSelector from "../InputEncodingSelector"
@@ -17,6 +18,8 @@ type TranslationFeatureProps = {
   isSearchOptionsOpen: boolean
   setIsSearchOptionsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+const searchWrapperId = "search-input-wrapper"
 
 export default function SearchFeature({
   isSearchOptionsOpen,
@@ -45,7 +48,7 @@ export default function SearchFeature({
   const lastHeight = React.useRef(0)
 
   const handleScroll = React.useCallback(() => {
-    const target = document.getElementById("search-input-wrapper")
+    const target = document.getElementById(searchWrapperId)
     if (!target) return
 
     const currentScrollY = window.scrollY
@@ -57,8 +60,15 @@ export default function SearchFeature({
     }
 
     if (direction === "up") {
-      target.setAttribute("style", "position: sticky;")
+      target.setAttribute(
+        "style",
+        "position: sticky; box-shadow: 0 4px 1px -1px rgb(0 0 0 / 10%);",
+      )
     } else if (direction === "down") {
+      target.setAttribute("style", "position: static;")
+    }
+
+    if (currentScrollY <= 228) {
       target.setAttribute("style", "position: static;")
     }
 
@@ -66,27 +76,27 @@ export default function SearchFeature({
     lastHeight.current = currentHeight
   }, [lastScrollY, lastHeight])
 
+  const debouncedHandleScroll = React.useRef(debounce(handleScroll, 30)).current
+
   React.useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [handleScroll])
+    window.addEventListener("scroll", debouncedHandleScroll)
+    return () => window.removeEventListener("scroll", debouncedHandleScroll)
+  }, [debouncedHandleScroll])
 
   return (
     <>
       <Box
-        id="search-input-wrapper"
+        id={searchWrapperId}
         sx={{
           bgcolor: "background.paper",
-          py: {
-            xs: 2,
-            md: 3,
-          },
+          py: 1,
           zIndex: 10,
-          transition: "position 1s ease-in-out",
+          transition: "position 1s ease-in-out, box-shadow 0.3s ease-in-out",
           top: {
             xs: "78px",
             md: "96px",
           },
+          borderRadius: "0 0 10px 10px",
         }}
       >
         <Box

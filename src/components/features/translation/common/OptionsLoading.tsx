@@ -4,9 +4,9 @@ import { Box, RadioGroup } from "@mui/material"
 import Typography from "@mui/material/Typography"
 
 import { flatRadioGroupStyles } from "@/components/styled"
+import { getOptionI18nKeyPath } from "@/utils"
 import { InputEncoding } from "@/utils/api/global/params"
 import { TargetLanguage } from "@/utils/api/translation/params"
-import { getOptionI18nKeyPath } from "@/utils/ui"
 
 export const boxSx = {
   "@keyframes shimmer": {
