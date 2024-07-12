@@ -4,25 +4,30 @@ import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useParams from "@/hooks/useParams"
 import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import {
-  defaultSearchTarget,
   defaultSearchType,
   searchParamsNames,
-  SearchTarget,
   SearchType,
 } from "@/utils/api/search/params"
 
+import {
+  defaultSearchTarget,
+  SearchTarget,
+  localParamNames,
+} from "@/utils/api/search/local"
+
 const {
-  target,
   common: { search_input, search_type },
 } = searchParamsNames
+
+const { search_target } = localParamNames
 
 const useSearchCommonParams = () => {
   const { getSearchParam } = useParams()
 
-  const searchTarget = getSearchParam(target) as SearchTarget
+  const searchTarget = getSearchParam(search_target) as SearchTarget
   const { handleValueChange: updateSearchTarget } =
     useParamValueWithLocalStorage({
-      paramName: target,
+      paramName: search_target,
       defaultValue: defaultSearchTarget,
     })
 

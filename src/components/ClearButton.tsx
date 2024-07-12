@@ -14,7 +14,7 @@ export default function ClearButton({
 }) {
   const t = useTranslations("generic")
   return (
-    <Tooltip title={t("clear")} placement="top">
+    <Tooltip title={t("clear")} enterDelay={1500} placement="top">
       <span>
         <IconButton
           aria-label={t("clear")}

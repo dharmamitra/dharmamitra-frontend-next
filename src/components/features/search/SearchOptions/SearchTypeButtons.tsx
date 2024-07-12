@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
-import useSearchCommonParams from "@/hooks/useSearchCommonParams"
+import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import { searchTypes } from "@/utils/api/search/params"
 
 export default function SearchTypeButtons() {

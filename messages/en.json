@@ -44,6 +44,8 @@
     "heading": "Search 2500 years of Buddhism",
     "placeholder": "Enter a search term.",
     "optionsSwitchLabel": "Show options",
+    "resetOptionsLabel": "Use default search options",
+    "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
     "parallelEnglishSwitch": "Show English",
     "targetTips": {
       "primary": "Search canonical and traditional source texts",

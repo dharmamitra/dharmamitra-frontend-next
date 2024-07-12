@@ -6,9 +6,9 @@ import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
 
-import useSearchCommonParams from "@/hooks/useSearchCommonParams"
-import useSearchParallelParams from "@/hooks/useSearchParallelParams"
-import useSearchPrimaryParams from "@/hooks/useSearchPrimaryParams"
+import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
+import useSearchParallelParams from "@/hooks/search/useSearchParallelParams"
+import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
 import {
   defaultSearchFilterLanguage,
   searchFilterLanguages,

@@ -21,14 +21,28 @@ export type PrimaryRresponse = APIResponse<paths["/primary/"]["post"]>
 export type SecondaryRequestBody = APIRequestBody<paths["/secondary/"]["post"]>
 export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
 
-// /**
-//  *  API ENDPPOINTS & PARAMS NAMES
-//  */
+/**
+ *  API ENDPPOINTS & AUXILIARY PARAMS NAMES
+ */
 
 type Endpoint = keyof paths
 export type SearchEndpoint = Endpoint extends `/${infer Key}/` ? Key : never
 
 export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all">
+
+// Local only (not set in request body)
+
+// eslint-disable-next-line no-unused-vars
+type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
+
+export type SearchTargets = Exclude<SearchEndpoint, ExcludeStreams<SearchEndpoint>>
+
+export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
+
+
+/**
+ *  COMBINED MODELS
+ */
 
 export type CommonSearchParams = CommonProperties<
   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
@@ -46,23 +60,26 @@ export type UniqueSecondaryParams = UniqueProperties<
 >
 
 export type CommonSearchParamNames = {
-  common: Record<keyof CommonSearchParams, keyof CommonSearchParams>
+  common: {
+    [K in keyof CommonSearchParams]: K
+  }
 }
 
-type UniqueParallelParamNames = Record<
-  keyof UniqueParallelParams,
-  keyof UniqueParallelParams
->
+export type AllSearchParams = CommonSearchParams &
+  UniqueParallelParams &
+  UniquePrimaryParams
 
-type UniquePrimaryParamNames = Record<
-  keyof UniquePrimaryParams,
-  keyof UniquePrimaryParams
->
+type UniqueParallelParamNames = {
+  [K in keyof UniqueParallelParams]: K
+}
 
-type UniqueSecondaryParamNames = Record<
-  keyof UniqueSecondaryParams,
-  keyof UniqueSecondaryParams
->
+type UniquePrimaryParamNames = {
+  [K in keyof UniquePrimaryParams]: K
+}
+
+type UniqueSecondaryParamNames = {
+  [K in keyof UniqueSecondaryParams]: K
+}
 
 export type SearchParamNames = {
   parallel: UniqueParallelParamNames
@@ -70,6 +87,24 @@ export type SearchParamNames = {
   secondary: UniqueSecondaryParamNames
 }
 
-export type SearchTargetLocalParamName = {
-  target: "search_target"
+export type LocalParams = {
+  search_target: SearchTarget
+}
+
+export type SearchParamDefaults = {
+  parallel: Omit<
+    Record<keyof ParallelRequestBody, string | undefined>,
+    "search_input"
+  > &
+    LocalParams
+  primary: Omit<
+    Record<keyof PrimaryRequestBody, string | undefined>,
+    "search_input"
+  > &
+    LocalParams
+  secondary: Omit<
+    Record<keyof SecondaryRequestBody, string | undefined>,
+    "search_input"
+  > &
+    LocalParams
 }

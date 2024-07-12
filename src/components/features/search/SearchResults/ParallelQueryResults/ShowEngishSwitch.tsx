@@ -19,10 +19,10 @@ export default function ShowEngishSwitch() {
   )
 
   React.useEffect(() => {
-    const targets = document.querySelectorAll(
+    const targetElements = document.querySelectorAll(
       `.${cssNames.target}`,
     ) as NodeListOf<HTMLElement>
-    targets.forEach((target) =>
+    targetElements.forEach((target) =>
       target.style.setProperty(
         cssNames.displayVar,
         showEnglish ? "block" : "none",

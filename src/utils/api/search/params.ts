@@ -4,25 +4,15 @@ import {
   CommonSearchParamNames,
   CommonSearchParams,
   Schema,
-  SearchEndpoint,
   SearchParamNames,
-  SearchTargetLocalParamName,
+  AllSearchParams,
+  SearchParamDefaults,
+  SearchTarget,
 } from "./types"
+import { defaultSearchTarget, localParamNames } from "./local"
+import { defaultInputEncoding } from "@/utils/api/global/params"
 
-// eslint-disable-next-line no-unused-vars
-type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
-
-type Targets = Exclude<SearchEndpoint, ExcludeStreams<SearchEndpoint>>
-
-export type SearchTarget = Targets & keyof Messages["search"]["targets"]
-
-export const searchTargets: SearchTarget[] = exhaustiveStringTuple<Targets>()(
-  "parallel",
-  "primary",
-  "secondary",
-)
-export const defaultSearchTarget: SearchTarget = "parallel"
-export const disabledSearchTargets: SearchTarget[] = ["secondary"]
+export type { AllSearchParams, SearchParamDefaults }
 
 export type SearchType = CommonSearchParams["search_type"] &
   keyof Messages["search"]["commonParams"]["searchTypes"]
@@ -30,7 +20,7 @@ export type SearchType = CommonSearchParams["search_type"] &
 export const searchTypes: SearchType[] = exhaustiveStringTuple<
   CommonSearchParams["search_type"]
 >()("regular", "semantic")
-export const defaultSearchType: SearchType = "regular"
+export const defaultSearchType = "semantic"
 
 export type SearchPostProcessModel = Schema["PostProcessModel"]
 
@@ -55,12 +45,9 @@ export const searchFilterLanguages: SearchFilterLanguage[] =
     "chn",
     "pli",
   )
-export const defaultSearchFilterLanguage: SearchFilterLanguage = "all"
+export const defaultSearchFilterLanguage = "all"
 
-export const searchParamsNames: SearchParamNames &
-  CommonSearchParamNames &
-  SearchTargetLocalParamName = {
-  target: "search_target",
+export const searchParamsNames: SearchParamNames & CommonSearchParamNames = {
   common: {
     search_input: "search_input",
     input_encoding: "input_encoding",
@@ -78,5 +65,39 @@ export const searchParamsNames: SearchParamNames &
   secondary: {
     filter_secondary: "filter_secondary",
     postprocess_model: "postprocess_model",
+  },
+}
+
+const {
+  common: { search_type, input_encoding },
+  parallel: { filter_source_language, filter_target_language, source_limits },
+  primary: { filter_language, limits },
+  secondary: { filter_secondary, postprocess_model },
+} = searchParamsNames
+
+const { search_target } = localParamNames
+
+export const searchDefaultParams: SearchParamDefaults = {
+  parallel: {
+    [search_target]: defaultSearchTarget,
+    [search_type]: defaultSearchType,
+    [input_encoding]: defaultInputEncoding,
+    [filter_source_language]: defaultSearchFilterLanguage,
+    [filter_target_language]: defaultSearchFilterLanguage,
+    [source_limits]: "",
+  },
+  primary: {
+    [search_target]: defaultSearchTarget,
+    [search_type]: defaultSearchType,
+    [input_encoding]: defaultInputEncoding,
+    [filter_language]: defaultSearchFilterLanguage,
+    [limits]: "",
+  },
+  secondary: {
+    [search_target]: defaultSearchTarget,
+    [search_type]: defaultSearchType,
+    [input_encoding]: defaultInputEncoding,
+    [filter_secondary]: "TODO",
+    [postprocess_model]: "TODO",
   },
 }

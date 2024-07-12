@@ -6,6 +6,7 @@ import {
   SearchFilterLanguage,
   searchParamsNames,
 } from "@/utils/api/search/params"
+import useSearchCommonParams from "./useSearchCommonParams"
 
 const {
   parallel: { filter_source_language, filter_target_language, source_limits },
@@ -13,6 +14,7 @@ const {
 
 const useSearchParallelParams = () => {
   const { getSearchParam } = useParams()
+  const { searchTarget } = useSearchCommonParams()
 
   const filterSourceLanguage = getSearchParam(
     filter_source_language,
@@ -20,7 +22,8 @@ const useSearchParallelParams = () => {
   const { handleValueChange: updateFilterSourceLanguage } =
     useParamValueWithLocalStorage({
       paramName: filter_source_language,
-      defaultValue: defaultSearchFilterLanguage,
+      defaultValue:
+        searchTarget === "parallel" ? defaultSearchFilterLanguage : undefined,
     })
 
   const filterTargetLanguage = getSearchParam(
@@ -29,11 +32,12 @@ const useSearchParallelParams = () => {
   const { handleValueChange: updateFilterTargetLanguage } =
     useParamValueWithLocalStorage({
       paramName: filter_target_language,
-      defaultValue: defaultSearchFilterLanguage,
+      defaultValue:
+        searchTarget === "parallel" ? defaultSearchFilterLanguage : undefined,
     })
 
   const { input: sourceLimits, handleValueChange: updateSourceLimits } =
-    useInputWithUrlParam<string>(source_limits)
+    useInputWithUrlParam<string | null>(source_limits)
 
   return {
     filterSourceLanguage,

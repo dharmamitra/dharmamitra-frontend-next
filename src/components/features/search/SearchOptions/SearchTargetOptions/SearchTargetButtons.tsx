@@ -6,8 +6,10 @@ import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 import Tooltip from "@mui/material/Tooltip"
 
-import useSearchCommonParams from "@/hooks/useSearchCommonParams"
-import { disabledSearchTargets, searchTargets } from "@/utils/api/search/params"
+import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
+
+import { disabledSearchTargets, searchTargets } from "@/utils/api/search/local"
+
 
 export default function SearchTargetButtons() {
   const t = useTranslations("search")

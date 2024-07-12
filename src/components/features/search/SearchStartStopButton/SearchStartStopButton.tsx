@@ -28,6 +28,7 @@ export default function SearchStartStopButton() {
           </span>
         }
         placement="top"
+        enterDelay={1000}
         slotProps={{
           popper: {
             modifiers: [

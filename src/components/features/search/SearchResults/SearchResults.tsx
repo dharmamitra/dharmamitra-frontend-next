@@ -3,8 +3,8 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
-import useSearchCommonParams from "@/hooks/useSearchCommonParams"
-import { SearchTarget } from "@/utils/api/search/params"
+import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
+import { SearchTarget } from "@/utils/api/search/local"
 
 import ParallelQueryResults from "./ParallelQueryResults"
 import PrimaryQueryResults from "./PrimaryQueryResults"

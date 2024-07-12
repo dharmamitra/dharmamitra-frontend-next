@@ -3,9 +3,9 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
-import useSearchCommonParams from "@/hooks/useSearchCommonParams"
-import useSearchParallelParams from "@/hooks/useSearchParallelParams"
-import useSearchPrimaryParams from "@/hooks/useSearchPrimaryParams"
+import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
+import useSearchParallelParams from "@/hooks/search/useSearchParallelParams"
+import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
 import { searchParamsNames } from "@/utils/api/search/params"
 
 import LanguageFilterSelector from "./LanguageFilterSelector"

@@ -19,6 +19,8 @@ import { getOptionI18nKeyPath } from "@/utils"
 
 import RadioOption from "../translation/common/RadioOption"
 
+const { inputEncodings, defaultInputEncoding } = globalParams
+
 export default function LazyInputEncodingSelector() {
   const t = useTranslations()
 
@@ -37,9 +39,8 @@ export default function LazyInputEncodingSelector() {
     focusInset: "8px -4px 8px -8px",
   })
 
-  const [primaryEncodingOptions, otherEncodingOptions] = useResponsiveOptions(
-    globalParams.inputEncodings,
-  )
+  const [primaryEncodingOptions, otherEncodingOptions] =
+    useResponsiveOptions(inputEncodings)
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
     () =>
@@ -54,7 +55,7 @@ export default function LazyInputEncodingSelector() {
       <RadioGroup
         id={primaryOptionsSelectorId}
         aria-label={t("globalParams.primaryEncodingsAriaLabel")}
-        value={inputEncoding}
+        value={inputEncoding ?? defaultInputEncoding}
         onChange={(e) => updateInputEncoding(e.target.value)}
         row
         sx={{ ...flatRadioGroupStyles }}

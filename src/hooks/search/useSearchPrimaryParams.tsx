@@ -6,6 +6,7 @@ import {
   SearchFilterLanguage,
   searchParamsNames,
 } from "@/utils/api/search/params"
+import useSearchCommonParams from "./useSearchCommonParams"
 
 const {
   primary: { filter_language, limits: limitsParamName },
@@ -13,16 +14,18 @@ const {
 
 const useSearchPrimaryParams = () => {
   const { getSearchParam } = useParams()
+  const { searchTarget } = useSearchCommonParams()
 
   const filterLanguage = getSearchParam(filter_language) as SearchFilterLanguage
   const { handleValueChange: updateFilterLanguage } =
     useParamValueWithLocalStorage({
       paramName: filter_language,
-      defaultValue: defaultSearchFilterLanguage,
+      defaultValue:
+        searchTarget === "primary" ? defaultSearchFilterLanguage : undefined,
     })
 
   const { input: limits, handleValueChange: updateLimits } =
-    useInputWithUrlParam<string>(limitsParamName)
+    useInputWithUrlParam<string | null>(limitsParamName)
 
   return {
     filterLanguage,

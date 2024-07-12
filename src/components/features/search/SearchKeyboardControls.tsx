@@ -4,7 +4,7 @@ import React from "react"
 import { useSetAtom } from "jotai"
 
 import { triggerSearchQueryAtom } from "@/atoms"
-import useSearchCommonParams from "@/hooks/useSearchCommonParams"
+import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 
 export default function LazyKeyboardControls() {
   const { searchInput } = useSearchCommonParams()

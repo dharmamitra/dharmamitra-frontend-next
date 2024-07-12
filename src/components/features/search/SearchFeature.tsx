@@ -1,18 +1,16 @@
 import * as React from "react"
-import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
-import FormControlLabel from "@mui/material/FormControlLabel"
-import Switch from "@mui/material/Switch"
-import useMediaQuery from "@mui/material/useMediaQuery"
 
 import { debounce } from "@/utils"
 import { localStorageKeys } from "@/utils/constants"
 
-import TranslationInputEncodingSelector from "../InputEncodingSelector"
+import InputEncodingSelector from "../InputEncodingSelector"
 import SearchInput from "./SearchInput"
 import SearchKeyboardControls from "./SearchKeyboardControls"
 import SearchOptions from "./SearchOptions"
 import SearchResults from "./SearchResults"
+import ShowOptionsSwitch from "./ShowOptionsSwitch"
+import ResetOptionsButton from "./ResetOptionsButton"
 
 type TranslationFeatureProps = {
   isSearchOptionsOpen: boolean
@@ -25,9 +23,6 @@ export default function SearchFeature({
   isSearchOptionsOpen,
   setIsSearchOptionsOpen,
 }: TranslationFeatureProps) {
-  const t = useTranslations("search")
-  const isSmallScreen = useMediaQuery("(max-width:750px)")
-
   const handleToggleShowOptions = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsSearchOptionsOpen(event.target.checked)
@@ -48,11 +43,11 @@ export default function SearchFeature({
   const lastHeight = React.useRef(0)
 
   const handleScroll = React.useCallback(() => {
-    const target = document.getElementById(searchWrapperId)
-    if (!target) return
+    const targetElement = document.getElementById(searchWrapperId)
+    if (!targetElement) return
 
     const currentScrollY = window.scrollY
-    const currentHeight = target.offsetHeight
+    const currentHeight = targetElement.offsetHeight
     let direction = currentScrollY > lastScrollY.current ? "down" : "up"
 
     if (currentHeight > lastHeight.current) {
@@ -60,16 +55,16 @@ export default function SearchFeature({
     }
 
     if (direction === "up") {
-      target.setAttribute(
+      targetElement.setAttribute(
         "style",
         "position: sticky; box-shadow: 0 4px 1px -1px rgb(0 0 0 / 10%);",
       )
     } else if (direction === "down") {
-      target.setAttribute("style", "position: static;")
+      targetElement.setAttribute("style", "position: static;")
     }
 
     if (currentScrollY <= 228) {
-      target.setAttribute("style", "position: static;")
+      targetElement.setAttribute("style", "position: static;")
     }
 
     lastScrollY.current = currentScrollY
@@ -115,18 +110,16 @@ export default function SearchFeature({
             minHeight: "60px",
           }}
         >
-          <TranslationInputEncodingSelector isOpen={isSearchOptionsOpen} />
+          <InputEncodingSelector isOpen={isSearchOptionsOpen} />
 
-          <FormControlLabel
-            control={
-              <Switch
-                checked={isSearchOptionsOpen}
-                onChange={handleToggleShowOptions}
-              />
-            }
-            label={t("optionsSwitchLabel")}
-            labelPlacement={isSmallScreen ? "end" : "start"}
-          />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <ShowOptionsSwitch
+              isSearchOptionsOpen={isSearchOptionsOpen}
+              handleToggleShowOptions={handleToggleShowOptions}
+            />
+
+            <ResetOptionsButton />
+          </Box>
         </Box>
         <SearchInput />
 

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box"
 import OutlinedInput from "@mui/material/OutlinedInput"
 
 import ClearButton from "@/components/ClearButton"
-import useSearchCommonParams from "@/hooks/useSearchCommonParams"
+import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 
 import StartStopButton from "../SearchStartStopButton"
 
