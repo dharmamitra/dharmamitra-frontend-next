@@ -5,12 +5,19 @@ import { useAtom } from "jotai"
 import { DMFetchApi, SearchApiTypes } from "@/api"
 import { triggerSearchQueryAtom } from "@/atoms"
 import SkeletonGroup from "@/components/SkeletonGroup"
-import useGlobalParams from "@/hooks/useGlobalParams"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
+import useGlobalParams from "@/hooks/useGlobalParams"
+import { allSearchDefaultParams } from "@/utils/api/search/params"
 
 import ResultsHeading from "../ResultsHeading"
 import PrimarySearchResultItems from "./PrimaryQueryResultItems"
+
+const {
+  search_type: searchTypeDefault,
+  input_encoding: inputEncodingDefault,
+  filter_language: filterLanguageDefault,
+} = allSearchDefaultParams
 
 export default function PrimaryQueryResults() {
   const { searchInput, searchType } = useSearchCommonParams()
@@ -20,12 +27,12 @@ export default function PrimaryQueryResults() {
   const requestBody: SearchApiTypes.PrimaryRequestBody = React.useMemo(
     () => ({
       search_input: searchInput ?? "",
-      search_type: searchType,
-      input_encoding: inputEncoding,
+      search_type: searchType ?? searchTypeDefault,
+      input_encoding: inputEncoding ?? inputEncodingDefault,
       limits: limits
         ? (JSON.parse(limits) as SearchApiTypes.Schema["Limits"])
         : {},
-      filter_language: filterLanguage,
+      filter_language: filterLanguage ?? filterLanguageDefault,
     }),
     [searchInput, searchType, inputEncoding, limits, filterLanguage],
   )

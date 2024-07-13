@@ -10,7 +10,7 @@ function updateQueryParamsWithoutReload(newUrl: string) {
     const lang = document.documentElement.lang
     const path =
       appConfig.basePath + (lang === defaultLocale ? "" : "/" + lang) + newUrl
-    window.history.replaceState({ path }, "", path)
+    window.history.pushState({ path }, "", path)
   }
 }
 
@@ -28,18 +28,25 @@ const useParams = () => {
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
   const createQueryString = React.useCallback(
-    (paramName: string, value: string | null) => {
-      const params = new URLSearchParams(searchParams.toString())
-
+    ({
+      paramName,
+      value,
+      paramsString,
+    }: {
+      paramName: string
+      value: string | null
+      paramsString: string
+    }) => {
+      const currentParams = new URLSearchParams(paramsString)
       if (value) {
-        params.set(paramName, value)
+        currentParams.set(paramName, value)
       } else {
-        params.delete(paramName)
+        currentParams.delete(paramName)
       }
 
-      return params.toString()
+      return currentParams.toString()
     },
-    [searchParams],
+    [],
   )
 
   const updateParams = React.useCallback(

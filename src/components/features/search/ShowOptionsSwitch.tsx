@@ -4,11 +4,11 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
-
 import useMediaQuery from "@mui/material/useMediaQuery"
 
 type ShowOptionsSwitchProps = {
   isSearchOptionsOpen: boolean
+  // eslint-disable-next-line no-unused-vars
   handleToggleShowOptions: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 

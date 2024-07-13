@@ -1,12 +1,12 @@
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import { SearchTarget, SearchTargets, LocalParams } from "./types"
+import { LocalParams, SearchTarget, SearchTargets } from "./types"
 
-export type { SearchTarget, LocalParams }
+export type { LocalParams, SearchTarget }
 
 export const searchTargets: SearchTarget[] =
   exhaustiveStringTuple<SearchTargets>()("parallel", "primary", "secondary")
-export const defaultSearchTarget = "parallel"
+export const defaultSearchTarget = "primary"
 export const disabledSearchTargets: SearchTarget[] = ["secondary"]
 
 export const localParamNames: Record<keyof LocalParams, keyof LocalParams> = {

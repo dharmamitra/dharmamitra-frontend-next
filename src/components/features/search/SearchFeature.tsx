@@ -5,12 +5,12 @@ import { debounce } from "@/utils"
 import { localStorageKeys } from "@/utils/constants"
 
 import InputEncodingSelector from "../InputEncodingSelector"
+import ResetOptionsButton from "./ResetOptionsButton"
 import SearchInput from "./SearchInput"
 import SearchKeyboardControls from "./SearchKeyboardControls"
 import SearchOptions from "./SearchOptions"
 import SearchResults from "./SearchResults"
 import ShowOptionsSwitch from "./ShowOptionsSwitch"
-import ResetOptionsButton from "./ResetOptionsButton"
 
 type TranslationFeatureProps = {
   isSearchOptionsOpen: boolean

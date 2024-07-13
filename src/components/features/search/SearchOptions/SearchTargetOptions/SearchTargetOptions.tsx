@@ -6,10 +6,13 @@ import Box from "@mui/material/Box"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchParallelParams from "@/hooks/search/useSearchParallelParams"
 import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
-import { searchParamsNames } from "@/utils/api/search/params"
+import {
+  defaultSearchFilterLanguage,
+  searchParamsNames,
+} from "@/utils/api/search/params"
 
 import LanguageFilterSelector from "./LanguageFilterSelector"
-import LimitFilters, { LimitFiltersProps } from "./LimitFilters/LimitFilters"
+import LimitFilters from "./LimitFilters/LimitFilters"
 import SearchTargetButtons from "./SearchTargetButtons"
 
 const {
@@ -22,33 +25,23 @@ export default function SearchTargetOptions() {
   const { filterSourceLanguage, sourceLimits } = useSearchParallelParams()
   const { filterLanguage, limits } = useSearchPrimaryParams()
 
-  const [limitProps, setLimitProps] = React.useState<
-    LimitFiltersProps | undefined
-  >()
-
-  const showLimits = React.useRef<boolean>(false)
-
-  React.useEffect(() => {
+  const limitProps = React.useMemo(() => {
     if (searchTarget === "parallel") {
-      showLimits.current = filterSourceLanguage === "all" ? false : true
-
-      setLimitProps({
+      return {
         limitParamName: source_limits,
         limitParamStringValue: sourceLimits,
         language: filterSourceLanguage,
-      })
+      }
     } else if (searchTarget === "primary") {
-      showLimits.current = filterLanguage === "all" ? false : true
-      setLimitProps({
+      return {
         limitParamName: limits_param_name,
         limitParamStringValue: limits,
         language: filterLanguage,
-      })
+      }
     } else {
-      showLimits.current = false
-      setLimitProps(undefined)
+      return undefined
     }
-  }, [sourceLimits, limits, searchTarget, filterSourceLanguage, filterLanguage])
+  }, [searchTarget, sourceLimits, filterSourceLanguage, filterLanguage, limits])
 
   return (
     <Box
@@ -62,7 +55,7 @@ export default function SearchTargetOptions() {
 
       <LanguageFilterSelector />
 
-      {showLimits.current && limitProps ? (
+      {limitProps && limitProps.language !== defaultSearchFilterLanguage ? (
         <LimitFilters {...limitProps} />
       ) : null}
     </Box>

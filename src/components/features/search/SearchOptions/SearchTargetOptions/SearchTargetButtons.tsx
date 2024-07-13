@@ -7,14 +7,12 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 import Tooltip from "@mui/material/Tooltip"
 
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
-
 import { disabledSearchTargets, searchTargets } from "@/utils/api/search/local"
-
 
 export default function SearchTargetButtons() {
   const t = useTranslations("search")
 
-  const { searchTarget, updateSearchTarget } = useSearchCommonParams()
+  const { searchTarget, setSearchTarget } = useSearchCommonParams()
 
   return (
     <ToggleButtonGroup
@@ -22,7 +20,7 @@ export default function SearchTargetButtons() {
       size="small"
       value={searchTarget}
       exclusive
-      onChange={(event, value) => updateSearchTarget(value)}
+      onChange={(event, value) => setSearchTarget(value)}
       aria-label="Data Source"
     >
       {searchTargets.map((target) => (

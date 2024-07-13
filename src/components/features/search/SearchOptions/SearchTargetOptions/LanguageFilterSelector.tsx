@@ -53,11 +53,11 @@ export default function LanguageFilterSelector() {
   const { searchTarget } = useSearchCommonParams()
   const {
     filterSourceLanguage,
-    updateFilterTargetLanguage,
+    setFilterSourceLanguage,
+    setFilterTargetLanguage,
     filterTargetLanguage,
-    updateFilterSourceLanguage,
   } = useSearchParallelParams()
-  const { filterLanguage, updateFilterLanguage } = useSearchPrimaryParams()
+  const { filterLanguage, setFilterLanguage } = useSearchPrimaryParams()
 
   const t = useTranslations("generic")
 
@@ -66,7 +66,7 @@ export default function LanguageFilterSelector() {
       <LanguageSelect
         label={t("source")}
         value={filterLanguage}
-        handleChange={(event) => updateFilterLanguage(event.target.value)}
+        handleChange={(event) => setFilterLanguage(event.target.value)}
       />
     )
   }
@@ -77,16 +77,12 @@ export default function LanguageFilterSelector() {
         <LanguageSelect
           label={t("source")}
           value={filterSourceLanguage}
-          handleChange={(event) =>
-            updateFilterSourceLanguage(event.target.value)
-          }
+          handleChange={(event) => setFilterSourceLanguage(event.target.value)}
         />
         <LanguageSelect
           label={t("target")}
           value={filterTargetLanguage}
-          handleChange={(event) =>
-            updateFilterTargetLanguage(event.target.value)
-          }
+          handleChange={(event) => setFilterTargetLanguage(event.target.value)}
         />
       </Box>
     )

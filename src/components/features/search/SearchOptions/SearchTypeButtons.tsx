@@ -11,7 +11,7 @@ import { searchTypes } from "@/utils/api/search/params"
 export default function SearchTypeButtons() {
   const t = useTranslations("search.commonParams.searchTypes")
 
-  const { searchType, updateSearchType } = useSearchCommonParams()
+  const { searchType, setSearchType } = useSearchCommonParams()
 
   return (
     <div>
@@ -20,7 +20,7 @@ export default function SearchTypeButtons() {
         size="small"
         value={searchType}
         exclusive
-        onChange={(event, value) => updateSearchType(value)}
+        onChange={(event, value) => setSearchType(value)}
         aria-label="Search type"
       >
         {searchTypes.map((type) => (

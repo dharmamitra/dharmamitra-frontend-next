@@ -23,7 +23,13 @@ function useInputWithUrlParam<T>(paramName: string, defaultValue: string = "") {
       const newValue = typeof input === "string" ? input : input.target.value
 
       setCurrentInput(newValue)
-      updateParams(createQueryString(paramName, newValue))
+      updateParams(
+        createQueryString({
+          paramName,
+          value: newValue,
+          paramsString: window.location.search,
+        }),
+      )
     },
     [updateParams, createQueryString, paramName],
   )

@@ -6,13 +6,21 @@ import { useAtom } from "jotai"
 import { DMFetchApi, SearchApiTypes } from "@/api"
 import { triggerSearchQueryAtom } from "@/atoms"
 import SkeletonGroup from "@/components/SkeletonGroup"
-import useGlobalParams from "@/hooks/useGlobalParams"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchParallelParams from "@/hooks/search/useSearchParallelParams"
+import useGlobalParams from "@/hooks/useGlobalParams"
+import { allSearchDefaultParams } from "@/utils/api/search/params"
 
 import ResultsHeading from "../ResultsHeading"
 import ParralelSearchResultItems from "./ParralelSearchResultItems"
 import ShowEngishSwitch from "./ShowEngishSwitch"
+
+const {
+  search_type: searchTypeDefault,
+  input_encoding: inputEncodingDefault,
+  filter_source_language: filterSourceLanguageDefault,
+  filter_target_language: filterTargetLanguageDefault,
+} = allSearchDefaultParams
 
 export default function ParallelQueryResults() {
   const { searchInput, searchType } = useSearchCommonParams()
@@ -23,13 +31,15 @@ export default function ParallelQueryResults() {
   const requestBody: SearchApiTypes.ParallelRequestBody = React.useMemo(
     () => ({
       search_input: searchInput ?? "",
-      search_type: searchType,
-      input_encoding: inputEncoding,
+      search_type: searchType ?? searchTypeDefault,
+      input_encoding: inputEncoding ?? inputEncodingDefault,
       source_limits: sourceLimits
         ? (JSON.parse(sourceLimits) as SearchApiTypes.Schema["Limits"])
         : {},
-      filter_source_language: filterSourceLanguage,
-      filter_target_language: filterTargetLanguage,
+      filter_source_language:
+        filterSourceLanguage ?? filterSourceLanguageDefault,
+      filter_target_language:
+        filterTargetLanguage ?? filterTargetLanguageDefault,
     }),
     [
       searchInput,

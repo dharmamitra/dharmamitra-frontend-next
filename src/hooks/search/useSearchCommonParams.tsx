@@ -2,18 +2,16 @@ import React from "react"
 
 import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useParams from "@/hooks/useParams"
-import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
+import {
+  defaultSearchTarget,
+  localParamNames,
+  SearchTarget,
+} from "@/utils/api/search/local"
 import {
   defaultSearchType,
   searchParamsNames,
   SearchType,
 } from "@/utils/api/search/params"
-
-import {
-  defaultSearchTarget,
-  SearchTarget,
-  localParamNames,
-} from "@/utils/api/search/local"
 
 const {
   common: { search_input, search_type },
@@ -22,45 +20,54 @@ const {
 const { search_target } = localParamNames
 
 const useSearchCommonParams = () => {
-  const { getSearchParam } = useParams()
-
-  const searchTarget = getSearchParam(search_target) as SearchTarget
-  const { handleValueChange: updateSearchTarget } =
-    useParamValueWithLocalStorage({
-      paramName: search_target,
-      defaultValue: defaultSearchTarget,
-    })
-
-  React.useEffect(() => {
-    if (!searchTarget) {
-      updateSearchTarget(defaultSearchTarget)
-    }
-  }, [searchTarget, updateSearchTarget])
+  const { getSearchParam, createQueryString, updateParams } = useParams()
 
   const { input: searchInput, handleValueChange: updateSearchInput } =
     useInputWithUrlParam<string>(search_input)
 
-  const searchType = getSearchParam(search_type) as SearchType
-  const { handleValueChange: updateSearchType } = useParamValueWithLocalStorage(
-    {
-      paramName: search_type,
-      defaultValue: defaultSearchType,
+  const searchTarget = (getSearchParam(search_target) ??
+    localStorage.getItem(search_target) ??
+    defaultSearchTarget) as SearchTarget
+
+  const setSearchTarget = React.useCallback(
+    (value: string | null) => {
+      updateParams(
+        createQueryString({
+          paramName: search_target,
+          value,
+          paramsString: window.location.search,
+        }),
+      )
+      localStorage.setItem(search_target, value ?? "")
     },
+    [search_target, searchTarget, createQueryString, updateParams],
   )
 
-  React.useEffect(() => {
-    if (!searchType) {
-      updateSearchType(defaultSearchType)
-    }
-  }, [searchType, updateSearchType])
+  const searchType = (getSearchParam(search_type) ??
+    localStorage.getItem(search_type) ??
+    defaultSearchType) as SearchType
+
+  const setSearchType = React.useCallback(
+    (value: string | null) => {
+      updateParams(
+        createQueryString({
+          paramName: search_type,
+          value,
+          paramsString: window.location.search,
+        }),
+      )
+      localStorage.setItem(search_type, value ?? "")
+    },
+    [search_type, searchType, createQueryString, updateParams],
+  )
 
   return {
-    searchTarget: searchTarget ?? defaultSearchTarget,
-    updateSearchTarget,
+    searchTarget,
+    setSearchTarget,
     searchInput,
     updateSearchInput,
     searchType,
-    updateSearchType,
+    setSearchType,
   }
 }
 

@@ -66,7 +66,7 @@ function getParamsFromValues(
 
 export type LimitFiltersProps = {
   limitParamName: string
-  limitParamStringValue: string
+  limitParamStringValue: string | null | undefined
 } & UseSourceTextMenusProps
 
 const LimitFilters = ({
@@ -146,7 +146,11 @@ const LimitFilters = ({
       JSON.parse(limitParamStringValue || "{}"),
     )
     updateParams(
-      createQueryString(limitParamName, JSON.stringify(updatedParams)),
+      createQueryString({
+        paramName: limitParamName,
+        value: JSON.stringify(updatedParams),
+        paramsString: window.location.search,
+      }),
     )
   }
 

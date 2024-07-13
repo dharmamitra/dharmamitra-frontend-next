@@ -1,18 +1,24 @@
+import { defaultInputEncoding } from "@/utils/api/global/params"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
+import { defaultSearchTarget, localParamNames } from "./local"
 import {
+  AllSearchParamDefaults,
+  AllSearchParams,
   CommonSearchParamNames,
   CommonSearchParams,
   Schema,
   SearchParamNames,
-  AllSearchParams,
-  SearchParamDefaults,
   SearchTarget,
+  TargetSearchParamDefaults,
 } from "./types"
-import { defaultSearchTarget, localParamNames } from "./local"
-import { defaultInputEncoding } from "@/utils/api/global/params"
 
-export type { AllSearchParams, SearchParamDefaults }
+export type {
+  AllSearchParamDefaults,
+  AllSearchParams,
+  SearchTarget,
+  TargetSearchParamDefaults,
+}
 
 export type SearchType = CommonSearchParams["search_type"] &
   keyof Messages["search"]["commonParams"]["searchTypes"]
@@ -77,27 +83,39 @@ const {
 
 const { search_target } = localParamNames
 
-export const searchDefaultParams: SearchParamDefaults = {
+export const targetSearchDefaultParams: TargetSearchParamDefaults = {
   parallel: {
     [search_target]: defaultSearchTarget,
     [search_type]: defaultSearchType,
     [input_encoding]: defaultInputEncoding,
     [filter_source_language]: defaultSearchFilterLanguage,
     [filter_target_language]: defaultSearchFilterLanguage,
-    [source_limits]: "",
+    [source_limits]: undefined,
   },
   primary: {
     [search_target]: defaultSearchTarget,
     [search_type]: defaultSearchType,
     [input_encoding]: defaultInputEncoding,
     [filter_language]: defaultSearchFilterLanguage,
-    [limits]: "",
+    [limits]: undefined,
   },
   secondary: {
     [search_target]: defaultSearchTarget,
     [search_type]: defaultSearchType,
     [input_encoding]: defaultInputEncoding,
-    [filter_secondary]: "TODO",
+    [filter_secondary]: undefined,
     [postprocess_model]: "TODO",
   },
+}
+export const allSearchDefaultParams: AllSearchParamDefaults = {
+  [search_target]: defaultSearchTarget,
+  [search_type]: defaultSearchType,
+  [input_encoding]: defaultInputEncoding,
+  [filter_source_language]: defaultSearchFilterLanguage,
+  [filter_target_language]: defaultSearchFilterLanguage,
+  [source_limits]: undefined,
+  [filter_language]: defaultSearchFilterLanguage,
+  [limits]: undefined,
+  [filter_secondary]: undefined,
+  [postprocess_model]: undefined,
 }

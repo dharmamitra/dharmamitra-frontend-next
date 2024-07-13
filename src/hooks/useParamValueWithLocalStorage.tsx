@@ -12,6 +12,7 @@ function getSearchParam({
   return searchParams.get(paramName)
 }
 
+// TODO: Retire this hook
 function useParamValueWithLocalStorage({
   paramName,
   defaultValue = "",
@@ -64,11 +65,20 @@ function useParamValueWithLocalStorage({
         | string
         | null,
     ) => {
-      if (value === null) return
-      const newValue = typeof value === "string" ? value : value.target.value
+      let newValue
+      if (typeof value === "string") {
+        newValue = value
+      }
+      if (value instanceof Object) {
+        newValue = value.target.value
+      }
+      if (!newValue) {
+        newValue = defaultValue
+      }
+
       setValue(newValue)
     },
-    [],
+    [defaultValue],
   )
 
   return { value, handleValueChange, isHydrated }

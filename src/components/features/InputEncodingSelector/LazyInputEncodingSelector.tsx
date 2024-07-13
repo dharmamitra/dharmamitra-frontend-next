@@ -24,7 +24,7 @@ const { inputEncodings, defaultInputEncoding } = globalParams
 export default function LazyInputEncodingSelector() {
   const t = useTranslations()
 
-  const { inputEncoding, updateInputEncoding } = useGlobalParams()
+  const { inputEncoding, setInputEncoding } = useGlobalParams()
 
   const primaryOptionsSelectorId = "primary-encoding-options"
   useFocusHighlight({
@@ -56,7 +56,7 @@ export default function LazyInputEncodingSelector() {
         id={primaryOptionsSelectorId}
         aria-label={t("globalParams.primaryEncodingsAriaLabel")}
         value={inputEncoding ?? defaultInputEncoding}
-        onChange={(e) => updateInputEncoding(e.target.value)}
+        onChange={(e) => setInputEncoding(e.target.value)}
         row
         sx={{ ...flatRadioGroupStyles }}
         className={styles.customFocusVisible}
@@ -79,8 +79,8 @@ export default function LazyInputEncodingSelector() {
         <Select
           id={secondaryOptionsSelectorId}
           data-testid="other-input-encoding-options"
-          value={isPrimaryValueSelected ? "" : inputEncoding}
-          onChange={(e) => updateInputEncoding(e.target.value)}
+          value={isPrimaryValueSelected || !inputEncoding ? "" : inputEncoding}
+          onChange={(e) => setInputEncoding(e.target.value)}
           inputProps={{
             "aria-label": t("globalParams.secondaryEncodingsAriaLabel"),
             sx: secondaryOptionsInputStyles,

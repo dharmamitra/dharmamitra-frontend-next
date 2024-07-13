@@ -35,10 +35,12 @@ export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all">
 // eslint-disable-next-line no-unused-vars
 type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
 
-export type SearchTargets = Exclude<SearchEndpoint, ExcludeStreams<SearchEndpoint>>
+export type SearchTargets = Exclude<
+  SearchEndpoint,
+  ExcludeStreams<SearchEndpoint>
+>
 
 export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
-
 
 /**
  *  COMBINED MODELS
@@ -67,7 +69,8 @@ export type CommonSearchParamNames = {
 
 export type AllSearchParams = CommonSearchParams &
   UniqueParallelParams &
-  UniquePrimaryParams
+  UniquePrimaryParams &
+  UniqueSecondaryParams
 
 type UniqueParallelParamNames = {
   [K in keyof UniqueParallelParams]: K
@@ -91,7 +94,7 @@ export type LocalParams = {
   search_target: SearchTarget
 }
 
-export type SearchParamDefaults = {
+export type TargetSearchParamDefaults = {
   parallel: Omit<
     Record<keyof ParallelRequestBody, string | undefined>,
     "search_input"
@@ -108,3 +111,9 @@ export type SearchParamDefaults = {
   > &
     LocalParams
 }
+
+export type AllSearchParamDefaults = Omit<
+  Record<keyof AllSearchParams, string | undefined>,
+  "search_input"
+> &
+  LocalParams

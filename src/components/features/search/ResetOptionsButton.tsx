@@ -2,23 +2,22 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import IconButton from "@mui/material/IconButton"
 import RotateLeftIcon from "@mui/icons-material/RotateLeft"
+import Badge from "@mui/material/Badge"
+import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
-import { useSearchParams } from "next/navigation"
 
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
-import Badge from "@mui/material/Badge"
-import {
-  searchParamsNames,
-  AllSearchParams,
-  searchDefaultParams as defaults,
-} from "@/utils/api/search/params"
-
-import { SearchTarget, localParamNames } from "@/utils/api/search/local"
 import useSearchParallelParams from "@/hooks/search/useSearchParallelParams"
 import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
 import useGlobalParams from "@/hooks/useGlobalParams"
+import { localParamNames, SearchTarget } from "@/utils/api/search/local"
+import {
+  allSearchDefaultParams as allDefaults,
+  AllSearchParams,
+  searchParamsNames,
+  targetSearchDefaultParams as targetDefaults,
+} from "@/utils/api/search/params"
 
 const { search_target } = localParamNames
 const {
@@ -27,41 +26,35 @@ const {
   primary: { filter_language, limits },
 } = searchParamsNames
 
-type ParamKey = keyof AllSearchParams
-
-type ParamDefaults = Partial<Record<ParamKey, string>> & {
+type ParamKey = Exclude<keyof AllSearchParams, "search_target">
+type ParamValue = string | undefined | null
+type Params = Partial<Record<ParamKey, ParamValue>> & {
   search_target: SearchTarget
 }
 
-const getCustomValueBinary = (
-  targetDefaults: ParamDefaults,
-  key: string,
-  value: string,
+const getIsCustomValueBinary = (
+  targetDefaults: Params,
+  key: ParamKey,
+  value: ParamValue,
 ) => {
-  // console.log("get count", key, " => ", value)
   if (!(key in targetDefaults) || !value) return 0
-  if (value !== targetDefaults[key as ParamKey]) {
-    console.log("ADD 1", key, " => ", value)
+  if (key === source_limits || key === limits) {
+    return value === "{}" ? 0 : 1
+  }
+  if (value !== targetDefaults[key]) {
     return 1
   }
   return 0
 }
 
-const getInitialParamCount = (
-  params: URLSearchParams,
-  target: SearchTarget,
-) => {
-  let count = 0
-  Array.from(params.entries()).forEach(([key, value]) => {
-    count += getCustomValueBinary(defaults[target], key, value)
-  })
-  return count
-}
-
-const getParamCount = (params: Record<any, any>, target: SearchTarget) => {
+const getParamCount = (params: Params, target: SearchTarget) => {
   let count = 0
   Object.entries(params).forEach(([key, value]) => {
-    count += getCustomValueBinary(defaults[target], key, value)
+    count += getIsCustomValueBinary(
+      targetDefaults[target],
+      key as ParamKey,
+      value,
+    )
   })
   return count
 }
@@ -73,14 +66,14 @@ export default function ResetOptionsButton() {
   const { inputEncoding } = useGlobalParams()
   const { filterSourceLanguage, filterTargetLanguage, sourceLimits } =
     useSearchParallelParams()
-  const { limits, filterLanguage } = useSearchPrimaryParams()
+  const { limits: limitsValue, filterLanguage } = useSearchPrimaryParams()
 
   const [customOptionsCount, setCustomOptionsCount] = React.useState<
     number | undefined
   >()
 
   React.useEffect(() => {
-    setCustomOptionsCount((prev) => {
+    setCustomOptionsCount(() => {
       return getParamCount(
         {
           [search_target]: searchTarget,
@@ -88,9 +81,9 @@ export default function ResetOptionsButton() {
           [input_encoding]: inputEncoding,
           [filter_source_language]: filterSourceLanguage,
           [filter_target_language]: filterTargetLanguage,
-          // [source_limits]: sourceLimits,
+          [source_limits]: sourceLimits,
           [filter_language]: filterLanguage,
-          // [limits]: limits,
+          [limits]: limitsValue,
         },
         searchTarget,
       )
@@ -103,20 +96,32 @@ export default function ResetOptionsButton() {
     filterTargetLanguage,
     sourceLimits,
     filterLanguage,
-    limits,
+    limitsValue,
   ])
 
   const handleReset = React.useCallback(() => {
     const url = new URL(window.location.href)
     const searchInput = url.searchParams.get(search_input)
+    url.search = ""
 
-    Object.entries(defaults[searchTarget]).forEach(([key, value]) => {
-      localStorage.setItem(key, String(value))
+    Object.entries(allDefaults).forEach(([key, value], index) => {
+      if (!(key in targetDefaults[searchTarget] || value)) {
+        localStorage.removeItem(key)
+      }
+
+      if (key in targetDefaults[searchTarget] && value) {
+        url.search = `${url.search}${index === 0 ? "?" : "&"}${key}=${value}`
+      }
+
+      if (value) {
+        localStorage.setItem(key, String(value))
+      }
     })
 
-    url.search = `?${searchInput ? `${search_input}=${searchInput}` : ""}`
+    url.search =
+      url.search + `${searchInput ? `&${search_input}=${searchInput}` : ""}`
     window.history.replaceState(null, "", url.toString())
-  }, [])
+  }, [searchTarget])
 
   return (
     <Badge

@@ -68,12 +68,11 @@ export default function ResultItem({
             <div>
               <Typography
                 variant="subtitle1"
-                fontWeight={600}
                 p="0"
                 mb={1}
-                color="grey.900"
+                color="grey.800"
                 sx={{
-                  display: "inline-block",
+                  display: "block",
                   overflowWrap: "anywhere",
                   lineHeight: "1.25",
                 }}
@@ -82,13 +81,12 @@ export default function ResultItem({
               </Typography>
               <Typography
                 variant="body2"
-                color="grey.800"
+                color="grey.900"
                 component="a"
                 href={link}
                 target="_blank"
                 rel="noreferrer"
                 sx={{
-                  display: "block",
                   "&:hover": { textDecoration: "none" },
                 }}
               >
