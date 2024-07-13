@@ -1,7 +1,6 @@
 import * as React from "react"
 import Box from "@mui/material/Box"
 
-import { debounce } from "@/utils"
 import { localStorageKeys } from "@/utils/constants"
 
 import InputEncodingSelector from "../InputEncodingSelector"
@@ -16,8 +15,6 @@ type TranslationFeatureProps = {
   isSearchOptionsOpen: boolean
   setIsSearchOptionsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
-
-const searchWrapperId = "search-input-wrapper"
 
 export default function SearchFeature({
   isSearchOptionsOpen,
@@ -39,49 +36,10 @@ export default function SearchFeature({
     [setIsSearchOptionsOpen],
   )
 
-  const lastScrollY = React.useRef(0)
-  const lastHeight = React.useRef(0)
-
-  const handleScroll = React.useCallback(() => {
-    const targetElement = document.getElementById(searchWrapperId)
-    if (!targetElement) return
-
-    const currentScrollY = window.scrollY
-    const currentHeight = targetElement.offsetHeight
-    let direction = currentScrollY > lastScrollY.current ? "down" : "up"
-
-    if (currentHeight > lastHeight.current) {
-      direction = "up"
-    }
-
-    if (direction === "up") {
-      targetElement.setAttribute(
-        "style",
-        "position: sticky; box-shadow: 0 4px 1px -1px rgb(0 0 0 / 10%);",
-      )
-    } else if (direction === "down") {
-      targetElement.setAttribute("style", "position: static;")
-    }
-
-    if (currentScrollY <= 228) {
-      targetElement.setAttribute("style", "position: static;")
-    }
-
-    lastScrollY.current = currentScrollY
-    lastHeight.current = currentHeight
-  }, [lastScrollY, lastHeight])
-
-  const debouncedHandleScroll = React.useRef(debounce(handleScroll, 30)).current
-
-  React.useEffect(() => {
-    window.addEventListener("scroll", debouncedHandleScroll)
-    return () => window.removeEventListener("scroll", debouncedHandleScroll)
-  }, [debouncedHandleScroll])
-
   return (
     <>
       <Box
-        id={searchWrapperId}
+        id="search-input-wrapper"
         sx={{
           bgcolor: "background.paper",
           py: 1,

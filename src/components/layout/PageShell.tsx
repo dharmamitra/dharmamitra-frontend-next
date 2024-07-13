@@ -35,7 +35,10 @@ export default function PageShell({
           <Container
             component="main"
             maxWidth={maxWidth}
-            sx={{ flexGrow: 1, mt: { xs: 6, md: 8 } }}
+            sx={{
+              flexGrow: 1,
+              mt: { xs: 6, md: 8 },
+            }}
           >
             {children}
           </Container>

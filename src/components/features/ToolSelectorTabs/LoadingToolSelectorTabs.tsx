@@ -11,7 +11,6 @@ import Tabs from "@mui/material/Tabs"
 import LoadingBox from "@/components/LoadingBox"
 
 import { a11yProps, minToolBoxHeight, tabsStyles } from "./ToolSelectorTabs"
-import styles from "./ToolSelectorTabs.module.css"
 
 export default function LoadingToolSelectorTabs() {
   const t = useTranslations()
@@ -21,7 +20,6 @@ export default function LoadingToolSelectorTabs() {
         value={0}
         aria-label="navigation tabs"
         centered
-        className={styles.stickyTabs}
         TabIndicatorProps={{
           sx: { display: "none" },
         }}

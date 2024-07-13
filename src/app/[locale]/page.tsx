@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, useMessages, useTranslations } from "next-intl"
 import { unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
+import visuallyHidden from "@mui/utils/visuallyHidden"
 
 import ToolSelectorTabs from "@/components/features/ToolSelectorTabs/ToolSelectorTabs"
 import PageShell from "@/components/layout/PageShell"
@@ -34,6 +35,9 @@ export default function HomePage({
     return (
       <NextIntlClientProvider messages={translationMessages}>
         <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
+          <Typography component="h1" sx={visuallyHidden}>
+            Dharmamitra
+          </Typography>
           <ToolSelectorTabs />
         </PageShell>
       </NextIntlClientProvider>

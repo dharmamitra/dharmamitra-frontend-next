@@ -3,9 +3,11 @@
 import * as React from "react"
 import { useInView } from "react-intersection-observer"
 import { useTranslations } from "next-intl"
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import ScreenSearchDesktopOutlinedIcon from "@mui/icons-material/ScreenSearchDesktopOutlined"
 import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined"
 import Box from "@mui/material/Box"
+import IconButton from "@mui/material/IconButton"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
@@ -14,7 +16,6 @@ import TranslationFeature from "@/features/translation"
 import { localStorageKeys } from "@/utils/constants"
 
 import LoadingToolSelectorTabs from "./LoadingToolSelectorTabs"
-import styles from "./ToolSelectorTabs.module.css"
 
 interface TabPanelProps {
   children: React.ReactNode
@@ -35,6 +36,18 @@ export const tabsStyles = {
     border: "3px solid transparent",
     transition:
       "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
+  },
+  minWidth: "210px",
+  width: "fit-content",
+  marginInline: "auto",
+  "& button.Mui-selected": {
+    backgroundColor: "#fff",
+    boxShadow: "0px 4px 4px 0px #0000001C",
+    transition:
+      "box-shadow 0.3s ease-in-out, background-color 0.1s ease-in-out",
+  },
+  "*": {
+    animation: "none !important",
   },
 }
 
@@ -100,27 +113,18 @@ export default function ToolSelectorTabs() {
 
   return (
     <>
-      <Box
-        className={!scrollMarkerInView ? ` ${styles.stickyTabsWrapper}` : ""}
-      >
+      <Box>
         <Tabs
           value={tabIndex}
           aria-label="navigation tabs"
           centered
           onChange={handleTabChange}
-          className={styles.stickyTabs}
           TabIndicatorProps={{
-            sx: { display: "none" },
-          }}
-          sx={{
-            ...tabsStyles,
-            "& button.Mui-selected": {
-              backgroundColor: "#fff",
-              boxShadow: "0px 4px 4px 0px #0000001C",
-              transition:
-                "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
+            sx: {
+              display: "none",
             },
           }}
+          sx={tabsStyles}
         >
           <Tab
             icon={<ScreenSearchDesktopOutlinedIcon />}
@@ -171,6 +175,41 @@ export default function ToolSelectorTabs() {
             </Box>
           </FeatureTabPanel>
         </Box>
+      </Box>
+
+      <Box
+        sx={{
+          position: "sticky",
+          bottom: "1.5rem",
+          right: 0,
+          zIndex: 1000,
+          display: scrollMarkerInView ? "none" : "flex",
+          justifyContent: "flex-end",
+          transition: "display 1.5s ease-in-out",
+          "@keyframes fadeIn": {
+            from: { opacity: 0 },
+            to: { opacity: 1 },
+          },
+          animation: "fadeIn 1s ease-in-out",
+        }}
+      >
+        <IconButton
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: "auto",
+            })
+          }
+          aria-label="go back to top"
+          sx={{
+            backgroundColor: "white",
+            border: "2px solid",
+            borderColor: "divider",
+          }}
+        >
+          <ArrowForwardIosIcon sx={{ transform: "rotate(-90deg)" }} />
+        </IconButton>
       </Box>
     </>
   )
