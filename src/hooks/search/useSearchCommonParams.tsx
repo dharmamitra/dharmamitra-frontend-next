@@ -22,7 +22,7 @@ const { search_target } = localParamNames
 const useSearchCommonParams = () => {
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
-  const { input: searchInput, handleValueChange: updateSearchInput } =
+  const { input: searchInput, handleValueChange: setSearchInput } =
     useInputWithUrlParam<string>(search_input)
 
   const searchTarget = (getSearchParam(search_target) ??
@@ -65,7 +65,7 @@ const useSearchCommonParams = () => {
     searchTarget,
     setSearchTarget,
     searchInput,
-    updateSearchInput,
+    setSearchInput,
     searchType,
     setSearchType,
   }

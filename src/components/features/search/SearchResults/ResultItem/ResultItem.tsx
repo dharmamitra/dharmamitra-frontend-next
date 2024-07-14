@@ -72,10 +72,15 @@ export default function ResultItem({
                 mb={1}
                 color="grey.800"
                 sx={{
-                  display: "block",
                   overflowWrap: "anywhere",
                   lineHeight: "1.25",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "3",
+                  WebkitBoxOrient: "vertical",
                 }}
+                title={title.length > 115 ? title : undefined}
               >
                 {title}
               </Typography>

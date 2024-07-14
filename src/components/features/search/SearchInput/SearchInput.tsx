@@ -11,7 +11,7 @@ import StartStopButton from "../SearchStartStopButton"
 export default function SearchInput({ className }: { className?: string }) {
   const t = useTranslations("search")
 
-  const { searchInput, updateSearchInput } = useSearchCommonParams()
+  const { searchInput, setSearchInput } = useSearchCommonParams()
 
   return (
     <Box className={className}>
@@ -29,7 +29,7 @@ export default function SearchInput({ className }: { className?: string }) {
         value={searchInput}
         multiline
         type="search"
-        onChange={updateSearchInput}
+        onChange={setSearchInput}
         endAdornment={
           <Box
             sx={{
@@ -41,7 +41,7 @@ export default function SearchInput({ className }: { className?: string }) {
 
             <ClearButton
               value={searchInput}
-              handleValueChange={updateSearchInput}
+              handleValueChange={setSearchInput}
             />
           </Box>
         }

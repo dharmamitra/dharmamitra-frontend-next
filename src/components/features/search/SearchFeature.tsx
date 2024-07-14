@@ -8,6 +8,7 @@ import ResetOptionsButton from "./ResetOptionsButton"
 import SearchInput from "./SearchInput"
 import SearchKeyboardControls from "./SearchKeyboardControls"
 import SearchOptions from "./SearchOptions"
+import SearchExamples from "./SearchOptions/SearchExamples"
 import SearchResults from "./SearchResults"
 import ShowOptionsSwitch from "./ShowOptionsSwitch"
 
@@ -82,6 +83,7 @@ export default function SearchFeature({
         <SearchInput />
 
         <SearchOptions isOpen={isSearchOptionsOpen} />
+        <SearchExamples isVisible={!isSearchOptionsOpen} />
       </Box>
 
       <SearchResults />
