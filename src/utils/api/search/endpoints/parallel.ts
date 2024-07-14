@@ -10,6 +10,7 @@ export const getSearchParallelData = async (
 
   const { data, error } = await apiClients.Search.POST(`/parallel/`, {
     body,
+    signal: AbortSignal.timeout(10000),
   })
 
   if (error) {

@@ -1,19 +1,21 @@
 import React from "react"
+import { useLocale } from "next-intl"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import { useSetAtom } from "jotai"
 
 import { triggerSearchQueryAtom } from "@/atoms"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
-import { exampleSearchQueries } from "@/utils/constants"
+import { exampleSearchStrings } from "@/utils/searchExamples"
 
 type Props = {
-  isVisible: boolean
+  isShown: boolean
 }
 
-export default function SearchExamples({ isVisible }: Props) {
-  const { setSearchInput } = useSearchCommonParams()
+export default function SearchExamples({ isShown }: Props) {
+  const { searchInput, setSearchInput } = useSearchCommonParams()
   const setTriggerSearchQuery = useSetAtom(triggerSearchQueryAtom)
+  const locale = useLocale() as SupportedLocale
 
   const handleClick = React.useCallback(
     (example: string) => {
@@ -23,12 +25,23 @@ export default function SearchExamples({ isVisible }: Props) {
     [setSearchInput, setTriggerSearchQuery],
   )
 
-  if (!isVisible) return null
+  const examples = React.useMemo(() => {
+    const uniqueExamples = new Set<string>()
+    while (uniqueExamples.size < 9) {
+      const randomIndex = Math.floor(
+        Math.random() * exampleSearchStrings[locale].length,
+      )
+      uniqueExamples.add(exampleSearchStrings[locale][randomIndex] ?? "")
+    }
+    return Array.from(uniqueExamples)
+  }, [locale])
+
+  if (!isShown) return null
 
   return (
     <Box
       sx={{
-        display: "flex",
+        display: searchInput ? "none" : "flex",
         flexWrap: "wrap",
         gap: 2,
         my: 6,
@@ -41,34 +54,26 @@ export default function SearchExamples({ isVisible }: Props) {
           },
         },
         animation: "fadeIn 0.6s ease-in-out",
+        transition: "display 2s ease-in-out",
       }}
     >
-      {Array(9)
-        .fill(1)
-        .map((_, index) => {
-          const randomIndex = Math.floor(
-            Math.random() * exampleSearchQueries.length,
-          )
-          const example = exampleSearchQueries[randomIndex] ?? ""
-
-          return (
-            <Button
-              key={`example-search-term-${index}`}
-              variant="outlined"
-              size="small"
-              sx={{
-                color: "text.secondary",
-                borderColor: "grey.400",
-                borderRadius: "25px",
-                px: 2,
-                py: 0.5,
-              }}
-              onClick={() => handleClick(example)}
-            >
-              {example}
-            </Button>
-          )
-        })}
+      {examples.map((example, index) => (
+        <Button
+          key={`example-search-term-${index}`}
+          variant="outlined"
+          size="small"
+          sx={{
+            color: "text.secondary",
+            borderColor: "grey.400",
+            borderRadius: "25px",
+            px: 2,
+            py: 0.5,
+          }}
+          onClick={() => handleClick(example)}
+        >
+          {example}
+        </Button>
+      ))}
     </Box>
   )
 }

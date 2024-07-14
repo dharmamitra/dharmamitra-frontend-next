@@ -10,6 +10,7 @@ export const getSearchPrimaryData = async (
 
   const { data, error } = await apiClients.Search.POST(`/primary/`, {
     body,
+    signal: AbortSignal.timeout(10000),
   })
 
   if (error) {

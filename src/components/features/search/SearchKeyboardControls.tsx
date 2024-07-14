@@ -16,9 +16,7 @@ export default function LazyKeyboardControls() {
       const { key, ctrlKey } = event
 
       if (key === "Enter" && ctrlKey) {
-        if (searchInput && searchInput.length > 0) {
-          setTriggerSearchQuery(true)
-        }
+        setTriggerSearchQuery(Boolean(searchInput))
       }
     },
     [setTriggerSearchQuery, searchInput],

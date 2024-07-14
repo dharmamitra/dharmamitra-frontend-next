@@ -62,6 +62,7 @@ export default function ParallelQueryResults() {
       return DMFetchApi.searchParallel.call(requestBody)
     },
     enabled: isSearchTriggered,
+    retry: false,
   })
 
   React.useEffect(() => {

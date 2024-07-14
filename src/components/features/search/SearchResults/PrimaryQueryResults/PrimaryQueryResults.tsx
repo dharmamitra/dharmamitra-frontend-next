@@ -8,18 +8,10 @@ import SkeletonGroup from "@/components/SkeletonGroup"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
 import useGlobalParams from "@/hooks/useGlobalParams"
-import useParams from "@/hooks/useParams"
-import {
-  allSearchDefaultParams,
-  searchParamsNames,
-} from "@/utils/api/search/params"
+import { allSearchDefaultParams } from "@/utils/api/search/params"
 
 import ResultsHeading from "../ResultsHeading"
 import PrimarySearchResultItems from "./PrimaryQueryResultItems"
-
-const {
-  common: { search_input },
-} = searchParamsNames
 
 const {
   search_type: searchTypeDefault,
@@ -28,14 +20,13 @@ const {
 } = allSearchDefaultParams
 
 export default function PrimaryQueryResults() {
-  const { getSearchParam } = useParams()
-  const { searchType } = useSearchCommonParams()
+  const { searchInput, searchType } = useSearchCommonParams()
   const { inputEncoding } = useGlobalParams()
   const { limits, filterLanguage } = useSearchPrimaryParams()
 
   const requestBody: SearchApiTypes.PrimaryRequestBody = React.useMemo(
     () => ({
-      search_input: getSearchParam(search_input) ?? "",
+      search_input: searchInput ?? "",
       search_type: searchType ?? searchTypeDefault,
       input_encoding: inputEncoding ?? inputEncodingDefault,
       limits: limits
@@ -43,7 +34,7 @@ export default function PrimaryQueryResults() {
         : {},
       filter_language: filterLanguage ?? filterLanguageDefault,
     }),
-    [getSearchParam, searchType, inputEncoding, limits, filterLanguage],
+    [searchInput, searchType, inputEncoding, limits, filterLanguage],
   )
 
   const [isSearchTriggered, setTriggerSearchQuery] = useAtom(
@@ -57,6 +48,7 @@ export default function PrimaryQueryResults() {
       return DMFetchApi.searchPrimary.call(requestBody)
     },
     enabled: isSearchTriggered,
+    retry: false,
   })
 
   React.useEffect(() => {

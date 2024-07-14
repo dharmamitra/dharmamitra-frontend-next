@@ -7,13 +7,10 @@ import { useSetAtom } from "jotai"
 
 import { triggerSearchQueryAtom } from "@/atoms"
 import { tooltipEnterStyles } from "@/components/styled"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { searchParamsNames } from "@/utils/api/search/params"
+import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 
 export default function SearchStartStopButton() {
-  const { input } = useInputWithUrlParam<string>(
-    searchParamsNames.common.search_input,
-  )
+  const { searchInput } = useSearchCommonParams()
   const t = useTranslations()
 
   const setTriggerSearchQuery = useSetAtom(triggerSearchQueryAtom)
@@ -46,8 +43,8 @@ export default function SearchStartStopButton() {
           <IconButton
             aria-label={t("search.search")}
             color="secondary"
-            onClick={() => setTriggerSearchQuery(true)}
-            disabled={!input.match(/\S+/g)?.length}
+            onClick={() => setTriggerSearchQuery(Boolean(searchInput))}
+            disabled={!searchInput.match(/\S+/g)?.length}
           >
             <PlayCircleIcon />
           </IconButton>

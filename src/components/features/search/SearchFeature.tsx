@@ -83,7 +83,7 @@ export default function SearchFeature({
         <SearchInput />
 
         <SearchOptions isOpen={isSearchOptionsOpen} />
-        <SearchExamples isVisible={!isSearchOptionsOpen} />
+        <SearchExamples isShown={!isSearchOptionsOpen} />
       </Box>
 
       <SearchResults />

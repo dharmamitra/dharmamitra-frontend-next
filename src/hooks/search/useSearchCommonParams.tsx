@@ -1,6 +1,5 @@
 import React from "react"
 
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useParams from "@/hooks/useParams"
 import {
   defaultSearchTarget,
@@ -22,8 +21,23 @@ const { search_target } = localParamNames
 const useSearchCommonParams = () => {
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
-  const { input: searchInput, handleValueChange: setSearchInput } =
-    useInputWithUrlParam<string>(search_input)
+  const searchInput = getSearchParam(search_input) ?? ""
+
+  const setSearchInput = React.useCallback(
+    (
+      input: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string,
+    ) => {
+      const newValue = typeof input === "string" ? input : input.target.value
+      updateParams(
+        createQueryString({
+          paramName: search_input,
+          value: newValue,
+          paramsString: window.location.search,
+        }),
+      )
+    },
+    [search_input, searchInput, createQueryString, updateParams],
+  )
 
   const searchTarget = (getSearchParam(search_target) ??
     localStorage.getItem(search_target) ??

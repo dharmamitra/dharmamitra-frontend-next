@@ -3,6 +3,7 @@ import { SelectChangeEvent } from "@mui/material"
 
 import useParams from "@/hooks/useParams"
 
+// TODO: Retire
 function useInputWithUrlParam<T>(paramName: string, defaultValue: string = "") {
   const { getSearchParam, createQueryString, updateParams } = useParams()
   const [currentInput, setCurrentInput] = React.useState(
