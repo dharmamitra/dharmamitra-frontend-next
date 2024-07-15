@@ -22,7 +22,7 @@ export type SecondaryRequestBody = APIRequestBody<paths["/secondary/"]["post"]>
 export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
 
 /**
- *  API ENDPPOINTS & AUXILIARY PARAMS NAMES
+ *  API ENDPPOINTS & AUXILIARY PARAMS
  */
 
 type Endpoint = keyof paths
@@ -43,7 +43,7 @@ export type SearchTargets = Exclude<
 export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
 
 /**
- *  COMBINED MODELS
+ *  PARAMS
  */
 
 export type CommonSearchParams = CommonProperties<
@@ -61,16 +61,14 @@ export type UniqueSecondaryParams = UniqueProperties<
   [CommonSearchParams, SecondaryRequestBody]
 >
 
-export type CommonSearchParamNames = {
-  common: {
-    [K in keyof CommonSearchParams]: K
-  }
-}
-
 export type AllSearchParams = CommonSearchParams &
   UniqueParallelParams &
   UniquePrimaryParams &
   UniqueSecondaryParams
+
+export type CommonSearchParamNames = {
+  [K in keyof CommonSearchParams]: K
+}
 
 type UniqueParallelParamNames = {
   [K in keyof UniqueParallelParams]: K
@@ -85,6 +83,7 @@ type UniqueSecondaryParamNames = {
 }
 
 export type SearchParamNames = {
+  common: CommonSearchParamNames
   parallel: UniqueParallelParamNames
   primary: UniquePrimaryParamNames
   secondary: UniqueSecondaryParamNames
@@ -94,7 +93,7 @@ export type LocalParams = {
   search_target: SearchTarget
 }
 
-export type TargetSearchParamDefaults = {
+export type SearchTargetParamDefaults = {
   parallel: Omit<
     Record<keyof ParallelRequestBody, string | undefined>,
     "search_input"

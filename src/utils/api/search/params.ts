@@ -5,19 +5,18 @@ import { defaultSearchTarget, localParamNames } from "./local"
 import {
   AllSearchParamDefaults,
   AllSearchParams,
-  CommonSearchParamNames,
   CommonSearchParams,
   Schema,
   SearchParamNames,
   SearchTarget,
-  TargetSearchParamDefaults,
+  SearchTargetParamDefaults,
 } from "./types"
 
 export type {
   AllSearchParamDefaults,
   AllSearchParams,
   SearchTarget,
-  TargetSearchParamDefaults,
+  SearchTargetParamDefaults,
 }
 
 export type SearchType = CommonSearchParams["search_type"] &
@@ -53,7 +52,7 @@ export const searchFilterLanguages: SearchFilterLanguage[] =
   )
 export const defaultSearchFilterLanguage = "all"
 
-export const searchParamsNames: SearchParamNames & CommonSearchParamNames = {
+export const searchParamsNames: SearchParamNames = {
   common: {
     search_input: "search_input",
     input_encoding: "input_encoding",
@@ -83,7 +82,7 @@ const {
 
 const { search_target } = localParamNames
 
-export const targetSearchDefaultParams: TargetSearchParamDefaults = {
+export const targetSearchDefaultParams: SearchTargetParamDefaults = {
   parallel: {
     [search_target]: defaultSearchTarget,
     [search_type]: defaultSearchType,

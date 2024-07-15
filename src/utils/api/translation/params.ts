@@ -1,5 +1,11 @@
-import { TranslationApiTypes } from "@/api"
+import { defaultInputEncoding } from "@/utils/api/global/params"
 import { exhaustiveStringTuple } from "@/utils/typescript"
+
+import {
+  Schema,
+  TranslationParamDefaults,
+  TranslationParamNames,
+} from "./types"
 
 type TEMPORARYLabTestingModels =
   | ""
@@ -25,11 +31,10 @@ export const translationModels: TranslationModel[] =
 
 export const defaultTranslationModel: TranslationModel = "llama3"
 
-export type TargetLanguage =
-  TranslationApiTypes.Schema["TargetLanguageExperimental"] &
-    keyof Messages["translation"]["targetLanguages"]
+export type TargetLanguage = Schema["TargetLanguageExperimental"] &
+  keyof Messages["translation"]["targetLanguages"]
 export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
-  TranslationApiTypes.Schema["TargetLanguageExperimental"]
+  Schema["TargetLanguageExperimental"]
 >()(
   "english",
   "tibetan",
@@ -42,20 +47,33 @@ export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
   "korean",
   "pali",
 )
+export const defaultTargetLanguage: TargetLanguage = "english"
 
-export const translationParamsNames: TranslationApiTypes.TranslationParamNames =
-  {
-    translation: {
-      input_sentence: "input_sentence",
-      input_encoding: "input_encoding",
-      do_grammar_explanation: "do_grammar_explanation",
-      target_lang: "target_lang",
-      model: "model",
-    },
-    tagging: {
-      input_sentence: "input_sentence",
-      input_encoding: "input_encoding",
-      mode: "mode",
-      human_readable_tags: "human_readable_tags",
-    },
-  }
+export const translationParamsNames: TranslationParamNames = {
+  common: {
+    input_sentence: "input_sentence",
+    input_encoding: "input_encoding",
+  },
+  translation: {
+    input_sentence: "input_sentence",
+    input_encoding: "input_encoding",
+    do_grammar_explanation: "do_grammar_explanation",
+    target_lang: "target_lang",
+    model: "model",
+  },
+  tagging: {
+    input_sentence: "input_sentence",
+    input_encoding: "input_encoding",
+    mode: "mode",
+    human_readable_tags: "human_readable_tags",
+  },
+}
+
+export const allTranslationDefaultParams: TranslationParamDefaults = {
+  input_encoding: defaultInputEncoding,
+  target_lang: defaultTargetLanguage,
+  model: defaultTranslationModel,
+  do_grammar_explanation: false,
+  human_readable_tags: true,
+  mode: "unsandhied-lemma-morphosyntax",
+}

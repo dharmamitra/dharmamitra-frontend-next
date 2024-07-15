@@ -1,5 +1,10 @@
 import type { components, paths } from "@/lib/api/translation.v1.d"
-import { APIRequestBody, APIResponse } from "@/utils/api/helpers"
+import type {
+  APIRequestBody,
+  APIResponse,
+  CommonProperties,
+  UniqueProperties,
+} from "@/utils/api/helpers"
 
 export type Schema = components["schemas"]
 
@@ -22,12 +27,44 @@ export type TaggingRequestBody = APIRequestBody<paths["/tagging/"]["post"]>
 export type TaggingResponse = APIResponse<paths["/tagging/"]["post"]>
 
 /**
- *  API PARAMS NAMES
+ *  PARAMS
  */
-export type TranslationParamNames = {
-  translation: Record<
-    keyof TranslationRequestBody,
-    keyof TranslationRequestBody
-  >
-  tagging: Record<keyof TaggingRequestBody, keyof TaggingRequestBody>
+
+export type CommonTranslationParams = CommonProperties<
+  [TranslationRequestBody, TaggingRequestBody]
+>
+
+export type UniqueTranslationEndpointParams = UniqueProperties<
+  [CommonTranslationParams, TranslationRequestBody]
+>
+
+export type UniqueTaggingParams = UniqueProperties<
+  [CommonTranslationParams, TaggingRequestBody]
+>
+
+export type AllTranslationParams = CommonTranslationParams &
+  UniqueTranslationEndpointParams &
+  UniqueTaggingParams
+
+export type CommonTranslationParamsNames = {
+  [K in keyof CommonTranslationParams]: K
 }
+
+export type UniqueTranslationEndpointParamsNames = {
+  [K in keyof TranslationRequestBody]: K
+}
+
+export type UniqueTaggingParamsNames = {
+  [K in keyof TaggingRequestBody]: K
+}
+
+export type TranslationParamNames = {
+  common: CommonTranslationParamsNames
+  translation: UniqueTranslationEndpointParamsNames
+  tagging: UniqueTaggingParamsNames
+}
+
+export type TranslationParamDefaults = Omit<
+  Record<keyof AllTranslationParams, string | boolean | undefined>,
+  "input_sentence"
+>
