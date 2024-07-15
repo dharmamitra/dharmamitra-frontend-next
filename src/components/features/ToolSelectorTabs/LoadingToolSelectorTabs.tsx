@@ -9,8 +9,9 @@ import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
 import LoadingBox from "@/components/LoadingBox"
+import { tabsStyles } from "@/components/styled"
 
-import { a11yProps, minToolBoxHeight, tabsStyles } from "./ToolSelectorTabs"
+import { a11yProps, minToolBoxHeight } from "./ToolSelectorTabs"
 
 export default function LoadingToolSelectorTabs() {
   const t = useTranslations()
@@ -23,7 +24,12 @@ export default function LoadingToolSelectorTabs() {
         TabIndicatorProps={{
           sx: { display: "none" },
         }}
-        sx={tabsStyles}
+        sx={{
+          ...tabsStyles,
+          "& button.Mui-selected": {
+            backgroundColor: "grey.200",
+          },
+        }}
       >
         <Tab
           icon={<ScreenSearchDesktopOutlinedIcon />}

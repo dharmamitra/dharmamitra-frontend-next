@@ -11,8 +11,13 @@ import IconButton from "@mui/material/IconButton"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
+import { tabsStyles } from "@/components/styled"
 import SearchFeature from "@/features/search"
 import TranslationFeature from "@/features/translation"
+import useGlobalParams from "@/hooks/useGlobalParams"
+import useParams from "@/hooks/useParams"
+import { globalParamsNames } from "@/utils/api/global/params"
+import { View } from "@/utils/api/global/types"
 import { localStorageKeys } from "@/utils/constants"
 
 import LoadingToolSelectorTabs from "./LoadingToolSelectorTabs"
@@ -24,32 +29,6 @@ interface TabPanelProps {
 }
 
 export const minToolBoxHeight = "70vh"
-
-export const tabsStyles = {
-  borderRadius: "50px",
-  backgroundColor: "#eeeeee",
-  "& button": {
-    minHeight: "48px",
-    maxHeight: "48px",
-    margin: "8px",
-    borderRadius: "50px",
-    border: "3px solid transparent",
-    transition:
-      "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
-  },
-  minWidth: "210px",
-  width: "fit-content",
-  marginInline: "auto",
-  "& button.Mui-selected": {
-    backgroundColor: "#fff",
-    boxShadow: "0px 4px 4px 0px #0000001C",
-    transition:
-      "box-shadow 0.3s ease-in-out, background-color 0.1s ease-in-out",
-  },
-  "*": {
-    animation: "none !important",
-  },
-}
 
 export function a11yProps(index: number) {
   return {
@@ -77,41 +56,67 @@ export function FeatureTabPanel(props: TabPanelProps) {
   )
 }
 
+const {
+  local: { view: view_param_name },
+} = globalParamsNames
+
+type ViewIndex = 0 | 1
+const viewToIndexMap: Record<View, ViewIndex> = {
+  search: 0,
+  translation: 1,
+}
+const indexToViewMap: Record<ViewIndex, View> = {
+  0: "search",
+  1: "translation",
+}
+
 export default function ToolSelectorTabs() {
-  const [tabIndex, setTabIndex] = React.useState(-1)
+  const t = useTranslations()
+
+  const { view, setView } = useGlobalParams()
+  const { getSearchParam } = useParams()
+
+  const [tabIndex, setTabIndex] = React.useState(
+    view in viewToIndexMap ? viewToIndexMap[view] : -1,
+  )
   const [isSearchOptionsOpen, setIsSearchOptionsOpen] = React.useState(false)
 
   React.useEffect(() => {
-    const storedTabIndex = localStorage.getItem(localStorageKeys.view)
-    if (storedTabIndex !== null) {
-      setTabIndex(Number(storedTabIndex))
+    const initialViewParam = getSearchParam(view_param_name) as View
+    const initialStoredView = localStorage.getItem(view_param_name) as View
+
+    if (initialViewParam) {
+      setTabIndex(viewToIndexMap[initialViewParam])
+    } else if (initialStoredView) {
+      setTabIndex(viewToIndexMap[initialStoredView])
+      setView(initialStoredView)
     } else {
       setTabIndex(0)
+      setView(indexToViewMap[0])
     }
 
     setIsSearchOptionsOpen(
       !!localStorage.getItem(localStorageKeys.showSearchOptions),
     )
-  }, [setTabIndex, setIsSearchOptionsOpen])
+  }, [getSearchParam, setTabIndex, setIsSearchOptionsOpen, setView])
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    window.scrollTo(0, 0)
-    setTabIndex(newValue)
-    localStorage.setItem(localStorageKeys.view, String(newValue))
-  }
-
-  const t = useTranslations()
+  const handleTabChange = React.useCallback(
+    (event: React.SyntheticEvent, newValue: ViewIndex) => {
+      window.scrollTo(0, 0)
+      setTabIndex(newValue)
+      setView(indexToViewMap[newValue])
+    },
+    [setTabIndex, setView],
+  )
 
   const { ref: scrollMarkerRef, inView: scrollMarkerInView } = useInView({
-    rootMargin: "200px 0px",
+    rootMargin: view === "search" ? "200px 0px" : "400px 0px",
     initialInView: true,
   })
 
   if (tabIndex === -1) {
     return <LoadingToolSelectorTabs />
   }
-
-  console.log("rendering")
 
   return (
     <>

@@ -12,6 +12,32 @@ import { alpha } from "@mui/material/styles"
 
 import customTheming from "@/utils/theme/config"
 
+export const tabsStyles = {
+  borderRadius: "50px",
+  backgroundColor: "#eeeeee",
+  "& button": {
+    minHeight: "48px",
+    maxHeight: "48px",
+    margin: "8px",
+    borderRadius: "50px",
+    border: "3px solid transparent",
+    transition:
+      "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
+  },
+  minWidth: "210px",
+  width: "fit-content",
+  marginInline: "auto",
+  "& button.Mui-selected": {
+    backgroundColor: "#fff",
+    boxShadow: "0px 4px 4px 0px #0000001C",
+    transition:
+      "box-shadow 0.3s ease-in-out, background-color 0.1s ease-in-out",
+  },
+  "*": {
+    animation: "none !important",
+  },
+}
+
 export const tooltipEnterStyles = {
   fontSize: "1.1rem",
   lineHeight: 0.75,

@@ -7,7 +7,6 @@ export const linkAttrs = {
 }
 
 export const localStorageKeys = {
-  view: "view-tab",
   showSearchOptions: "show-search-options",
   showParallelTranslations: "show-parallel-translations",
 } as const
