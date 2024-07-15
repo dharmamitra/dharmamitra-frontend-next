@@ -4,7 +4,6 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import { MenuItem, RadioGroup, Select } from "@mui/material"
 
-import { globalParams } from "@/api"
 import styles from "@/components/customFocusVisible.module.css"
 import {
   flatRadioGroupStyles,
@@ -16,10 +15,10 @@ import useFocusHighlight from "@/hooks/useFocusHighlight"
 import useGlobalParams from "@/hooks/useGlobalParams"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { getOptionI18nKeyPath } from "@/utils"
+import { defaultInputEncoding, inputEncodings } from "@/utils/api/global/params"
+import { InputEncoding } from "@/utils/api/global/types"
 
 import RadioOption from "../translation/common/RadioOption"
-
-const { inputEncodings, defaultInputEncoding } = globalParams
 
 export default function LazyInputEncodingSelector() {
   const t = useTranslations()
@@ -43,10 +42,7 @@ export default function LazyInputEncodingSelector() {
     useResponsiveOptions(inputEncodings)
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
-    () =>
-      primaryEncodingOptions.includes(
-        inputEncoding as globalParams.InputEncoding,
-      ),
+    () => primaryEncodingOptions.includes(inputEncoding as InputEncoding),
     [inputEncoding, primaryEncodingOptions],
   )
 

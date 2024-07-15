@@ -30,16 +30,16 @@ export default function ParallelQueryResults() {
 
   const requestBody: SearchApiTypes.ParallelRequestBody = React.useMemo(
     () => ({
-      search_input: searchInput ?? "",
-      search_type: searchType ?? searchTypeDefault,
-      input_encoding: inputEncoding ?? inputEncodingDefault,
+      search_input: searchInput || "",
+      search_type: searchType || searchTypeDefault,
+      input_encoding: inputEncoding || inputEncodingDefault,
       source_limits: sourceLimits
         ? (JSON.parse(sourceLimits) as SearchApiTypes.Schema["Limits"])
         : {},
       filter_source_language:
-        filterSourceLanguage ?? filterSourceLanguageDefault,
+        filterSourceLanguage || filterSourceLanguageDefault,
       filter_target_language:
-        filterTargetLanguage ?? filterTargetLanguageDefault,
+        filterTargetLanguage || filterTargetLanguageDefault,
     }),
     [
       searchInput,

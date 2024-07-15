@@ -103,13 +103,15 @@ export default function ToolSelectorTabs() {
   const t = useTranslations()
 
   const { ref: scrollMarkerRef, inView: scrollMarkerInView } = useInView({
-    rootMargin: "-60px 0px",
+    rootMargin: "200px 0px",
     initialInView: true,
   })
 
   if (tabIndex === -1) {
     return <LoadingToolSelectorTabs />
   }
+
+  console.log("rendering")
 
   return (
     <>
@@ -179,11 +181,11 @@ export default function ToolSelectorTabs() {
 
       <Box
         sx={{
-          position: "sticky",
-          bottom: "1.5rem",
-          right: 0,
-          zIndex: 1000,
           display: scrollMarkerInView ? "none" : "flex",
+          position: { xs: "fixed", lg: "sticky" },
+          bottom: "1.5rem",
+          right: { xs: "1.5rem", lg: 0 },
+          zIndex: 1000,
           justifyContent: "flex-end",
           transition: "display 1.5s ease-in-out",
           "@keyframes fadeIn": {

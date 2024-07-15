@@ -9,7 +9,7 @@ import CopyText from "@/components/CopyText"
 import Error from "@/components/Error"
 import LoadingDots from "@/components/LoadingDots"
 import Warning from "@/components/Warning"
-import useTranslationStream from "@/hooks/useTranslationStream"
+import useTranslationStream from "@/hooks/translation/useTranslationStream"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 

@@ -1,6 +1,5 @@
 import React from "react"
 
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useParams from "@/hooks/useParams"
 import {
   SearchFilterLanguage,
@@ -28,7 +27,7 @@ const useSearchParallelParams = () => {
       )
       localStorage.setItem(filter_source_language, value ?? "")
     },
-    [filter_source_language, createQueryString, updateParams],
+    [createQueryString, updateParams],
   )
 
   const filterTargetLanguage = (getSearchParam(filter_target_language) ??
@@ -45,11 +44,11 @@ const useSearchParallelParams = () => {
       )
       localStorage.setItem(filter_target_language, value ?? "")
     },
-    [filter_target_language, createQueryString, updateParams],
+    [createQueryString, updateParams],
   )
 
-  const { input: sourceLimits, handleValueChange: updateSourceLimits } =
-    useInputWithUrlParam<string | null>(source_limits)
+  const sourceLimits = getSearchParam(source_limits)
+  // update handler defined in `LimitFilters.tsx` and sets both `source_limits` and `limits` params
 
   return {
     filterSourceLanguage,
@@ -57,7 +56,6 @@ const useSearchParallelParams = () => {
     filterTargetLanguage,
     setFilterTargetLanguage,
     sourceLimits,
-    updateSourceLimits,
   }
 }
 

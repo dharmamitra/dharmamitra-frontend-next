@@ -1,14 +1,12 @@
-import { defaultInputEncoding } from "@/utils/api/global/params"
+import {
+  defaultInputEncoding,
+  globalParamsNames,
+} from "@/utils/api/global/params"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import {
-  Schema,
-  TranslationParamDefaults,
-  TranslationParamNames,
-} from "./types"
+import { Schema, TranslationParamNames } from "./types"
 
 type TEMPORARYLabTestingModels =
-  | ""
   | "NO"
   | "madlad"
   | "madlad2"
@@ -21,7 +19,6 @@ export type TranslationModel = TEMPORARYLabTestingModels &
   keyof Messages["translation"]["models"]
 export const translationModels: TranslationModel[] =
   exhaustiveStringTuple<TEMPORARYLabTestingModels>()(
-    "",
     "NO",
     "madlad",
     "madlad2",
@@ -50,9 +47,9 @@ export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
 export const defaultTargetLanguage: TargetLanguage = "english"
 
 export const translationParamsNames: TranslationParamNames = {
+  global: globalParamsNames,
   common: {
     input_sentence: "input_sentence",
-    input_encoding: "input_encoding",
   },
   translation: {
     input_sentence: "input_sentence",
@@ -69,11 +66,11 @@ export const translationParamsNames: TranslationParamNames = {
   },
 }
 
-export const allTranslationDefaultParams: TranslationParamDefaults = {
+export const allTranslationDefaultParams = {
   input_encoding: defaultInputEncoding,
   target_lang: defaultTargetLanguage,
   model: defaultTranslationModel,
   do_grammar_explanation: false,
   human_readable_tags: true,
   mode: "unsandhied-lemma-morphosyntax",
-}
+} as const

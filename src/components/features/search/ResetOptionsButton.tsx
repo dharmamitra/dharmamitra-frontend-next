@@ -21,7 +21,10 @@ import {
 
 const { search_target } = localParamNames
 const {
-  common: { search_input, search_type, input_encoding },
+  global: {
+    api: { input_encoding },
+  },
+  common: { search_input, search_type },
   parallel: { filter_source_language, filter_target_language, source_limits },
   primary: { filter_language, limits },
 } = searchParamsNames

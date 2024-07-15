@@ -26,13 +26,13 @@ export default function PrimaryQueryResults() {
 
   const requestBody: SearchApiTypes.PrimaryRequestBody = React.useMemo(
     () => ({
-      search_input: searchInput ?? "",
-      search_type: searchType ?? searchTypeDefault,
-      input_encoding: inputEncoding ?? inputEncodingDefault,
+      search_input: searchInput || "",
+      search_type: searchType || searchTypeDefault,
+      input_encoding: inputEncoding || inputEncodingDefault,
       limits: limits
         ? (JSON.parse(limits) as SearchApiTypes.Schema["Limits"])
         : {},
-      filter_language: filterLanguage ?? filterLanguageDefault,
+      filter_language: filterLanguage || filterLanguageDefault,
     }),
     [searchInput, searchType, inputEncoding, limits, filterLanguage],
   )

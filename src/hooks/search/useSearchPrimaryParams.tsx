@@ -1,6 +1,5 @@
 import React from "react"
 
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
 import useParams from "@/hooks/useParams"
 import {
   SearchFilterLanguage,
@@ -8,7 +7,7 @@ import {
 } from "@/utils/api/search/params"
 
 const {
-  primary: { filter_language, limits: limitsParamName },
+  primary: { filter_language, limits: limits_param_name },
 } = searchParamsNames
 
 const useSearchPrimaryParams = () => {
@@ -28,17 +27,16 @@ const useSearchPrimaryParams = () => {
       )
       localStorage.setItem(filter_language, value ?? "")
     },
-    [filter_language, createQueryString, updateParams],
+    [createQueryString, updateParams],
   )
 
-  const { input: limits, handleValueChange: updateLimits } =
-    useInputWithUrlParam<string | null>(limitsParamName)
+  const limits = getSearchParam(limits_param_name)
+  // update handler defined in `LimitFilters.tsx` and sets both `source_limits` and `limits` params
 
   return {
     filterLanguage,
     setFilterLanguage,
     limits,
-    updateLimits,
   }
 }
 

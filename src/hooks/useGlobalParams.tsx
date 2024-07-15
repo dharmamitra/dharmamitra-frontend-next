@@ -1,18 +1,35 @@
 import React from "react"
 
-import { globalParams } from "@/api"
 import useParams from "@/hooks/useParams"
+import {
+  defaultInputEncoding,
+  globalParamsNames,
+} from "@/utils/api/global/params"
+import { InputEncoding } from "@/utils/api/global/types"
 
-const { defaultInputEncoding, globalParamsNames } = globalParams
+const {
+  api: { input_encoding },
+} = globalParamsNames
 
 const useGlobalParams = () => {
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
-  const { input_encoding } = globalParamsNames
+  const inputEncoding = getSearchParam(input_encoding) as InputEncoding
 
-  const inputEncoding = (getSearchParam(input_encoding) ??
-    localStorage.getItem(input_encoding) ??
-    defaultInputEncoding) as globalParams.InputEncoding
+  React.useEffect(() => {
+    const initialEncodingParam = getSearchParam(input_encoding)
+    if (!initialEncodingParam) {
+      const value = localStorage.getItem(input_encoding) || defaultInputEncoding
+      updateParams(
+        createQueryString({
+          paramName: input_encoding,
+          value,
+          paramsString: window.location.search,
+        }),
+      )
+      localStorage.setItem(input_encoding, value ?? "")
+    }
+  }, [getSearchParam, createQueryString, updateParams])
 
   const setInputEncoding = React.useCallback(
     (value: string | null) => {
@@ -25,7 +42,7 @@ const useGlobalParams = () => {
       )
       localStorage.setItem(input_encoding, value ?? "")
     },
-    [input_encoding, createQueryString, updateParams],
+    [createQueryString, updateParams],
   )
 
   return {

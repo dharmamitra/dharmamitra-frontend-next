@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton"
 import Stack from "@mui/material/Stack"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
-import useTaggingData from "@/hooks/useTaggingData"
+import useTaggingData from "@/hooks/translation/useTaggingData"
 
 import styles from "./LazyTranslationTaggingDrawer.module.css"
 import TranslationTaggingOutput from "./TranslationTaggingOutput"

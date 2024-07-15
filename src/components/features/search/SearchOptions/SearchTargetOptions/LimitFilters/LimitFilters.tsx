@@ -130,29 +130,39 @@ const LimitFilters = ({
     limitParamStringValue,
   ])
 
-  const handleInputChange = (limit: Limit, value: LimitValueOption) => {
-    // eslint-disable-next-line no-unused-vars
-    const { [limit]: prevValue, ...otherLimitValues } = limitsValue
+  const handleInputChange = React.useCallback(
+    (limit: Limit, value: LimitValueOption) => {
+      // eslint-disable-next-line no-unused-vars
+      const { [limit]: prevValue, ...otherLimitValues } = limitsValue
 
-    const updatedLimitValues =
-      value.length > 0
-        ? { ...otherLimitValues, [limit]: value }
-        : otherLimitValues
-    setLimitsValue(updatedLimitValues)
+      const updatedLimitValues =
+        value.length > 0
+          ? { ...otherLimitValues, [limit]: value }
+          : otherLimitValues
+      setLimitsValue(updatedLimitValues)
 
-    const updatedParams = getParamsFromValues(
-      limit,
-      value,
-      JSON.parse(limitParamStringValue || "{}"),
-    )
-    updateParams(
-      createQueryString({
-        paramName: limitParamName,
-        value: JSON.stringify(updatedParams),
-        paramsString: window.location.search,
-      }),
-    )
-  }
+      const updatedParams = getParamsFromValues(
+        limit,
+        value,
+        JSON.parse(limitParamStringValue || "{}"),
+      )
+      updateParams(
+        createQueryString({
+          paramName: limitParamName,
+          value: JSON.stringify(updatedParams),
+          paramsString: window.location.search,
+        }),
+      )
+    },
+    [
+      limitsValue,
+      setLimitsValue,
+      limitParamStringValue,
+      limitParamName,
+      createQueryString,
+      updateParams,
+    ],
+  )
 
   const limitFilters = React.useMemo(() => {
     return limits.map((limit) => {
@@ -174,13 +184,12 @@ const LimitFilters = ({
     <Box
       sx={{
         display: "flex",
-        justifyContent: "flex-end",
         flexWrap: "wrap",
         borderRadius: 2,
         bgcolor: "background.paper",
       }}
     >
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", columnGap: 3, rowGap: 2 }}>
         {limitFilters.map((limit) => {
           const {
             filterName,

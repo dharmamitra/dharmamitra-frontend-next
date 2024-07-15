@@ -5,52 +5,37 @@ import { SSE, SSEvent } from "sse.js"
 import { streamUtils, TranslationApiTypes } from "@/api"
 import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { defaultInputEncoding, InputEncoding } from "@/utils/api/global/params"
-import {
-  translationModels,
-  translationParamsNames,
-} from "@/utils/api/translation/params"
+import useGlobalParams from "@/hooks/useGlobalParams"
+import { allTranslationDefaultParams } from "@/utils/api/translation/params"
 import { cleanSSEData } from "@/utils/transformers"
 
+import useTranslationCommonParams from "./useTranslationCommonParams"
+import useTranslationEndpointParams from "./useTranslationEndpointParams"
+
+const {
+  input_encoding: defaultInputEncoding,
+  do_grammar_explanation: grammarExplanationDefault,
+  target_lang: defaultTargetLanguage,
+  model: defaultTranslationModel,
+} = allTranslationDefaultParams
+
 const useTranslationStream = () => {
-  const { basePath, customParamOptions } = useAppConfig()
+  const { basePath } = useAppConfig()
+  const { translationInput } = useTranslationCommonParams()
+  const { translationModel, targetLanguage } = useTranslationEndpointParams()
+  const { inputEncoding } = useGlobalParams()
 
-  const { input: inputSentenceParam } = useInputWithUrlParam<string>(
-    translationParamsNames.translation.input_sentence,
-  )
-  const { input: inputEncodingParam } = useInputWithUrlParam<InputEncoding>(
-    translationParamsNames.translation.input_encoding,
-  )
-  const { input: targetLangParam } = useInputWithUrlParam<
-    TranslationApiTypes.Schema["TargetLanguage"]
-  >(translationParamsNames.translation.target_lang)
-  const { input: modelParam } = useInputWithUrlParam<
-    TranslationApiTypes.Schema["TranslationModel"]
-  >(translationParamsNames.translation.model)
-  const { input: grammarParam } = useInputWithUrlParam<"false" | "true">(
-    translationParamsNames.translation.do_grammar_explanation,
-  )
-
-  const params: TranslationApiTypes.TranslationRequestBody = React.useMemo(
+  const requestBody: TranslationApiTypes.TranslationRequestBody = React.useMemo(
     () => ({
-      input_sentence: inputSentenceParam ?? "",
-      input_encoding: inputEncodingParam ?? defaultInputEncoding,
-      do_grammar_explanation: grammarParam === "true",
-      target_lang:
-        targetLangParam ??
-        (customParamOptions
-          .targetLanguages[0] as TranslationApiTypes.Schema["TargetLanguage"]),
-      model: modelParam ?? translationModels[0],
+      input_sentence: translationInput || "",
+      input_encoding: inputEncoding || defaultInputEncoding,
+      do_grammar_explanation: grammarExplanationDefault,
+      target_lang: targetLanguage || defaultTargetLanguage,
+      // TODO: remove model casting once API schema is fixed and/or translation model endpoints are added to API
+      model: (translationModel ||
+        defaultTranslationModel) as TranslationApiTypes.TranslationRequestBody["model"],
     }),
-    [
-      inputSentenceParam,
-      inputEncodingParam,
-      targetLangParam,
-      customParamOptions,
-      modelParam,
-      grammarParam,
-    ],
+    [translationInput, inputEncoding, targetLanguage, translationModel],
   )
 
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
@@ -101,7 +86,7 @@ const useTranslationStream = () => {
         "Content-Type": "application/json",
       },
       method: "POST",
-      payload: JSON.stringify(params),
+      payload: JSON.stringify(requestBody),
     })
 
     newEventSource.addEventListener("message", (event: MessageEvent) => {
@@ -141,7 +126,7 @@ const useTranslationStream = () => {
     return () => {
       clearTimeout(timeoutIdRef.current!)
     }
-  }, [basePath, params, eventSource])
+  }, [basePath, requestBody, eventSource])
 
   const stopStream = React.useCallback(() => {
     if (eventSource) {
@@ -154,14 +139,23 @@ const useTranslationStream = () => {
 
   React.useEffect(() => {
     setTranslationStream("")
-  }, [setTranslationStream, params.input_sentence, params.target_lang])
+  }, [
+    setTranslationStream,
+    requestBody.input_sentence,
+    requestBody.target_lang,
+  ])
 
   React.useEffect(() => {
-    if (triggerTranslationQuery && params.input_sentence) {
+    if (triggerTranslationQuery && requestBody.input_sentence) {
       startStream()
       setTriggerTranslationQuery(false)
     }
-  }, [triggerTranslationQuery, params, startStream, setTriggerTranslationQuery])
+  }, [
+    triggerTranslationQuery,
+    requestBody,
+    startStream,
+    setTriggerTranslationQuery,
+  ])
 
   React.useEffect(() => {
     if (abortTranslationQuery) {

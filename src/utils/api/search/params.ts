@@ -1,4 +1,7 @@
-import { defaultInputEncoding } from "@/utils/api/global/params"
+import {
+  defaultInputEncoding,
+  globalParamsNames,
+} from "@/utils/api/global/params"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
 import { defaultSearchTarget, localParamNames } from "./local"
@@ -53,9 +56,9 @@ export const searchFilterLanguages: SearchFilterLanguage[] =
 export const defaultSearchFilterLanguage = "all"
 
 export const searchParamsNames: SearchParamNames = {
+  global: globalParamsNames,
   common: {
     search_input: "search_input",
-    input_encoding: "input_encoding",
     search_type: "search_type",
   },
   parallel: {
@@ -74,7 +77,10 @@ export const searchParamsNames: SearchParamNames = {
 }
 
 const {
-  common: { search_type, input_encoding },
+  global: {
+    api: { input_encoding },
+  },
+  common: { search_type },
   parallel: { filter_source_language, filter_target_language, source_limits },
   primary: { filter_language, limits },
   secondary: { filter_secondary, postprocess_model },

@@ -3,24 +3,25 @@ import { useQuery } from "@tanstack/react-query"
 
 import { DMFetchApi, TranslationApiTypes } from "@/api"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { inputEncodings } from "@/utils/api/global/params"
 import { TimedError } from "@/utils/api/translation/endpoints/tagging"
-import { translationParamsNames } from "@/utils/api/translation/params"
+import { allTranslationDefaultParams } from "@/utils/api/translation/params"
+
+import useGlobalParams from "../useGlobalParams"
+import useTranslationCommonParams from "./useTranslationCommonParams"
+import useTranslationEndpointParams from "./useTranslationEndpointParams"
+
+const {
+  input_encoding: defaultInputEncoding,
+  mode: defaultMode,
+  human_readable_tags: defaultHumanReadable,
+} = allTranslationDefaultParams
 
 const useTaggingData = () => {
-  const { input: inputSentence } = useInputWithUrlParam<string>(
-    translationParamsNames.translation.input_sentence,
-  )
-  const { input: inputEncoding } = useInputWithUrlParam<
-    TranslationApiTypes.Schema["InputEncoding"]
-  >(translationParamsNames.translation.input_encoding)
+  const { translationInput } = useTranslationCommonParams()
+  const { targetLanguage } = useTranslationEndpointParams()
+  const { inputEncoding } = useGlobalParams()
 
-  const { input: targetLang } = useInputWithUrlParam<
-    TranslationApiTypes.Schema["TargetLanguage"]
-  >(translationParamsNames.translation.target_lang)
-
-  const debouncedInputSentence = useDebouncedValue(inputSentence, 1000)
+  const debouncedInputSentence = useDebouncedValue(translationInput, 1000)
   const [triggerQuery, setTriggerQuery] = React.useState(false)
 
   React.useEffect(() => {
@@ -28,19 +29,19 @@ const useTaggingData = () => {
       Boolean(
         debouncedInputSentence &&
           debouncedInputSentence.length > 5 &&
-          targetLang === "english",
+          targetLanguage === "english",
       ),
     )
-  }, [debouncedInputSentence, targetLang])
+  }, [debouncedInputSentence, targetLanguage])
 
   const requestBody: TranslationApiTypes.TaggingRequestBody = React.useMemo(
     () => ({
-      input_sentence: inputSentence ?? "",
-      input_encoding: inputEncoding ?? inputEncodings[0],
-      mode: "unsandhied-lemma-morphosyntax",
-      human_readable_tags: true,
+      input_sentence: translationInput || "",
+      input_encoding: inputEncoding || defaultInputEncoding,
+      mode: defaultMode,
+      human_readable_tags: defaultHumanReadable,
     }),
-    [inputSentence, inputEncoding],
+    [translationInput, inputEncoding],
   )
 
   const { data, isLoading, isError, error } = useQuery({
@@ -57,7 +58,7 @@ const useTaggingData = () => {
   const [isValidQuery, setIsValidQuery] = React.useState(false)
 
   React.useEffect(() => {
-    if (!triggerQuery || targetLang !== "english") {
+    if (!triggerQuery || targetLanguage !== "english") {
       setIsValidQuery(false)
       return
     }
@@ -79,7 +80,7 @@ const useTaggingData = () => {
         clearTimeout(timeoutRef.current)
       }
     }
-  }, [error, triggerQuery, setIsValidQuery, targetLang])
+  }, [error, triggerQuery, setIsValidQuery, targetLanguage])
 
   return {
     isLoading,

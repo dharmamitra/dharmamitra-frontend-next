@@ -1,4 +1,5 @@
 import * as globalParams from "./global/params"
+import * as GlobalParamTypes from "./global/types"
 import { getCategoryMenuData } from "./search/endpoints/menus/category"
 import { getTextFileMenuData } from "./search/endpoints/menus/files"
 import { getSearchParallelData } from "./search/endpoints/parallel"
@@ -49,6 +50,7 @@ const DMFetchApi = {
 export {
   DMFetchApi,
   globalParams,
+  GlobalParamTypes,
   SearchApiTypes,
   streamUtils,
   TranslationApiTypes,

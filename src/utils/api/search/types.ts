@@ -1,4 +1,5 @@
 import type { components, paths } from "@/lib/api/search.v1.d"
+import { APIGlobalParams, GlobalParamNames } from "@/utils/api/global/types"
 import type {
   APIRequestBody,
   APIResponse,
@@ -49,6 +50,11 @@ export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
 export type CommonSearchParams = CommonProperties<
   [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
 >
+
+export type ConstrainedCommonSearchParams = UniqueProperties<
+  [APIGlobalParams, CommonSearchParams]
+>
+
 export type UniqueParallelParams = UniqueProperties<
   [CommonSearchParams, ParallelRequestBody]
 >
@@ -67,7 +73,7 @@ export type AllSearchParams = CommonSearchParams &
   UniqueSecondaryParams
 
 export type CommonSearchParamNames = {
-  [K in keyof CommonSearchParams]: K
+  [K in keyof ConstrainedCommonSearchParams]: K
 }
 
 type UniqueParallelParamNames = {
@@ -83,6 +89,7 @@ type UniqueSecondaryParamNames = {
 }
 
 export type SearchParamNames = {
+  global: GlobalParamNames
   common: CommonSearchParamNames
   parallel: UniqueParallelParamNames
   primary: UniquePrimaryParamNames

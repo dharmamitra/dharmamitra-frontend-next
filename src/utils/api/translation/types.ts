@@ -1,4 +1,5 @@
 import type { components, paths } from "@/lib/api/translation.v1.d"
+import { APIGlobalParams, GlobalParamNames } from "@/utils/api/global/types"
 import type {
   APIRequestBody,
   APIResponse,
@@ -34,6 +35,10 @@ export type CommonTranslationParams = CommonProperties<
   [TranslationRequestBody, TaggingRequestBody]
 >
 
+export type ConstrainedCommonTranslationParams = UniqueProperties<
+  [APIGlobalParams, CommonTranslationParams]
+>
+
 export type UniqueTranslationEndpointParams = UniqueProperties<
   [CommonTranslationParams, TranslationRequestBody]
 >
@@ -47,7 +52,7 @@ export type AllTranslationParams = CommonTranslationParams &
   UniqueTaggingParams
 
 export type CommonTranslationParamsNames = {
-  [K in keyof CommonTranslationParams]: K
+  [K in keyof ConstrainedCommonTranslationParams]: K
 }
 
 export type UniqueTranslationEndpointParamsNames = {
@@ -59,6 +64,7 @@ export type UniqueTaggingParamsNames = {
 }
 
 export type TranslationParamNames = {
+  global: GlobalParamNames
   common: CommonTranslationParamsNames
   translation: UniqueTranslationEndpointParamsNames
   tagging: UniqueTaggingParamsNames

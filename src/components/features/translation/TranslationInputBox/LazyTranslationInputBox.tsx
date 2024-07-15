@@ -6,18 +6,15 @@ import OutlinedInput from "@mui/material/OutlinedInput"
 import { useTheme } from "@mui/material/styles"
 
 import ClearButton from "@/components/ClearButton"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { translationParamsNames } from "@/utils/api/translation/params"
+import useTranslationCommonParams from "@/hooks/translation/useTranslationCommonParams"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 import StartStopButton from "../TranslationStartStopButton"
 
 export default function TranslationInputField() {
   const t = useTranslations()
-  const { input, handleValueChange } = useInputWithUrlParam<string>(
-    translationParamsNames.translation.input_sentence,
-  )
 
+  const { translationInput, setTranslationInput } = useTranslationCommonParams()
   const theme = useTheme()
 
   return (
@@ -44,12 +41,15 @@ export default function TranslationInputField() {
           },
         }}
         multiline
-        value={input}
-        onChange={(e) => handleValueChange(e)}
+        value={translationInput}
+        onChange={(e) => setTranslationInput(e)}
       />
 
       <BoxBottomElementsRow sx={{ justifyContent: "space-between" }}>
-        <ClearButton value={input} handleValueChange={handleValueChange} />
+        <ClearButton
+          value={translationInput}
+          handleValueChange={setTranslationInput}
+        />
 
         <StartStopButton />
       </BoxBottomElementsRow>

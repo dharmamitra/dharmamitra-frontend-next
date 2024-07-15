@@ -1,17 +1,11 @@
-import { SearchApiTypes, TranslationApiTypes } from "@/api"
-import type { IsIdentical } from "@/utils/typescript"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-type APIInputEncoding =
-  IsIdentical<
-    TranslationApiTypes.Schema["InputEncoding"],
-    SearchApiTypes.Schema["InputEncoding"]
-  > extends true
-    ? TranslationApiTypes.Schema["InputEncoding"]
-    : never
-
-export type InputEncoding = APIInputEncoding &
-  keyof Messages["globalParams"]["encodings"]
+import {
+  APIInputEncoding,
+  GlobalParamNames,
+  InputEncoding,
+  View,
+} from "./types"
 
 export const inputEncodings: InputEncoding[] =
   exhaustiveStringTuple<APIInputEncoding>()(
@@ -24,6 +18,13 @@ export const inputEncodings: InputEncoding[] =
   )
 export const defaultInputEncoding: InputEncoding = "auto"
 
-export const globalParamsNames = {
-  input_encoding: "input_encoding",
-} as const
+export const views: View[] = exhaustiveStringTuple<View>()(
+  "search",
+  "translation",
+)
+export const defaultView: View = "search"
+
+export const globalParamsNames: GlobalParamNames = {
+  api: { input_encoding: "input_encoding" },
+  local: { view: "view" },
+}

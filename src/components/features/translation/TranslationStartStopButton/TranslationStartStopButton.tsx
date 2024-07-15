@@ -3,21 +3,18 @@ import { useSetAtom } from "jotai"
 
 import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
 import StartStopStreamButton from "@/components/StartStopStreamButton"
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import useTranslationStream from "@/hooks/useTranslationStream"
-import { translationParamsNames } from "@/utils/api/translation/params"
+import useTranslationCommonParams from "@/hooks/translation/useTranslationCommonParams"
+import useTranslationStream from "@/hooks/translation/useTranslationStream"
 
 export default function TranslationStartStopButton() {
-  const { input } = useInputWithUrlParam<string>(
-    translationParamsNames.translation.input_sentence,
-  )
+  const { translationInput } = useTranslationCommonParams()
 
   const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
   const setAbortTranslationQuery = useSetAtom(abortTranslationQueryAtom)
 
   return (
     <StartStopStreamButton
-      input={input}
+      input={translationInput}
       isStreaming={useTranslationStream().isStreaming}
       onStart={() => setTriggerTranslationQuery(true)}
       onStop={() => setAbortTranslationQuery(true)}

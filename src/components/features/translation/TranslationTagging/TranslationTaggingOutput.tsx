@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography"
 
 import Error from "@/components/Error"
 import SkeletonGroup from "@/components/SkeletonGroup"
-import useTaggingData from "@/hooks/useTaggingData"
+import useTaggingData from "@/hooks/translation/useTaggingData"
 
 import SentenceAccordion from "./SentenceAccordion"
 

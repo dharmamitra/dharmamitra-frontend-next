@@ -4,7 +4,6 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import { MenuItem, RadioGroup, Select } from "@mui/material"
 
-import { TranslationApiTypes } from "@/api"
 import styles from "@/components/customFocusVisible.module.css"
 import {
   flatRadioGroupStyles,
@@ -12,25 +11,20 @@ import {
   secondaryOptionsInputStyles,
   selectedOptionsStyles,
 } from "@/components/styled"
+import useTranslationEndpointParams from "@/hooks/translation/useTranslationEndpointParams"
 import useAppConfig from "@/hooks/useAppConfig"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
-import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
-import { getOptionI18nKeyPath, getValidDefaultValue } from "@/utils"
-import { translationParamsNames } from "@/utils/api/translation/params"
+import { getOptionI18nKeyPath } from "@/utils"
 
 import RadioOption from "../common/RadioOption"
 
 export default function LazyTranslationTargetLanguageSelector() {
-  const { targetLanguages: servedTargetLanguages } =
-    useAppConfig().customParamOptions
   const t = useTranslations()
 
-  const { value, handleValueChange, isHydrated } =
-    useParamValueWithLocalStorage({
-      paramName: translationParamsNames.translation.target_lang,
-      defaultValue: getValidDefaultValue(servedTargetLanguages[0]),
-    })
+  const { targetLanguages: servedTargetLanguages } =
+    useAppConfig().customParamOptions
+  const { targetLanguage, setTargetLanguage } = useTranslationEndpointParams()
 
   const primaryOptionsSelectorId = "primary-target-language-options"
   useFocusHighlight({
@@ -49,26 +43,17 @@ export default function LazyTranslationTargetLanguageSelector() {
     useResponsiveOptions(servedTargetLanguages)
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
-    () =>
-      primaryLanguagesOptions.includes(
-        value as TranslationApiTypes.Schema["TargetLanguage"],
-      ),
-    [value, primaryLanguagesOptions],
+    () => primaryLanguagesOptions.includes(targetLanguage),
+    [targetLanguage, primaryLanguagesOptions],
   )
-
-  React.useEffect(() => {
-    if (value === "") {
-      handleValueChange(servedTargetLanguages[0]!)
-    }
-  }, [value, handleValueChange, servedTargetLanguages])
 
   return (
     <>
       <RadioGroup
         id={primaryOptionsSelectorId}
         aria-label={t("translation.primaryTargetLanguagesAriaLabel")}
-        value={value}
-        onChange={handleValueChange}
+        value={targetLanguage}
+        onChange={setTargetLanguage}
         row
         sx={{ ...flatRadioGroupStyles }}
         className={styles.customFocusVisible}
@@ -79,7 +64,7 @@ export default function LazyTranslationTargetLanguageSelector() {
             id={language + "-primary-target-language-option"}
             option={language}
             label={t(getOptionI18nKeyPath(language))}
-            isSelected={isHydrated && value === language}
+            isSelected={targetLanguage === language}
           />
         ))}
       </RadioGroup>
@@ -93,8 +78,10 @@ export default function LazyTranslationTargetLanguageSelector() {
           id={secondaryOptionsSelectorId}
           data-testid="secondary-target-language-options"
           aria-label={t("translation.secondaryTargetLanguagesAriaLabel")}
-          value={isPrimaryValueSelected ? "" : value}
-          onChange={handleValueChange}
+          value={
+            isPrimaryValueSelected || !targetLanguage ? "" : targetLanguage
+          }
+          onChange={setTargetLanguage}
           inputProps={{
             "aria-label": t("translation.secondaryTargetLanguagesAriaLabel"),
             sx: secondaryOptionsInputStyles,
@@ -102,14 +89,13 @@ export default function LazyTranslationTargetLanguageSelector() {
           IconComponent={() => <SecondaryOptionsButtonIcon />}
           sx={{
             ...secondaryOptionsInputStyles,
-            ...(isHydrated && !isPrimaryValueSelected
+            ...(!isPrimaryValueSelected
               ? { ...selectedOptionsStyles, color: "secondary.main" }
               : {}),
             "& .MuiOutlinedInput-notchedOutline": {
               border: "none",
             },
           }}
-          //
           displayEmpty
         >
           <MenuItem disabled value="" className={styles.test}>
@@ -121,9 +107,7 @@ export default function LazyTranslationTargetLanguageSelector() {
               data-testid={`${language}-target-language-option`}
               value={language}
             >
-              {t(
-                `translation.targetLanguages.${language as keyof Messages["translation"]["targetLanguages"]}`,
-              )}
+              {t(`translation.targetLanguages.${language}`)}
             </MenuItem>
           ))}
         </Select>
