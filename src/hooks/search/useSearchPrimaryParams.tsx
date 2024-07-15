@@ -13,6 +13,9 @@ const {
 const useSearchPrimaryParams = () => {
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
+  /**
+   * Filter Language
+   */
   const filterLanguage = (getSearchParam(filter_language) ??
     localStorage.getItem(filter_language)) as SearchFilterLanguage
 
@@ -30,8 +33,10 @@ const useSearchPrimaryParams = () => {
     [createQueryString, updateParams],
   )
 
+  /**
+   * Limits - update handler defined in `LimitFilters.tsx` and sets both `source_limits` and `limits` params
+   */
   const limits = getSearchParam(limits_param_name)
-  // update handler defined in `LimitFilters.tsx` and sets both `source_limits` and `limits` params
 
   return {
     filterLanguage,

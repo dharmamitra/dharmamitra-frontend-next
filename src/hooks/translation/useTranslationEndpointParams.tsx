@@ -31,33 +31,20 @@ const useTranslationEndpointParams = () => {
     [servedTargetLanguages],
   )
 
-  const targetLanguage = getSearchParam(target_lang) as TargetLanguage
+  /**
+   * Target language
+   */
 
-  React.useEffect(() => {
-    const initialEncodingParam = getSearchParam(target_lang)
-    if (!initialEncodingParam) {
-      const value =
-        localStorage.getItem(target_lang) ||
-        defaultServedLanguage ||
-        defaultTargetLanguage
-      updateParams(
-        createQueryString({
-          paramName: target_lang,
-          value,
-          paramsString: window.location.search,
-        }),
-      )
-      localStorage.setItem(target_lang, value ?? "")
-    }
-  }, [defaultServedLanguage, getSearchParam, createQueryString, updateParams])
+  const targetLanguage = getSearchParam(target_lang) as TargetLanguage
 
   const setTargetLanguage = React.useCallback(
     (
       value:
         | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-        | SelectChangeEvent<string>,
+        | SelectChangeEvent<string>
+        | string,
     ) => {
-      const newValue = value.target.value
+      const newValue = typeof value === "string" ? value : value.target.value
       updateParams(
         createQueryString({
           paramName: target_lang,
@@ -70,22 +57,11 @@ const useTranslationEndpointParams = () => {
     [createQueryString, updateParams],
   )
 
-  const translationModel = getSearchParam(model) as TranslationModel
+  /**
+   * Translation model
+   */
 
-  React.useEffect(() => {
-    const initialEncodingParam = getSearchParam(model)
-    if (!initialEncodingParam) {
-      const value = localStorage.getItem(model) || defaultTranslationModel
-      updateParams(
-        createQueryString({
-          paramName: model,
-          value,
-          paramsString: window.location.search,
-        }),
-      )
-      localStorage.setItem(model, value ?? "")
-    }
-  }, [getSearchParam, createQueryString, updateParams])
+  const translationModel = getSearchParam(model) as TranslationModel
 
   const setTranslationModel = React.useCallback(
     (value: string | null) => {
@@ -100,6 +76,32 @@ const useTranslationEndpointParams = () => {
     },
     [translationModel, createQueryString, updateParams],
   )
+
+  /**
+   * Param initialization
+   */
+
+  React.useEffect(() => {
+    const initialTargetLanggParam = getSearchParam(target_lang)
+    if (!initialTargetLanggParam) {
+      const value =
+        localStorage.getItem(target_lang) ||
+        defaultServedLanguage ||
+        defaultTargetLanguage
+      setTargetLanguage(value)
+    }
+
+    const initialModelParam = getSearchParam(model)
+    if (!initialModelParam) {
+      const value = localStorage.getItem(model) || defaultTranslationModel
+      setTranslationModel(value)
+    }
+  }, [
+    defaultServedLanguage,
+    getSearchParam,
+    setTargetLanguage,
+    setTranslationModel,
+  ])
 
   return {
     targetLanguage,

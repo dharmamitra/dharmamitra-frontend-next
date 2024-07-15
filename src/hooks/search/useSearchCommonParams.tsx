@@ -21,6 +21,9 @@ const { search_target } = localParamNames
 const useSearchCommonParams = () => {
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
+  /**
+   * Search Input
+   */
   const searchInput = getSearchParam(search_input) ?? ""
 
   const setSearchInput = React.useCallback(
@@ -38,6 +41,10 @@ const useSearchCommonParams = () => {
     },
     [search_input, searchInput, createQueryString, updateParams],
   )
+
+  /**
+   * Search Target
+   */
 
   const searchTarget = (getSearchParam(search_target) ??
     localStorage.getItem(search_target) ??
@@ -57,6 +64,9 @@ const useSearchCommonParams = () => {
     [search_target, searchTarget, createQueryString, updateParams],
   )
 
+  /**
+   * Search Type
+   */
   const searchType = (getSearchParam(search_type) ??
     localStorage.getItem(search_type) ??
     defaultSearchType) as SearchType

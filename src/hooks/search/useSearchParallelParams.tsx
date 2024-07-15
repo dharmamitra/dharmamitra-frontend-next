@@ -13,6 +13,9 @@ const {
 const useSearchParallelParams = () => {
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
+  /**
+   * Filter Source Language
+   */
   const filterSourceLanguage = (getSearchParam(filter_source_language) ??
     localStorage.getItem(filter_source_language)) as SearchFilterLanguage
 
@@ -30,6 +33,9 @@ const useSearchParallelParams = () => {
     [createQueryString, updateParams],
   )
 
+  /**
+   * Filter Target Language
+   */
   const filterTargetLanguage = (getSearchParam(filter_target_language) ??
     localStorage.getItem(filter_target_language)) as SearchFilterLanguage
 
@@ -47,8 +53,10 @@ const useSearchParallelParams = () => {
     [createQueryString, updateParams],
   )
 
+  /**
+   * Source Limits - update handler defined in `LimitFilters.tsx` and sets both `source_limits` and `limits` params
+   */
   const sourceLimits = getSearchParam(source_limits)
-  // update handler defined in `LimitFilters.tsx` and sets both `source_limits` and `limits` params
 
   return {
     filterSourceLanguage,

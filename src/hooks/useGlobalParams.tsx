@@ -63,28 +63,14 @@ const useGlobalParams = () => {
 
     if (!initialEncodingParam) {
       const value = localStorage.getItem(input_encoding) || defaultInputEncoding
-      updateParams(
-        createQueryString({
-          paramName: input_encoding,
-          value,
-          paramsString: window.location.search,
-        }),
-      )
-      localStorage.setItem(input_encoding, value)
+      setInputEncoding(value)
     }
 
     if (!initialViewParam) {
       const value = localStorage.getItem(view_param_name) || defaultView
-      updateParams(
-        createQueryString({
-          paramName: view_param_name,
-          value,
-          paramsString: window.location.search,
-        }),
-      )
-      localStorage.setItem(view_param_name, value)
+      setView(value)
     }
-  }, [getSearchParam, createQueryString, updateParams])
+  }, [getSearchParam, setInputEncoding, setView])
 
   return {
     inputEncoding,
