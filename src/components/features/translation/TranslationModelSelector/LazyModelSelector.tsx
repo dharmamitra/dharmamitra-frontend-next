@@ -19,7 +19,7 @@ export default function LazyModelSelector() {
       color="secondary"
       value={translationModel}
       exclusive
-      onChange={(event, value) => setTranslationModel(value)}
+      onChange={(event, value) => value && setTranslationModel(value)}
       aria-label="Model"
     >
       {translationModels.map((model) => (

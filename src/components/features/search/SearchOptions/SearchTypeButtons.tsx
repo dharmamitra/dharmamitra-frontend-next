@@ -20,7 +20,7 @@ export default function SearchTypeButtons() {
         size="small"
         value={searchType}
         exclusive
-        onChange={(event, value) => setSearchType(value)}
+        onChange={(event, value) => value && setSearchType(value)}
         aria-label="Search type"
       >
         {searchTypes.map((type) => (

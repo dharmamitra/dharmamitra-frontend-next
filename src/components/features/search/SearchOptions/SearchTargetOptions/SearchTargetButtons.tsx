@@ -20,7 +20,7 @@ export default function SearchTargetButtons() {
       size="small"
       value={searchTarget}
       exclusive
-      onChange={(event, value) => setSearchTarget(value)}
+      onChange={(event, value) => value && setSearchTarget(value)}
       aria-label="Data Source"
     >
       {searchTargets.map((target) => (
