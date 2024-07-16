@@ -10,7 +10,10 @@
     },
     "other": "其他",
     "clear": "Clear",
-    "stop": "Stop"
+    "stop": "Stop",
+    "source": "Source",
+    "target": "Target",
+    "englishTranslation": "English Translation"
   },
   "navigation": {
     "home": "首页",
@@ -39,11 +42,61 @@
     "search": "搜索",
     "heading": "搜索2500年的佛教",
     "placeholder": "搜索一些东西",
-    "modeSwitchLabel": "Advanced mode",
-    "sources": {
+    "results": "Search results",
+    "optionsSwitchLabel": "Show options",
+    "resetOptionsLabel": "Use default search options",
+    "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
+    "parallelEnglishSwitch": "Show English",
+    "targetTips": {
+      "primary": "Search canonical and traditional source texts",
+      "secondary": "Search modern commentarial literature",
+      "parallel": "Search cross-tradition text parallel compiled dataset"
+    },
+    "targets": {
       "primary": "Traditional",
       "secondary": "Modern",
-      "parallels": "Parallels"
+      "parallel": "Parallels"
+    },
+    "parallelLanguages": {
+      "tib-chn": "Tibetan-Chinese",
+      "tib-eng": "Tibetan-English",
+      "san-eng": "Sanskrit-English",
+      "san-tib": "Sanskrit-Tibetan"
+    },
+    "limits": {
+      "labels": {
+        "category_include": "Select target categories",
+        "file_include": "Select target texts"
+      }
+    },
+    "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "Select source categories",
+        "sourceTextLimit": "Select source texts"
+      },
+      "inputEncodings": {
+        "auto": "Autodetect",
+        "tibetan": "Tibetan",
+        "wylie": "Wylie",
+        "dev": "Devanagari",
+        "iast": "IAST Roman",
+        "hk": "Harvard-Kyoto"
+      },
+      "searchTypes": {
+        "regular": "Regular",
+        "semantic": "Semantic"
+      },
+      "filterLanguages": {
+        "tib": "Tibetan",
+        "skt": "Sanskrit",
+        "chn": "Buddhist Chinese",
+        "pli": "Pali",
+        "all": "All"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "Select target categories",
+        "file_include": "Select target texts"
+      }
     }
   },
   "translation": {
@@ -84,7 +137,10 @@
       "NO": "No model",
       "none": "No model",
       "madlad": "Madlad",
-      "llama3": "Llama3"
+      "llama3": "Llama3",
+      "": "",
+      "madlad2": "Madlad2",
+      "llama3-fgs": "Llama3-fgs"
     },
     "grammar": {
       "on": "On",
