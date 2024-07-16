@@ -11,7 +11,7 @@ import Tabs from "@mui/material/Tabs"
 import LoadingBox from "@/components/LoadingBox"
 import { tabsStyles } from "@/components/styled"
 
-import { a11yProps, minToolBoxHeight } from "./ToolSelectorTabs"
+import { a11yProps, minToolBoxHeight } from "./LazyToolSelectorTabs"
 
 export default function LoadingToolSelectorTabs() {
   const t = useTranslations()

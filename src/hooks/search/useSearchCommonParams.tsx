@@ -39,7 +39,7 @@ const useSearchCommonParams = () => {
         }),
       )
     },
-    [search_input, searchInput, createQueryString, updateParams],
+    [createQueryString, updateParams],
   )
 
   /**
@@ -61,7 +61,7 @@ const useSearchCommonParams = () => {
       )
       localStorage.setItem(search_target, value ?? "")
     },
-    [search_target, searchTarget, createQueryString, updateParams],
+    [createQueryString, updateParams],
   )
 
   /**
@@ -82,7 +82,7 @@ const useSearchCommonParams = () => {
       )
       localStorage.setItem(search_type, value ?? "")
     },
-    [search_type, searchType, createQueryString, updateParams],
+    [createQueryString, updateParams],
   )
 
   return {

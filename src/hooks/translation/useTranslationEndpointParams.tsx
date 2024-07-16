@@ -74,7 +74,7 @@ const useTranslationEndpointParams = () => {
       )
       localStorage.setItem(model, value ?? "")
     },
-    [translationModel, createQueryString, updateParams],
+    [createQueryString, updateParams],
   )
 
   /**

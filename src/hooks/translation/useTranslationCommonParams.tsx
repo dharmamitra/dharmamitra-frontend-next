@@ -25,7 +25,7 @@ const useTranslationCommonParams = () => {
         }),
       )
     },
-    [translationInput, createQueryString, updateParams],
+    [createQueryString, updateParams],
   )
 
   return {
