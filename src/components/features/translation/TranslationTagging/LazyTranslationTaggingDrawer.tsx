@@ -132,15 +132,17 @@ export default function LazyTranslationTaggingDrawer() {
   return (
     <>
       {isValidQuery || data?.sentences ? (
-        <Button
-          variant="outlined"
-          onClick={() => setOpen((prev) => !prev)}
-          color="secondary"
-          aria-label={t("tagging.ariaLabel")}
-          className={styles.button}
-        >
-          {t("tagging.label")}
-        </Button>
+        <div>
+          <Button
+            variant="outlined"
+            onClick={() => setOpen((prev) => !prev)}
+            color="secondary"
+            aria-label={t("tagging.ariaLabel")}
+            className={styles.button}
+          >
+            {t("tagging.label")}
+          </Button>
+        </div>
       ) : null}
       <Box sx={{ display: "flex" }}>
         <Drawer

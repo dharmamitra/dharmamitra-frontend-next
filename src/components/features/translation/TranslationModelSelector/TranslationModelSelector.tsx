@@ -8,7 +8,7 @@ import { translationModels } from "@/utils/api/translation/params"
 const LazyModelSelector = dynamic(() => import("./LazyModelSelector"), {
   loading: () => (
     <ToggleButtonGroup color="secondary" value={0} exclusive aria-label="Model">
-      {translationModels.map((model, index) => (
+      {translationModels.slice(0, 4).map((model, index) => (
         <ToggleButton
           key={model + "-model-option-loader"}
           value={index}
