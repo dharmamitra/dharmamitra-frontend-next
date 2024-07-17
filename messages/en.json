@@ -138,7 +138,7 @@
       "madlad2": "Madlad2",
       "llama3": "Llama3",
       "llama3-fgs": "Llama3-fgs",
-      "GEMMA2": "GEMMA2"
+      "gemma2": "GEMMA2"
     },
     "grammar": {
       "on": "On",

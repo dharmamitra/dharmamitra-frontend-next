@@ -12,7 +12,7 @@ type TEMPORARYLabTestingModels =
   | "madlad2"
   | "llama3"
   | "llama3-fgs"
-  | "GEMMA2"
+  | "gemma2"
 
 // export type TranslationModel = TranslationApiTypes.Schema["TranslationModel"] &
 //   keyof Messages["translation"]["models"]
@@ -25,7 +25,7 @@ export const translationModels: TranslationModel[] =
     "madlad2",
     "llama3",
     "llama3-fgs",
-    "GEMMA2",
+    "gemma2",
   )
 
 export const defaultTranslationModel: TranslationModel = "llama3"
