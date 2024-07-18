@@ -23,5 +23,5 @@ export default function SearchResults() {
     return <Box sx={{ pt: 4 }}>{results[defaultSearchTarget]}</Box>
   }
 
-  return <Box sx={{ pt: 4 }}>{results[searchTarget]}</Box>
+  return <Box sx={{ pt: 4 }}>{results[defaultSearchTarget]}</Box>
 }
