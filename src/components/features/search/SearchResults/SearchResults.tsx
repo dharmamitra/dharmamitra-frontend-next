@@ -4,7 +4,7 @@ import React from "react"
 import Box from "@mui/material/Box"
 
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
-import { SearchTarget } from "@/utils/api/search/local"
+import { defaultSearchTarget, SearchTarget } from "@/utils/api/search/local"
 
 import ParallelQueryResults from "./ParallelQueryResults"
 import PrimaryQueryResults from "./PrimaryQueryResults"
@@ -16,10 +16,11 @@ const results: Record<SearchTarget, JSX.Element> = {
 }
 
 export default function SearchResults() {
-  const { searchTarget } = useSearchCommonParams()
+  const { searchTarget, setSearchInput } = useSearchCommonParams()
 
   if (!results[searchTarget as SearchTarget]) {
-    throw new Error(`Invalid search target: ${searchTarget}`)
+    setSearchInput(defaultSearchTarget)
+    return <Box sx={{ pt: 4 }}>{results[defaultSearchTarget]}</Box>
   }
 
   return <Box sx={{ pt: 4 }}>{results[searchTarget]}</Box>
