@@ -18,7 +18,7 @@ const results: Record<SearchTarget, JSX.Element> = {
 export default function SearchResults() {
   const { searchTarget, setSearchInput } = useSearchCommonParams()
 
-  if (!results[searchTarget as SearchTarget]) {
+  if (!searchTarget || !(searchTarget in results)) {
     setSearchInput(defaultSearchTarget)
     return <Box sx={{ pt: 4 }}>{results[defaultSearchTarget]}</Box>
   }
