@@ -40,7 +40,7 @@ const getIsCustomValueBinary = (
   key: ParamKey,
   value: ParamValue,
 ) => {
-  if (!(key in targetDefaults) || !value) return 0
+  if (!(key && key in targetDefaults) || !value) return 0
   if (key === source_limits || key === limits) {
     return value === "{}" ? 0 : 1
   }
@@ -108,11 +108,11 @@ export default function ResetOptionsButton() {
     url.search = ""
 
     Object.entries(allDefaults).forEach(([key, value], index) => {
-      if (!(key in targetDefaults[searchTarget] || value)) {
+      if (!((key && key in targetDefaults[searchTarget]) || value)) {
         localStorage.removeItem(key)
       }
 
-      if (key in targetDefaults[searchTarget] && value) {
+      if (key && key in targetDefaults[searchTarget] && value) {
         url.search = `${url.search}${index === 0 ? "?" : "&"}${key}=${value}`
       }
 
