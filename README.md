@@ -288,7 +288,7 @@ The list of unique characters from unicode emojis (https://emojipedia.org/) used
 
 ### Locale content update workflow
 
-**NOTE:** only existing message values can be updated without front-end changes. If a new content item/key is needed, this must be synchronized with a coresponding UI update.
+(**¡NOTE!** only existing message values can be updated without front-end changes. If a new content item/key is needed, this must be synchronized with a coresponding UI update.)
 
 1. `git checkout dev`
 2. `git pull`
@@ -296,15 +296,15 @@ The list of unique characters from unicode emojis (https://emojipedia.org/) used
 4. `git merge dev`
 5. make content updates
    - **Updating default locale (EN) content**: make changes to `messages/en.json` values only
-     - no new keys,
+     - no changes to keys,
      - no changes to other locale files. Changes to other locale files will be overwritten by `scripts/sync_msg_model.py` on commit. **¡NOTE!** If adding translations as well:
-       - first make change to `en`,
+       - first make changes to `en`,
        - commmit, _then_
-       - edit other locale files
+       - add translation to other locale files
    - **Updating supported locale content only**:
      - English values in locale files are ready for translation
-     - when a previously translated value is updated in `en`, the English value is copied to other locale files and will need a new translation.
-     - where relevant diffing previous commits can give context for message/translation updates (a tradeoff for overall i18n stability is the replacement of translated values with english values even if they are very small changes - reviewing the diffs is a good way understand what has changed and restore previous translations if needed. In GitHub this can be done for a local file via eg. [https://github.com/dharmamitra/dharmamitra-frontend-next/commits/dev/messages/zh-Hant.json](https://github.com/dharmamitra/dharmamitra-frontend-next/commits/dev/messages/zh-Hant.json))
+     - in addition to synchronizing `en` keys, when a previously translated value is updated in `en` `sync_msg_model.py` will overwrite the translation with the new English value in the other locale files and new translations will be needed.
+     - where relevant, diffing previous commits can give context for message/translation updates (a tradeoff for overall i18n stability is the replacement of translated values with new English key values even if the English changes are trivial - reviewing the diffs is a good way understand what has changed and restore previous translations if needed. In GitHub this can be done for a local file via eg. [https://github.com/dharmamitra/dharmamitra-frontend-next/commits/dev/messages/zh-Hant.json](https://github.com/dharmamitra/dharmamitra-frontend-next/commits/dev/messages/zh-Hant.json))
 6. Commit, push and open an PR into `dev`
 7. On PR merge, review changes on staging
 8. If all looks good, open a PR from `dev` to `main`
