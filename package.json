@@ -16,6 +16,7 @@
     "lint:fix": "next lint --fix",
     "lint:strict": "next lint '*/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
+    "i18n:modelsync": "python3 ./scripts/sync_msg_model.py",
     "prepare": "husky",
     "api:codegen": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/translation.v1.d.ts && openapi-typescript https://dharmamitra.org/api-search/openapi.json -o ./src/lib/api/search.v1.d.ts",
     "api:codegen:translation": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/translation.v1.d.ts",

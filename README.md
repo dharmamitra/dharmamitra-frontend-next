@@ -22,7 +22,7 @@ TOC:
   - [Regular fetchs](#regular-fetchs)
   - [SSE fetchs](#sse-fetchs)
     - [Stream formatting markers](#stream-formatting-markers)
-- [🌐 Internationalization (i18n)](#-internationalization-i18n)
+- [🌐 Content updates \& Internationalization (i18n)](#-content-updates--internationalization-i18n)
   - [Locale content update workflow](#locale-content-update-workflow)
   - [Internal navigation](#internal-navigation)
   - [Referrences](#referrences)
@@ -275,24 +275,36 @@ TODO
 
 The list of unique characters from unicode emojis (https://emojipedia.org/) used to format stream responses is maintained in `markers` in `src/utils/api/stream.ts` and consumed throughout the app via `streamUtils` expirted from `src/utils/api/index.ts`.
 
-## 🌐 Internationalization (i18n)
+## 🌐 Content updates & Internationalization (i18n)
 
+- `messages/en.json` defines the message content model for the project and is the template for all locale files.
+- model and content updates are kept in sync across locales by running `yarn i18n:modelsync`
+- message syncing has been added as an automated pre-commit step in `.husky/pre-commit`.
 - The [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) locale codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for the project's locale codes to define the project's supported locales.
-
-- Supported locales are defined in the `supportedLocales` varriable in `src/config.ts` and locale files with matching file names are added to the `messages/` directory.
-- `messages/` files use the convention of title-case keys for page content and camel-case keys for component content.
+- Supported locales are defined in the `supportedLocales` varriable in `src/config.ts` and locale files named with the locale code are added to the `messages/` directory (eg. `messages/zh-Hant.json`).
+- `messages/` files use the convention of:
+  - pascal case keys for page content and
+  - camel case keys for component content.
 
 ### Locale content update workflow
 
-TODO (https://stackoverflow.com/questions/14500240/how-can-i-generate-a-diff-for-a-single-file-between-two-branches-in-github)
-
-DRAFT model (consideration of special needs for translation updates pending)
+**NOTE:** only existing message values can be updated without front-end changes. If a new content item/key is needed, this must be synchronized with a coresponding UI update.
 
 1. `git checkout dev`
 2. `git pull`
 3. `git checkout content-updates`
 4. `git merge dev`
-5. Make content updates (**note:** only copy can be changed, if a new translation key is needed, this will have to be synchronized with a UI update)
+5. make content updates
+   - **Updating default locale (EN) content**: make changes to `messages/en.json` values only
+     - no new keys,
+     - no changes to other locale files. Changes to other locale files will be overwritten by `scripts/sync_msg_model.py` on commit. **¡NOTE!** If adding translations as well:
+       - first make change to `en`,
+       - commmit, _then_
+       - edit other locale files
+   - **Updating supported locale content only**:
+     - English values in locale files are ready for translation
+     - when a previously translated value is updated in `en`, the English value is copied to other locale files and will need a new translation.
+     - where relevant diffing previous commits can give context for message/translation updates (a tradeoff for overall i18n stability is the replacement of translated values with english values even if they are very small changes - reviewing the diffs is a good way understand what has changed and restore previous translations if needed. In GitHub this can be done for a local file via eg. [https://github.com/dharmamitra/dharmamitra-frontend-next/commits/dev/messages/zh-Hant.json](https://github.com/dharmamitra/dharmamitra-frontend-next/commits/dev/messages/zh-Hant.json))
 6. Commit, push and open an PR into `dev`
 7. On PR merge, review changes on staging
 8. If all looks good, open a PR from `dev` to `main`
