@@ -85,6 +85,25 @@ const useSearchCommonParams = () => {
     [createQueryString, updateParams],
   )
 
+  /**
+   * Param initialization
+   */
+  React.useEffect(() => {
+    const initialSearchTarget = getSearchParam(search_target)
+    const initialSearchType = getSearchParam(search_type)
+
+    if (!initialSearchTarget) {
+      const tragetValue =
+        localStorage.getItem(search_target) || defaultSearchTarget
+      setSearchTarget(tragetValue)
+    }
+
+    if (!initialSearchType) {
+      const typeValue = localStorage.getItem(search_type) || defaultSearchType
+      setSearchType(typeValue)
+    }
+  }, [getSearchParam, setSearchTarget, setSearchType])
+
   return {
     searchTarget,
     setSearchTarget,

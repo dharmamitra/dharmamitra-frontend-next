@@ -62,13 +62,14 @@ const useGlobalParams = () => {
     const initialEncodingParam = getSearchParam(input_encoding)
 
     if (!initialEncodingParam) {
-      const value = localStorage.getItem(input_encoding) || defaultInputEncoding
-      setInputEncoding(value)
+      const encodingValue =
+        localStorage.getItem(input_encoding) || defaultInputEncoding
+      setInputEncoding(encodingValue)
     }
 
     if (!initialViewParam) {
-      const value = localStorage.getItem(view_param_name) || defaultView
-      setView(value)
+      const viewValue = localStorage.getItem(view_param_name) || defaultView
+      setView(viewValue)
     }
   }, [getSearchParam, setInputEncoding, setView])
 
