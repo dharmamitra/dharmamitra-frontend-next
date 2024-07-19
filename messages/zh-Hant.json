@@ -13,7 +13,8 @@
     "stop": "Stop",
     "source": "Source",
     "target": "Target",
-    "englishTranslation": "English Translation"
+    "englishTranslation": "English Translation",
+    "loading": "Loading"
   },
   "navigation": {
     "home": "首頁",
@@ -97,7 +98,8 @@
         "category_include": "Select target categories",
         "file_include": "Select target texts"
       }
-    }
+    },
+    "summary": "Summary"
   },
   "translation": {
     "translate": "翻譯",

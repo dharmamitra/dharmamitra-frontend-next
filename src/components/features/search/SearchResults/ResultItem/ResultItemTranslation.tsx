@@ -7,14 +7,18 @@ import Typography from "@mui/material/Typography"
 import { cssNames } from "@/components/features/search/SearchResults/ParallelQueryResults/ShowEngishSwitch"
 import EnIcon from "@/components/icons/EnIcon"
 
-type Result = {
+type ResultItemTranslationProps = {
   translation?: string
+  isRendered: boolean
 }
 
-export default function ResultItemTranslation({ translation }: Result) {
+export default function ResultItemTranslation({
+  translation,
+  isRendered,
+}: ResultItemTranslationProps) {
   const t = useTranslations("generic")
 
-  if (!translation) return null
+  if (!isRendered) return null
 
   return (
     <Box

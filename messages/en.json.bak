@@ -13,6 +13,7 @@
         "stop": "Stop",
         "source": "Source",
         "target": "Target",
+        "loading": "Loading",
         "englishTranslation": "English Translation"
     },
     "navigation": {
@@ -47,6 +48,7 @@
         "resetOptionsLabel": "Use default search options",
         "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
         "parallelEnglishSwitch": "Show English",
+        "summary": "Summary",
         "targetTips": {
             "primary": "Search canonical and traditional source texts",
             "secondary": "Search modern commentarial literature",

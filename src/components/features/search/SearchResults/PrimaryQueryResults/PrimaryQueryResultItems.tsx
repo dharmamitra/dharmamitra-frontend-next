@@ -23,6 +23,7 @@ export default function PrimarySearchResultItems({
               segmentnr={segmentnr}
               link={src_link}
               text={text}
+              hasSummary
             />
           </ResultItemsFrame>
         )
