@@ -168,8 +168,8 @@
     "description": "A toolkit for the languages of the Dharma"
   },
   "pages": {
-    "home": "Home",
-    "about": "About",
+    "home": "首页",
+    "about": "计划介绍",
     "team": "Team",
     "guide": "Guide"
   },
