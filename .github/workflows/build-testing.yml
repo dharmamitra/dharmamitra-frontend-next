@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: test-env
+          ref: actions-env
       - uses: actions/setup-node@v4
 
       - name: Set up Docker Buildx
