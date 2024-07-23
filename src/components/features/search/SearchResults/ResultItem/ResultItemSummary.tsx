@@ -7,16 +7,23 @@ import Button from "@mui/material/Button"
 
 import SummaryStream from "./SummaryStream"
 
-type Result = {
+type ResultItemSummaryProps = {
   isRendered?: boolean
   segmentnr: string
+  query?: string
+  summary?: string
 }
 
-export default function ResultItemSummary({ isRendered, segmentnr }: Result) {
+export default function ResultItemSummary({
+  isRendered,
+  segmentnr,
+  query,
+  summary,
+}: ResultItemSummaryProps) {
   const t = useTranslations("search")
   const [isExpanded, setIsExpanded] = React.useState(false)
 
-  if (!isRendered) return null
+  if (!isRendered || !summary || !query) return null
 
   return (
     <Box
@@ -51,11 +58,9 @@ export default function ResultItemSummary({ isRendered, segmentnr }: Result) {
         </Button>
       </Box>
 
-      {isExpanded ? (
-        <Box id={"summary-content" + segmentnr} py={1}>
-          <SummaryStream />
-        </Box>
-      ) : null}
+      <Box id={"summary-content" + segmentnr} py={1}>
+        <SummaryStream isExpanded={isExpanded} request={{ query, summary }} />
+      </Box>
     </Box>
   )
 }

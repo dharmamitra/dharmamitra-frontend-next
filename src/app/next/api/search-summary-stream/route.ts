@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { TranslationEndpoint } from "@/utils/api/translation/types"
+import { SearchEndpoint } from "@/utils/api/search/types"
 
-const translationEndpoint: TranslationEndpoint = "/translation-exp/"
+const summaryEndpoint: SearchEndpoint = "/summary/"
 
 export const dynamic = "force-dynamic"
 
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json()
 
-    const url = `${process.env.NEXT_PUBLIC_DM_TRANSLATION_API_BASE_URL}${translationEndpoint}`
+    const url = `${process.env.NEXT_PUBLIC_DM_SEARCH_API_BASE_URL}${summaryEndpoint}`
     const apiKey = process.env.DM_API_KEY ?? ""
 
     if (!apiKey) {
@@ -37,30 +37,30 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(requestBody),
     })
 
-    if (!fetchResponse.ok) {
+    const { ok, status, statusText, body } = fetchResponse
+    // const contentType = headers.get("content-type")
+
+    if (!ok) {
       return new NextResponse(
-        `¡Failed to open stream!\nResponse not ok.\nStatus: ${fetchResponse.statusText}`,
+        `¡Failed to open stream!\nResponse not ok.\nStatus: ${statusText}`,
         {
-          status: fetchResponse.status,
+          status,
         },
       )
     }
 
-    if (
-      !fetchResponse.headers
-        .get("content-type")
-        ?.startsWith("text/event-stream")
-    ) {
-      return new NextResponse(
-        "¡Failed to open stream!\nContent type is not a valid event stream.",
-        {
-          status: fetchResponse.status,
-        },
-      )
-    }
+    // TODO: See why content type is not being set as stream
+    // if (!contentType?.startsWith("text/event-stream")) {
+    //   return new NextResponse(
+    //     `¡Failed to open stream!\nContent type ${contentType} is not a valid event stream.`,
+    //     {
+    //       status: status,
+    //     },
+    //   )
+    // }
 
     // Stream the response back to the client
-    return new NextResponse(fetchResponse.body, {
+    return new NextResponse(body, {
       headers: {
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache",

@@ -7,7 +7,7 @@ import { localStorageKeys } from "@/utils/constants"
 
 const { showParallelTranslations: storageKey } = localStorageKeys
 
-export const cssNames = {
+export const cssRenderProps = {
   target: "parallel-translation",
   displayVar: `--${storageKey}`,
 }
@@ -20,11 +20,11 @@ export default function ShowEngishSwitch() {
 
   React.useEffect(() => {
     const targetElements = document.querySelectorAll(
-      `.${cssNames.target}`,
+      `.${cssRenderProps.target}`,
     ) as NodeListOf<HTMLElement>
     targetElements.forEach((target) =>
       target.style.setProperty(
-        cssNames.displayVar,
+        cssRenderProps.displayVar,
         showEnglish ? "block" : "none",
       ),
     )

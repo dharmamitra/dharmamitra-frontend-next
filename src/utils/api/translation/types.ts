@@ -28,6 +28,12 @@ export type TaggingRequestBody = APIRequestBody<paths["/tagging/"]["post"]>
 export type TaggingResponse = APIResponse<paths["/tagging/"]["post"]>
 
 /**
+ *  API ENDPPOINTS & AUXILIARY PARAMS
+ */
+
+export type TranslationEndpoint = keyof paths
+
+/**
  *  PARAMS
  */
 

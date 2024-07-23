@@ -22,12 +22,18 @@ export type PrimaryRresponse = APIResponse<paths["/primary/"]["post"]>
 export type SecondaryRequestBody = APIRequestBody<paths["/secondary/"]["post"]>
 export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
 
+export type SummaryRequestBody = APIRequestBody<paths["/summary/"]["post"]>
+export type SummaryRresponse = APIResponse<paths["/summary/"]["post"]>
+
 /**
  *  API ENDPPOINTS & AUXILIARY PARAMS
  */
 
-type Endpoint = keyof paths
-export type SearchEndpoint = Endpoint extends `/${infer Key}/` ? Key : never
+export type SearchEndpoint = keyof paths
+
+export type SearchEndpointName = SearchEndpoint extends `/${infer Key}/`
+  ? Key
+  : never
 
 export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all">
 
@@ -37,8 +43,8 @@ export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all">
 type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
 
 export type SearchTargets = Exclude<
-  SearchEndpoint,
-  ExcludeStreams<SearchEndpoint>
+  SearchEndpointName,
+  ExcludeStreams<SearchEndpointName> | "summary"
 >
 
 export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]

@@ -1,5 +1,5 @@
 import { SearchApiTypes } from "@/api"
-import apiClients from "@/utils/api/client"
+import apiClients, { defaultTimeout } from "@/utils/api/client"
 
 export const getSearchPrimaryData = async (
   body: SearchApiTypes.PrimaryRequestBody,
@@ -10,7 +10,7 @@ export const getSearchPrimaryData = async (
 
   const { data, error } = await apiClients.Search.POST(`/primary/`, {
     body,
-    signal: AbortSignal.timeout(10000),
+    signal: AbortSignal.timeout(defaultTimeout),
   })
 
   if (error) {

@@ -16,6 +16,10 @@ export interface paths {
     /** Search Endpoint Secondary */
     post: operations["search_endpoint_secondary_secondary__post"]
   }
+  "/summary/": {
+    /** Summary Endpoint */
+    post: operations["summary_endpoint_summary__post"]
+  }
 }
 
 export type webhooks = Record<string, never>
@@ -49,6 +53,13 @@ export interface components {
       search_type: components["schemas"]["SearchType"]
       filter_secondary: components["schemas"]["LimitsSecondary"]
       postprocess_model: components["schemas"]["PostProcessModel"]
+    }
+    /** Body_summary_endpoint_summary__post */
+    Body_summary_endpoint_summary__post: {
+      /** Query */
+      query: string
+      /** Summary */
+      summary: string
     }
     /**
      * FilterLanguage
@@ -133,6 +144,8 @@ export interface components {
     }
     /** PrimarySearchResult */
     PrimarySearchResult: {
+      /** Query */
+      query: string
       /** Lang */
       lang: string
       /** Segmentnr */
@@ -264,6 +277,28 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["SecondarySearchResponse"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  /** Summary Endpoint */
+  summary_endpoint_summary__post: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_summary_endpoint_summary__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": unknown
         }
       }
       /** @description Validation Error */

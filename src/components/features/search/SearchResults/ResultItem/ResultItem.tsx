@@ -14,6 +14,7 @@ type ResultItemProps = {
   link: string
   text: string
   hasSummary?: boolean
+  query?: string
   summary?: string
   translation?: string
   xs?: number
@@ -32,6 +33,7 @@ export default function ResultItem({
   translation,
   hasSummary,
   // eslint-disable-next-line no-unused-vars
+  query,
   summary,
   ...sizes
 }: ResultItemProps) {
@@ -71,7 +73,12 @@ export default function ResultItem({
           translation={translation}
         />
 
-        <ResultItemSummary isRendered={hasSummary} segmentnr={segmentnr} />
+        <ResultItemSummary
+          isRendered={hasSummary}
+          segmentnr={segmentnr}
+          query={query}
+          summary={summary}
+        />
       </Box>
     </Grid>
   )

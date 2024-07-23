@@ -9,6 +9,7 @@ export const linkAttrs = {
 export const localStorageKeys = {
   showSearchOptions: "show-search-options",
   showParallelTranslations: "show-parallel-translations",
+  showSummary: "show-search-result-summary",
 } as const
 
 export const smMediaQuery = "(max-width: 500px)"

@@ -1,5 +1,5 @@
 import { SearchApiTypes } from "@/api"
-import apiClients from "@/utils/api/client"
+import apiClients, { defaultTimeout } from "@/utils/api/client"
 
 export const getSearchParallelData = async (
   body: SearchApiTypes.ParallelRequestBody,
@@ -10,7 +10,7 @@ export const getSearchParallelData = async (
 
   const { data, error } = await apiClients.Search.POST(`/parallel/`, {
     body,
-    signal: AbortSignal.timeout(10000),
+    signal: AbortSignal.timeout(defaultTimeout),
   })
 
   if (error) {

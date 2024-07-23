@@ -4,6 +4,8 @@ import type { paths as tempBNv2Paths } from "@/lib/api/bnv2"
 import type { paths as searchPaths } from "@/lib/api/search.v1"
 import type { paths as translationPaths } from "@/lib/api/translation.v1"
 
+export const defaultTimeout = 15000
+
 const translationBaseUrl = process.env.NEXT_PUBLIC_DM_TRANSLATION_API_BASE_URL
 const searchBaseUrl = process.env.NEXT_PUBLIC_DM_SEARCH_API_BASE_URL
 /**

@@ -13,16 +13,14 @@ export default function PrimarySearchResultItems({
   return (
     <Box>
       {results.map((result, index) => {
-        const { lang, title, segmentnr, src_link, text } = result
+        const { lang, src_link, ...props } = result
         return (
           <ResultItemsFrame key={`parallel-result-${index}`}>
             <ResultItem
               xs={12}
               language={lang}
-              title={title}
-              segmentnr={segmentnr}
               link={src_link}
-              text={text}
+              {...props}
               hasSummary
             />
           </ResultItemsFrame>

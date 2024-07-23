@@ -1,11 +1,9 @@
 import React from "react"
-import { useTranslations } from "next-intl"
 import { Divider } from "@mui/material"
 import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
 
-import { cssNames } from "@/components/features/search/SearchResults/ParallelQueryResults/ShowEngishSwitch"
-import EnIcon from "@/components/icons/EnIcon"
+import EnRobotTranslation from "@/components/EnRobotTranslation"
+import { cssRenderProps } from "@/components/features/search/SearchResults/ParallelQueryResults/ShowEngishSwitch"
 
 type ResultItemTranslationProps = {
   translation?: string
@@ -16,40 +14,18 @@ export default function ResultItemTranslation({
   translation,
   isRendered,
 }: ResultItemTranslationProps) {
-  const t = useTranslations("generic")
-
-  if (!isRendered) return null
+  if (!isRendered || !translation) return null
 
   return (
     <Box
-      className={cssNames.target}
+      className={cssRenderProps.target}
       style={{
-        display: `var(${cssNames.displayVar})`,
+        display: `var(${cssRenderProps.displayVar})`,
       }}
       pb={2}
     >
       <Divider />
-      <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
-        <div>
-          <EnIcon
-            size={0.7}
-            color="#bbb"
-            aria-label={t("englishTranslation")}
-          />
-        </div>
-
-        <Typography
-          variant="body2"
-          p="0"
-          color="text.secondary"
-          sx={{
-            lineHeight: "1.15",
-            fontFamily: "monospace",
-          }}
-        >
-          {translation}
-        </Typography>
-      </Box>
+      <EnRobotTranslation translation={translation} />
     </Box>
   )
 }
