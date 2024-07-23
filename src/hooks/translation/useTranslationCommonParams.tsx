@@ -10,13 +10,21 @@ const {
 const useTranslationCommonParams = () => {
   const { getSearchParam, createQueryString, updateParams } = useParams()
 
-  const translationInput = getSearchParam(input_sentence) || ""
+  const [translationInputtValue, setTranslationInputValue] = React.useState(
+    getSearchParam(input_sentence) || "",
+  )
+
+  React.useEffect(() => {
+    setTranslationInputValue(getSearchParam(input_sentence) || "")
+  }, [getSearchParam, input_sentence])
 
   const setTranslationInput = React.useCallback(
     (
       input: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string,
     ) => {
       const newValue = typeof input === "string" ? input : input.target.value
+
+      setTranslationInputValue(newValue)
       updateParams(
         createQueryString({
           paramName: input_sentence,
@@ -25,11 +33,11 @@ const useTranslationCommonParams = () => {
         }),
       )
     },
-    [createQueryString, updateParams],
+    [createQueryString, updateParams, setTranslationInputValue],
   )
 
   return {
-    translationInput,
+    translationInput: translationInputtValue,
     setTranslationInput,
   }
 }

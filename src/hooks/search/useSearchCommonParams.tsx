@@ -24,13 +24,22 @@ const useSearchCommonParams = () => {
   /**
    * Search Input
    */
-  const searchInput = getSearchParam(search_input) ?? ""
+
+  const [searchInputValue, setSearchInputValue] = React.useState(
+    getSearchParam(search_input) ?? "",
+  )
+
+  React.useEffect(() => {
+    setSearchInputValue(getSearchParam(search_input) ?? "")
+  }, [getSearchParam, search_input])
 
   const setSearchInput = React.useCallback(
     (
       input: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string,
     ) => {
       const newValue = typeof input === "string" ? input : input.target.value
+
+      setSearchInputValue(newValue)
       updateParams(
         createQueryString({
           paramName: search_input,
@@ -39,7 +48,7 @@ const useSearchCommonParams = () => {
         }),
       )
     },
-    [createQueryString, updateParams],
+    [createQueryString, updateParams, setSearchInputValue],
   )
 
   /**
@@ -107,7 +116,7 @@ const useSearchCommonParams = () => {
   return {
     searchTarget,
     setSearchTarget,
-    searchInput,
+    searchInput: searchInputValue,
     setSearchInput,
     searchType,
     setSearchType,
