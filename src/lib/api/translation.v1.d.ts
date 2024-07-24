@@ -140,6 +140,14 @@ export interface components {
       | "sanskrit-dev"
       | "buddhist-chinese"
       | "korean"
+      | "german"
+      | "russian"
+      | "french"
+      | "italian"
+      | "spanish"
+      | "portuguese"
+      | "dutch"
+      | "hindi"
       | "japanese"
       | "pali"
       | "sanskrit-knn"
@@ -148,7 +156,14 @@ export interface components {
      * TranslationModel
      * @enum {string}
      */
-    TranslationModel: "NO" | "" | "madlad" | "llama3" | "llama3-fgs"
+    TranslationModel:
+      | "NO"
+      | ""
+      | "madlad"
+      | "madlad2"
+      | "llama3"
+      | "llama3-fgs"
+      | "gemma2"
     /** ValidationError */
     ValidationError: {
       /** Location */

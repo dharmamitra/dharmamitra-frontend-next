@@ -133,7 +133,15 @@
       "sanskrit-dev": "梵文",
       "sanskrit-knn": "Sanskrit (KNN)",
       "sanskrit": "梵文",
-      "tibetan": "藏文"
+      "tibetan": "藏文",
+      "hindi": "Hindi",
+      "german": "German",
+      "russian": "Russian",
+      "french": "French",
+      "italian": "Italian",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese",
+      "dutch": "Dutch"
     },
     "models": {
       "NO": "No model",

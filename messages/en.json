@@ -130,7 +130,15 @@
       "sanskrit-dev": "Sanskrit (Devanagari)",
       "sanskrit-knn": "Sanskrit (KNN)",
       "sanskrit": "Sanskrit",
-      "tibetan": "Tibetan"
+      "tibetan": "Tibetan",
+      "hindi": "Hindi",
+      "german": "German",
+      "russian": "Russian",
+      "french": "French",
+      "italian": "Italian",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese",
+      "dutch": "Dutch"
     },
     "models": {
       "": "",
