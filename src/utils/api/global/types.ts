@@ -20,8 +20,8 @@ export type APIGlobalParams = CommonProperties<
     SearchApiTypes.RequestBody<"/primary/">,
     SearchApiTypes.RequestBody<"/secondary/">,
     SearchApiTypes.RequestBody<"/parallel/">,
-    TranslationApiTypes.TranslationRequestBody,
-    TranslationApiTypes.TaggingRequestBody,
+    TranslationApiTypes.RequestBody<"/translation-exp/">,
+    TranslationApiTypes.RequestBody<"/tagging/">,
   ]
 >
 

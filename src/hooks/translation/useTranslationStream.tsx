@@ -25,18 +25,18 @@ const useTranslationStream = () => {
   const { translationModel, targetLanguage } = useTranslationEndpointParams()
   const { inputEncoding } = useGlobalParams()
 
-  const requestBody: TranslationApiTypes.TranslationRequestBody = React.useMemo(
-    () => ({
-      input_sentence: translationInput || "",
-      input_encoding: inputEncoding || defaultInputEncoding,
-      do_grammar_explanation: grammarExplanationDefault,
-      target_lang: targetLanguage || defaultTargetLanguage,
-      // TODO: remove model casting once API schema is fixed and/or translation model endpoints are added to API
-      model: (translationModel ||
-        defaultTranslationModel) as TranslationApiTypes.TranslationRequestBody["model"],
-    }),
-    [translationInput, inputEncoding, targetLanguage, translationModel],
-  )
+  const requestBody: TranslationApiTypes.RequestBody<"/translation-exp/"> =
+    React.useMemo(
+      () => ({
+        input_sentence: translationInput || "",
+        input_encoding: inputEncoding || defaultInputEncoding,
+        do_grammar_explanation: grammarExplanationDefault,
+        target_lang: targetLanguage || defaultTargetLanguage,
+        // TODO: remove model casting once API schema is fixed and/or translation model endpoints are added to API
+        model: translationModel || defaultTranslationModel,
+      }),
+      [translationInput, inputEncoding, targetLanguage, translationModel],
+    )
 
   const [triggerTranslationQuery, setTriggerTranslationQuery] = useAtom(
     triggerTranslationQueryAtom,

@@ -2,19 +2,7 @@
 
 import { SearchApiTypes } from "@/api"
 import apiClients, { defaultTimeout } from "@/utils/api/client"
-
-type RelevanceType = "low" | "medium" | "high"
-type Relevance = RelevanceType & keyof Messages["search"]["relevanceTypes"]
-
-const relevanceTypes: Relevance[] = ["low", "medium", "high"]
-
-const getValidRelevance = (relevance: string) => {
-  if (!relevanceTypes.some((value) => value === relevance)) {
-    throw new Error(`Invalid relevance value: ${relevance}`)
-  }
-
-  return relevance as Relevance
-}
+import { getValidRelevance } from "@/utils/validators"
 
 const parseAPIResponse = (
   response: SearchApiTypes.Response<"/explanation/">,

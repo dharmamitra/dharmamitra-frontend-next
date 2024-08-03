@@ -3,13 +3,13 @@ import { SelectChangeEvent } from "@mui/material"
 
 import useAppConfig from "@/hooks/useAppConfig"
 import useParams from "@/hooks/useParams"
-import { getValidDefaultValue } from "@/utils"
 import {
   allTranslationDefaultParams,
   TargetLanguage,
   TranslationModel,
   translationParamsNames,
 } from "@/utils/api/translation/params"
+import { getValidDefaultValue } from "@/utils/validators"
 
 const {
   translation: { target_lang, model },

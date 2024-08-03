@@ -8,7 +8,7 @@ import apiClients from "@/utils/api/client"
 export type TimedError = Error & { queryDuration: number; response: Response }
 
 export const getTaggingData = async (
-  body: TranslationApiTypes.TaggingRequestBody,
+  body: TranslationApiTypes.RequestBody<"/tagging/">,
 ) => {
   const queryStart = performance.now()
 

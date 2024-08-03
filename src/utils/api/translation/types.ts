@@ -8,37 +8,28 @@ import type {
 } from "@/utils/api/helpers"
 
 export type Schema = components["schemas"]
+export type TranslationEndpoint = keyof paths
 
 /**
  * REQUEST & RESPONSE MODELS
  */
 
-// /translation/ TO BE REPLACED WITH current "/translation-exp/"
-
-// TODO: coordinate renaming to "translation" once env setup has been deployed
-export type TranslationRequestBody = APIRequestBody<
-  paths["/translation-exp/"]["post"]
->
-export type TranslationRresponse = APIResponse<
-  // stream response
-  paths["/translation-exp/"]["post"]
+export type RequestBody<Endpoint extends keyof paths> = APIRequestBody<
+  paths[Endpoint]["post"]
 >
 
-export type TaggingRequestBody = APIRequestBody<paths["/tagging/"]["post"]>
-export type TaggingResponse = APIResponse<paths["/tagging/"]["post"]>
+export type Response<Endpoint extends keyof paths> = APIResponse<
+  paths[Endpoint]["post"]
+>
+
+// TODO: coordinate renaming current "/translation-exp/" with `/translation/
 
 /**
- *  API ENDPPOINTS & AUXILIARY PARAMS
- */
-
-export type TranslationEndpoint = keyof paths
-
-/**
- *  PARAMS
+ *  REQUEST PROPS
  */
 
 export type CommonTranslationParams = CommonProperties<
-  [TranslationRequestBody, TaggingRequestBody]
+  [RequestBody<"/translation-exp/">, RequestBody<"/tagging/">]
 >
 
 export type ConstrainedCommonTranslationParams = UniqueProperties<
@@ -46,11 +37,11 @@ export type ConstrainedCommonTranslationParams = UniqueProperties<
 >
 
 export type UniqueTranslationEndpointParams = UniqueProperties<
-  [CommonTranslationParams, TranslationRequestBody]
+  [CommonTranslationParams, RequestBody<"/translation-exp/">]
 >
 
 export type UniqueTaggingParams = UniqueProperties<
-  [CommonTranslationParams, TaggingRequestBody]
+  [CommonTranslationParams, RequestBody<"/tagging/">]
 >
 
 export type AllTranslationParams = CommonTranslationParams &
@@ -62,11 +53,11 @@ export type CommonTranslationParamsNames = {
 }
 
 export type UniqueTranslationEndpointParamsNames = {
-  [K in keyof TranslationRequestBody]: K
+  [K in keyof RequestBody<"/translation-exp/">]: K
 }
 
 export type UniqueTaggingParamsNames = {
-  [K in keyof TaggingRequestBody]: K
+  [K in keyof RequestBody<"/tagging/">]: K
 }
 
 export type TranslationParamNames = {

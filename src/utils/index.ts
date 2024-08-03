@@ -13,13 +13,6 @@ export const getSettingPriotiryGroups = <T>(params: {
   return [setting.slice(0, noOfPrimaryItems), setting.slice(noOfPrimaryItems)]
 }
 
-export const getValidDefaultValue = <T>(value: T) => {
-  if (value === undefined) {
-    throw new Error("a default param value is undefined")
-  }
-  return value
-}
-
 // eslint-disable-next-line no-unused-vars
 export function debounce<F extends (...args: Parameters<F>) => ReturnType<F>>(
   callback: F,

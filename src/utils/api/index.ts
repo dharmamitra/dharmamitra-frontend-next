@@ -12,7 +12,7 @@ import * as TranslationApiTypes from "./translation/types"
 
 const DMFetchApi = {
   tagging: {
-    makeQueryKey: (body: TranslationApiTypes.TaggingRequestBody) => [
+    makeQueryKey: (body: TranslationApiTypes.RequestBody<"/tagging/">) => [
       "tagging",
       JSON.stringify(body),
     ],

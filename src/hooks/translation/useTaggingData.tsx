@@ -34,15 +34,16 @@ const useTaggingData = () => {
     )
   }, [debouncedInputSentence, targetLanguage])
 
-  const requestBody: TranslationApiTypes.TaggingRequestBody = React.useMemo(
-    () => ({
-      input_sentence: translationInput || "",
-      input_encoding: inputEncoding || defaultInputEncoding,
-      mode: defaultMode,
-      human_readable_tags: defaultHumanReadable,
-    }),
-    [translationInput, inputEncoding],
-  )
+  const requestBody: TranslationApiTypes.RequestBody<"/tagging/"> =
+    React.useMemo(
+      () => ({
+        input_sentence: translationInput || "",
+        input_encoding: inputEncoding || defaultInputEncoding,
+        mode: defaultMode,
+        human_readable_tags: defaultHumanReadable,
+      }),
+      [translationInput, inputEncoding],
+    )
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: DMFetchApi.tagging.makeQueryKey(requestBody),
