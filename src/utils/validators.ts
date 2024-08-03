@@ -1,3 +1,6 @@
+import { Schema as SearchSchema } from "@/utils/api/search/types"
+import { exhaustiveStringTuple } from "@/utils/typescript"
+
 export const getValidDefaultValue = <T>(value: T) => {
   if (value === undefined) {
     throw new Error("a default param value is undefined")
@@ -5,9 +8,13 @@ export const getValidDefaultValue = <T>(value: T) => {
   return value
 }
 
-type RelevanceType = "low" | "medium" | "high"
-type Relevance = RelevanceType & keyof Messages["search"]["relevanceTypes"]
-const relevanceTypes: Relevance[] = ["low", "medium", "high"]
+type RelevanceTypes = SearchSchema["SummaryRespone"]["relevance"]
+type Relevance = RelevanceTypes & keyof Messages["search"]["relevanceTypes"]
+const relevanceTypes: Relevance[] = exhaustiveStringTuple<RelevanceTypes>()(
+  "low",
+  "medium",
+  "high",
+)
 
 export const getValidRelevance = (relevance: string) => {
   if (!relevanceTypes.some((value) => value === relevance)) {

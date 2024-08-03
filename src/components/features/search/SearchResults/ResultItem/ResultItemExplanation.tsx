@@ -1,30 +1,30 @@
 import React from "react"
-import { useLocale, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 
+import { SearchApiTypes } from "@/api"
+
+import ParallelExplanation from "./ParallelExplanation"
 import PrimaryExplanation from "./PrimaryExplanation"
 
-type ResultItemSummaryProps = {
-  isPrimaryQuery?: boolean
+type ExplanationFrameProps = {
   segmentnr: string
-  query?: string
-  summary?: string
+  expandedState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]
+  children?: React.ReactNode
+  isParallel?: boolean
 }
 
-export default function ResultItemSummary({
-  isPrimaryQuery,
+function ExplanationFrame({
   segmentnr,
-  query,
-  summary,
-}: ResultItemSummaryProps) {
+  expandedState,
+  children,
+  isParallel,
+}: ExplanationFrameProps) {
   const t = useTranslations("search")
-  const locale = useLocale()
-  const [isExpanded, setIsExpanded] = React.useState(false)
-
-  if (!isPrimaryQuery || !summary || !query) return null
+  const [isExpanded, setIsExpanded] = expandedState
 
   return (
     <Box
@@ -32,7 +32,7 @@ export default function ResultItemSummary({
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
-        pb: 2,
+        pb: isParallel ? 0 : 1,
       }}
     >
       <Box
@@ -45,7 +45,7 @@ export default function ResultItemSummary({
           variant="text"
           onClick={() => setIsExpanded(!isExpanded)}
           aria-expanded={isExpanded}
-          aria-controls={"summary-content" + segmentnr}
+          aria-controls={"explanation-content" + segmentnr}
           sx={{
             color: "grey.600",
             p: 0,
@@ -59,12 +59,51 @@ export default function ResultItemSummary({
         </Button>
       </Box>
 
-      <Box id={"summary-content" + segmentnr} py={1}>
-        <PrimaryExplanation
-          isExpanded={isExpanded}
-          request={{ query, summary, locale }}
-        />
+      <Box id={"explanation-content" + segmentnr} py={1}>
+        {children}
       </Box>
     </Box>
   )
+}
+
+export type ResultItemExplanationProps = {
+  primaryRequest?: SearchApiTypes.RequestBody<"/explanation/">
+  parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
+  segmentnr: string
+}
+
+export default function ResultItemExplanation({
+  primaryRequest,
+  parallelRequest,
+  segmentnr,
+}: ResultItemExplanationProps) {
+  const [isExpanded, setIsExpanded] = React.useState(false)
+
+  if (primaryRequest) {
+    return (
+      <ExplanationFrame
+        expandedState={[isExpanded, setIsExpanded]}
+        segmentnr={segmentnr}
+      >
+        <PrimaryExplanation isExpanded={isExpanded} request={primaryRequest} />
+      </ExplanationFrame>
+    )
+  }
+
+  if (parallelRequest) {
+    return (
+      <ExplanationFrame
+        expandedState={[isExpanded, setIsExpanded]}
+        segmentnr={segmentnr}
+        isParallel
+      >
+        <ParallelExplanation
+          isExpanded={isExpanded}
+          request={parallelRequest}
+        />
+      </ExplanationFrame>
+    )
+  }
+
+  return null
 }

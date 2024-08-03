@@ -3,9 +3,10 @@ import Box from "@mui/material/Box"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 
+import { SearchApiTypes } from "@/api"
+
 import ConditionalResultItemExplanation from "./ResultItemExplanation"
 import ResultItemHeader from "./ResultItemHeader"
-import ConditionalResultItemTranslation from "./ResultItemTranslation"
 
 type ResultItemProps = {
   language: string
@@ -13,16 +14,11 @@ type ResultItemProps = {
   title: string
   link: string
   text: string
-  isPrimaryQuery?: boolean
-  isParallelQuery?: boolean
+  primaryRequest?: SearchApiTypes.RequestBody<"/explanation/">
+  parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
   query?: string
   summary?: string
-  translation?: string
-  xs?: number
-  sm?: number
-  md?: number
-  lg?: number
-  xl?: number
+  size: { xs?: number; sm?: number; md?: number; lg?: number; xl?: number }
 }
 
 export default function ResultItem({
@@ -31,14 +27,12 @@ export default function ResultItem({
   link,
   segmentnr,
   text,
-  translation,
-  isPrimaryQuery,
-  query,
-  summary,
-  ...sizes
+  primaryRequest,
+  parallelRequest,
+  size,
 }: ResultItemProps) {
   return (
-    <Grid item {...sizes}>
+    <Grid item {...size}>
       <Box
         sx={{
           display: "flex",
@@ -54,6 +48,11 @@ export default function ResultItem({
             flexDirection: "column",
             columnGap: 2,
             rowGap: 1,
+            ...(parallelRequest && {
+              border: "1px solid",
+              borderColor: "divider",
+              borderRadius: "8px",
+            }),
           }}
         >
           <ResultItemHeader
@@ -68,13 +67,10 @@ export default function ResultItem({
           </Typography>
         </Box>
 
-        <ConditionalResultItemTranslation translation={translation} />
-
         <ConditionalResultItemExplanation
-          isPrimaryQuery={isPrimaryQuery}
+          primaryRequest={primaryRequest}
+          parallelRequest={parallelRequest}
           segmentnr={segmentnr}
-          query={query}
-          summary={summary}
         />
       </Box>
     </Grid>

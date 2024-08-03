@@ -66,8 +66,11 @@ export interface components {
     Body_summary_endpoint_no_stream_explanation__post: {
       /** Query */
       query: string
-      /** Locale */
-      locale?: string | null
+      /**
+       * Locale
+       * @default en
+       */
+      locale?: string
       /** Summary */
       summary: string
     }
@@ -83,10 +86,11 @@ export interface components {
       src_translation: string
       /** Tgt Translation */
       tgt_translation: string
-      /** Response */
-      response: string
-      /** Locale */
-      locale?: string | null
+      /**
+       * Locale
+       * @default en
+       */
+      locale?: string
     }
     /** Body_summary_endpoint_summary__post */
     Body_summary_endpoint_summary__post: {
@@ -94,8 +98,11 @@ export interface components {
       query: string
       /** Summary */
       summary: string
-      /** Locale */
-      locale?: string | null
+      /**
+       * Locale
+       * @default en
+       */
+      locale?: string
     }
     /**
      * FilterLanguage
@@ -227,8 +234,11 @@ export interface components {
     SummaryRespone: {
       /** Summary */
       summary: string
-      /** Relevance */
-      relevance: string
+      /**
+       * Relevance
+       * @enum {string}
+       */
+      relevance: "low" | "medium" | "high"
     }
     /**
      * TextSegment

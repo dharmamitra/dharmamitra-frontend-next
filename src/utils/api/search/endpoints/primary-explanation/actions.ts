@@ -2,13 +2,12 @@
 
 import { SearchApiTypes } from "@/api"
 import apiClients, { defaultTimeout } from "@/utils/api/client"
-import { getValidRelevance } from "@/utils/validators"
 
 const parseAPIResponse = (
   response: SearchApiTypes.Response<"/explanation/">,
 ) => {
   return {
-    relevance: getValidRelevance(response.relevance),
+    relevance: response.relevance,
     summary: response.summary.split(/\n+/g),
   }
 }

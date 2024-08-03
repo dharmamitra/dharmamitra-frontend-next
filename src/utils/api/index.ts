@@ -3,6 +3,7 @@ import * as GlobalParamTypes from "./global/types"
 import { getCategoryMenuData } from "./search/endpoints/menus/category"
 import { getTextFileMenuData } from "./search/endpoints/menus/files"
 import { getSearchParallelData } from "./search/endpoints/parallel"
+import { getSearchParallelExplanation } from "./search/endpoints/parallel-explanation/actions"
 import { getSearchPrimaryData } from "./search/endpoints/primary"
 import { getSearchPrimaryExplanation } from "./search/endpoints/primary-explanation/actions"
 import * as SearchApiTypes from "./search/types"
@@ -52,6 +53,12 @@ const DMFetchApi = {
       JSON.stringify(body),
     ],
     call: getSearchPrimaryExplanation,
+  },
+  searchParallelExplanation: {
+    makeQueryKey: (
+      body: SearchApiTypes.RequestBody<"/explanation-parallel/">,
+    ) => ["searchParallelExplanation", JSON.stringify(body)],
+    call: getSearchParallelExplanation,
   },
 }
 
