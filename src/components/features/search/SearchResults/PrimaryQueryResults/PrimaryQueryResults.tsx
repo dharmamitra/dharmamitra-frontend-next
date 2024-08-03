@@ -24,7 +24,7 @@ export default function PrimaryQueryResults() {
   const { inputEncoding } = useGlobalParams()
   const { limits, filterLanguage } = useSearchPrimaryParams()
 
-  const requestBody: SearchApiTypes.PrimaryRequestBody = React.useMemo(
+  const requestBody: SearchApiTypes.RequestBody<"/primary/"> = React.useMemo(
     () => ({
       search_input: searchInput || "",
       search_type: searchType || searchTypeDefault,

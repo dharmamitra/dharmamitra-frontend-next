@@ -8,40 +8,30 @@ import type {
 } from "@/utils/api/helpers"
 
 export type Schema = components["schemas"]
-
-// /**
-//  * REQUEST & RESPONSE MODELS
-//  */
-
-export type ParallelRequestBody = APIRequestBody<paths["/parallel/"]["post"]>
-export type ParallelRresponse = APIResponse<paths["/parallel/"]["post"]>
-
-export type PrimaryRequestBody = APIRequestBody<paths["/primary/"]["post"]>
-export type PrimaryRresponse = APIResponse<paths["/primary/"]["post"]>
-
-export type SecondaryRequestBody = APIRequestBody<paths["/secondary/"]["post"]>
-export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
-
-export type PrimaryExplanationRequestBody = APIRequestBody<
-  paths["/explanation/"]["post"]
->
-export type PrimaryExplanationRequestRresponse = APIResponse<
-  paths["/explanation/"]["post"]
->
-
-/**
- *  API ENDPPOINTS & AUXILIARY PARAMS
- */
-
 export type SearchEndpoint = keyof paths
-
 export type SearchEndpointName = SearchEndpoint extends `/${infer Key}/`
   ? Key
   : never
 
 export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all">
 
-// Local only (not set in request body)
+/**
+ * REQUEST & RESPONSE GENERICS
+ */
+
+export type RequestBody<Endpoint extends keyof paths> = APIRequestBody<
+  paths[Endpoint]["post"]
+>
+
+export type Response<Endpoint extends keyof paths> = APIResponse<
+  paths[Endpoint]["post"]
+>
+
+/**
+ *  LOCAL PARAMS
+ *  (not set in request body)
+ *
+ */
 
 // eslint-disable-next-line no-unused-vars
 type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
@@ -57,36 +47,40 @@ export type SearchTargets = Exclude<
 export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
 
 /**
- *  PARAMS
+ *  REQUEST PROPS
  */
 
-export type CommonSearchParams = CommonProperties<
-  [ParallelRequestBody, PrimaryRequestBody, SecondaryRequestBody]
+export type CommonSearchRequestProps = CommonProperties<
+  [
+    RequestBody<"/parallel/">,
+    RequestBody<"/primary/">,
+    RequestBody<"/secondary/">,
+  ]
 >
 
-export type ConstrainedCommonSearchParams = UniqueProperties<
-  [APIGlobalParams, CommonSearchParams]
+export type ConstrainedCommonSearchRequestProps = UniqueProperties<
+  [APIGlobalParams, CommonSearchRequestProps]
 >
 
 export type UniqueParallelParams = UniqueProperties<
-  [CommonSearchParams, ParallelRequestBody]
+  [CommonSearchRequestProps, RequestBody<"/parallel/">]
 >
 
 export type UniquePrimaryParams = UniqueProperties<
-  [CommonSearchParams, PrimaryRequestBody]
+  [CommonSearchRequestProps, RequestBody<"/primary/">]
 >
 
 export type UniqueSecondaryParams = UniqueProperties<
-  [CommonSearchParams, SecondaryRequestBody]
+  [CommonSearchRequestProps, RequestBody<"/secondary/">]
 >
 
-export type AllSearchParams = CommonSearchParams &
+export type AllSearchParams = CommonSearchRequestProps &
   UniqueParallelParams &
   UniquePrimaryParams &
   UniqueSecondaryParams
 
 export type CommonSearchParamNames = {
-  [K in keyof ConstrainedCommonSearchParams]: K
+  [K in keyof ConstrainedCommonSearchRequestProps]: K
 }
 
 type UniqueParallelParamNames = {
@@ -115,17 +109,17 @@ export type LocalParams = {
 
 export type SearchTargetParamDefaults = {
   parallel: Omit<
-    Record<keyof ParallelRequestBody, string | undefined>,
+    Record<keyof RequestBody<"/parallel/">, string | undefined>,
     "search_input"
   > &
     LocalParams
   primary: Omit<
-    Record<keyof PrimaryRequestBody, string | undefined>,
+    Record<keyof RequestBody<"/primary/">, string | undefined>,
     "search_input"
   > &
     LocalParams
   secondary: Omit<
-    Record<keyof SecondaryRequestBody, string | undefined>,
+    Record<keyof RequestBody<"/secondary/">, string | undefined>,
     "search_input"
   > &
     LocalParams

@@ -2,7 +2,7 @@ import { SearchApiTypes } from "@/api"
 import apiClients, { defaultTimeout } from "@/utils/api/client"
 
 export const getSearchPrimaryData = async (
-  body: SearchApiTypes.PrimaryRequestBody,
+  body: SearchApiTypes.RequestBody<"/primary/">,
 ) => {
   if (!body.search_input) {
     throw new Error("Search input string is required")

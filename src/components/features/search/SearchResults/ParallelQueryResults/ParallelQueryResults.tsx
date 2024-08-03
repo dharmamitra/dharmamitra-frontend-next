@@ -28,7 +28,7 @@ export default function ParallelQueryResults() {
   const { sourceLimits, filterSourceLanguage, filterTargetLanguage } =
     useSearchParallelParams()
 
-  const requestBody: SearchApiTypes.ParallelRequestBody = React.useMemo(
+  const requestBody: SearchApiTypes.RequestBody<"/parallel/"> = React.useMemo(
     () => ({
       search_input: searchInput || "",
       search_type: searchType || searchTypeDefault,

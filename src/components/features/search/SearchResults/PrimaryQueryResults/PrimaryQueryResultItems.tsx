@@ -8,7 +8,7 @@ import ResultItem, { ResultItemsFrame } from "../ResultItem"
 export default function PrimarySearchResultItems({
   results,
 }: {
-  results: SearchApiTypes.PrimaryRresponse["results"]
+  results: SearchApiTypes.Response<"/primary/">["results"]
 }) {
   return (
     <Box>

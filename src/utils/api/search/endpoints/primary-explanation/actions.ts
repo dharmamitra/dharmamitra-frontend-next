@@ -17,7 +17,7 @@ const getValidRelevance = (relevance: string) => {
 }
 
 const parseAPIResponse = (
-  response: SearchApiTypes.PrimaryExplanationRequestRresponse,
+  response: SearchApiTypes.Response<"/explanation/">,
 ) => {
   return {
     relevance: getValidRelevance(response.relevance),
@@ -26,7 +26,7 @@ const parseAPIResponse = (
 }
 
 export const getSearchPrimaryExplanation = async (
-  body: SearchApiTypes.PrimaryExplanationRequestBody,
+  body: SearchApiTypes.RequestBody<"/explanation/">,
 ) => {
   const { data, error } = await apiClients.Search.POST("/explanation/", {
     headers: {

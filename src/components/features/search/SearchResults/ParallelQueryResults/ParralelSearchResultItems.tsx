@@ -8,7 +8,7 @@ import ResultItem, { ResultItemsFrame } from "../ResultItem"
 export default function ParralelSearchResultItems({
   results,
 }: {
-  results: SearchApiTypes.ParallelRresponse["results"]
+  results: SearchApiTypes.Response<"/parallel/">["results"]
 }) {
   return (
     <Box>

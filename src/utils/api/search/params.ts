@@ -8,7 +8,7 @@ import { defaultSearchTarget, localParamNames } from "./local"
 import {
   AllSearchParamDefaults,
   AllSearchParams,
-  CommonSearchParams,
+  CommonSearchRequestProps,
   Schema,
   SearchParamNames,
   SearchTarget,
@@ -22,11 +22,11 @@ export type {
   SearchTargetParamDefaults,
 }
 
-export type SearchType = CommonSearchParams["search_type"] &
+export type SearchType = CommonSearchRequestProps["search_type"] &
   keyof Messages["search"]["commonParams"]["searchTypes"]
 
 export const searchTypes: SearchType[] = exhaustiveStringTuple<
-  CommonSearchParams["search_type"]
+  CommonSearchRequestProps["search_type"]
 >()("regular", "semantic")
 export const defaultSearchType = "semantic"
 

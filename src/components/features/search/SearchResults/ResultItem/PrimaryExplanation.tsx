@@ -9,7 +9,7 @@ import LoadingDots from "@/components/LoadingDots"
 
 export type ExplanationProps = {
   isExpanded: boolean
-  request: SearchApiTypes.PrimaryExplanationRequestBody
+  request: SearchApiTypes.RequestBody<"/explanation/">
 }
 
 export default function PrimaryExplanation({

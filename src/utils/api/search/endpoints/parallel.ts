@@ -2,7 +2,7 @@ import { SearchApiTypes } from "@/api"
 import apiClients, { defaultTimeout } from "@/utils/api/client"
 
 export const getSearchParallelData = async (
-  body: SearchApiTypes.ParallelRequestBody,
+  body: SearchApiTypes.RequestBody<"/parallel/">,
 ) => {
   if (!body.search_input) {
     throw new Error("Search input string is required")

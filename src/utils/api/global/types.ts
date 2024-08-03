@@ -17,9 +17,9 @@ export type View = "search" | "translation"
 
 export type APIGlobalParams = CommonProperties<
   [
-    SearchApiTypes.PrimaryRequestBody,
-    SearchApiTypes.ParallelRequestBody,
-    SearchApiTypes.SecondaryRequestBody,
+    SearchApiTypes.RequestBody<"/primary/">,
+    SearchApiTypes.RequestBody<"/secondary/">,
+    SearchApiTypes.RequestBody<"/parallel/">,
     TranslationApiTypes.TranslationRequestBody,
     TranslationApiTypes.TaggingRequestBody,
   ]
