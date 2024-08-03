@@ -22,8 +22,12 @@ export type PrimaryRresponse = APIResponse<paths["/primary/"]["post"]>
 export type SecondaryRequestBody = APIRequestBody<paths["/secondary/"]["post"]>
 export type SecondaryRresponse = APIResponse<paths["/secondary/"]["post"]>
 
-export type SummaryRequestBody = APIRequestBody<paths["/summary/"]["post"]>
-export type SummaryRresponse = APIResponse<paths["/summary/"]["post"]>
+export type PrimaryExplanationRequestBody = APIRequestBody<
+  paths["/explanation/"]["post"]
+>
+export type PrimaryExplanationRequestRresponse = APIResponse<
+  paths["/explanation/"]["post"]
+>
 
 /**
  *  API ENDPPOINTS & AUXILIARY PARAMS
@@ -44,7 +48,10 @@ type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
 
 export type SearchTargets = Exclude<
   SearchEndpointName,
-  ExcludeStreams<SearchEndpointName> | "summary"
+  | ExcludeStreams<SearchEndpointName>
+  | "summary"
+  | "explanation"
+  | "explanation-parallel"
 >
 
 export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]

@@ -14,7 +14,8 @@
     "source": "Source",
     "target": "Target",
     "englishTranslation": "English Translation",
-    "loading": "Loading"
+    "loading": "Loading",
+    "noResult": "No result found."
   },
   "navigation": {
     "home": "首页",
@@ -99,7 +100,13 @@
         "file_include": "Select target texts"
       }
     },
-    "summary": "Summary"
+    "explanation": "Explanation",
+    "relevance": "Relevance",
+    "relevanceTypes": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
   },
   "translation": {
     "translate": "翻译",

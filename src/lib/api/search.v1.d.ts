@@ -20,6 +20,14 @@ export interface paths {
     /** Summary Endpoint */
     post: operations["summary_endpoint_summary__post"]
   }
+  "/explanation/": {
+    /** Summary Endpoint No Stream */
+    post: operations["summary_endpoint_no_stream_explanation__post"]
+  }
+  "/explanation-parallel/": {
+    /** Summary Endpoint Parallel */
+    post: operations["summary_endpoint_parallel_explanation_parallel__post"]
+  }
 }
 
 export type webhooks = Record<string, never>
@@ -54,12 +62,40 @@ export interface components {
       filter_secondary: components["schemas"]["LimitsSecondary"]
       postprocess_model: components["schemas"]["PostProcessModel"]
     }
+    /** Body_summary_endpoint_no_stream_explanation__post */
+    Body_summary_endpoint_no_stream_explanation__post: {
+      /** Query */
+      query: string
+      /** Locale */
+      locale?: string | null
+      /** Summary */
+      summary: string
+    }
+    /** Body_summary_endpoint_parallel_explanation_parallel__post */
+    Body_summary_endpoint_parallel_explanation_parallel__post: {
+      /** Query */
+      query: string
+      /** Src Text */
+      src_text: string
+      /** Tgt Text */
+      tgt_text: string
+      /** Src Translation */
+      src_translation: string
+      /** Tgt Translation */
+      tgt_translation: string
+      /** Response */
+      response: string
+      /** Locale */
+      locale?: string | null
+    }
     /** Body_summary_endpoint_summary__post */
     Body_summary_endpoint_summary__post: {
       /** Query */
       query: string
       /** Summary */
       summary: string
+      /** Locale */
+      locale?: string | null
     }
     /**
      * FilterLanguage
@@ -112,6 +148,8 @@ export interface components {
      * @description A single result from the parallel data search.
      */
     ParallelDataSearchResult: {
+      /** Query */
+      query: string
       /** Src Lang */
       src_lang: string
       /** Src Segmentnr */
@@ -184,6 +222,13 @@ export interface components {
       summary: string
       /** Text */
       text: string
+    }
+    /** SummaryRespone */
+    SummaryRespone: {
+      /** Summary */
+      summary: string
+      /** Relevance */
+      relevance: string
     }
     /**
      * TextSegment
@@ -299,6 +344,50 @@ export interface operations {
       200: {
         content: {
           "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  /** Summary Endpoint No Stream */
+  summary_endpoint_no_stream_explanation__post: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_summary_endpoint_no_stream_explanation__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SummaryRespone"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  /** Summary Endpoint Parallel */
+  summary_endpoint_parallel_explanation_parallel__post: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_summary_endpoint_parallel_explanation_parallel__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SummaryRespone"]
         }
       }
       /** @description Validation Error */

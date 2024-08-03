@@ -21,7 +21,7 @@ export default function PrimarySearchResultItems({
               language={lang}
               link={src_link}
               {...props}
-              hasSummary
+              isPrimaryQuery
             />
           </ResultItemsFrame>
         )

@@ -1,29 +1,30 @@
 import React from "react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 
-import SummaryStream from "./SummaryStream"
+import PrimaryExplanation from "./PrimaryExplanation"
 
 type ResultItemSummaryProps = {
-  isRendered?: boolean
+  isPrimaryQuery?: boolean
   segmentnr: string
   query?: string
   summary?: string
 }
 
 export default function ResultItemSummary({
-  isRendered,
+  isPrimaryQuery,
   segmentnr,
   query,
   summary,
 }: ResultItemSummaryProps) {
   const t = useTranslations("search")
+  const locale = useLocale()
   const [isExpanded, setIsExpanded] = React.useState(false)
 
-  if (!isRendered || !summary || !query) return null
+  if (!isPrimaryQuery || !summary || !query) return null
 
   return (
     <Box
@@ -54,12 +55,15 @@ export default function ResultItemSummary({
             isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />
           }
         >
-          {t("summary")}
+          {t("explanation")}
         </Button>
       </Box>
 
       <Box id={"summary-content" + segmentnr} py={1}>
-        <SummaryStream isExpanded={isExpanded} request={{ query, summary }} />
+        <PrimaryExplanation
+          isExpanded={isExpanded}
+          request={{ query, summary, locale }}
+        />
       </Box>
     </Box>
   )

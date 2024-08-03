@@ -3,9 +3,9 @@ import Box from "@mui/material/Box"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 
+import ConditionalResultItemExplanation from "./ResultItemExplanation"
 import ResultItemHeader from "./ResultItemHeader"
-import ResultItemSummary from "./ResultItemSummary"
-import ResultItemTranslation from "./ResultItemTranslation"
+import ConditionalResultItemTranslation from "./ResultItemTranslation"
 
 type ResultItemProps = {
   language: string
@@ -13,7 +13,8 @@ type ResultItemProps = {
   title: string
   link: string
   text: string
-  hasSummary?: boolean
+  isPrimaryQuery?: boolean
+  isParallelQuery?: boolean
   query?: string
   summary?: string
   translation?: string
@@ -31,8 +32,7 @@ export default function ResultItem({
   segmentnr,
   text,
   translation,
-  hasSummary,
-  // eslint-disable-next-line no-unused-vars
+  isPrimaryQuery,
   query,
   summary,
   ...sizes
@@ -68,13 +68,10 @@ export default function ResultItem({
           </Typography>
         </Box>
 
-        <ResultItemTranslation
-          isRendered={!!translation}
-          translation={translation}
-        />
+        <ConditionalResultItemTranslation translation={translation} />
 
-        <ResultItemSummary
-          isRendered={hasSummary}
+        <ConditionalResultItemExplanation
+          isPrimaryQuery={isPrimaryQuery}
           segmentnr={segmentnr}
           query={query}
           summary={summary}

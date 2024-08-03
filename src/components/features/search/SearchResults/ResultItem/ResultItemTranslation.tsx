@@ -7,14 +7,12 @@ import { cssRenderProps } from "@/components/features/search/SearchResults/Paral
 
 type ResultItemTranslationProps = {
   translation?: string
-  isRendered: boolean
 }
 
 export default function ResultItemTranslation({
   translation,
-  isRendered,
 }: ResultItemTranslationProps) {
-  if (!isRendered || !translation) return null
+  if (!translation) return null
 
   return (
     <Box
