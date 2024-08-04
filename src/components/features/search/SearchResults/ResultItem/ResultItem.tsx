@@ -16,6 +16,7 @@ type ResultItemProps = {
   text: string
   primaryRequest?: SearchApiTypes.RequestBody<"/explanation/">
   parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
+  isParallel?: boolean
   query?: string
   summary?: string
   size: { xs?: number; sm?: number; md?: number; lg?: number; xl?: number }
@@ -29,6 +30,7 @@ export default function ResultItem({
   text,
   primaryRequest,
   parallelRequest,
+  isParallel,
   size,
 }: ResultItemProps) {
   return (
@@ -48,7 +50,7 @@ export default function ResultItem({
             flexDirection: "column",
             columnGap: 2,
             rowGap: 1,
-            ...(parallelRequest && {
+            ...(isParallel && {
               border: "1px solid",
               borderColor: "divider",
               borderRadius: "8px",
@@ -62,7 +64,7 @@ export default function ResultItem({
             segmentnr={segmentnr}
           />
 
-          <Typography sx={{ flexGrow: 1, overflowWrap: "anywhere" }}>
+          <Typography sx={{ flexGrow: 1, overflowWrap: "anywhere", px: 1 }}>
             {text}
           </Typography>
         </Box>

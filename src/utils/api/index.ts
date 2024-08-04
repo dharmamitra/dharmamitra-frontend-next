@@ -11,6 +11,8 @@ import * as streamUtils from "./stream"
 import { getTaggingData } from "./translation/endpoints/tagging"
 import * as TranslationApiTypes from "./translation/types"
 
+const baseSearchApiUrl = process.env.NEXT_PUBLIC_DM_SEARCH_API_BASE_URL
+
 const DMFetchApi = {
   tagging: {
     makeQueryKey: (body: TranslationApiTypes.RequestBody<"/tagging/">) => [
@@ -63,6 +65,7 @@ const DMFetchApi = {
 }
 
 export {
+  baseSearchApiUrl,
   DMFetchApi,
   globalParams,
   GlobalParamTypes,

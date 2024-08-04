@@ -54,6 +54,7 @@ export default function ParralelSearchResultItems({
                 segmentnr={src_segmentnr}
                 link={src_link}
                 text={sourceText}
+                isParallel
               />
               <ResultItem
                 size={{ xs: 12, md: 6 }}
@@ -62,6 +63,7 @@ export default function ParralelSearchResultItems({
                 segmentnr={tgt_segmentnr}
                 link={tgt_link}
                 text={targetText}
+                isParallel
               />
             </ResultItemsFrame>
           </Box>

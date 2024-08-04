@@ -28,6 +28,7 @@
 # misc
 .DS_Store
 *.pem
+quokka.js
 
 # debug
 npm-debug.log*

@@ -6,7 +6,7 @@ import { SxProps } from "@mui/material/styles"
 import { SearchApiTypes } from "@/api"
 
 import ParallelExplanation from "./ParallelExplanation"
-import PrimaryExplanation from "./PrimaryExplanation"
+import PrimaryExplanationStream from "./PrimaryExplanationStream"
 
 type ExplanationFrameProps = {
   setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>
@@ -61,7 +61,10 @@ export default function ResultItemExplanation({
   if (primaryRequest) {
     return (
       <ExplanationFrame setIsExpanded={setIsExpanded} sx={{ pb: 1 }}>
-        <PrimaryExplanation isExpanded={isExpanded} request={primaryRequest} />
+        <PrimaryExplanationStream
+          isExpanded={isExpanded}
+          request={primaryRequest}
+        />
       </ExplanationFrame>
     )
   }
