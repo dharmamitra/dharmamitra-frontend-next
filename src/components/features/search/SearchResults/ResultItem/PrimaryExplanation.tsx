@@ -43,7 +43,7 @@ export default function PrimaryExplanation({
 
   if (isLoading)
     return (
-      <Box pt={1} pb={2}>
+      <Box py={2}>
         <LoadingDots />
       </Box>
     )

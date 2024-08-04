@@ -1,9 +1,7 @@
 import React from "react"
 import { useTranslations } from "next-intl"
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
+import { SxProps } from "@mui/material/styles"
 
 import { SearchApiTypes } from "@/api"
 
@@ -11,57 +9,40 @@ import ParallelExplanation from "./ParallelExplanation"
 import PrimaryExplanation from "./PrimaryExplanation"
 
 type ExplanationFrameProps = {
-  segmentnr: string
-  expandedState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]
+  setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>
   children?: React.ReactNode
   isParallel?: boolean
+  sx?: SxProps
 }
 
 function ExplanationFrame({
-  segmentnr,
-  expandedState,
   children,
-  isParallel,
+  sx,
+  setIsExpanded,
 }: ExplanationFrameProps) {
   const t = useTranslations("search")
-  const [isExpanded, setIsExpanded] = expandedState
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        pb: isParallel ? 0 : 1,
-      }}
+      component="details"
+      mb={2}
+      sx={sx}
+      onToggle={() => setIsExpanded((prev) => !prev)}
     >
       <Box
+        component="summary"
         sx={{
-          display: "flex",
-          flexDirection: "column",
+          color: "grey.600",
+          cursor: "pointer",
+          textTransform: "uppercase",
+          p: 0,
+          mb: 0.75,
+          "&:hover": { color: "grey.800", bgcolor: "transparent" },
         }}
       >
-        <Button
-          variant="text"
-          onClick={() => setIsExpanded(!isExpanded)}
-          aria-expanded={isExpanded}
-          aria-controls={"explanation-content" + segmentnr}
-          sx={{
-            color: "grey.600",
-            p: 0,
-            "&:hover": { color: "grey.800", bgcolor: "transparent" },
-          }}
-          endIcon={
-            isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />
-          }
-        >
-          {t("explanation")}
-        </Button>
+        {t("explanation")}
       </Box>
-
-      <Box id={"explanation-content" + segmentnr} py={1}>
-        {children}
-      </Box>
+      {children}
     </Box>
   )
 }
@@ -69,22 +50,17 @@ function ExplanationFrame({
 export type ResultItemExplanationProps = {
   primaryRequest?: SearchApiTypes.RequestBody<"/explanation/">
   parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
-  segmentnr: string
 }
 
 export default function ResultItemExplanation({
   primaryRequest,
   parallelRequest,
-  segmentnr,
 }: ResultItemExplanationProps) {
   const [isExpanded, setIsExpanded] = React.useState(false)
 
   if (primaryRequest) {
     return (
-      <ExplanationFrame
-        expandedState={[isExpanded, setIsExpanded]}
-        segmentnr={segmentnr}
-      >
+      <ExplanationFrame setIsExpanded={setIsExpanded} sx={{ pb: 1 }}>
         <PrimaryExplanation isExpanded={isExpanded} request={primaryRequest} />
       </ExplanationFrame>
     )
@@ -92,11 +68,7 @@ export default function ResultItemExplanation({
 
   if (parallelRequest) {
     return (
-      <ExplanationFrame
-        expandedState={[isExpanded, setIsExpanded]}
-        segmentnr={segmentnr}
-        isParallel
-      >
+      <ExplanationFrame setIsExpanded={setIsExpanded}>
         <ParallelExplanation
           isExpanded={isExpanded}
           request={parallelRequest}

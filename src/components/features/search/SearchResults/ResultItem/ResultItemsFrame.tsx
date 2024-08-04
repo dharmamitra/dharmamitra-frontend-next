@@ -6,49 +6,33 @@ import { SearchApiTypes } from "@/api"
 
 import ResultItemExplanation from "../ResultItem/ResultItemExplanation"
 
+const frameStyles = {
+  border: "1px solid",
+  borderColor: "divider",
+  borderRadius: "8px",
+  mb: 3,
+}
+
 export default function ResultItemsFrame({
   children,
-  explanationProps,
+  parallelRequest,
 }: {
   children: React.ReactNode
-  explanationProps?: {
-    segmentnr: string
-    parallelRequest: SearchApiTypes.RequestBody<"/explanation-parallel/">
-  }
+  parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
 }) {
-  if (explanationProps) {
-    const { segmentnr, parallelRequest } = explanationProps
-
+  if (parallelRequest) {
     return (
-      <Box
-        sx={{
-          border: "1px solid",
-          borderColor: "divider",
-          borderRadius: "8px",
-          mb: 3,
-        }}
-      >
+      <Box sx={frameStyles}>
         <Grid container>{children}</Grid>
         <Box px={2} mt={3}>
-          <ResultItemExplanation
-            segmentnr={segmentnr}
-            parallelRequest={parallelRequest}
-          />
+          <ResultItemExplanation parallelRequest={parallelRequest} />
         </Box>
       </Box>
     )
   }
 
   return (
-    <Grid
-      container
-      sx={{
-        border: "1px solid",
-        borderColor: "divider",
-        borderRadius: "8px",
-        mb: 3,
-      }}
-    >
+    <Grid container sx={frameStyles}>
       {children}
     </Grid>
   )

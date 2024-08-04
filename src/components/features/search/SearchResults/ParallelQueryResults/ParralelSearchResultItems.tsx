@@ -38,16 +38,13 @@ export default function ParralelSearchResultItems({
         return (
           <Box key={`parallel-result-${index}`}>
             <ResultItemsFrame
-              explanationProps={{
-                segmentnr: src_segmentnr + "-" + tgt_segmentnr + index,
-                parallelRequest: {
-                  query,
-                  src_text: sourceText,
-                  tgt_text: targetText,
-                  src_translation: src_text.translation,
-                  tgt_translation: tgt_text.translation,
-                  locale,
-                },
+              parallelRequest={{
+                query,
+                src_text: sourceText,
+                tgt_text: targetText,
+                src_translation: src_text.translation,
+                tgt_translation: tgt_text.translation,
+                locale,
               }}
             >
               <ResultItem

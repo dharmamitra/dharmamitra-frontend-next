@@ -70,7 +70,6 @@ export default function ResultItem({
         <ConditionalResultItemExplanation
           primaryRequest={primaryRequest}
           parallelRequest={parallelRequest}
-          segmentnr={segmentnr}
         />
       </Box>
     </Grid>
