@@ -1,5 +1,5 @@
 import { cleanSSEData } from "../transformers"
-import { ErrorMessageKey, getValidI18nExceptionKey } from "../validators"
+import { ExceptionMessageKey, getValidI18nExceptionKey } from "../validators"
 
 export const paths = {
   translation: "/next/api/translation-stream",
@@ -21,7 +21,7 @@ const checks = {
 
 type ParsedStream = {
   content: string
-  exceptionI18nKey: ErrorMessageKey | undefined
+  exceptionI18nKey: ExceptionMessageKey | undefined
   parsedStream: string[]
 }
 

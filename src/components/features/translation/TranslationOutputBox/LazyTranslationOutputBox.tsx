@@ -20,7 +20,7 @@ export default function TranslationOutput() {
 
   const errorMessage =
     error && error.errorCode === 504
-      ? t.rich("generic.error.timeout", {
+      ? t.rich("generic.exception.timeout", {
           newline: (chunks) => (
             <span style={{ display: "block" }}>{chunks}</span>
           ),
@@ -32,7 +32,7 @@ export default function TranslationOutput() {
   }
 
   if (exceptionI18nKey && !exceptionI18nKey.includes("Warning")) {
-    return <Error message={t(`generic.error.${exceptionI18nKey}`)} />
+    return <Error message={t(`generic.exception.${exceptionI18nKey}`)} />
   }
 
   if (isLoading) {

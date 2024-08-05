@@ -2,12 +2,6 @@
   "generic": {
     "copy": "Copy",
     "copied": "已复制到剪贴板",
-    "error": {
-      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
-      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
-      "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
-      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
-    },
     "other": "其他",
     "clear": "Clear",
     "stop": "Stop",
@@ -15,7 +9,13 @@
     "target": "Target",
     "englishTranslation": "English Translation",
     "loading": "Loading",
-    "noResult": "No result found."
+    "noResult": "No result found.",
+    "exception": {
+      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
+      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
+      "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
+      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
+    }
   },
   "navigation": {
     "home": "首页",

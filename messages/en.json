@@ -2,7 +2,7 @@
   "generic": {
     "copy": "Copy",
     "copied": "Copied!",
-    "error": {
+    "exception": {
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",

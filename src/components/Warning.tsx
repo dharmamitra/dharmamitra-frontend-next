@@ -6,10 +6,10 @@ import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 
 import { warningBgFactory } from "@/components/styled"
-import { ErrorMessageKey } from "@/utils/validators"
+import { ExceptionMessageKey } from "@/utils/validators"
 
 type WarningProps = {
-  i18nExceptionKey?: ErrorMessageKey
+  i18nExceptionKey?: ExceptionMessageKey
 }
 
 /**
@@ -17,7 +17,7 @@ type WarningProps = {
  *
  */
 export default function Warning({ i18nExceptionKey }: WarningProps) {
-  const t = useTranslations("generic.error")
+  const t = useTranslations("generic.exception")
 
   if (!i18nExceptionKey) return null
 

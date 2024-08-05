@@ -2,7 +2,7 @@ import * as React from "react"
 import { useTranslations } from "next-intl"
 import { SxProps, Typography } from "@mui/material"
 
-import { ErrorMessageKey } from "@/utils/validators"
+import { ExceptionMessageKey } from "@/utils/validators"
 
 type BaseProps = {
   sx?: SxProps
@@ -39,7 +39,7 @@ type MessageProps = {
 
 type I18nKeyProps = {
   message?: never
-  exceptionI18nKey?: ErrorMessageKey
+  exceptionI18nKey?: ExceptionMessageKey
 }
 
 type ExceptionTextProps = BaseProps & (MessageProps | I18nKeyProps)
@@ -55,7 +55,7 @@ export default function ExceptionText({
     return (
       <Message
         type={exceptionI18nKey.includes("Warning") ? "warning" : "error"}
-        message={t(`error.${exceptionI18nKey}`)}
+        message={t(`exception.${exceptionI18nKey}`)}
         {...props}
       />
     )
