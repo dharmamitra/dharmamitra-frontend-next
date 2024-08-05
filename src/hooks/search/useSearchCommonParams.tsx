@@ -1,16 +1,9 @@
 import React from "react"
 
 import useParams from "@/hooks/useParams"
-import {
-  defaultSearchTarget,
-  localParamNames,
-  SearchTarget,
-} from "@/utils/api/search/local"
-import {
-  defaultSearchType,
-  searchParamsNames,
-  SearchType,
-} from "@/utils/api/search/params"
+import { localParamNames } from "@/utils/api/search/local"
+import { searchParamsNames } from "@/utils/api/search/params"
+import { getValidSearchTarget, getValidSearchType } from "@/utils/validators"
 
 const {
   common: { search_input, search_type },
@@ -55,9 +48,9 @@ const useSearchCommonParams = () => {
    * Search Target
    */
 
-  const searchTarget = (getSearchParam(search_target) ??
-    localStorage.getItem(search_target) ??
-    defaultSearchTarget) as SearchTarget
+  const searchTarget = getValidSearchTarget(
+    getSearchParam(search_target) || localStorage.getItem(search_target),
+  )
 
   const setSearchTarget = React.useCallback(
     (value: string | null) => {
@@ -76,9 +69,9 @@ const useSearchCommonParams = () => {
   /**
    * Search Type
    */
-  const searchType = (getSearchParam(search_type) ??
-    localStorage.getItem(search_type) ??
-    defaultSearchType) as SearchType
+  const searchType = getValidSearchType(
+    getSearchParam(search_type) || localStorage.getItem(search_type),
+  )
 
   const setSearchType = React.useCallback(
     (value: string | null) => {
@@ -102,14 +95,11 @@ const useSearchCommonParams = () => {
     const initialSearchType = getSearchParam(search_type)
 
     if (!initialSearchTarget) {
-      const tragetValue =
-        localStorage.getItem(search_target) || defaultSearchTarget
-      setSearchTarget(tragetValue)
+      setSearchTarget(getValidSearchTarget(localStorage.getItem(search_target)))
     }
 
     if (!initialSearchType) {
-      const typeValue = localStorage.getItem(search_type) || defaultSearchType
-      setSearchType(typeValue)
+      setSearchType(getValidSearchType(localStorage.getItem(search_type)))
     }
   }, [getSearchParam, setSearchTarget, setSearchType])
 

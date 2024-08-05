@@ -5,7 +5,7 @@ import { LocalParams, SearchTarget, SearchTargets } from "./types"
 export type { LocalParams, SearchTarget }
 
 export const searchTargets: SearchTarget[] =
-  exhaustiveStringTuple<SearchTargets>()("parallel", "primary", "secondary")
+  exhaustiveStringTuple<SearchTargets>()("primary", "parallel", "secondary")
 export const defaultSearchTarget = "primary"
 export const disabledSearchTargets: SearchTarget[] = ["secondary"]
 

@@ -28,7 +28,7 @@ export type SearchType = CommonSearchRequestProps["search_type"] &
 export const searchTypes: SearchType[] = exhaustiveStringTuple<
   CommonSearchRequestProps["search_type"]
 >()("regular", "semantic")
-export const defaultSearchType = "semantic"
+export const defaultSearchType: SearchType = "semantic"
 
 export type SearchPostProcessModel = Schema["PostProcessModel"]
 
