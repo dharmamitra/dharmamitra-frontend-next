@@ -68,8 +68,8 @@
     },
     "limits": {
       "labels": {
-        "category_include": "Select target categories",
-        "file_include": "Select target texts"
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
       }
     },
     "commonParams": {
@@ -94,8 +94,8 @@
         "all": "All"
       },
       "limitsPrimaryLabels": {
-        "category_include": "Select target categories",
-        "file_include": "Select target texts"
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
       }
     },
     "relevance": "Relevance",

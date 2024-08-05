@@ -9,10 +9,17 @@ import Select, { SelectChangeEvent } from "@mui/material/Select"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchParallelParams from "@/hooks/search/useSearchParallelParams"
 import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
+import useParams from "@/hooks/useParams"
 import {
   defaultSearchFilterLanguage,
   searchFilterLanguages,
+  searchParamsNames,
 } from "@/utils/api/search/params"
+
+const {
+  primary: { limits: limits_param },
+  parallel: { source_limits: source_limits_param },
+} = searchParamsNames
 
 type LanguageSelectProps = {
   label: string
@@ -50,6 +57,8 @@ const LanguageSelect = ({
 }
 
 export default function LanguageFilterSelector() {
+  const t = useTranslations("generic")
+  const { createQueryString, updateParams } = useParams()
   const { searchTarget } = useSearchCommonParams()
   const {
     filterSourceLanguage,
@@ -59,14 +68,42 @@ export default function LanguageFilterSelector() {
   } = useSearchParallelParams()
   const { filterLanguage, setFilterLanguage } = useSearchPrimaryParams()
 
-  const t = useTranslations("generic")
+  const handlePrimaryChange = React.useCallback(
+    (event: SelectChangeEvent) => {
+      setFilterLanguage(event.target.value)
+
+      updateParams(
+        createQueryString({
+          paramName: limits_param,
+          value: null,
+          paramsString: window.location.search,
+        }),
+      )
+    },
+    [createQueryString, updateParams, setFilterLanguage],
+  )
+
+  const handleParallelSourceChange = React.useCallback(
+    (event: SelectChangeEvent) => {
+      setFilterSourceLanguage(event.target.value)
+
+      updateParams(
+        createQueryString({
+          paramName: source_limits_param,
+          value: null,
+          paramsString: window.location.search,
+        }),
+      )
+    },
+    [createQueryString, updateParams, setFilterSourceLanguage],
+  )
 
   if (searchTarget === "primary") {
     return (
       <LanguageSelect
         label={t("source")}
         value={filterLanguage}
-        handleChange={(event) => setFilterLanguage(event.target.value)}
+        handleChange={handlePrimaryChange}
       />
     )
   }
@@ -77,7 +114,7 @@ export default function LanguageFilterSelector() {
         <LanguageSelect
           label={t("source")}
           value={filterSourceLanguage}
-          handleChange={(event) => setFilterSourceLanguage(event.target.value)}
+          handleChange={handleParallelSourceChange}
         />
         <LanguageSelect
           label={t("target")}
