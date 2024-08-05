@@ -64,7 +64,14 @@ export default function ResultItem({
             segmentnr={segmentnr}
           />
 
-          <Typography sx={{ flexGrow: 1, overflowWrap: "anywhere", px: 1 }}>
+          <Typography
+            sx={{
+              flexGrow: 1,
+              fontSize: "1.25rem !important",
+              overflowWrap: "anywhere",
+              px: 1,
+            }}
+          >
             {text}
           </Typography>
         </Box>

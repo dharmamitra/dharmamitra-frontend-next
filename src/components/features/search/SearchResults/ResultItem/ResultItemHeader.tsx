@@ -35,7 +35,7 @@ export default function ResultItemHeader({
         <Typography
           variant="subtitle1"
           p="0"
-          mb={1}
+          // mb={0.5}
           color="grey.800"
           sx={{
             overflowWrap: "anywhere",
@@ -58,6 +58,7 @@ export default function ResultItemHeader({
           target="_blank"
           rel="noreferrer"
           sx={{
+            fontSize: "0.875rem !important",
             "&:hover": { textDecoration: "none" },
           }}
         >

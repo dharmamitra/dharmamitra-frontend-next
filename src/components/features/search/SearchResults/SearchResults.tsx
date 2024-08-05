@@ -20,8 +20,8 @@ export default function SearchResults() {
 
   if (!searchTarget || (searchTarget && !results[searchTarget])) {
     setSearchInput(defaultSearchTarget)
-    return <Box sx={{ pt: 4 }}>{results[defaultSearchTarget]}</Box>
+    return <Box sx={{ pt: 2 }}>{results[defaultSearchTarget]}</Box>
   }
 
-  return <Box sx={{ pt: 4 }}>{results[searchTarget]}</Box>
+  return <Box sx={{ pt: 2 }}>{results[searchTarget]}</Box>
 }
