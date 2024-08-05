@@ -33,7 +33,6 @@ export const defaultSearchType: SearchType = "semantic"
 export type SearchPostProcessModel = Schema["PostProcessModel"]
 
 export const searchPostProcessModels: SearchPostProcessModel[] =
-  // TODO: update tuple typing to enforce parity once `.` key error is addressed
   exhaustiveStringTuple<SearchPostProcessModel>()(
     "llama3",
     "gpt-3.5", // TODO: see if needs to be included in Messages following BE update ( excluded due to `.` key error)

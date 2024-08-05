@@ -12,7 +12,7 @@ import PrimaryQueryResults from "./PrimaryQueryResults"
 const results: Record<SearchTarget, JSX.Element> = {
   parallel: <ParallelQueryResults />,
   primary: <PrimaryQueryResults />,
-  secondary: <div />, // TODO
+  secondary: <div />,
 }
 
 export default function SearchResults() {

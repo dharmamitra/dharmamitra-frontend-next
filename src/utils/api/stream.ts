@@ -19,36 +19,19 @@ const checks = {
   error: new RegExp(String.raw`(^.*?)(↯.*)$`),
 }
 
-// TODO: REPLACE WITH pasrseStream below
-export const warningPattern = new RegExp(
-  String.raw`(^.*?)(${markers.warning}.*)$`,
-)
-export const errorPattern = new RegExp(String.raw`(^.*?)(${markers.error}.*)$`)
-export const pasrseStreamContent = (string: string, regExp: RegExp) => {
-  const cleanedStream = cleanSSEData(string)
-
-  const exceptionCheck = string.match(regExp)
-  const [, streamWihException, exception] = exceptionCheck ?? ["", "", ""]
-
-  return {
-    content: streamWihException || cleanedStream,
-    exceptionI18nKey: getValidI18nExceptionKey(exception),
-  }
-}
-
 type ParsedStream = {
   content: string
   exceptionI18nKey: ErrorMessageKey | undefined
-  pasrsedStream: string[]
+  parsedStream: string[]
 }
 
 const initialParsedStream: ParsedStream = {
   content: "",
   exceptionI18nKey: undefined,
-  pasrsedStream: [],
+  parsedStream: [],
 }
 
-export const pasrseStream = (string: string | undefined) => {
+export const parseStream = (string: string | undefined) => {
   if (!string) return initialParsedStream
 
   const cleanedStream = cleanSSEData(string)
@@ -71,7 +54,7 @@ export const pasrseStream = (string: string | undefined) => {
 
   return {
     ...checkedStream,
-    pasrsedStream: checkedStream.content
+    parsedStream: checkedStream.content
       .split(markers.lineBreak)
       .map((p) => p.trim())
       .filter(Boolean),

@@ -2,19 +2,20 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
+import Typography from "@mui/material/Typography"
 
 import CopyText from "@/components/CopyText"
 import Error from "@/components/Error"
-import FormatedStream from "@/components/FormatedStream"
 import LoadingDots from "@/components/LoadingDots"
+import ConditionalWarning from "@/components/Warning"
 import useTranslationStream from "@/hooks/translation/useTranslationStream"
-import { errorPattern, pasrseStreamContent } from "@/utils/api/stream"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 
 export default function TranslationOutput() {
   const t = useTranslations()
-  const { translationStream, error, isLoading } = useTranslationStream()
+  const { parsedStream, exceptionI18nKey, error, isLoading } =
+    useTranslationStream()
   const outputRef = React.useRef<HTMLDivElement>(null)
 
   const errorMessage =
@@ -26,31 +27,37 @@ export default function TranslationOutput() {
         })
       : undefined
 
-  const { exceptionI18nKey } = pasrseStreamContent(
-    translationStream ?? "",
-    errorPattern,
-  )
-
   if (error) {
     return <Error message={errorMessage} />
   }
 
-  if (exceptionI18nKey) {
+  if (exceptionI18nKey && !exceptionI18nKey.includes("Warning")) {
     return <Error message={t(`generic.error.${exceptionI18nKey}`)} />
+  }
+
+  if (isLoading) {
+    return <LoadingDots sx={{ m: 2 }} />
   }
 
   return (
     <>
-      {isLoading ? <LoadingDots sx={{ m: 2 }} /> : null}
+      <div ref={outputRef}>
+        {parsedStream?.map((paragraph, index) => {
+          return (
+            <Typography
+              key={`translation-stream-${index}`}
+              sx={{
+                whiteSpace: "pre-wrap",
+                my: index === 0 ? 0 : 1,
+              }}
+            >
+              {paragraph}
+            </Typography>
+          )
+        })}
+      </div>
 
-      {translationStream ? (
-        <div ref={outputRef}>
-          <FormatedStream
-            componentId="translation"
-            stream={translationStream}
-          />
-        </div>
-      ) : null}
+      <ConditionalWarning i18nExceptionKey={exceptionI18nKey} />
 
       <BoxBottomElementsRow sx={{ justifyContent: "flex-end" }}>
         <CopyText

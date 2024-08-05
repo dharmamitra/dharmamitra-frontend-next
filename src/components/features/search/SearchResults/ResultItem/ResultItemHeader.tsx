@@ -35,7 +35,6 @@ export default function ResultItemHeader({
         <Typography
           variant="subtitle1"
           p="0"
-          // mb={0.5}
           color="grey.800"
           sx={{
             overflowWrap: "anywhere",

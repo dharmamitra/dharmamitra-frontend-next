@@ -25,7 +25,7 @@ export const getTaggingData = async (
     throw { ...error, queryDuration, response }
   }
 
-  // TODO: This is to remove the possible "unsuccessful analysis" response type which is currently given as a 200 return model option. This should be a 400 return model.
+  // This is to remove the possible "unsuccessful analysis" response type which is part of the 200 return model.
   if (typeof data === "object" && "detail" in data) {
     return { sentences: undefined }
   }

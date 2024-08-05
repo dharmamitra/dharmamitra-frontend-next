@@ -6,6 +6,7 @@ import { streamUtils, TranslationApiTypes } from "@/api"
 import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
 import useAppConfig from "@/hooks/useAppConfig"
 import useGlobalParams from "@/hooks/useGlobalParams"
+import { parseStream } from "@/utils/api/stream"
 import { allTranslationDefaultParams } from "@/utils/api/translation/params"
 import { cleanSSEData } from "@/utils/transformers"
 
@@ -32,7 +33,6 @@ const useTranslationStream = () => {
         input_encoding: inputEncoding || defaultInputEncoding,
         do_grammar_explanation: grammarExplanationDefault,
         target_lang: targetLanguage || defaultTargetLanguage,
-        // TODO: remove model casting once API schema is fixed and/or translation model endpoints are added to API
         model: translationModel || defaultTranslationModel,
       }),
       [translationInput, inputEncoding, targetLanguage, translationModel],
@@ -42,9 +42,7 @@ const useTranslationStream = () => {
     triggerTranslationQueryAtom,
   )
 
-  const [translationStream, setTranslationStream] = React.useState<
-    string | undefined
-  >("")
+  const [stream, setStream] = React.useState<string | undefined>("")
 
   const [isLoading, setIsLoading] = React.useState(false)
   const [isStreaming, setIsStreaming] = React.useState(false)
@@ -65,7 +63,7 @@ const useTranslationStream = () => {
       eventSource.close()
     }
 
-    setTranslationStream("")
+    setStream("")
     setIsLoading(true)
     setIsStreaming(true)
     setError(undefined)
@@ -93,7 +91,7 @@ const useTranslationStream = () => {
       responseReceived = true
 
       setIsLoading(false)
-      setTranslationStream((prev) => prev + cleanSSEData(event.data))
+      setStream((prev) => prev + cleanSSEData(event.data))
     })
 
     newEventSource.addEventListener(
@@ -138,12 +136,8 @@ const useTranslationStream = () => {
   }, [eventSource])
 
   React.useEffect(() => {
-    setTranslationStream("")
-  }, [
-    setTranslationStream,
-    requestBody.input_sentence,
-    requestBody.target_lang,
-  ])
+    setStream("")
+  }, [setStream, requestBody.input_sentence, requestBody.target_lang])
 
   React.useEffect(() => {
     if (triggerTranslationQuery && requestBody.input_sentence) {
@@ -165,7 +159,7 @@ const useTranslationStream = () => {
   }, [abortTranslationQuery, stopStream, setAbortTranslationQuery])
 
   return {
-    translationStream,
+    ...parseStream(stream),
     isLoading,
     isStreaming,
     error,

@@ -3,7 +3,7 @@ import { SSE, SSEvent } from "sse.js"
 
 import { SearchApiTypes, streamUtils } from "@/api"
 import appConfig from "@/config"
-import { pasrseStream } from "@/utils/api/stream"
+import { parseStream } from "@/utils/api/stream"
 import { cleanSSEData } from "@/utils/transformers"
 
 export type SummaryStreamProps = {
@@ -108,5 +108,5 @@ export default function useSearchPrimaryExplanationStream({
     }
   }, [startStream, stopStream, isExpanded, hasTriggered])
 
-  return { ...pasrseStream(stream), isLoading, error }
+  return { ...parseStream(stream), isLoading, error }
 }

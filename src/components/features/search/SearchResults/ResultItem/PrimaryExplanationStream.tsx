@@ -16,7 +16,7 @@ export default function PrimaryExplanationStream({
   isExpanded,
   request,
 }: ExplanationProps) {
-  const { pasrsedStream, isLoading, error, exceptionI18nKey } =
+  const { parsedStream, isLoading, error, exceptionI18nKey } =
     useSearchPrimaryExplanationStream({
       isExpanded,
       request,
@@ -46,7 +46,7 @@ export default function PrimaryExplanationStream({
   return (
     <>
       <Box color="grey.800">
-        {pasrsedStream?.map((paragraph, index) => {
+        {parsedStream?.map((paragraph, index) => {
           return (
             <Typography
               key={`primary-explanation-stream-${index}`}
