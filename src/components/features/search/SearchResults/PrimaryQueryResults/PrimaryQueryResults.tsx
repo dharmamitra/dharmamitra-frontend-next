@@ -4,6 +4,7 @@ import { useAtom } from "jotai"
 
 import { DMFetchApi, SearchApiTypes } from "@/api"
 import { triggerSearchQueryAtom } from "@/atoms"
+import ExceptionText from "@/components/ExceptionText"
 import SkeletonGroup from "@/components/SkeletonGroup"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
@@ -58,7 +59,7 @@ export default function PrimaryQueryResults() {
   }, [data])
 
   if (isError) {
-    return <div>Error: {error.message}</div>
+    return <ExceptionText type="error" message={`Error: ${error.message}`} />
   }
 
   if (isLoading) {
