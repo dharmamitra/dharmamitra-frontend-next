@@ -23,6 +23,7 @@ export default function ShowOptionsSwitch({
     <FormControlLabel
       control={
         <Switch
+          color="secondary"
           checked={isSearchOptionsOpen}
           onChange={handleToggleShowOptions}
         />
