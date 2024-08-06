@@ -1,6 +1,8 @@
 {
     "generic": {
         "copy": "Copy",
+        "copyRef": "Copy reference",
+        "copyAll": "Copy all",
         "copied": "Copied!",
         "exception": {
             "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",

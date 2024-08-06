@@ -75,7 +75,7 @@ export default function useSearchPrimaryExplanationStream({
       setError((prev) =>
         prev
           ? { ...prev, data: err }
-          : { errorCode: 500, message: "unknown", data: err },
+          : { errorCode: 500, message: err.data, data: err },
       )
     }
 

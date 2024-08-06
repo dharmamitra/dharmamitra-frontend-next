@@ -15,7 +15,9 @@
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
       "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
-    }
+    },
+    "copyRef": "Copy reference",
+    "copyAll": "Copy all"
   },
   "navigation": {
     "home": "首頁",

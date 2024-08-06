@@ -1,4 +1,3 @@
-import { cleanSSEData } from "../transformers"
 import { ExceptionMessageKey, getValidI18nExceptionKey } from "../validators"
 
 export const paths = {
@@ -31,19 +30,17 @@ const initialParsedStream: ParsedStream = {
   parsedStream: [],
 }
 
-export const parseStream = (string: string | undefined) => {
-  if (!string) return initialParsedStream
-
-  const cleanedStream = cleanSSEData(string)
+export const parseStream = (stream: string | undefined) => {
+  if (!stream) return initialParsedStream
 
   const checkedStream = Object.entries(checks).reduce<ParsedStream>(
     (acc, [, pattern]) => {
-      const exceptionCheck = string.match(pattern)
+      const exceptionCheck = stream.match(pattern)
       const [, streamWihException, exception] = exceptionCheck ?? ["", "", ""]
 
       return {
         ...acc,
-        content: streamWihException || acc.content || cleanedStream,
+        content: streamWihException || acc.content || stream,
         exceptionI18nKey: getValidI18nExceptionKey(
           exception || acc.exceptionI18nKey,
         ),

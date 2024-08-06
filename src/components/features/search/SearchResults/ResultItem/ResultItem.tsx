@@ -33,8 +33,10 @@ export default function ResultItem({
   isParallel,
   size,
 }: ResultItemProps) {
+  const fullResultContentRef = React.useRef<HTMLDivElement>(null)
+
   return (
-    <Grid item {...size}>
+    <Grid item {...size} ref={fullResultContentRef}>
       <Box
         sx={{
           display: "flex",
@@ -62,6 +64,7 @@ export default function ResultItem({
             title={title}
             link={link}
             segmentnr={segmentnr}
+            fullResultContentRef={fullResultContentRef}
           />
 
           <Typography

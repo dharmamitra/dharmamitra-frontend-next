@@ -1,8 +1,12 @@
+// ResultItemHeader.tsx
 import React from "react"
+import { useTranslations } from "next-intl"
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
 import Typography from "@mui/material/Typography"
 
+import CopyText from "@/components/CopyText"
 import { SourceLanguage } from "@/utils/api/search/types"
 import { sourceLangColors } from "@/utils/constants"
 
@@ -11,6 +15,7 @@ type ResultItemHeaderProps = {
   segmentnr: string
   title: string
   link: string
+  fullResultContentRef: React.RefObject<HTMLDivElement>
 }
 
 export default function ResultItemHeader({
@@ -18,11 +23,16 @@ export default function ResultItemHeader({
   title,
   link,
   segmentnr,
+  fullResultContentRef,
 }: ResultItemHeaderProps) {
+  const t = useTranslations()
+  const headerContentRef = React.useRef<HTMLDivElement>(null)
+
   return (
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column-reverse", sm: "row" },
         justifyContent: "space-between",
         alignItems: "flex-start",
         bgcolor: "grey.200",
@@ -31,9 +41,10 @@ export default function ResultItemHeader({
         borderRadius: "4px",
       }}
     >
-      <div>
+      <div ref={headerContentRef}>
         <Typography
           variant="subtitle1"
+          component="h3"
           p="0"
           color="grey.800"
           sx={{
@@ -57,23 +68,52 @@ export default function ResultItemHeader({
           target="_blank"
           rel="noreferrer"
           sx={{
-            fontSize: "0.875rem !important",
             "&:hover": { textDecoration: "none" },
           }}
         >
           {segmentnr}
         </Typography>
       </div>
-      <Chip
-        label={language}
-        variant="filled"
+      <Box
         sx={{
-          bgcolor: sourceLangColors[language as SourceLanguage],
-          color: "white",
-          fontWeight: 500,
+          display: "flex",
+          flexDirection: { xs: "row-reverse", sm: "row" },
+          alignItems: "center",
         }}
-        size="small"
-      />
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            ml: { xs: 1.5, sm: 0 },
+            mr: { sm: 1.5 },
+          }}
+        >
+          <CopyText
+            contentRef={headerContentRef}
+            tooltip={t("generic.copyRef")}
+            ariaLabel={t("generic.copyRef")}
+            color="action"
+          />
+          <CopyText
+            contentRef={fullResultContentRef}
+            tooltip={t("generic.copyAll")}
+            ariaLabel={t("generic.copyAll")}
+            icon={<FeedOutlinedIcon color="action" />}
+          />
+        </Box>
+
+        <Chip
+          label={language}
+          variant="filled"
+          sx={{
+            bgcolor: sourceLangColors[language as SourceLanguage],
+            color: "white",
+            fontWeight: 500,
+          }}
+          size="small"
+        />
+      </Box>
     </Box>
   )
 }
