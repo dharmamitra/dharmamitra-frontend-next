@@ -1,4 +1,6 @@
 import React from "react"
+import { useTranslations } from "next-intl"
+import { Box, Typography } from "@mui/material"
 import { useQuery } from "@tanstack/react-query"
 import { useAtom } from "jotai"
 
@@ -11,6 +13,7 @@ import useGlobalParams from "@/hooks/useGlobalParams"
 import { allSearchDefaultParams } from "@/utils/api/search/params"
 
 import ResultsHeading from "../ResultsHeading"
+import ParallelCopyList from "./ParallelCopyList"
 import ParralelSearchResultItems from "./ParralelSearchResultItems"
 
 const {
@@ -21,6 +24,7 @@ const {
 } = allSearchDefaultParams
 
 export default function ParallelQueryResults() {
+  const t = useTranslations("generic")
   const { searchInput, searchType } = useSearchCommonParams()
   const { inputEncoding } = useGlobalParams()
   const { sourceLimits, filterSourceLanguage, filterTargetLanguage } =
@@ -81,13 +85,32 @@ export default function ParallelQueryResults() {
     return null
   }
 
+  if (data.length === 0) {
+    return (
+      <>
+        <ResultsHeading />
+        <Typography>{t("noResult")}</Typography>
+      </>
+    )
+  }
+
   return (
-    <div>
-      <ResultsHeading />
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 2,
+          gap: 1,
+        }}
+      >
+        <ResultsHeading results={data.length} />
+        <ParallelCopyList results={data} />
+      </Box>
 
-      {data.length === 0 ? "No results found." : null}
-
+      {/* <ResultsHeading results={data.length} /> */}
       <ParralelSearchResultItems results={data} />
-    </div>
+    </>
   )
 }

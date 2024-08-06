@@ -9,7 +9,7 @@
     "target": "Target",
     "englishTranslation": "English Translation",
     "loading": "Loading",
-    "noResult": "No result found.",
+    "noResult": "No results found.",
     "exception": {
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
@@ -17,7 +17,8 @@
       "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
     },
     "copyRef": "Copy reference",
-    "copyAll": "Copy all"
+    "copyAll": "Copy all",
+    "copyResultsList": "Copy results list"
   },
   "navigation": {
     "home": "首頁",

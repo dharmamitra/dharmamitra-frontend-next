@@ -1,4 +1,7 @@
 import React from "react"
+import { useTranslations } from "next-intl"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 import { useAtom } from "jotai"
 
@@ -12,6 +15,7 @@ import useGlobalParams from "@/hooks/useGlobalParams"
 import { allSearchDefaultParams } from "@/utils/api/search/params"
 
 import ResultsHeading from "../ResultsHeading"
+import PrimaryCopyList from "./PrimaryCopyList"
 import PrimarySearchResultItems from "./PrimaryQueryResultItems"
 
 const {
@@ -21,6 +25,7 @@ const {
 } = allSearchDefaultParams
 
 export default function PrimaryQueryResults() {
+  const t = useTranslations("generic")
   const { searchInput, searchType } = useSearchCommonParams()
   const { inputEncoding } = useGlobalParams()
   const { limits, filterLanguage } = useSearchPrimaryParams()
@@ -70,13 +75,30 @@ export default function PrimaryQueryResults() {
     return null
   }
 
+  if (data.length === 0) {
+    return (
+      <>
+        <ResultsHeading />
+        <Typography>{t("noResult")}</Typography>
+      </>
+    )
+  }
+
   return (
-    <div>
-      <ResultsHeading />
-
-      {data.length === 0 ? "No results found." : null}
-
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 2,
+          gap: 1,
+        }}
+      >
+        <ResultsHeading results={data.length} />
+        <PrimaryCopyList results={data} />
+      </Box>
       <PrimarySearchResultItems results={data} />
-    </div>
+    </>
   )
 }

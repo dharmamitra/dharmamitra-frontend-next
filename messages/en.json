@@ -3,6 +3,7 @@
     "copy": "Copy",
     "copyRef": "Copy reference",
     "copyAll": "Copy all",
+    "copyResultsList": "Copy results list",
     "copied": "Copied!",
     "exception": {
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
@@ -17,7 +18,7 @@
     "target": "Target",
     "loading": "Loading",
     "englishTranslation": "English Translation",
-    "noResult": "No result found."
+    "noResult": "No results found."
   },
   "navigation": {
     "home": "Home",
