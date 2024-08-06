@@ -2,7 +2,7 @@ import React from "react"
 
 import useParams from "@/hooks/useParams"
 import { localParamNames } from "@/utils/api/search/local"
-import { searchParamsNames } from "@/utils/api/search/params"
+import { searchParamsNames, SearchType } from "@/utils/api/search/params"
 import { getValidSearchTarget, getValidSearchType } from "@/utils/validators"
 
 const {
@@ -74,7 +74,7 @@ const useSearchCommonParams = () => {
   )
 
   const setSearchType = React.useCallback(
-    (value: string | null) => {
+    (value: SearchType) => {
       updateParams(
         createQueryString({
           paramName: search_type,

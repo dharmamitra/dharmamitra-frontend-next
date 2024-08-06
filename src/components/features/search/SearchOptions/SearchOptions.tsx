@@ -1,9 +1,9 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
+import SearchPrecisionCheckbox from "./SearchPrecisionCheckbox"
 // import SearchPostProcessModelButtons from "./SearchPostProcessModelButtons"
 import SearchTargetOptions from "./SearchTargetOptions"
-import SearchTypeButtons from "./SearchTypeButtons"
 
 type Props = {
   isOpen: boolean
@@ -33,7 +33,7 @@ export default function SearchOptions({ isOpen }: Props) {
         }}
       >
         {/* TODO: <SearchPostProcessModelButtons /> awaiting BE */}
-        <SearchTypeButtons />
+        <SearchPrecisionCheckbox />
       </Box>
     </Box>
   )

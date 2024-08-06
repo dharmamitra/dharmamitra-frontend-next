@@ -51,6 +51,7 @@
     "resetOptionsLabel": "Use default search options",
     "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
     "parallelEnglishSwitch": "Show English",
+    "precisionLabel": "Exact matches only",
     "explanation": "Explanation",
     "targetTips": {
       "primary": "Search canonical and traditional source texts",
