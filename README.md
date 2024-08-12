@@ -5,6 +5,8 @@ TOC:
 - [🏗️ Workflow](#️-workflow)
   - [Branches](#branches)
   - [Commit messages](#commit-messages)
+    - [Public facing features](#public-facing-features)
+    - [`semantic-release`](#semantic-release)
   - [Development cycle](#development-cycle)
 - [🔧 Environment setup](#-environment-setup)
   - [Env config](#env-config)
@@ -104,6 +106,12 @@ In addition to the Angular converntion:
 
 **wip**: work in progress for a feature or fix
 **content**: content updates (TODO: configure semantic-release for this)
+
+#### Public facing features
+
+(as of v1.2.0) Features specifically for the public facing site can include `(pub)` ahead of the main commit description (eg. `feat: (pub) Japanese, German, French, Italian translation support` )
+
+#### `semantic-release`
 
 `semantic-release` uses commit messages to handle versoning as follows:
 

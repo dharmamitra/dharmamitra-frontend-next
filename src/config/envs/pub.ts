@@ -9,6 +9,10 @@ export const targetLanguages: TargetLanguage[] = [
   "sanskrit-dev",
   "buddhist-chinese",
   "korean",
+  "japanese",
+  "german",
+  "french",
+  "italian",
 ]
 
 export default function createDMConfig() {
