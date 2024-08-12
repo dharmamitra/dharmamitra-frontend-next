@@ -2,6 +2,8 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
+import { styled } from "@mui/material/styles"
+import Tooltip, { tooltipClasses, TooltipProps } from "@mui/material/Tooltip"
 import Typography from "@mui/material/Typography"
 
 import CopyText from "@/components/CopyText"
@@ -11,6 +13,20 @@ import ConditionalWarning from "@/components/Warning"
 import useTranslationStream from "@/hooks/translation/useTranslationStream"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
+
+const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: "30rem",
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.text.primary,
+    border: `1px solid ${theme.palette.grey[500]}`,
+    padding: "1rem",
+    borderRadius: "0.5rem",
+    boxShadow: theme.shadows[2],
+  },
+}))
 
 export default function TranslationOutput() {
   const t = useTranslations()
@@ -59,7 +75,38 @@ export default function TranslationOutput() {
 
       <ConditionalWarning i18nExceptionKey={exceptionI18nKey} />
 
-      <BoxBottomElementsRow sx={{ justifyContent: "flex-end" }}>
+      <BoxBottomElementsRow
+        sx={{
+          justifyContent: "space-between",
+          animation: "fadeIn 0.7s",
+          "@keyframes fadeIn": {
+            "0%": { opacity: 0 },
+            "100%": { opacity: 1 },
+          },
+        }}
+      >
+        {parsedStream.length > 0 ? (
+          <CustomTooltip
+            title={<Typography>{t("translation.disclaimerLong")}</Typography>}
+            arrow
+            placement="top"
+          >
+            <Typography
+              variant="caption"
+              color="grey.800"
+              sx={{
+                mx: { xs: 1, md: 0 },
+                textDecoration: "underline dotted",
+                textUnderlineOffset: "0.2rem",
+                "&:hover": { textDecoration: "none" },
+              }}
+            >
+              {t("translation.disclaimerShort")}
+            </Typography>
+          </CustomTooltip>
+        ) : (
+          <div />
+        )}
         <CopyText
           contentRef={outputRef}
           ariaLabel={t("translation.copyTranslation")}
