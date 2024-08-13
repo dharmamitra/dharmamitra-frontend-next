@@ -168,8 +168,14 @@
       "on": "On",
       "off": "Off"
     },
-    "disclaimerShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
-    "disclaimerLong": "Dharmamitra's machine translations are produced using deep neural networks and as a result are not always correct. Because Dharmamitra's output can contain mistakes, please be careful and verify translations with experts whenever possible. Dharmamitra should never be used as a replacement for high-quality, human translations, and we strongly suggest consulting existing human translations when using our translation engine. Do not spread Dharmamitra output without checking its quality first."
+    "usageNoticeShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
+    "usageNoticeLong": {
+      "p1": "Dharmamitra's machine translations are produced using deep neural networks and as a result are not always accurate. Because Dharmamitra's output can contain mistakes, please be careful and verify translations with experts wherever possible.",
+      "p2": "Dharmamitra should never be used as a replacement for high-quality, human translations, and we strongly suggest consulting existing human translations when using our translation engine.",
+      "p3": "Do not spread Dharmamitra output without checking its quality first."
+    },
+    "usageH2": "Usage",
+    "usageAccept": "Accept"
   },
   "globalParams": {
     "encodingSelectLabel": "轉寫系統",

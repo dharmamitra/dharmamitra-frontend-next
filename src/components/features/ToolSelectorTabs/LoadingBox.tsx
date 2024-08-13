@@ -2,6 +2,8 @@ import React from "react"
 import { Box } from "@mui/material"
 import styled from "@mui/material/styles/styled"
 
+import { minToolBoxHeight } from "./LazyToolSelectorTabs"
+
 const BorderedBox = styled(Box)(({ theme }) => ({
   "@keyframes boarderTrace": {
     "0%": {
@@ -33,7 +35,20 @@ const BorderedBox = styled(Box)(({ theme }) => ({
 }))
 
 const LoadingBox = () => {
-  return <BorderedBox />
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        minHeight: minToolBoxHeight,
+        py: 11,
+        position: "relative",
+      }}
+    >
+      <Box sx={{ maxWidth: "960px", mx: "auto", mt: 9 }}>
+        <BorderedBox />
+      </Box>
+    </Box>
+  )
 }
 
 export default LoadingBox

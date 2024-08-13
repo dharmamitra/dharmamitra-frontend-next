@@ -14,6 +14,8 @@ import useTranslationStream from "@/hooks/translation/useTranslationStream"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 
+const noticeKeys = ["p1", "p2", "p3"] as const
+
 const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
@@ -87,7 +89,11 @@ export default function TranslationOutput() {
       >
         {parsedStream.length > 0 ? (
           <CustomTooltip
-            title={<Typography>{t("translation.disclaimerLong")}</Typography>}
+            title={noticeKeys.map((key) => (
+              <Typography key={`usage-notice-${key}`} mb={2}>
+                {t(`translation.usageNoticeLong.${key}`)}
+              </Typography>
+            ))}
             arrow
             placement="top"
           >
@@ -101,7 +107,7 @@ export default function TranslationOutput() {
                 "&:hover": { textDecoration: "none" },
               }}
             >
-              {t("translation.disclaimerShort")}
+              {t("translation.usageNoticeShort")}
             </Typography>
           </CustomTooltip>
         ) : (

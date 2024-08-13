@@ -2,6 +2,7 @@ import Box from "@mui/material/Box"
 import { grey } from "@mui/material/colors"
 import Grid from "@mui/material/Grid"
 
+import TranslationUsageDialog from "@/components/features/translation/TranslationUsageDialog"
 import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
@@ -18,6 +19,7 @@ export default function TranslationFeature() {
 
   return (
     <>
+      <TranslationUsageDialog />
       <Box
         sx={{
           display: "flex",
