@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import {
   Box,
@@ -9,8 +10,14 @@ import {
   styled,
 } from "@mui/material"
 import { alpha } from "@mui/material/styles"
+import Tooltip, { tooltipClasses, TooltipProps } from "@mui/material/Tooltip"
 
 import customTheming from "@/utils/theme/config"
+
+/**
+ * COMMON COMPONENT STYLES ONLY
+ *
+ */
 
 export const tabsStyles = {
   borderRadius: "50px",
@@ -76,6 +83,18 @@ export const selectedOptionsStyles = {
   textDecorationColor: "currentColor",
 }
 
+export const secondaryOptionsInputStyles = {
+  position: "relative",
+  zIndex: 2,
+  pl: "0 !important",
+  pr: 1,
+}
+
+/**
+ * STYLED COMPONENTS
+ *
+ */
+
 export const CustomFormControlLabel = styled(FormControlLabel)(
   ({ theme, checked }) => ({
     // paddingInline: theme.spacing(1),
@@ -86,13 +105,6 @@ export const CustomFormControlLabel = styled(FormControlLabel)(
   }),
 )
 
-export const secondaryOptionsInputStyles = {
-  position: "relative",
-  zIndex: 2,
-  pl: "0 !important",
-  pr: 1,
-}
-
 export const SecondaryOptionsButtonIcon = styled(KeyboardArrowDownIcon)({
   position: "absolute",
   right: 0,
@@ -101,7 +113,7 @@ export const SecondaryOptionsButtonIcon = styled(KeyboardArrowDownIcon)({
 
 export const Popper = styled(MuiPopper)(({ theme }) => ({
   zIndex: theme.zIndex.tooltip,
-  height: "32px",
+  height: "2rem",
 }))
 
 export const PopperMsgBox = styled(Box)(({ theme }) => ({
@@ -109,4 +121,32 @@ export const PopperMsgBox = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1, 2),
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
+}))
+
+export const PopperWithRef = styled(
+  React.forwardRef<HTMLDivElement, TooltipProps>(function PopperWithRef(
+    { className, PopperProps, ...props },
+    ref,
+  ) {
+    return (
+      <Tooltip
+        {...props}
+        classes={{ popper: className }}
+        PopperProps={{
+          ...PopperProps,
+          ref,
+        }}
+      />
+    )
+  }),
+)(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: "30rem",
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.text.primary,
+    border: `1px solid ${theme.palette.grey[500]}`,
+    padding: "1rem",
+    borderRadius: "0.5rem",
+    boxShadow: theme.shadows[2],
+  },
 }))

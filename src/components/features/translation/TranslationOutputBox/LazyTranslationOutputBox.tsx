@@ -2,33 +2,41 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import { styled } from "@mui/material/styles"
-import Tooltip, { tooltipClasses, TooltipProps } from "@mui/material/Tooltip"
+import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 
 import CopyText from "@/components/CopyText"
 import Error from "@/components/Error"
 import LoadingDots from "@/components/LoadingDots"
+import { PopperWithRef } from "@/components/styled"
 import ConditionalWarning from "@/components/Warning"
 import useTranslationStream from "@/hooks/translation/useTranslationStream"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 
+const noticeButtonId = "usage-notice-button"
 const noticeKeys = ["p1", "p2", "p3"] as const
 
-const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    maxWidth: "30rem",
-    backgroundColor: theme.palette.common.white,
-    color: theme.palette.text.primary,
-    border: `1px solid ${theme.palette.grey[500]}`,
-    padding: "1rem",
-    borderRadius: "0.5rem",
-    boxShadow: theme.shadows[2],
+const styles = {
+  bottomRow: {
+    justifyContent: "space-between",
+    animation: "fadeIn 0.7s",
+    "@keyframes fadeIn": {
+      "0%": { opacity: 0 },
+      "100%": { opacity: 1 },
+    },
   },
-}))
+  noticeButton: {
+    fontSize: "0.9rem",
+    color: "grey.800",
+    mx: { xs: 1, md: 0 },
+    textAlign: "left",
+    textTransform: "none",
+    textDecoration: "underline dotted",
+    textUnderlineOffset: "0.2rem",
+    "&:hover": { textDecoration: "none" },
+  },
+}
 
 export default function TranslationOutput() {
   const t = useTranslations()
@@ -36,14 +44,36 @@ export default function TranslationOutput() {
     useTranslationStream()
   const outputRef = React.useRef<HTMLDivElement>(null)
 
-  const errorMessage =
-    error && error.errorCode === 504
+  const errorMessage = React.useMemo(() => {
+    return error && error.errorCode === 504
       ? t.rich("generic.exception.timeout", {
           newline: (chunks) => (
             <span style={{ display: "block" }}>{chunks}</span>
           ),
         })
       : undefined
+  }, [t, error])
+
+  const tooltipRef = React.useRef<HTMLDivElement>(null)
+  const [isUsageNoticeOpen, setIsUsageNoticeOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!isUsageNoticeOpen) return
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        tooltipRef.current &&
+        !tooltipRef.current.contains(event.target as Node) &&
+        !(event.target instanceof HTMLButtonElement)
+      ) {
+        setIsUsageNoticeOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isUsageNoticeOpen, setIsUsageNoticeOpen, tooltipRef])
 
   if (error) {
     return <Error message={errorMessage} />
@@ -77,18 +107,10 @@ export default function TranslationOutput() {
 
       <ConditionalWarning i18nExceptionKey={exceptionI18nKey} />
 
-      <BoxBottomElementsRow
-        sx={{
-          justifyContent: "space-between",
-          animation: "fadeIn 0.7s",
-          "@keyframes fadeIn": {
-            "0%": { opacity: 0 },
-            "100%": { opacity: 1 },
-          },
-        }}
-      >
+      <BoxBottomElementsRow sx={styles.bottomRow}>
         {parsedStream.length > 0 ? (
-          <CustomTooltip
+          <PopperWithRef
+            ref={tooltipRef}
             title={noticeKeys.map((key) => (
               <Typography key={`usage-notice-${key}`} mb={2}>
                 {t(`translation.usageNoticeLong.${key}`)}
@@ -96,20 +118,18 @@ export default function TranslationOutput() {
             ))}
             arrow
             placement="top"
+            open={isUsageNoticeOpen}
           >
-            <Typography
-              variant="caption"
-              color="grey.800"
-              sx={{
-                mx: { xs: 1, md: 0 },
-                textDecoration: "underline dotted",
-                textUnderlineOffset: "0.2rem",
-                "&:hover": { textDecoration: "none" },
-              }}
+            <Button
+              id={noticeButtonId}
+              variant="text"
+              size="small"
+              sx={styles.noticeButton}
+              onClick={() => setIsUsageNoticeOpen(!isUsageNoticeOpen)}
             >
               {t("translation.usageNoticeShort")}
-            </Typography>
-          </CustomTooltip>
+            </Button>
+          </PopperWithRef>
         ) : (
           <div />
         )}
