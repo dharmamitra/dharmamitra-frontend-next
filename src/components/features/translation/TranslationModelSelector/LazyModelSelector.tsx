@@ -1,21 +1,40 @@
 "use client"
 
 import React from "react"
-import { useTranslations } from "next-intl"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 import useMediaQuery from "@mui/material/useMediaQuery"
+import { useQuery } from "@tanstack/react-query"
 
+import { DMFetchApi } from "@/api"
+import ExceptionText from "@/components/ExceptionText"
 import useTranslationEndpointParams from "@/hooks/translation/useTranslationEndpointParams"
-import { translationModels } from "@/utils/api/translation/params"
+
+const excludedModels = /(NO)/
 
 export default function LazyModelSelector() {
-  const t = useTranslations("translation")
+  const { data, isError, error } = useQuery({
+    queryKey: DMFetchApi.translationModels.makeQueryKey(),
+    queryFn: () => {
+      return DMFetchApi.translationModels.call()
+    },
+  })
+  const models = React.useMemo(() => {
+    if (!data) return []
+
+    return data?.filter((model) => model && !excludedModels.test(model))
+  }, [data])
 
   const { translationModel, setTranslationModel } =
     useTranslationEndpointParams()
 
   const isGrid = useMediaQuery("(max-width: 810px)")
+
+  if (isError) {
+    return (
+      <ExceptionText message={`Problem loading models: ${error?.message}`} />
+    )
+  }
 
   return (
     <ToggleButtonGroup
@@ -34,7 +53,7 @@ export default function LazyModelSelector() {
       onChange={(event, value) => value && setTranslationModel(value)}
       aria-label="Model"
     >
-      {translationModels.map((model) => (
+      {models?.map((model) => (
         <ToggleButton
           key={model + "-model-option-loader"}
           value={model}
@@ -50,7 +69,7 @@ export default function LazyModelSelector() {
               : {}),
           }}
         >
-          {t(`models.${model}`)}
+          {model}
         </ToggleButton>
       ))}
     </ToggleButtonGroup>

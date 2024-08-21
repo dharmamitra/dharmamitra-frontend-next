@@ -4,10 +4,6 @@
  */
 
 export interface paths {
-  "/translation/": {
-    /** Translation */
-    post: operations["translation_translation__post"]
-  }
   "/translation-fgs/": {
     /** Translation */
     post: operations["translation_translation_fgs__post"]
@@ -20,9 +16,17 @@ export interface paths {
     /** Translation */
     post: operations["translation_translation_exp__post"]
   }
+  "/translation/": {
+    /** Translation */
+    post: operations["translation_translation__post"]
+  }
   "/tagging/": {
     /** Tagging */
     post: operations["tagging_tagging__post"]
+  }
+  "/available-models/": {
+    /** Get Available Models */
+    get: operations["get_available_models_available_models__get"]
   }
 }
 
@@ -30,6 +34,11 @@ export type webhooks = Record<string, never>
 
 export interface components {
   schemas: {
+    /** AvailableModelsResponse */
+    AvailableModelsResponse: {
+      /** Models */
+      models: components["schemas"]["TranslationModel"][]
+    }
     /** Body_tagging_tagging__post */
     Body_tagging_tagging__post: {
       /** Input Sentence */
@@ -51,9 +60,9 @@ export interface components {
       /** Input Sentence */
       input_sentence: string
       input_encoding: components["schemas"]["InputEncoding"]
-      /** Level Of Explanation */
-      level_of_explanation: number
-      target_lang: components["schemas"]["TargetLanguage"]
+      /** Do Grammar Explanation */
+      do_grammar_explanation: boolean
+      target_lang: components["schemas"]["TargetLanguageExperimental"]
       model: components["schemas"]["TranslationModel"]
     }
     /** Body_translation_translation_exp__post */
@@ -129,12 +138,17 @@ export interface components {
       | "sanskrit-dev"
       | "buddhist-chinese"
       | "korean"
+      | "japanese"
+      | "german"
+      | "french"
+      | "italian"
     /**
      * TargetLanguageExperimental
      * @enum {string}
      */
     TargetLanguageExperimental:
       | "english"
+      | "english-explained"
       | "tibetan"
       | "sanskrit"
       | "sanskrit-dev"
@@ -159,6 +173,7 @@ export interface components {
     TranslationModel:
       | "NO"
       | ""
+      | "default"
       | "madlad"
       | "madlad2"
       | "llama3"
@@ -186,28 +201,6 @@ export type $defs = Record<string, never>
 export type external = Record<string, never>
 
 export interface operations {
-  /** Translation */
-  translation_translation__post: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["Body_translation_translation__post"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        content: {
-          "application/json": unknown
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
   /** Translation */
   translation_translation_fgs__post: {
     requestBody: {
@@ -274,6 +267,28 @@ export interface operations {
       }
     }
   }
+  /** Translation */
+  translation_translation__post: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_translation_translation__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   /** Tagging */
   tagging_tagging__post: {
     requestBody: {
@@ -294,6 +309,17 @@ export interface operations {
       422: {
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  /** Get Available Models */
+  get_available_models_available_models__get: {
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AvailableModelsResponse"]
         }
       }
     }

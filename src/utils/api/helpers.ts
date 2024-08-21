@@ -1,5 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+type HasPostMethod<T> = T extends { post: any } ? true : false
+
+export type FilterPostEndpoints<T> = {
+  [K in keyof T]: HasPostMethod<T[K]> extends true ? K : never
+}[keyof T]
+
+export type FilterGetEndpoints<T> = {
+  [K in keyof T]: HasPostMethod<T[K]> extends false ? K : never
+}[keyof T]
+
 export type APIRequestBody<operation> = "requestBody" extends keyof operation
   ? "content" extends keyof operation["requestBody"]
     ? "application/json" extends keyof operation["requestBody"]["content"]

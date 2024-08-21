@@ -6,7 +6,6 @@ import useParams from "@/hooks/useParams"
 import {
   allTranslationDefaultParams,
   TargetLanguage,
-  TranslationModel,
   translationParamsNames,
 } from "@/utils/api/translation/params"
 import { getValidDefaultValue } from "@/utils/validators"
@@ -61,7 +60,7 @@ const useTranslationEndpointParams = () => {
    * Translation model
    */
 
-  const translationModel = getSearchParam(model) as TranslationModel
+  const translationModel = getSearchParam(model)
 
   const setTranslationModel = React.useCallback(
     (value: string | null) => {

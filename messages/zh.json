@@ -152,7 +152,8 @@
       "italian": "Italian",
       "spanish": "Spanish",
       "portuguese": "Portuguese",
-      "dutch": "Dutch"
+      "dutch": "Dutch",
+      "english-explained": "English (explained)"
     },
     "models": {
       "NO": "No model",

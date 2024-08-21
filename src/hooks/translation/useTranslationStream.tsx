@@ -26,14 +26,20 @@ const useTranslationStream = () => {
   const { translationModel, targetLanguage } = useTranslationEndpointParams()
   const { inputEncoding } = useGlobalParams()
 
-  const requestBody: TranslationApiTypes.RequestBody<"/translation-exp/"> =
+  const requestBody: TranslationApiTypes.RequestBody<"/translation/"> =
     React.useMemo(
       () => ({
         input_sentence: translationInput || "",
         input_encoding: inputEncoding || defaultInputEncoding,
         do_grammar_explanation: grammarExplanationDefault,
         target_lang: targetLanguage || defaultTargetLanguage,
-        model: translationModel || defaultTranslationModel,
+        // TODO: As models are updated on the backend frequently,
+        // the model param has been made flexible using the
+        // model endpoint. As a consequence the accepted value type
+        // needs to be updated to `string` on tke backend. For now
+        // this needs to be cast.
+        model: (translationModel ||
+          defaultTranslationModel) as TranslationApiTypes.Schema["TranslationModel"],
       }),
       [translationInput, inputEncoding, targetLanguage, translationModel],
     )

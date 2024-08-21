@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 
 import { TranslationEndpoint } from "@/utils/api/translation/types"
 
-const translationEndpoint: TranslationEndpoint = "/translation-exp/"
+const translationEndpoint: TranslationEndpoint = "/translation/"
 
 export const dynamic = "force-dynamic"
 

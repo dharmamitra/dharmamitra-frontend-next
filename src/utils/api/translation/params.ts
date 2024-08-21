@@ -6,36 +6,13 @@ import { exhaustiveStringTuple } from "@/utils/typescript"
 
 import { Schema, TranslationParamNames } from "./types"
 
-type TEMPORARYLabTestingModels =
-  | "NO"
-  | "madlad"
-  | "madlad2"
-  | "llama3"
-  | "llama3-fgs"
-  | "gemma2"
-
-// export type TranslationModel = TranslationApiTypes.Schema["TranslationModel"] &
-//   keyof Messages["translation"]["models"]
-export type TranslationModel = TEMPORARYLabTestingModels &
-  keyof Messages["translation"]["models"]
-export const translationModels: TranslationModel[] =
-  exhaustiveStringTuple<TEMPORARYLabTestingModels>()(
-    "NO",
-    "madlad",
-    "madlad2",
-    "llama3",
-    "llama3-fgs",
-    "gemma2",
-  )
-
-export const defaultTranslationModel: TranslationModel = "llama3"
-
 export type TargetLanguage = Schema["TargetLanguageExperimental"] &
   keyof Messages["translation"]["targetLanguages"]
 export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
   Schema["TargetLanguageExperimental"]
 >()(
   "english",
+  "english-explained",
   "tibetan",
   "sanskrit",
   "sanskrit-dev",
@@ -75,6 +52,11 @@ export const translationParamsNames: TranslationParamNames = {
     human_readable_tags: "human_readable_tags",
   },
 }
+
+export const defaultTranslationModel: Extract<
+  Schema["TranslationModel"],
+  "default"
+> = "default"
 
 export const allTranslationDefaultParams = {
   input_encoding: defaultInputEncoding,
