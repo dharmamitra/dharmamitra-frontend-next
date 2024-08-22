@@ -2,12 +2,13 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import { Box, Button, Typography } from "@mui/material"
+import { Button } from "@mui/material"
 
 import { localStorageKeys } from "@/utils/constants"
 
+import UsageDialogContent from "./UsageDialogContent"
+
 const dialogId = "translation-usage-dialog"
-const noticeKeys = ["p1", "p2", "p3"] as const
 
 export default function LazyUsageDialog() {
   const t = useTranslations("translation")
@@ -45,17 +46,11 @@ export default function LazyUsageDialog() {
         maxWidth: "40rem",
       }}
     >
-      <h2>{t("usageH2")}</h2>
-      <Box>
-        {noticeKeys.map((key) => (
-          <Typography key={`usage-notice-${key}`} mb={2}>
-            {t(`usageNoticeLong.${key}`)}
-          </Typography>
-        ))}
-      </Box>
+      <UsageDialogContent />
+
       <Button
         variant="contained"
-        sx={{ alignSelf: "flex-end" }}
+        sx={{ alignSelf: "flex-end", mt: 3 }}
         onClick={closeDialog}
       >
         {t("usageAccept")}

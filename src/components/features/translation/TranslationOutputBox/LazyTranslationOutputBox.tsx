@@ -2,6 +2,7 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
+import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 
@@ -13,9 +14,9 @@ import ConditionalWarning from "@/components/Warning"
 import useTranslationStream from "@/hooks/translation/useTranslationStream"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
+import UsageDialogContent from "../TranslationUsageDialog/UsageDialogContent"
 
 const noticeButtonId = "usage-notice-button"
-const noticeKeys = ["p1", "p2", "p3"] as const
 
 const styles = {
   bottomRow: {
@@ -34,7 +35,7 @@ const styles = {
     textTransform: "none",
     textDecoration: "underline dotted",
     textUnderlineOffset: "0.2rem",
-    "&:hover": { textDecoration: "none" },
+    "&:hover": { textDecoration: "none", backgroundColor: "transparent" },
   },
 }
 
@@ -88,34 +89,38 @@ export default function TranslationOutput() {
   }
 
   return (
-    <>
-      <div ref={outputRef}>
-        {parsedStream?.map((paragraph, index) => {
-          return (
-            <Typography
-              key={`translation-stream-${index}`}
-              sx={{
-                whiteSpace: "pre-wrap",
-                my: index === 0 ? 0 : 1,
-              }}
-            >
-              {paragraph}
-            </Typography>
-          )
-        })}
-      </div>
+    <Box
+      sx={{
+        display: "grid",
+        minHeight: "100%",
+        gridTemplateRows: "1fr auto",
+      }}
+    >
+      <Box>
+        <div ref={outputRef}>
+          {parsedStream?.map((paragraph, index) => {
+            return (
+              <Typography
+                key={`translation-stream-${index}`}
+                sx={{
+                  whiteSpace: "pre-wrap",
+                  my: index === 0 ? 0 : 1,
+                }}
+              >
+                {paragraph}
+              </Typography>
+            )
+          })}
+        </div>
 
-      <ConditionalWarning i18nExceptionKey={exceptionI18nKey} />
+        <ConditionalWarning i18nExceptionKey={exceptionI18nKey} />
+      </Box>
 
       <BoxBottomElementsRow sx={styles.bottomRow}>
         {parsedStream.length > 0 ? (
           <PopperWithRef
             ref={tooltipRef}
-            title={noticeKeys.map((key) => (
-              <Typography key={`usage-notice-${key}`} mb={2}>
-                {t(`translation.usageNoticeLong.${key}`)}
-              </Typography>
-            ))}
+            title={<UsageDialogContent dense />}
             arrow
             placement="top"
             open={isUsageNoticeOpen}
@@ -138,6 +143,6 @@ export default function TranslationOutput() {
           ariaLabel={t("translation.copyTranslation")}
         />
       </BoxBottomElementsRow>
-    </>
+    </Box>
   )
 }

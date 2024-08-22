@@ -9,12 +9,7 @@ def deep_update(current, model_update):
     """
     keys_to_remove = [key for key in current if key not in model_update]
     for key in keys_to_remove:
-        if isinstance(current[key], dict):
-            del current[key]
-        else:
-            print(
-                f"Skipping deletion of key '{key}' because current[key] is not a dict: {current[key]}"
-            )
+        del current[key]
 
     for key, value in model_update.items():
         if isinstance(value, dict):

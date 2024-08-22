@@ -16,6 +16,7 @@ export default function TranslationOutputBox() {
       sx={{
         backgroundColor: customTheming.palette.panel,
         p: 2,
+        pb: 1,
         borderBottomLeftRadius: { xs: customTheming.shape.inputRadius, md: 0 },
         borderBottomRightRadius: customTheming.shape.inputRadius,
       }}

@@ -2,6 +2,7 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
+import Box from "@mui/material/Box"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { useTheme } from "@mui/material/styles"
 
@@ -18,7 +19,13 @@ export default function TranslationInputField() {
   const theme = useTheme()
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "grid",
+        minHeight: "100%",
+        gridTemplateRows: "1fr auto",
+      }}
+    >
       <OutlinedInput
         sx={{
           width: "100%",
@@ -45,7 +52,9 @@ export default function TranslationInputField() {
         onChange={(e) => setTranslationInput(e)}
       />
 
-      <BoxBottomElementsRow sx={{ justifyContent: "space-between" }}>
+      <BoxBottomElementsRow
+        sx={{ justifyContent: "space-between", pb: 1, px: 1 }}
+      >
         <ClearButton
           value={translationInput}
           handleValueChange={setTranslationInput}
@@ -53,6 +62,6 @@ export default function TranslationInputField() {
 
         <StartStopButton />
       </BoxBottomElementsRow>
-    </>
+    </Box>
   )
 }

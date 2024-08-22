@@ -128,9 +128,13 @@
         "usageAccept": "Accept",
         "usageNoticeShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
         "usageNoticeLong": {
-            "p1": "Dharmamitra's machine translations are produced using deep neural networks and as a result are not always accurate. Because Dharmamitra's output can contain mistakes, please be careful and verify translations with experts wherever possible.",
-            "p2": "Dharmamitra should never be used as a replacement for high-quality, human translations, and we strongly suggest consulting existing human translations when using our translation engine.",
-            "p3": "Do not spread Dharmamitra output without checking its quality first."
+            "p1": "Dharmamitra leverages cutting-edge deep neural networks to efficiently provide machine translations. We are working hard to provide the best possible quality. While our technology continues to advance and our services are frequently updated, please keep in mind:",
+            "ul": {
+                "1": "Dharmamitra is a tool to help understand classical Asian texts preserved in different languages",
+                "2": "When in doubt, we recommend consulting with language experts, or referring to established human translations.",
+                "3": "We encourage users to review and verify Dharmamitra's output before sharing it."
+            },
+            "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services."
         },
         "tagging": {
             "label": "Grammar",
