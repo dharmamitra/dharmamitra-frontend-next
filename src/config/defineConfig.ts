@@ -19,6 +19,7 @@ export const defaultSubPages: Page[] = ["about", "team"]
 
 export const appConfigSchema = z.object({
   env: z.enum(SUPPORTED_ENVS),
+  storageId: z.string().default("1"),
   isClient: z.boolean().default(false),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),

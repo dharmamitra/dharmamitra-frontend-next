@@ -5,6 +5,7 @@ import visuallyHidden from "@mui/utils/visuallyHidden"
 
 import ToolSelectorTabs from "@/components/features/ToolSelectorTabs/ToolSelectorTabs"
 import PageShell from "@/components/layout/PageShell"
+import StorageCheck from "@/components/StorageCheck"
 import TranslationFeature from "@/features/translation"
 import useAppConfig from "@/hooks/useAppConfig"
 import {
@@ -34,6 +35,7 @@ export default function HomePage({
   if (search === true) {
     return (
       <NextIntlClientProvider messages={translationMessages}>
+        <StorageCheck />
         <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
           <Typography component="h1" sx={visuallyHidden}>
             Dharmamitra
@@ -46,6 +48,7 @@ export default function HomePage({
 
   return (
     <NextIntlClientProvider messages={translationMessages}>
+      <StorageCheck />
       <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
         <Typography
           variant="h4"
