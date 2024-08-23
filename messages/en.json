@@ -1,15 +1,24 @@
 {
   "generic": {
     "copy": "Copy",
+    "copyRef": "Copy reference",
+    "copyAll": "Copy all",
+    "copyResultsList": "Copy results list",
     "copied": "Copied!",
-    "error": {
+    "exception": {
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
       "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
     },
+    "other": "Other",
     "clear": "Clear",
-    "stop": "Stop"
+    "stop": "Stop",
+    "source": "Source",
+    "target": "Target",
+    "loading": "Loading",
+    "englishTranslation": "English Translation",
+    "noResult": "No results found."
   },
   "navigation": {
     "home": "Home",
@@ -36,7 +45,69 @@
   },
   "search": {
     "search": "Search",
-    "heading": "Search 2500 years of Buddhism"
+    "results": "Search results",
+    "heading": "Search 2500 years of Buddhism",
+    "placeholder": "Enter a search term.",
+    "optionsSwitchLabel": "Show options",
+    "resetOptionsLabel": "Use default search options",
+    "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
+    "parallelEnglishSwitch": "Show English",
+    "precisionLabel": "Exact matches only",
+    "explanation": "Explanation",
+    "targetTips": {
+      "primary": "Search canonical and traditional source texts",
+      "secondary": "Search modern commentarial literature",
+      "parallel": "Search cross-tradition text parallel compiled dataset"
+    },
+    "targets": {
+      "primary": "Traditional",
+      "secondary": "Modern",
+      "parallel": "Parallels"
+    },
+    "parallelLanguages": {
+      "tib-chn": "Tibetan-Chinese",
+      "tib-eng": "Tibetan-English",
+      "san-eng": "Sanskrit-English",
+      "san-tib": "Sanskrit-Tibetan"
+    },
+    "limits": {
+      "labels": {
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
+      }
+    },
+    "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "Select source categories",
+        "sourceTextLimit": "Select source texts"
+      },
+      "inputEncodings": {
+        "auto": "Autodetect",
+        "tibetan": "Tibetan",
+        "wylie": "Wylie",
+        "dev": "Devanagari",
+        "iast": "IAST Roman",
+        "hk": "Harvard-Kyoto"
+      },
+      "searchTypes": { "regular": "Regular", "semantic": "Semantic" },
+      "filterLanguages": {
+        "tib": "Tibetan",
+        "skt": "Sanskrit",
+        "chn": "Buddhist Chinese",
+        "pli": "Pali",
+        "all": "All"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
+      }
+    },
+    "relevance": "Relevance",
+    "relevanceTypes": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
   },
   "translation": {
     "translate": "Translate",
@@ -44,15 +115,24 @@
     "inputAriaLabel": "Translation input field",
     "placeholder": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
     "otherLabel": "Other",
-    "encodingSelectLabel": "Transliteration",
-    "primaryEncodingsAriaLabel": "Primary encoding options",
-    "otherEncodingsAriaLabel": "Other encoding options",
     "targetLanguageSelectLabel": "Output language",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
     "secondaryTargetLanguagesAriaLabel": "Other traget language options",
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
     "copyTranslation": "Copy translation",
+    "usageH2": "Usage",
+    "usageAccept": "Accept",
+    "usageNoticeShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
+    "usageNoticeLong": {
+      "p1": "Dharmamitra leverages cutting-edge deep neural networks to efficiently provide machine translations. We are working hard to provide the best possible quality. While our technology continues to advance and our services are frequently updated, please keep in mind:",
+      "ul": {
+        "1": "Dharmamitra is a tool to help understand classical Asian texts preserved in different languages",
+        "2": "When in doubt, we recommend consulting with language experts, or referring to established human translations.",
+        "3": "We encourage users to review and verify Dharmamitra's output before sharing it."
+      },
+      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services."
+    },
     "tagging": {
       "label": "Grammar",
       "ariaLabel": "Grammar Analysis",
@@ -60,8 +140,50 @@
       "lemma": "Lemma",
       "tag": "Tag",
       "meanings": "Meanings",
-      "unsuccessful": "Grammar analysis was not successful."
+      "unsuccessful": "Grammar analysis was not successful.",
+      "credit": "This grammatical parsing engine was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
     },
+    "targetLanguages": {
+      "buddhist-chinese": "Buddhist Chinese",
+      "english": "English",
+      "english-explained": "English (explained)",
+      "japanese": "Japanese",
+      "korean": "Korean",
+      "modern-chinese": "Modern Chinese",
+      "pali": "Pali",
+      "sa-en": "SA English",
+      "sanskrit-dev": "Sanskrit (Devanagari)",
+      "sanskrit-knn": "Sanskrit (KNN)",
+      "sanskrit": "Sanskrit",
+      "tibetan": "Tibetan",
+      "hindi": "Hindi",
+      "german": "German",
+      "russian": "Russian",
+      "french": "French",
+      "italian": "Italian",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese",
+      "dutch": "Dutch"
+    },
+    "models": {
+      "": "",
+      "NO": "No model",
+      "none": "No model",
+      "madlad": "Madlad",
+      "madlad2": "Madlad2",
+      "llama3": "Llama3",
+      "llama3-fgs": "Llama3-fgs",
+      "gemma2": "GEMMA2"
+    },
+    "grammar": {
+      "on": "On",
+      "off": "Off"
+    }
+  },
+  "globalParams": {
+    "encodingSelectLabel": "Transliteration",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "secondaryEncodingsAriaLabel": "Other encoding options",
     "encodings": {
       "auto": "Autodetect",
       "dev": "Devanagari",
@@ -71,34 +193,11 @@
       "tibetan": "Tibetan Unicode",
       "velthuis": "Velthuis",
       "wylie": "Wylie"
-    },
-    "targetLanguages": {
-      "buddhist-chinese": "Buddhist Chinese",
-      "english": "English",
-      "japanese": "Japanese",
-      "korean": "Korean",
-      "modern-chinese": "Modern Chinese",
-      "pali": "Pali",
-      "sa-en": "SA English",
-      "sanskrit-dev": "Sanskrit (Devanagari)",
-      "sanskrit-knn": "Sanskrit (KNN)",
-      "sanskrit": "Sanskrit",
-      "tibetan": "Tibetan"
-    },
-    "models": {
-      "NO": "No model",
-      "none": "No model",
-      "madlad": "Madlad",
-      "llama3": "Llama3"
-    },
-    "grammar": {
-      "on": "On",
-      "off": "Off"
     }
   },
   "metadata": {
-    "title": "Dharmamitra · translating the languages of the Dharma",
-    "description": "Machine translation for the languages of the Dharma"
+    "title": "Dharmamitra · a toolkit for the languages of the Dharma",
+    "description": "A toolkit for the languages of the Dharma"
   },
   "pages": {
     "home": "Home",

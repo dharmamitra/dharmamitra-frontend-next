@@ -1,20 +1,26 @@
 import React from "react"
+import { useTranslations } from "next-intl"
 import WarningAmberIcon from "@mui/icons-material/WarningAmber"
 import { alpha } from "@mui/material"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 
 import { warningBgFactory } from "@/components/styled"
+import { ExceptionMessageKey } from "@/utils/validators"
 
 type WarningProps = {
-  message: string
+  i18nExceptionKey?: ExceptionMessageKey
 }
 
 /**
  * Standard warning component displays a warning message - currently can only be used inside client componets as it reliies on theme function.
  *
  */
-export default function Warning({ message }: WarningProps) {
+export default function Warning({ i18nExceptionKey }: WarningProps) {
+  const t = useTranslations("generic.exception")
+
+  if (!i18nExceptionKey) return null
+
   return (
     <Box
       sx={(theme) => ({
@@ -37,7 +43,7 @@ export default function Warning({ message }: WarningProps) {
         }}
       />
       <Typography variant="body2" fontWeight={500}>
-        {message}
+        {t(i18nExceptionKey)}
       </Typography>
     </Box>
   )

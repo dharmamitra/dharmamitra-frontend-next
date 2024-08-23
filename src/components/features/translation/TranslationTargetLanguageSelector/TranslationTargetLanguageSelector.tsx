@@ -2,19 +2,16 @@ import React from "react"
 import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 
-import appConfig from "@/config"
+import { allTargetLanguages } from "@/utils/api/translation/params"
 
 import OptionsLoading from "../common/OptionsLoading"
 import SettingBlock from "../common/SettingBlock"
 
 const LazyTargetLanguageOptionsSelector = dynamic(
-  () => import("./LazyTargetLanguageOptionsSelector"),
+  () => import("./LazyTranslationTargetLanguageSelector"),
   {
     loading: () => (
-      <OptionsLoading
-        options={appConfig.paramOptions.targetLanguages}
-        i18nKey="targetLanguages"
-      />
+      <OptionsLoading options={allTargetLanguages} keyBase="target-language" />
     ),
     ssr: false,
   },

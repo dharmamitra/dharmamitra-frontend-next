@@ -4,14 +4,13 @@ import * as React from "react"
 import { useTranslations } from "next-intl"
 import ScreenSearchDesktopOutlinedIcon from "@mui/icons-material/ScreenSearchDesktopOutlined"
 import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined"
-import Box from "@mui/material/Box"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
-import LoadingBox from "@/components/LoadingBox"
+import { tabsStyles } from "@/components/styled"
 
-import { a11yProps, minToolBoxHeight, tabsStyles } from "./ToolSelectorTabs"
-import styles from "./ToolSelectorTabs.module.css"
+import { a11yProps } from "./LazyToolSelectorTabs"
+import LoadingBox from "./LoadingBox"
 
 export default function LoadingToolSelectorTabs() {
   const t = useTranslations()
@@ -21,11 +20,15 @@ export default function LoadingToolSelectorTabs() {
         value={0}
         aria-label="navigation tabs"
         centered
-        className={styles.stickyTabs}
         TabIndicatorProps={{
           sx: { display: "none" },
         }}
-        sx={tabsStyles}
+        sx={{
+          ...tabsStyles,
+          "& button.Mui-selected": {
+            backgroundColor: "grey.200",
+          },
+        }}
       >
         <Tab
           icon={<ScreenSearchDesktopOutlinedIcon />}
@@ -43,18 +46,8 @@ export default function LoadingToolSelectorTabs() {
           disabled
         />
       </Tabs>
-      <Box
-        sx={{
-          width: "100%",
-          minHeight: minToolBoxHeight,
-          py: 3,
-          position: "relative",
-        }}
-      >
-        <Box sx={{ maxWidth: "960px", mx: "auto", mt: 9 }}>
-          <LoadingBox />
-        </Box>
-      </Box>
+
+      <LoadingBox />
     </>
   )
 }

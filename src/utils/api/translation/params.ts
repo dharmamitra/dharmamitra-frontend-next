@@ -1,0 +1,68 @@
+import {
+  defaultInputEncoding,
+  globalParamsNames,
+} from "@/utils/api/global/params"
+import { exhaustiveStringTuple } from "@/utils/typescript"
+
+import { Schema, TranslationParamNames } from "./types"
+
+export type TargetLanguage = Schema["TargetLanguageExperimental"] &
+  keyof Messages["translation"]["targetLanguages"]
+export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
+  Schema["TargetLanguageExperimental"]
+>()(
+  "english",
+  "english-explained",
+  "tibetan",
+  "sanskrit",
+  "sanskrit-dev",
+  "buddhist-chinese",
+  "korean",
+  "german",
+  "russian",
+  "french",
+  "italian",
+  "spanish",
+  "portuguese",
+  "dutch",
+  "hindi",
+  "japanese",
+  "pali",
+  "sanskrit-knn",
+  "modern-chinese",
+)
+export const defaultTargetLanguage: TargetLanguage = "english"
+
+export const translationParamsNames: TranslationParamNames = {
+  global: globalParamsNames,
+  common: {
+    input_sentence: "input_sentence",
+  },
+  translation: {
+    input_sentence: "input_sentence",
+    input_encoding: "input_encoding",
+    do_grammar_explanation: "do_grammar_explanation",
+    target_lang: "target_lang",
+    model: "model",
+  },
+  tagging: {
+    input_sentence: "input_sentence",
+    input_encoding: "input_encoding",
+    mode: "mode",
+    human_readable_tags: "human_readable_tags",
+  },
+}
+
+export const defaultTranslationModel: Extract<
+  Schema["TranslationModel"],
+  "default"
+> = "default"
+
+export const allTranslationDefaultParams = {
+  input_encoding: defaultInputEncoding,
+  target_lang: defaultTargetLanguage,
+  model: defaultTranslationModel,
+  do_grammar_explanation: false,
+  human_readable_tags: true,
+  mode: "unsandhied-lemma-morphosyntax",
+} as const

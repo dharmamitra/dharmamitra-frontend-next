@@ -13,11 +13,7 @@ export default function BoxBottomElementsRow({
   return (
     <Box
       sx={{
-        position: "absolute",
-        zIndex: 1,
-        bottom: { xs: "0.25rem", md: "0.75rem" },
-        right: { xs: "0.25rem", md: "0.75rem" },
-        left: { xs: "0.25rem", md: "0.75rem" },
+        mt: 2,
         display: "flex",
         alignItems: "center",
         gap: 2,

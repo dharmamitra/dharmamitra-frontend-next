@@ -16,8 +16,12 @@
     "lint:fix": "next lint --fix",
     "lint:strict": "next lint '*/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
+    "i18n:modelsync": "python3 ./scripts/sync_msg_model.py",
     "prepare": "husky",
-    "api:codegen": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/v1.d.ts"
+    "api:codegen": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/translation.v1.d.ts && openapi-typescript https://dharmamitra.org/api-search/openapi.json -o ./src/lib/api/search.v1.d.ts",
+    "api:codegen:translation": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/translation.v1.d.ts",
+    "api:codegen:search": "openapi-typescript https://dharmamitra.org/api-search/openapi.json -o ./src/lib/api/search.v1.d.ts",
+    "bn-temp-api:codegen": "openapi-typescript https://dharmamitra.org/api-db/openapi.json -o ./src/lib/api/bnv2.d.ts"
   },
   "hooks": {
     "pre-commit": "lint-staged"
@@ -43,6 +47,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-intersection-observer": "^9.10.3",
+    "react-window": "^1.8.10",
     "sharp": "^0.33.4",
     "sse.js": "^2.5.0",
     "zod": "^3.23.8"
@@ -58,6 +63,7 @@
     "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/react-window": "^1",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
     "eslint": "^8.57.0",

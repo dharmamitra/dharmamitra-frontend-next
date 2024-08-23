@@ -1,41 +1,75 @@
 "use client"
 
 import React from "react"
-import { useTranslations } from "next-intl"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import { useQuery } from "@tanstack/react-query"
 
-import useAppConfig from "@/hooks/useAppConfig"
-import useParamValueWithLocalStorage from "@/hooks/useParamValueWithLocalStorage"
-import { apiParamsNames, translationModels } from "@/utils/api/params"
+import { DMFetchApi } from "@/api"
+import ExceptionText from "@/components/ExceptionText"
+import useTranslationEndpointParams from "@/hooks/translation/useTranslationEndpointParams"
+
+const excludedModels = /(NO)/
 
 export default function LazyModelSelector() {
-  const t = useTranslations("translation")
-
-  const { model } = useAppConfig().paramOptions
-
-  const { value, handleValueChange } = useParamValueWithLocalStorage({
-    paramName: apiParamsNames.translation.model,
-    defaultValue: model,
+  const { data, isError, error } = useQuery({
+    queryKey: DMFetchApi.translationModels.makeQueryKey(),
+    queryFn: () => {
+      return DMFetchApi.translationModels.call()
+    },
   })
+  const models = React.useMemo(() => {
+    if (!data) return []
 
-  React.useEffect(() => {
-    if (value === "") {
-      handleValueChange(model)
-    }
-  }, [value, handleValueChange, model])
+    return data?.filter((model) => model && !excludedModels.test(model))
+  }, [data])
+
+  const { translationModel, setTranslationModel } =
+    useTranslationEndpointParams()
+
+  const isGrid = useMediaQuery("(max-width: 810px)")
+
+  if (isError) {
+    return (
+      <ExceptionText message={`Problem loading models: ${error?.message}`} />
+    )
+  }
 
   return (
     <ToggleButtonGroup
       color="secondary"
-      value={value}
+      sx={{
+        ...(isGrid
+          ? {
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+            }
+          : {}),
+      }}
+      size="small"
+      value={translationModel}
       exclusive
-      onChange={(event, value) => handleValueChange(value)}
+      onChange={(event, value) => value && setTranslationModel(value)}
       aria-label="Model"
     >
-      {translationModels.map((model) => (
-        <ToggleButton key={model + "-model-option-loader"} value={model}>
-          {t(`models.${model}`)}
+      {models?.map((model) => (
+        <ToggleButton
+          key={model + "-model-option-loader"}
+          value={model}
+          sx={{
+            ...(isGrid
+              ? {
+                  border: "1px solid",
+                  borderLeft: "1px solid !important",
+                  borderLeftColor: "rgba(0, 0, 0, 0.12) !important",
+                  borderColor: "divider",
+                  marginLeft: "0 !important",
+                }
+              : {}),
+          }}
+        >
+          {model}
         </ToggleButton>
       ))}
     </ToggleButtonGroup>

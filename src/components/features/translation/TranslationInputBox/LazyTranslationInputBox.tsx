@@ -2,28 +2,30 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import HighlightOffIcon from "@mui/icons-material/HighlightOff"
-import IconButton from "@mui/material/IconButton"
+import Box from "@mui/material/Box"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { useTheme } from "@mui/material/styles"
-import Tooltip from "@mui/material/Tooltip"
 
-import useInputWithUrlParam from "@/hooks/useInputWithUrlParam"
-import { apiParamsNames } from "@/utils/api/params"
+import ClearButton from "@/components/ClearButton"
+import useTranslationCommonParams from "@/hooks/translation/useTranslationCommonParams"
 
 import BoxBottomElementsRow from "../common/BoxBottomElementsRow"
 import StartStopButton from "../TranslationStartStopButton"
 
 export default function TranslationInputField() {
   const t = useTranslations()
-  const { input, handleValueChange } = useInputWithUrlParam<string>(
-    apiParamsNames.translation.input_sentence,
-  )
 
+  const { translationInput, setTranslationInput } = useTranslationCommonParams()
   const theme = useTheme()
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "grid",
+        minHeight: "100%",
+        gridTemplateRows: "1fr auto",
+      }}
+    >
       <OutlinedInput
         sx={{
           width: "100%",
@@ -46,25 +48,20 @@ export default function TranslationInputField() {
           },
         }}
         multiline
-        value={input}
-        onChange={(e) => handleValueChange(e)}
+        value={translationInput}
+        onChange={(e) => setTranslationInput(e)}
       />
 
-      <BoxBottomElementsRow sx={{ justifyContent: "space-between" }}>
-        <Tooltip title={t("generic.clear")} placement="top">
-          <IconButton
-            aria-label={t("generic.clear")}
-            color="secondary"
-            onClick={() => {
-              handleValueChange("")
-            }}
-          >
-            <HighlightOffIcon />
-          </IconButton>
-        </Tooltip>
+      <BoxBottomElementsRow
+        sx={{ justifyContent: "space-between", pb: 1, px: 1 }}
+      >
+        <ClearButton
+          value={translationInput}
+          handleValueChange={setTranslationInput}
+        />
 
         <StartStopButton />
       </BoxBottomElementsRow>
-    </>
+    </Box>
   )
 }

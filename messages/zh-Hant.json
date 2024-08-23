@@ -2,14 +2,23 @@
   "generic": {
     "copy": "Copy",
     "copied": "已复制到剪切板",
-    "error": {
+    "other": "其他",
+    "clear": "Clear",
+    "stop": "Stop",
+    "source": "Source",
+    "target": "Target",
+    "englishTranslation": "English Translation",
+    "loading": "Loading",
+    "noResult": "No results found.",
+    "exception": {
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
       "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
     },
-    "clear": "Clear",
-    "stop": "Stop"
+    "copyRef": "Copy reference",
+    "copyAll": "Copy all",
+    "copyResultsList": "Copy results list"
   },
   "navigation": {
     "home": "首頁",
@@ -37,7 +46,71 @@
   "search": {
     "search": "搜索",
     "heading": "搜索2500年的佛教",
-    "placeholder": "搜索一些东西"
+    "placeholder": "搜索一些东西",
+    "results": "Search results",
+    "optionsSwitchLabel": "Show options",
+    "resetOptionsLabel": "Use default search options",
+    "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
+    "parallelEnglishSwitch": "Show English",
+    "targetTips": {
+      "primary": "Search canonical and traditional source texts",
+      "secondary": "Search modern commentarial literature",
+      "parallel": "Search cross-tradition text parallel compiled dataset"
+    },
+    "targets": {
+      "primary": "Traditional",
+      "secondary": "Modern",
+      "parallel": "Parallels"
+    },
+    "parallelLanguages": {
+      "tib-chn": "Tibetan-Chinese",
+      "tib-eng": "Tibetan-English",
+      "san-eng": "Sanskrit-English",
+      "san-tib": "Sanskrit-Tibetan"
+    },
+    "limits": {
+      "labels": {
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
+      }
+    },
+    "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "Select source categories",
+        "sourceTextLimit": "Select source texts"
+      },
+      "inputEncodings": {
+        "auto": "Autodetect",
+        "tibetan": "Tibetan",
+        "wylie": "Wylie",
+        "dev": "Devanagari",
+        "iast": "IAST Roman",
+        "hk": "Harvard-Kyoto"
+      },
+      "searchTypes": {
+        "regular": "Regular",
+        "semantic": "Semantic"
+      },
+      "filterLanguages": {
+        "tib": "Tibetan",
+        "skt": "Sanskrit",
+        "chn": "Buddhist Chinese",
+        "pli": "Pali",
+        "all": "All"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
+      }
+    },
+    "explanation": "Explanation",
+    "relevance": "Relevance",
+    "relevanceTypes": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "precisionLabel": "Exact matches only"
   },
   "translation": {
     "translate": "翻譯",
@@ -45,9 +118,6 @@
     "inputAriaLabel": "翻譯欄位",
     "placeholder": "在此輸入需要翻譯之梵文、藏文或中文…",
     "otherLabel": "其他",
-    "encodingSelectLabel": "轉寫系統",
-    "primaryEncodingsAriaLabel": "Primary encoding options",
-    "otherEncodingsAriaLabel": "Other encoding options",
     "targetLanguageSelectLabel": "翻譯目標語",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
     "secondaryTargetLanguagesAriaLabel": "Other traget language options",
@@ -61,17 +131,8 @@
       "lemma": "Lemma",
       "tag": "Tag",
       "meanings": "Meanings",
-      "unsuccessful": "Grammar analysis was not successful."
-    },
-    "encodings": {
-      "auto": "Autodetect",
-      "dev": "Devanagari",
-      "hk": "Harvard-Kyoto",
-      "iast": "IAST Roman",
-      "itrans": "ITRANS",
-      "tibetan": "Tibetan Unicode",
-      "velthuis": "Velthuis",
-      "wylie": "Wylie"
+      "unsuccessful": "Grammar analysis was not successful.",
+      "credit": "This grammatical parsing engine was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
     },
     "targetLanguages": {
       "buddhist-chinese": "佛典漢文",
@@ -84,26 +145,66 @@
       "sanskrit-dev": "梵文",
       "sanskrit-knn": "Sanskrit (KNN)",
       "sanskrit": "梵文",
-      "tibetan": "藏文"
+      "tibetan": "藏文",
+      "hindi": "Hindi",
+      "german": "German",
+      "russian": "Russian",
+      "french": "French",
+      "italian": "Italian",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese",
+      "dutch": "Dutch",
+      "english-explained": "English (explained)"
     },
     "models": {
       "NO": "No model",
       "none": "No model",
       "madlad": "Madlad",
-      "llama3": "Llama3"
+      "llama3": "Llama3",
+      "": "",
+      "madlad2": "Madlad2",
+      "llama3-fgs": "Llama3-fgs",
+      "gemma2": "GEMMA2"
     },
     "grammar": {
       "on": "On",
       "off": "Off"
+    },
+    "usageNoticeShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
+    "usageNoticeLong": {
+      "p1": "Dharmamitra leverages cutting-edge deep neural networks to efficiently provide machine translations. We are working hard to provide the best possible quality. While our technology continues to advance and our services are frequently updated, please keep in mind:",
+      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services.",
+      "ul": {
+        "1": "Dharmamitra is a tool to help understand classical Asian texts preserved in different languages",
+        "2": "When in doubt, we recommend consulting with language experts, or referring to established human translations.",
+        "3": "We encourage users to review and verify Dharmamitra's output before sharing it."
+      }
+    },
+    "usageH2": "Usage",
+    "usageAccept": "Accept"
+  },
+  "globalParams": {
+    "encodingSelectLabel": "轉寫系統",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "secondaryEncodingsAriaLabel": "Other encoding options",
+    "encodings": {
+      "auto": "Autodetect",
+      "dev": "Devanagari",
+      "hk": "Harvard-Kyoto",
+      "iast": "IAST Roman",
+      "itrans": "ITRANS",
+      "tibetan": "Tibetan Unicode",
+      "velthuis": "Velthuis",
+      "wylie": "Wylie"
     }
   },
   "metadata": {
-    "title": "Dharmamitra · translating the languages of the Dharma",
-    "description": "Machine translation for the languages of the Dharma"
+    "title": "Dharmamitra · a toolkit for the languages of the Dharma",
+    "description": "A toolkit for the languages of the Dharma"
   },
   "pages": {
-    "home": "Home",
-    "about": "About",
+    "home": "首頁",
+    "about": "計畫介紹",
     "team": "Team",
     "guide": "Guide"
   },

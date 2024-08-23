@@ -4,14 +4,17 @@ import * as React from "react"
 import { useTranslations } from "next-intl"
 import CloseIcon from "@mui/icons-material/Close"
 import DragHandleIcon from "@mui/icons-material/DragHandle"
+import { Typography } from "@mui/material"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Drawer from "@mui/material/Drawer"
 import IconButton from "@mui/material/IconButton"
+import Link from "@mui/material/Link"
 import Stack from "@mui/material/Stack"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
-import useTaggingData from "@/hooks/useTaggingData"
+import useTaggingData from "@/hooks/translation/useTaggingData"
+import { linkAttrs } from "@/utils/constants"
 
 import styles from "./LazyTranslationTaggingDrawer.module.css"
 import TranslationTaggingOutput from "./TranslationTaggingOutput"
@@ -132,15 +135,17 @@ export default function LazyTranslationTaggingDrawer() {
   return (
     <>
       {isValidQuery || data?.sentences ? (
-        <Button
-          variant="outlined"
-          onClick={() => setOpen((prev) => !prev)}
-          color="secondary"
-          aria-label={t("tagging.ariaLabel")}
-          className={styles.button}
-        >
-          {t("tagging.label")}
-        </Button>
+        <div>
+          <Button
+            variant="outlined"
+            onClick={() => setOpen((prev) => !prev)}
+            color="secondary"
+            aria-label={t("tagging.ariaLabel")}
+            className={styles.button}
+          >
+            {t("tagging.label")}
+          </Button>
+        </div>
       ) : null}
       <Box sx={{ display: "flex" }}>
         <Drawer
@@ -190,6 +195,19 @@ export default function LazyTranslationTaggingDrawer() {
               }}
             >
               <TranslationTaggingOutput />
+              <Typography variant="body2" mt={4}>
+                {t.rich("tagging.credit", {
+                  link: (chunks) => (
+                    <Link
+                      sx={{ color: "text.primary", fontWeight: 500 }}
+                      href="http://www.sanskrit-linguistics.org/dcs/"
+                      {...linkAttrs}
+                    >
+                      {chunks}
+                    </Link>
+                  ),
+                })}
+              </Typography>
             </Box>
           </Box>
         </Drawer>

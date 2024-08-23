@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { styled, SxProps } from "@mui/material"
 import Box from "@mui/material/Box"
 import { alpha } from "@mui/material/styles"
@@ -23,6 +24,9 @@ const Dots = styled(Box)(({ theme }) => ({
       background: `${alpha(theme.palette.secondary.main, 0.7)}`,
     },
   },
+  position: "absolute",
+  top: 0,
+  left: "12px",
   width: "8px",
   aspectRatio: 1,
   borderRadius: "50%",
@@ -30,5 +34,10 @@ const Dots = styled(Box)(({ theme }) => ({
 }))
 
 export default function LoadingDots({ sx }: { sx?: SxProps }) {
-  return <Dots sx={sx} />
+  const t = useTranslations("generic")
+  return (
+    <Box position="relative" aria-label={t("loading")}>
+      <Dots sx={sx} />
+    </Box>
+  )
 }

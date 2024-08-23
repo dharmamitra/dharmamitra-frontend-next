@@ -1,2 +1,4 @@
+yarn i18n:modelsync
+git add -A
 yarn tsc --noEmit
 npx lint-staged

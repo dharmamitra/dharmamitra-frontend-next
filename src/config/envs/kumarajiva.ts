@@ -1,4 +1,20 @@
+import { TargetLanguage } from "@/utils/api/translation/params"
+
 import defineConfig from "../defineConfig"
+
+export const targetLanguages: TargetLanguage[] = [
+  "modern-chinese",
+  "buddhist-chinese",
+  "tibetan",
+  "english",
+  "sanskrit",
+  "sanskrit-dev",
+  "korean",
+  "hindi",
+  "japanese",
+  "pali",
+  "sanskrit-knn",
+]
 
 export default function createKumarajivaConfig() {
   return defineConfig({
@@ -20,8 +36,12 @@ export default function createKumarajivaConfig() {
       },
     },
     subPages: ["guide"],
+    customParamOptions: {
+      targetLanguages,
+    },
     featureFlags: {
       translateExtendedOptions: true,
+      search: true,
     },
   })
 }
