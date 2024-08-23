@@ -1,1 +1,3 @@
-export { default } from "./TranslationTargetLanguageSelector"
+import TranslationTargetLanguageSelector from "./TranslationTargetLanguageSelector"
+
+export default TranslationTargetLanguageSelector

@@ -1,32 +1,29 @@
-import { useTranslations } from "next-intl"
+import React from "react"
 
 import {
   CustomFormControlLabel,
   VisuallyHiddenRadio,
 } from "@/components/styled"
+import { InputEncoding } from "@/utils/api/global/types"
+import { TargetLanguage } from "@/utils/api/translation/params"
 
 export default function RadioOption({
-  i18nKey,
+  id,
   option,
   isSelected,
+  label,
 }: {
-  i18nKey: "encodings" | "targetLanguages"
-  option: string
+  id: string
+  option: InputEncoding | TargetLanguage
   isSelected: boolean
+  label: string
 }) {
-  const t = useTranslations(`translation.${i18nKey}`)
-
   return (
     <CustomFormControlLabel
+      id={`styled-${id}`}
       value={option}
-      control={
-        <VisuallyHiddenRadio
-          id={`${option}-${i18nKey}-option`}
-          data-testid={`${option}-${i18nKey}-option`}
-        />
-      }
-      // TODO: remove casting on enpoint update
-      label={t(option as keyof Messages["translation"][typeof i18nKey])}
+      control={<VisuallyHiddenRadio id={id} data-testid={id} />}
+      label={label}
       checked={isSelected}
     />
   )

@@ -11,9 +11,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+      
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set Yarn version to stable
+        run: yarn set version stable
 
       - name: Install project dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Typechecking
         run: yarn test:ts

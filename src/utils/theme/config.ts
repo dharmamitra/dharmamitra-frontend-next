@@ -33,7 +33,8 @@ type EnvRGBCodes = {
 const envRgbCodes: EnvRGBCodes = {
   default: getDefaultColors(),
   kumarajiva: {
-    primary: "246, 220, 31", // #f6dc1f
+    // primary: "246, 220, 31", // #f6dc1f
+    primary: "4, 60, 133", // #043c85
     secondary: "4, 60, 133", // #043c85
     light: "255, 252, 231", //  #fffce7
     "grey-100": "247, 247, 247", // #F7F7F7

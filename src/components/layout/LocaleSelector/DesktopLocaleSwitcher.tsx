@@ -33,7 +33,7 @@ export default function DesktopLocaleSwitcher({
     setValue(nextLocale)
     startTransition(() => {
       router.replace(`${pathname}?${searchParams.toString()}`, {
-        locale: nextLocale,
+        locale: nextLocale as SupportedLocale,
       })
     })
   }

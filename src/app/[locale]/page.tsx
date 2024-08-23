@@ -1,9 +1,11 @@
 import { NextIntlClientProvider, useMessages, useTranslations } from "next-intl"
 import { unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
+import visuallyHidden from "@mui/utils/visuallyHidden"
 
 import ToolSelectorTabs from "@/components/features/ToolSelectorTabs/ToolSelectorTabs"
 import PageShell from "@/components/layout/PageShell"
+import StorageCheck from "@/components/StorageCheck"
 import TranslationFeature from "@/features/translation"
 import useAppConfig from "@/hooks/useAppConfig"
 import {
@@ -27,13 +29,17 @@ export default function HomePage({
   const messages = useMessages() as Messages
   const translationMessages = pickMessages({
     messages,
-    messageKeys: ["translation", "search", "generic"],
+    messageKeys: ["translation", "search", "globalParams", "generic"],
   })
 
   if (search === true) {
     return (
       <NextIntlClientProvider messages={translationMessages}>
+        <StorageCheck />
         <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
+          <Typography component="h1" sx={visuallyHidden}>
+            Dharmamitra
+          </Typography>
           <ToolSelectorTabs />
         </PageShell>
       </NextIntlClientProvider>
@@ -42,6 +48,7 @@ export default function HomePage({
 
   return (
     <NextIntlClientProvider messages={translationMessages}>
+      <StorageCheck />
       <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
         <Typography
           variant="h4"

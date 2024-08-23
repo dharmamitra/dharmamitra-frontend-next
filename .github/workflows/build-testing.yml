@@ -1,16 +1,16 @@
-name: Build Testing
+name: Build Testing (rnd)
 on:
   workflow_dispatch:
 jobs:
   build-and-test:
     strategy:
       matrix:
-        version: [rnd]
+        variant: [rnd]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: test-env
+          ref: actions-env
       - uses: actions/setup-node@v4
 
       - name: Set up Docker Buildx
@@ -29,6 +29,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          build-args: VERSION=${{ matrix.version }}
+          build-args: BUILD_VARIANT=${{ matrix.variant }}
           push: true
-          tags: "${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.version }}-${{ steps.timestamp.outputs.NOW }},${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.version }}-latest"
+          tags: "${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.variant }}-${{ steps.timestamp.outputs.NOW }},${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.variant }}-latest"

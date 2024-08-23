@@ -3,6 +3,11 @@ import { useTranslations } from "next-intl"
 import { Box, RadioGroup } from "@mui/material"
 import Typography from "@mui/material/Typography"
 
+import { flatRadioGroupStyles } from "@/components/styled"
+import { getOptionI18nKeyPath } from "@/utils"
+import { InputEncoding } from "@/utils/api/global/types"
+import { TargetLanguage } from "@/utils/api/translation/params"
+
 export const boxSx = {
   "@keyframes shimmer": {
     xs: {
@@ -27,46 +32,44 @@ export const boxSx = {
 
 export default function OptionsLoading({
   options,
-  i18nKey,
+  keyBase,
 }: {
-  options: string[]
-  i18nKey: "encodings" | "targetLanguages" | "models" | "grammar"
+  options: (InputEncoding | TargetLanguage)[]
+  keyBase: "input-encoding" | "target-language"
 }) {
-  const t = useTranslations(`translation.${i18nKey}`)
+  const t = useTranslations()
+
+  if (options.length === 0) return null
+
   return (
     <RadioGroup
       aria-label="loading"
       value="option"
-      sx={{
-        gap: 2.65,
-        pl: 0,
-        ml: "-3px",
-      }}
       row
+      sx={{ ...flatRadioGroupStyles }}
     >
       <Box sx={{ display: "flex" }}>
         <Typography component="div" variant="body1">
-          {t(options[0] as keyof Messages["translation"][typeof i18nKey])}
+          {t(getOptionI18nKeyPath(options[0]))}
         </Typography>
       </Box>
 
       {options.slice(1, 3).map((option) => (
         <Box
-          key={`translation-setting-loader-${i18nKey}-${option}`}
+          key={`translation-setting-loader-${keyBase}-${option}`}
           sx={{
             display: { xs: "none", sm: "flex", md: "none", lg: "flex" },
           }}
         >
           <Typography component="div" variant="body1">
-            {t(option as keyof Messages["translation"][typeof i18nKey])}
+            {t(getOptionI18nKeyPath(option))}
           </Typography>
         </Box>
       ))}
 
       <Box sx={{ display: "flex" }}>
         <Typography component="div" variant="body1">
-          {/* TODO: i18n */}
-          Other
+          {t("generic.other")}
         </Typography>
       </Box>
     </RadioGroup>

@@ -1,0 +1,32 @@
+.customFocusVisible {
+  --customFocusColor: transparent;
+  --customFocusInset: 0;
+  --customFocusZIndex: -1;
+}
+
+.customFocusVisible::before {
+  content: " ";
+  position: absolute;
+  z-index: var(--customFocusZIndex);
+  inset: var(--customFocusInset);
+  border-radius: 50px;
+  transition: all 255ms ease-in;
+  background-color: var(--customFocusColor);
+  animation: focus 3s ease-in-out infinite;
+}
+
+@keyframes focus {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02, 1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.customFocusVisible .childFocus {
+  border: 2px solid var(--customFocusColor);
+}

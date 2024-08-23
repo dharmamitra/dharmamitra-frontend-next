@@ -8,9 +8,21 @@ export const getBasePath = () => {
   return servedAtRoot ? "" : "/" + env
 }
 
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ *
+ * @see https://nextjs.org/docs/app/api-reference/next-config-js/output
+ * @see https://calvinf.com/blog/2023/11/10/node-js-20-yarn-4-and-next-js-on-docker/
+ */
 const nextConfig = {
   basePath: getBasePath(),
+  output: "standalone",
+  webpack: (config) => {
+    if (process.env.NODE_ENV === "production") {
+      config.devtool = "hidden-source-map"
+    }
+    return config
+  },
   eslint: {
     ignoreDuringBuilds: process.env.NEXT_DISABLE_ESLINT === "true",
   },

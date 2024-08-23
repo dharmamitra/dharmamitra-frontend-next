@@ -3,10 +3,10 @@ import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 
-import { DMApiTypes } from "@/utils/api"
+import { TranslationApiTypes } from "@/utils/api"
 
 type Props = Omit<
-  DMApiTypes.Schema["Sentence"]["grammatical_analysis"][number],
+  TranslationApiTypes.Schema["Sentence"]["grammatical_analysis"][number],
   "unsandhied"
 >
 

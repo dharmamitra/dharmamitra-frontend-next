@@ -1,10 +1,23 @@
 import React from "react"
-import dynamic from "next/dynamic"
+import { useSetAtom } from "jotai"
 
-const LazyStartStopButton = dynamic(() => import("./LazyStartStopButton"), {
-  ssr: false,
-})
+import { abortTranslationQueryAtom, triggerTranslationQueryAtom } from "@/atoms"
+import StartStopStreamButton from "@/components/StartStopStreamButton"
+import useTranslationCommonParams from "@/hooks/translation/useTranslationCommonParams"
+import useTranslationStream from "@/hooks/translation/useTranslationStream"
 
 export default function TranslationStartStopButton() {
-  return <LazyStartStopButton />
+  const { translationInput } = useTranslationCommonParams()
+
+  const setTriggerTranslationQuery = useSetAtom(triggerTranslationQueryAtom)
+  const setAbortTranslationQuery = useSetAtom(abortTranslationQueryAtom)
+
+  return (
+    <StartStopStreamButton
+      input={translationInput}
+      isStreaming={useTranslationStream().isStreaming}
+      onStart={() => setTriggerTranslationQuery(true)}
+      onStop={() => setAbortTranslationQuery(true)}
+    />
+  )
 }

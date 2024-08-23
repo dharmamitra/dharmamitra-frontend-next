@@ -2,11 +2,12 @@ import Box from "@mui/material/Box"
 import { grey } from "@mui/material/colors"
 import Grid from "@mui/material/Grid"
 
+import TranslationUsageDialog from "@/components/features/translation/TranslationUsageDialog"
 import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
+import InputEncodingSelector from "../InputEncodingSelector"
 import TranslationInputBox from "./TranslationInputBox"
-import TranslationInputEncodingSelector from "./TranslationInputEncodingSelector"
 import TranslationKeyboardControls from "./TranslationKeyboardControls"
 import TranslationModelSelector from "./TranslationModelSelector"
 import TranslationOutputBox from "./TranslationOutputBox"
@@ -18,6 +19,7 @@ export default function TranslationFeature() {
 
   return (
     <>
+      <TranslationUsageDialog />
       <Box
         sx={{
           display: "flex",
@@ -34,7 +36,7 @@ export default function TranslationFeature() {
         }}
       >
         <Grid container>
-          <TranslationInputEncodingSelector />
+          <InputEncodingSelector labelled />
           <TranslationTargetLanguageSelector />
           <TranslationInputBox />
           <TranslationOutputBox />
@@ -49,7 +51,7 @@ export default function TranslationFeature() {
           mt: 3,
         }}
       >
-        {translateExtendedOptions ? <TranslationModelSelector /> : null}
+        <TranslationModelSelector isEnabled={translateExtendedOptions} />
         <TranslationTaggingDrawer />
       </Box>
 

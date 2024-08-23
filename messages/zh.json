@@ -2,12 +2,23 @@
   "generic": {
     "copy": "Copy",
     "copied": "已复制到剪贴板",
-    "error": {
-      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
-      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>"
-    },
+    "other": "其他",
     "clear": "Clear",
-    "stop": "Stop"
+    "stop": "Stop",
+    "source": "Source",
+    "target": "Target",
+    "englishTranslation": "English Translation",
+    "loading": "Loading",
+    "noResult": "No results found.",
+    "exception": {
+      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
+      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
+      "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
+      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
+    },
+    "copyRef": "Copy reference",
+    "copyAll": "Copy all",
+    "copyResultsList": "Copy results list"
   },
   "navigation": {
     "home": "首页",
@@ -35,7 +46,71 @@
   "search": {
     "search": "搜索",
     "heading": "搜索2500年的佛教",
-    "placeholder": "搜索一些东西"
+    "placeholder": "搜索一些东西",
+    "results": "Search results",
+    "optionsSwitchLabel": "Show options",
+    "resetOptionsLabel": "Use default search options",
+    "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
+    "parallelEnglishSwitch": "Show English",
+    "targetTips": {
+      "primary": "Search canonical and traditional source texts",
+      "secondary": "Search modern commentarial literature",
+      "parallel": "Search cross-tradition text parallel compiled dataset"
+    },
+    "targets": {
+      "primary": "Traditional",
+      "secondary": "Modern",
+      "parallel": "Parallels"
+    },
+    "parallelLanguages": {
+      "tib-chn": "Tibetan-Chinese",
+      "tib-eng": "Tibetan-English",
+      "san-eng": "Sanskrit-English",
+      "san-tib": "Sanskrit-Tibetan"
+    },
+    "limits": {
+      "labels": {
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
+      }
+    },
+    "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "Select source categories",
+        "sourceTextLimit": "Select source texts"
+      },
+      "inputEncodings": {
+        "auto": "Autodetect",
+        "tibetan": "Tibetan",
+        "wylie": "Wylie",
+        "dev": "Devanagari",
+        "iast": "IAST Roman",
+        "hk": "Harvard-Kyoto"
+      },
+      "searchTypes": {
+        "regular": "Regular",
+        "semantic": "Semantic"
+      },
+      "filterLanguages": {
+        "tib": "Tibetan",
+        "skt": "Sanskrit",
+        "chn": "Buddhist Chinese",
+        "pli": "Pali",
+        "all": "All"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
+      }
+    },
+    "explanation": "Explanation",
+    "relevance": "Relevance",
+    "relevanceTypes": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "precisionLabel": "Exact matches only"
   },
   "translation": {
     "translate": "翻译",
@@ -43,12 +118,9 @@
     "inputAriaLabel": "翻译栏位",
     "placeholder": "在此输入需要翻译之梵文、藏文或中文…",
     "otherLabel": "其他",
-    "encodingSelectLabel": "转写系统",
-    "primaryEncodingsAriaLabel": "Primary encoding options",
-    "otherEncodingsAriaLabel": "Other encoding options",
     "targetLanguageSelectLabel": "翻译目标语",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
-    "otherTargetLanguagesAriaLabel": "Other traget language options",
+    "secondaryTargetLanguagesAriaLabel": "Other traget language options",
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
     "copyTranslation": "复制翻译",
@@ -59,17 +131,8 @@
       "lemma": "Lemma",
       "tag": "Tag",
       "meanings": "Meanings",
-      "unsuccessful": "Grammar analysis was not successful."
-    },
-    "encodings": {
-      "auto": "Autodetect",
-      "dev": "Devanagari",
-      "hk": "Harvard-Kyoto",
-      "iast": "IAST Roman",
-      "itrans": "ITRANS",
-      "tibetan": "Tibetan Unicode",
-      "velthuis": "Velthuis",
-      "wylie": "Wylie"
+      "unsuccessful": "Grammar analysis was not successful.",
+      "credit": "This grammatical parsing engine was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
     },
     "targetLanguages": {
       "buddhist-chinese": "佛典中文",
@@ -82,26 +145,66 @@
       "sanskrit-dev": "梵文",
       "sanskrit-knn": "Sanskrit (KNN)",
       "sanskrit": "梵文",
-      "tibetan": "藏文"
+      "tibetan": "藏文",
+      "hindi": "Hindi",
+      "german": "German",
+      "russian": "Russian",
+      "french": "French",
+      "italian": "Italian",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese",
+      "dutch": "Dutch",
+      "english-explained": "English (explained)"
     },
     "models": {
       "NO": "No model",
       "none": "No model",
       "madlad": "Madlad",
-      "llama3": "Llama3"
+      "llama3": "Llama3",
+      "": "",
+      "madlad2": "Madlad2",
+      "llama3-fgs": "Llama3-fgs",
+      "gemma2": "GEMMA2"
     },
     "grammar": {
       "on": "On",
       "off": "Off"
+    },
+    "usageNoticeShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
+    "usageNoticeLong": {
+      "p1": "Dharmamitra leverages cutting-edge deep neural networks to efficiently provide machine translations. We are working hard to provide the best possible quality. While our technology continues to advance and our services are frequently updated, please keep in mind:",
+      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services.",
+      "ul": {
+        "1": "Dharmamitra is a tool to help understand classical Asian texts preserved in different languages",
+        "2": "When in doubt, we recommend consulting with language experts, or referring to established human translations.",
+        "3": "We encourage users to review and verify Dharmamitra's output before sharing it."
+      }
+    },
+    "usageH2": "Usage",
+    "usageAccept": "Accept"
+  },
+  "globalParams": {
+    "encodingSelectLabel": "转写系统",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "secondaryEncodingsAriaLabel": "Other encoding options",
+    "encodings": {
+      "auto": "Autodetect",
+      "dev": "Devanagari",
+      "hk": "Harvard-Kyoto",
+      "iast": "IAST Roman",
+      "itrans": "ITRANS",
+      "tibetan": "Tibetan Unicode",
+      "velthuis": "Velthuis",
+      "wylie": "Wylie"
     }
   },
   "metadata": {
-    "title": "Dharmamitra · translating the languages of the Dharma",
-    "description": "Machine translation for the languages of the Dharma"
+    "title": "Dharmamitra · a toolkit for the languages of the Dharma",
+    "description": "A toolkit for the languages of the Dharma"
   },
   "pages": {
-    "home": "Home",
-    "about": "About",
+    "home": "首页",
+    "about": "计划介绍",
     "team": "Team",
     "guide": "Guide"
   },
@@ -149,7 +252,7 @@
       },
       "project": {
         "h2": "The MITRA project",
-        "p1": "The MITRA project, spearheaded by Kurt Keutzer and Sebastian Nehrdich, focuses on bridging the linguistic divide between ancient wisdom source languages and contemporary languages through the application of advanced Deep Learning and AI technologies.",
+        "p1": "MITRA is a research project in the Berkeley AI Research lab in EECS at the University of California, Berkeley. It is spearheaded by Kurt Keutzer and Sebastian Nehrdich, focuses on bridging the linguistic divide between ancient wisdom source languages and contemporary languages through the application of advanced Deep Learning and AI technologies.",
         "p2": "Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, accelerated  by its collaborative efforts with organizations such as monlam.ai and with contributions from a diverse array of sources, including translators and AI researchers. Leveraging a robust corpus of over four million sentence pairs from various sourcesand utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to ancient wisdom texts.",
         "p3": "Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
       },

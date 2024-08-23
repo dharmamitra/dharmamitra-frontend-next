@@ -4,25 +4,30 @@ import * as React from "react"
 import { useTranslations } from "next-intl"
 import CloseIcon from "@mui/icons-material/Close"
 import DragHandleIcon from "@mui/icons-material/DragHandle"
+import { Typography } from "@mui/material"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Drawer from "@mui/material/Drawer"
 import IconButton from "@mui/material/IconButton"
+import Link from "@mui/material/Link"
 import Stack from "@mui/material/Stack"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
-import useTaggingData from "@/hooks/useTaggingData"
+import useTaggingData from "@/hooks/translation/useTaggingData"
+import { linkAttrs } from "@/utils/constants"
 
 import styles from "./LazyTranslationTaggingDrawer.module.css"
 import TranslationTaggingOutput from "./TranslationTaggingOutput"
 
-export const defaultDrawerWidth = 700
+export const defaultSmDrawerWidth = "95%"
+export const defaultLgDrawerWidth = 700
 const minDrawerWidth = 300
 const maxDrawerWidth = 1200
 
 const ResizeHandle = ({
   setDrawerWidth,
 }: {
-  setDrawerWidth: React.Dispatch<React.SetStateAction<number>>
+  setDrawerWidth: React.Dispatch<React.SetStateAction<number | string>>
 }) => {
   const handleMouseMove = React.useCallback(
     (e: MouseEvent) => {
@@ -92,7 +97,11 @@ export default function LazyTranslationTaggingDrawer() {
 
   const [open, setOpen] = React.useState(false)
 
-  const [drawerWidth, setDrawerWidth] = React.useState(defaultDrawerWidth)
+  const isSmallScreen = useMediaQuery("(max-width:750px)")
+
+  const [drawerWidth, setDrawerWidth] = React.useState<string | number>(
+    defaultSmDrawerWidth,
+  )
 
   const handleKeyDown = React.useCallback(
     (e: KeyboardEvent) => {
@@ -111,6 +120,8 @@ export default function LazyTranslationTaggingDrawer() {
   }, [handleKeyDown])
 
   React.useEffect(() => {
+    setDrawerWidth(isSmallScreen ? defaultSmDrawerWidth : defaultLgDrawerWidth)
+
     if (open) {
       document.body.style.overflow = "hidden"
     } else {
@@ -119,20 +130,22 @@ export default function LazyTranslationTaggingDrawer() {
     return () => {
       document.body.style.overflow = "unset"
     }
-  }, [open])
+  }, [open, isSmallScreen])
 
   return (
     <>
       {isValidQuery || data?.sentences ? (
-        <Button
-          variant="outlined"
-          onClick={() => setOpen((prev) => !prev)}
-          color="secondary"
-          aria-label={t("tagging.ariaLabel")}
-          className={styles.button}
-        >
-          {t("tagging.label")}
-        </Button>
+        <div>
+          <Button
+            variant="outlined"
+            onClick={() => setOpen((prev) => !prev)}
+            color="secondary"
+            aria-label={t("tagging.ariaLabel")}
+            className={styles.button}
+          >
+            {t("tagging.label")}
+          </Button>
+        </div>
       ) : null}
       <Box sx={{ display: "flex" }}>
         <Drawer
@@ -182,6 +195,19 @@ export default function LazyTranslationTaggingDrawer() {
               }}
             >
               <TranslationTaggingOutput />
+              <Typography variant="body2" mt={4}>
+                {t.rich("tagging.credit", {
+                  link: (chunks) => (
+                    <Link
+                      sx={{ color: "text.primary", fontWeight: 500 }}
+                      href="http://www.sanskrit-linguistics.org/dcs/"
+                      {...linkAttrs}
+                    >
+                      {chunks}
+                    </Link>
+                  ),
+                })}
+              </Typography>
             </Box>
           </Box>
         </Drawer>
