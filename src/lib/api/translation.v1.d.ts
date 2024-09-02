@@ -170,15 +170,7 @@ export interface components {
      * TranslationModel
      * @enum {string}
      */
-    TranslationModel:
-      | "NO"
-      | ""
-      | "default"
-      | "madlad"
-      | "madlad2"
-      | "llama3"
-      | "llama3-fgs"
-      | "gemma2"
+    TranslationModel: "" | "default" | "madlad" | "FGS-RAG" | "gemma2"
     /** ValidationError */
     ValidationError: {
       /** Location */

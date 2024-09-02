@@ -16,6 +16,10 @@ export interface paths {
     /** Search Endpoint Secondary */
     post: operations["search_endpoint_secondary_secondary__post"]
   }
+  "/knn-translate/": {
+    /** Knn Translate Endpoint */
+    post: operations["knn_translate_endpoint_knn_translate__post"]
+  }
   "/summary/": {
     /** Summary Endpoint */
     post: operations["summary_endpoint_summary__post"]
@@ -34,6 +38,16 @@ export type webhooks = Record<string, never>
 
 export interface components {
   schemas: {
+    /** Body_knn_translate_endpoint_knn_translate__post */
+    Body_knn_translate_endpoint_knn_translate__post: {
+      /** Query */
+      query: string
+      /**
+       * Language
+       * @default english
+       */
+      language?: string
+    }
     /** Body_search_endpoint_parallel_parallel__post */
     Body_search_endpoint_parallel_parallel__post: {
       /** Search Input */
@@ -332,6 +346,28 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["SecondarySearchResponse"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  /** Knn Translate Endpoint */
+  knn_translate_endpoint_knn_translate__post: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_knn_translate_endpoint_knn_translate__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": unknown
         }
       }
       /** @description Validation Error */

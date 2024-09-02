@@ -42,6 +42,7 @@ export type SearchTargets = Exclude<
   | "summary"
   | "explanation"
   | "explanation-parallel"
+  | "knn-translate"
 >
 
 export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
