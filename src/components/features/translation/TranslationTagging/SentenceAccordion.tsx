@@ -34,6 +34,7 @@ export default function SentenceAccordion({
     <Accordion
       key={`translation-tagging-sentence-${sentenceIndex}`}
       defaultExpanded={sentenceIndex === 0}
+      slotProps={{ heading: { component: "p" } }}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}

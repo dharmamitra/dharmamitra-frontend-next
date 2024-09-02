@@ -11,8 +11,8 @@ import {
   Typography,
 } from "@mui/material"
 import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid2"
 import Link from "@mui/material/Link"
-import Grid from "@mui/material/Unstable_Grid2"
 import { visuallyHidden } from "@mui/utils"
 
 import dmLogoFull from "@/assets/logos/dm-logo-full.png"
@@ -95,7 +95,7 @@ export default function AboutDharmamitraPage({
           }}
         >
           <Grid container>
-            <Grid xs={12} lg={5}>
+            <Grid size={{ xs: 12, lg: 5 }}>
               <Box
                 sx={{
                   display: { xs: "none", lg: "grid" },
@@ -113,7 +113,7 @@ export default function AboutDharmamitraPage({
               </Box>
             </Grid>
 
-            <Grid xs={12} lg={7}>
+            <Grid size={{ xs: 12, lg: 7 }}>
               <Container sx={{ py: 5 }}>
                 <Typography variant="h2">{t("project.h2")}</Typography>
                 <Typography mb={2}>{t("project.p1")}</Typography>
@@ -140,13 +140,11 @@ export default function AboutDharmamitraPage({
             {data.collaborators.map((collaborator) => (
               <Grid
                 key={`colaborator-${collaborator.i18nKey}`}
-                xs={16}
-                sm={8}
-                md={7}
+                size={{ xs: 16, sm: 8, md: 7 }}
               >
                 <div>
                   <Grid container spacing={{ xs: 3 }}>
-                    <Grid xs={2}>
+                    <Grid size={{ xs: 2 }}>
                       <Image
                         src={collaborator.logo.src}
                         alt={collaborator.logo.alt}
@@ -155,7 +153,7 @@ export default function AboutDharmamitraPage({
                         style={{ width: "100%" }}
                       />
                     </Grid>
-                    <Grid xs={10}>
+                    <Grid size={{ xs: 10 }}>
                       <Typography variant="h5" component="h3" mb={1}>
                         {t.rich(
                           `collaboration.collaborators.${collaborator.i18nKey}.name`,
