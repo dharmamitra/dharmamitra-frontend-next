@@ -10,10 +10,15 @@ import {
 
 const OuterElementContext = React.createContext({})
 
+export interface OuterElementProps extends React.ComponentPropsWithRef<"div"> {}
+
 // eslint-disable-next-line react/display-name
-const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
+const OuterElementType = React.forwardRef<
+  HTMLUListElement,
+  React.HTMLAttributes<HTMLUListElement>
+>((props, ref) => {
   const outerProps = React.useContext(OuterElementContext)
-  return <div ref={ref} {...props} {...outerProps} />
+  return <ul ref={ref} {...props} {...outerProps} />
 })
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,10 +34,10 @@ function useResetCache(data: any) {
 }
 
 const LISTBOX_PADDING_PX = 8
-const maxLines = 3
-const defaultItemHeight = 56
+const maxLines = 1
+const defaultItemHeight = 60
 const lineHeight = 37
-const charsPerLine = 24
+const charsPerLine = 28
 
 const trimName = (name: string) => {
   return name.replaceAll(/^•\s/g, "")
@@ -58,7 +63,7 @@ const Rows = (props: ListChildComponentProps) => {
   const { key, ...rowItemProps } = dataSetProps
 
   const lable = createMenuItemLabel(id, name)
-  const isTruncated = lable.length > charsPerLine * maxLines + 12
+  const isTruncated = lable.length > charsPerLine * maxLines + 1
 
   return (
     <RowItem inheretedstyles={inlineStyle} {...rowItemProps} component="li">
@@ -68,11 +73,15 @@ const Rows = (props: ListChildComponentProps) => {
           disableHoverListener={!isTruncated}
           enterDelay={1500}
         >
-          <ListItemLabel>
+          <ListItemLabel variant="body2">
             <Typography
               fontWeight={600}
               component="span"
               textTransform="uppercase"
+              sx={{
+                color: "text.secondary",
+                fontSize: "1rem !important",
+              }}
             >
               ({id})
             </Typography>{" "}
@@ -103,7 +112,7 @@ const getListHeight = (itemData: React.ReactNode[]) => {
 
 // Adapter for react-window
 const ListboxComponent = React.forwardRef<
-  HTMLUListElement,
+  HTMLDivElement,
   React.HTMLAttributes<HTMLElement>
 >(function ListboxComponent(props, ref) {
   const { children, ...other } = props
@@ -122,14 +131,16 @@ const ListboxComponent = React.forwardRef<
   const gridRef = useResetCache(itemCount)
 
   return (
-    <ul ref={ref} style={{ padding: "0" }}>
+    <div ref={ref} style={{ padding: "0" }}>
       <OuterElementContext.Provider value={other}>
         <VariableSizeList
           ref={gridRef}
           itemData={itemData}
           height={getListHeight(itemData) + 2 * LISTBOX_PADDING_PX}
           width="100%"
-          outerElementType={OuterElementType}
+          // TODO: resolve type issue
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          outerElementType={OuterElementType as any}
           innerElementType="ul"
           itemSize={(index: number) => getChildSize(itemData[index] ?? 0)}
           overscanCount={20}
@@ -138,7 +149,7 @@ const ListboxComponent = React.forwardRef<
           {Rows}
         </VariableSizeList>
       </OuterElementContext.Provider>
-    </ul>
+    </div>
   )
 })
 

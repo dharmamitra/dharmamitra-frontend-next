@@ -55,7 +55,9 @@ export default function SearchTargetOptions() {
 
       <LanguageFilterSelector />
 
-      {limitProps && limitProps.language !== defaultSearchFilterLanguage ? (
+      {limitProps &&
+      limitProps.language &&
+      limitProps.language !== defaultSearchFilterLanguage ? (
         <LimitFilters {...limitProps} />
       ) : null}
     </Box>
