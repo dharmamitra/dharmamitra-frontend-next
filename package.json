@@ -18,10 +18,7 @@
     "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
     "i18n:modelsync": "python3 ./scripts/sync_msg_model.py",
     "prepare": "husky",
-    "api:codegen": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/translation.v1.d.ts && openapi-typescript https://dharmamitra.org/api-search/openapi.json -o ./src/lib/api/search.v1.d.ts",
-    "api:codegen:translation": "openapi-typescript https://dharmamitra.org/api/openapi.json -o ./src/lib/api/translation.v1.d.ts",
-    "api:codegen:search": "openapi-typescript https://dharmamitra.org/api-search/openapi.json -o ./src/lib/api/search.v1.d.ts",
-    "bn-temp-api:codegen": "openapi-typescript https://dharmamitra.org/api-db/openapi.json -o ./src/lib/api/bnv2.d.ts"
+    "api:ts": "openapi-typescript"
   },
   "hooks": {
     "pre-commit": "lint-staged"
@@ -75,7 +72,7 @@
     "globals": "^15.9.0",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.10",
-    "openapi-typescript": "^6.7.6",
+    "openapi-typescript": "^7.3.3",
     "semantic-release": "^23.1.1",
     "typescript": "^5.5.4"
   },

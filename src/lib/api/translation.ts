@@ -5,33 +5,109 @@
 
 export interface paths {
   "/translation-fgs/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Translation */
     post: operations["translation_translation_fgs__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/translation-no-stream/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Translation No Stream */
     post: operations["translation_no_stream_translation_no_stream__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/translation-exp/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Translation */
     post: operations["translation_translation_exp__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/translation/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Translation */
     post: operations["translation_translation__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/tagging/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Tagging */
     post: operations["tagging_tagging__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/available-models/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     /** Get Available Models */
     get: operations["get_available_models_available_models__get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
 }
-
 export type webhooks = Record<string, never>
-
 export interface components {
   schemas: {
     /** AvailableModelsResponse */
@@ -187,14 +263,15 @@ export interface components {
   headers: never
   pathItems: never
 }
-
 export type $defs = Record<string, never>
-
-export type external = Record<string, never>
-
 export interface operations {
-  /** Translation */
   translation_translation_fgs__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_translation_translation_fgs__post"]
@@ -203,20 +280,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": unknown
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Translation No Stream */
   translation_no_stream_translation_no_stream__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_translation_no_stream_translation_no_stream__post"]
@@ -225,20 +313,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": unknown
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Translation */
   translation_translation_exp__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_translation_translation_exp__post"]
@@ -247,20 +346,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": unknown
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Translation */
   translation_translation__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_translation_translation__post"]
@@ -269,20 +379,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": unknown
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Tagging */
   tagging_tagging__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_tagging_tagging__post"]
@@ -291,6 +412,9 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json":
             | components["schemas"]["TaggerResponseModel"]
@@ -299,17 +423,29 @@ export interface operations {
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Get Available Models */
   get_available_models_available_models__get: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["AvailableModelsResponse"]
         }

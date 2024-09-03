@@ -1,8 +1,8 @@
 import createClient from "openapi-fetch"
 
-import type { paths as tempBNv2Paths } from "@/lib/api/bnv2"
+import type { paths as tempBNv2Paths } from "@/lib/api/bn"
 import type { paths as searchPaths } from "@/lib/api/search.v1"
-import type { paths as translationPaths } from "@/lib/api/translation.v1"
+import type { paths as translationPaths } from "@/lib/api/translation"
 
 export const defaultTimeout = 20000
 

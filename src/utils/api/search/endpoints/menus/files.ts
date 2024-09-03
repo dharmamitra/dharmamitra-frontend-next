@@ -1,5 +1,5 @@
 import apiClients from "../../../client"
-import type { MenuFilesRequestQuery, MenuFilesResponseData } from "./tempTypes"
+import type { MenuFilesRequestQuery, MenuFilesResponseData } from "./types"
 
 const parseTextFileMenuData = (data: MenuFilesResponseData) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

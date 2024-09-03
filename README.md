@@ -250,6 +250,8 @@ example usage
 
 ## 📡 DharmaMitra API client & typing (UPDATE IN PROGRESS)
 
+The project uses [`openapi-typescript`](https://openapi-ts.pages.dev/introduction) and [`openapi-fetch`](https://openapi-ts.pages.dev/openapi-fetch/) to interface with the API. In addition, as we need to do client-side fetching, we also use `@tanstack/react-query`.
+
 ### APIs
 
 - **Translation**:
@@ -261,14 +263,14 @@ example usage
 
 ### API models
 
-The project uses [`openapi-typescript`](https://openapi-ts.pages.dev/introduction) and [`openapi-fetch`](https://openapi-ts.pages.dev/openapi-fetch/) to interface with the API. In addition, as we need to do client-side fetching, we also use `@tanstack/react-query`.
-
-DM API request and response model types are generated from the project's OpenAPI JSON schemas
+`openapi-typescript` is configured in`redocly.yaml`. DM API request and response model types are fetched from the project's OpenAPI JSON schemas defined there and can be generated with:
 
 ```sh
-yarn api:codegen # generates all models
-yarn api:codegen:translation
-yarn api:codegen:search
+# package script
+yarn api:ts
+
+# Long form
+yarn openapi-typescript
 ```
 
 ### Regular fetchs

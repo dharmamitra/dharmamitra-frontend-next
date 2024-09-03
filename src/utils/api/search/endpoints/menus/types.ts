@@ -1,4 +1,4 @@
-import type { components, paths } from "@/lib/api/bnv2"
+import type { components, paths } from "@/lib/api/bn"
 import { APIRequestParams, APIResponse } from "@/utils/api/helpers"
 
 export type Schema = components["schemas"]

@@ -2,7 +2,7 @@ import apiClients from "../../../client"
 import type {
   MenuFilterCategoriesRequestQuery,
   MenuFilterCategoriesResponseData,
-} from "./tempTypes"
+} from "./types"
 
 export interface ParsedCategoryMenuItem {
   id: string
