@@ -18,9 +18,14 @@ export default function SearchKeyboardControls() {
       const { key, ctrlKey, shiftKey } = event
 
       if (key === "Enter" && !ctrlKey && !shiftKey) {
-        event.preventDefault()
         const input = document.getElementById(searchInputId) as HTMLInputElement
-        if (input === document.activeElement) {
+
+        if (!input || !input.value) return
+
+        if (
+          input === document.activeElement ||
+          document.activeElement?.tagName === "BODY"
+        ) {
           setTriggerSearchQuery(Boolean(searchInput))
         }
       }
