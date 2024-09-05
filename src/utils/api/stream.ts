@@ -13,7 +13,7 @@ export const markers = {
   error: "↯", // (followed by i18n error message key matching the pattern `\w+`)
 } as const
 
-const checks = {
+const exceptionChecks = {
   warning: new RegExp(String.raw`(^.*?)(⚠️.*)$`),
   error: new RegExp(String.raw`(^.*?)(↯.*)$`),
 }
@@ -33,7 +33,7 @@ const initialParsedStream: ParsedStream = {
 export const parseStream = (stream: string | undefined) => {
   if (!stream) return initialParsedStream
 
-  const checkedStream = Object.entries(checks).reduce<ParsedStream>(
+  const checkedStream = Object.entries(exceptionChecks).reduce<ParsedStream>(
     (acc, [, pattern]) => {
       const exceptionCheck = stream.match(pattern)
       const [, streamWihException, exception] = exceptionCheck ?? ["", "", ""]

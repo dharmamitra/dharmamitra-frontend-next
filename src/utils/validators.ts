@@ -44,18 +44,19 @@ export const getValidRelevance = (relevance: string) => {
 }
 
 export type ExceptionMessageKey = keyof Messages["generic"]["exception"]
-const errorMessages = exhaustiveStringTuple<ExceptionMessageKey>()(
+const exceptionMessages = exhaustiveStringTuple<ExceptionMessageKey>()(
   "default",
   "timeout",
   "inputLengthError",
   "inputLengthWarning",
+  "experimentalLanguageWarning",
 )
 
 export const getValidI18nExceptionKey = (key: string | undefined) => {
   if (!key) return undefined
 
   const sanitizedKey = key.replace(/[\W]/g, "")
-  if (errorMessages.some((key) => key === sanitizedKey)) {
+  if (exceptionMessages.some((key) => key === sanitizedKey)) {
     return sanitizedKey as ExceptionMessageKey
   }
 }
