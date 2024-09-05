@@ -36,6 +36,7 @@ const styles = {
     textDecoration: "underline dotted",
     textUnderlineOffset: "0.2rem",
     "&:hover": { textDecoration: "none", backgroundColor: "transparent" },
+    lineHeight: 1.35,
   },
 }
 
