@@ -5,37 +5,126 @@
 
 export interface paths {
   "/parallel/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Search Endpoint Parallel */
     post: operations["search_endpoint_parallel_parallel__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/primary/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Search Endpoint Primary */
     post: operations["search_endpoint_primary_primary__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/secondary/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Search Endpoint Secondary */
     post: operations["search_endpoint_secondary_secondary__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/knn-translate/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Knn Translate Endpoint */
     post: operations["knn_translate_endpoint_knn_translate__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/summary/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Summary Endpoint */
     post: operations["summary_endpoint_summary__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/explanation/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Summary Endpoint No Stream */
     post: operations["summary_endpoint_no_stream_explanation__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
   "/explanation-parallel/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
     /** Summary Endpoint Parallel */
     post: operations["summary_endpoint_parallel_explanation_parallel__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
   }
 }
-
 export type webhooks = Record<string, never>
-
 export interface components {
   schemas: {
     /** Body_knn_translate_endpoint_knn_translate__post */
@@ -46,7 +135,7 @@ export interface components {
        * Language
        * @default english
        */
-      language?: string
+      language: string
     }
     /** Body_search_endpoint_parallel_parallel__post */
     Body_search_endpoint_parallel_parallel__post: {
@@ -84,7 +173,7 @@ export interface components {
        * Locale
        * @default en
        */
-      locale?: string
+      locale: string
       /** Summary */
       summary: string
     }
@@ -104,7 +193,7 @@ export interface components {
        * Locale
        * @default en
        */
-      locale?: string
+      locale: string
     }
     /** Body_summary_endpoint_summary__post */
     Body_summary_endpoint_summary__post: {
@@ -116,7 +205,7 @@ export interface components {
        * Locale
        * @default en
        */
-      locale?: string
+      locale: string
     }
     /**
      * FilterLanguage
@@ -143,19 +232,19 @@ export interface components {
        * Category Include
        * @default []
        */
-      category_include?: unknown[]
+      category_include: unknown[]
       /**
        * File Include
        * @default []
        */
-      file_include?: unknown[]
+      file_include: unknown[]
     }
     /**
      * LimitsSecondary
      * @description Limits for Search in secondary sources
      * @enum {string}
      */
-    LimitsSecondary: ""
+    LimitsSecondary: "" | "" | ""
     /**
      * ParallelDataSearchResponse
      * @description List of individual search results for the parallel search.
@@ -284,14 +373,15 @@ export interface components {
   headers: never
   pathItems: never
 }
-
 export type $defs = Record<string, never>
-
-export type external = Record<string, never>
-
 export interface operations {
-  /** Search Endpoint Parallel */
   search_endpoint_parallel_parallel__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_search_endpoint_parallel_parallel__post"]
@@ -300,20 +390,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["ParallelDataSearchResponse"]
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Search Endpoint Primary */
   search_endpoint_primary_primary__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_search_endpoint_primary_primary__post"]
@@ -322,20 +423,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["PrimarySearchResponse"]
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Search Endpoint Secondary */
   search_endpoint_secondary_secondary__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_search_endpoint_secondary_secondary__post"]
@@ -344,20 +456,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["SecondarySearchResponse"]
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Knn Translate Endpoint */
   knn_translate_endpoint_knn_translate__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_knn_translate_endpoint_knn_translate__post"]
@@ -366,20 +489,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": unknown
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Summary Endpoint */
   summary_endpoint_summary__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_summary_endpoint_summary__post"]
@@ -388,20 +522,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": unknown
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Summary Endpoint No Stream */
   summary_endpoint_no_stream_explanation__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_summary_endpoint_no_stream_explanation__post"]
@@ -410,20 +555,31 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["SummaryRespone"]
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
       }
     }
   }
-  /** Summary Endpoint Parallel */
   summary_endpoint_parallel_explanation_parallel__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_summary_endpoint_parallel_explanation_parallel__post"]
@@ -432,12 +588,18 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       200: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["SummaryRespone"]
         }
       }
       /** @description Validation Error */
       422: {
+        headers: {
+          [name: string]: unknown
+        }
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }

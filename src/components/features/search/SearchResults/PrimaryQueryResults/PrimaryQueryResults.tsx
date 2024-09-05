@@ -37,7 +37,7 @@ export default function PrimaryQueryResults() {
       input_encoding: inputEncoding || inputEncodingDefault,
       limits: limits
         ? (JSON.parse(limits) as SearchApiTypes.Schema["Limits"])
-        : {},
+        : { category_include: [], file_include: [] },
       filter_language: filterLanguage || filterLanguageDefault,
     }),
     [searchInput, searchType, inputEncoding, limits, filterLanguage],
