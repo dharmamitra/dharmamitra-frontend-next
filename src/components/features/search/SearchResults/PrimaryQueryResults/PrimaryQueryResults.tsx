@@ -7,6 +7,7 @@ import { useAtom } from "jotai"
 
 import { DMFetchApi, SearchApiTypes } from "@/api"
 import { triggerSearchQueryAtom } from "@/atoms"
+import CopyPageLink from "@/components/CopyPageLink"
 import ExceptionText from "@/components/ExceptionText"
 import SkeletonGroup from "@/components/SkeletonGroup"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
@@ -15,7 +16,7 @@ import useGlobalParams from "@/hooks/useGlobalParams"
 import { allSearchDefaultParams } from "@/utils/api/search/params"
 
 import ResultsHeading from "../ResultsHeading"
-import PrimaryCopyList from "./PrimaryCopyList"
+import PrimaryCopyResults from "./PrimaryCopyResults"
 import PrimarySearchResultItems from "./PrimaryQueryResultItems"
 
 const {
@@ -96,7 +97,12 @@ export default function PrimaryQueryResults() {
         }}
       >
         <ResultsHeading results={data.length} />
-        <PrimaryCopyList results={data} />
+
+        <Box>
+          <CopyPageLink />
+          <PrimaryCopyResults type="refs" results={data} />
+          <PrimaryCopyResults type="full" results={data} />
+        </Box>
       </Box>
       <PrimarySearchResultItems results={data} />
     </>

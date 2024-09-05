@@ -1,6 +1,6 @@
 import React from "react"
 import Box from "@mui/material/Box"
-import Grid from "@mui/material/Grid"
+import Grid, { Grid2Props } from "@mui/material/Grid2"
 import Typography from "@mui/material/Typography"
 
 import { SearchApiTypes } from "@/api"
@@ -19,7 +19,7 @@ type ResultItemProps = {
   isParallel?: boolean
   query?: string
   summary?: string
-  size: { xs?: number; sm?: number; md?: number; lg?: number; xl?: number }
+  size: Grid2Props["size"]
 }
 
 export default function ResultItem({
@@ -36,7 +36,7 @@ export default function ResultItem({
   const fullResultContentRef = React.useRef<HTMLDivElement>(null)
 
   return (
-    <Grid item {...size} ref={fullResultContentRef}>
+    <Grid size={size} ref={fullResultContentRef}>
       <Box
         sx={{
           display: "flex",

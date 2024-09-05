@@ -61,8 +61,8 @@ export default function CopyText({
   tooltip,
   color,
 }: CopyTextProps) {
-  const t = useTranslations("generic")
-  const [toolTip, setToolTip] = React.useState<string>(tooltip || t("copy"))
+  const t = useTranslations("generic.copy")
+  const [toolTip, setToolTip] = React.useState<string>(tooltip || t("default"))
 
   const copyContent = React.useCallback(async () => {
     const element = contentRef.current
@@ -83,7 +83,7 @@ export default function CopyText({
           onClick={copyContent}
           onMouseLeave={() =>
             setTimeout(() => {
-              setToolTip(tooltip || t("copy"))
+              setToolTip(tooltip || t("default"))
             }, 500)
           }
         >

@@ -6,6 +6,7 @@ import { useAtom } from "jotai"
 
 import { DMFetchApi, SearchApiTypes } from "@/api"
 import { triggerSearchQueryAtom } from "@/atoms"
+import CopyPageLink from "@/components/CopyPageLink"
 import SkeletonGroup from "@/components/SkeletonGroup"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchParallelParams from "@/hooks/search/useSearchParallelParams"
@@ -13,7 +14,7 @@ import useGlobalParams from "@/hooks/useGlobalParams"
 import { allSearchDefaultParams } from "@/utils/api/search/params"
 
 import ResultsHeading from "../ResultsHeading"
-import ParallelCopyList from "./ParallelCopyList"
+import ParallelCopyResults from "./ParallelCopyResults"
 import ParralelSearchResultItems from "./ParralelSearchResultItems"
 
 const {
@@ -106,10 +107,14 @@ export default function ParallelQueryResults() {
         }}
       >
         <ResultsHeading results={data.length} />
-        <ParallelCopyList results={data} />
+
+        <Box>
+          <CopyPageLink />
+          <ParallelCopyResults type="refs" results={data} />
+          <ParallelCopyResults type="full" results={data} />
+        </Box>
       </Box>
 
-      {/* <ResultsHeading results={data.length} /> */}
       <ParralelSearchResultItems results={data} />
     </>
   )

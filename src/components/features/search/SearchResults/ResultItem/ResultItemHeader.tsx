@@ -1,4 +1,3 @@
-// ResultItemHeader.tsx
 import React from "react"
 import { useTranslations } from "next-intl"
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined"
@@ -91,14 +90,14 @@ export default function ResultItemHeader({
         >
           <CopyText
             contentRef={headerContentRef}
-            tooltip={t("generic.copyRef")}
-            ariaLabel={t("generic.copyRef")}
+            tooltip={t("generic.copy.copyRef")}
+            ariaLabel={t("generic.copy.copyRef")}
             color="action"
           />
           <CopyText
             contentRef={fullResultContentRef}
-            tooltip={t("generic.copyAll")}
-            ariaLabel={t("generic.copyAll")}
+            tooltip={t("generic.copy.copyAll")}
+            ariaLabel={t("generic.copy.copyAll")}
             icon={<FeedOutlinedIcon color="action" />}
           />
         </Box>

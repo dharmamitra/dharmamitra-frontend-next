@@ -1,18 +1,20 @@
 import React from "react"
 import { useTranslations } from "next-intl"
-import SummarizeOutlinedIcon from "@mui/icons-material/SummarizeOutlined"
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined"
 import { IconButton } from "@mui/material"
 import Tooltip from "@mui/material/Tooltip"
 
 import { SearchApiTypes } from "@/api"
 
-export default function ParallelCopyList({
+export default function ParallelCopyFullList({
   results,
 }: {
   results: SearchApiTypes.Response<"/parallel/">["results"]
 }) {
   const t = useTranslations("generic")
-  const [toolTip, setToolTip] = React.useState<string>(t("copyResultsList"))
+  const [toolTip, setToolTip] = React.useState<string>(
+    t("copy.copyResultsList"),
+  )
 
   const copyContent = React.useCallback(async () => {
     const content = results
@@ -35,7 +37,7 @@ export default function ParallelCopyList({
 
     if (content) {
       await navigator.clipboard.writeText(content)
-      setToolTip(t("copied"))
+      setToolTip(t("copy.copied"))
     }
   }, [results, t])
 
@@ -43,16 +45,16 @@ export default function ParallelCopyList({
     <>
       <Tooltip title={toolTip} placement="top">
         <IconButton
-          aria-label={t("copyResultsList")}
+          aria-label={t("copy.copyResultsList")}
           color="secondary"
           onClick={copyContent}
           onMouseLeave={() =>
             setTimeout(() => {
-              setToolTip(t("copyResultsList"))
+              setToolTip(t("copy.copyResultsList"))
             }, 500)
           }
         >
-          <SummarizeOutlinedIcon color="action" fontSize="small" />
+          <FeedOutlinedIcon color="action" fontSize="small" />
         </IconButton>
       </Tooltip>
     </>

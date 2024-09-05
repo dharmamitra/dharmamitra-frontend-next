@@ -1,10 +1,14 @@
 {
   "generic": {
-    "copy": "Copy",
-    "copyRef": "Copy reference",
-    "copyAll": "Copy all",
-    "copyResultsList": "Copy results list",
-    "copied": "Copied!",
+    "copy": {
+      "default": "Copy",
+      "copied": "Copied!",
+      "copyLink": "Copy link",
+      "copyRef": "Copy reference",
+      "copyAll": "Copy all",
+      "copyResultsRefs": "Copy references",
+      "copyResultsList": "Copy full results list"
+    },
     "exception": {
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
