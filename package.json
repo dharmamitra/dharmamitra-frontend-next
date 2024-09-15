@@ -18,7 +18,7 @@
     "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
     "i18n:modelsync": "python3 ./scripts/sync_msg_model.py",
     "prepare": "husky",
-    "api:ts": "openapi-typescript"
+    "api:ts": "openapi-typescript && eslint src/lib/api/*.ts --fix"
   },
   "hooks": {
     "pre-commit": "lint-staged"

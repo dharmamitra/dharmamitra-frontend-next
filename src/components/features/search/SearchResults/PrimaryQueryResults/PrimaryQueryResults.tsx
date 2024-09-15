@@ -104,6 +104,7 @@ export default function PrimaryQueryResults() {
           <PrimaryCopyResults type="full" results={data} />
         </Box>
       </Box>
+
       <PrimarySearchResultItems results={data} />
     </>
   )

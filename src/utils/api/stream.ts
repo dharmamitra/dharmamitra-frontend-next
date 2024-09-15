@@ -30,6 +30,13 @@ const initialParsedStream: ParsedStream = {
   parsedStream: [],
 }
 
+export const getParagraphsFromString = (string: string) => {
+  return string
+    .split(markers.lineBreak)
+    .map((p) => p.trim())
+    .filter(Boolean)
+}
+
 export const parseStream = (stream: string | undefined) => {
   if (!stream) return initialParsedStream
 
@@ -51,9 +58,6 @@ export const parseStream = (stream: string | undefined) => {
 
   return {
     ...checkedStream,
-    parsedStream: checkedStream.content
-      .split(markers.lineBreak)
-      .map((p) => p.trim())
-      .filter(Boolean),
+    parsedStream: getParagraphsFromString(checkedStream.content),
   }
 }

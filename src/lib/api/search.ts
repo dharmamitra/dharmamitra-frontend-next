@@ -304,6 +304,7 @@ export interface components {
       summary: string
       /** Text */
       text: string
+      text_new: components["schemas"]["TextSegment"]
       /** Src Link */
       src_link: string
     }

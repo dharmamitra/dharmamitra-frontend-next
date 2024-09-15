@@ -59,6 +59,8 @@
     "parallelEnglishSwitch": "Show English",
     "precisionLabel": "Exact matches only",
     "explanation": "Explanation",
+    "expandText": "Expand result text",
+    "collapseText": "Collapse result text",
     "targetTips": {
       "primary": "Search canonical and traditional source texts",
       "secondary": "Search modern commentarial literature",

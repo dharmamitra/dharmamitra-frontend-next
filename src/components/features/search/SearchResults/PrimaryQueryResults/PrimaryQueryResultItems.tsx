@@ -12,6 +12,7 @@ export default function PrimarySearchResultItems({
   results: SearchApiTypes.Response<"/primary/">["results"]
 }) {
   const locale = useLocale()
+
   return (
     <Box>
       {results.map((result, index) => {

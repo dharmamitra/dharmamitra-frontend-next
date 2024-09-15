@@ -115,7 +115,9 @@
       "medium": "Medium",
       "low": "Low"
     },
-    "precisionLabel": "Exact matches only"
+    "precisionLabel": "Exact matches only",
+    "expandText": "Expand result text",
+    "collapseText": "Collapse result text"
   },
   "translation": {
     "translate": "翻譯",

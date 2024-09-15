@@ -1,8 +1,12 @@
 import React from "react"
 import { useTranslations } from "next-intl"
+import ExpandIcon from "@mui/icons-material/Expand"
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined"
+import UnfoldLessIcon from "@mui/icons-material/UnfoldLess"
+import { IconButton } from "@mui/material"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
+import Tooltip from "@mui/material/Tooltip"
 import Typography from "@mui/material/Typography"
 
 import CopyText from "@/components/CopyText"
@@ -15,6 +19,9 @@ type ResultItemHeaderProps = {
   title: string
   link: string
   fullResultContentRef: React.RefObject<HTMLDivElement>
+  hasMoreText: boolean
+  isTextExpanded: boolean
+  setIsTextExpanded: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function ResultItemHeader({
@@ -23,6 +30,9 @@ export default function ResultItemHeader({
   link,
   segmentnr,
   fullResultContentRef,
+  hasMoreText,
+  isTextExpanded,
+  setIsTextExpanded,
 }: ResultItemHeaderProps) {
   const t = useTranslations()
   const headerContentRef = React.useRef<HTMLDivElement>(null)
@@ -30,6 +40,9 @@ export default function ResultItemHeader({
   return (
     <Box
       sx={{
+        position: isTextExpanded ? "sticky" : undefined,
+        top: "6rem",
+        zIndex: 1,
         display: "flex",
         flexDirection: { xs: "column-reverse", sm: "row" },
         justifyContent: "space-between",
@@ -80,6 +93,27 @@ export default function ResultItemHeader({
           alignItems: "center",
         }}
       >
+        {hasMoreText ? (
+          <Tooltip
+            title={
+              isTextExpanded ? t("search.collapseText") : t("search.expandText")
+            }
+            placement="top"
+          >
+            <IconButton
+              size="small"
+              sx={{ p: 1 }}
+              onClick={() => setIsTextExpanded((prev) => !prev)}
+            >
+              {isTextExpanded ? (
+                <UnfoldLessIcon fontSize="small" />
+              ) : (
+                <ExpandIcon fontSize="small" />
+              )}
+            </IconButton>
+          </Tooltip>
+        ) : null}
+
         <Box
           sx={{
             display: "flex",
