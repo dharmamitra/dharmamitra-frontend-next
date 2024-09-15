@@ -5,13 +5,13 @@ import { defaultLocale, supportedLocales } from "@/i18n"
 import { makeCleanRoute } from "@/utils/transformers"
 
 // import enMessages from "../messages/en.json"
-// import zhMessages from "../messages/zh.json"
+// import zhHansMessages from "../messages/zh-Hans .json"
 // import zhHantMessages from "../messages/zh-Hant.json"
 import { getBasePath } from "../next.config.mjs"
 
 // const messages = {
 //   en: enMessages,
-//   zh: zhMessages,
+//   "zh-Hans": zhMessages,
 //   "zh-Hant": zhHantMessages,
 // } satisfies Record<(typeof supportedLocales)[number], Messages>
 

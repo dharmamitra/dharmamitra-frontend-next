@@ -31,7 +31,7 @@ const en = [
   "Looking with kindly eyes",
   "Subjects for frequent recollection",
 ]
-const zh = [
+const zhHans = [
   // TODO
   ...en,
 ]
@@ -42,6 +42,6 @@ const zhHant = [
 
 export const exampleSearchStrings: Record<SupportedLocale, string[]> = {
   en,
-  zh,
+  "zh-Hans": zhHans,
   "zh-Hant": zhHant,
 }

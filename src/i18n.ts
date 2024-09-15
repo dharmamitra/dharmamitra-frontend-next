@@ -3,7 +3,7 @@ import { getRequestConfig } from "next-intl/server"
 
 export type { Metadata } from "next"
 
-export const supportedLocales = ["en", "zh", "zh-Hant"] as const
+export const supportedLocales = ["en", "zh-Hans", "zh-Hant"] as const
 export const defaultLocale = "en" as const
 export const localePrefix = "as-needed"
 

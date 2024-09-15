@@ -45,7 +45,7 @@
   },
   "localeSwitcher": {
     "label": "切換語言",
-    "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "locale": "{locale, select, en {English} zh_Hans {简体中文} zh_Hant {繁體中文} other {Unknown}}",
     "localePlaceholder": "繁體中文"
   },
   "search": {
