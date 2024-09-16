@@ -46,13 +46,13 @@ export type SearchFilterLanguage = Schema["FilterLanguage"] &
 
 export const searchFilterLanguages: SearchFilterLanguage[] =
   exhaustiveStringTuple<Schema["FilterLanguage"]>()(
-    "all",
-    "tib",
-    "skt",
-    "chn",
-    "pli",
+    "aa", // all
+    "bo", // tibetan
+    "sa", // sankrit
+    "zh", // chinese
+    "pa", // pali
   )
-export const defaultSearchFilterLanguage = "all"
+export const defaultSearchFilterLanguage = "aa"
 
 export const searchParamsNames: SearchParamNames = {
   global: globalParamsNames,

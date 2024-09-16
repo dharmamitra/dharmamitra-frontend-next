@@ -1,8 +1,8 @@
 import React from "react"
 import { useTranslations } from "next-intl"
-import ExpandIcon from "@mui/icons-material/Expand"
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined"
 import UnfoldLessIcon from "@mui/icons-material/UnfoldLess"
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore"
 import { IconButton } from "@mui/material"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
@@ -10,8 +10,8 @@ import Tooltip from "@mui/material/Tooltip"
 import Typography from "@mui/material/Typography"
 
 import CopyText from "@/components/CopyText"
-import { SourceLanguage } from "@/utils/api/search/types"
 import { sourceLangColors } from "@/utils/constants"
+import { getValidSourceLanguage } from "@/utils/validators"
 
 type ResultItemHeaderProps = {
   language: string
@@ -36,6 +36,8 @@ export default function ResultItemHeader({
 }: ResultItemHeaderProps) {
   const t = useTranslations()
   const headerContentRef = React.useRef<HTMLDivElement>(null)
+
+  const sourceLangCode = getValidSourceLanguage(language)
 
   return (
     <Box
@@ -108,7 +110,7 @@ export default function ResultItemHeader({
               {isTextExpanded ? (
                 <UnfoldLessIcon fontSize="small" />
               ) : (
-                <ExpandIcon fontSize="small" />
+                <UnfoldMoreIcon fontSize="small" />
               )}
             </IconButton>
           </Tooltip>
@@ -136,16 +138,18 @@ export default function ResultItemHeader({
           />
         </Box>
 
-        <Chip
-          label={language}
-          variant="filled"
-          sx={{
-            bgcolor: sourceLangColors[language as SourceLanguage],
-            color: "white",
-            fontWeight: 500,
-          }}
-          size="small"
-        />
+        {sourceLangCode !== "aa" ? (
+          <Chip
+            label={t(`search.commonParams.filterLanguages.${sourceLangCode}`)}
+            variant="filled"
+            sx={{
+              bgcolor: sourceLangColors[sourceLangCode],
+              color: "white",
+              fontWeight: 500,
+            }}
+            size="small"
+          />
+        ) : null}
       </Box>
     </Box>
   )

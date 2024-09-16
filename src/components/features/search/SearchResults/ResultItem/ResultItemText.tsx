@@ -26,24 +26,20 @@ export default function ResultItemText({
         expanded={isTextExpanded}
       />
 
-      <Box sx={{ display: "flex" }}>
-        {text.hasMore && !isTextExpanded ? <Typography>...</Typography> : null}
-        <Box>
-          {text.main.map((paragraph, index) => (
-            <Typography
-              key={`main-search-string-result-paragraph-${index}`}
-              sx={{
-                flexGrow: 1,
-                fontSize: "1.25rem !important",
-                overflowWrap: "anywhere",
-                px: 1,
-              }}
-            >
-              <strong>{paragraph}</strong>
-            </Typography>
-          ))}
-        </Box>
-        {text.hasMore && !isTextExpanded ? <Typography>...</Typography> : null}
+      <Box>
+        {text.main.map((paragraph, index) => (
+          <Typography
+            key={`main-search-string-result-paragraph-${index}`}
+            sx={{
+              flexGrow: 1,
+              fontSize: "1.25rem !important",
+              overflowWrap: "anywhere",
+              px: 1,
+            }}
+          >
+            <strong>{paragraph}</strong>
+          </Typography>
+        ))}
       </Box>
 
       <ResultItemTextContext

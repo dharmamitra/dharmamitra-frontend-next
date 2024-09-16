@@ -212,7 +212,7 @@ export interface components {
      * @description For primary and parallel data, we can filter by these languages.
      * @enum {string}
      */
-    FilterLanguage: "tib" | "skt" | "chn" | "pli" | "all"
+    FilterLanguage: "bo" | "sa" | "zh" | "pa" | "aa"
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */

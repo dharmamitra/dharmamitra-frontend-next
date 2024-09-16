@@ -71,12 +71,6 @@
       "secondary": "Modern",
       "parallel": "Parallels"
     },
-    "parallelLanguages": {
-      "tib-chn": "Tibetan-Chinese",
-      "tib-eng": "Tibetan-English",
-      "san-eng": "Sanskrit-English",
-      "san-tib": "Sanskrit-Tibetan"
-    },
     "limits": {
       "labels": {
         "category_include": "Select included categories",
@@ -98,11 +92,11 @@
       },
       "searchTypes": { "regular": "Regular", "semantic": "Semantic" },
       "filterLanguages": {
-        "tib": "Tibetan",
-        "skt": "Sanskrit",
-        "chn": "Buddhist Chinese",
-        "pli": "Pali",
-        "all": "All"
+        "bo": "Tibetan",
+        "sa": "Sanskrit",
+        "zh": "Chinese",
+        "pa": "Pali",
+        "aa": "All"
       },
       "limitsPrimaryLabels": {
         "category_include": "Select included categories",

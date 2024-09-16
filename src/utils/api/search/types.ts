@@ -13,7 +13,7 @@ export type SearchEndpointName = SearchEndpoint extends `/${infer Key}/`
   ? Key
   : never
 
-export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all">
+export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all" | "aa">
 
 /**
  * REQUEST & RESPONSE GENERICS

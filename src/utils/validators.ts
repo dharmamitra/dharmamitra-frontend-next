@@ -3,7 +3,12 @@ import * as searchParams from "@/utils/api/search/params"
 import { Schema as SearchSchema } from "@/utils/api/search/types"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-const { searchTypes, defaultSearchType } = searchParams
+const {
+  searchTypes,
+  defaultSearchType,
+  searchFilterLanguages,
+  defaultSearchFilterLanguage,
+} = searchParams
 const { searchTargets, defaultSearchTarget } = locaParams
 
 export const getValidDefaultValue = <T>(value: T) => {
@@ -59,4 +64,15 @@ export const getValidI18nExceptionKey = (key: string | undefined) => {
   if (exceptionMessages.some((key) => key === sanitizedKey)) {
     return sanitizedKey as ExceptionMessageKey
   }
+}
+
+export const isValideSourceLanguage = (
+  language: unknown,
+): language is SearchSchema["FilterLanguage"] =>
+  Object.values(searchFilterLanguages).some((item) => item === language)
+
+export const getValidSourceLanguage = (language: unknown) => {
+  return isValideSourceLanguage(language)
+    ? language
+    : defaultSearchFilterLanguage
 }

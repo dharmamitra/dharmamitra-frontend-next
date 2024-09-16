@@ -3,24 +3,33 @@
 import { useEffect } from "react"
 
 import useAppConfig from "@/hooks/useAppConfig"
-import { translationParamsNames } from "@/utils/api/translation/params"
+// import { translationParamsNames } from "@/utils/api/translation/params"
+import { searchParamsNames } from "@/utils/api/search/params"
 import { localStorageKeys } from "@/utils/constants"
 
-const { storageId: storageIdKey } = localStorageKeys
+const { storageVersionId: storageVersionIdKey } = localStorageKeys
 
 // https://vscode.dev/github/dharmamitra/dharmamitra-frontend-next/blob/working
 
 export default function StorageCheck() {
-  const { storageId } = useAppConfig()
+  const { storageVersionId } = useAppConfig()
 
   useEffect(() => {
-    const localStorageId = localStorage.getItem(storageIdKey)
+    const localStorageId = localStorage.getItem(storageVersionIdKey)
 
-    if (localStorageId !== storageId) {
-      localStorage.removeItem(translationParamsNames.translation.model)
-      localStorage.setItem(storageIdKey, storageId)
+    if (localStorageId === storageVersionId) return
+
+    localStorage.setItem(storageVersionIdKey, storageVersionId)
+
+    if (storageVersionId === "nuke") {
+      localStorage.clear()
+    } else {
+      // targeted props for given version
+      localStorage.removeItem(searchParamsNames.primary.filter_language)
+      localStorage.removeItem(searchParamsNames.parallel.filter_source_language)
+      localStorage.removeItem(searchParamsNames.parallel.filter_target_language)
     }
-  }, [storageId])
+  }, [storageVersionId])
 
   return null
 }

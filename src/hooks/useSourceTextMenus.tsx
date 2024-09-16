@@ -13,7 +13,7 @@ export type UseSourceTextMenusProps = {
 const isEnabled = (params: UseSourceTextMenusProps) => {
   if (Object.keys(params).length === 0) return false
   if (!params.language) return false
-  if (params.language === "all") return false
+  if (params.language === "aa") return false
   return true
 }
 
