@@ -21,7 +21,17 @@ export default function StartStopStreamButton({
 }: StartStopStreamButtonProps) {
   const t = useTranslations()
 
-  const { handleSubmit, stop, isLoading } = useChat(chatPropsWithId)
+  const { stop, setInput, isLoading, handleSubmit } = useChat(chatPropsWithId)
+
+  React.useEffect(() => {
+    // Ensures handlers are able to be called
+    setInput(input)
+  }, [input, setInput])
+
+  const handleAbort = React.useCallback(() => {
+    stop()
+    setInput(input)
+  }, [stop, input, setInput])
 
   if (isLoading) {
     return (
@@ -29,7 +39,7 @@ export default function StartStopStreamButton({
         <IconButton
           aria-label={t("generic.stop")}
           color="secondary"
-          onClick={stop}
+          onClick={handleAbort}
         >
           <StopCircleIcon />
         </IconButton>

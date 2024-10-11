@@ -2,7 +2,7 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import { MenuItem, RadioGroup, Select } from "@mui/material"
+import { Box, MenuItem, RadioGroup, Select } from "@mui/material"
 
 import styles from "@/components/customFocusVisible.module.css"
 import {
@@ -10,20 +10,20 @@ import {
   SecondaryOptionsButtonIcon,
   secondaryOptionsInputStyles,
   selectedOptionsStyles,
-} from "@/components/styled"
+} from "@/components/styled-ssr-safe"
+import { useInputEncoding } from "@/hooks/params"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
-import useGlobalParams from "@/hooks/useGlobalParams"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { getOptionI18nKeyPath } from "@/utils"
 import { defaultInputEncoding, inputEncodings } from "@/utils/api/global/params"
 import { InputEncoding } from "@/utils/api/global/types"
 
-import RadioOption from "../translation/common/RadioOption"
+import RadioOption from "../MitraTranslator/common/RadioOption"
 
 export default function LazyInputEncodingSelector() {
   const t = useTranslations()
 
-  const { inputEncoding, setInputEncoding } = useGlobalParams()
+  const [inputEncoding, setInputEncoding] = useInputEncoding()
 
   const primaryOptionsSelectorId = "primary-encoding-options"
   useFocusHighlight({
@@ -47,7 +47,12 @@ export default function LazyInputEncodingSelector() {
   )
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "inline-flex",
+        px: 1,
+      }}
+    >
       <RadioGroup
         id={primaryOptionsSelectorId}
         aria-label={t("globalParams.primaryEncodingsAriaLabel")}
@@ -107,6 +112,6 @@ export default function LazyInputEncodingSelector() {
           ))}
         </Select>
       </div>
-    </>
+    </Box>
   )
 }

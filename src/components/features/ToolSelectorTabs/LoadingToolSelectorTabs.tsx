@@ -7,7 +7,7 @@ import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
-import { tabsStyles } from "@/components/styled"
+import { tabsStyles } from "@/components/styled-ssr-safe"
 
 import { a11yProps } from "./LazyToolSelectorTabs"
 import LoadingBox from "./LoadingBox"

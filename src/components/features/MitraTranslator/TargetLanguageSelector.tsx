@@ -2,7 +2,7 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import { MenuItem, RadioGroup, Select } from "@mui/material"
+import { Box, MenuItem, RadioGroup, Select } from "@mui/material"
 
 import styles from "@/components/customFocusVisible.module.css"
 import {
@@ -10,14 +10,14 @@ import {
   SecondaryOptionsButtonIcon,
   secondaryOptionsInputStyles,
   selectedOptionsStyles,
-} from "@/components/styled"
+} from "@/components/styled-ssr-safe"
 import useTranslationEndpointParams from "@/hooks/translation/useTranslationEndpointParams"
 import useAppConfig from "@/hooks/useAppConfig"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { getOptionI18nKeyPath } from "@/utils"
 
-import RadioOption from "../common/RadioOption"
+import RadioOption from "./common/RadioOption"
 
 export default function LazyTranslationTargetLanguageSelector() {
   const t = useTranslations()
@@ -48,7 +48,12 @@ export default function LazyTranslationTargetLanguageSelector() {
   )
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "inline-flex",
+        px: 1,
+      }}
+    >
       <RadioGroup
         id={primaryOptionsSelectorId}
         aria-label={t("translation.primaryTargetLanguagesAriaLabel")}
@@ -112,6 +117,6 @@ export default function LazyTranslationTargetLanguageSelector() {
           ))}
         </Select>
       </div>
-    </>
+    </Box>
   )
 }

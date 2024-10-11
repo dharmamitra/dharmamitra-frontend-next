@@ -1,3 +1,5 @@
+import { defaultInputEncoding, inputEncodings } from "@/utils/api/global/params"
+import { InputEncoding } from "@/utils/api/global/types"
 import * as locaParams from "@/utils/api/search/local"
 import * as searchParams from "@/utils/api/search/params"
 import { Schema as SearchSchema } from "@/utils/api/search/types"
@@ -66,13 +68,20 @@ export const getValidI18nExceptionKey = (key: string | undefined) => {
   }
 }
 
-export const isValideSourceLanguage = (
+export const isValidSourceLanguage = (
   language: unknown,
 ): language is SearchSchema["FilterLanguage"] =>
   Object.values(searchFilterLanguages).some((item) => item === language)
 
 export const getValidSourceLanguage = (language: unknown) => {
-  return isValideSourceLanguage(language)
+  return isValidSourceLanguage(language)
     ? language
     : defaultSearchFilterLanguage
+}
+
+export const isInputEncoding = (encoding: unknown): encoding is InputEncoding =>
+  Object.values(inputEncodings).some((item) => item === encoding)
+
+export const getValidInputEncoding = (encoding: unknown) => {
+  return isInputEncoding(encoding) ? encoding : defaultInputEncoding
 }

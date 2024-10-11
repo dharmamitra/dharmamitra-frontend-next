@@ -11,9 +11,9 @@ import IconButton from "@mui/material/IconButton"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
-import { tabsStyles } from "@/components/styled"
+import { tabsStyles } from "@/components/styled-ssr-safe"
+import MitraTranslator from "@/features/MitraTranslator"
 import SearchFeature from "@/features/search"
-import TranslationFeature from "@/features/translation"
 import useGlobalParams from "@/hooks/useGlobalParams"
 import useParams from "@/hooks/useParams"
 import { globalParamsNames } from "@/utils/api/global/params"
@@ -178,7 +178,7 @@ export default function ToolSelectorTabs() {
 
           <FeatureTabPanel value={tabIndex} index={1}>
             <Box sx={{ mt: 6 }}>
-              <TranslationFeature />
+              <MitraTranslator />
             </Box>
           </FeatureTabPanel>
         </Box>

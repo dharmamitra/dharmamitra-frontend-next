@@ -6,7 +6,7 @@ import Tooltip from "@mui/material/Tooltip"
 import { useSetAtom } from "jotai"
 
 import { triggerSearchQueryAtom } from "@/atoms"
-import { tooltipEnterStyles } from "@/components/styled"
+import { tooltipEnterStyles } from "@/components/styled-ssr-safe"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 
 export default function SearchStartStopButton() {

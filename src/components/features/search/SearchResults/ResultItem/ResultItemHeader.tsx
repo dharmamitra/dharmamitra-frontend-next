@@ -9,7 +9,7 @@ import Chip from "@mui/material/Chip"
 import Tooltip from "@mui/material/Tooltip"
 import Typography from "@mui/material/Typography"
 
-import CopyText from "@/components/CopyText"
+import CopyText from "@/components/CopyTextButton"
 import { sourceLangColors } from "@/utils/constants"
 import { getValidSourceLanguage } from "@/utils/validators"
 

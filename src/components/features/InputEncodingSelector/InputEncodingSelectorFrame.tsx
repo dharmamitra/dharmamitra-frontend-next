@@ -5,8 +5,8 @@ import { Box } from "@mui/material"
 
 import { globalParams } from "@/api"
 
-import OptionsLoading from "../translation/common/OptionsLoading"
-import SettingBlock from "../translation/common/SettingBlock"
+import OptionsLoading from "../MitraTranslator/common/OptionsLoading"
+import SettingBlock from "../MitraTranslator/common/SettingBlock"
 
 const InputEncodingSelector = dynamic(
   () => import("./LazyInputEncodingSelector"),

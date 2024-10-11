@@ -75,10 +75,7 @@ export default function SearchInput({ className }: { className?: string }) {
           >
             <StartStopButton />
 
-            <ClearButton
-              value={searchInput}
-              handleValueChange={setSearchInput}
-            />
+            <ClearButton input={searchInput} setInput={setSearchInput} />
           </Box>
         }
       />

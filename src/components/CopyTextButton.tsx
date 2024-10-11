@@ -9,7 +9,7 @@ import Tooltip from "@mui/material/Tooltip"
 
 interface CopyTextProps {
   contentRef: React.RefObject<HTMLElement>
-  ariaLabel: string
+  ariaLabel?: string
   icon?: JSX.Element
   tooltip?: string
   color?: SvgIconProps["color"]
@@ -54,7 +54,7 @@ const getTextWithLinks = (node: Node): string => {
   }
 }
 
-export default function CopyText({
+export default function CopyTextButton({
   contentRef,
   ariaLabel,
   icon,
@@ -63,6 +63,7 @@ export default function CopyText({
 }: CopyTextProps) {
   const t = useTranslations("generic.copy")
   const [toolTip, setToolTip] = React.useState<string>(tooltip || t("default"))
+  const [isContent, setIsContent] = React.useState<boolean>(false)
 
   const copyContent = React.useCallback(async () => {
     const element = contentRef.current
@@ -73,22 +74,47 @@ export default function CopyText({
     }
   }, [contentRef, t])
 
+  React.useEffect(() => {
+    const element = contentRef.current
+    if (!element) return
+
+    const updateContentState = () => {
+      setIsContent(Boolean(element.textContent))
+    }
+
+    updateContentState()
+
+    const observer = new MutationObserver(updateContentState)
+    observer.observe(element, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [contentRef])
+
   return (
     <>
       <Tooltip title={toolTip} placement="top">
-        <IconButton
-          data-testid={"copy-button"}
-          aria-label={ariaLabel}
-          color="secondary"
-          onClick={copyContent}
-          onMouseLeave={() =>
-            setTimeout(() => {
-              setToolTip(tooltip || t("default"))
-            }, 500)
-          }
-        >
-          {icon || <ContentCopyIcon color={color} fontSize="small" />}
-        </IconButton>
+        <span>
+          <IconButton
+            data-testid={"copy-button"}
+            aria-label={ariaLabel || t("default")}
+            color="secondary"
+            onClick={copyContent}
+            disabled={!isContent}
+            onMouseLeave={() =>
+              setTimeout(() => {
+                setToolTip(tooltip || t("default"))
+              }, 500)
+            }
+          >
+            {icon || <ContentCopyIcon color={color} fontSize="small" />}
+          </IconButton>
+        </span>
       </Tooltip>
     </>
   )

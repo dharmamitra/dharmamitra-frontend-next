@@ -3,10 +3,10 @@ import { unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 import visuallyHidden from "@mui/utils/visuallyHidden"
 
+import MitraTranslator from "@/components/features/MitraTranslator"
 import ToolSelectorTabs from "@/components/features/ToolSelectorTabs/ToolSelectorTabs"
 import PageShell from "@/components/layout/PageShell"
 import StorageCheck from "@/components/StorageCheck"
-import TranslationFeature from "@/features/translation"
 import useAppConfig from "@/hooks/useAppConfig"
 import {
   I18nMetadataHandlerProps,
@@ -61,7 +61,7 @@ export default function HomePage({
           {t("h1")}
         </Typography>
 
-        <TranslationFeature />
+        <MitraTranslator />
       </PageShell>
     </NextIntlClientProvider>
   )

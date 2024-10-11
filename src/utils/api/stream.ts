@@ -18,16 +18,16 @@ const exceptionChecks = {
   error: new RegExp(String.raw`(^.*?)(↯.*)$`),
 }
 
-type ParsedStream = {
+export type ParsedStream = {
   content: string
   exceptionI18nKey: ExceptionMessageKey | undefined
-  parsedStream: string[]
+  parsedContent: string[]
 }
 
-const initialParsedStream: ParsedStream = {
+export const initialParsedStream: ParsedStream = {
   content: "",
   exceptionI18nKey: undefined,
-  parsedStream: [],
+  parsedContent: [],
 }
 
 export const getParagraphsFromString = (string: string) => {
@@ -58,6 +58,6 @@ export const parseStream = (stream: string | undefined) => {
 
   return {
     ...checkedStream,
-    parsedStream: getParagraphsFromString(checkedStream.content),
+    parsedContent: getParagraphsFromString(checkedStream.content),
   }
 }

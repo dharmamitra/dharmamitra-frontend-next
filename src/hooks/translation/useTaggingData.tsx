@@ -2,11 +2,11 @@ import React from "react"
 import { useQuery } from "@tanstack/react-query"
 
 import { DMFetchApi, TranslationApiTypes } from "@/api"
+import { useInputEncoding } from "@/hooks/params"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
 import { TimedError } from "@/utils/api/translation/endpoints/tagging"
 import { allTranslationDefaultParams } from "@/utils/api/translation/params"
 
-import useGlobalParams from "../useGlobalParams"
 import useTranslationCommonParams from "./useTranslationCommonParams"
 import useTranslationEndpointParams from "./useTranslationEndpointParams"
 
@@ -19,7 +19,7 @@ const {
 const useTaggingData = () => {
   const { translationInput } = useTranslationCommonParams()
   const { targetLanguage } = useTranslationEndpointParams()
-  const { inputEncoding } = useGlobalParams()
+  const [inputEncoding] = useInputEncoding()
 
   const debouncedInputSentence = useDebouncedValue(translationInput, 1000)
   const [triggerQuery, setTriggerQuery] = React.useState(false)
