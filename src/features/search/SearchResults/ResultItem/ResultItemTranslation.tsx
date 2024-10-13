@@ -3,7 +3,7 @@ import { Divider } from "@mui/material"
 import Box from "@mui/material/Box"
 
 import EnRobotTranslation from "@/components/EnRobotTranslation"
-import { cssRenderProps } from "@/components/features/search/SearchResults/ParallelQueryResults/ShowEngishSwitch"
+import { cssRenderProps } from "@/features/search/SearchResults/ParallelQueryResults/ShowEngishSwitch"
 
 type ResultItemTranslationProps = {
   translation?: string

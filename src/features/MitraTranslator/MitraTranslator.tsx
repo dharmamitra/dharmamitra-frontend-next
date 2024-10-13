@@ -3,7 +3,7 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
-import TranslationModelSelector from "@/components/features/uiSettings/TranslationModelSelector"
+import TranslationModelSelector from "@/features/uiSettings/TranslationModelSelector"
 import {
   useInputEncodingParam,
   useInputSentenceParam,

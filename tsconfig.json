@@ -29,7 +29,7 @@
         "./src/components/*"
       ],
       "@/features/*": [
-        "./src/components/features/*"
+        "./src/features/*"
       ],
       "@/utils/*": [
         "./src/utils/*"

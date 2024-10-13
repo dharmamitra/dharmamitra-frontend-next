@@ -1,7 +1,7 @@
 import * as React from "react"
 import Box from "@mui/material/Box"
 
-import InputEncodingSelector from "@/components/features/uiSettings/InputEncodingSelector"
+import InputEncodingSelector from "@/features/uiSettings/InputEncodingSelector"
 import { localStorageKeys } from "@/utils/constants"
 
 import ResetOptionsButton from "./ResetOptionsButton"

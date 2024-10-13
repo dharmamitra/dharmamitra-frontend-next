@@ -39,7 +39,14 @@ export default function TranslationTagging() {
   })
 
   React.useEffect(() => {
-    if (!requestBody.input_sentence || targetLanguageParam !== "english") return
+    if (
+      !requestBody.input_sentence ||
+      requestBody.input_encoding !== "auto" ||
+      targetLanguageParam !== "english"
+    ) {
+      return
+    }
+
     refetch()
   }, [requestBody, targetLanguageParam, refetch])
 

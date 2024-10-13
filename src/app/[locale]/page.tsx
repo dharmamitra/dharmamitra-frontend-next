@@ -3,10 +3,10 @@ import { unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 import visuallyHidden from "@mui/utils/visuallyHidden"
 
-import MitraTranslator from "@/components/features/MitraTranslator"
-import ToolSelectorTabs from "@/components/features/ToolSelectorTabs/ToolSelectorTabs"
 import PageShell from "@/components/layout/PageShell"
 import StorageCheck from "@/components/StorageCheck"
+import MitraTranslator from "@/features/MitraTranslator"
+import ToolSelectorTabs from "@/features/ToolSelectorTabs/ToolSelectorTabs"
 import useAppConfig from "@/hooks/useAppConfig"
 import {
   I18nMetadataHandlerProps,

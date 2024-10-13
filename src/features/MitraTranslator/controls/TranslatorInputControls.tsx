@@ -5,8 +5,8 @@ import { Box } from "@mui/material"
 import { UseChatOptions } from "ai/react"
 
 import ClearButton from "@/components/ClearButton"
-import InputEncodingSelector from "@/components/features/uiSettings/InputEncodingSelector"
 import StartStopStreamButton from "@/components/StartStopStreamButton"
+import InputEncodingSelector from "@/features/uiSettings/InputEncodingSelector"
 
 type TranslationInputFieldProps = {
   chatPropsWithId: UseChatOptions
