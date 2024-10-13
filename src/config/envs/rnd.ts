@@ -6,7 +6,7 @@ export default function createRNDConfig() {
     basePath: "/rnd",
     featureFlags: {
       search: true,
-      translateExtendedOptions: true,
+      hasTranslateExtendedOptions: true,
     },
   })
 }

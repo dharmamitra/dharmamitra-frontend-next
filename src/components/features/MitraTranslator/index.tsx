@@ -1,7 +1,7 @@
 import React from "react"
 import dynamic from "next/dynamic"
 
-import MitraTranslatorLoading from "./MitraTranslatorLoading"
+import MitraTranslatorLoading from "./MitraTranslatorLoading/MitraTranslatorLoading"
 
 const MitraTranslator = dynamic(() => import("./MitraTranslator"), {
   loading: () => <MitraTranslatorLoading />,

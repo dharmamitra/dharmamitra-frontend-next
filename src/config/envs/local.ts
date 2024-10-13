@@ -6,7 +6,7 @@ export default function createLocalConfig() {
     basePath: "",
     featureFlags: {
       search: true,
-      translateExtendedOptions: true,
+      hasTranslateExtendedOptions: true,
     },
   })
 }

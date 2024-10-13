@@ -3,12 +3,22 @@ import React from "react"
 import useAppConfig from "@/hooks/useAppConfig"
 import { inputEncodings } from "@/utils/api/global/params"
 
-import OptionsLoading from "./common/OptionsLoading"
-import TranslatorLayout from "./TranslatorLayout"
+import TranslatorLayout from "../TranslatorLayout"
+import ExtendedMitraTranslatorLoading from "./ExtendedMitraTranslatorLoading"
+import OptionsLoading from "./OptionsLoading"
 
 export default function MitraTranslatorLoading() {
-  const { targetLanguages: servedTargetLanguages } =
-    useAppConfig().customParamOptions
+  const {
+    customParamOptions: { targetLanguages: servedTargetLanguages },
+    featureFlags: { hasTranslateExtendedOptions },
+  } = useAppConfig()
+
+  if (hasTranslateExtendedOptions) {
+    return (
+      <ExtendedMitraTranslatorLoading targetLanguages={servedTargetLanguages} />
+    )
+  }
+
   return (
     <TranslatorLayout
       inputControls={

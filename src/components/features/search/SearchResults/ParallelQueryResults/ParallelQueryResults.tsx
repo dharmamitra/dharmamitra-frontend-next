@@ -8,7 +8,7 @@ import { DMFetchApi, SearchApiTypes } from "@/api"
 import { triggerSearchQueryAtom } from "@/atoms"
 import CopyPageLink from "@/components/CopyPageLink"
 import SkeletonGroup from "@/components/SkeletonGroup"
-import { useInputEncoding } from "@/hooks/params"
+import { useInputEncodingParam } from "@/hooks/params"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchParallelParams from "@/hooks/search/useSearchParallelParams"
 import { allSearchDefaultParams } from "@/utils/api/search/params"
@@ -27,7 +27,7 @@ const {
 export default function ParallelQueryResults() {
   const t = useTranslations("generic")
   const { searchInput, searchType } = useSearchCommonParams()
-  const [inputEncoding] = useInputEncoding()
+  const [inputEncoding] = useInputEncodingParam()
   const { sourceLimits, filterSourceLanguage, filterTargetLanguage } =
     useSearchParallelParams()
 

@@ -10,7 +10,7 @@ import { triggerSearchQueryAtom } from "@/atoms"
 import CopyPageLink from "@/components/CopyPageLink"
 import ExceptionText from "@/components/ExceptionText"
 import SkeletonGroup from "@/components/SkeletonGroup"
-import { useInputEncoding } from "@/hooks/params"
+import { useInputEncodingParam } from "@/hooks/params"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
 import { allSearchDefaultParams } from "@/utils/api/search/params"
@@ -28,7 +28,7 @@ const {
 export default function PrimaryQueryResults() {
   const t = useTranslations("generic")
   const { searchInput, searchType } = useSearchCommonParams()
-  const [inputEncoding] = useInputEncoding()
+  const [inputEncoding] = useInputEncodingParam()
   const { limits, filterLanguage } = useSearchPrimaryParams()
 
   const requestBody: SearchApiTypes.RequestBody<"/primary/"> = React.useMemo(

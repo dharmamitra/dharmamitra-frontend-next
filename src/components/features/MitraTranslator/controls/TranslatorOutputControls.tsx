@@ -5,7 +5,7 @@ import { Box } from "@mui/material"
 
 import CopyTextButton from "@/components/CopyTextButton"
 
-import TargetLanguageSelector from "./TargetLanguageSelector"
+import TargetLanguageSelector from "../../uiSettings/TargetLanguageSelector"
 
 type TranslationInputFieldProps = {
   contentRef: React.RefObject<HTMLElement>

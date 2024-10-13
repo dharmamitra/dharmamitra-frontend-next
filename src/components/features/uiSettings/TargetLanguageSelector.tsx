@@ -11,39 +11,40 @@ import {
   secondaryOptionsInputStyles,
   selectedOptionsStyles,
 } from "@/components/styled-ssr-safe"
-import { useInputEncoding } from "@/hooks/params"
+import { useTargetLangParam } from "@/hooks/params"
+import useAppConfig from "@/hooks/useAppConfig"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { getOptionI18nKeyPath } from "@/utils"
-import { defaultInputEncoding, inputEncodings } from "@/utils/api/global/params"
-import { InputEncoding } from "@/utils/api/global/types"
 
-import RadioOption from "../MitraTranslator/common/RadioOption"
+import RadioOption from "../../RadioOption"
 
-export default function LazyInputEncodingSelector() {
+export default function LazyTranslationTargetLanguageSelector() {
   const t = useTranslations()
 
-  const [inputEncoding, setInputEncoding] = useInputEncoding()
+  const { targetLanguages: servedTargetLanguages } =
+    useAppConfig().customParamOptions
+  const [targetLanguageParam, setTargetLanguageParam] = useTargetLangParam()
 
-  const primaryOptionsSelectorId = "primary-encoding-options"
+  const primaryOptionsSelectorId = "primary-target-language-options"
   useFocusHighlight({
     targetId: primaryOptionsSelectorId,
     styledTargetId: primaryOptionsSelectorId,
     focusInset: "0 4px",
   })
-  const secondaryOptionsSelectorId = "secondary-encoding-options"
+  const secondaryOptionsSelectorId = "secondary-target-language-options"
   useFocusHighlight({
     targetId: secondaryOptionsSelectorId,
     styledTargetId: secondaryOptionsSelectorId + "-wrapper",
     focusInset: "8px -4px 8px -8px",
   })
 
-  const [primaryEncodingOptions, otherEncodingOptions] =
-    useResponsiveOptions(inputEncodings)
+  const [primaryLanguagesOptions, secondaryLanguagesOptions] =
+    useResponsiveOptions(servedTargetLanguages)
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
-    () => primaryEncodingOptions.includes(inputEncoding as InputEncoding),
-    [inputEncoding, primaryEncodingOptions],
+    () => primaryLanguagesOptions.includes(targetLanguageParam),
+    [targetLanguageParam, primaryLanguagesOptions],
   )
 
   return (
@@ -55,23 +56,24 @@ export default function LazyInputEncodingSelector() {
     >
       <RadioGroup
         id={primaryOptionsSelectorId}
-        aria-label={t("globalParams.primaryEncodingsAriaLabel")}
-        value={inputEncoding ?? defaultInputEncoding}
-        onChange={(e) => setInputEncoding(e.target.value)}
+        aria-label={t("translation.primaryTargetLanguagesAriaLabel")}
+        value={targetLanguageParam}
+        onChange={(event) => setTargetLanguageParam(event.target.value)}
         row
         sx={{ ...flatRadioGroupStyles }}
         className={styles.customFocusVisible}
       >
-        {primaryEncodingOptions.map((encoding) => (
+        {primaryLanguagesOptions.map((language) => (
           <RadioOption
-            key={encoding + "-primary-encoding-option"}
-            id={encoding + "-primary-encoding-option"}
-            option={encoding}
-            label={t(getOptionI18nKeyPath(encoding))}
-            isSelected={inputEncoding === encoding}
+            key={language + "-primary-target-language-option"}
+            id={language + "-primary-target-language-option"}
+            option={language}
+            label={t(getOptionI18nKeyPath(language))}
+            isSelected={targetLanguageParam === language}
           />
         ))}
       </RadioGroup>
+
       <div
         id={secondaryOptionsSelectorId + "-wrapper"}
         className={styles.customFocusVisible}
@@ -79,11 +81,16 @@ export default function LazyInputEncodingSelector() {
       >
         <Select
           id={secondaryOptionsSelectorId}
-          data-testid="other-input-encoding-options"
-          value={isPrimaryValueSelected || !inputEncoding ? "" : inputEncoding}
-          onChange={(e) => setInputEncoding(e.target.value)}
+          data-testid="secondary-target-language-options"
+          aria-label={t("translation.secondaryTargetLanguagesAriaLabel")}
+          value={
+            isPrimaryValueSelected || !targetLanguageParam
+              ? ""
+              : targetLanguageParam
+          }
+          onChange={(event) => setTargetLanguageParam(event.target.value)}
           inputProps={{
-            "aria-label": t("globalParams.secondaryEncodingsAriaLabel"),
+            "aria-label": t("translation.secondaryTargetLanguagesAriaLabel"),
             sx: secondaryOptionsInputStyles,
           }}
           IconComponent={() => <SecondaryOptionsButtonIcon />}
@@ -98,16 +105,16 @@ export default function LazyInputEncodingSelector() {
           }}
           displayEmpty
         >
-          <MenuItem disabled value="">
+          <MenuItem disabled value="" className={styles.test}>
             {t("generic.other")}
           </MenuItem>
-          {otherEncodingOptions.map((encoding) => (
+          {secondaryLanguagesOptions.map((language) => (
             <MenuItem
-              key={encoding + "-other-encoding-option"}
-              data-testid={`${encoding}-input-encoding-option`}
-              value={encoding}
+              key={language + "-secondary-target-language-option"}
+              data-testid={`${language}-target-language-option`}
+              value={language}
             >
-              {t(`globalParams.encodings.${encoding}`)}
+              {t(`translation.targetLanguages.${language}`)}
             </MenuItem>
           ))}
         </Select>

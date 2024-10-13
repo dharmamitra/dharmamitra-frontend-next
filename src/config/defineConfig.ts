@@ -74,7 +74,7 @@ export const appConfigSchema = z.object({
   featureFlags: z
     .object({
       search: z.boolean().default(false),
-      translateExtendedOptions: z.boolean().default(false),
+      hasTranslateExtendedOptions: z.boolean().default(false),
     })
     .default({}),
 })

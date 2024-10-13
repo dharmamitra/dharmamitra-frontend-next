@@ -21,7 +21,17 @@ export default function StartStopStreamButton({
 }: StartStopStreamButtonProps) {
   const t = useTranslations()
 
-  const { handleSubmit, stop, isLoading } = useChat(chatPropsWithId)
+  const { stop, setInput, isLoading, handleSubmit } = useChat(chatPropsWithId)
+
+  React.useEffect(() => {
+    // Ensures handlers are able to be called
+    setInput(input)
+  }, [input, setInput])
+
+  const handleAbort = React.useCallback(() => {
+    stop()
+    setInput(input)
+  }, [stop, input, setInput])
 
   if (isLoading) {
     return (
@@ -29,7 +39,7 @@ export default function StartStopStreamButton({
         <IconButton
           aria-label={t("generic.stop")}
           color="secondary"
-          onClick={stop}
+          onClick={handleAbort}
         >
           <StopCircleIcon />
         </IconButton>
@@ -38,37 +48,39 @@ export default function StartStopStreamButton({
   }
 
   return (
-    <Tooltip
-      title={
-        <span>
-          {`${t("translation.translate")}`} (Ctrl +
-          <span style={tooltipEnterStyles}>↵</span>)
-        </span>
-      }
-      placement="top"
-      slotProps={{
-        popper: {
-          modifiers: [
-            {
-              name: "offset",
-              options: {
-                offset: [-24, 0],
+    <span>
+      <Tooltip
+        title={
+          <span>
+            {`${t("translation.translate")}`} (Ctrl +
+            <span style={tooltipEnterStyles}>↵</span>)
+          </span>
+        }
+        placement="top"
+        slotProps={{
+          popper: {
+            modifiers: [
+              {
+                name: "offset",
+                options: {
+                  offset: [-24, 0],
+                },
               },
-            },
-          ],
-        },
-      }}
-    >
-      <span>
-        <IconButton
-          aria-label={t("translation.translate")}
-          color="secondary"
-          onClick={handleSubmit}
-          disabled={!input.match(/\S+/g)?.length}
-        >
-          <PlayCircleIcon />
-        </IconButton>
-      </span>
-    </Tooltip>
+            ],
+          },
+        }}
+      >
+        <span>
+          <IconButton
+            aria-label={t("translation.translate")}
+            color="secondary"
+            onClick={handleSubmit}
+            disabled={!input.match(/\S+/g)?.length}
+          >
+            <PlayCircleIcon />
+          </IconButton>
+        </span>
+      </Tooltip>
+    </span>
   )
 }

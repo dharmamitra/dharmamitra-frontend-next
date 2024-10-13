@@ -7,7 +7,7 @@ import Badge from "@mui/material/Badge"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
 
-import { useInputEncoding } from "@/hooks/params"
+import { useInputEncodingParam } from "@/hooks/params"
 import useSearchCommonParams from "@/hooks/search/useSearchCommonParams"
 import useSearchParallelParams from "@/hooks/search/useSearchParallelParams"
 import useSearchPrimaryParams from "@/hooks/search/useSearchPrimaryParams"
@@ -66,7 +66,7 @@ export default function ResetOptionsButton() {
   const t = useTranslations("search")
 
   const { searchTarget, searchType } = useSearchCommonParams()
-  const [inputEncoding] = useInputEncoding()
+  const [inputEncoding] = useInputEncodingParam()
   const { filterSourceLanguage, filterTargetLanguage, sourceLimits } =
     useSearchParallelParams()
   const { limits: limitsValue, filterLanguage } = useSearchPrimaryParams()

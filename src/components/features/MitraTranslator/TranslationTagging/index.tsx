@@ -1,1 +1,1 @@
-export { default } from "./TranslationTaggingDrawer"
+export { default } from "./TranslationTagging"

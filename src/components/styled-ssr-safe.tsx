@@ -57,7 +57,6 @@ export const flatRadioGroupStyles = {
 export const selectedOptionsStyles = {
   textDecoration: "underline",
   textDecorationThickness: "3px",
-  // offset linked to SettingBlock height
   textUnderlineOffset: "8px",
   textDecorationColor: "currentColor",
 }
