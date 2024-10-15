@@ -9,7 +9,7 @@ import TriggerQueryButton from "@/features/MitraSearch/controls/TriggerQueryButt
 import { useSearchInputParam } from "@/hooks/params"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
 
-import SearchKeyboardControls from "../SearchKeyboardControls"
+import SearchKeyboardControls from "./controls/SearchKeyboardControls"
 
 export const searchInputId = "search-input-field"
 

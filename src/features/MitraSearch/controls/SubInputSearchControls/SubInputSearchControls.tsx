@@ -1,15 +1,15 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
+import SearchTypeCheckbox from "../../../paramSettings/SearchTypeCheckbox"
 // import SearchPostProcessModelButtons from "./SearchPostProcessModelButtons"
-import SearchTargetOptions from "./SearchTargetOptions"
-import SearchTypeCheckbox from "./SearchTypeCheckbox"
+import TargetControls from "./TargetControls"
 
 type Props = {
   isOpen: boolean
 }
 
-export default function SearchOptions({ isOpen }: Props) {
+export default function SubInputSearchControls({ isOpen }: Props) {
   if (!isOpen) return null
 
   return (
@@ -23,7 +23,7 @@ export default function SearchOptions({ isOpen }: Props) {
         my: 4,
       }}
     >
-      <SearchTargetOptions />
+      <TargetControls />
 
       <Box
         sx={{

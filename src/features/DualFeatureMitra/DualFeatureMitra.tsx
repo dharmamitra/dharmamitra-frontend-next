@@ -32,7 +32,7 @@ export default function DualFeatureMitra() {
 
   const [viewTabIndex, setViewTabIndex] = useViewTabParamWithLocalStorage()
 
-  const [isSearchOptionsOpen, setIsSearchOptionsOpen] = React.useState(true)
+  const [isSearchControlsOpen, setIsSearchControlsOpen] = React.useState(true)
 
   const handleTabChange = React.useCallback(
     (event: React.SyntheticEvent, newValue: ViewIndex) => {
@@ -98,8 +98,8 @@ export default function DualFeatureMitra() {
               sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
             >
               <MitraSearch
-                isSearchOptionsOpen={isSearchOptionsOpen}
-                setIsSearchOptionsOpen={setIsSearchOptionsOpen}
+                isSearchControlsOpen={isSearchControlsOpen}
+                setIsSearchControlsOpen={setIsSearchControlsOpen}
               />
             </Box>
           </FeatureTabPanel>

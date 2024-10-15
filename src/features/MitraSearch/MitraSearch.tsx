@@ -1,39 +1,39 @@
 import * as React from "react"
 import Box from "@mui/material/Box"
 
-import InputEncodingSelector from "@/features/uiSettings/InputEncodingSelector"
+import InputEncodingSelector from "@/features/paramSettings/InputEncodingSelector"
 import { localStorageKeys } from "@/utils/constants"
 
-import ResetOptionsButton from "./ResetOptionsButton"
+import ResetOptionsButton from "./controls/ResetOptionsButton"
+import ShowOptionsSwitch from "./controls/ShowOptionsSwitch"
+import SubInputSearchControls from "./controls/SubInputSearchControls"
 import SearchInput from "./SearchInput"
-import SearchOptions from "./SearchOptions"
-// import SearchExamples from "./SearchOptions/SearchExamples"
+// import SearchExamples from "./SearchControls/SearchExamples"
 import SearchResults from "./SearchResults"
-import ShowOptionsSwitch from "./ShowOptionsSwitch"
 
 type TranslationFeatureProps = {
-  isSearchOptionsOpen: boolean
-  setIsSearchOptionsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  isSearchControlsOpen: boolean
+  setIsSearchControlsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function MitraSearch({
-  isSearchOptionsOpen,
-  setIsSearchOptionsOpen,
+  isSearchControlsOpen,
+  setIsSearchControlsOpen,
 }: TranslationFeatureProps) {
   const handleToggleShowOptions = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsSearchOptionsOpen(event.target.checked)
+      setIsSearchControlsOpen(event.target.checked)
 
       if (event.target.checked) {
         localStorage.setItem(
-          localStorageKeys.showSearchOptions,
+          localStorageKeys.showSearchControls,
           String(event.target.checked),
         )
       } else {
-        localStorage.removeItem(localStorageKeys.showSearchOptions)
+        localStorage.removeItem(localStorageKeys.showSearchControls)
       }
     },
-    [setIsSearchOptionsOpen],
+    [setIsSearchControlsOpen],
   )
 
   return (
@@ -62,17 +62,17 @@ export default function MitraSearch({
             alignItems: { xs: "flex-start", md: "center" },
             justifyContent: {
               xs: "flex-start",
-              md: isSearchOptionsOpen ? "space-between" : "flex-end",
+              md: isSearchControlsOpen ? "space-between" : "flex-end",
             },
             flexWrap: "wrap",
             minHeight: "60px",
           }}
         >
-          <InputEncodingSelector isOpen={isSearchOptionsOpen} />
+          <InputEncodingSelector isOpen={isSearchControlsOpen} />
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <ShowOptionsSwitch
-              isSearchOptionsOpen={isSearchOptionsOpen}
+              isSearchControlsOpen={isSearchControlsOpen}
               handleToggleShowOptions={handleToggleShowOptions}
             />
 
@@ -81,10 +81,10 @@ export default function MitraSearch({
         </Box>
         <SearchInput />
 
-        <SearchOptions isOpen={isSearchOptionsOpen} />
+        <SubInputSearchControls isOpen={isSearchControlsOpen} />
 
         {/* TODO: determin if to be removed or added to env config
-        <SearchExamples isShown={!isSearchOptionsOpen} /> */}
+        <SearchExamples isShown={!isSearchControlsOpen} /> */}
       </Box>
 
       <SearchResults />

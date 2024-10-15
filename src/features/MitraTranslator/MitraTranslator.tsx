@@ -4,7 +4,7 @@ import React from "react"
 import Box from "@mui/material/Box"
 
 import { streamUtils } from "@/api"
-import TranslationModelSelector from "@/features/uiSettings/TranslationModelSelector"
+import TranslationModelSelector from "@/features/paramSettings/TranslationModelSelector"
 import { createChatProps } from "@/features/utils"
 import {
   useInputEncodingParamWithLocalStorage,

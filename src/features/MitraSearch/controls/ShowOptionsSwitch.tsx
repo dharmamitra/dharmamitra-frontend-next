@@ -7,13 +7,13 @@ import Switch from "@mui/material/Switch"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
 type ShowOptionsSwitchProps = {
-  isSearchOptionsOpen: boolean
+  isSearchControlsOpen: boolean
   // eslint-disable-next-line no-unused-vars
   handleToggleShowOptions: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function ShowOptionsSwitch({
-  isSearchOptionsOpen,
+  isSearchControlsOpen,
   handleToggleShowOptions,
 }: ShowOptionsSwitchProps) {
   const t = useTranslations("search")
@@ -24,7 +24,7 @@ export default function ShowOptionsSwitch({
       control={
         <Switch
           color="secondary"
-          checked={isSearchOptionsOpen}
+          checked={isSearchControlsOpen}
           onChange={handleToggleShowOptions}
         />
       }

@@ -6,7 +6,7 @@ import { UseChatOptions } from "ai/react"
 
 import ClearButton from "@/components/ClearButton"
 import StartStopStreamButton from "@/components/StartStopStreamButton"
-import InputEncodingSelector from "@/features/uiSettings/InputEncodingSelector"
+import { InputEncodingSelector } from "@/features/paramSettings"
 
 type TranslationInputFieldProps = {
   chatPropsWithId: UseChatOptions

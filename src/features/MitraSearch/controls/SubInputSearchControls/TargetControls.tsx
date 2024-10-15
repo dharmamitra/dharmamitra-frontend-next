@@ -12,16 +12,18 @@ import Box from "@mui/material/Box"
 //   defaultSearchFilterLanguage,
 //   searchParamsNames,
 // } from "@/utils/api/search/params"
-import LanguageFilterSelector from "./LanguageFilterSelector"
+import {
+  LanguageFilterSelector,
+  SearchTargetButtons,
+} from "@/features/paramSettings"
 // import LimitFilters from "./LimitFilters/LimitFilters"
-import SearchTargetButtons from "./SearchTargetButtons"
 
 // const {
 //   parallel: { source_limits },
 //   primary: { limits: limits_param_name },
 // } = searchParamsNames
 
-export default function SearchTargetOptions() {
+export default function TargetControls() {
   // const [searchTarget] = useSearchTargetParam()
   // const [filterSourceLanguage] = useFilterSourceLanguageParam()
   // const {  sourceLimits } = useSearchParallelParams()
