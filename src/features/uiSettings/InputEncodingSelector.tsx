@@ -11,7 +11,7 @@ import {
   secondaryOptionsInputStyles,
   selectedOptionsStyles,
 } from "@/components/styled-ssr-safe"
-import { useInputEncodingParam } from "@/hooks/params"
+import { useInputEncodingParamWithLocalStorage } from "@/hooks/params"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { getOptionI18nKeyPath } from "@/utils"
@@ -33,7 +33,8 @@ export default function InputEncodingSelectorRenderer({
 function InputEncodingSelector() {
   const t = useTranslations()
 
-  const [inputEncoding, setInputEncoding] = useInputEncodingParam()
+  const [inputEncoding, setInputEncoding] =
+    useInputEncodingParamWithLocalStorage()
 
   const primaryOptionsSelectorId = "primary-encoding-options"
   useFocusHighlight({

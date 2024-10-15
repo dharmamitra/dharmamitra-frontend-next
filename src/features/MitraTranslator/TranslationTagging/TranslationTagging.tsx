@@ -7,7 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 import { useQuery } from "@tanstack/react-query"
 
 import { DMFetchApi } from "@/api"
-import { useTargetLangParam } from "@/hooks/params"
+import { useTargetLangParamWithLocalStorage } from "@/hooks/params"
 import useTaggingRequestBody from "@/hooks/translation/useTaggingRequestBody"
 
 import TaggingDrawer from "./TaggingDrawer"
@@ -26,7 +26,7 @@ export default function TranslationTagging() {
     defaultSmDrawerWidth,
   )
 
-  const [targetLanguageParam] = useTargetLangParam()
+  const [targetLanguageParam] = useTargetLangParamWithLocalStorage()
   const requestBody = useTaggingRequestBody()
 
   const { data, refetch } = useQuery({

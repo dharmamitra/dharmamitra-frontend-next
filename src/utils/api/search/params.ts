@@ -4,23 +4,36 @@ import {
 } from "@/utils/api/global/params"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import { defaultSearchTarget, localParamNames } from "./local"
 import {
+  AllSearchApiParams,
   AllSearchParamDefaults,
-  AllSearchParams,
   CommonSearchRequestProps,
   Schema,
   SearchParamNames,
   SearchTarget,
   SearchTargetParamDefaults,
+  SearchTargets,
 } from "./types"
 
 export type {
+  AllSearchApiParams,
   AllSearchParamDefaults,
-  AllSearchParams,
   SearchTarget,
   SearchTargetParamDefaults,
 }
+
+/**
+ * LOCAL PARAMS
+ */
+
+export const searchTargets: SearchTarget[] =
+  exhaustiveStringTuple<SearchTargets>()("primary", "parallel")
+export const defaultSearchTarget = "primary" as const
+export const disabledSearchTargets: SearchTarget[] = []
+
+/**
+ * API PARAMS
+ */
 
 export type SearchType = CommonSearchRequestProps["search_type"] &
   keyof Messages["search"]["commonParams"]["searchTypes"]
@@ -52,10 +65,13 @@ export const searchFilterLanguages: SearchFilterLanguage[] =
     "zh", // chinese
     "pa", // pali
   )
-export const defaultSearchFilterLanguage = "aa"
+export const defaultSearchFilterLanguage = "aa" as const
 
 export const searchParamsNames: SearchParamNames = {
   global: globalParamsNames,
+  local: {
+    search_target: "search_target",
+  },
   common: {
     search_input: "search_input",
     search_type: "search_type",
@@ -69,48 +85,48 @@ export const searchParamsNames: SearchParamNames = {
     filter_language: "filter_language",
     limits: "limits",
   },
-  secondary: {
-    filter_secondary: "filter_secondary",
-    postprocess_model: "postprocess_model",
-  },
+  // secondary: {
+  //   filter_secondary: "filter_secondary",
+  //   postprocess_model: "postprocess_model",
+  // },
 }
 
 const {
   global: {
     api: { input_encoding },
   },
-  common: { search_type },
+  local: { search_target },
+  common: { search_type, search_input },
   parallel: { filter_source_language, filter_target_language, source_limits },
   primary: { filter_language, limits },
-  secondary: { filter_secondary, postprocess_model },
+  // secondary: { filter_secondary, postprocess_model },
 } = searchParamsNames
 
-const { search_target } = localParamNames
-
-export const targetSearchDefaultParams: SearchTargetParamDefaults = {
+export const searchTargetDefaultParams: SearchTargetParamDefaults = {
+  primary: {
+    [search_input]: "",
+    [search_type]: defaultSearchType,
+    [input_encoding]: defaultInputEncoding,
+    [filter_language]: defaultSearchFilterLanguage,
+    [limits]: {
+      category_include: [],
+      file_include: [],
+    },
+  },
   parallel: {
-    [search_target]: defaultSearchTarget,
+    [search_input]: "",
     [search_type]: defaultSearchType,
     [input_encoding]: defaultInputEncoding,
     [filter_source_language]: defaultSearchFilterLanguage,
     [filter_target_language]: defaultSearchFilterLanguage,
-    [source_limits]: undefined,
+    [source_limits]: {
+      category_include: [],
+      file_include: [],
+    },
   },
-  primary: {
-    [search_target]: defaultSearchTarget,
-    [search_type]: defaultSearchType,
-    [input_encoding]: defaultInputEncoding,
-    [filter_language]: defaultSearchFilterLanguage,
-    [limits]: undefined,
-  },
-  secondary: {
-    [search_target]: defaultSearchTarget,
-    [search_type]: defaultSearchType,
-    [input_encoding]: defaultInputEncoding,
-    [filter_secondary]: undefined,
-    [postprocess_model]: "TODO",
-  },
+  // secondary: { status: "AWAITING BE IMPLEMENTATION" },
 }
+
 export const allSearchDefaultParams: AllSearchParamDefaults = {
   [search_target]: defaultSearchTarget,
   [search_type]: defaultSearchType,
@@ -120,6 +136,6 @@ export const allSearchDefaultParams: AllSearchParamDefaults = {
   [source_limits]: undefined,
   [filter_language]: defaultSearchFilterLanguage,
   [limits]: undefined,
-  [filter_secondary]: undefined,
-  [postprocess_model]: undefined,
+  // [filter_secondary]: undefined,
+  // [postprocess_model]: undefined,
 }

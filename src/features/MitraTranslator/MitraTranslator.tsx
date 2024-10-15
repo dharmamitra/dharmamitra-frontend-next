@@ -3,11 +3,13 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
+import { streamUtils } from "@/api"
 import TranslationModelSelector from "@/features/uiSettings/TranslationModelSelector"
+import { createChatProps } from "@/features/utils"
 import {
-  useInputEncodingParam,
+  useInputEncodingParamWithLocalStorage,
   useInputSentenceParam,
-  useTargetLangParam,
+  useTargetLangParamWithLocalStorage,
   useTranslationModelParam,
 } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
@@ -20,7 +22,7 @@ import TranslationTagging from "./TranslationTagging"
 import TranslationUsageDialog from "./TranslationUsageDialog"
 import TranslatorInput from "./TranslatorInput"
 import TranslatorLayout from "./TranslatorLayout"
-import { createChatProps, createTranslationRequestBody } from "./utils"
+import { createTranslationRequestBody } from "./utils"
 
 export default function MitraTranslator() {
   const {
@@ -28,29 +30,28 @@ export default function MitraTranslator() {
     basePath,
   } = useAppConfig()
 
-  const [inputSentenceParam, setInputSentenceParam] = useInputSentenceParam()
-  const [inputEncodingparam] = useInputEncodingParam()
-  const [targetLanguageparam] = useTargetLangParam()
-  const [translationModelParam] = useTranslationModelParam()
+  const [input_sentence, setInputSentenceParam] = useInputSentenceParam()
+  const [input_encoding] = useInputEncodingParamWithLocalStorage()
+  const [target_lang] = useTargetLangParamWithLocalStorage()
+  const [model] = useTranslationModelParam()
 
   const chatPropsWithId = React.useMemo(() => {
     const requestBody = createTranslationRequestBody({
-      input_sentence: inputSentenceParam,
-      input_encoding: inputEncodingparam,
-      target_lang: targetLanguageparam,
-      model: translationModelParam,
+      input_sentence,
+      input_encoding,
+      target_lang,
+      model,
     })
 
-    const chatProps = createChatProps(basePath, requestBody)
+    const chatProps = createChatProps({
+      basePath,
+      localEndpoint: streamUtils.paths.translation,
+      requestBody,
+      initialInput: input_sentence,
+    })
 
     return { ...chatProps, id: JSON.stringify(requestBody) }
-  }, [
-    basePath,
-    inputSentenceParam,
-    inputEncodingparam,
-    targetLanguageparam,
-    translationModelParam,
-  ])
+  }, [basePath, input_sentence, input_encoding, target_lang, model])
 
   const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
@@ -59,21 +60,21 @@ export default function MitraTranslator() {
       <TranslationUsageDialog />
       <TranslatorKeyboardControls
         chatPropsWithId={chatPropsWithId}
-        isInput={Boolean(inputSentenceParam)}
+        isInput={Boolean(input_sentence)}
       />
 
       <TranslatorLayout
         inputControls={
           <TranslatorInputControls
             chatPropsWithId={chatPropsWithId}
-            input={inputSentenceParam}
+            input={input_sentence}
             setInput={setInputSentenceParam}
           />
         }
         outputContoles={<TranslatorOutputControls contentRef={outputBoxRef} />}
         inputBlock={
           <TranslatorInput
-            input={inputSentenceParam}
+            input={input_sentence}
             setInput={setInputSentenceParam}
           />
         }
@@ -81,7 +82,7 @@ export default function MitraTranslator() {
           <TranslationOutput
             ref={outputBoxRef}
             chatPropsWithId={chatPropsWithId}
-            input={inputSentenceParam}
+            input={input_sentence}
           />
         }
       />

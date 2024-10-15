@@ -1,6 +1,3 @@
-import { defaultInputEncoding, inputEncodings } from "@/utils/api/global/params"
-import { InputEncoding } from "@/utils/api/global/types"
-import * as locaParams from "@/utils/api/search/local"
 import * as searchParams from "@/utils/api/search/params"
 import { Schema as SearchSchema } from "@/utils/api/search/types"
 import { exhaustiveStringTuple } from "@/utils/typescript"
@@ -10,8 +7,9 @@ const {
   defaultSearchType,
   searchFilterLanguages,
   defaultSearchFilterLanguage,
+  searchTargets,
+  defaultSearchTarget,
 } = searchParams
-const { searchTargets, defaultSearchTarget } = locaParams
 
 export const getValidDefaultValue = <T>(value: T) => {
   if (value === undefined) {
@@ -77,11 +75,4 @@ export const getValidSourceLanguage = (language: unknown) => {
   return isValidSourceLanguage(language)
     ? language
     : defaultSearchFilterLanguage
-}
-
-export const isInputEncoding = (encoding: unknown): encoding is InputEncoding =>
-  Object.values(inputEncodings).some((item) => item === encoding)
-
-export const getValidInputEncoding = (encoding: unknown) => {
-  return isInputEncoding(encoding) ? encoding : defaultInputEncoding
 }

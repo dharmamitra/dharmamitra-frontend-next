@@ -73,7 +73,7 @@ export const appConfigSchema = z.object({
     .default({}),
   featureFlags: z
     .object({
-      search: z.boolean().default(false),
+      hasSearch: z.boolean().default(false),
       hasTranslateExtendedOptions: z.boolean().default(false),
     })
     .default({}),
@@ -94,7 +94,6 @@ type DeepPartial<T> = {
 
 type RequiredConfigKeys = {
   env: AppEnv
-  // basePath has src/hooks/useParams.tsx as dependent
   basePath: string
 }
 

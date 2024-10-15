@@ -1,6 +1,4 @@
-import { UseChatOptions } from "ai/react"
-
-import { streamUtils, TranslationApiTypes } from "@/api"
+import { TranslationApiTypes } from "@/api"
 import { allTranslationDefaultParams } from "@/utils/api/translation/params"
 
 const {
@@ -16,8 +14,8 @@ export const defaultTranslationRequestBody: TranslationApiTypes.RequestBody<"/tr
   {
     input_sentence: "",
     input_encoding,
-    do_grammar_explanation,
     target_lang,
+    do_grammar_explanation,
     model,
   }
 
@@ -43,19 +41,4 @@ type CreateTaggingnRequestBody = Partial<
 >
 export function createTaggingRequestBody(params: CreateTaggingnRequestBody) {
   return { ...defaultTaggingnRequestBody, ...params }
-}
-
-export function createChatProps(
-  basePath: string,
-  requestBody: TranslationApiTypes.RequestBody<"/translation/">,
-): UseChatOptions {
-  return {
-    api: basePath + streamUtils.paths.translation,
-    streamProtocol: "text",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    initialInput: requestBody.input_sentence,
-    body: requestBody,
-  }
 }

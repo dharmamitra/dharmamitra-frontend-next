@@ -11,7 +11,7 @@ import {
   secondaryOptionsInputStyles,
   selectedOptionsStyles,
 } from "@/components/styled-ssr-safe"
-import { useTargetLangParam } from "@/hooks/params"
+import { useTargetLangParamWithLocalStorage } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
@@ -24,7 +24,8 @@ export default function LazyTranslationTargetLanguageSelector() {
 
   const { targetLanguages: servedTargetLanguages } =
     useAppConfig().customParamOptions
-  const [targetLanguageParam, setTargetLanguageParam] = useTargetLangParam()
+  const [targetLanguageParam, setTargetLanguageParam] =
+    useTargetLangParamWithLocalStorage()
 
   const primaryOptionsSelectorId = "primary-target-language-options"
   useFocusHighlight({

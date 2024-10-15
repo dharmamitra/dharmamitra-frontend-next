@@ -40,13 +40,6 @@ const DMFetchApi = {
     ],
     call: getCategoryMenuData,
   },
-  searchParallel: {
-    makeQueryKey: (body: SearchApiTypes.RequestBody<"/parallel/">) => [
-      "searchParallel",
-      JSON.stringify(body),
-    ],
-    call: getSearchParallelData,
-  },
   searchPrimary: {
     makeQueryKey: (body: SearchApiTypes.RequestBody<"/primary/">) => [
       "searchPrimary",
@@ -60,6 +53,13 @@ const DMFetchApi = {
       JSON.stringify(body),
     ],
     call: getSearchPrimaryExplanation,
+  },
+  searchParallel: {
+    makeQueryKey: (body: SearchApiTypes.RequestBody<"/parallel/">) => [
+      "searchParallel",
+      JSON.stringify(body),
+    ],
+    call: getSearchParallelData,
   },
   searchParallelExplanation: {
     makeQueryKey: (

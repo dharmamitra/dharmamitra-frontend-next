@@ -43,9 +43,11 @@ export type SearchTargets = Exclude<
   | "explanation"
   | "explanation-parallel"
   | "knn-translate"
+  | "secondary" // TODO: awaiting BE implementation
 >
 
-export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
+export type SearchTarget = Exclude<SearchTargets, "secondary"> &
+  keyof Messages["search"]["targets"]
 
 /**
  *  REQUEST PROPS
@@ -71,14 +73,14 @@ export type UniquePrimaryParams = UniqueProperties<
   [CommonSearchRequestProps, RequestBody<"/primary/">]
 >
 
-export type UniqueSecondaryParams = UniqueProperties<
-  [CommonSearchRequestProps, RequestBody<"/secondary/">]
->
+// export type UniqueSecondaryParams = UniqueProperties<
+//   [CommonSearchRequestProps, RequestBody<"/secondary/">]
+// >
 
-export type AllSearchParams = CommonSearchRequestProps &
+export type AllSearchApiParams = CommonSearchRequestProps &
   UniqueParallelParams &
-  UniquePrimaryParams &
-  UniqueSecondaryParams
+  UniquePrimaryParams
+// & UniqueSecondaryParams
 
 export type CommonSearchParamNames = {
   [K in keyof ConstrainedCommonSearchRequestProps]: K
@@ -92,16 +94,19 @@ type UniquePrimaryParamNames = {
   [K in keyof UniquePrimaryParams]: K
 }
 
-type UniqueSecondaryParamNames = {
-  [K in keyof UniqueSecondaryParams]: K
-}
+// type UniqueSecondaryParamNames = {
+//   [K in keyof UniqueSecondaryParams]: K
+// }
 
 export type SearchParamNames = {
   global: GlobalParamNames
+  local: {
+    search_target: "search_target"
+  }
   common: CommonSearchParamNames
   parallel: UniqueParallelParamNames
   primary: UniquePrimaryParamNames
-  secondary: UniqueSecondaryParamNames
+  // secondary: UniqueSecondaryParamNames
 }
 
 export type LocalParams = {
@@ -109,22 +114,12 @@ export type LocalParams = {
 }
 
 export type SearchTargetParamDefaults = {
-  parallel: Omit<
-    Record<keyof RequestBody<"/parallel/">, string | undefined>,
-    "search_input"
-  > &
-    LocalParams
-  primary: Omit<
-    Record<keyof RequestBody<"/primary/">, string | undefined>,
-    "search_input"
-  > &
-    LocalParams
-  secondary: Omit<
-    Record<keyof RequestBody<"/secondary/">, string | undefined>,
-    "search_input"
-  > &
-    LocalParams
+  primary: RequestBody<"/primary/">
+  parallel: RequestBody<"/parallel/">
+  // secondary: { status: "AWAITING BE IMPLEMENTATION" }
 }
+
+export type AllSearchParams = AllSearchApiParams & LocalParams
 
 export type AllSearchParamDefaults = Omit<
   Record<keyof AllSearchParams, string | undefined>,

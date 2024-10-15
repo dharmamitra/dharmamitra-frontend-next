@@ -37,7 +37,6 @@
     "axe-core": "^4.10.0",
     "axe-html-reporter": "^2.2.10",
     "dotenv": "^16.4.5",
-    "jotai": "^2.9.3",
     "next": "14.2.7",
     "next-intl": "^3.19.0",
     "nuqs": "^1.19.3",

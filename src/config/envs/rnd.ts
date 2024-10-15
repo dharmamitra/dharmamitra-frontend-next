@@ -5,7 +5,7 @@ export default function createRNDConfig() {
     env: "rnd",
     basePath: "/rnd",
     featureFlags: {
-      search: true,
+      hasSearch: true,
       hasTranslateExtendedOptions: true,
     },
   })
