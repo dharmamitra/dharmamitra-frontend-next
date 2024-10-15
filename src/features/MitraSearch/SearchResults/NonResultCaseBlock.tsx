@@ -29,7 +29,13 @@ export default function NonResultCaseBlock({
   }, [hasData])
 
   if (errorMessage) {
-    return <ExceptionText type="error" message={errorMessage} />
+    return (
+      <ExceptionText
+        isRendered={!!errorMessage}
+        type="error"
+        message={errorMessage}
+      />
+    )
   }
 
   if (isLoading) {

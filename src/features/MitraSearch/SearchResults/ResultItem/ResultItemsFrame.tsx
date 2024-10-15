@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid2"
 
 import { SearchApiTypes } from "@/api"
 
-import ResultItemExplanation from "./ResultItemExplanation"
+import ResultItemExplanation from "./explanation/ResultItemExplanation"
 
 const frameStyles = {
   border: "1px solid",

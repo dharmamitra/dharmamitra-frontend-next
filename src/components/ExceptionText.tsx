@@ -42,14 +42,20 @@ type I18nKeyProps = {
   exceptionI18nKey?: ExceptionMessageKey
 }
 
-type ExceptionTextProps = BaseProps & (MessageProps | I18nKeyProps)
+type ExceptionTextProps = BaseProps & { isRendered?: boolean } & (
+    | MessageProps
+    | I18nKeyProps
+  )
 
 export default function ExceptionText({
+  isRendered = true,
   exceptionI18nKey,
   message,
   ...props
 }: ExceptionTextProps) {
   const t = useTranslations("generic")
+
+  if (!isRendered) return null
 
   if (exceptionI18nKey) {
     return (

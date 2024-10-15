@@ -27,7 +27,6 @@ import { createTranslationRequestBody } from "./utils"
 export default function MitraTranslator() {
   const {
     featureFlags: { hasTranslateExtendedOptions },
-    basePath,
   } = useAppConfig()
 
   const [input_sentence, setInputSentenceParam] = useInputSentenceParam()
@@ -44,14 +43,13 @@ export default function MitraTranslator() {
     })
 
     const chatProps = createChatProps({
-      basePath,
       localEndpoint: streamUtils.paths.translation,
       requestBody,
       initialInput: input_sentence,
     })
 
     return { ...chatProps, id: JSON.stringify(requestBody) }
-  }, [basePath, input_sentence, input_encoding, target_lang, model])
+  }, [input_sentence, input_encoding, target_lang, model])
 
   const outputBoxRef = React.useRef<HTMLDivElement>(null)
 

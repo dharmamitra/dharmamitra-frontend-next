@@ -1,22 +1,22 @@
 import { UseChatOptions } from "ai/react"
 
-import { TranslationApiTypes } from "@/api"
+import appConfig from "@/config"
 
-type CreateChatPropsParams = {
-  basePath: string
-  requestBody: TranslationApiTypes.RequestBody<"/translation/">
+interface CreateChatPropsParams<T extends object> extends UseChatOptions {
+  requestBody: T
   localEndpoint: string
   initialInput: string
 }
 
-export function createChatProps({
-  basePath,
+export function createChatProps<T extends object>({
+  id,
   localEndpoint,
   requestBody,
   initialInput,
-}: CreateChatPropsParams): UseChatOptions {
+}: CreateChatPropsParams<T>): UseChatOptions {
   return {
-    api: basePath + localEndpoint,
+    id,
+    api: appConfig.basePath + localEndpoint,
     streamProtocol: "text",
     headers: {
       "Content-Type": "application/json",

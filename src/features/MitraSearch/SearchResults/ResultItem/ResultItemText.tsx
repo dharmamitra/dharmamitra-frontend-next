@@ -34,10 +34,12 @@ export default function ResultItemText({
               flexGrow: 1,
               fontSize: "1.25rem !important",
               overflowWrap: "anywhere",
+              fontWeight: 500,
+              color: "black",
               px: 1,
             }}
           >
-            <strong>{paragraph}</strong>
+            {paragraph}
           </Typography>
         ))}
       </Box>

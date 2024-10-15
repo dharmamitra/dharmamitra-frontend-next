@@ -2,7 +2,8 @@ import { ExceptionMessageKey, getValidI18nExceptionKey } from "../validators"
 
 export const paths = {
   translation: "/next/api/translation-stream",
-  "search-summary": "/next/api/search-summary-stream",
+  "explanation-primary": "/next/api/search-summary-stream",
+  "explanation-parallel": "/next/api/awaiting-backend-update",
 }
 
 export const markers = {

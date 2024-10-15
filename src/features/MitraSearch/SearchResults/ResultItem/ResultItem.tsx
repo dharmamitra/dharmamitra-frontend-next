@@ -5,7 +5,7 @@ import Grid, { Grid2Props } from "@mui/material/Grid2"
 import { SearchApiTypes } from "@/api"
 import { getParagraphsFromString } from "@/utils/api/stream"
 
-import ConditionalResultItemExplanation from "./ResultItemExplanation"
+import ResultItemExplanation from "./explanation/ResultItemExplanation"
 import ResultItemHeader from "./ResultItemHeader"
 import ResultItemText from "./ResultItemText"
 
@@ -101,7 +101,8 @@ function ResultItem({
           <ResultItemText text={parsedText} isTextExpanded={isTextExpanded} />
         </Box>
 
-        <ConditionalResultItemExplanation
+        <ResultItemExplanation
+          isRendered={!!primaryRequest || !!parallelRequest}
           primaryRequest={primaryRequest}
           parallelRequest={parallelRequest}
         />
