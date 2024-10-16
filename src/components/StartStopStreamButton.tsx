@@ -74,7 +74,7 @@ export default function StartStopStreamButton({
           <IconButton
             aria-label={t("translation.translate")}
             color="secondary"
-            onClick={handleSubmit}
+            onClick={() => handleSubmit(undefined, { allowEmptySubmit: true })}
             disabled={!input.match(/\S+/g)?.length}
           >
             <PlayCircleIcon />

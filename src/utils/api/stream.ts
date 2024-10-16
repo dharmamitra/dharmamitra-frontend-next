@@ -8,6 +8,7 @@ export const paths = {
 
 export const markers = {
   lineBreak: "🔽",
+  wordAnalaysis: "%",
   metaLineStart: "⏮️",
   metaLineEnd: "⏭️",
   warning: "⚠️", // (followed by i18n warning message key matching the pattern `\w+`)

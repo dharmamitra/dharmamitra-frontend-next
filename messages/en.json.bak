@@ -117,7 +117,10 @@
     "translate": "Translate",
     "heading": "Translate Dharma text",
     "inputAriaLabel": "Translation input field",
-    "placeholder": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+    "placeholders": {
+      "default": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+      "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
+    },
     "otherLabel": "Other",
     "targetLanguageSelectLabel": "Output language",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",

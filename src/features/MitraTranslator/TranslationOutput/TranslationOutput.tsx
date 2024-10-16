@@ -7,9 +7,12 @@ import { useChat, UseChatOptions } from "ai/react"
 
 import {
   initialParsedStream,
+  markers,
   ParsedStream,
   parseStream,
 } from "@/utils/api/stream"
+
+import FormatedWordAnalysis from "./FormatedWordAnalysis"
 
 type TranslationOutputProps = {
   chatPropsWithId: UseChatOptions
@@ -48,6 +51,15 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
         }}
       >
         {stream.parsedContent?.map((paragraph, index) => {
+          if (paragraph.startsWith(markers.wordAnalaysis)) {
+            return (
+              <FormatedWordAnalysis
+                key={`translation-stream-${index}`}
+                line={paragraph.replace(markers.wordAnalaysis, "")}
+              />
+            )
+          }
+
           return (
             <Typography
               key={`translation-stream-${index}`}

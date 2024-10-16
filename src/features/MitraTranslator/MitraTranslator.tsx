@@ -74,6 +74,7 @@ export default function MitraTranslator() {
           <TranslatorInput
             input={input_sentence}
             setInput={setInputSentenceParam}
+            targetLang={target_lang}
           />
         }
         outputBlock={

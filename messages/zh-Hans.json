@@ -117,7 +117,6 @@
     "translate": "翻译",
     "heading": "",
     "inputAriaLabel": "翻译栏位",
-    "placeholder": "在此输入需要翻译之梵文、藏文或中文…",
     "otherLabel": "其他",
     "targetLanguageSelectLabel": "翻译目标语",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
@@ -182,7 +181,11 @@
       }
     },
     "usageH2": "Usage",
-    "usageAccept": "Accept"
+    "usageAccept": "Accept",
+    "placeholders": {
+      "default": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+      "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
+    }
   },
   "globalParams": {
     "encodingSelectLabel": "转写系统",

@@ -4,14 +4,26 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import OutlinedInput from "@mui/material/OutlinedInput"
 
+import { TargetLanguage } from "@/utils/api/translation/params"
+
 type TranslationInputFieldProps = {
   input: string
+  targetLang: TargetLanguage
   // eslint-disable-next-line no-unused-vars
   setInput: (event: string) => void
 }
 
-const TranslatorInput = ({ input, setInput }: TranslationInputFieldProps) => {
-  const t = useTranslations()
+const TranslatorInput = ({
+  input,
+  setInput,
+  targetLang,
+}: TranslationInputFieldProps) => {
+  const t = useTranslations("translation")
+
+  const placeholder =
+    targetLang === "english-explained"
+      ? t("placeholders.englishExplained")
+      : t("placeholders.default")
 
   return (
     <OutlinedInput
@@ -29,10 +41,10 @@ const TranslatorInput = ({ input, setInput }: TranslationInputFieldProps) => {
           border: "none",
         },
       }}
-      placeholder={t("translation.placeholder")}
+      placeholder={placeholder}
       inputProps={{
         "data-testid": "translation-input",
-        "aria-label": t("translation.inputAriaLabel"),
+        "aria-label": t("inputAriaLabel"),
         sx: {
           height: "calc(fit-content) !important",
         },
