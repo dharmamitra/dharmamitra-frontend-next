@@ -1,8 +1,8 @@
 import createClient from "openapi-fetch"
 
-import type { paths as tempBNv2Paths } from "@/lib/api/bn"
-import type { paths as searchPaths } from "@/lib/api/search"
-import type { paths as translationPaths } from "@/lib/api/translation"
+import type { paths as BNv2Paths } from "@/lib/api/bn"
+import type { paths as SearchPaths } from "@/lib/api/search"
+import type { paths as TranslationPaths } from "@/lib/api/translation"
 
 export const defaultTimeout = 20000
 
@@ -12,18 +12,18 @@ const searchBaseUrl = process.env.NEXT_PUBLIC_DM_SEARCH_API_BASE_URL
  * Temporary API Client to enable file menu dev
  * TODO: remove when api is ready
  */
-const tempBNv2BaseUrl = process.env.NEXT_PUBLIC_BN_TEMP_API_BASE_URL
+const BNv2BaseUrl = process.env.NEXT_PUBLIC_BN_V2_API_BASE_URL
 
 const { GET: GETTrasnslation, POST: POSTTranslation } =
-  createClient<translationPaths>({
+  createClient<TranslationPaths>({
     baseUrl: translationBaseUrl,
   })
 
-const { GET: tempBNv2GET, POST: tempBNv2POST } = createClient<tempBNv2Paths>({
-  baseUrl: tempBNv2BaseUrl,
+const { GET: BNv2GET, POST: BNv2POST } = createClient<BNv2Paths>({
+  baseUrl: BNv2BaseUrl,
 })
 
-const { GET: GETSearch, POST: POSTSearch } = createClient<searchPaths>({
+const { GET: GETSearch, POST: POSTSearch } = createClient<SearchPaths>({
   baseUrl: searchBaseUrl,
 })
 
@@ -37,15 +37,15 @@ export const searchApiClient = {
   POST: POSTSearch,
 }
 
-export const tempBNv2Client = {
-  GET: tempBNv2GET,
-  POST: tempBNv2POST,
+export const BNv2Client = {
+  GET: BNv2GET,
+  POST: BNv2POST,
 }
 
 export const apiClients = {
   Translation: translationApiClient,
   Search: searchApiClient,
-  TempBNv2: tempBNv2Client,
+  BNv2: BNv2Client,
 }
 
 export default apiClients

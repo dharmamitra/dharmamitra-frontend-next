@@ -34,20 +34,32 @@ export type Response<Endpoint extends keyof paths> = APIResponse<
  */
 
 // eslint-disable-next-line no-unused-vars
-type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
+// type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
 
-export type SearchTargets = Exclude<
+export type SearchTargets = Extract<
   SearchEndpointName,
-  | ExcludeStreams<SearchEndpointName>
-  | "summary"
-  | "explanation"
-  | "explanation-parallel"
-  | "knn-translate"
-  | "secondary" // TODO: awaiting BE implementation
+  "primary" | "parallel"
+  // | "secondary" // TODO: awaiting BE implementation
 >
 
-export type SearchTarget = Exclude<SearchTargets, "secondary"> &
-  keyof Messages["search"]["targets"]
+export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
+
+// TODO: <!-- Source Filter Props have been manually defined, pending API update
+
+export type SourceFilterProps = {
+  include_files?: string[]
+  include_categories?: string[]
+  include_collections?: string[]
+}
+
+export type SourceFilters = {
+  source_filters?: SourceFilterProps
+}
+export type InputSourceFilters = {
+  input_source_filters?: SourceFilterProps
+}
+
+// -->
 
 /**
  *  REQUEST PROPS
@@ -65,12 +77,16 @@ export type ConstrainedCommonSearchRequestProps = UniqueProperties<
   [APIGlobalParams, CommonSearchRequestProps]
 >
 
-export type UniqueParallelParams = UniqueProperties<
-  [CommonSearchRequestProps, RequestBody<"/parallel/">]
->
+type PrimaryRequestBody = Omit<RequestBody<"/primary/">, "limits"> &
+  SourceFilters
+type ParallelRequestBody = Omit<RequestBody<"/parallel/">, "source_limits"> &
+  SourceFilters
 
 export type UniquePrimaryParams = UniqueProperties<
-  [CommonSearchRequestProps, RequestBody<"/primary/">]
+  [CommonSearchRequestProps, PrimaryRequestBody]
+>
+export type UniqueParallelParams = UniqueProperties<
+  [CommonSearchRequestProps, ParallelRequestBody]
 >
 
 // export type UniqueSecondaryParams = UniqueProperties<
@@ -79,7 +95,8 @@ export type UniquePrimaryParams = UniqueProperties<
 
 export type AllSearchApiParams = CommonSearchRequestProps &
   UniqueParallelParams &
-  UniquePrimaryParams
+  UniquePrimaryParams &
+  SourceFilters // temp
 // & UniqueSecondaryParams
 
 export type CommonSearchParamNames = {
@@ -114,8 +131,8 @@ export type LocalParams = {
 }
 
 export type SearchTargetParamDefaults = {
-  primary: RequestBody<"/primary/">
-  parallel: RequestBody<"/parallel/">
+  primary: PrimaryRequestBody & SourceFilters
+  parallel: ParallelRequestBody & SourceFilters
   // secondary: { status: "AWAITING BE IMPLEMENTATION" }
 }
 
@@ -123,6 +140,6 @@ export type AllSearchParams = AllSearchApiParams & LocalParams
 
 export type AllSearchParamDefaults = Omit<
   Record<keyof AllSearchParams, string | undefined>,
-  "search_input"
+  "search_input" | "limits" | "source_limits"
 > &
   LocalParams

@@ -23,7 +23,11 @@
     "target": "Target",
     "loading": "Loading",
     "englishTranslation": "English Translation",
-    "noResult": "No results found."
+    "noResult": "No results found.",
+    "openAll": "Open all",
+    "closeAll": "Close all",
+    "showLess": "Show less",
+    "showAll": "Show all {count, number}"
   },
   "navigation": {
     "home": "Home",
@@ -75,6 +79,11 @@
       "labels": {
         "category_include": "Select included categories",
         "file_include": "Select included texts"
+      }
+    },
+    "sourceFilter": {
+      "labels": {
+        "include": "Include sources"
       }
     },
     "commonParams": {

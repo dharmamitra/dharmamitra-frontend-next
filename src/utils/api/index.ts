@@ -1,7 +1,6 @@
+import { getDbSourceMenuData } from "./bn/menudata"
 import * as globalParams from "./global/params"
 import * as GlobalParamTypes from "./global/types"
-import { getCategoryMenuData } from "./search/endpoints/menus/category"
-import { getTextFileMenuData } from "./search/endpoints/menus/files"
 import { getSearchParallelData } from "./search/endpoints/parallel"
 import { getSearchParallelExplanation } from "./search/endpoints/parallel-explanation/actions"
 import { getSearchPrimaryData } from "./search/endpoints/primary"
@@ -26,19 +25,12 @@ const DMFetchApi = {
     ],
     call: getTaggingData,
   },
-  tempMenuSourceTexts: {
+  dbSourceMenuData: {
     makeQueryKey: (sourceLanguage: string) => [
-      "tempMenuSourceTexts",
-      JSON.stringify(sourceLanguage),
+      "dbMenuSourceTexts",
+      sourceLanguage,
     ],
-    call: getTextFileMenuData,
-  },
-  tempMenuSourceCategories: {
-    makeQueryKey: (sourceLanguage: string) => [
-      "tempMenuSourceCategories",
-      JSON.stringify(sourceLanguage),
-    ],
-    call: getCategoryMenuData,
+    call: getDbSourceMenuData,
   },
   searchPrimary: {
     makeQueryKey: (body: SearchApiTypes.RequestBody<"/primary/">) => [

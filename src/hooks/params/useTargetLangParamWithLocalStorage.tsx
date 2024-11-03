@@ -20,7 +20,6 @@ export function useTargetLangParamWithLocalStorage() {
       ...parseAsStringLiteral(availableLanguages).withDefault(
         getValidTargetLanguage(undefined, availableLanguages),
       ),
-      clearOnDefault: true,
     },
   )
 

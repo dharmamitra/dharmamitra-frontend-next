@@ -14,6 +14,5 @@ export function useTranslationModelParam() {
   const { models } = useTranslationModelsData()
   return useQueryState(model, {
     ...parseAsStringLiteral(models).withDefault(defaultTranslationModel),
-    clearOnDefault: true,
   })
 }

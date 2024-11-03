@@ -13,6 +13,5 @@ const {
 export function useSearchTypeParam() {
   return useQueryState(search_type, {
     ...parseAsStringLiteral(searchTypes).withDefault(defaultSearchType),
-    clearOnDefault: true,
   })
 }

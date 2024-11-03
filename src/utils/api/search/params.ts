@@ -76,15 +76,16 @@ export const searchParamsNames: SearchParamNames = {
     search_input: "search_input",
     search_type: "search_type",
   },
+  primary: {
+    filter_language: "filter_language",
+    source_filters: "source_filters",
+  },
   parallel: {
     filter_source_language: "filter_source_language",
     filter_target_language: "filter_target_language",
-    source_limits: "source_limits",
+    source_filters: "source_filters",
   },
-  primary: {
-    filter_language: "filter_language",
-    limits: "limits",
-  },
+
   // secondary: {
   //   filter_secondary: "filter_secondary",
   //   postprocess_model: "postprocess_model",
@@ -97,8 +98,8 @@ const {
   },
   local: { search_target },
   common: { search_type, search_input },
-  parallel: { filter_source_language, filter_target_language, source_limits },
-  primary: { filter_language, limits },
+  parallel: { filter_source_language, filter_target_language },
+  primary: { filter_language },
   // secondary: { filter_secondary, postprocess_model },
 } = searchParamsNames
 
@@ -108,10 +109,7 @@ export const searchTargetDefaultParams: SearchTargetParamDefaults = {
     [search_type]: defaultSearchType,
     [input_encoding]: defaultInputEncoding,
     [filter_language]: defaultSearchFilterLanguage,
-    [limits]: {
-      category_include: [],
-      file_include: [],
-    },
+    source_filters: undefined,
   },
   parallel: {
     [search_input]: "",
@@ -119,10 +117,7 @@ export const searchTargetDefaultParams: SearchTargetParamDefaults = {
     [input_encoding]: defaultInputEncoding,
     [filter_source_language]: defaultSearchFilterLanguage,
     [filter_target_language]: defaultSearchFilterLanguage,
-    [source_limits]: {
-      category_include: [],
-      file_include: [],
-    },
+    source_filters: undefined,
   },
   // secondary: { status: "AWAITING BE IMPLEMENTATION" },
 }
@@ -133,9 +128,6 @@ export const allSearchDefaultParams: AllSearchParamDefaults = {
   [input_encoding]: defaultInputEncoding,
   [filter_source_language]: defaultSearchFilterLanguage,
   [filter_target_language]: defaultSearchFilterLanguage,
-  [source_limits]: undefined,
   [filter_language]: defaultSearchFilterLanguage,
-  [limits]: undefined,
-  // [filter_secondary]: undefined,
-  // [postprocess_model]: undefined,
+  source_filters: undefined,
 }

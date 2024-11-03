@@ -38,23 +38,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/translation-exp/": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Translation */
-    post: operations["translation_translation_exp__post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/translation/": {
     parameters: {
       query?: never
@@ -120,8 +103,12 @@ export interface components {
       /** Input Sentence */
       input_sentence: string
       mode: components["schemas"]["GrammarModes"]
+      /** @default auto */
       input_encoding: components["schemas"]["InputEncoding"]
-      /** Human Readable Tags */
+      /**
+       * Human Readable Tags
+       * @default false
+       */
       human_readable_tags: boolean
     }
     /** Body_translation_no_stream_translation_no_stream__post */
@@ -136,20 +123,13 @@ export interface components {
       /** Input Sentence */
       input_sentence: string
       input_encoding: components["schemas"]["InputEncoding"]
-      /** Do Grammar Explanation */
-      do_grammar_explanation: boolean
       target_lang: components["schemas"]["TargetLanguageExperimental"]
       model: components["schemas"]["TranslationModel"]
-    }
-    /** Body_translation_translation_exp__post */
-    Body_translation_translation_exp__post: {
-      /** Input Sentence */
-      input_sentence: string
-      input_encoding: components["schemas"]["InputEncoding"]
-      /** Do Grammar Explanation */
+      /**
+       * Do Grammar Explanation
+       * @default false
+       */
       do_grammar_explanation: boolean
-      target_lang: components["schemas"]["TargetLanguageExperimental"]
-      model: components["schemas"]["TranslationModel"]
     }
     /** Body_translation_translation_fgs__post */
     Body_translation_translation_fgs__post: {
@@ -246,7 +226,14 @@ export interface components {
      * TranslationModel
      * @enum {string}
      */
-    TranslationModel: "" | "default" | "madlad" | "FGS-RAG" | "gemma2"
+    TranslationModel:
+      | ""
+      | "default"
+      | "madlad"
+      | "FGS-RAG"
+      | "MITRA-RAG"
+      | "gemma2"
+      | "claude"
     /** ValidationError */
     ValidationError: {
       /** Location */
@@ -308,39 +295,6 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["Body_translation_no_stream_translation_no_stream__post"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  translation_translation_exp__post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["Body_translation_translation_exp__post"]
       }
     }
     responses: {

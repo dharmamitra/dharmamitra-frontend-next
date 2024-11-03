@@ -3,51 +3,76 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
-// import {
-//   useFilterLanguageParam,
-//   useFilterSourceLanguageParam,
-//   useSearchTargetParam,
-// } from "@/hooks/params"
-// import {
-//   defaultSearchFilterLanguage,
-//   searchParamsNames,
-// } from "@/utils/api/search/params"
 import {
+  DbSourceFilter,
   LanguageFilterSelector,
   SearchTargetButtons,
 } from "@/features/paramSettings"
-// import LimitFilters from "./LimitFilters/LimitFilters"
-
-// const {
-//   parallel: { source_limits },
-//   primary: { limits: limits_param_name },
-// } = searchParamsNames
+import { DbSourceFilterUISetting } from "@/features/paramSettings/DbSourceFilter/types"
+import {
+  useFilterLanguageParam,
+  useFilterSourceLanguageParam,
+  useSearchTargetParam,
+} from "@/hooks/params"
+import {
+  useInputSourceFiltersParam,
+  useSourceFiltersParam,
+} from "@/hooks/params/sourceFilterParams"
 
 export default function TargetControls() {
-  // const [searchTarget] = useSearchTargetParam()
-  // const [filterSourceLanguage] = useFilterSourceLanguageParam()
-  // const {  sourceLimits } = useSearchParallelParams()
+  const [searchTarget] = useSearchTargetParam()
+  const [filterLanguage, setFilterLanguage] = useFilterLanguageParam()
+  const [filterSourceLanguage, setFilterSourceLanguage] =
+    useFilterSourceLanguageParam()
+  const [, setSourceFilters] = useSourceFiltersParam()
+  const [, setInputSourceFilters] = useInputSourceFiltersParam()
 
-  // const [filterLanguage] = useFilterLanguageParam()
-  // const {  limits } = useSearchPrimaryParams()
+  const dbSourceFilterProps = React.useMemo(() => {
+    if (
+      searchTarget === "primary" &&
+      filterLanguage &&
+      filterLanguage !== "aa"
+    ) {
+      return {
+        filterName: DbSourceFilterUISetting.SOURCE_FILTERS,
+        sourceLanguage: filterLanguage,
+      }
+    }
 
-  // const limitProps = React.useMemo(() => {
-  //   if (searchTarget === "parallel") {
-  //     return {
-  //       limitParamName: source_limits,
-  //       limitParamStringValue: sourceLimits,
-  //       language: filterSourceLanguage,
-  //     }
-  //   } else if (searchTarget === "primary") {
-  //     return {
-  //       limitParamName: limits_param_name,
-  //       limitParamStringValue: limits,
-  //       language: filterLanguage,
-  //     }
-  //   } else {
-  //     return undefined
-  //   }
-  // }, [searchTarget, sourceLimits, filterSourceLanguage, filterLanguage, limits])
+    if (
+      searchTarget === "parallel" &&
+      filterSourceLanguage &&
+      filterSourceLanguage !== "aa"
+    ) {
+      return {
+        filterName: DbSourceFilterUISetting.INPUT_SOURCE_FILTERS,
+        sourceLanguage: filterSourceLanguage,
+      }
+    }
+
+    return undefined
+  }, [searchTarget, filterSourceLanguage, filterLanguage])
+
+  React.useEffect(() => {
+    setSourceFilters(null)
+  }, [filterLanguage, setSourceFilters])
+
+  React.useEffect(() => {
+    setInputSourceFilters(null)
+  }, [filterSourceLanguage, setInputSourceFilters])
+
+  React.useEffect(() => {
+    setFilterSourceLanguage("aa")
+    setFilterLanguage("aa")
+    setSourceFilters(null)
+    setInputSourceFilters(null)
+  }, [
+    searchTarget,
+    setFilterSourceLanguage,
+    setFilterLanguage,
+    setSourceFilters,
+    setInputSourceFilters,
+  ])
 
   return (
     <Box
@@ -61,11 +86,7 @@ export default function TargetControls() {
 
       <LanguageFilterSelector />
 
-      {/* {limitProps &&
-      limitProps.language &&
-      limitProps.language !== defaultSearchFilterLanguage ? (
-      <LimitFilters {...limitProps} />
-      ) : null} */}
+      {dbSourceFilterProps ? <DbSourceFilter {...dbSourceFilterProps} /> : null}
     </Box>
   )
 }

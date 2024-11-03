@@ -2,6 +2,7 @@ import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter"
+import { NuqsAdapter } from "nuqs/adapters/react"
 
 import appConfig from "@/config"
 import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
@@ -41,10 +42,12 @@ export default function RootLayout({
       <body>
         <QueryProvider>
           <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              {children}
-            </ThemeProvider>
+            <NuqsAdapter>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                {children}
+              </ThemeProvider>
+            </NuqsAdapter>
           </AppRouterCacheProvider>
         </QueryProvider>
       </body>

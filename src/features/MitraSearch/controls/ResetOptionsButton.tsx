@@ -14,6 +14,7 @@ import {
   useInputEncodingParamWithLocalStorage,
   useSearchTargetParam,
   useSearchTypeParam,
+  useSourceFiltersParam,
 } from "@/hooks/params"
 import {
   allSearchDefaultParams as allDefaults,
@@ -52,10 +53,9 @@ const getIsCustomValueAsBinary = ({
 
   if (!(key in targetDefaults) || !value) return 0
 
-  // if (key === source_limits || key === limits) {
-  //   // TODO: return value === "{}" ? 0 : 1
-  //   return 0
-  // }
+  if (key === "source_filters") {
+    return Object.keys(value).length === 0 ? 0 : 1
+  }
 
   if (value !== allDefaults[key]) {
     return 1
@@ -95,6 +95,7 @@ export default function ResetOptionsButton() {
     useFilterSourceLanguageParam()
   const [filter_target_language, setFilterTargetLanguage] =
     useFilterTargetLanguageParam()
+  const [source_filters, setSourceFilters] = useSourceFiltersParam()
 
   const [customOptionsCount, setCustomOptionsCount] = React.useState<
     number | undefined
@@ -111,8 +112,7 @@ export default function ResetOptionsButton() {
           filter_language,
           filter_source_language,
           filter_target_language,
-          // [source_limits]: sourceLimits,
-          // [limits]: limitsValue,
+          source_filters: source_filters ?? undefined,
         },
       })
     })
@@ -123,6 +123,7 @@ export default function ResetOptionsButton() {
     filter_language,
     filter_source_language,
     filter_target_language,
+    source_filters,
   ])
 
   const handleReset = React.useCallback(() => {
@@ -132,6 +133,7 @@ export default function ResetOptionsButton() {
     setFilterLanguage(null)
     setFilterSourceLanguage(null)
     setFilterTargetLanguage(null)
+    setSourceFilters(null)
   }, [
     setInputEncoding,
     setSearchType,
@@ -139,6 +141,7 @@ export default function ResetOptionsButton() {
     setFilterLanguage,
     setFilterSourceLanguage,
     setFilterTargetLanguage,
+    setSourceFilters,
   ])
 
   return (

@@ -23,7 +23,11 @@
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
       "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input.",
       "experimentalLanguageWarning": "Support for this language is experimental."
-    }
+    },
+    "openAll": "Open all",
+    "closeAll": "Close all",
+    "showLess": "Show less",
+    "showAll": "Show all {count, number}"
   },
   "navigation": {
     "home": "首頁",
@@ -111,7 +115,12 @@
     },
     "precisionLabel": "Exact matches only",
     "expandText": "Expand result text",
-    "collapseText": "Collapse result text"
+    "collapseText": "Collapse result text",
+    "sourceFilter": {
+      "labels": {
+        "include": "Include sources"
+      }
+    }
   },
   "translation": {
     "translate": "翻譯",

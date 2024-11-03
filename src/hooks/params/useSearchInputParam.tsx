@@ -11,6 +11,5 @@ const {
 export function useSearchInputParam() {
   return useQueryState(search_input, {
     ...parseAsMultiLineString.withDefault(""),
-    clearOnDefault: true,
   })
 }

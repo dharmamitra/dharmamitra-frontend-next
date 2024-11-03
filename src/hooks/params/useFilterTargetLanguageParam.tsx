@@ -15,6 +15,5 @@ export function useFilterTargetLanguageParam() {
     ...parseAsStringLiteral(searchFilterLanguages).withDefault(
       defaultSearchFilterLanguage,
     ),
-    clearOnDefault: true,
   })
 }

@@ -11,6 +11,5 @@ const {
 export function useInputSentenceParam() {
   return useQueryState(input_sentence, {
     ...parseAsMultiLineString.withDefault(""),
-    clearOnDefault: true,
   })
 }

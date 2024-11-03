@@ -15,7 +15,6 @@ export function useInputEncodingParamWithLocalStorage() {
       ...parseAsStringLiteral(inputEncodings).withDefault(
         getValidInputEncoding(undefined),
       ),
-      clearOnDefault: true,
     },
   )
 

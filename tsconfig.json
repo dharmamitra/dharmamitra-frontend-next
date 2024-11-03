@@ -36,6 +36,9 @@
       ],
       "@/api": [
         "./src/utils/api/index"
+      ],
+      "@/atoms": [
+        "./src/atoms.ts"
       ]
     },
     "noUncheckedIndexedAccess": true

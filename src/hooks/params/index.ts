@@ -20,3 +20,8 @@ export { useFilterLanguageParam } from "./useFilterLanguageParam"
 export { useFilterSourceLanguageParam } from "./useFilterSourceLanguageParam"
 export { useFilterTargetLanguageParam } from "./useFilterTargetLanguageParam"
 // ------ TODO include/exclude filters refactor pending BN
+
+export {
+  useInputSourceFiltersParam,
+  useSourceFiltersParam,
+} from "./sourceFilterParams"

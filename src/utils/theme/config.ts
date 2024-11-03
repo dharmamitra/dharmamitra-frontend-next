@@ -71,6 +71,9 @@ const customTheming: CustomTheming = {
   palette: {
     soft: colours.soft,
     panel: colours.panel,
+    background: {
+      selected: grey[200],
+    },
   },
   shape: {
     inputRadius: "24px",
