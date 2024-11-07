@@ -2,24 +2,27 @@ import { useQuery } from "@tanstack/react-query"
 
 import { DMFetchApi, SearchApiTypes } from "@/api"
 import {
-  useFilterLanguageParam,
   useFilterSourceLanguageParam,
   useFilterTargetLanguageParam,
   useInputEncodingParamWithLocalStorage,
   useSearchTypeParam,
+  useSourceFiltersParam,
 } from "@/hooks/params"
 
 export function usePrimarySearchQuery(search_input: string) {
   const [search_type] = useSearchTypeParam()
   const [input_encoding] = useInputEncodingParamWithLocalStorage()
-  const [filter_language] = useFilterLanguageParam()
+  const [filter_source_language] = useFilterSourceLanguageParam()
+  const [filter_target_language] = useFilterTargetLanguageParam()
+  const [source_filters] = useSourceFiltersParam()
 
   const requestBody: SearchApiTypes.RequestBody<"/primary/"> = {
     search_input,
     search_type,
     input_encoding,
-    filter_language,
-    limits: { category_include: [], file_include: [] },
+    filter_source_language,
+    filter_target_language,
+    source_filters,
   }
 
   return useQuery({
@@ -34,6 +37,7 @@ export function useParallelSearchQuery(search_input: string) {
   const [input_encoding] = useInputEncodingParamWithLocalStorage()
   const [filter_source_language] = useFilterSourceLanguageParam()
   const [filter_target_language] = useFilterTargetLanguageParam()
+  const [source_filters] = useSourceFiltersParam()
 
   const requestBody: SearchApiTypes.RequestBody<"/parallel/"> = {
     search_input,
@@ -41,7 +45,7 @@ export function useParallelSearchQuery(search_input: string) {
     input_encoding,
     filter_source_language,
     filter_target_language,
-    source_limits: { category_include: [], file_include: [] },
+    source_filters,
   }
 
   return useQuery({

@@ -8,71 +8,29 @@ import {
   LanguageFilterSelector,
   SearchTargetButtons,
 } from "@/features/paramSettings"
-import { DbSourceFilterUISetting } from "@/features/paramSettings/DbSourceFilter/types"
 import {
-  useFilterLanguageParam,
   useFilterSourceLanguageParam,
   useSearchTargetParam,
-} from "@/hooks/params"
-import {
-  useInputSourceFiltersParam,
   useSourceFiltersParam,
-} from "@/hooks/params/sourceFilterParams"
+} from "@/hooks/params"
+import { defaultSourceLanguage } from "@/utils/api/search/params"
 
 export default function TargetControls() {
   const [searchTarget] = useSearchTargetParam()
-  const [filterLanguage, setFilterLanguage] = useFilterLanguageParam()
   const [filterSourceLanguage, setFilterSourceLanguage] =
     useFilterSourceLanguageParam()
   const [, setSourceFilters] = useSourceFiltersParam()
-  const [, setInputSourceFilters] = useInputSourceFiltersParam()
 
-  const dbSourceFilterProps = React.useMemo(() => {
-    if (
-      searchTarget === "primary" &&
-      filterLanguage &&
-      filterLanguage !== "aa"
-    ) {
-      return {
-        filterName: DbSourceFilterUISetting.SOURCE_FILTERS,
-        sourceLanguage: filterLanguage,
-      }
-    }
-
-    if (
-      searchTarget === "parallel" &&
-      filterSourceLanguage &&
-      filterSourceLanguage !== "aa"
-    ) {
-      return {
-        filterName: DbSourceFilterUISetting.INPUT_SOURCE_FILTERS,
-        sourceLanguage: filterSourceLanguage,
-      }
-    }
-
-    return undefined
-  }, [searchTarget, filterSourceLanguage, filterLanguage])
+  const showDbSourceFilter = filterSourceLanguage !== defaultSourceLanguage
 
   React.useEffect(() => {
     setSourceFilters(null)
-  }, [filterLanguage, setSourceFilters])
+  }, [filterSourceLanguage, setSourceFilters])
 
   React.useEffect(() => {
-    setInputSourceFilters(null)
-  }, [filterSourceLanguage, setInputSourceFilters])
-
-  React.useEffect(() => {
-    setFilterSourceLanguage("aa")
-    setFilterLanguage("aa")
+    setFilterSourceLanguage(defaultSourceLanguage)
     setSourceFilters(null)
-    setInputSourceFilters(null)
-  }, [
-    searchTarget,
-    setFilterSourceLanguage,
-    setFilterLanguage,
-    setSourceFilters,
-    setInputSourceFilters,
-  ])
+  }, [searchTarget, setFilterSourceLanguage, setSourceFilters])
 
   return (
     <Box
@@ -86,7 +44,9 @@ export default function TargetControls() {
 
       <LanguageFilterSelector />
 
-      {dbSourceFilterProps ? <DbSourceFilter {...dbSourceFilterProps} /> : null}
+      {showDbSourceFilter ? (
+        <DbSourceFilter sourceLanguage={filterSourceLanguage} />
+      ) : null}
     </Box>
   )
 }

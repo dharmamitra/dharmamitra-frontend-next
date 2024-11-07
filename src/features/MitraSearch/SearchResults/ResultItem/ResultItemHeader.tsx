@@ -10,6 +10,7 @@ import Tooltip from "@mui/material/Tooltip"
 import Typography from "@mui/material/Typography"
 
 import CopyText from "@/components/CopyTextButton"
+import { defaultSourceLanguage } from "@/utils/api/search/params"
 import { sourceLangColors } from "@/utils/constants"
 import { getValidSourceLanguage } from "@/utils/validators"
 
@@ -138,7 +139,7 @@ export default function ResultItemHeader({
           />
         </Box>
 
-        {sourceLangCode !== "aa" ? (
+        {sourceLangCode !== defaultSourceLanguage ? (
           <Chip
             label={t(`search.commonParams.filterLanguages.${sourceLangCode}`)}
             variant="filled"

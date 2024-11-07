@@ -5,7 +5,7 @@ import { searchParamsNames } from "@/utils/api/search/params"
 import { parseAsMultiLineString } from "./parsers"
 
 const {
-  common: { search_input },
+  api: { search_input },
 } = searchParamsNames
 
 export function useSearchInputParam() {

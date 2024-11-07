@@ -4,7 +4,6 @@ import { Box, Popper } from "@mui/material"
 
 import { INPUT_WIDTH } from "@/features/paramSettings/DbSourceFilter/DbSourceFilter"
 import { SearchableDbSourceMenu } from "@/features/paramSettings/DbSourceFilter/SearchableDbSourceMenu"
-import { DbSourceFilterUISetting } from "@/features/paramSettings/DbSourceFilter/types"
 import { SourceLanguage } from "@/utils/api/search/types"
 
 type DbSourceMenuPopperProps = {
@@ -12,7 +11,6 @@ type DbSourceMenuPopperProps = {
   open: boolean
   anchorEl: null | HTMLElement
   handleClose: () => void
-  filterName: DbSourceFilterUISetting
   sourceLanguage: SourceLanguage
   selectionIds: string[]
 }
@@ -24,7 +22,6 @@ const DbSourceMenuPopper = ({
   open,
   anchorEl,
   handleClose,
-  filterName,
   sourceLanguage,
   selectionIds,
 }: DbSourceMenuPopperProps) => {
@@ -55,7 +52,6 @@ const DbSourceMenuPopper = ({
           }}
         >
           <SearchableDbSourceMenu
-            filterName={filterName}
             parentHeight={MAX_HEIGHT}
             parentWidth={INPUT_WIDTH}
             padding={0}

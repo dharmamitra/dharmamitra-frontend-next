@@ -8,15 +8,13 @@ import {
   MultiSelectionBox,
   SelectionChipsBox,
 } from "@/features/paramSettings/DbSourceFilter/styledComponents"
-import type { DbSourceFilterUISetting } from "@/features/paramSettings/DbSourceFilter/types"
-import { sourceFilterParamHooks } from "@/hooks/params/sourceFilterParams"
+import { useSourceFiltersParam } from "@/hooks/params/useSourceFilterParam"
 
 const CHIP_GAP = 6
 const MAX_CHIP_ROW_WIDTH = 253
 const MAX_TRUNCATED_ROWS = 1
 
 type DbSourceFilterInputProps = {
-  filterName: DbSourceFilterUISetting
   popperId: string | undefined
   // eslint-disable-next-line no-unused-vars
   handleClick: (event: React.MouseEvent<HTMLElement>) => void
@@ -26,7 +24,6 @@ type DbSourceFilterInputProps = {
 
 /* simulates "Autocomplete" style input box */
 const DbSourceFilterInput = ({
-  filterName,
   popperId,
   handleClick,
   open,
@@ -34,8 +31,7 @@ const DbSourceFilterInput = ({
 }: DbSourceFilterInputProps) => {
   const t = useTranslations()
 
-  const filterParamHook = sourceFilterParamHooks[filterName]
-  const [, setFilterParam] = filterParamHook()
+  const [, setSourceFilterParam] = useSourceFiltersParam()
 
   const [isExpanded, setIsExpanded] = React.useState(false)
   const [showButton, setShowButton] = React.useState(false)
@@ -88,20 +84,20 @@ const DbSourceFilterInput = ({
 
   const handleClearSourcesById = React.useCallback(
     async (id: string) => {
-      setFilterParam((prev) => {
+      setSourceFilterParam((prev) => {
         const { include_categories, include_collections, include_files } =
           prev ?? {}
 
         return {
-          include_categories: include_categories?.filter((item) => item !== id),
-          include_collections: include_collections?.filter(
-            (item) => item !== id,
-          ),
-          include_files: include_files?.filter((item) => item !== id),
+          include_categories:
+            include_categories?.filter((item) => item !== id) ?? null,
+          include_collections:
+            include_collections?.filter((item) => item !== id) ?? null,
+          include_files: include_files?.filter((item) => item !== id) ?? null,
         }
       })
     },
-    [setFilterParam],
+    [setSourceFilterParam],
   )
 
   return (

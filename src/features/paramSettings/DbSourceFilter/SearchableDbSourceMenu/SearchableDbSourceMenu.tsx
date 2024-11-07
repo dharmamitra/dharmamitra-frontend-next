@@ -36,7 +36,6 @@ export const SearchableDbSourceMenu = memo<SearchableDbSourceMenuProps>(
     parentWidth,
     padding = 2,
     sourceLanguage,
-    filterName,
     selectionIds,
   }) {
     const [searchTerm, setSearchTerm] = useState("")
@@ -111,7 +110,6 @@ export const SearchableDbSourceMenu = memo<SearchableDbSourceMenuProps>(
             height={parentHeight - inputHeight}
             width={parentWidth}
             searchTerm={searchTerm}
-            filterName={filterName}
             selectionIds={selectionIds}
             sourceLanguage={sourceLanguage}
           />

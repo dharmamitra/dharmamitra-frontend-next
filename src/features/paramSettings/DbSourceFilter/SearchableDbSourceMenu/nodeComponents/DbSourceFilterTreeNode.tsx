@@ -6,9 +6,8 @@ import {
   type DbSourceTreeNode,
   DbSourceTreeNodeDataType as NodeType,
 } from "@/features/paramSettings/DbSourceFilter/types"
-import { DbSourceFilterUISetting } from "@/features/paramSettings/DbSourceFilter/types"
 import { updateSourceFilterProp } from "@/features/paramSettings/DbSourceFilter/utils"
-import { sourceFilterParamHooks } from "@/hooks/params/sourceFilterParams"
+import { useSourceFiltersParam } from "@/hooks/params/useSourceFilterParam"
 
 import { ExpanderArrow } from "./ExpanderArrow"
 import { SourceTypeIcon } from "./SourceTypeIcon"
@@ -40,20 +39,17 @@ const handleClick = ({ node, event }: HandleFilterNodeClickProps) => {
 }
 
 type DbSourceFilterTreeNodeProps = {
-  filterName: DbSourceFilterUISetting
   selectionIds: string[]
 } & NodeRendererProps<DbSourceTreeNode>
 
 export function DbSourceFilterTreeNode({
   node,
   style,
-  filterName,
   selectionIds,
 }: DbSourceFilterTreeNodeProps) {
   const { name, id, dataType } = node.data
 
-  const filterParamHook = sourceFilterParamHooks[filterName]
-  const [, setFilterParam] = filterParamHook()
+  const [, setSourceFilterParam] = useSourceFiltersParam()
 
   let elementWidth = DEFAULT_NODE_WIDTH
   const nameWidth = name.length * CHARACTER_WIDTH
@@ -70,52 +66,40 @@ export function DbSourceFilterTreeNode({
       action: "add" | "remove"
       item: DbSourceTreeNode
     }) => {
-      const { id, dataType } = item
-
-      setFilterParam((prev) => {
-        let include_files = prev?.include_files
-        let include_categories = prev?.include_categories
-        let include_collections = prev?.include_collections
-
-        if (dataType === NodeType.TEXT) {
-          include_files = updateSourceFilterProp({
-            prevValue: prev?.include_files,
-            id,
-            action,
-          })
-        }
-
-        if (dataType === NodeType.CATEGORY) {
-          include_categories = updateSourceFilterProp({
-            prevValue: prev?.include_categories,
-            id,
-            action,
-          })
-        }
-
-        if (dataType === NodeType.COLLECTION) {
-          include_collections = updateSourceFilterProp({
-            prevValue: prev?.include_collections,
-            id,
-            action,
-          })
-        }
-
+      setSourceFilterParam((prev) => {
         const updatedValue = {
-          ...(include_files && { include_files }),
-          ...(include_categories && { include_categories }),
-          ...(include_collections && { include_collections }),
+          include_files:
+            updateSourceFilterProp({
+              filterNodeType: NodeType.TEXT,
+              prevValue: prev?.include_files,
+              ...item,
+              action,
+            }) ?? null,
+          include_categories:
+            updateSourceFilterProp({
+              filterNodeType: NodeType.CATEGORY,
+              prevValue: prev?.include_categories,
+              ...item,
+              action,
+            }) ?? null,
+          include_collections:
+            updateSourceFilterProp({
+              filterNodeType: NodeType.COLLECTION,
+              prevValue: prev?.include_collections,
+              ...item,
+              action,
+            }) ?? null,
         }
 
         return Object.keys(updatedValue).length > 0 ? updatedValue : null
       })
     },
-    [setFilterParam],
+    [setSourceFilterParam],
   )
 
   return (
     <NodeBox
-      key={`${id}-${filterName}`}
+      key={id}
       style={style}
       sx={{
         ml: dataType === NodeType.TEXT ? 1.1 : undefined,

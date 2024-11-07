@@ -1,18 +1,18 @@
 import { SearchApiTypes } from "@/api"
-import { searchTargetDefaultParams } from "@/utils/api/search/params"
+import { allSearchDefaultParams } from "@/utils/api/search/params"
 
 import { searchInputId } from "./SearchInput"
 
 export function createPrimarySearchRequestBody(
   params: Partial<SearchApiTypes.RequestBody<"/primary/">>,
 ) {
-  return { ...searchTargetDefaultParams.primary, ...params }
+  return { ...allSearchDefaultParams, ...params }
 }
 
 export function createParallelSearchRequestBody(
   params: Partial<SearchApiTypes.RequestBody<"/parallel/">>,
 ) {
-  return { ...searchTargetDefaultParams.parallel, ...params }
+  return { ...allSearchDefaultParams, ...params }
 }
 
 export function handleSearchKeyPress(

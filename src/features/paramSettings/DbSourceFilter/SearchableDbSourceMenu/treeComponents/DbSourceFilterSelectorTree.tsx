@@ -20,7 +20,6 @@ export const DbSourceFilterSelectorTree = memo(
     height,
     width,
     searchTerm,
-    filterName,
     selectionIds,
   }: DbSourceTreeBaseProps & DbSourceFilterSelectorTreeProps) {
     const setActiveTree = useSetAtom(activeDbSourceTreeAtom)
@@ -28,8 +27,7 @@ export const DbSourceFilterSelectorTree = memo(
 
     return (
       <Tree
-        //TODO: confirm if this key is okay
-        key={`${filterName}-tree`}
+        key={`db-source-filter-tree`}
         ref={(activeTree) => {
           handleTreeChange({ activeTree, setActiveTree, setBreadcrumbs })
         }}
@@ -49,11 +47,7 @@ export const DbSourceFilterSelectorTree = memo(
         indent={16}
       >
         {(props) => (
-          <DbSourceFilterTreeNode
-            {...props}
-            filterName={filterName}
-            selectionIds={selectionIds}
-          />
+          <DbSourceFilterTreeNode {...props} selectionIds={selectionIds} />
         )}
       </Tree>
     )

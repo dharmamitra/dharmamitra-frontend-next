@@ -243,25 +243,6 @@ export interface components {
        */
       mode: string
     }
-    /** Body_search_endpoint_parallel_parallel__post */
-    Body_search_endpoint_parallel_parallel__post: {
-      /** Search Input */
-      search_input: string
-      input_encoding: components["schemas"]["InputEncoding"]
-      search_type: components["schemas"]["SearchType"]
-      filter_source_language: components["schemas"]["FilterLanguage"]
-      source_limits: components["schemas"]["Limits"]
-      filter_target_language: components["schemas"]["FilterLanguage"]
-    }
-    /** Body_search_endpoint_primary_primary__post */
-    Body_search_endpoint_primary_primary__post: {
-      /** Search Input */
-      search_input: string
-      input_encoding: components["schemas"]["InputEncoding"]
-      search_type: components["schemas"]["SearchType"]
-      filter_language: components["schemas"]["FilterLanguage"]
-      limits: components["schemas"]["Limits"]
-    }
     /** Body_search_endpoint_secondary_secondary__post */
     Body_search_endpoint_secondary_secondary__post: {
       /** Search Input */
@@ -318,7 +299,7 @@ export interface components {
      * @description For primary and parallel data, we can filter by these languages.
      * @enum {string}
      */
-    FilterLanguage: "bo" | "sa" | "zh" | "pa" | "aa"
+    FilterLanguage: "bo" | "sa" | "zh" | "pa" | "all"
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */
@@ -329,22 +310,6 @@ export interface components {
      * @enum {string}
      */
     InputEncoding: "auto" | "tibetan" | "wylie" | "dev" | "iast" | "hk"
-    /**
-     * Limits
-     * @description Limits for Search in primary sources. This is identical to the filter model of the xnexus endpoints.
-     */
-    Limits: {
-      /**
-       * Category Include
-       * @default []
-       */
-      category_include: unknown[]
-      /**
-       * File Include
-       * @default []
-       */
-      file_include: unknown[]
-    }
     /**
      * LimitsSecondary
      * @description Limits for Search in secondary sources
@@ -414,6 +379,20 @@ export interface components {
       /** Src Link */
       src_link: string
     }
+    /** SearchRequest */
+    SearchRequest: {
+      /** Search Input */
+      search_input: string
+      /** @default auto */
+      input_encoding: components["schemas"]["InputEncoding"]
+      /** @default semantic */
+      search_type: components["schemas"]["SearchType"]
+      /** @default all */
+      filter_source_language: components["schemas"]["FilterLanguage"]
+      /** @default all */
+      filter_target_language: components["schemas"]["FilterLanguage"]
+      source_filters?: components["schemas"]["SourceFilters"] | null
+    }
     /**
      * SearchType
      * @description The type of search to be performed, regular here means a standard elastic search that is more or less precise, while semantic uses a semantic model with english as pivot language.
@@ -439,6 +418,24 @@ export interface components {
       summary: string
       /** Text */
       text: string
+    }
+    /** SourceFilters */
+    SourceFilters: {
+      /**
+       * Include Files
+       * @default []
+       */
+      include_files: string[] | null
+      /**
+       * Include Categories
+       * @default []
+       */
+      include_categories: string[] | null
+      /**
+       * Include Collections
+       * @default []
+       */
+      include_collections: string[] | null
     }
     /** SummaryRespone */
     SummaryRespone: {
@@ -491,7 +488,7 @@ export interface operations {
     }
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Body_search_endpoint_parallel_parallel__post"]
+        "application/json": components["schemas"]["SearchRequest"]
       }
     }
     responses: {
@@ -524,7 +521,7 @@ export interface operations {
     }
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Body_search_endpoint_primary_primary__post"]
+        "application/json": components["schemas"]["SearchRequest"]
       }
     }
     responses: {

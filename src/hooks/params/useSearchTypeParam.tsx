@@ -7,7 +7,7 @@ import {
 } from "@/utils/api/search/params"
 
 const {
-  common: { search_type },
+  api: { search_type },
 } = searchParamsNames
 
 export function useSearchTypeParam() {

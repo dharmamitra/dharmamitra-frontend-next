@@ -22,9 +22,8 @@ export default function StorageCheck() {
       localStorage.clear()
     } else {
       // targeted props for given version
-      localStorage.removeItem(searchParamsNames.primary.filter_language)
-      localStorage.removeItem(searchParamsNames.parallel.filter_source_language)
-      localStorage.removeItem(searchParamsNames.parallel.filter_target_language)
+      localStorage.removeItem(searchParamsNames.api.filter_source_language)
+      localStorage.removeItem(searchParamsNames.api.filter_target_language)
     }
   }, [storageVersionId])
 

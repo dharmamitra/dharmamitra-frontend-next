@@ -8,7 +8,6 @@ import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
 
 import {
-  useFilterLanguageParam,
   useFilterSourceLanguageParam,
   useFilterTargetLanguageParam,
   useInputEncodingParamWithLocalStorage,
@@ -19,31 +18,23 @@ import {
 import {
   allSearchDefaultParams as allDefaults,
   searchParamsNames,
-  SearchTarget,
-  searchTargetDefaultParams,
 } from "@/utils/api/search/params"
-import {
-  AllSearchApiParams,
-  AllSearchParams,
-  LocalParams,
-} from "@/utils/api/search/types"
+import { AllSearchParams, LocalParams } from "@/utils/api/search/types"
 
 const {
   local: { search_target },
-  // parallel: { source_limits },
-  // primary: { limits },
 } = searchParamsNames
 
 type ParamKey = Exclude<keyof AllSearchParams, "search_input">
 
 type GetIsCustomValueAsBinaryProps = {
-  targetDefaults: Partial<AllSearchApiParams & { search_input: string }>
+  defaults: Partial<AllSearchParams & { search_input: string }>
   key: ParamKey
   value: unknown
 }
 
 const getIsCustomValueAsBinary = ({
-  targetDefaults,
+  defaults,
   key,
   value,
 }: GetIsCustomValueAsBinaryProps) => {
@@ -51,7 +42,7 @@ const getIsCustomValueAsBinary = ({
     return 1
   }
 
-  if (!(key in targetDefaults) || !value) return 0
+  if (!(key in defaults) || !value) return 0
 
   if (key === "source_filters") {
     return Object.keys(value).length === 0 ? 0 : 1
@@ -65,17 +56,15 @@ const getIsCustomValueAsBinary = ({
 }
 
 type GetParamCountProps = {
-  target: SearchTarget
-  params: Partial<AllSearchApiParams & LocalParams>
+  params: Partial<AllSearchParams & LocalParams>
 }
 
-const getParamCount = ({ params, target }: GetParamCountProps) => {
+const getParamCount = ({ params }: GetParamCountProps) => {
   let count = 0
 
-  const targetDefaults = searchTargetDefaultParams[target]
   for (const [key, value] of Object.entries(params)) {
     count += getIsCustomValueAsBinary({
-      targetDefaults,
+      defaults: allDefaults,
       key: key as ParamKey,
       value,
     })
@@ -90,7 +79,6 @@ export default function ResetOptionsButton() {
     useInputEncodingParamWithLocalStorage()
   const [search_type, setSearchType] = useSearchTypeParam()
   const [search_target, setSearchTarget] = useSearchTargetParam()
-  const [filter_language, setFilterLanguage] = useFilterLanguageParam()
   const [filter_source_language, setFilterSourceLanguage] =
     useFilterSourceLanguageParam()
   const [filter_target_language, setFilterTargetLanguage] =
@@ -104,15 +92,13 @@ export default function ResetOptionsButton() {
   React.useEffect(() => {
     setCustomOptionsCount(() => {
       return getParamCount({
-        target: search_target,
         params: {
           input_encoding,
           search_type,
           search_target,
-          filter_language,
           filter_source_language,
           filter_target_language,
-          source_filters: source_filters ?? undefined,
+          source_filters,
         },
       })
     })
@@ -120,7 +106,6 @@ export default function ResetOptionsButton() {
     input_encoding,
     search_type,
     search_target,
-    filter_language,
     filter_source_language,
     filter_target_language,
     source_filters,
@@ -130,7 +115,6 @@ export default function ResetOptionsButton() {
     setInputEncoding("")
     setSearchType(null)
     setSearchTarget(null)
-    setFilterLanguage(null)
     setFilterSourceLanguage(null)
     setFilterTargetLanguage(null)
     setSourceFilters(null)
@@ -138,7 +122,6 @@ export default function ResetOptionsButton() {
     setInputEncoding,
     setSearchType,
     setSearchTarget,
-    setFilterLanguage,
     setFilterSourceLanguage,
     setFilterTargetLanguage,
     setSourceFilters,

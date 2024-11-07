@@ -1,19 +1,19 @@
 import { parseAsStringLiteral, useQueryState } from "nuqs"
 
 import {
-  defaultSearchFilterLanguage,
+  defaultSourceLanguage,
   searchFilterLanguages,
   searchParamsNames,
 } from "@/utils/api/search/params"
 
 const {
-  parallel: { filter_target_language },
+  api: { filter_target_language },
 } = searchParamsNames
 
 export function useFilterTargetLanguageParam() {
   return useQueryState(filter_target_language, {
     ...parseAsStringLiteral(searchFilterLanguages).withDefault(
-      defaultSearchFilterLanguage,
+      defaultSourceLanguage,
     ),
   })
 }

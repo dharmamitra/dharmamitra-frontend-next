@@ -7,13 +7,12 @@ import MenuItem from "@mui/material/MenuItem"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
 
 import {
-  useFilterLanguageParam,
   useFilterSourceLanguageParam,
   useFilterTargetLanguageParam,
   useSearchTargetParam,
 } from "@/hooks/params"
 import {
-  defaultSearchFilterLanguage,
+  defaultSourceLanguage,
   searchFilterLanguages,
 } from "@/utils/api/search/params"
 import { getValidSourceLanguage } from "@/utils/validators"
@@ -38,7 +37,7 @@ const LanguageSelect = ({
       <Select
         labelId={`${label}-select-label`}
         id={`${label}-select`}
-        value={value || defaultSearchFilterLanguage}
+        value={value || defaultSourceLanguage}
         label={label}
         onChange={handleChange}
         color="secondary"
@@ -57,7 +56,6 @@ export default function LanguageFilterSelector() {
   const t = useTranslations("generic")
 
   const [searchTarget] = useSearchTargetParam()
-  const [filterLanguage, setFilterLanguage] = useFilterLanguageParam()
   const [filterSourceLanguage, setFilterSourceLanguage] =
     useFilterSourceLanguageParam()
   const [filterTargetLanguage, setFilterTargetLanguage] =
@@ -67,9 +65,9 @@ export default function LanguageFilterSelector() {
     return (
       <LanguageSelect
         label={t("source")}
-        value={filterLanguage}
+        value={filterSourceLanguage}
         handleChange={(event) =>
-          setFilterLanguage(getValidSourceLanguage(event.target.value))
+          setFilterSourceLanguage(getValidSourceLanguage(event.target.value))
         }
       />
     )

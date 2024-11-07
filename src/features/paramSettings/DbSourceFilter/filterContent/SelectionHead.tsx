@@ -4,23 +4,20 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined"
 import { FormLabel, IconButton } from "@mui/material"
 
 import { SelectionHeadBox } from "@/features/paramSettings/DbSourceFilter/styledComponents"
-import type { DbSourceFilterUISetting } from "@/features/paramSettings/DbSourceFilter/types"
-import { sourceFilterParamHooks } from "@/hooks/params/sourceFilterParams"
+import { useSourceFiltersParam } from "@/hooks/params"
 
 type SelectionHeadProps = {
-  filterName: DbSourceFilterUISetting
   selectionIds: string[]
 }
 
-const SelectionHead = ({ filterName, selectionIds }: SelectionHeadProps) => {
+const SelectionHead = ({ selectionIds }: SelectionHeadProps) => {
   const t = useTranslations()
 
-  const filterParamHook = sourceFilterParamHooks[filterName]
-  const [, setFilterParam] = filterParamHook()
+  const [, setSourceFilterParam] = useSourceFiltersParam()
 
   const handleClearSources = React.useCallback(async () => {
-    await setFilterParam(null)
-  }, [setFilterParam])
+    await setSourceFilterParam(null)
+  }, [setSourceFilterParam])
 
   return (
     <SelectionHeadBox>

@@ -1,8 +1,7 @@
 import React, { memo } from "react"
 import { Box } from "@mui/material"
 
-import { DbSourceFilterUISetting } from "@/features/paramSettings/DbSourceFilter/types"
-import { sourceFilterParamHooks } from "@/hooks/params/sourceFilterParams"
+import { useSourceFiltersParam } from "@/hooks/params"
 import { SourceLanguage } from "@/utils/api/search/types"
 
 import DbSourceMenuPopper from "./filterContent/DbSourceMenuPopper"
@@ -12,19 +11,19 @@ import SelectionHead from "./filterContent/SelectionHead"
 export const INPUT_WIDTH = 340
 
 const DbSourceFilter = ({
-  filterName,
   sourceLanguage,
 }: {
-  filterName: DbSourceFilterUISetting
   sourceLanguage: SourceLanguage
 }) => {
-  const filterParamHook = sourceFilterParamHooks[filterName]
-
-  const [filterParam] = filterParamHook()
+  const [sourceFilterParam] = useSourceFiltersParam()
 
   const allSelectionIds = React.useMemo(
-    () => Object.entries(filterParam ?? {}).flatMap(([, value]) => value),
-    [filterParam],
+    () =>
+      Object.entries(sourceFilterParam ?? {}).flatMap(([, value]) => {
+        if (!value) return []
+        return value
+      }),
+    [sourceFilterParam],
   )
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -34,18 +33,15 @@ const DbSourceFilter = ({
   }
 
   const isPopperOpen = Boolean(anchorEl)
-  const popperId = isPopperOpen
-    ? `${filterName}-source-filter-popper`
-    : undefined
+  const popperId = isPopperOpen ? `source-filter-popper` : undefined
   const handleClosePopper = () => {
     setAnchorEl(null)
   }
 
   return (
-    <Box sx={{ mb: 2, width: INPUT_WIDTH }} key={filterName}>
-      <SelectionHead filterName={filterName} selectionIds={allSelectionIds} />
+    <Box sx={{ mb: 2, width: INPUT_WIDTH }}>
+      <SelectionHead selectionIds={allSelectionIds} />
       <SelectionBox
-        filterName={filterName}
         selectionIds={allSelectionIds}
         popperId={popperId}
         handleClick={handleClick}
@@ -56,7 +52,6 @@ const DbSourceFilter = ({
         open={isPopperOpen}
         anchorEl={anchorEl}
         handleClose={handleClosePopper}
-        filterName={filterName}
         sourceLanguage={sourceLanguage}
         selectionIds={allSelectionIds}
       />

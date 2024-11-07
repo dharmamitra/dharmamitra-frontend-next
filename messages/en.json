@@ -105,7 +105,7 @@
         "sa": "Sanskrit",
         "zh": "Chinese",
         "pa": "Pali",
-        "aa": "All"
+        "all": "All"
       },
       "limitsPrimaryLabels": {
         "category_include": "Select included categories",

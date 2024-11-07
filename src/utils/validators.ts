@@ -6,7 +6,7 @@ const {
   searchTypes,
   defaultSearchType,
   searchFilterLanguages,
-  defaultSearchFilterLanguage,
+  defaultSourceLanguage,
   searchTargets,
   defaultSearchTarget,
 } = searchParams
@@ -72,7 +72,5 @@ export const isValidSourceLanguage = (
   Object.values(searchFilterLanguages).some((item) => item === language)
 
 export const getValidSourceLanguage = (language: unknown) => {
-  return isValidSourceLanguage(language)
-    ? language
-    : defaultSearchFilterLanguage
+  return isValidSourceLanguage(language) ? language : defaultSourceLanguage
 }
