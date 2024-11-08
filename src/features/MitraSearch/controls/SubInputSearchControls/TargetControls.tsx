@@ -10,8 +10,8 @@ import {
 } from "@/features/paramSettings"
 import {
   useFilterSourceLanguageParam,
+  useResetSourceFilters,
   useSearchTargetParam,
-  useSourceFiltersParam,
 } from "@/hooks/params"
 import { defaultSourceLanguage } from "@/utils/api/search/params"
 
@@ -19,18 +19,18 @@ export default function TargetControls() {
   const [searchTarget] = useSearchTargetParam()
   const [filterSourceLanguage, setFilterSourceLanguage] =
     useFilterSourceLanguageParam()
-  const [, setSourceFilters] = useSourceFiltersParam()
+  const resetSourceFilters = useResetSourceFilters()
 
   const showDbSourceFilter = filterSourceLanguage !== defaultSourceLanguage
 
   React.useEffect(() => {
-    setSourceFilters(null)
-  }, [filterSourceLanguage, setSourceFilters])
+    resetSourceFilters()
+  }, [filterSourceLanguage, resetSourceFilters])
 
   React.useEffect(() => {
     setFilterSourceLanguage(defaultSourceLanguage)
-    setSourceFilters(null)
-  }, [searchTarget, setFilterSourceLanguage, setSourceFilters])
+    resetSourceFilters()
+  }, [searchTarget, setFilterSourceLanguage, resetSourceFilters])
 
   return (
     <Box

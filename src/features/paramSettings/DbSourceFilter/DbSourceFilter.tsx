@@ -1,7 +1,11 @@
 import React, { memo } from "react"
 import { Box } from "@mui/material"
 
-import { useSourceFiltersParam } from "@/hooks/params"
+import {
+  useIncludeCategoriesParam,
+  useIncludeCollectionsParam,
+  useIncludeFilesParam,
+} from "@/hooks/params"
 import { SourceLanguage } from "@/utils/api/search/types"
 
 import DbSourceMenuPopper from "./filterContent/DbSourceMenuPopper"
@@ -15,15 +19,21 @@ const DbSourceFilter = ({
 }: {
   sourceLanguage: SourceLanguage
 }) => {
-  const [sourceFilterParam] = useSourceFiltersParam()
+  const [includeCollectionsParam] = useIncludeCollectionsParam()
+  const [includeCategoriesParam] = useIncludeCategoriesParam()
+  const [includeFilesParam] = useIncludeFilesParam()
 
   const allSelectionIds = React.useMemo(
     () =>
-      Object.entries(sourceFilterParam ?? {}).flatMap(([, value]) => {
+      [
+        includeCollectionsParam,
+        includeCategoriesParam,
+        includeFilesParam,
+      ].flatMap((value) => {
         if (!value) return []
         return value
       }),
-    [sourceFilterParam],
+    [includeCollectionsParam, includeCategoriesParam, includeFilesParam],
   )
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)

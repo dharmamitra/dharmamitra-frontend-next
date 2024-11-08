@@ -11,9 +11,10 @@ import {
   useFilterSourceLanguageParam,
   useFilterTargetLanguageParam,
   useInputEncodingParamWithLocalStorage,
+  useResetSourceFilters,
   useSearchTargetParam,
   useSearchTypeParam,
-  useSourceFiltersParam,
+  useSourceFiltersValue,
 } from "@/hooks/params"
 import {
   allSearchDefaultParams as allDefaults,
@@ -45,7 +46,7 @@ const getIsCustomValueAsBinary = ({
   if (!(key in defaults) || !value) return 0
 
   if (key === "source_filters") {
-    return Object.keys(value).length === 0 ? 0 : 1
+    return Object.values(value).some((item) => item) ? 1 : 0
   }
 
   if (value !== allDefaults[key]) {
@@ -83,7 +84,8 @@ export default function ResetOptionsButton() {
     useFilterSourceLanguageParam()
   const [filter_target_language, setFilterTargetLanguage] =
     useFilterTargetLanguageParam()
-  const [source_filters, setSourceFilters] = useSourceFiltersParam()
+  const source_filters = useSourceFiltersValue()
+  const resetSourceFilters = useResetSourceFilters()
 
   const [customOptionsCount, setCustomOptionsCount] = React.useState<
     number | undefined
@@ -117,14 +119,14 @@ export default function ResetOptionsButton() {
     setSearchTarget(null)
     setFilterSourceLanguage(null)
     setFilterTargetLanguage(null)
-    setSourceFilters(null)
+    resetSourceFilters()
   }, [
     setInputEncoding,
     setSearchType,
     setSearchTarget,
     setFilterSourceLanguage,
     setFilterTargetLanguage,
-    setSourceFilters,
+    resetSourceFilters,
   ])
 
   return (

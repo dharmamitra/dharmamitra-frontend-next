@@ -6,7 +6,7 @@ import {
   useFilterTargetLanguageParam,
   useInputEncodingParamWithLocalStorage,
   useSearchTypeParam,
-  useSourceFiltersParam,
+  useSourceFiltersValue,
 } from "@/hooks/params"
 
 export function usePrimarySearchQuery(search_input: string) {
@@ -14,7 +14,7 @@ export function usePrimarySearchQuery(search_input: string) {
   const [input_encoding] = useInputEncodingParamWithLocalStorage()
   const [filter_source_language] = useFilterSourceLanguageParam()
   const [filter_target_language] = useFilterTargetLanguageParam()
-  const [source_filters] = useSourceFiltersParam()
+  const source_filters = useSourceFiltersValue()
 
   const requestBody: SearchApiTypes.RequestBody<"/primary/"> = {
     search_input,
@@ -37,7 +37,7 @@ export function useParallelSearchQuery(search_input: string) {
   const [input_encoding] = useInputEncodingParamWithLocalStorage()
   const [filter_source_language] = useFilterSourceLanguageParam()
   const [filter_target_language] = useFilterTargetLanguageParam()
-  const [source_filters] = useSourceFiltersParam()
+  const source_filters = useSourceFiltersValue()
 
   const requestBody: SearchApiTypes.RequestBody<"/parallel/"> = {
     search_input,

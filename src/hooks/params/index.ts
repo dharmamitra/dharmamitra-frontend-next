@@ -11,8 +11,14 @@ export { useTranslationModelParam } from "./useTranslationModelParam"
 // --- Local
 export { useSearchTargetParam } from "./useSearchTargetParam"
 // --- api
+export {
+  useIncludeCategoriesParam,
+  useIncludeCollectionsParam,
+  useIncludeFilesParam,
+  useResetSourceFilters,
+  useSourceFiltersValue,
+} from "./sourceFiltersParams"
 export { useFilterSourceLanguageParam } from "./useFilterSourceLanguageParam"
 export { useFilterTargetLanguageParam } from "./useFilterTargetLanguageParam"
 export { useSearchInputParam } from "./useSearchInputParam"
 export { useSearchTypeParam } from "./useSearchTypeParam"
-export { useSourceFiltersParam } from "./useSourceFilterParam"

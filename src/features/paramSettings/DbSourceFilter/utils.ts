@@ -1,16 +1,14 @@
-import { DbSourceTreeNodeDataType as NodeType } from "@/features/paramSettings/DbSourceFilter/types"
-
-type HandleSourceFilterPropUpdate = {
-  prevValue: string[] | undefined | null
+type UpdateSourceFilterPropParam = {
+  prevValue: string[] | null
   id: string
   action: "add" | "remove"
 }
 
-const handleSourceFilterPropUpdate = ({
+export const updateSourceFilterPropParam = ({
   prevValue,
   id,
   action,
-}: HandleSourceFilterPropUpdate) => {
+}: UpdateSourceFilterPropParam) => {
   if (action === "add") {
     return [...(prevValue ?? []), id]
   }
@@ -20,21 +18,5 @@ const handleSourceFilterPropUpdate = ({
     return updatedValue.length > 0 ? updatedValue : null
   }
 
-  return prevValue ?? null
+  return prevValue
 }
-
-type UpdateSourceFilterProp = {
-  filterNodeType: NodeType
-  dataType: NodeType
-} & HandleSourceFilterPropUpdate
-
-export const updateSourceFilterProp = ({
-  filterNodeType,
-  dataType,
-  prevValue,
-  id,
-  action,
-}: UpdateSourceFilterProp) =>
-  dataType === filterNodeType
-    ? handleSourceFilterPropUpdate({ prevValue, id, action })
-    : prevValue

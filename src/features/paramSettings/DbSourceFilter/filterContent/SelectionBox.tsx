@@ -8,7 +8,11 @@ import {
   MultiSelectionBox,
   SelectionChipsBox,
 } from "@/features/paramSettings/DbSourceFilter/styledComponents"
-import { useSourceFiltersParam } from "@/hooks/params/useSourceFilterParam"
+import {
+  useIncludeCategoriesParam,
+  useIncludeCollectionsParam,
+  useIncludeFilesParam,
+} from "@/hooks/params/sourceFiltersParams"
 
 const CHIP_GAP = 6
 const MAX_CHIP_ROW_WIDTH = 253
@@ -31,7 +35,9 @@ const DbSourceFilterInput = ({
 }: DbSourceFilterInputProps) => {
   const t = useTranslations()
 
-  const [, setSourceFilterParam] = useSourceFiltersParam()
+  const [, setIncludeCollectionsParam] = useIncludeCollectionsParam()
+  const [, setIncludeCategoriesParam] = useIncludeCategoriesParam()
+  const [, setIncludeFilesParam] = useIncludeFilesParam()
 
   const [isExpanded, setIsExpanded] = React.useState(false)
   const [showButton, setShowButton] = React.useState(false)
@@ -84,20 +90,21 @@ const DbSourceFilterInput = ({
 
   const handleClearSourcesById = React.useCallback(
     async (id: string) => {
-      setSourceFilterParam((prev) => {
-        const { include_categories, include_collections, include_files } =
-          prev ?? {}
-
-        return {
-          include_categories:
-            include_categories?.filter((item) => item !== id) ?? null,
-          include_collections:
-            include_collections?.filter((item) => item !== id) ?? null,
-          include_files: include_files?.filter((item) => item !== id) ?? null,
-        }
-      })
+      setIncludeCollectionsParam(
+        (prev) => prev?.filter((item) => item !== id) ?? null,
+      )
+      setIncludeCategoriesParam(
+        (prev) => prev?.filter((item) => item !== id) ?? null,
+      )
+      setIncludeFilesParam(
+        (prev) => prev?.filter((item) => item !== id) ?? null,
+      )
     },
-    [setSourceFilterParam],
+    [
+      setIncludeCollectionsParam,
+      setIncludeCategoriesParam,
+      setIncludeFilesParam,
+    ],
   )
 
   return (

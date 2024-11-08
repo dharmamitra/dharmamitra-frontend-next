@@ -6,8 +6,12 @@ import {
   type DbSourceTreeNode,
   DbSourceTreeNodeDataType as NodeType,
 } from "@/features/paramSettings/DbSourceFilter/types"
-import { updateSourceFilterProp } from "@/features/paramSettings/DbSourceFilter/utils"
-import { useSourceFiltersParam } from "@/hooks/params/useSourceFilterParam"
+import { updateSourceFilterPropParam } from "@/features/paramSettings/DbSourceFilter/utils"
+import {
+  useIncludeCategoriesParam,
+  useIncludeCollectionsParam,
+  useIncludeFilesParam,
+} from "@/hooks/params"
 
 import { ExpanderArrow } from "./ExpanderArrow"
 import { SourceTypeIcon } from "./SourceTypeIcon"
@@ -49,7 +53,9 @@ export function DbSourceFilterTreeNode({
 }: DbSourceFilterTreeNodeProps) {
   const { name, id, dataType } = node.data
 
-  const [, setSourceFilterParam] = useSourceFiltersParam()
+  const [, setIncludeCollectionsParam] = useIncludeCollectionsParam()
+  const [, setIncludeCategoriesParam] = useIncludeCategoriesParam()
+  const [, setIncludeFilesParam] = useIncludeFilesParam()
 
   let elementWidth = DEFAULT_NODE_WIDTH
   const nameWidth = name.length * CHARACTER_WIDTH
@@ -66,35 +72,45 @@ export function DbSourceFilterTreeNode({
       action: "add" | "remove"
       item: DbSourceTreeNode
     }) => {
-      setSourceFilterParam((prev) => {
-        const updatedValue = {
-          include_files:
-            updateSourceFilterProp({
-              filterNodeType: NodeType.TEXT,
-              prevValue: prev?.include_files,
-              ...item,
-              action,
-            }) ?? null,
-          include_categories:
-            updateSourceFilterProp({
-              filterNodeType: NodeType.CATEGORY,
-              prevValue: prev?.include_categories,
-              ...item,
-              action,
-            }) ?? null,
-          include_collections:
-            updateSourceFilterProp({
-              filterNodeType: NodeType.COLLECTION,
-              prevValue: prev?.include_collections,
-              ...item,
-              action,
-            }) ?? null,
-        }
+      const { dataType, id } = item
 
-        return Object.keys(updatedValue).length > 0 ? updatedValue : null
-      })
+      if (dataType === NodeType.COLLECTION) {
+        setIncludeCollectionsParam((prev) =>
+          updateSourceFilterPropParam({
+            prevValue: prev,
+            id,
+            action,
+          }),
+        )
+        return
+      }
+
+      if (dataType === NodeType.CATEGORY) {
+        setIncludeCategoriesParam((prev) =>
+          updateSourceFilterPropParam({
+            prevValue: prev,
+            id,
+            action,
+          }),
+        )
+        return
+      }
+
+      if (dataType === NodeType.TEXT) {
+        setIncludeFilesParam((prev) =>
+          updateSourceFilterPropParam({
+            prevValue: prev,
+            id,
+            action,
+          }),
+        )
+      }
     },
-    [setSourceFilterParam],
+    [
+      setIncludeCollectionsParam,
+      setIncludeCategoriesParam,
+      setIncludeFilesParam,
+    ],
   )
 
   return (
