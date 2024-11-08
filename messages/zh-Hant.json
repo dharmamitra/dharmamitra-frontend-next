@@ -30,11 +30,9 @@
     "showAll": "Show all {count, number}"
   },
   "navigation": {
-    "home": "首頁",
-    "about": "計畫介紹",
-    "team": "團隊介紹",
     "mobileButtonAriaLabel": "开放导航菜单",
-    "mobileMenuAriaLabel": "导航菜单"
+    "mobileMenuAriaLabel": "导航菜单",
+    "nexusLinkLabel": "Database"
   },
   "footer": {
     "mission": {

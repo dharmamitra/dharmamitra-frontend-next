@@ -30,9 +30,7 @@
     "showAll": "Show all {count, number}"
   },
   "navigation": {
-    "home": "Home",
-    "about": "About",
-    "team": "Team",
+    "nexusLinkLabel": "Database",
     "mobileButtonAriaLabel": "open navigation menu",
     "mobileMenuAriaLabel": "navigation menu"
   },

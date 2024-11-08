@@ -30,11 +30,9 @@
     "showAll": "Show all {count, number}"
   },
   "navigation": {
-    "home": "首页",
-    "about": "计划介绍",
-    "team": "团队介绍",
     "mobileButtonAriaLabel": "开放导航菜单",
-    "mobileMenuAriaLabel": "导航菜单"
+    "mobileMenuAriaLabel": "导航菜单",
+    "nexusLinkLabel": "Database"
   },
   "footer": {
     "mission": {
