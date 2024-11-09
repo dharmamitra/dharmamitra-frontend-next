@@ -1,7 +1,14 @@
 {
   "generic": {
-    "copy": "Copy",
-    "copied": "已复制到剪切板",
+    "copy": {
+      "default": "Copy",
+      "copied": "Copied!",
+      "copyLink": "Copy link",
+      "copyRef": "Copy reference",
+      "copyAll": "Copy all",
+      "copyResultsRefs": "Copy references",
+      "copyResultsList": "Copy full results list"
+    },
     "other": "其他",
     "clear": "Clear",
     "stop": "Stop",
@@ -14,18 +21,18 @@
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
-      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
+      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input.",
+      "experimentalLanguageWarning": "Support for this language is experimental."
     },
-    "copyRef": "Copy reference",
-    "copyAll": "Copy all",
-    "copyResultsList": "Copy results list"
+    "openAll": "Open all",
+    "closeAll": "Close all",
+    "showLess": "Show less",
+    "showAll": "Show all {count, number}"
   },
   "navigation": {
-    "home": "首頁",
-    "about": "計畫介紹",
-    "team": "團隊介紹",
     "mobileButtonAriaLabel": "开放导航菜单",
-    "mobileMenuAriaLabel": "导航菜单"
+    "mobileMenuAriaLabel": "导航菜单",
+    "nexusLinkLabel": "Database"
   },
   "footer": {
     "mission": {
@@ -40,7 +47,7 @@
   },
   "localeSwitcher": {
     "label": "切換語言",
-    "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "locale": "{locale, select, en {English} zh_Hans {简体中文} zh_Hant {繁體中文} other {Unknown}}",
     "localePlaceholder": "繁體中文"
   },
   "search": {
@@ -61,12 +68,6 @@
       "primary": "Traditional",
       "secondary": "Modern",
       "parallel": "Parallels"
-    },
-    "parallelLanguages": {
-      "tib-chn": "Tibetan-Chinese",
-      "tib-eng": "Tibetan-English",
-      "san-eng": "Sanskrit-English",
-      "san-tib": "Sanskrit-Tibetan"
     },
     "limits": {
       "labels": {
@@ -92,10 +93,10 @@
         "semantic": "Semantic"
       },
       "filterLanguages": {
-        "tib": "Tibetan",
-        "skt": "Sanskrit",
-        "chn": "Buddhist Chinese",
-        "pli": "Pali",
+        "bo": "Tibetan",
+        "sa": "Sanskrit",
+        "zh": "Chinese",
+        "pa": "Pali",
         "all": "All"
       },
       "limitsPrimaryLabels": {
@@ -110,13 +111,19 @@
       "medium": "Medium",
       "low": "Low"
     },
-    "precisionLabel": "Exact matches only"
+    "precisionLabel": "Exact matches only",
+    "expandText": "Expand result text",
+    "collapseText": "Collapse result text",
+    "sourceFilter": {
+      "labels": {
+        "include": "Include sources"
+      }
+    }
   },
   "translation": {
     "translate": "翻譯",
     "heading": "",
     "inputAriaLabel": "翻譯欄位",
-    "placeholder": "在此輸入需要翻譯之梵文、藏文或中文…",
     "otherLabel": "其他",
     "targetLanguageSelectLabel": "翻譯目標語",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",
@@ -181,7 +188,11 @@
       }
     },
     "usageH2": "Usage",
-    "usageAccept": "Accept"
+    "usageAccept": "Accept",
+    "placeholders": {
+      "default": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+      "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
+    }
   },
   "globalParams": {
     "encodingSelectLabel": "轉寫系統",

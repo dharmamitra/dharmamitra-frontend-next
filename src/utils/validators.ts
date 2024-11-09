@@ -1,10 +1,15 @@
-import * as locaParams from "@/utils/api/search/local"
 import * as searchParams from "@/utils/api/search/params"
 import { Schema as SearchSchema } from "@/utils/api/search/types"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-const { searchTypes, defaultSearchType } = searchParams
-const { searchTargets, defaultSearchTarget } = locaParams
+const {
+  searchTypes,
+  defaultSearchType,
+  searchFilterLanguages,
+  defaultSourceLanguage,
+  searchTargets,
+  defaultSearchTarget,
+} = searchParams
 
 export const getValidDefaultValue = <T>(value: T) => {
   if (value === undefined) {
@@ -44,18 +49,28 @@ export const getValidRelevance = (relevance: string) => {
 }
 
 export type ExceptionMessageKey = keyof Messages["generic"]["exception"]
-const errorMessages = exhaustiveStringTuple<ExceptionMessageKey>()(
+const exceptionMessages = exhaustiveStringTuple<ExceptionMessageKey>()(
   "default",
   "timeout",
   "inputLengthError",
   "inputLengthWarning",
+  "experimentalLanguageWarning",
 )
 
 export const getValidI18nExceptionKey = (key: string | undefined) => {
   if (!key) return undefined
 
   const sanitizedKey = key.replace(/[\W]/g, "")
-  if (errorMessages.some((key) => key === sanitizedKey)) {
+  if (exceptionMessages.some((key) => key === sanitizedKey)) {
     return sanitizedKey as ExceptionMessageKey
   }
+}
+
+export const isValidSourceLanguage = (
+  language: unknown,
+): language is SearchSchema["FilterLanguage"] =>
+  Object.values(searchFilterLanguages).some((item) => item === language)
+
+export const getValidSourceLanguage = (language: unknown) => {
+  return isValidSourceLanguage(language) ? language : defaultSourceLanguage
 }

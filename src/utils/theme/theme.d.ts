@@ -25,6 +25,9 @@ declare module "@mui/material/styles" {
     palette: {
       soft?: string
       panel?: string
+      background?: {
+        selected?: string
+      }
     }
     shape: {
       inputRadius?: string

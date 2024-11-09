@@ -1,7 +1,15 @@
+import { NodeApi, TreeApi } from "react-arborist"
 import { atom } from "jotai"
 
-export const triggerTranslationQueryAtom = atom(false)
-export const abortTranslationQueryAtom = atom(false)
-export const triggerSearchQueryAtom = atom(false)
-export const abortSearchQueryAtom = atom(false)
-export const isTaggingEnabledAtom = atom(false)
+import { DbSourceTreeNode } from "@/features/paramSettings/DbSourceFilter/types"
+
+/**
+ * SOURCE DATA TREE
+ */
+
+export const activeDbSourceTreeAtom = atom<
+  TreeApi<DbSourceTreeNode> | null | undefined
+>(null)
+export const activeDbSourceTreeBreadcrumbsAtom = atom<
+  NodeApi<DbSourceTreeNode>[]
+>([])

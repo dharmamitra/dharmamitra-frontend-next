@@ -65,6 +65,16 @@ export type UniqueProperties<T extends any[]> = {
   [K in UniqueKeys<T>]: ExtractType<T[number], K>
 }
 
+export type RecursivelyReplaceNullWithUndefined<T> = T extends null
+  ? undefined
+  : T extends Date
+    ? T
+    : {
+        [K in keyof T]: T[K] extends (infer U)[]
+          ? RecursivelyReplaceNullWithUndefined<U>[]
+          : RecursivelyReplaceNullWithUndefined<T[K]>
+      }
+
 // export type PropertiesCommonToAll<T extends any[]> = {
 //   [K in CommonKeys<T>]: T[number][K]
 // }

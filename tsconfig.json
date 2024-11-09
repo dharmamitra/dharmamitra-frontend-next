@@ -29,13 +29,16 @@
         "./src/components/*"
       ],
       "@/features/*": [
-        "./src/components/features/*"
+        "./src/features/*"
       ],
       "@/utils/*": [
         "./src/utils/*"
       ],
       "@/api": [
         "./src/utils/api/index"
+      ],
+      "@/atoms": [
+        "./src/atoms.ts"
       ]
     },
     "noUncheckedIndexedAccess": true

@@ -40,8 +40,8 @@ export default function createKumarajivaConfig() {
       targetLanguages,
     },
     featureFlags: {
-      translateExtendedOptions: true,
-      search: true,
+      hasTranslateExtendedOptions: true,
+      hasSearch: true,
     },
   })
 }

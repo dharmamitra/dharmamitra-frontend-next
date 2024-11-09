@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react"
 
-import { focusBgColor as defaultFocusBgColor } from "@/components/styled"
+import { focusBgColor as defaultFocusBgColor } from "@/components/styled-client"
 
 export default function useFocusHighlight({
   targetId,

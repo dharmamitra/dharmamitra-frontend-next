@@ -1,15 +1,20 @@
 {
   "generic": {
-    "copy": "Copy",
-    "copyRef": "Copy reference",
-    "copyAll": "Copy all",
-    "copyResultsList": "Copy results list",
-    "copied": "Copied!",
+    "copy": {
+      "default": "Copy",
+      "copied": "Copied!",
+      "copyLink": "Copy link",
+      "copyRef": "Copy reference",
+      "copyAll": "Copy all",
+      "copyResultsRefs": "Copy references",
+      "copyResultsList": "Copy full results list"
+    },
     "exception": {
       "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
-      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input."
+      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input.",
+      "experimentalLanguageWarning": "Support for this language is experimental."
     },
     "other": "Other",
     "clear": "Clear",
@@ -18,12 +23,14 @@
     "target": "Target",
     "loading": "Loading",
     "englishTranslation": "English Translation",
-    "noResult": "No results found."
+    "noResult": "No results found.",
+    "openAll": "Open all",
+    "closeAll": "Close all",
+    "showLess": "Show less",
+    "showAll": "Show all {count, number}"
   },
   "navigation": {
-    "home": "Home",
-    "about": "About",
-    "team": "Team",
+    "nexusLinkLabel": "Database",
     "mobileButtonAriaLabel": "open navigation menu",
     "mobileMenuAriaLabel": "navigation menu"
   },
@@ -40,7 +47,7 @@
   },
   "localeSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, en {English} zh {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "locale": "{locale, select, en {English} zh_Hans {简体中文} zh_Hant {繁體中文} other {Unknown}}",
     "localePlaceholder": "English"
   },
   "search": {
@@ -54,6 +61,8 @@
     "parallelEnglishSwitch": "Show English",
     "precisionLabel": "Exact matches only",
     "explanation": "Explanation",
+    "expandText": "Expand result text",
+    "collapseText": "Collapse result text",
     "targetTips": {
       "primary": "Search canonical and traditional source texts",
       "secondary": "Search modern commentarial literature",
@@ -64,16 +73,15 @@
       "secondary": "Modern",
       "parallel": "Parallels"
     },
-    "parallelLanguages": {
-      "tib-chn": "Tibetan-Chinese",
-      "tib-eng": "Tibetan-English",
-      "san-eng": "Sanskrit-English",
-      "san-tib": "Sanskrit-Tibetan"
-    },
     "limits": {
       "labels": {
         "category_include": "Select included categories",
         "file_include": "Select included texts"
+      }
+    },
+    "sourceFilter": {
+      "labels": {
+        "include": "Include sources"
       }
     },
     "commonParams": {
@@ -91,10 +99,10 @@
       },
       "searchTypes": { "regular": "Regular", "semantic": "Semantic" },
       "filterLanguages": {
-        "tib": "Tibetan",
-        "skt": "Sanskrit",
-        "chn": "Buddhist Chinese",
-        "pli": "Pali",
+        "bo": "Tibetan",
+        "sa": "Sanskrit",
+        "zh": "Chinese",
+        "pa": "Pali",
         "all": "All"
       },
       "limitsPrimaryLabels": {
@@ -113,7 +121,10 @@
     "translate": "Translate",
     "heading": "Translate Dharma text",
     "inputAriaLabel": "Translation input field",
-    "placeholder": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+    "placeholders": {
+      "default": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+      "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
+    },
     "otherLabel": "Other",
     "targetLanguageSelectLabel": "Output language",
     "primaryTargetLanguagesAriaLabel": "Primary traget language options",

@@ -6,70 +6,81 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle"
 import StopCircleIcon from "@mui/icons-material/StopCircle"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
+import { useChat, UseChatOptions } from "ai/react"
 
-import { tooltipEnterStyles } from "@/components/styled"
+import { tooltipEnterStyles } from "@/components/styled-ssr-safe"
 
 interface StartStopStreamButtonProps {
+  chatPropsWithId: UseChatOptions
   input: string
-  isStreaming: boolean
-  onStart: () => void
-  onStop: () => void
 }
 
 export default function StartStopStreamButton({
+  chatPropsWithId,
   input,
-  isStreaming,
-  onStart,
-  onStop,
 }: StartStopStreamButtonProps) {
   const t = useTranslations()
 
-  return (
-    <>
-      {isStreaming ? (
-        <Tooltip title={`${t("generic.stop")} (Esc)`} placement="top">
-          <IconButton
-            aria-label={t("generic.stop")}
-            color="secondary"
-            onClick={onStop}
-          >
-            <StopCircleIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip
-          title={
-            <span>
-              {`${t("translation.translate")}`} (Ctrl +
-              <span style={tooltipEnterStyles}>↵</span>)
-            </span>
-          }
-          placement="top"
-          slotProps={{
-            popper: {
-              modifiers: [
-                {
-                  name: "offset",
-                  options: {
-                    offset: [-24, 0],
-                  },
-                },
-              ],
-            },
-          }}
+  const { stop, setInput, isLoading, handleSubmit } = useChat(chatPropsWithId)
+
+  React.useEffect(() => {
+    // Ensures handlers are able to be called
+    setInput(input)
+  }, [input, setInput])
+
+  const handleAbort = React.useCallback(() => {
+    stop()
+    setInput(input)
+  }, [stop, input, setInput])
+
+  if (isLoading) {
+    return (
+      <Tooltip title={`${t("generic.stop")} (Esc)`} placement="top">
+        <IconButton
+          aria-label={t("generic.stop")}
+          color="secondary"
+          onClick={handleAbort}
         >
+          <StopCircleIcon />
+        </IconButton>
+      </Tooltip>
+    )
+  }
+
+  return (
+    <span>
+      <Tooltip
+        title={
           <span>
-            <IconButton
-              aria-label={t("translation.translate")}
-              color="secondary"
-              onClick={onStart}
-              disabled={!input.match(/\S+/g)?.length}
-            >
-              <PlayCircleIcon />
-            </IconButton>
+            {`${t("translation.translate")}`} (Ctrl +
+            <span style={tooltipEnterStyles}>↵</span>)
           </span>
-        </Tooltip>
-      )}
-    </>
+        }
+        placement="top"
+        slotProps={{
+          popper: {
+            modifiers: [
+              {
+                name: "offset",
+                options: {
+                  offset: [-24, 0],
+                },
+              },
+            ],
+          },
+        }}
+      >
+        <span>
+          <IconButton
+            aria-label={t("translation.translate")}
+            color="secondary"
+            onClick={() => handleSubmit(undefined, { allowEmptySubmit: true })}
+            disabled={!input.match(/\S+/g)?.length}
+          >
+            <PlayCircleIcon />
+          </IconButton>
+        </span>
+      </Tooltip>
+    </span>
   )
 }

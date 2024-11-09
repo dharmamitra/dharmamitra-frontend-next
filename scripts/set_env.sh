@@ -13,7 +13,7 @@ echo "NEXT_PUBLIC_APP_ENV=$ENVIRONMENT" >>.env
 
 echo NEXT_PUBLIC_DM_TRANSLATION_API_BASE_URL=https://dharmamitra.org/api >>.env
 echo NEXT_PUBLIC_DM_SEARCH_API_BASE_URL=https://dharmamitra.org/api-search >>.env
-echo NEXT_PUBLIC_BN_TEMP_API_BASE_URL=https://dharmamitra.org/api-db/ >>.env
+echo NEXT_PUBLIC_BN_V2_API_BASE_URL=https://dharmamitra.org/api-db/ >>.env
 
 # Optional: Add other environment-specific configurations
 # echo "Other configurations can be added here"

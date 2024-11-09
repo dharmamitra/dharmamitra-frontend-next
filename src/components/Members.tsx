@@ -2,7 +2,7 @@ import * as React from "react"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Box, Typography } from "@mui/material"
-import Grid from "@mui/material/Unstable_Grid2"
+import Grid from "@mui/material/Grid2"
 
 import { Member as MemberType } from "@/app/[locale]/team/@dharmamitra/data"
 import customTheming from "@/utils/theme/config"
@@ -11,7 +11,7 @@ export function Member({ id, name, roles, image }: MemberType) {
   const t = useTranslations("staticContent")
 
   return (
-    <Grid xs={12} sm={6} md={4} lg={3}>
+    <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
       <Box
         sx={{
           position: "relative",

@@ -7,9 +7,9 @@ export const linkAttrs = {
 }
 
 export const localStorageKeys = {
-  storageId: "storage-id",
+  storageVersionId: "storage-id",
   translationUsageAccepted: "translation-usage-accepted",
-  showSearchOptions: "show-search-options",
+  showSearchControls: "show-search-options",
   showParallelTranslations: "show-parallel-translations",
   showSummary: "show-search-result-summary",
 } as const
@@ -17,10 +17,10 @@ export const localStorageKeys = {
 export const smMediaQuery = "(max-width: 500px)"
 
 export const sourceLangColors: Record<SourceLanguage, string> = {
-  chn: "#7C4786",
-  pli: "#A25009",
-  skt: "#2C284C",
-  tib: "#66160E",
+  zh: "#7C4786",
+  pa: "#A25009",
+  sa: "#2C284C",
+  bo: "#66160E",
 }
 
 export const exampleSearchQueries = [
