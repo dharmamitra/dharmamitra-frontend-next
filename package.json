@@ -81,5 +81,5 @@
     "semantic-release": "^24.1.0",
     "typescript": "^5.5.4"
   },
-  "packageManager": "yarn@4.3.0"
+  "packageManager": "yarn@4.5.1"
 }
