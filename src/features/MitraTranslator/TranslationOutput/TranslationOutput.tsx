@@ -5,6 +5,8 @@ import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import { useChat, UseChatOptions } from "ai/react"
 
+import ExceptionText from "@/components/ExceptionText"
+import LoadingDots from "@/components/LoadingDots"
 import {
   initialParsedStream,
   markers,
@@ -19,9 +21,15 @@ type TranslationOutputProps = {
   input: string
 }
 
+const wrapperBoxStyles = {
+  px: 0,
+  py: 1.5,
+  height: "100%",
+}
+
 const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
   function TranslationOutput({ chatPropsWithId, input }, ref) {
-    const { messages } = useChat(chatPropsWithId)
+    const { messages, isLoading, error } = useChat(chatPropsWithId)
 
     const [stream, setStream] =
       React.useState<ParsedStream>(initialParsedStream)
@@ -41,15 +49,33 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
       setStream(initialParsedStream)
     }, [input, setStream])
 
+    React.useEffect(() => {
+      if (!isLoading) return
+      setStream(initialParsedStream)
+    }, [isLoading, setStream])
+
+    if (isLoading && stream.parsedContent.length < 1) {
+      return (
+        <Box sx={{ ...wrapperBoxStyles, py: 2.5 }}>
+          <LoadingDots />
+        </Box>
+      )
+    }
+
+    if (error) {
+      return (
+        <Box sx={wrapperBoxStyles}>
+          <ExceptionText
+            type="error"
+            message={error.message}
+            sx={{ border: 0, p: 0, m: 0 }}
+          />
+        </Box>
+      )
+    }
+
     return (
-      <Box
-        ref={ref}
-        sx={{
-          px: 0,
-          py: 1,
-          height: "100%",
-        }}
-      >
+      <Box ref={ref} sx={wrapperBoxStyles}>
         {stream.parsedContent?.map((paragraph, index) => {
           if (paragraph.startsWith(markers.wordAnalaysis)) {
             return (
