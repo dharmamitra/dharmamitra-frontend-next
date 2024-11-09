@@ -1,11 +1,5 @@
-import type { components, paths } from "@/lib/api/search.v1.d"
-import { APIGlobalParams, GlobalParamNames } from "@/utils/api/global/types"
-import type {
-  APIRequestBody,
-  APIResponse,
-  CommonProperties,
-  UniqueProperties,
-} from "@/utils/api/helpers"
+import type { components, paths } from "@/lib/api/search"
+import type { APIRequestBody, APIResponse } from "@/utils/api/helpers"
 
 export type Schema = components["schemas"]
 export type SearchEndpoint = keyof paths
@@ -13,7 +7,7 @@ export type SearchEndpointName = SearchEndpoint extends `/${infer Key}/`
   ? Key
   : never
 
-export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all">
+export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all" | "aa">
 
 /**
  * REQUEST & RESPONSE GENERICS
@@ -34,14 +28,12 @@ export type Response<Endpoint extends keyof paths> = APIResponse<
  */
 
 // eslint-disable-next-line no-unused-vars
-type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
+// type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
 
-export type SearchTargets = Exclude<
+export type SearchTargets = Extract<
   SearchEndpointName,
-  | ExcludeStreams<SearchEndpointName>
-  | "summary"
-  | "explanation"
-  | "explanation-parallel"
+  "primary" | "parallel"
+  // | "secondary" // TODO: awaiting BE implementation
 >
 
 export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
@@ -50,83 +42,28 @@ export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
  *  REQUEST PROPS
  */
 
-export type CommonSearchRequestProps = CommonProperties<
-  [
-    RequestBody<"/parallel/">,
-    RequestBody<"/primary/">,
-    RequestBody<"/secondary/">,
-  ]
->
+export type AllSearchApiParams = RequestBody<"/primary/"> &
+  RequestBody<"/parallel/">
+// RequestBody<"/secondary/">
 
-export type ConstrainedCommonSearchRequestProps = UniqueProperties<
-  [APIGlobalParams, CommonSearchRequestProps]
->
-
-export type UniqueParallelParams = UniqueProperties<
-  [CommonSearchRequestProps, RequestBody<"/parallel/">]
->
-
-export type UniquePrimaryParams = UniqueProperties<
-  [CommonSearchRequestProps, RequestBody<"/primary/">]
->
-
-export type UniqueSecondaryParams = UniqueProperties<
-  [CommonSearchRequestProps, RequestBody<"/secondary/">]
->
-
-export type AllSearchParams = CommonSearchRequestProps &
-  UniqueParallelParams &
-  UniquePrimaryParams &
-  UniqueSecondaryParams
-
-export type CommonSearchParamNames = {
-  [K in keyof ConstrainedCommonSearchRequestProps]: K
+type AssertAllKeys<T> = {
+  [K in keyof T]-?: K
 }
 
-type UniqueParallelParamNames = {
-  [K in keyof UniqueParallelParams]: K
-}
-
-type UniquePrimaryParamNames = {
-  [K in keyof UniquePrimaryParams]: K
-}
-
-type UniqueSecondaryParamNames = {
-  [K in keyof UniqueSecondaryParams]: K
-}
+type AllSearchApiParamsParamNames = AssertAllKeys<AllSearchApiParams>
 
 export type SearchParamNames = {
-  global: GlobalParamNames
-  common: CommonSearchParamNames
-  parallel: UniqueParallelParamNames
-  primary: UniquePrimaryParamNames
-  secondary: UniqueSecondaryParamNames
+  local: {
+    search_target: "search_target"
+  }
+  api: AllSearchApiParamsParamNames
 }
 
 export type LocalParams = {
   search_target: SearchTarget
 }
 
-export type SearchTargetParamDefaults = {
-  parallel: Omit<
-    Record<keyof RequestBody<"/parallel/">, string | undefined>,
-    "search_input"
-  > &
-    LocalParams
-  primary: Omit<
-    Record<keyof RequestBody<"/primary/">, string | undefined>,
-    "search_input"
-  > &
-    LocalParams
-  secondary: Omit<
-    Record<keyof RequestBody<"/secondary/">, string | undefined>,
-    "search_input"
-  > &
-    LocalParams
-}
+export type AllSearchParams = AllSearchApiParams & LocalParams
 
-export type AllSearchParamDefaults = Omit<
-  Record<keyof AllSearchParams, string | undefined>,
-  "search_input"
-> &
+export type AllSearchParamDefaults = Omit<AllSearchParams, "search_input"> &
   LocalParams

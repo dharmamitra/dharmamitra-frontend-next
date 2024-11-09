@@ -213,7 +213,7 @@ Custom env sub pages are handled with Next Js's [Parallel Routes](https://nextjs
 
 - Slot directories need to be created for each env content page (eg `@dharmamitra`) which will render the actual content for the given env.
 
-In addidition to enable static rendering it's necessary to follow the [next-intl static rendering guide](https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-routing#static-rendering)
+In addidition, to enable static rendering it's necessary to follow the [next-intl static rendering guide](https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-routing#static-rendering)
 
 #### Theming
 
@@ -250,6 +250,8 @@ example usage
 
 ## 📡 DharmaMitra API client & typing (UPDATE IN PROGRESS)
 
+The project uses [`openapi-typescript`](https://openapi-ts.pages.dev/introduction) and [`openapi-fetch`](https://openapi-ts.pages.dev/openapi-fetch/) to interface with the API. In addition, as we need to do client-side fetching, we also use `@tanstack/react-query`.
+
 ### APIs
 
 - **Translation**:
@@ -261,14 +263,14 @@ example usage
 
 ### API models
 
-The project uses [`openapi-typescript`](https://openapi-ts.pages.dev/introduction) and [`openapi-fetch`](https://openapi-ts.pages.dev/openapi-fetch/) to interface with the API. In addition, as we need to do client-side fetching, we also use `@tanstack/react-query`.
-
-DM API request and response model types are generated from the project's OpenAPI JSON schemas
+`openapi-typescript` is configured in`redocly.yaml`. DM API request and response model types are fetched from the project's OpenAPI JSON schemas defined there and can be generated with:
 
 ```sh
-yarn api:codegen # generates all models
-yarn api:codegen:translation
-yarn api:codegen:search
+# package script
+yarn api:ts
+
+# Long form
+yarn openapi-typescript
 ```
 
 ### Regular fetchs
@@ -289,7 +291,8 @@ The list of unique characters from unicode emojis (https://emojipedia.org/) used
 - model and content updates are kept in sync across locales by running `yarn i18n:modelsync`
 - message syncing has been added as an automated pre-commit step in `.husky/pre-commit`.
 - The [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) locale codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for the project's locale codes to define the project's supported locales.
-- Supported locales are defined in the `supportedLocales` varriable in `src/config.ts` and locale files named with the locale code are added to the `messages/` directory (eg. `messages/zh-Hant.json`).
+- Supported locales are defined in the `supportedLocales` varriable in `src/i18n.ts` and
+- Locale files named with the locale code are added to the `messages/` directory (eg. `messages/zh-Hant.json`).
 - `messages/` files use the convention of:
   - pascal case keys for page content and
   - camel case keys for component content.

@@ -3,10 +3,10 @@ import { unstable_setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 import visuallyHidden from "@mui/utils/visuallyHidden"
 
-import ToolSelectorTabs from "@/components/features/ToolSelectorTabs/ToolSelectorTabs"
 import PageShell from "@/components/layout/PageShell"
 import StorageCheck from "@/components/StorageCheck"
-import TranslationFeature from "@/features/translation"
+import DualFeatureMitra from "@/features/DualFeatureMitra"
+import MitraTranslator from "@/features/MitraTranslator"
 import useAppConfig from "@/hooks/useAppConfig"
 import {
   I18nMetadataHandlerProps,
@@ -23,31 +23,21 @@ export default function HomePage({
   params: { locale },
 }: I18nMetadataHandlerProps) {
   unstable_setRequestLocale(locale)
-  const { search } = useAppConfig().featureFlags
+  const { hasSearch } = useAppConfig().featureFlags
   const t = useTranslations("Home")
 
-  const messages = useMessages() as Messages
-  const translationMessages = pickMessages({
-    messages,
+  const allMessages = useMessages() as Messages
+  const messages = pickMessages({
+    messages: allMessages,
     messageKeys: ["translation", "search", "globalParams", "generic"],
   })
 
-  if (search === true) {
-    return (
-      <NextIntlClientProvider messages={translationMessages}>
-        <StorageCheck />
-        <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
-          <Typography component="h1" sx={visuallyHidden}>
-            Dharmamitra
-          </Typography>
-          <ToolSelectorTabs />
-        </PageShell>
-      </NextIntlClientProvider>
-    )
+  if (hasSearch === true) {
+    return <DualFeatureMitraPage messages={messages} />
   }
 
   return (
-    <NextIntlClientProvider messages={translationMessages}>
+    <NextIntlClientProvider messages={messages}>
       <StorageCheck />
       <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
         <Typography
@@ -61,7 +51,21 @@ export default function HomePage({
           {t("h1")}
         </Typography>
 
-        <TranslationFeature />
+        <MitraTranslator />
+      </PageShell>
+    </NextIntlClientProvider>
+  )
+}
+
+function DualFeatureMitraPage({ messages }: { messages: Partial<Messages> }) {
+  return (
+    <NextIntlClientProvider messages={messages}>
+      <StorageCheck />
+      <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
+        <Typography component="h1" sx={visuallyHidden}>
+          Dharmamitra
+        </Typography>
+        <DualFeatureMitra />
       </PageShell>
     </NextIntlClientProvider>
   )

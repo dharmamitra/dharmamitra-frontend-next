@@ -1,4 +1,4 @@
-import type { components, paths } from "@/lib/api/translation.v1.d"
+import type { components, paths } from "@/lib/api/translation"
 import { APIGlobalParams, GlobalParamNames } from "@/utils/api/global/types"
 import type {
   APIRequestBody,

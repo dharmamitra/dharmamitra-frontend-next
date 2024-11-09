@@ -5,8 +5,8 @@ export default function createLocalConfig() {
     env: "local",
     basePath: "",
     featureFlags: {
-      search: true,
-      translateExtendedOptions: true,
+      hasSearch: true,
+      hasTranslateExtendedOptions: true,
     },
   })
 }

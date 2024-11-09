@@ -33,8 +33,15 @@ export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
 )
 export const defaultTargetLanguage: TargetLanguage = "english"
 
+export const defaultTranslationModel: Extract<
+  Schema["TranslationModel"],
+  "default"
+> = "default"
+
 export const translationParamsNames: TranslationParamNames = {
+  // common across all apis (translation & search)
   global: globalParamsNames,
+  // common across translation api endpoints
   common: {
     input_sentence: "input_sentence",
   },
@@ -52,11 +59,6 @@ export const translationParamsNames: TranslationParamNames = {
     human_readable_tags: "human_readable_tags",
   },
 }
-
-export const defaultTranslationModel: Extract<
-  Schema["TranslationModel"],
-  "default"
-> = "default"
 
 export const allTranslationDefaultParams = {
   input_encoding: defaultInputEncoding,

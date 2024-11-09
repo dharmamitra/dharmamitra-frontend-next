@@ -79,11 +79,11 @@ def update_language_files():
             update_translations(lang_data, value_changes)
 
             with open(file_path, "w", encoding="utf-8") as lang_file:
-                json.dump(lang_data, lang_file, ensure_ascii=False, indent=4)
+                json.dump(lang_data, lang_file, ensure_ascii=False, indent=2)
             print(f"Updated {filename}")
 
     with open(msg_model_backup_path, "w", encoding="utf-8") as backup_file:
-        json.dump(model_data, backup_file, ensure_ascii=False, indent=4)
+        json.dump(model_data, backup_file, ensure_ascii=False, indent=2)
 
 
 if __name__ == "__main__":

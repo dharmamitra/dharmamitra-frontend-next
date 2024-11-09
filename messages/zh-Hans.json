@@ -1,0 +1,325 @@
+{
+  "generic": {
+    "copy": {
+      "default": "Copy",
+      "copied": "Copied!",
+      "copyLink": "Copy link",
+      "copyRef": "Copy reference",
+      "copyAll": "Copy all",
+      "copyResultsRefs": "Copy references",
+      "copyResultsList": "Copy full results list"
+    },
+    "other": "其他",
+    "clear": "Clear",
+    "stop": "Stop",
+    "source": "Source",
+    "target": "Target",
+    "englishTranslation": "English Translation",
+    "loading": "Loading",
+    "noResult": "No results found.",
+    "exception": {
+      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
+      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
+      "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
+      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input.",
+      "experimentalLanguageWarning": "Support for this language is experimental."
+    },
+    "openAll": "Open all",
+    "closeAll": "Close all",
+    "showLess": "Show less",
+    "showAll": "Show all {count, number}"
+  },
+  "navigation": {
+    "mobileButtonAriaLabel": "开放导航菜单",
+    "mobileMenuAriaLabel": "导航菜单",
+    "nexusLinkLabel": "Database"
+  },
+  "footer": {
+    "mission": {
+      "h2": "Dharmamitra",
+      "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
+    },
+    "contact": {
+      "h2": "We value your feedback",
+      "p": "Please take a moment to share your thoughts with us. We appreciate you taking the time to help make Dhammamitra better for everyone",
+      "button": "Email Us"
+    }
+  },
+  "localeSwitcher": {
+    "label": "切换语言",
+    "locale": "{locale, select, en {English} zh_Hans {简体中文} zh_Hant {繁体中文} other {Unknown}}",
+    "localePlaceholder": "简体中文"
+  },
+  "search": {
+    "search": "搜索",
+    "heading": "搜索2500年的佛教",
+    "placeholder": "搜索一些东西",
+    "results": "Search results",
+    "optionsSwitchLabel": "Show options",
+    "resetOptionsLabel": "Use default search options",
+    "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
+    "parallelEnglishSwitch": "Show English",
+    "targetTips": {
+      "primary": "Search canonical and traditional source texts",
+      "secondary": "Search modern commentarial literature",
+      "parallel": "Search cross-tradition text parallel compiled dataset"
+    },
+    "targets": {
+      "primary": "Traditional",
+      "secondary": "Modern",
+      "parallel": "Parallels"
+    },
+    "limits": {
+      "labels": {
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
+      }
+    },
+    "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "Select source categories",
+        "sourceTextLimit": "Select source texts"
+      },
+      "inputEncodings": {
+        "auto": "Autodetect",
+        "tibetan": "Tibetan",
+        "wylie": "Wylie",
+        "dev": "Devanagari",
+        "iast": "IAST Roman",
+        "hk": "Harvard-Kyoto"
+      },
+      "searchTypes": {
+        "regular": "Regular",
+        "semantic": "Semantic"
+      },
+      "filterLanguages": {
+        "bo": "Tibetan",
+        "sa": "Sanskrit",
+        "zh": "Chinese",
+        "pa": "Pali",
+        "all": "All"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "Select included categories",
+        "file_include": "Select included texts"
+      }
+    },
+    "explanation": "Explanation",
+    "relevance": "Relevance",
+    "relevanceTypes": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "precisionLabel": "Exact matches only",
+    "expandText": "Expand result text",
+    "collapseText": "Collapse result text",
+    "sourceFilter": {
+      "labels": {
+        "include": "Include sources"
+      }
+    }
+  },
+  "translation": {
+    "translate": "翻译",
+    "heading": "",
+    "inputAriaLabel": "翻译栏位",
+    "otherLabel": "其他",
+    "targetLanguageSelectLabel": "翻译目标语",
+    "primaryTargetLanguagesAriaLabel": "Primary traget language options",
+    "secondaryTargetLanguagesAriaLabel": "Other traget language options",
+    "modelLabel": "Model",
+    "grammarLabel": "Grammar Analysis",
+    "copyTranslation": "复制翻译",
+    "tagging": {
+      "label": "Grammar",
+      "ariaLabel": "Grammar Analysis",
+      "heading": "Grammatical Analysis",
+      "lemma": "Lemma",
+      "tag": "Tag",
+      "meanings": "Meanings",
+      "unsuccessful": "Grammar analysis was not successful.",
+      "credit": "This grammatical parsing engine was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
+    },
+    "targetLanguages": {
+      "buddhist-chinese": "佛典中文",
+      "english": "英文",
+      "japanese": "日文",
+      "korean": "韩文",
+      "modern-chinese": "现代中文",
+      "pali": "Pali",
+      "sa-en": "梵文",
+      "sanskrit-dev": "梵文",
+      "sanskrit-knn": "Sanskrit (KNN)",
+      "sanskrit": "梵文",
+      "tibetan": "藏文",
+      "hindi": "Hindi",
+      "german": "German",
+      "russian": "Russian",
+      "french": "French",
+      "italian": "Italian",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese",
+      "dutch": "Dutch",
+      "english-explained": "English (explained)"
+    },
+    "models": {
+      "NO": "No model",
+      "none": "No model",
+      "madlad": "Madlad",
+      "llama3": "Llama3",
+      "": "",
+      "madlad2": "Madlad2",
+      "llama3-fgs": "Llama3-fgs",
+      "gemma2": "GEMMA2"
+    },
+    "grammar": {
+      "on": "On",
+      "off": "Off"
+    },
+    "usageNoticeShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
+    "usageNoticeLong": {
+      "p1": "Dharmamitra leverages cutting-edge deep neural networks to efficiently provide machine translations. We are working hard to provide the best possible quality. While our technology continues to advance and our services are frequently updated, please keep in mind:",
+      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services.",
+      "ul": {
+        "1": "Dharmamitra is a tool to help understand classical Asian texts preserved in different languages",
+        "2": "When in doubt, we recommend consulting with language experts, or referring to established human translations.",
+        "3": "We encourage users to review and verify Dharmamitra's output before sharing it."
+      }
+    },
+    "usageH2": "Usage",
+    "usageAccept": "Accept",
+    "placeholders": {
+      "default": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+      "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
+    }
+  },
+  "globalParams": {
+    "encodingSelectLabel": "转写系统",
+    "primaryEncodingsAriaLabel": "Primary encoding options",
+    "secondaryEncodingsAriaLabel": "Other encoding options",
+    "encodings": {
+      "auto": "Autodetect",
+      "dev": "Devanagari",
+      "hk": "Harvard-Kyoto",
+      "iast": "IAST Roman",
+      "itrans": "ITRANS",
+      "tibetan": "Tibetan Unicode",
+      "velthuis": "Velthuis",
+      "wylie": "Wylie"
+    }
+  },
+  "metadata": {
+    "title": "Dharmamitra · a toolkit for the languages of the Dharma",
+    "description": "A toolkit for the languages of the Dharma"
+  },
+  "pages": {
+    "home": "首页",
+    "about": "计划介绍",
+    "team": "Team",
+    "guide": "Guide"
+  },
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "websiteDevelopment": "Website development",
+      "productDesigner": "Product Designer",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
+    }
+  },
+  "Home": {
+    "title": "欢迎来到法之善友AI计划",
+    "h1": "法之善友AI翻译器"
+  },
+  "About": {
+    "dharmamitra": {
+      "title": "About",
+      "h1": "About",
+      "about": {
+        "h2": "About us",
+        "p1": "MITRA’s Mission is to harness the rapidly evolving AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications.",
+        "features": {
+          "auto-translation": {
+            "title": "Automated Translation",
+            "description": "Sanskrit, classical Tibetan, and classical Chinese to modern languages including Chinese, Tibetan, Korean, and Japanese"
+          },
+          "semantic-search": {
+            "title": "Semantic Search",
+            "description": "Refining semantic search across a growing body of Sanskrit, Classical Tibetan, and Classical Chinese texts"
+          },
+          "toolkit": {
+            "title": "Philologist's Toolkit",
+            "description": "Develop tools to facilitate the study of Sanskrit and Classical Tibetan"
+          }
+        },
+        "p2": "In the future we hope to provide Generative AI tools that enable elevating and transformative experiences through:",
+        "roadmap": {
+          "mandala": "Immersive 3D experiences in maṇḍala",
+          "art": "Generation of 2D art based on canonical guildelines"
+        }
+      },
+      "project": {
+        "h2": "The MITRA project",
+        "p1": "MITRA is a research project in the Berkeley AI Research lab in EECS at the University of California, Berkeley. It is spearheaded by Kurt Keutzer and Sebastian Nehrdich, focuses on bridging the linguistic divide between ancient wisdom source languages and contemporary languages through the application of advanced Deep Learning and AI technologies.",
+        "p2": "Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, accelerated  by its collaborative efforts with organizations such as monlam.ai and with contributions from a diverse array of sources, including translators and AI researchers. Leveraging a robust corpus of over four million sentence pairs from various sourcesand utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to ancient wisdom texts.",
+        "p3": "Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
+      },
+      "collaboration": {
+        "h2": "Collaborations",
+        "collaborators": {
+          "monlam": {
+            "name": "<link>monlam.ai</link>",
+            "description": "Machine translation data collection for Tibetan and English"
+          },
+          "kumarajiva": {
+            "name": "<link>Kumarajiva project</link>",
+            "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
+          },
+          "iitk": {
+            "name": "<link>IIT Kharagpur</link>",
+            "description": "Development of Sanskrit translation model development. Sanskrit<>English dataset compilation "
+          },
+          "ai4bharat": {
+            "name": "<link>AI4Bharat</link>",
+            "description": "Development of Sanskrit data collection"
+          }
+        }
+      }
+    }
+  },
+  "Guide": {
+    "kumarajiva": {
+      "title": "Guide",
+      "h1": "Guide",
+      "intro": {
+        "h2": "Introduction",
+        "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+      },
+      "features": {
+        "h2": "Features",
+        "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source matiral and modern research literature."
+      }
+    }
+  },
+  "Team": {
+    "dharmamitra": {
+      "title": "团队介绍",
+      "h1": "团队介绍",
+      "present": {
+        "h2": "现在成员"
+      },
+      "past": {
+        "h2": "前期成员"
+      }
+    }
+  },
+  "NotFound": {
+    "title": "404 · Page Not Found",
+    "h1": "Oh no! Page Not Found",
+    "message": "No beginning point is found of beings wandering and roaming. <cite>(Assusutta)</cite>",
+    "home": "Go Home"
+  }
+}

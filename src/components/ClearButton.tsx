@@ -5,12 +5,12 @@ import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
 
 export default function ClearButton({
-  value,
-  handleValueChange,
+  input,
+  setInput,
 }: {
-  value: string
+  input: string
   // eslint-disable-next-line no-unused-vars
-  handleValueChange: (value: string) => void
+  setInput: (input: string) => void
 }) {
   const t = useTranslations("generic")
   return (
@@ -19,9 +19,9 @@ export default function ClearButton({
         <IconButton
           aria-label={t("clear")}
           color="secondary"
-          disabled={!value}
+          disabled={!input}
           onClick={() => {
-            handleValueChange("")
+            setInput("")
           }}
         >
           <HighlightOffIcon />

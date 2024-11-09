@@ -19,7 +19,7 @@ export const defaultSubPages: Page[] = ["about", "team"]
 
 export const appConfigSchema = z.object({
   env: z.enum(SUPPORTED_ENVS),
-  storageId: z.string().default("1"),
+  storageVersionId: z.string().default("2"),
   isClient: z.boolean().default(false),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
@@ -73,8 +73,8 @@ export const appConfigSchema = z.object({
     .default({}),
   featureFlags: z
     .object({
-      search: z.boolean().default(false),
-      translateExtendedOptions: z.boolean().default(false),
+      hasSearch: z.boolean().default(false),
+      hasTranslateExtendedOptions: z.boolean().default(false),
     })
     .default({}),
 })
@@ -94,7 +94,6 @@ type DeepPartial<T> = {
 
 type RequiredConfigKeys = {
   env: AppEnv
-  // basePath has src/hooks/useParams.tsx as dependent
   basePath: string
 }
 

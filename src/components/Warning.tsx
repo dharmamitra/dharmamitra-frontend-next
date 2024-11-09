@@ -5,7 +5,7 @@ import { alpha } from "@mui/material"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 
-import { warningBgFactory } from "@/components/styled"
+import { warningBgFactory } from "@/components/styled-ssr-safe"
 import { ExceptionMessageKey } from "@/utils/validators"
 
 type WarningProps = {
