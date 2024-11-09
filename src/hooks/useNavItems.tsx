@@ -10,11 +10,15 @@ export const useNavItems = () => {
 
   return React.useMemo<{ id: string; label: string; href: string }[]>(
     () => [
-      {
-        id: crypto.randomUUID(),
-        label: t(`navigation.nexusLinkLabel`),
-        href: NEXUS_URL,
-      },
+      ...(appConfig.env !== "pub"
+        ? [
+            {
+              id: crypto.randomUUID(),
+              label: t(`navigation.nexusLinkLabel`),
+              href: NEXUS_URL,
+            },
+          ]
+        : []),
       ...appConfig.subPages.map((page) => ({
         id: crypto.randomUUID(),
         label: t(`pages.${page}`),
