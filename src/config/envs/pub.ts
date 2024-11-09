@@ -4,6 +4,7 @@ import defineConfig from "../defineConfig"
 
 export const targetLanguages: TargetLanguage[] = [
   "english",
+  "english-explained",
   "tibetan",
   "sanskrit",
   "sanskrit-dev",
