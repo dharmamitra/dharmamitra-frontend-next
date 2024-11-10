@@ -1,7 +1,6 @@
 import React from "react"
 import { Box, SxProps } from "@mui/material"
 
-import { useResponsiveSizes } from "@/hooks/responsiveLayout"
 import customTheming from "@/utils/theme/config"
 
 type TranslatorLayoutProps = {
@@ -45,14 +44,16 @@ type LayoutFrameProps = {
 }
 
 export function LayoutFrame({ children }: LayoutFrameProps) {
-  const { isSingleColLayout } = useResponsiveSizes()
-
   return (
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: isSingleColLayout ? "1fr" : "1fr 1fr",
-        gridTemplateRows: isSingleColLayout ? "auto auto 1fr  1fr" : "auto 1fr",
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto auto 1fr 1fr",
+        "@media (min-width: 760px)": {
+          gridTemplateColumns: "1fr 1fr",
+          gridTemplateRows: "auto 1fr",
+        },
         width: "100%",
         height: "100%",
         minHeight: "58dvh",
@@ -76,8 +77,6 @@ type PanelBoxProps = {
 }
 
 function PanelBox({ type, children, placement, sx }: PanelBoxProps) {
-  const { isSingleColLayout } = useResponsiveSizes()
-
   return (
     <Box
       sx={{
@@ -89,32 +88,36 @@ function PanelBox({ type, children, placement, sx }: PanelBoxProps) {
           ...(placement === "start"
             ? {
                 borderTopLeftRadius: customTheming.shape.inputRadius,
-                borderTopRightRadius: isSingleColLayout
-                  ? customTheming.shape.inputRadius
-                  : undefined,
+                borderTopRightRadius: customTheming.shape.inputRadius,
+                "@media (min-width: 760px)": {
+                  borderTopRightRadius: 0,
+                },
                 borderRight: "1px solid",
               }
             : {
-                borderTopRightRadius: isSingleColLayout
-                  ? undefined
-                  : customTheming.shape.inputRadius,
+                borderTopRightRadius: 0,
+                "@media (min-width: 760px)": {
+                  borderTopRightRadius: customTheming.shape.inputRadius,
+                },
               }),
         }),
         ...(type === "text" && {
           ...(placement === "start"
             ? {
-                borderRight: isSingleColLayout ? undefined : "1px solid",
+                borderRight: "none",
+                "@media (min-width: 760px)": {
+                  borderRight: "1px solid rgba(0, 0, 0, 0.12)",
+                },
               }
             : {
                 backgroundColor: "grey.50",
-                borderBottomLeftRadius: {
-                  xs: customTheming.shape.inputRadius,
-                  md: 0,
+                borderBottomLeftRadius: customTheming.shape.inputRadius,
+                "@media (min-width: 760px)": {
+                  borderBottomLeftRadius: 0,
                 },
                 borderBottomRightRadius: customTheming.shape.inputRadius,
               }),
         }),
-
         borderColor: "divider",
         ...sx,
       }}
