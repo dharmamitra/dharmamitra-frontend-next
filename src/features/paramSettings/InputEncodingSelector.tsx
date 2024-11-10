@@ -2,7 +2,7 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import { Box, MenuItem, RadioGroup, Select } from "@mui/material"
+import { Box, MenuItem, RadioGroup, Select, Tooltip } from "@mui/material"
 
 import styles from "@/components/customFocusVisible.module.css"
 import {
@@ -12,8 +12,8 @@ import {
   selectedOptionsStyles,
 } from "@/components/styled-ssr-safe"
 import { useInputEncodingParamWithLocalStorage } from "@/hooks/params"
+import { useResponsiveOptions } from "@/hooks/responsiveLayout"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
-import { useResponsiveOptions } from "@/hooks/useResponsiveOptions"
 import { getOptionI18nKeyPath } from "@/utils"
 import { defaultInputEncoding, inputEncodings } from "@/utils/api/global/params"
 import { InputEncoding } from "@/utils/api/global/types"
@@ -58,71 +58,91 @@ function InputEncodingSelector() {
   )
 
   return (
-    <Box
-      sx={{
-        display: "inline-flex",
-        px: 1,
+    <Tooltip
+      title={t("globalParams.encodingSelectLabel")}
+      placement="top-start"
+      enterDelay={1000}
+      slotProps={{
+        popper: {
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [0, -24],
+              },
+            },
+          ],
+        },
       }}
     >
-      <RadioGroup
-        id={primaryOptionsSelectorId}
-        aria-label={t("globalParams.primaryEncodingsAriaLabel")}
-        value={inputEncoding ?? defaultInputEncoding}
-        onChange={(e) => setInputEncoding(e.target.value)}
-        row
-        sx={{ ...flatRadioGroupStyles }}
-        className={styles.customFocusVisible}
+      <Box
+        sx={{
+          display: "inline-flex",
+          px: 1,
+        }}
       >
-        {primaryEncodingOptions.map((encoding) => (
-          <RadioOption
-            key={encoding + "-primary-encoding-option"}
-            id={encoding + "-primary-encoding-option"}
-            option={encoding}
-            label={t(getOptionI18nKeyPath(encoding))}
-            isSelected={inputEncoding === encoding}
-          />
-        ))}
-      </RadioGroup>
-      <div
-        id={secondaryOptionsSelectorId + "-wrapper"}
-        className={styles.customFocusVisible}
-        style={{ position: "relative" }}
-      >
-        <Select
-          id={secondaryOptionsSelectorId}
-          data-testid="other-input-encoding-options"
-          value={isPrimaryValueSelected || !inputEncoding ? "" : inputEncoding}
+        <RadioGroup
+          id={primaryOptionsSelectorId}
+          aria-label={t("globalParams.primaryEncodingsAriaLabel")}
+          value={inputEncoding ?? defaultInputEncoding}
           onChange={(e) => setInputEncoding(e.target.value)}
-          inputProps={{
-            "aria-label": t("globalParams.secondaryEncodingsAriaLabel"),
-            sx: secondaryOptionsInputStyles,
-          }}
-          IconComponent={() => <SecondaryOptionsButtonIcon />}
-          sx={{
-            ...secondaryOptionsInputStyles,
-            ...(!isPrimaryValueSelected
-              ? { ...selectedOptionsStyles, color: "secondary.main" }
-              : {}),
-            "& .MuiOutlinedInput-notchedOutline": {
-              border: "none",
-            },
-          }}
-          displayEmpty
+          row
+          sx={{ ...flatRadioGroupStyles }}
+          className={styles.customFocusVisible}
         >
-          <MenuItem disabled value="">
-            {t("generic.other")}
-          </MenuItem>
-          {otherEncodingOptions.map((encoding) => (
-            <MenuItem
-              key={encoding + "-other-encoding-option"}
-              data-testid={`${encoding}-input-encoding-option`}
-              value={encoding}
-            >
-              {t(`globalParams.encodings.${encoding}`)}
-            </MenuItem>
+          {primaryEncodingOptions.map((encoding) => (
+            <RadioOption
+              key={encoding + "-primary-encoding-option"}
+              id={encoding + "-primary-encoding-option"}
+              option={encoding}
+              label={t(getOptionI18nKeyPath(encoding))}
+              isSelected={inputEncoding === encoding}
+            />
           ))}
-        </Select>
-      </div>
-    </Box>
+        </RadioGroup>
+        <div
+          id={secondaryOptionsSelectorId + "-wrapper"}
+          className={styles.customFocusVisible}
+          style={{ position: "relative" }}
+        >
+          <Select
+            id={secondaryOptionsSelectorId}
+            data-testid="other-input-encoding-options"
+            value={
+              isPrimaryValueSelected || !inputEncoding ? "" : inputEncoding
+            }
+            onChange={(e) => setInputEncoding(e.target.value)}
+            inputProps={{
+              "aria-label": t("globalParams.secondaryEncodingsAriaLabel"),
+              sx: secondaryOptionsInputStyles,
+            }}
+            IconComponent={() => <SecondaryOptionsButtonIcon />}
+            sx={{
+              ...secondaryOptionsInputStyles,
+              ...(!isPrimaryValueSelected
+                ? { ...selectedOptionsStyles, color: "secondary.main" }
+                : {}),
+              "& .MuiOutlinedInput-notchedOutline": {
+                border: "none",
+              },
+            }}
+            displayEmpty
+          >
+            <MenuItem disabled value="">
+              {t("generic.other")}
+            </MenuItem>
+            {otherEncodingOptions.map((encoding) => (
+              <MenuItem
+                key={encoding + "-other-encoding-option"}
+                data-testid={`${encoding}-input-encoding-option`}
+                value={encoding}
+              >
+                {t(`globalParams.encodings.${encoding}`)}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
+      </Box>
+    </Tooltip>
   )
 }

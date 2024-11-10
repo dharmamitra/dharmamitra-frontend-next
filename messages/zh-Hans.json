@@ -195,7 +195,7 @@
     }
   },
   "globalParams": {
-    "encodingSelectLabel": "转写系统",
+    "encodingSelectLabel": "Input encoding",
     "primaryEncodingsAriaLabel": "Primary encoding options",
     "secondaryEncodingsAriaLabel": "Other encoding options",
     "encodings": {
