@@ -48,8 +48,12 @@ export function LayoutFrame({ children }: LayoutFrameProps) {
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gridTemplateRows: "auto 1fr",
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto auto 1fr 1fr",
+        "@media (min-width: 760px)": {
+          gridTemplateColumns: "1fr 1fr",
+          gridTemplateRows: "auto 1fr",
+        },
         width: "100%",
         height: "100%",
         minHeight: "58dvh",
@@ -78,31 +82,40 @@ function PanelBox({ type, children, placement, sx }: PanelBoxProps) {
       sx={{
         display: "grid",
         px: 1.5,
-        ...(type === "text" && {
-          ...(placement === "start"
-            ? {
-                // borderTopLeftRadius: customTheming.shape.inputRadius,
-                borderRight: "1px solid",
-              }
-            : {
-                backgroundColor: "grey.50",
-                borderBottomLeftRadius: {
-                  xs: customTheming.shape.inputRadius,
-                  md: 0,
-                },
-                borderBottomRightRadius: customTheming.shape.inputRadius,
-              }),
-        }),
         ...(type === "controles" && {
           bgcolor: "grey.200",
           borderBottom: "1px solid",
           ...(placement === "start"
             ? {
                 borderTopLeftRadius: customTheming.shape.inputRadius,
+                borderTopRightRadius: customTheming.shape.inputRadius,
+                "@media (min-width: 760px)": {
+                  borderTopRightRadius: 0,
+                },
                 borderRight: "1px solid",
               }
             : {
-                borderTopRightRadius: customTheming.shape.inputRadius,
+                borderTopRightRadius: 0,
+                "@media (min-width: 760px)": {
+                  borderTopRightRadius: customTheming.shape.inputRadius,
+                },
+              }),
+        }),
+        ...(type === "text" && {
+          ...(placement === "start"
+            ? {
+                borderRight: "none",
+                "@media (min-width: 760px)": {
+                  borderRight: "1px solid rgba(0, 0, 0, 0.12)",
+                },
+              }
+            : {
+                backgroundColor: "grey.50",
+                borderBottomLeftRadius: customTheming.shape.inputRadius,
+                "@media (min-width: 760px)": {
+                  borderBottomLeftRadius: 0,
+                },
+                borderBottomRightRadius: customTheming.shape.inputRadius,
               }),
         }),
         borderColor: "divider",
