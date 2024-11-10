@@ -1,6 +1,7 @@
 import React from "react"
 import { Box, SxProps } from "@mui/material"
 
+import { useResponsiveSizes } from "@/hooks/responsiveLayout"
 import customTheming from "@/utils/theme/config"
 
 type TranslatorLayoutProps = {
@@ -44,12 +45,14 @@ type LayoutFrameProps = {
 }
 
 export function LayoutFrame({ children }: LayoutFrameProps) {
+  const { isSingleColLayout } = useResponsiveSizes()
+
   return (
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gridTemplateRows: "auto 1fr",
+        gridTemplateColumns: isSingleColLayout ? "1fr" : "1fr 1fr",
+        gridTemplateRows: isSingleColLayout ? "auto auto 1fr  1fr" : "auto 1fr",
         width: "100%",
         height: "100%",
         minHeight: "58dvh",
@@ -73,16 +76,34 @@ type PanelBoxProps = {
 }
 
 function PanelBox({ type, children, placement, sx }: PanelBoxProps) {
+  const { isSingleColLayout } = useResponsiveSizes()
+
   return (
     <Box
       sx={{
         display: "grid",
         px: 1.5,
+        ...(type === "controles" && {
+          bgcolor: "grey.200",
+          borderBottom: "1px solid",
+          ...(placement === "start"
+            ? {
+                borderTopLeftRadius: customTheming.shape.inputRadius,
+                borderTopRightRadius: isSingleColLayout
+                  ? customTheming.shape.inputRadius
+                  : undefined,
+                borderRight: "1px solid",
+              }
+            : {
+                borderTopRightRadius: isSingleColLayout
+                  ? undefined
+                  : customTheming.shape.inputRadius,
+              }),
+        }),
         ...(type === "text" && {
           ...(placement === "start"
             ? {
-                // borderTopLeftRadius: customTheming.shape.inputRadius,
-                borderRight: "1px solid",
+                borderRight: isSingleColLayout ? undefined : "1px solid",
               }
             : {
                 backgroundColor: "grey.50",
@@ -93,18 +114,7 @@ function PanelBox({ type, children, placement, sx }: PanelBoxProps) {
                 borderBottomRightRadius: customTheming.shape.inputRadius,
               }),
         }),
-        ...(type === "controles" && {
-          bgcolor: "grey.200",
-          borderBottom: "1px solid",
-          ...(placement === "start"
-            ? {
-                borderTopLeftRadius: customTheming.shape.inputRadius,
-                borderRight: "1px solid",
-              }
-            : {
-                borderTopRightRadius: customTheming.shape.inputRadius,
-              }),
-        }),
+
         borderColor: "divider",
         ...sx,
       }}

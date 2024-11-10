@@ -192,7 +192,7 @@
     }
   },
   "globalParams": {
-    "encodingSelectLabel": "Transliteration",
+    "encodingSelectLabel": "Input encoding",
     "primaryEncodingsAriaLabel": "Primary encoding options",
     "secondaryEncodingsAriaLabel": "Other encoding options",
     "encodings": {

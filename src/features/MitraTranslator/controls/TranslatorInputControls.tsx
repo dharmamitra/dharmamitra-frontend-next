@@ -28,7 +28,7 @@ export default function TranslatorInputControls(
     >
       <InputEncodingSelector />
 
-      <Box>
+      <Box sx={{ display: "flex" }}>
         <ClearButton {...props} />
         <StartStopStreamButton {...props} />
       </Box>
