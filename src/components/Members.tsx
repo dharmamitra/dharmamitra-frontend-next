@@ -22,10 +22,11 @@ export function Member({ id, name, roles, image }: MemberType) {
           borderRadius: "14px",
           p: 2,
           pt: { xs: 6, md: 10 },
+          pb: roles ? "unset" : 4,
           mt: { xs: 4, md: 10 },
           maxWidth: { xs: "380px", sm: "unset" },
           mx: { xs: "auto", sm: "unset" },
-          height: "clamp(135px, 18vw, 175px)",
+          height: roles ? "clamp(135px, 18vw, 175px)" : "unset",
         }}
       >
         <Box
@@ -53,7 +54,6 @@ export function Member({ id, name, roles, image }: MemberType) {
           sx={{
             display: "flex",
             flexDirection: "column",
-            pl: 2,
             alignItems: "center",
           }}
         >
