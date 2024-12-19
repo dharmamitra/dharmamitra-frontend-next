@@ -1,6 +1,7 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 import imgAarnavSrivastava from "@/assets/team/aarnav-srivastava.jpg"
+import imgAminahBorgLuck from "@/assets/team/aminah.jpg"
 import avatar from "@/assets/team/avatar.svg"
 import imgDavidAllport from "@/assets/team/david-allport.png"
 import imgDevikaGopakumar from "@/assets/team/devika-gopakumar.jpg"
@@ -33,12 +34,12 @@ export type Member = {
 }
 
 type TeamMembers = {
-  current: Member[]
-  past: Member[]
+  main: Member[]
+  volunteers: Member[]
 }
 
 const members: TeamMembers = {
-  current: [
+  main: [
     {
       id: crypto.randomUUID(),
       name: "Kurt Keutzer",
@@ -83,7 +84,7 @@ const members: TeamMembers = {
       roles: [
         { role: "Website development", i18nRoleKey: "websiteDevelopment" },
       ],
-      image: avatar,
+      image: imgAminahBorgLuck,
     },
     {
       id: crypto.randomUUID(),
@@ -121,6 +122,8 @@ const members: TeamMembers = {
       ],
       image: imgSujeetJaiswal,
     },
+  ],
+  volunteers: [
     {
       id: crypto.randomUUID(),
       name: "Frances Belleza",
@@ -169,8 +172,6 @@ const members: TeamMembers = {
       roles: null,
       image: imgMirandaZhu,
     },
-  ],
-  past: [
     {
       id: crypto.randomUUID(),
       name: "Om Chandran",
@@ -206,6 +207,12 @@ const members: TeamMembers = {
       name: "Raj Mehta",
       roles: null,
       image: imgRajMehta,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Daksh Parikh",
+      roles: null,
+      image: avatar,
     },
   ],
 }

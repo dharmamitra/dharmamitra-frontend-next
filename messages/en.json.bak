@@ -308,11 +308,11 @@
     "dharmamitra": {
       "title": "Meet Our Team",
       "h1": "Meet Our Team",
-      "present": {
-        "h2": "Present"
+      "main": {
+        "h2": "Main"
       },
-      "past": {
-        "h2": "Past"
+      "volunteers": {
+        "h2": "Student Volunteers"
       }
     }
   },
