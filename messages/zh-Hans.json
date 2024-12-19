@@ -308,11 +308,11 @@
     "dharmamitra": {
       "title": "团队介绍",
       "h1": "团队介绍",
-      "present": {
-        "h2": "现在成员"
+      "main": {
+        "h2": "Main"
       },
-      "past": {
-        "h2": "前期成员"
+      "volunteers": {
+        "h2": "Student Volunteers"
       }
     }
   },
