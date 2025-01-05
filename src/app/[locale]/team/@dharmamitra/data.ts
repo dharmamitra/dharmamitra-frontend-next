@@ -9,6 +9,7 @@ import imgFrancesBelleza from "@/assets/team/frances-belleza.jpg"
 import imgKayshavBhardwaj from "@/assets/team/kayshav-bhardwaj.png"
 import imgKurtKeutzer from "@/assets/team/kurt-keutzer.jpg"
 import imgKushBhardwaj from "@/assets/team/kush-bhardwaj.png"
+import imgLakshPatel from "@/assets/team/laksh-patel.jpg"
 import imgMirandaZhu from "@/assets/team/miranda-zhu.jpg"
 import imgRajMehta from "@/assets/team/raj-mehta.png"
 import imgRheaMehta from "@/assets/team/rhea-mehta.jpg"
@@ -213,6 +214,12 @@ const members: TeamMembers = {
       name: "Daksh Parikh",
       roles: null,
       image: avatar,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Laksh Patel",
+      roles: null,
+      image: imgLakshPatel,
     },
   ],
 }
