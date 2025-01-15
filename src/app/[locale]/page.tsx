@@ -1,5 +1,5 @@
 import { NextIntlClientProvider, useMessages, useTranslations } from "next-intl"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 import visuallyHidden from "@mui/utils/visuallyHidden"
 
@@ -14,30 +14,37 @@ import {
   supportedLocales,
 } from "@/i18n"
 
-// TODO: keep an eye on `next-intl` updates to see when `generateStaticParams` can be removed: https://next-intl-docs.vercel.app/docs/getting-started/app-router#add-generatestaticparams-to-applocalelayouttsx
-export const generateStaticParams = () => {
-  return supportedLocales.map((locale) => ({ locale }))
+import { routing } from '@/i18n/routing';
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
 
-export default function HomePage({
-  params: { locale },
-}: I18nMetadataHandlerProps) {
-  unstable_setRequestLocale(locale)
+function DualFeatureMitraPage() {
+  return (
+    <>
+      <StorageCheck />
+      <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
+        <Typography component="h1" sx={visuallyHidden}>
+          Dharmamitra
+        </Typography>
+        <DualFeatureMitra />
+      </PageShell>
+    </>
+  )
+}
+
+
+export default function HomePage() {
   const { hasSearch } = useAppConfig().featureFlags
   const t = useTranslations("Home")
 
-  const allMessages = useMessages() as Messages
-  const messages = pickMessages({
-    messages: allMessages,
-    messageKeys: ["translation", "search", "globalParams", "generic"],
-  })
-
   if (hasSearch === true) {
-    return <DualFeatureMitraPage messages={messages} />
+    return <DualFeatureMitraPage />
   }
 
   return (
-    <NextIntlClientProvider messages={messages}>
+    <>
       <StorageCheck />
       <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
         <Typography
@@ -53,20 +60,7 @@ export default function HomePage({
 
         <MitraTranslator />
       </PageShell>
-    </NextIntlClientProvider>
+    </>
   )
 }
 
-function DualFeatureMitraPage({ messages }: { messages: Partial<Messages> }) {
-  return (
-    <NextIntlClientProvider messages={messages}>
-      <StorageCheck />
-      <PageShell maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
-        <Typography component="h1" sx={visuallyHidden}>
-          Dharmamitra
-        </Typography>
-        <DualFeatureMitra />
-      </PageShell>
-    </NextIntlClientProvider>
-  )
-}

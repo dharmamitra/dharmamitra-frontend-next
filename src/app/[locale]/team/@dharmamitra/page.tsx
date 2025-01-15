@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Box, Divider, Typography } from "@mui/material"
 
 import Members from "@/components/Members"
@@ -43,7 +43,7 @@ export default function TeamPage({
 }: {
   params: { locale: string }
 }) {
-  unstable_setRequestLocale(locale)
+  setRequestLocale(locale)
   const t = useTranslations("Team.dharmamitra")
 
   if (!isEnvRoute) {

@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation"
 import LanguageIcon from "@mui/icons-material/Language"
 import { FormControl, IconButton, Menu, MenuItem } from "@mui/material"
 
-import { usePathname, useRouter } from "@/navigation"
+import { usePathname, useRouter } from "@/i18n/routing"
 
 import { LocaleSwitcherProps } from "./ResponseiveLocaleSwitcher"
 

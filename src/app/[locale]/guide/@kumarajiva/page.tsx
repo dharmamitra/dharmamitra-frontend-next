@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 
 import Section from "@/components/Section"
@@ -9,7 +9,7 @@ export default function AboutKumarajivaPage({
 }: {
   params: { locale: string }
 }) {
-  unstable_setRequestLocale(locale)
+  setRequestLocale(locale)
   const t = useTranslations("Guide.kumarajiva")
 
   return (

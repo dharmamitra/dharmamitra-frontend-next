@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { I18nMetadataHandlerProps, Metadata, supportedLocales } from "@/i18n"
 
@@ -22,6 +22,6 @@ export default function CatchAllPage({
 }: {
   params: { locale: string }
 }) {
-  unstable_setRequestLocale(locale)
+  setRequestLocale(locale)
   notFound()
 }

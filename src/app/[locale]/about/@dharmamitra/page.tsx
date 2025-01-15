@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { useTranslations } from "next-intl"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 import CheckIcon from "@mui/icons-material/Check"
 import {
   Box,
@@ -28,7 +28,7 @@ export default function AboutDharmamitraPage({
 }: {
   params: { locale: string }
 }) {
-  unstable_setRequestLocale(locale)
+  setRequestLocale(locale)
   const t = useTranslations("About.dharmamitra")
 
   return (

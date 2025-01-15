@@ -1,4 +1,9 @@
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { isValidLocaleRoute } from '@/i18n/routing';
+
+import { getTranslations } from "next-intl/server"
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter"
@@ -28,28 +33,34 @@ export async function generateMetadata({
   }
 }
 
-export default function RootLayout({
+export default async function LocaleRootLayout({
   children,
   params: { locale },
 }: Readonly<{
   children: React.ReactNode
   params: { locale: string }
 }>) {
-  unstable_setRequestLocale(locale)
+  if (!isValidLocaleRoute(locale)) {
+    return notFound()
+  }
+
+  const messages = await getMessages()
 
   return (
     <html lang={locale}>
       <body>
-        <QueryProvider>
-          <AppRouterCacheProvider>
-            <NuqsAdapter>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                {children}
-              </ThemeProvider>
-            </NuqsAdapter>
-          </AppRouterCacheProvider>
-        </QueryProvider>
+        <NextIntlClientProvider messages={messages}>
+          <QueryProvider>
+            <AppRouterCacheProvider>
+              <NuqsAdapter>
+                <ThemeProvider theme={theme}>
+                  <CssBaseline />
+                  {children}
+                </ThemeProvider>
+              </NuqsAdapter>
+            </AppRouterCacheProvider>
+          </QueryProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

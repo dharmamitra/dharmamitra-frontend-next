@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import { notFound } from "next/navigation"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 
 import { PageShell } from "@/components/layout"
 import appConfig from "@/config"
@@ -23,7 +23,7 @@ export default function GuideLayout({
   kumarajiva: ReactNode
   params: { locale: string }
 }) {
-  unstable_setRequestLocale(locale)
+  setRequestLocale(locale)
 
   if (!isEnvRoute) {
     notFound()

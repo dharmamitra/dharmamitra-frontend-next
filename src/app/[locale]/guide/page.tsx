@@ -1,4 +1,4 @@
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import appConfig from "@/config"
 import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
@@ -23,7 +23,7 @@ export default function GuidePage({
 }: {
   params: { locale: string }
 }) {
-  unstable_setRequestLocale(locale)
+  setRequestLocale(locale)
 
   return null
 }
