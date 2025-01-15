@@ -1,6 +1,7 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 import imgAarnavSrivastava from "@/assets/team/aarnav-srivastava.jpg"
+import imgAminahBorgLuck from "@/assets/team/aminah.jpg"
 import avatar from "@/assets/team/avatar.svg"
 import imgDavidAllport from "@/assets/team/david-allport.png"
 import imgDevikaGopakumar from "@/assets/team/devika-gopakumar.jpg"
@@ -8,6 +9,7 @@ import imgFrancesBelleza from "@/assets/team/frances-belleza.jpg"
 import imgKayshavBhardwaj from "@/assets/team/kayshav-bhardwaj.png"
 import imgKurtKeutzer from "@/assets/team/kurt-keutzer.jpg"
 import imgKushBhardwaj from "@/assets/team/kush-bhardwaj.png"
+import imgLakshPatel from "@/assets/team/laksh-patel.jpg"
 import imgMirandaZhu from "@/assets/team/miranda-zhu.jpg"
 import imgRajMehta from "@/assets/team/raj-mehta.png"
 import imgRheaMehta from "@/assets/team/rhea-mehta.jpg"
@@ -33,12 +35,12 @@ export type Member = {
 }
 
 type TeamMembers = {
-  current: Member[]
-  past: Member[]
+  main: Member[]
+  volunteers: Member[]
 }
 
 const members: TeamMembers = {
-  current: [
+  main: [
     {
       id: crypto.randomUUID(),
       name: "Kurt Keutzer",
@@ -83,7 +85,7 @@ const members: TeamMembers = {
       roles: [
         { role: "Website development", i18nRoleKey: "websiteDevelopment" },
       ],
-      image: avatar,
+      image: imgAminahBorgLuck,
     },
     {
       id: crypto.randomUUID(),
@@ -121,6 +123,8 @@ const members: TeamMembers = {
       ],
       image: imgSujeetJaiswal,
     },
+  ],
+  volunteers: [
     {
       id: crypto.randomUUID(),
       name: "Frances Belleza",
@@ -169,8 +173,6 @@ const members: TeamMembers = {
       roles: null,
       image: imgMirandaZhu,
     },
-  ],
-  past: [
     {
       id: crypto.randomUUID(),
       name: "Om Chandran",
@@ -206,6 +208,18 @@ const members: TeamMembers = {
       name: "Raj Mehta",
       roles: null,
       image: imgRajMehta,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Daksh Parikh",
+      roles: null,
+      image: avatar,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Laksh Patel",
+      roles: null,
+      image: imgLakshPatel,
     },
   ],
 }

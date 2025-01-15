@@ -56,15 +56,13 @@ export default function TeamPage({
         {t("h1")}
       </Typography>
 
-      <Section>
-        <DividedSectionHeader heading={t("present.h2")} />
-        <Members members={membersData.current} />
+      <Section sx={{ mt: 6 }}>
+        <Members members={membersData.main} />
       </Section>
 
       <Section sx={{ mt: 10, pb: 12 }}>
-        <DividedSectionHeader heading={t("past.h2")} />
-
-        <Members members={membersData.past} />
+        <DividedSectionHeader heading={t("volunteers.h2")} />
+        <Members members={membersData.volunteers} />
       </Section>
     </>
   )
