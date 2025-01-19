@@ -41,7 +41,8 @@
         "./src/atoms.ts"
       ]
     },
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",

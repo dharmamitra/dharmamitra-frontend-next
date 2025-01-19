@@ -27,7 +27,6 @@ export type Response<Endpoint extends keyof paths> = APIResponse<
  *
  */
 
-// eslint-disable-next-line no-unused-vars
 // type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
 
 export type SearchTargets = Extract<

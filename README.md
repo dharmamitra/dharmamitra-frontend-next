@@ -136,21 +136,21 @@ In addition to the Angular converntion:
 
 - adapted from [Best Practices for Handling Per-Environment Configuration in Your JS/TS Applications](https://www.raulmelo.me/en/blog/best-practices-for-handling-per-environment-config-js-ts-applications#the-config-strategy)
 
-- environment specific build scripts (in `package.json`) set the `NEXT_PUBLIC_APP_ENV` used to define app config (including features, options to render) for each environment.
-  - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env`. **note**: This overwrites the `.env` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_env.sh`
+- environment specific build scripts (in `package.json`) set the `NEXT_PUBLIC_BUILD_VARIANT` used to define app config (including features, options to render) for each environment.
+  - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env`. **note**: This overwrites the `.env` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_build_variant.sh`
 
 ### Adding a new environment
 
 These steps can also be adjusted and used for renaming an environment.
 
-- add the env alias to `SUPPORTED_ENVS` in `src/config/defineConfig.ts`
+- add the env alias to `BUILD_VARIANTS` in `src/config/defineConfig.ts`
 - create an new env specific config file in `src/config/envs` (adjust settings as required, with `defineConfig` as a ref.)
 - import the env's config file to `src/config/index.ts` and add the env alias to config getter ("if section")
 - add environment alias to the `servedAtRoot` in `next.config.mjs` if the environment's base path is `/` (_this shouldn't be applicable in most cases_)
 - add an env specific build script to `package.json`. Eg. for the `lab` env:
 
   ```json
-  "prebuild:lab": "sh ./scripts/set_env.sh lab",
+  "prebuild:lab": "sh ./scripts/set_build_variant.sh lab",
   "build:lab": "next build",
   ```
 

@@ -78,6 +78,17 @@ const importRules = {
 
 module.exports = {
   root: true,
+  ignorePatterns: [
+    ".next/",
+    "node_modules/",
+    "yarn.lock",
+    "coverage/",
+    "test-results/",
+    "playwright-report/",
+    "blob-report/",
+    "playwright/.cache/",
+    "*.d.ts"
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",

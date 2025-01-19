@@ -1,11 +1,49 @@
 import * as React from "react"
 import Image from "next/image"
-import { Box } from "@mui/material"
+import { Box, Link } from "@mui/material"
 
 import LocalLink from "@/components/LocalLink"
 import useAppConfig from "@/hooks/useAppConfig"
 
-export default function Logo() {
+const getLinkStyles = (width: number) => {
+  return {
+    textDecoration: "none",
+    display: "block",
+    width: {
+      xs: `${width * 0.73}px`,
+      sm: `${width * 0.82}px`,
+      md: `${width}px`,
+    },
+  }
+}
+
+const LogoImage = () => {
+  const {
+    basePath,
+    assetPaths: { logo },
+  } = useAppConfig()
+
+  return (
+    <Image
+      src={basePath + logo.src}
+      alt="Logo"
+      sizes="100vw"
+      style={{
+        width: "100%",
+        height: "auto",
+      }}
+      width={logo.width}
+      height={logo.height}
+      priority
+    />
+  )
+}
+
+export default function Logo({
+  isLocalized = true,
+}: {
+  isLocalized?: boolean
+}) {
   const {
     basePath,
     assetPaths: { logo },
@@ -13,31 +51,15 @@ export default function Logo() {
 
   return (
     <Box sx={{ flexGrow: 1, py: 1 }}>
-      <LocalLink
-        href="/"
-        sx={{
-          textDecoration: "none",
-          display: "block",
-          width: {
-            xs: `${logo.width * 0.73}px`,
-            sm: `${logo.width * 0.82}px`,
-            md: `${logo.width}px`,
-          },
-        }}
-      >
-        <Image
-          src={basePath + logo.src}
-          alt="Logo"
-          sizes="100vw"
-          style={{
-            width: "100%",
-            height: "auto",
-          }}
-          width={logo.width}
-          height={logo.height}
-          priority
-        />
-      </LocalLink>
+      {isLocalized ? (
+        <LocalLink href="/" sx={getLinkStyles(logo.width)}>
+          <LogoImage />
+        </LocalLink>
+      ) : (
+        <Link href={basePath} sx={getLinkStyles(logo.width)}>
+          <LogoImage />
+        </Link>
+      )}
     </Box>
   )
 }

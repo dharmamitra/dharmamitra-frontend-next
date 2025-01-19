@@ -26,11 +26,11 @@ const getDefaultColors = () => ({
 
 type ThemeRGBCodes = ReturnType<typeof getDefaultColors>
 
-type EnvRGBCodes = {
+type VariantRGBCodes = {
   default: ThemeRGBCodes
-} & Record<AppEnv, ThemeRGBCodes>
+} & Partial<Record<BuildVariant, ThemeRGBCodes>>
 
-const envRgbCodes: EnvRGBCodes = {
+const variantRgbCodes: VariantRGBCodes = {
   default: getDefaultColors(),
   kumarajiva: {
     // primary: "246, 220, 31", // #f6dc1f
@@ -48,9 +48,9 @@ const envRgbCodes: EnvRGBCodes = {
 }
 
 const rgbCodes =
-  appConfig.env in envRgbCodes
-    ? envRgbCodes[appConfig.env]!
-    : envRgbCodes.default
+  appConfig.variant in variantRgbCodes
+    ? variantRgbCodes[appConfig.variant]!
+    : variantRgbCodes.default
 
 const colours = {
   primary: `rgb(${rgbCodes.primary}, 1)`,

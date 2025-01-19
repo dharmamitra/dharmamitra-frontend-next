@@ -1,11 +1,25 @@
 import * as React from "react"
+import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Box, Typography } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
-import { Member as MemberType } from "@/app/[locale]/team/@dharmamitra/data"
+// import { Member as MemberType } from "@/app/[locale]/(static-pages)/team/data"
 import customTheming from "@/utils/theme/config"
+
+// TODO: Restore import
+export type MemberType = {
+  id: string
+  name: string
+  roles:
+    | {
+        role: string
+        i18nRoleKey: keyof Messages["staticContent"]["roles"]
+      }[]
+    | null
+  image: StaticImport
+}
 
 export function Member({ id, name, roles, image }: MemberType) {
   const t = useTranslations("staticContent")

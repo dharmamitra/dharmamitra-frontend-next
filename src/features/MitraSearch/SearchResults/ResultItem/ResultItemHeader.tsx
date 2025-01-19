@@ -19,7 +19,7 @@ type ResultItemHeaderProps = {
   segmentnr: string
   title: string
   link: string
-  fullResultContentRef: React.RefObject<HTMLDivElement>
+  fullResultContentRef: React.RefObject<HTMLDivElement | null>
   hasMoreText: boolean
   isTextExpanded: boolean
   setIsTextExpanded: React.Dispatch<React.SetStateAction<boolean>>

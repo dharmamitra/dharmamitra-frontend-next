@@ -5,26 +5,23 @@ import {
   TargetLanguage,
 } from "@/utils/api/translation/params"
 
-export const SUPPORTED_ENVS = [
-  "pub",
-  "lab",
-  "rnd",
-  "local",
-  "kumarajiva",
-] as const
+import { BUILD_VARIANTS } from "./constants"
+import { getValidBasePath, getValidBuildVariant } from "./validators"
 
 type Page = keyof Messages["pages"]
 export const allPages = ["home", "about", "team", "guide"] as const
 export const defaultSubPages: Page[] = ["about", "team"]
 
 export const appConfigSchema = z.object({
-  env: z.enum(SUPPORTED_ENVS),
+  variant: z.enum(BUILD_VARIANTS).default(getValidBuildVariant().buildVariant),
   storageVersionId: z.string().default("2"),
   isClient: z.boolean().default(false),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
-  siteUrl: z.string().default("https://dharmamitra.org"),
-  basePath: z.string(),
+  siteUrl: z
+    .string()
+    .default("https://dharmamitra.org" + getValidBasePath().basePath),
+  basePath: z.string().default(getValidBasePath().basePath),
   assetPaths: z
     // relative to `/public`, dimentions for aspect ratio
     .object({
@@ -92,15 +89,16 @@ type DeepPartial<T> = {
         : T[P]
 }
 
-type RequiredConfigKeys = {
-  env: AppEnv
-  basePath: string
-}
+/** 
+ * If configuration requires specific keys as set, we can define them in RequiredConfigKeys.
 
-export type EnhancedAppConfig = RequiredConfigKeys &
+type RequiredConfigKeys = {}
+
+export type BuildVariantConfig = RequiredConfigKeys &
   DeepPartial<Omit<AppConfig, keyof RequiredConfigKeys>>
+*/
 
-function defineConfig(config: EnhancedAppConfig) {
+function defineConfig(config: DeepPartial<AppConfig>) {
   return appConfigSchema.parse(config)
 }
 

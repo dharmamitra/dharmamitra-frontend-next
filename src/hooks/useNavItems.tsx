@@ -10,7 +10,7 @@ export const useNavItems = () => {
 
   return React.useMemo<{ id: string; label: string; href: string }[]>(
     () => [
-      ...(appConfig.env !== "pub"
+      ...(appConfig.variant !== "pub"
         ? [
             {
               id: crypto.randomUUID(),

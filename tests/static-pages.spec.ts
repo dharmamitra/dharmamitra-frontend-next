@@ -24,7 +24,7 @@ const pathnames = {
 Object.entries(pathnames).forEach(([pathname /*pagename */]) => {
   supportedLocales.forEach((locale) => {
     const route = makeCleanRoute([
-      getBasePath(),
+      // getBasePath(),
       locale === defaultLocale ? "" : locale,
       pathname,
     ])

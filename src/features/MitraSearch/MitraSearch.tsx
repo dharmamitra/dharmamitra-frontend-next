@@ -83,7 +83,7 @@ export default function MitraSearch({
 
         <SubInputSearchControls isOpen={isSearchControlsOpen} />
 
-        {/* TODO: determin if to be removed or added to env config
+        {/* TODO: determin if to be removed or added to variant config
         <SearchExamples isShown={!isSearchControlsOpen} /> */}
       </Box>
 

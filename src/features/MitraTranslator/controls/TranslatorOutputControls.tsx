@@ -7,7 +7,7 @@ import CopyTextButton from "@/components/CopyTextButton"
 import { TargetLanguageSelector } from "@/features/paramSettings"
 
 type TranslationInputFieldProps = {
-  contentRef: React.RefObject<HTMLElement>
+  contentRef: React.RefObject<HTMLElement | null>
 }
 
 export default function TranslatorOutputControls({

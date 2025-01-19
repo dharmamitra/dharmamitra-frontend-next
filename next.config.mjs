@@ -3,9 +3,9 @@ import createNextIntlPlugin from "next-intl/plugin"
 const withNextIntl = createNextIntlPlugin()
 
 export const getBasePath = () => {
-  const env = process.env.NEXT_PUBLIC_APP_ENV
-  const servedAtRoot = env === "pub" || env === "local"
-  return servedAtRoot ? "" : "/" + env
+  const { NEXT_PUBLIC_BUILD_VARIANT: variant, NODE_ENV: env } = process.env
+  const servedAtRoot = variant === "pub" || env === "development"
+  return servedAtRoot ? undefined : "/" + variant
 }
 
 /**
@@ -17,12 +17,6 @@ export const getBasePath = () => {
 const nextConfig = {
   basePath: getBasePath(),
   output: "standalone",
-  webpack: (config) => {
-    if (process.env.NODE_ENV === "production") {
-      config.devtool = "hidden-source-map"
-    }
-    return config
-  },
   eslint: {
     ignoreDuringBuilds: process.env.NEXT_DISABLE_ESLINT === "true",
   },

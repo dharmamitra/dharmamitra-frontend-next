@@ -6,25 +6,27 @@ import { Breakpoint } from "@mui/material/styles"
 
 import error from "@/assets/error-red.svg"
 
+const DefaultMessage = () => {
+  const t = useTranslations("generic")
+
+  return t.rich("exception.default", {
+    newline: (chunks) => <span style={{ display: "block" }}>{chunks}</span>,
+  })
+}
+
 type Props = {
   imgWdiths?: Partial<Record<Breakpoint, string>>
   message?:
     | string
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-    | React.ReactNodeArray
+    | readonly React.ReactNode[]
 }
 
 export default function Error({
   imgWdiths = { xs: "80px", sm: "100px" },
   message,
 }: Props) {
-  const t = useTranslations("generic")
-
-  const defaultMessage = t.rich("exception.default", {
-    newline: (chunks) => <span style={{ display: "block" }}>{chunks}</span>,
-  })
-
   return (
     <Box
       sx={{
@@ -55,13 +57,13 @@ export default function Error({
         />
       </Box>
       <Typography
-        component="p"
+        component="div"
         variant="h6"
         mt={0}
         color="error"
         align="center"
       >
-        {message ?? defaultMessage}
+        {message ?? <DefaultMessage />}
       </Typography>
     </Box>
   )

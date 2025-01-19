@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { type JSX } from "react"
 import { useTranslations } from "next-intl"
 import ContentCopyIcon from "@mui/icons-material/ContentCopy"
 import { IconButton } from "@mui/material"
@@ -8,7 +8,7 @@ import { SvgIconProps } from "@mui/material/SvgIcon"
 import Tooltip from "@mui/material/Tooltip"
 
 interface CopyTextProps {
-  contentRef: React.RefObject<HTMLElement>
+  contentRef: React.RefObject<HTMLElement | null>
   ariaLabel?: string
   icon?: JSX.Element
   tooltip?: string
