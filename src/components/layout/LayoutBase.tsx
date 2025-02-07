@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import Script from "next/script"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages } from "next-intl/server"
 import CssBaseline from "@mui/material/CssBaseline"
@@ -13,11 +14,22 @@ type Props = {
   locale: SupportedLocale
 }
 
+const FeedbucketScript = () => {
+  return (
+    <Script
+      type="text/javascript"
+      src="https://cdn.feedbucket.app/assets/feedbucket.js"
+      data-feedbucket="0Dpm0Hi1Il7FCeI5qnst"
+    />
+  )
+}
+
 export default async function LayoutBase({ children, locale }: Props) {
   const messages = await getMessages()
 
   return (
     <html lang={locale}>
+      <FeedbucketScript />
       <body>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
