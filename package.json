@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbopack",
     "build:pub": "sh ./scripts/set_build_variant.sh pub && next build",
     "build:lab": "sh ./scripts/set_build_variant.sh lab && next build",
     "build:rnd": "sh ./scripts/set_build_variant.sh rnd && next build",
@@ -32,6 +33,7 @@
     "@mui/icons-material": "^6.4.3",
     "@mui/material": "^6.4.3",
     "@mui/material-nextjs": "^6.4.3",
+    "@sentry/nextjs": "^8",
     "@tanstack/react-query": "^5.66.0",
     "@tanstack/react-query-devtools": "^5.66.0",
     "ai": "^4.1.25",
