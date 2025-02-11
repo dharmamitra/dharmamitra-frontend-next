@@ -8,6 +8,20 @@ export type DefaultPageParams = {
   }>
 }
 
+export type NewsPostParams = {
+  params: Promise<{
+    locale: string
+    slug: string
+  }>
+}
+
+export type UnsupportedNewsPostParams = {
+  params: Promise<{
+    locale: string
+    unsupported: string
+  }>
+}
+
 export type DefaultPageProps = {
   children: ReactNode
 } & DefaultPageParams

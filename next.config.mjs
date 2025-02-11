@@ -1,4 +1,5 @@
 import createNextIntlPlugin from "next-intl/plugin"
+import createMDX from "@next/mdx"
 import { withSentryConfig } from "@sentry/nextjs"
 
 const withNextIntl = createNextIntlPlugin()
@@ -16,14 +17,25 @@ export const getBasePath = () => {
  * @see https://calvinf.com/blog/2023/11/10/node-js-20-yarn-4-and-next-js-on-docker/
  */
 const nextConfig = {
-  basePath: getBasePath(),
+  // basePath: getBasePath(),
   output: "standalone",
   eslint: {
     ignoreDuringBuilds: process.env.NEXT_DISABLE_ESLINT === "true",
   },
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  reactStrictMode: true,
+  images: {
+    // https://nextjs.org/docs/app/api-reference/components/image#configuration-options
+    formats: ["image/avif", "image/webp"],
+  },
 }
 
-export default withSentryConfig(withNextIntl(nextConfig), {
+const withMDX = createMDX({
+  extension: /\.mdx$/,
+  options: { remarkPlugins: [], rehypePlugins: [] },
+})
+
+export default withSentryConfig(withNextIntl(withMDX(nextConfig)), {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 

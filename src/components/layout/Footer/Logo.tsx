@@ -2,7 +2,7 @@ import Image from "next/image"
 import { Box, Link } from "@mui/material"
 
 import LocalLink from "@/components/LocalLink"
-import useAppConfig from "@/hooks/useAppConfig"
+import appConfig from "@/config"
 
 const linkStyles = {
   display: "flex",
@@ -14,7 +14,7 @@ const LogoImage = () => {
   const {
     basePath,
     assetPaths: { logoLarge },
-  } = useAppConfig()
+  } = appConfig
   return (
     <Box
       sx={{
@@ -42,13 +42,15 @@ export default function Logo({
 }: {
   isLocalized?: boolean
 }) {
-  const { basePath } = useAppConfig()
+  const { basePath } = appConfig
 
   if (isLocalized) {
     return (
-      <LocalLink href="/" sx={linkStyles}>
-        <LogoImage />
-      </LocalLink>
+      <>
+        <LocalLink href="/" sx={linkStyles}>
+          <LogoImage />
+        </LocalLink>
+      </>
     )
   }
 

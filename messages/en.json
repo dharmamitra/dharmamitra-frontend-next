@@ -217,7 +217,8 @@
     "home": "Home",
     "about": "About",
     "team": "Team",
-    "guide": "Guide"
+    "guide": "Guide",
+    "news": "News"
   },
   "staticContent": {
     "roles": {
@@ -315,6 +316,13 @@
         "h2": "Student Volunteers"
       }
     }
+  },
+  "News": {
+    "title": "News",
+    "h1": "News",
+    "noNews": "No news found! :-)",
+    "localeNotAvailable": "This page is not available in the selected language. Please select a different language.",
+    "goToDefaultLocale": "Go to English"
   },
   "NotFound": {
     "title": "404 · Page Not Found",

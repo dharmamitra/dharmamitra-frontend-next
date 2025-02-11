@@ -1,6 +1,6 @@
 import { BUILD_VARIANTS } from "./constants"
 import { AppConfig } from "./defineConfig"
-import { getValidBuildVariant } from "./validators"
+import { getBuildVariant } from "./utils"
 import createKumarajivaConfig from "./variants/kumarajiva"
 import createLabConfig from "./variants/lab"
 import createLocalConfig from "./variants/local"
@@ -19,7 +19,7 @@ const configCreatorMap: Record<
 }
 
 function getConfig() {
-  const { buildVariant } = getValidBuildVariant()
+  const { buildVariant } = getBuildVariant()
 
   const configCreator: () => AppConfig = configCreatorMap[buildVariant]
 

@@ -49,6 +49,8 @@ export default function Page() {
             margin: "18px",
           }}
           onClick={async () => {
+            // eslint-disable-next-line no-console
+            console.log("clicked")
             await Sentry.startSpan(
               {
                 name: "Example Frontend Span",

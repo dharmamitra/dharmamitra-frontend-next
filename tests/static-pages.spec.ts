@@ -1,19 +1,19 @@
 import AxeBuilder from "@axe-core/playwright"
 import { expect, test } from "@playwright/test"
 
-import { defaultLocale, supportedLocales } from "@/i18n"
+import { defaultLocale, SUPPORTED_LOCALES } from "@/i18n"
 import { makeCleanRoute } from "@/utils/transformers"
 
 // import enMessages from "../messages/en.json"
 // import zhHansMessages from "../messages/zh-Hans .json"
 // import zhHantMessages from "../messages/zh-Hant.json"
-import { getBasePath } from "../next.config.mjs"
+// import { getBasePath } from "../next.config.mjs"
 
 // const messages = {
 //   en: enMessages,
 //   "zh-Hans": zhMessages,
 //   "zh-Hant": zhHantMessages,
-// } satisfies Record<(typeof supportedLocales)[number], Messages>
+// } satisfies Record<(typeof SUPPORTED_LOCALES)[number], Messages>
 
 const pathnames = {
   "/": "Home",
@@ -22,7 +22,7 @@ const pathnames = {
 } as const
 
 Object.entries(pathnames).forEach(([pathname /*pagename */]) => {
-  supportedLocales.forEach((locale) => {
+  SUPPORTED_LOCALES.forEach((locale) => {
     const route = makeCleanRoute([
       // getBasePath(),
       locale === defaultLocale ? "" : locale,

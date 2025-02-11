@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Box, Link } from "@mui/material"
 
 import LocalLink from "@/components/LocalLink"
-import useAppConfig from "@/hooks/useAppConfig"
+import appConfig from "@/config"
 
 const getLinkStyles = (width: number) => {
   return {
@@ -21,7 +21,7 @@ const LogoImage = () => {
   const {
     basePath,
     assetPaths: { logo },
-  } = useAppConfig()
+  } = appConfig
 
   return (
     <Image
@@ -47,7 +47,7 @@ export default function Logo({
   const {
     basePath,
     assetPaths: { logo },
-  } = useAppConfig()
+  } = appConfig
 
   return (
     <Box sx={{ flexGrow: 1, py: 1 }}>

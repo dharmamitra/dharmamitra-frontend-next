@@ -217,7 +217,8 @@
     "home": "首页",
     "about": "计划介绍",
     "team": "Team",
-    "guide": "Guide"
+    "guide": "Guide",
+    "news": "News"
   },
   "staticContent": {
     "roles": {
@@ -321,5 +322,12 @@
     "h1": "Oh no! Page Not Found",
     "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
     "home": "Go Home"
+  },
+  "News": {
+    "title": "News",
+    "h1": "News",
+    "noNews": "No news found! :-)",
+    "localeNotAvailable": "This page is not available in the selected language. Please select a different language.",
+    "goToDefaultLocale": "Go to English"
   }
 }
