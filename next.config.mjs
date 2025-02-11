@@ -17,7 +17,7 @@ export const getBasePath = () => {
  * @see https://calvinf.com/blog/2023/11/10/node-js-20-yarn-4-and-next-js-on-docker/
  */
 const nextConfig = {
-  // basePath: getBasePath(),
+  basePath: getBasePath(),
   output: "standalone",
   eslint: {
     ignoreDuringBuilds: process.env.NEXT_DISABLE_ESLINT === "true",
