@@ -9,6 +9,6 @@ export const config = {
   matcher: [
     // Skip all paths that should not be internationalized (inc ones containing a dot, e.g. `favicon.ico`).
     "/",
-    "/((?!api|next|_next|.*\\..*).*)",
+    "/((?!api|next|_next|monitoring-tunnel|.*\\..*).*)",
   ],
 }

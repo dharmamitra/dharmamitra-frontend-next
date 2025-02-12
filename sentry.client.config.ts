@@ -4,11 +4,19 @@
 
 import * as Sentry from "@sentry/nextjs"
 
-Sentry.init({
-  dsn: "https://33880a21e8b689da8945667e68a2bc80@o4508779444568064.ingest.de.sentry.io/4508779450269776",
+const { SENTRY_DSN, NEXT_PUBLIC_SENTRY_DSN } = process.env
 
+const dsn = SENTRY_DSN || NEXT_PUBLIC_SENTRY_DSN
+
+Sentry.init({
+  dsn,
   // Add optional integrations for additional features
-  integrations: [Sentry.replayIntegration()],
+  integrations: [
+    Sentry.replayIntegration({
+      maskAllText: true,
+      blockAllMedia: true,
+    }),
+  ],
 
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
   tracesSampleRate: 1,

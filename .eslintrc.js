@@ -20,7 +20,6 @@ const typescriptRules = {
       objectLiteralTypeAssertions: "never",
     },
   ],
-  "@typescript-eslint/no-unused-vars": "off", // duplicate rule
 }
 
 const reactRules = {
