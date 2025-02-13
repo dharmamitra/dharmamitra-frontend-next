@@ -1,6 +1,7 @@
 "use client"
 
 import Head from "next/head"
+import { Button } from "@mui/material"
 import * as Sentry from "@sentry/nextjs"
 
 import { getBasePath } from "@/config/utils"
@@ -8,7 +9,7 @@ import { getBasePath } from "@/config/utils"
 export default function Page() {
   const url = `${getBasePath()}/next/api/sentry-example-api`
   // eslint-disable-next-line no-console
-  console.log({ url })
+  console.log("test api url", url)
   return (
     <div>
       <Head>
@@ -41,7 +42,7 @@ export default function Page() {
         </h1>
 
         <p>Get started by sending us a sample error:</p>
-        <button
+        <Button
           type="button"
           style={{
             padding: "12px",
@@ -62,7 +63,6 @@ export default function Page() {
               async () => {
                 const res = await fetch(url)
                 if (!res.ok) {
-                  alert("Throwing error!")
                   throw new Error("Sentry Example Frontend Error")
                 }
               },
@@ -70,7 +70,7 @@ export default function Page() {
           }}
         >
           Throw error!
-        </button>
+        </Button>
 
         <p>
           Next, look for the error on the{" "}

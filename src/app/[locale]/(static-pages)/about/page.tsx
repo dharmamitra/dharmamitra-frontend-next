@@ -20,6 +20,7 @@ import { visuallyHidden } from "@mui/utils"
 import { DefaultPageParams } from "@/app/types"
 import dmLogoFull from "@/assets/logos/dm-logo-full.png"
 import IconCard from "@/components/IconCard"
+import Contact from "@/components/layout/Footer/Contact"
 import { stylePageContainer } from "@/components/layout/PageContentFrame"
 import Section from "@/components/Section"
 import appConfig from "@/config"
@@ -189,6 +190,10 @@ export default function DharmamitraAboutPage({ params }: DefaultPageParams) {
               </Grid>
             ))}
           </Grid>
+        </Section>
+
+        <Section sx={{ py: 8 }}>
+          <Contact />
         </Section>
       </Container>
     </main>

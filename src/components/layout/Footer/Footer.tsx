@@ -1,9 +1,7 @@
-import { Box, Grid2 as Grid } from "@mui/material"
+import { Box } from "@mui/material"
 
-import useAppConfig from "@/hooks/useAppConfig"
 import customTheming from "@/utils/theme/config"
 
-import Contact from "./Contact"
 import Logo from "./Logo"
 import Mission from "./Mission"
 
@@ -12,8 +10,6 @@ export default function Footer({
 }: {
   isLocalized?: boolean
 }) {
-  const { isClient } = useAppConfig()
-
   return (
     <Box
       sx={{
@@ -25,23 +21,18 @@ export default function Footer({
       }}
       component="footer"
     >
-      <Grid container spacing={{ xs: 2, md: 3 }}>
-        <Grid size={{ xs: 12, lg: 4 }}>
-          <Logo isLocalized={isLocalized} />
-        </Grid>
-
-        {isClient ? (
-          <Grid size={{ xs: 12, md: 6, lg: 4 }} />
-        ) : (
-          <Grid size={{ xs: 12, md: 6, lg: 4 }}>
-            <Mission isLocalized={isLocalized} />
-          </Grid>
-        )}
-
-        <Grid size={{ xs: 12, md: 6, lg: 4 }}>
-          <Contact isLocalized={isLocalized} />
-        </Grid>
-      </Grid>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: { md: "center" },
+          alignItems: "center",
+          gap: { xs: 2, md: 6 },
+        }}
+      >
+        <Logo isLocalized={isLocalized} />
+        <Mission isLocalized={isLocalized} />
+      </Box>
     </Box>
   )
 }

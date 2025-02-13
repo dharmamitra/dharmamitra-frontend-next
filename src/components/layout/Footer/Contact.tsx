@@ -13,7 +13,7 @@ const LocalizedContact = ({ orgEmail }: { orgEmail: string }) => {
   const t = useTranslations("footer")
   return (
     <>
-      <Typography variant="h5" component="h2" mb={1}>
+      <Typography variant="h2" mb={1}>
         {t("contact.h2")}
       </Typography>
       <Typography variant="body2">{t("contact.p")}</Typography>
@@ -27,12 +27,12 @@ const LocalizedContact = ({ orgEmail }: { orgEmail: string }) => {
 const FallbackContact = ({ orgEmail }: { orgEmail: string }) => {
   return (
     <>
-      <Typography variant="h5" component="h2" mb={1}>
-        {"We value your feedback"}
+      <Typography variant="h2" mb={1}>
+        {"We'd love to hear from you!"}
       </Typography>
       <Typography variant="body2">
         {
-          "Please take a moment to share your thoughts with us. We appreciate you taking the time to help make Dhammamitra better for everyone"
+          "Please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone."
         }
       </Typography>
       <Button {...buttonAttributes} href={`mailto:${orgEmail}`}>
@@ -54,12 +54,11 @@ export default function Contact({
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: { md: "flex-end" },
       }}
     >
       <Box
         sx={{
-          maxWidth: { lg: "455px" },
+          maxWidth: { lg: "625px" },
         }}
       >
         {isLocalized ? (

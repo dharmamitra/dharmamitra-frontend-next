@@ -47,7 +47,7 @@ const sentryConfig = {
   },
   tunnelRoute: "/monitoring-tunnel",
   hideSourceMaps: true,
-  disableLogger: true,
+  disableLogger: false,
   sourcemaps: {
     disable: false,
     deleteSourcemapsAfterUpload: true,
