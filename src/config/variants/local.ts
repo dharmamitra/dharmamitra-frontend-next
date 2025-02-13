@@ -5,6 +5,7 @@ export default function createLocalConfig() {
     featureFlags: {
       hasTranslateExtendedOptions: true,
       hasSearch: true,
+      hasNexus: true,
     },
   })
 }

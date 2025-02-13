@@ -60,11 +60,11 @@ export default function Page() {
               async () => {
                 const res = await fetch(url)
                 if (!res.ok) {
+                  alert("throwing error!")
                   throw new Error("Sentry Example Frontend Error")
                 }
               },
             )
-            alert("Error sent!")
           }}
         >
           Throw error!

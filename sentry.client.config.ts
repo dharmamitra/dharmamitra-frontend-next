@@ -4,8 +4,6 @@
 
 import * as Sentry from "@sentry/nextjs"
 
-import { colours } from "@/utils/theme/config"
-
 const { SENTRY_DSN, NEXT_PUBLIC_SENTRY_DSN } = process.env
 
 const dsn = SENTRY_DSN || NEXT_PUBLIC_SENTRY_DSN
@@ -17,15 +15,6 @@ Sentry.init({
     Sentry.replayIntegration({
       maskAllText: true,
       blockAllMedia: true,
-    }),
-    Sentry.feedbackIntegration({
-      // config: https://docs.sentry.io/platforms/javascript/user-feedback/configuration/
-      colorScheme: "light",
-      triggerLabel: "Feedback",
-      triggerAriaLabel: "Feedback",
-      formTitle: "Give us you feedback",
-      accentBackground: colours.secondary,
-      accentForeground: "#fff",
     }),
   ],
 
