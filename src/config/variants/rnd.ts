@@ -5,6 +5,7 @@ export default function createRNDConfig() {
     featureFlags: {
       hasSearch: true,
       hasTranslateExtendedOptions: true,
+      hasNexus: true,
     },
   })
 }

@@ -14,7 +14,7 @@ echo "NEXT_PUBLIC_BUILD_VARIANT=$BUILD_VARIANT" >>.env
 echo NEXT_PUBLIC_DM_TRANSLATION_API_BASE_URL=https://dharmamitra.org/api >>.env
 echo NEXT_PUBLIC_DM_SEARCH_API_BASE_URL=https://dharmamitra.org/api-search >>.env
 echo NEXT_PUBLIC_BN_V2_API_BASE_URL=https://dharmamitra.org/api-db/ >>.env
-echo NEXT_PUBLIC_DHARAMNEXUS_URL= >>.env
+echo NEXT_PUBLIC_DHARAMNEXUS_URL=https://dharmamitra.org/nexus >>.env
 
 
 

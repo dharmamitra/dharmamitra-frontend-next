@@ -47,12 +47,12 @@ const variantRgbCodes: VariantRGBCodes = {
   },
 }
 
-const rgbCodes =
+export const rgbCodes =
   appConfig.variant in variantRgbCodes
     ? variantRgbCodes[appConfig.variant]!
     : variantRgbCodes.default
 
-const colours = {
+export const colours = {
   primary: `rgb(${rgbCodes.primary}, 1)`,
   secondary: `rgb(${rgbCodes.secondary}, 1)`,
   light: `rgb(${rgbCodes.light}, 1)`,
