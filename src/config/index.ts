@@ -1,9 +1,9 @@
 import { BUILD_VARIANTS } from "./constants"
 import { AppConfig } from "./defineConfig"
 import { getBuildVariant } from "./utils"
+import createDevConfig from "./variants/dev"
 import createKumarajivaConfig from "./variants/kumarajiva"
 import createLabConfig from "./variants/lab"
-import createLocalConfig from "./variants/local"
 import createPubConfig from "./variants/pub"
 import createRNDConfig from "./variants/rnd"
 
@@ -14,7 +14,7 @@ const configCreatorMap: Record<
   pub: createPubConfig,
   lab: createLabConfig,
   rnd: createRNDConfig,
-  local: createLocalConfig,
+  dev: createDevConfig,
   kumarajiva: createKumarajivaConfig,
 }
 

@@ -6,6 +6,9 @@ import * as Sentry from "@sentry/nextjs"
 import { getBasePath } from "@/config/utils"
 
 export default function Page() {
+  const url = `${getBasePath()}/next/api/sentry-example-api`
+  // eslint-disable-next-line no-console
+  console.log({ url })
   return (
     <div>
       <Head>
@@ -51,7 +54,6 @@ export default function Page() {
             margin: "18px",
           }}
           onClick={async () => {
-            const url = `${getBasePath()}/next/api/sentry-example-api`
             await Sentry.startSpan(
               {
                 name: "Example Frontend Span",
@@ -60,7 +62,7 @@ export default function Page() {
               async () => {
                 const res = await fetch(url)
                 if (!res.ok) {
-                  alert("throwing error!")
+                  alert("Throwing error!")
                   throw new Error("Sentry Example Frontend Error")
                 }
               },

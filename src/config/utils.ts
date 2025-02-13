@@ -11,6 +11,6 @@ export const getBuildVariant = () => {
 
 export const getBasePath = () => {
   const buildVariant = getBuildVariant()
-  const servedAtRoot = buildVariant === "pub" || buildVariant === "local"
+  const servedAtRoot = buildVariant === "pub" || buildVariant === "dev"
   return servedAtRoot ? String("") : "/" + buildVariant
 }
