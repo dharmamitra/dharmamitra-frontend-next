@@ -19,7 +19,7 @@ const configCreatorMap: Record<
 }
 
 function getConfig() {
-  const { buildVariant } = getBuildVariant()
+  const buildVariant = getBuildVariant()
 
   const configCreator: () => AppConfig = configCreatorMap[buildVariant]
 

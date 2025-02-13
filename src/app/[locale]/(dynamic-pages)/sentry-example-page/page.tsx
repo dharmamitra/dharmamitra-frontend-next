@@ -51,8 +51,7 @@ export default function Page() {
             margin: "18px",
           }}
           onClick={async () => {
-            const url = `${getBasePath().basePath}/next/api/sentry-example-api`
-
+            const url = `${getBasePath()}/next/api/sentry-example-api`
             await Sentry.startSpan(
               {
                 name: "Example Frontend Span",
@@ -65,6 +64,7 @@ export default function Page() {
                 }
               },
             )
+            alert("Error sent!")
           }}
         >
           Throw error!

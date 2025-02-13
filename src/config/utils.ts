@@ -6,13 +6,11 @@ const buildVariantValidator = z.enum(BUILD_VARIANTS).default("pub")
 
 export const getBuildVariant = () => {
   const variant = process.env.NEXT_PUBLIC_BUILD_VARIANT
-  const buildVariant = buildVariantValidator.parse(variant)
-  return { buildVariant }
+  return buildVariantValidator.parse(variant)
 }
 
 export const getBasePath = () => {
-  const { buildVariant } = getBuildVariant()
+  const buildVariant = getBuildVariant()
   const servedAtRoot = buildVariant === "pub" || buildVariant === "local"
-
-  return { basePath: servedAtRoot ? String("") : "/" + buildVariant }
+  return servedAtRoot ? String("") : "/" + buildVariant
 }

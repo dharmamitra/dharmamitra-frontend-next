@@ -13,15 +13,13 @@ export const allPages = ["home", "about", "team", "guide", "news"] as const
 export const defaultSubPages: Page[] = ["about", "team", "news"]
 
 export const appConfigSchema = z.object({
-  variant: z.enum(BUILD_VARIANTS).default(getBuildVariant().buildVariant),
+  variant: z.enum(BUILD_VARIANTS).default(getBuildVariant()),
   storageVersionId: z.string().default("2"),
   isClient: z.boolean().default(false),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
-  siteUrl: z
-    .string()
-    .default("https://dharmamitra.org" + getBasePath().basePath),
-  basePath: z.string().default(getBasePath().basePath),
+  siteUrl: z.string().default("https://dharmamitra.org" + getBasePath()),
+  basePath: z.string().default(getBasePath()),
   assetPaths: z
     // relative to `/public`, dimentions for aspect ratio
     .object({
