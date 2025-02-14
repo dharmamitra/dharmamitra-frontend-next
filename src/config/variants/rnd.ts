@@ -6,6 +6,7 @@ export default function createRNDConfig() {
       hasSearch: true,
       hasTranslateExtendedOptions: true,
       hasNexus: true,
+      hasFeedbackWidget: true,
     },
   })
 }

@@ -6,6 +6,7 @@ export default function createDevConfig() {
       hasTranslateExtendedOptions: true,
       hasSearch: true,
       hasNexus: true,
+      hasFeedbackWidget: true,
     },
   })
 }

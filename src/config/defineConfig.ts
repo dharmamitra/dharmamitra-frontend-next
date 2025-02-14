@@ -71,6 +71,7 @@ export const appConfigSchema = z.object({
       hasSearch: z.boolean().default(false),
       hasNexus: z.boolean().default(false),
       hasTranslateExtendedOptions: z.boolean().default(false),
+      hasFeedbackWidget: z.boolean().default(false),
     })
     .default({}),
 })
