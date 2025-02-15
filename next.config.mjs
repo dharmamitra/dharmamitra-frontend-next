@@ -45,7 +45,7 @@ const sentryConfig = {
   reactComponentAnnotation: {
     enabled: true,
   },
-  tunnelRoute: "/monitoring-tunnel",
+  // tunnelRoute: "/monitoring-tunnel",
   hideSourceMaps: true,
   disableLogger: false,
   sourcemaps: {

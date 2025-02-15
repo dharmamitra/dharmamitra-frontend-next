@@ -18,8 +18,8 @@ const isMDContent = (source: string) => {
 }
 
 const hasBuildExamplePost = (path: string) => {
-  const { buildVariant } = getBuildVariant()
-  if (!(buildVariant === "local" || buildVariant === "rnd")) return false
+  const buildVariant = getBuildVariant()
+  if (!(buildVariant === "dev" || buildVariant === "rnd")) return false
   return path.includes(EXAMPLE_POST_SLUG)
 }
 
