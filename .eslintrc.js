@@ -133,6 +133,7 @@ module.exports = {
         ignoreNonDOM: true,
       },
     ],
+    "@typescript-eslint/no-unused-vars": "off", // duplicate rule
   },
   settings: {
     react: {

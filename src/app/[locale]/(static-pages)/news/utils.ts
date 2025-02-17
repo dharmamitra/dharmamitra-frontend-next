@@ -5,14 +5,22 @@ import path from "path"
 
 import LocalLink from "@/components/LocalLink"
 import MDXImage from "@/components/MDXImage"
+import { getBuildVariant } from "@/config/utils"
 import { type NewsPost, NewsPostDataSchema } from "@/content/schemas"
 
 const NEWS_PATH = path.join(process.cwd(), "src/content/news")
 
+const EXAMPLE_POST_SLUG = "3999-02-09-example"
+
 const isMDContent = (source: string) => {
-  // Check if there's actual content beyond frontmatter
   const content = source.trim().split("---")[2]
   return Boolean(content && content.trim().length > 0)
+}
+
+const hasBuildExamplePost = (path: string) => {
+  const { buildVariant } = getBuildVariant()
+  if (!(buildVariant === "local" || buildVariant === "rnd")) return false
+  return path.includes(EXAMPLE_POST_SLUG)
 }
 
 export const getPostFileRoutes = async (locale: string) => {
@@ -22,7 +30,9 @@ export const getPostFileRoutes = async (locale: string) => {
       filePath: path.join(NEWS_PATH, slug, `${locale}.mdx`),
       slug,
     }))
-    .filter(({ filePath }) => existsSync(filePath))
+    .filter(
+      ({ filePath }) => existsSync(filePath) && hasBuildExamplePost(filePath),
+    )
 }
 
 export const getPostFileContent = async (file: {
