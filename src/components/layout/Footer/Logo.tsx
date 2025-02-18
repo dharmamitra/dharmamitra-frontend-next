@@ -7,7 +7,6 @@ import appConfig from "@/config"
 const linkStyles = {
   display: "flex",
   alignItems: "flex-end",
-  height: "100%",
 } as const
 
 const LogoImage = () => {
@@ -15,23 +14,26 @@ const LogoImage = () => {
     basePath,
     assetPaths: { logoLarge },
   } = appConfig
+
   return (
     <Box
       sx={{
+        width: "100%",
         maxWidth: { xs: "264px", lg: "324px", xl: "334px" },
-        maxHeight: { xs: "264px", md: "170px", lg: "unset" },
+        height: "auto",
       }}
     >
       <Image
         src={basePath + logoLarge.src}
         alt="Logo"
-        sizes="100vw"
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
+        sizes="(max-width: 1200px) 264px, (max-width: 1536px) 324px, 334px"
+        priority
         width={logoLarge.width}
         height={logoLarge.height}
+        style={{
+          width: "100%",
+          height: "auto",
+        }}
       />
     </Box>
   )

@@ -13,12 +13,17 @@ type Props = {
   locale: SupportedLocale
 }
 
+const baseStyles = {
+  width: "100%",
+  height: "100%",
+} as const
+
 export default async function LayoutBase({ children, locale }: Props) {
   const messages = await getMessages()
 
   return (
-    <html lang={locale}>
-      <body>
+    <html lang={locale} style={baseStyles}>
+      <body style={baseStyles}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />

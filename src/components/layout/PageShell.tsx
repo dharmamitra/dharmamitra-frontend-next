@@ -12,7 +12,14 @@ type Props = {
 
 export default function PageShell({ children, sx }: Props) {
   return (
-    <>
+    <Box
+      sx={{
+        minHeight: "100%",
+        display: "grid",
+        gridTemplateRows: "auto 1fr auto",
+        gridTemplateColumns: "100%",
+      }}
+    >
       <NavigationBar />
       <Box
         sx={{
@@ -25,6 +32,6 @@ export default function PageShell({ children, sx }: Props) {
         {children}
       </Box>
       <Footer />
-    </>
+    </Box>
   )
 }
