@@ -1,7 +1,7 @@
 import React from "react"
+import { useChat, UseChatOptions } from "@ai-sdk/react"
 import { Box } from "@mui/material"
 import Typography from "@mui/material/Typography"
-import { useChat, UseChatOptions } from "ai/react"
 
 import ExceptionText from "@/components/ExceptionText"
 import LoadingDots from "@/components/LoadingDots"
@@ -20,7 +20,7 @@ export default function PrimaryExplanationStream({
   isExpanded,
   chatPropsWithId,
 }: ExplanationProps) {
-  const { messages, isLoading, handleSubmit, error } = useChat(chatPropsWithId)
+  const { messages, status, handleSubmit, error } = useChat(chatPropsWithId)
 
   React.useEffect(() => {
     if (isExpanded) {
@@ -41,7 +41,7 @@ export default function PrimaryExplanationStream({
     })
   }, [messages, setStream])
 
-  if (isLoading && stream.parsedContent.length < 1)
+  if (status === "submitted" && stream.parsedContent.length < 1)
     return (
       <Box pt={1} pb={2}>
         <LoadingDots />

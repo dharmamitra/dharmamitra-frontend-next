@@ -1,9 +1,9 @@
 "use client"
 
 import React, { forwardRef } from "react"
+import { useChat, UseChatOptions } from "@ai-sdk/react"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
-import { useChat, UseChatOptions } from "ai/react"
 
 import ExceptionText from "@/components/ExceptionText"
 import LoadingDots from "@/components/LoadingDots"
@@ -29,7 +29,7 @@ const wrapperBoxStyles = {
 
 const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
   function TranslationOutput({ chatPropsWithId, input }, ref) {
-    const { messages, isLoading, error } = useChat(chatPropsWithId)
+    const { messages, status, error } = useChat(chatPropsWithId)
 
     const [stream, setStream] =
       React.useState<ParsedStream>(initialParsedStream)
@@ -50,11 +50,11 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
     }, [input, setStream])
 
     React.useEffect(() => {
-      if (!isLoading) return
+      if (status !== "submitted") return
       setStream(initialParsedStream)
-    }, [isLoading, setStream])
+    }, [status, setStream])
 
-    if (isLoading && stream.parsedContent.length < 1) {
+    if (status === "submitted" && stream.parsedContent.length < 1) {
       return (
         <Box sx={{ ...wrapperBoxStyles, py: 2.5 }}>
           <LoadingDots />

@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { useChat, UseChatOptions } from "ai/react"
+import { useChat, UseChatOptions } from "@ai-sdk/react"
 
 interface TranslatorKeyboardControlsProps {
   chatPropsWithId: UseChatOptions
@@ -12,7 +12,7 @@ export default function TranslatorKeyboardControls({
   chatPropsWithId,
   isInput,
 }: TranslatorKeyboardControlsProps) {
-  const { stop, isLoading, handleSubmit } = useChat(chatPropsWithId)
+  const { stop, status, handleSubmit } = useChat(chatPropsWithId)
 
   const handleUserKeyPress = React.useCallback(
     (event: KeyboardEvent) => {
@@ -21,11 +21,11 @@ export default function TranslatorKeyboardControls({
       if (isInput && key === "Enter" && ctrlKey) {
         handleSubmit(event, { allowEmptySubmit: true })
       }
-      if (isLoading && key === "Escape") {
+      if (status === "submitted" && key === "Escape") {
         stop()
       }
     },
-    [stop, isLoading, handleSubmit, isInput],
+    [stop, status, handleSubmit, isInput],
   )
 
   React.useEffect(() => {

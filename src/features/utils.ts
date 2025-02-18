@@ -1,4 +1,4 @@
-import { UseChatOptions } from "ai/react"
+import { UseChatOptions } from "@ai-sdk/react"
 
 import appConfig from "@/config"
 

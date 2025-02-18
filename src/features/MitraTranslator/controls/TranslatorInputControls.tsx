@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react"
+import { UseChatOptions } from "@ai-sdk/react"
 import { Box } from "@mui/material"
-import { UseChatOptions } from "ai/react"
 
 import ClearButton from "@/components/ClearButton"
 import StartStopStreamButton from "@/components/StartStopStreamButton"
