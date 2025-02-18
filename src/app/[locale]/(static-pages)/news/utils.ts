@@ -30,9 +30,16 @@ export const getPostFileRoutes = async (locale: string) => {
       filePath: path.join(NEWS_PATH, slug, `${locale}.mdx`),
       slug,
     }))
-    .filter(
-      ({ filePath }) => existsSync(filePath) && hasBuildExamplePost(filePath),
-    )
+    .filter(({ filePath }) => {
+      if (existsSync(filePath)) {
+        if (filePath.includes(EXAMPLE_POST_SLUG)) {
+          return hasBuildExamplePost(filePath)
+        }
+        return true
+      }
+
+      return false
+    })
 }
 
 export const getPostFileContent = async (file: {

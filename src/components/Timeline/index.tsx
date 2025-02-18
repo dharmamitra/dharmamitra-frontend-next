@@ -13,7 +13,7 @@ export default function Timeline({ items }: TimelineProps) {
       spacing={6}
       sx={{
         position: "relative",
-        maxWidth: "760px",
+        maxWidth: "720px",
         mx: "auto",
       }}
     >

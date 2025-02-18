@@ -45,7 +45,7 @@ export default function NewsPostPage({ params }: NewsPostParams) {
     throw new Error(result.error.message)
   }
 
-  const { title, date, description, content } = result.post
+  const { title, date, content, type, location } = result.post
 
   return (
     <PageContentFrame
@@ -78,7 +78,10 @@ export default function NewsPostPage({ params }: NewsPostParams) {
             {title}
           </Typography>
 
-          <Typography color="text.secondary">{description}</Typography>
+          <Typography color="text.secondary">
+            {type}
+            {location && `, ${location}`}
+          </Typography>
         </Box>
         <Divider sx={{ mb: 6 }} />
 

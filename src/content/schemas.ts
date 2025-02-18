@@ -4,7 +4,8 @@ import { z } from "zod"
 export const NewsPostFrontmatterSchema = z.object({
   title: z.string(),
   date: z.string().date(),
-  description: z.string(),
+  type: z.string(),
+  location: z.string().optional(),
 })
 
 export const NewsPostDataSchema = z.object({

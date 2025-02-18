@@ -14,7 +14,7 @@ export default function TimelineTitle({
   content,
 }: TimelineTitleProps) {
   const titleStyles = {
-    fontSize: { xs: "1.5rem", md: "2rem" },
+    fontSize: "1.35rem !important",
     mb: 0,
   }
 

@@ -13,13 +13,12 @@ export default function TimelineDot({ sx }: TimelineDotProps) {
         "&::before, &::after, .inner-ring": {
           content: '""',
           position: "absolute",
-          left: { xs: 60, md: 160 },
           transform: "translateX(-50%)",
           borderRadius: "50%",
         },
         // Main dot
         "&::before": {
-          top: "12px",
+          top: "0.5rem",
           width: 12,
           height: 12,
           bgcolor: "grey.300",
@@ -28,7 +27,7 @@ export default function TimelineDot({ sx }: TimelineDotProps) {
         },
         // Inner ring
         ".inner-ring": {
-          top: "12px",
+          top: "0.5rem",
           width: 22,
           height: 22,
           border: "2px solid",
@@ -38,7 +37,7 @@ export default function TimelineDot({ sx }: TimelineDotProps) {
         },
         // Outer ring
         "&::after": {
-          top: "12px",
+          top: "0.5rem",
           width: 32,
           height: 32,
           border: "2px solid",

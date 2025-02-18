@@ -1,5 +1,6 @@
 import type { ImageProps } from "next/image"
 import Image from "next/image"
+import { Box } from "@mui/material"
 import fs from "fs"
 import sizeOf from "image-size"
 import path from "path"
@@ -42,64 +43,53 @@ const getImageDimensions = (src: string): ImageDimensions => {
   }
 }
 
-const calculateDimensions = (
-  originalDimensions: ImageDimensions,
-  requestedWidth?: number | string,
-  requestedHeight?: number | string,
-) => {
-  const width = requestedWidth ? Number(requestedWidth) : undefined
-  const height = requestedHeight ? Number(requestedHeight) : undefined
-
-  if (width && height) {
-    return { width, height }
-  }
-
-  if (width) {
-    return {
-      width,
-      height: Math.round(width / originalDimensions.aspectRatio),
-    }
-  }
-
-  if (height) {
-    return {
-      width: Math.round(height * originalDimensions.aspectRatio),
-      height,
-    }
-  }
-
-  return {
-    width: originalDimensions.width,
-    height: originalDimensions.height,
-  }
-}
-
 type MDXImageProps = Omit<ImageProps, "src"> & {
   src: string
+  maxWidth?: number
+  maxHeight?: number
+  style?: React.CSSProperties
 }
 
-const MDXImage = ({ src, alt, width, height, ...props }: MDXImageProps) => {
+const MDXImage = ({
+  src,
+  alt,
+  maxWidth,
+  maxHeight,
+  style,
+  ...props
+}: MDXImageProps) => {
   const { basePath } = appConfig
   const assetPath = `${basePath}/public/assets/news/${src}`
   const normalizedSrc = `${basePath}/assets/news/${src}`
 
-  const dimensions =
-    width && height
-      ? { width, height }
-      : calculateDimensions(getImageDimensions(assetPath), width, height)
+  const originalDimensions = getImageDimensions(assetPath)
 
   return (
-    <Image
-      src={normalizedSrc}
-      alt={alt}
-      {...dimensions}
-      style={{
-        objectFit: "contain",
+    <Box
+      component="span"
+      sx={{
+        position: "relative",
         width: "100%",
+        maxWidth: maxWidth ?? "100%",
         height: "auto",
+        maxHeight: maxHeight ?? "none",
+        "& img": {
+          width: "100%",
+          height: "auto",
+          maxHeight: maxHeight ?? "none",
+          objectFit: "contain",
+        },
+        ...style,
       }}
-      {...props}
-    />
+    >
+      <Image
+        src={normalizedSrc}
+        alt={alt}
+        width={originalDimensions.width}
+        height={originalDimensions.height}
+        {...props}
+      />
+    </Box>
   )
 }
 

@@ -289,25 +289,10 @@ The list of unique characters from unicode emojis (https://emojipedia.org/) used
 
 ### Updating news content workflow
 
-1. `git switch main && git pull`
-2. `git switch content-updates && git merge main`
-3. Add a new post directory in `src/content/news/` 
-   - make sure the directory name follows the format `YYYY-MM-DD-title-slug`
-4. Add an `en` (add any other required [supported locale](src/i18n/index.ts)) mdx file(s) to the post directory (eg. `2025-02-09-show-case/en.mdx`) and draft the post content.
-   - REQUIRED CONTENT:
-     - make sure the mdx file inclides the required frontmatter (see [`NewsPostFrontmatterSchema`](src/content/schemas.ts) and other news posts in the directory for reference)
-     - this content populates both the `/news` page and the header of the post page if one is created.
-  - OPTIONAL CONTENT:
-    - if Markdown content is added to the mdx file, this will trigger the generation of a dedicated news article page (otherwise the post's frontmatter will just be listed on the `/news` page).
-    - the markdown content should not contain a `h1` (`#`) as this is automatically added by the news post page layout using the `title` frontmatter value.
-    - any images used in the post:
-      - must be added to the `public/assets/news` directory (logic is in place to resolve base path handling for different build variants).
-      - only need to give the image file name as the `src` value (eg. `apexinfinity-games-korean-robot.png`).
-      - should use the `MDXImage` component  where custom styling / dimensions are needed, but the component must be imported into the mdx file.
-5. Commit and push the changes
-6. Open a PR
-7. Once approved it will be merged into `main` and ready for deployment to production.
+see:
 
+- [Example news post guide (local)](src/content/news/3999-02-09-example/en.mdx)
+- [Example news post guide (rnd)](https://dharmamitra.org/rnd/news/3999-02-09-example)
 
 ### UI messages
 
