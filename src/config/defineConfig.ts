@@ -9,7 +9,14 @@ import { BUILD_VARIANTS } from "./constants"
 import { getBasePath, getBuildVariant } from "./utils"
 
 type Page = keyof Messages["pages"]
-export const allPages = ["home", "about", "team", "guide", "news"] as const
+export const allPages = [
+  "home",
+  "about",
+  "team",
+  "guide",
+  "news",
+  "test",
+] as const
 export const defaultSubPages: Page[] = ["about", "team", "news"]
 
 export const appConfigSchema = z.object({

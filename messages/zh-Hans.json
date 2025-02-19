@@ -218,7 +218,8 @@
     "about": "计划介绍",
     "team": "Team",
     "guide": "Guide",
-    "news": "News"
+    "news": "News",
+    "test": "Test"
   },
   "staticContent": {
     "roles": {
