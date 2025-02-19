@@ -1,6 +1,6 @@
 import React from "react"
 
-import { createTaggingRequestBody } from "@/features/MitraTranslator/utils"
+import { createTaggingRequestBody } from "@/components/features/MitraTranslator/utils"
 import {
   useInputEncodingParamWithLocalStorage,
   useInputSentenceParam,

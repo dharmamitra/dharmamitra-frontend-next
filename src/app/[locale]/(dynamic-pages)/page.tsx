@@ -2,10 +2,10 @@ import { useTranslations } from "next-intl"
 import { Typography } from "@mui/material"
 import visuallyHidden from "@mui/utils/visuallyHidden"
 
+import DualFeatureMitra from "@/components/features/DualFeatureMitra"
+import MitraTranslator from "@/components/features/MitraTranslator"
 import PageContentFrame from "@/components/layout/PageContentFrame"
 import StorageCheck from "@/components/StorageCheck"
-import DualFeatureMitra from "@/features/DualFeatureMitra"
-import MitraTranslator from "@/features/MitraTranslator"
 import useAppConfig from "@/hooks/useAppConfig"
 
 function DualFeatureMitraPage() {
