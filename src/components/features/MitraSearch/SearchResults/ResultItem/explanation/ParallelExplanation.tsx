@@ -36,7 +36,11 @@ export default function PrimaryExplanation({
         display="inline-block"
         my={1}
       >
-        {error.message}
+        {t.rich("generic.exception.default", {
+          newline: (chunks) => (
+            <span style={{ marginLeft: "1ch" }}>{chunks}</span>
+          ),
+        })}
       </Typography>
     )
   }

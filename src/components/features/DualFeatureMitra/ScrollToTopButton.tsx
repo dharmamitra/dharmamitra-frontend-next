@@ -12,10 +12,9 @@ export default function ScrollToTopButton({
       sx={{
         display: scrollMarkerInView ? "none" : "flex",
         position: { xs: "fixed", lg: "sticky" },
-        bottom: "1.5rem",
-        right: { xs: "1.5rem", lg: 0 },
+        bottom: "1rem",
         zIndex: 1000,
-        justifyContent: "flex-end",
+        justifyContent: "flex-start",
         transition: "display 1.5s ease-in-out",
         "@keyframes fadeIn": {
           from: { opacity: 0 },
@@ -35,7 +34,8 @@ export default function ScrollToTopButton({
         aria-label="go back to top"
         sx={{
           backgroundColor: "white",
-          border: "2px solid",
+          border: "1px solid",
+          boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
           borderColor: "divider",
         }}
       >

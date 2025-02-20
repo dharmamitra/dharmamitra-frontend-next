@@ -5,8 +5,8 @@ import { withSentryConfig } from "@sentry/nextjs"
 const withNextIntl = createNextIntlPlugin()
 
 const getBasePath = () => {
-  const { NEXT_PUBLIC_BUILD_VARIANT: variant, NODE_ENV: env } = process.env
-  const servedAtRoot = variant === "pub" || env === "development"
+  const { NEXT_PUBLIC_BUILD_VARIANT: variant } = process.env
+  const servedAtRoot = variant === "pub" || variant === "dev"
   return servedAtRoot ? undefined : "/" + variant
 }
 

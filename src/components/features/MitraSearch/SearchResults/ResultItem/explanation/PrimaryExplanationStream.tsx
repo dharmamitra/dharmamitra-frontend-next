@@ -1,4 +1,5 @@
 import React from "react"
+import { useTranslations } from "next-intl"
 import { useChat, UseChatOptions } from "@ai-sdk/react"
 import { Box } from "@mui/material"
 import Typography from "@mui/material/Typography"
@@ -20,6 +21,8 @@ export default function PrimaryExplanationStream({
   isExpanded,
   chatPropsWithId,
 }: ExplanationProps) {
+  const t = useTranslations("generic")
+
   const { messages, status, handleSubmit, error } = useChat(chatPropsWithId)
 
   React.useEffect(() => {
@@ -57,7 +60,11 @@ export default function PrimaryExplanationStream({
         display="inline-block"
         my={1}
       >
-        {error.message}
+        {t.rich("exception.default", {
+          newline: (chunks) => (
+            <span style={{ marginLeft: "1ch" }}>{chunks}</span>
+          ),
+        })}
       </Typography>
     )
   }

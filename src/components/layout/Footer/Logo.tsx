@@ -7,6 +7,7 @@ import appConfig from "@/config"
 const linkStyles = {
   display: "flex",
   alignItems: "flex-end",
+  textDecoration: "none",
 } as const
 
 const LogoImage = () => {
