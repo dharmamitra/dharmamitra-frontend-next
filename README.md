@@ -1,45 +1,49 @@
-TOC:
+<!-- TOC -->
 
-- [ℹ️ About](#ℹ️-about)
+- [ℹ️ About](#-about)
 - [✨ Getting Started](#-getting-started)
-- [🏗️ Workflow](#️-workflow)
-  - [Branches](#branches)
-  - [Commit messages](#commit-messages)
-    - [Public facing features](#public-facing-features)
-    - [`semantic-release`](#semantic-release)
-  - [Development cycle](#development-cycle)
+- [🏗️ Workflow](#-workflow)
+    - [Branches](#branches)
+    - [Commit messages](#commit-messages)
+        - [Public facing features](#public-facing-features)
+        - [semantic-release](#semantic-release)
+    - [Development cycle](#development-cycle)
 - [🔧 Environment setup](#-environment-setup)
-  - [Env config](#env-config)
-  - [Adding a new environment](#adding-a-new-environment)
-  - [Required config](#required-config)
-  - [Env customization](#env-customization)
-    - [Nav \& sub pages](#nav--sub-pages)
-      - [Nav](#nav)
-      - [Sub page creation](#sub-page-creation)
-    - [Theming](#theming)
-    - [Images](#images)
-- [📡 DharmaMitra API client \& typing (UPDATE IN PROGRESS)](#-dharmamitra-api-client--typing-update-in-progress)
-  - [APIs](#apis)
-  - [API models](#api-models)
-  - [Regular fetchs](#regular-fetchs)
-  - [SSE fetchs](#sse-fetchs)
-    - [Stream formatting markers](#stream-formatting-markers)
-- [🌐 Content updates \& Internationalization (i18n)](#-content-updates--internationalization-i18n)
-  - [Locale content update workflow](#locale-content-update-workflow)
-  - [Internal navigation](#internal-navigation)
-  - [Referrences](#referrences)
+    - [Env config](#env-config)
+    - [Adding a new environment](#adding-a-new-environment)
+    - [Required config](#required-config)
+    - [Env customization](#env-customization)
+        - [Nav & sub pages](#nav--sub-pages)
+            - [Nav](#nav)
+            - [Sub page creation](#sub-page-creation)
+        - [Theming](#theming)
+        - [Images](#images)
+- [📡 DharmaMitra API client & typing UPDATE IN PROGRESS](#-dharmamitra-api-client--typing-update-in-progress)
+    - [APIs](#apis)
+    - [API models](#api-models)
+    - [Regular fetchs](#regular-fetchs)
+    - [SSE fetchs](#sse-fetchs)
+        - [Stream formatting markers](#stream-formatting-markers)
+- [🌐 Content updates & Internationalization i18n](#-content-updates--internationalization-i18n)
+    - [Updating news content workflow](#updating-news-content-workflow)
+    - [UI messages](#ui-messages)
+    - [Locale content update workflow](#locale-content-update-workflow)
+    - [Internal navigation](#internal-navigation)
+    - [Referrences](#referrences)
 - [🎨 Theming](#-theming)
-  - [Config](#config)
-  - [Env specific theming](#env-specific-theming)
-  - [References](#references)
-- [🧪 Testing](#-testing)
+    - [Config](#config)
+    - [Env specific theming](#env-specific-theming)
+    - [References](#references)
+- [🧪 Testing](#%F0%9F%A7%AA-testing)
 - [👷 Building](#-building)
-  - [Running a test build by-passing eslint](#running-a-test-build-by-passing-eslint)
-  - [Running a local build](#running-a-local-build)
+    - [Running a test build by-passing eslint](#running-a-test-build-by-passing-eslint)
+    - [Running a local build](#running-a-local-build)
 - [📦 Containerization](#-containerization)
-  - [Single project variant](#single-project-variant)
-  - [Multiple Docker services](#multiple-docker-services)
+    - [Single project variant](#single-project-variant)
+    - [Multiple Docker services](#multiple-docker-services)
 - [🚢 Deployment](#-deployment)
+
+<!-- /TOC -->
 
 ## ℹ️ About
 
@@ -83,11 +87,9 @@ Open [http://localhost:3000](http://localhost:3000) (adding an environment base 
 ### Branches
 
 - `main`: for production deployment
-- `dev`: for staging deployment
-- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files.
+- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, `src/content/news/*`, or similar content data files.
 - development item branches linked to issue numbers
 
-`dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
 
 ### Commit messages
 
@@ -311,7 +313,7 @@ see:
 (**¡NOTE!** only existing message values can be updated without front-end changes. If a new content item/key is needed, this must be synchronized with a coresponding UI update.)
 
 1. `git switch main && git pull`
-2. `git switch content-updates && git merge main`
+2. `git switch content && git merge main`
 3. make content updates
    - **Updating default locale (EN) content**: make changes to `messages/en.json` values only
      - no changes to keys,

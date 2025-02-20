@@ -20,7 +20,7 @@ Adding news to the Mitra site should relatively painless, but there are a few th
 ## Update workflow
 
 1. `git switch main && git pull`
-2. `git switch content-updates && git merge main`
+2. `git switch content && git merge main`
 3. Add a new post directory in `src/content/news/`
    - make sure the directory name follows the format `YYYY-MM-DD-title-slug`
 4. Add an `en` (add any other required [supported locale](src/i18n/index.ts)) mdx file(s) to the post directory (eg. `2025-02-09-show-case/en.mdx`) and draft the post content.
