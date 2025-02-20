@@ -19,7 +19,7 @@ import { getOptionI18nKeyPath } from "@/utils"
 
 import RadioOption from "../../RadioOption"
 
-export default function LazyTranslationTargetLanguageSelector() {
+export default function TargetLanguageSelector() {
   const t = useTranslations()
 
   const { targetLanguages: servedTargetLanguages } =

@@ -68,7 +68,7 @@ export default function MitraSearch({
             minHeight: "60px",
           }}
         >
-          <InputEncodingSelector isOpen={isSearchControlsOpen} />
+          <InputEncodingSelector isRendered={isSearchControlsOpen} />
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <ShowOptionsSwitch

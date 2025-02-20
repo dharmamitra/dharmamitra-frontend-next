@@ -33,7 +33,12 @@ export default function HomePage() {
   return (
     <>
       <StorageCheck />
-      <PageContentFrame maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
+      <PageContentFrame
+        maxWidth="xl"
+        sx={{
+          mb: { xs: 6, md: 14 },
+        }}
+      >
         <Typography
           variant="h4"
           component="h1"

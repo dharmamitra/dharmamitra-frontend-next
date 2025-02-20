@@ -20,17 +20,17 @@ import { InputEncoding } from "@/utils/api/global/types"
 
 import RadioOption from "../../RadioOption"
 
-export default function InputEncodingSelectorRenderer({
-  isOpen = true,
+export default function InputEncodingSelector({
+  isRendered = true,
 }: {
-  isOpen?: boolean
+  isRendered?: boolean
 }) {
-  if (!isOpen) return null
+  if (!isRendered) return null
 
-  return <InputEncodingSelector />
+  return <Selector />
 }
 
-function InputEncodingSelector() {
+function Selector() {
   const t = useTranslations()
 
   const [inputEncoding, setInputEncoding] =
