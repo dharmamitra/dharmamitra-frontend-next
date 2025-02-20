@@ -16,9 +16,9 @@ export const searchInputId = "search-input-field"
 export default function SearchInput({ className }: { className?: string }) {
   const t = useTranslations("search")
 
-  const [initialInputValue, setSearchInputParam] = useSearchInputParam()
+  const [searchInputParam, setSearchInputParam] = useSearchInputParam()
 
-  const [searchInput, setSearchInput] = React.useState(initialInputValue)
+  const [searchInput, setSearchInput] = React.useState(searchInputParam)
 
   const debouncedSearchInput = useDebouncedValue(searchInput, 100)
 
@@ -74,10 +74,10 @@ export default function SearchInput({ className }: { className?: string }) {
           inputProps={{
             "aria-label": "search",
           }}
-          value={searchInput}
+          value={searchInputParam}
           multiline
           type="search"
-          onChange={(event) => setSearchInput(event.target.value)}
+          onChange={(event) => setSearchInputParam(event.target.value)}
           onKeyDown={handleKeyPress}
           endAdornment={
             <Box
@@ -86,14 +86,17 @@ export default function SearchInput({ className }: { className?: string }) {
                 alignItems: "center",
               }}
             >
-              <TriggerQueryButton input={searchInput} />
+              <TriggerQueryButton input={searchInputParam} />
 
-              <ClearButton input={searchInput} setInput={setSearchInputParam} />
+              <ClearButton
+                input={searchInputParam}
+                setInput={setSearchInputParam}
+              />
             </Box>
           }
         />
       </Box>
-      <SearchKeyboardControls input={searchInput} />
+      <SearchKeyboardControls input={searchInputParam} />
     </>
   )
 }
