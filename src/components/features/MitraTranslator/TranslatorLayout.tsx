@@ -26,11 +26,23 @@ function TranslatorLayout({
         {outputContoles}
       </LayoutFrame.PanelBox>
 
-      <LayoutFrame.PanelBox type="text" placement="start">
+      <LayoutFrame.PanelBox
+        type="text"
+        placement="start"
+        sx={{
+          py: 1,
+        }}
+      >
         {inputBlock}
       </LayoutFrame.PanelBox>
 
-      <LayoutFrame.PanelBox type="text" placement="end">
+      <LayoutFrame.PanelBox
+        type="text"
+        placement="end"
+        sx={{
+          py: 1,
+        }}
+      >
         {outputBlock}
       </LayoutFrame.PanelBox>
     </LayoutFrame>
@@ -49,7 +61,7 @@ export function LayoutFrame({ children }: LayoutFrameProps) {
       sx={{
         display: "grid",
         gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto auto 1fr 1fr",
+        gridTemplateRows: "auto auto auto auto",
         "@media (min-width: 760px)": {
           gridTemplateColumns: "1fr 1fr",
           gridTemplateRows: "auto 1fr",

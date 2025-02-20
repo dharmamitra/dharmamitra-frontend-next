@@ -33,7 +33,6 @@ const TranslatorInput = ({
         display: "grid",
         minHeight: "100%",
         width: "100%",
-        height: "100%",
         alignItems: "flex-start",
         borderTopRightRadius: "none",
         borderBottomRightRadius: "none",

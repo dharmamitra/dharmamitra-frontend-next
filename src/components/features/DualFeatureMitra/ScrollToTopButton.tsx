@@ -10,7 +10,10 @@ export default function ScrollToTopButton({
   return (
     <Box
       sx={{
-        display: scrollMarkerInView ? "none" : "flex",
+        display: {
+          xs: scrollMarkerInView ? "none" : "flex",
+          lg: "none",
+        },
         position: { xs: "fixed", lg: "sticky" },
         bottom: "1rem",
         zIndex: 1000,
