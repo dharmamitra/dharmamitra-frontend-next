@@ -6,6 +6,7 @@ export default function createLabConfig() {
       hasTranslateExtendedOptions: true,
       hasSearch: true,
       hasNexus: true,
+      hasFeedbackWidget: true,
     },
   })
 }

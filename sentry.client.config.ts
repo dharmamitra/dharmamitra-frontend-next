@@ -4,6 +4,7 @@
 
 import * as Sentry from "@sentry/nextjs"
 
+import appConfig from "@/config"
 import { colours } from "@/utils/theme/config"
 
 Sentry.init({
@@ -15,22 +16,26 @@ Sentry.init({
       maskAllText: true,
       blockAllMedia: true,
     }),
-    Sentry.feedbackIntegration({
-      // see: https://docs.sentry.io/platforms/javascript/user-feedback/configuration/
-      // TODO: i18n
-      colorScheme: "light",
-      themeLight: {
-        accentBackground: colours.secondary,
-      },
-      triggerLabel: "Give feedback",
-      triggerAriaLabel: "Give feedback",
-      formTitle: "We value your feedback!",
-      nameLabel: "Name",
-      namePlaceholder: "Your Name",
-      messagePlaceholder: "What would you like to let us know?",
-      submitButtonLabel: "Send",
-      successMessageText: "Sent! Thank you!",
-    }),
+    ...(appConfig.featureFlags.hasFeedbackWidget
+      ? [
+          Sentry.feedbackIntegration({
+            // see: https://docs.sentry.io/platforms/javascript/user-feedback/configuration/
+            // TODO: i18n?
+            colorScheme: "light",
+            themeLight: {
+              accentBackground: colours.secondary,
+            },
+            triggerLabel: "Give feedback",
+            triggerAriaLabel: "Give feedback",
+            formTitle: "We value your feedback!",
+            nameLabel: "Name",
+            namePlaceholder: "Your Name",
+            messagePlaceholder: "What would you like to let us know?",
+            submitButtonLabel: "Send",
+            successMessageText: "Sent! Thank you!",
+          }),
+        ]
+      : []),
   ],
 
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
