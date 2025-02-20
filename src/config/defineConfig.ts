@@ -2,6 +2,7 @@ import { z } from "zod"
 
 import {
   allTargetLanguages,
+  stableTargetLanguages,
   TargetLanguage,
 } from "@/utils/api/translation/params"
 
@@ -70,7 +71,7 @@ export const appConfigSchema = z.object({
             },
           ),
         )
-        .default(allTargetLanguages),
+        .default(stableTargetLanguages),
     })
     .default({}),
   featureFlags: z

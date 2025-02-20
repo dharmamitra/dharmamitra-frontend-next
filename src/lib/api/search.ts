@@ -174,6 +174,103 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/knn-translate-gemini/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Knn Translate Gemini Endpoint */
+    post: operations["knn_translate_gemini_endpoint_knn_translate_gemini__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/knn-translate-gemini-no-stream/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Knn Translate Gemini Endpoint No Stream */
+    post: operations["knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/v1/chat/completions": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Chat Completions
+     * @description This endpoint emulates the OpenAI /v1/chat/completions API.
+     *     It supports streaming via SSE or normal single-response mode.
+     */
+    post: operations["chat_completions_v1_chat_completions_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/rate_translations": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Rate Translations
+     * @description Endpoint to rate translations using a generative model.
+     *     Expects a JSON payload with translation data.
+     */
+    post: operations["rate_translations_rate_translations_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/rate_translations_ref_free": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Rate Translations Ref Free
+     * @description Endpoint to rate translations using a generative model without reference.
+     *     Expects a JSON payload with translation data.
+     */
+    post: operations["rate_translations_ref_free_rate_translations_ref_free_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
 export type webhooks = Record<string, never>
 export interface components {
@@ -227,6 +324,11 @@ export interface components {
        * @default normal
        */
       mode: string
+      /**
+       * Do Grammar
+       * @default true
+       */
+      do_grammar: boolean
     }
     /** Body_knn_translate_endpoint_no_stream_knn_translate_no_stream__post */
     Body_knn_translate_endpoint_no_stream_knn_translate_no_stream__post: {
@@ -242,6 +344,50 @@ export interface components {
        * @default normal
        */
       mode: string
+    }
+    /** Body_knn_translate_gemini_endpoint_knn_translate_gemini__post */
+    Body_knn_translate_gemini_endpoint_knn_translate_gemini__post: {
+      /** Query */
+      query: string
+      /**
+       * Language
+       * @default english
+       */
+      language: string
+      /**
+       * Do Grammar
+       * @default true
+       */
+      do_grammar: boolean
+      /**
+       * Use Pro Model
+       * @default false
+       */
+      use_pro_model: boolean
+      /** Password */
+      password: string
+    }
+    /** Body_knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post */
+    Body_knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post: {
+      /** Query */
+      query: string
+      /**
+       * Language
+       * @default english
+       */
+      language: string
+      /**
+       * Do Grammar
+       * @default true
+       */
+      do_grammar: boolean
+      /**
+       * Use Pro Model
+       * @default false
+       */
+      use_pro_model: boolean
+      /** Password */
+      password: string
     }
     /** Body_search_endpoint_secondary_secondary__post */
     Body_search_endpoint_secondary_secondary__post: {
@@ -392,6 +538,11 @@ export interface components {
       /** @default all */
       filter_target_language: components["schemas"]["FilterLanguage"]
       source_filters?: components["schemas"]["SourceFilters"] | null
+      /**
+       * Do Ranking
+       * @default true
+       */
+      do_ranking: boolean
     }
     /**
      * SearchType
@@ -458,6 +609,27 @@ export interface components {
       text_main: string
       /** Text After */
       text_after: string
+      /** Translation */
+      translation: string
+    }
+    /** TranslationData */
+    TranslationData: {
+      /** Original */
+      original: string
+      /** Reference */
+      reference: string
+      /** Prediction */
+      prediction: string
+    }
+    /** TranslationDataRefFree */
+    TranslationDataRefFree: {
+      /** Original */
+      original: string
+      /** Prediction */
+      prediction: string
+    }
+    /** TranslationResponse */
+    TranslationResponse: {
       /** Translation */
       translation: string
     }
@@ -795,7 +967,159 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
+          "application/json": components["schemas"]["TranslationResponse"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  knn_translate_gemini_endpoint_knn_translate_gemini__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_knn_translate_gemini_endpoint_knn_translate_gemini__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
           "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["TranslationResponse"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  chat_completions_v1_chat_completions_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": unknown
+        }
+      }
+    }
+  }
+  rate_translations_rate_translations_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TranslationData"][]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": number[]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  rate_translations_ref_free_rate_translations_ref_free_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TranslationDataRefFree"][]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": number[]
         }
       }
       /** @description Validation Error */

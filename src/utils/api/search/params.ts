@@ -62,6 +62,7 @@ export const searchParamsNames: SearchParamNames = {
     search_target: "search_target",
   },
   api: {
+    do_ranking: "do_ranking",
     input_encoding: "input_encoding",
     search_input: "search_input",
     search_type: "search_type",
@@ -89,4 +90,5 @@ export const allSearchDefaultParams: AllSearchParamDefaults = {
   [filter_source_language]: defaultSourceLanguage,
   [filter_target_language]: defaultSourceLanguage,
   [source_filters]: undefined,
+  do_ranking: true,
 }

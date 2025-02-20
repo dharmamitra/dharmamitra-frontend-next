@@ -31,6 +31,29 @@ export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
   "sanskrit-knn",
   "modern-chinese",
 )
+
+export type StableTargetLanguage = Schema["TargetLanguage"] &
+  keyof Messages["translation"]["targetLanguages"]
+
+export const stableTargetLanguages: StableTargetLanguage[] =
+  exhaustiveStringTuple<Schema["TargetLanguage"]>()(
+    "english",
+    "english-explained",
+    "tibetan",
+    "sanskrit",
+    "sanskrit-dev",
+    "buddhist-chinese",
+    "korean",
+    "german",
+    "russian",
+    "french",
+    "italian",
+    "spanish",
+    "hindi",
+    "japanese",
+    "modern-chinese",
+  )
+
 export const defaultTargetLanguage: TargetLanguage = "english"
 
 export const defaultTranslationModel: Extract<

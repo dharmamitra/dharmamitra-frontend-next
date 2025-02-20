@@ -189,15 +189,20 @@ export interface components {
      */
     TargetLanguage:
       | "english"
+      | "english-explained"
       | "tibetan"
       | "sanskrit"
       | "sanskrit-dev"
       | "buddhist-chinese"
+      | "modern-chinese"
+      | "russian"
       | "korean"
       | "japanese"
       | "german"
       | "french"
       | "italian"
+      | "hindi"
+      | "spanish"
     /**
      * TargetLanguageExperimental
      * @enum {string}
@@ -229,9 +234,11 @@ export interface components {
     TranslationModel:
       | ""
       | "default"
-      | "madlad"
       | "FGS-RAG"
-      | "MITRA-RAG"
+      | "MITRA-BASE"
+      | "MITRA-PRO"
+      | "GEMINI-RAG"
+      | "GEMINI-MARKUP-RAG"
       | "gemma2"
       | "claude"
     /** ValidationError */
