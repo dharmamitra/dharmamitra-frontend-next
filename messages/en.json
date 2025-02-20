@@ -155,7 +155,7 @@
       "tag": "Tag",
       "meanings": "Meanings",
       "unsuccessful": "Grammar analysis was not successful.",
-      "credit": "This grammatical parsing engine was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
+      "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
     },
     "targetLanguages": {
       "buddhist-chinese": "Buddhist Chinese",

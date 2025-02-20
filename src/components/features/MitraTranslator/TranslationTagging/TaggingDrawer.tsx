@@ -1,16 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { useTranslations } from "next-intl"
 import CloseIcon from "@mui/icons-material/Close"
-import { Typography } from "@mui/material"
 import Box from "@mui/material/Box"
 import Drawer from "@mui/material/Drawer"
 import IconButton from "@mui/material/IconButton"
-import Link from "@mui/material/Link"
 import Stack from "@mui/material/Stack"
-
-import { linkAttrs } from "@/utils/constants"
 
 import ResizeHandle from "./ResizeHandle"
 import TranslationTaggingOutput from "./TranslationTaggingOutput"
@@ -31,8 +26,6 @@ export default function TaggingDrawer({
   drawerWidth,
   setDrawerWidth,
 }: TaggingDrawerProps) {
-  const t = useTranslations("translation")
-
   return (
     <Box sx={{ display: "flex" }}>
       <Drawer
@@ -82,19 +75,6 @@ export default function TaggingDrawer({
             }}
           >
             <TranslationTaggingOutput />
-            <Typography variant="body2" mt={4}>
-              {t.rich("tagging.credit", {
-                link: (chunks) => (
-                  <Link
-                    sx={{ color: "text.primary", fontWeight: 500 }}
-                    href="http://www.sanskrit-linguistics.org/dcs/"
-                    {...linkAttrs}
-                  >
-                    {chunks}
-                  </Link>
-                ),
-              })}
-            </Typography>
           </Box>
         </Box>
       </Drawer>

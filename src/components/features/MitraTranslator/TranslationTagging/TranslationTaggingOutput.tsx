@@ -2,6 +2,7 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
+import Link from "@mui/material/Link"
 import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 
@@ -9,6 +10,7 @@ import { DMFetchApi } from "@/api"
 import Error from "@/components/Error"
 import SkeletonGroup from "@/components/SkeletonGroup"
 import useTaggingRequestBody from "@/hooks/translation/useTaggingRequestBody"
+import { linkAttrs } from "@/utils/constants"
 
 import SentenceAccordion from "./SentenceAccordion"
 
@@ -31,12 +33,27 @@ export default function TranslationTaggingOutput() {
 
   return (
     <>
-      <Typography
-        component="h3"
-        variant="h5"
-        sx={{ fontWeight: "bold", mb: 4 }}
-      >
+      <Typography component="h3" variant="h5" sx={{ fontWeight: "bold" }}>
         {t("translation.tagging.heading")}
+      </Typography>
+
+      <Typography
+        variant="body2"
+        mt={1}
+        mb={4}
+        sx={{ color: "text.secondary" }}
+      >
+        {t.rich("translation.tagging.credit", {
+          link: (chunks) => (
+            <Link
+              sx={{ fontWeight: 500 }}
+              href="http://www.sanskrit-linguistics.org/dcs/"
+              {...linkAttrs}
+            >
+              {chunks}
+            </Link>
+          ),
+        })}
       </Typography>
 
       {isLoading ? <SkeletonGroup /> : null}
