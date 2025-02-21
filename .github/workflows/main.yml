@@ -34,7 +34,7 @@ jobs:
         run: yarn install --immutable --check-cache
 
       - name: Yarn Audit
-        run: yarn audit --level high
+        run: yarn npm audit
         continue-on-error: true
 
       - name: Typechecking
@@ -46,13 +46,14 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Install Playwright Browsers
-        run: yarn playwright install --with-deps
+      # TODO: Uncomment this when we have Playwright tests
+      # - name: Install Playwright Browsers
+      #   run: yarn playwright install --with-deps
 
-      - name: Playwright tests
-        run: yarn playwright test
-        env:
-          CI: "true"
+      # - name: Playwright tests
+      #   run: yarn playwright test
+      #   env:
+      #     CI: "true"
 
       - uses: actions/upload-artifact@v4
         if: always()
