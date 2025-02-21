@@ -1,4 +1,4 @@
-name: Build Testing (rnd)
+name: Build Development (rnd)
 on:
   workflow_dispatch:
 jobs:

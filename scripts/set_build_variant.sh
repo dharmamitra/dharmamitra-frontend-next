@@ -24,3 +24,10 @@ echo NEXT_PUBLIC_SENTRY_DSN=https://b871842ffbdbe38e2a7af465fc135c60@o4508779444
 # echo "Other configurations can be added here"
 
 echo ".env updated for $BUILD_VARIANT environment"
+
+if [ "$BUILD_VARIANT" != "pub" ]; then
+    echo "Copying sentry.client.config.model.ts to sentry.client.config.ts"
+    cp sentry.client.config.model.ts sentry.client.config.ts
+fi
+
+

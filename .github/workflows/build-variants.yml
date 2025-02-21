@@ -1,11 +1,11 @@
-name: Build Staging (pub)
+name: Build Production Variants (pub, lab)
 on:
   workflow_dispatch:
 jobs:
   build-and-test:
     strategy:
       matrix:
-        variant: [pub]
+        variant: [pub, lab]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
