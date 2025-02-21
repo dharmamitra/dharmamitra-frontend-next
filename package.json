@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:turbo": "next dev --turbopack",
+    "set-variant": "sh ./scripts/set_build_variant.sh",
     "build:pub": "sh ./scripts/set_build_variant.sh pub && next build",
     "build:lab": "sh ./scripts/set_build_variant.sh lab && next build",
     "build:rnd": "sh ./scripts/set_build_variant.sh rnd && next build",

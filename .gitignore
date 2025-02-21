@@ -49,3 +49,6 @@ next-env.d.ts
 
 # million lint
 .million
+
+# sentry
+sentry.client.config.ts

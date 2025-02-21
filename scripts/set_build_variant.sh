@@ -28,6 +28,9 @@ echo ".env updated for $BUILD_VARIANT environment"
 if [ "$BUILD_VARIANT" != "pub" ]; then
     echo "Copying sentry.client.config.model.ts to sentry.client.config.ts"
     cp sentry.client.config.model.ts sentry.client.config.ts
+else
+    echo "Removing sentry.client.config.ts for pub variant"
+    rm -f sentry.client.config.ts
 fi
 
 
