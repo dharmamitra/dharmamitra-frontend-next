@@ -40,8 +40,8 @@
       "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
     },
     "contact": {
-      "h2": "We value your feedback",
-      "p": "Please take a moment to share your thoughts with us. We appreciate you taking the time to help make Dhammamitra better for everyone",
+      "h2": "We'd love to hear from you!",
+      "p": "Please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
       "button": "Email Us"
     }
   },
@@ -155,7 +155,7 @@
       "tag": "Tag",
       "meanings": "Meanings",
       "unsuccessful": "Grammar analysis was not successful.",
-      "credit": "This grammatical parsing engine was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
+      "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
     },
     "targetLanguages": {
       "buddhist-chinese": "Buddhist Chinese",
@@ -217,7 +217,9 @@
     "home": "Home",
     "about": "About",
     "team": "Team",
-    "guide": "Guide"
+    "guide": "Guide",
+    "news": "News",
+    "test": "Test"
   },
   "staticContent": {
     "roles": {
@@ -316,10 +318,17 @@
       }
     }
   },
+  "News": {
+    "title": "News",
+    "h1": "News",
+    "noNews": "No news found! :-)",
+    "localeNotAvailable": "This page is not available in the selected language. Please select a different language.",
+    "goToDefaultLocale": "Go to English"
+  },
   "NotFound": {
     "title": "404 · Page Not Found",
     "h1": "Oh no! Page Not Found",
-    "message": "No beginning point is found of beings wandering and roaming. <cite>(Assusutta)</cite>",
+    "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
     "home": "Go Home"
   }
 }

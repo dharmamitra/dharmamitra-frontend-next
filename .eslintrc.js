@@ -20,7 +20,6 @@ const typescriptRules = {
       objectLiteralTypeAssertions: "never",
     },
   ],
-  "@typescript-eslint/no-unused-vars": "off", // duplicate rule
 }
 
 const reactRules = {
@@ -78,6 +77,17 @@ const importRules = {
 
 module.exports = {
   root: true,
+  ignorePatterns: [
+    ".next/",
+    "node_modules/",
+    "yarn.lock",
+    "coverage/",
+    "test-results/",
+    "playwright-report/",
+    "blob-report/",
+    "playwright/.cache/",
+    "*.d.ts",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
@@ -122,6 +132,7 @@ module.exports = {
         ignoreNonDOM: true,
       },
     ],
+    "@typescript-eslint/no-unused-vars": "off", // duplicate rule
   },
   settings: {
     react: {

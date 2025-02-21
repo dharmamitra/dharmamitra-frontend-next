@@ -2,11 +2,11 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
+import { useChat, UseChatOptions } from "@ai-sdk/react"
 import PlayCircleIcon from "@mui/icons-material/PlayCircle"
 import StopCircleIcon from "@mui/icons-material/StopCircle"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
-import { useChat, UseChatOptions } from "ai/react"
 
 import { tooltipEnterStyles } from "@/components/styled-ssr-safe"
 
@@ -21,7 +21,7 @@ export default function StartStopStreamButton({
 }: StartStopStreamButtonProps) {
   const t = useTranslations()
 
-  const { stop, setInput, isLoading, handleSubmit } = useChat(chatPropsWithId)
+  const { stop, setInput, status, handleSubmit } = useChat(chatPropsWithId)
 
   React.useEffect(() => {
     // Ensures handlers are able to be called
@@ -33,7 +33,7 @@ export default function StartStopStreamButton({
     setInput(input)
   }, [stop, input, setInput])
 
-  if (isLoading) {
+  if (status === "submitted") {
     return (
       <Tooltip title={`${t("generic.stop")} (Esc)`} placement="top">
         <IconButton

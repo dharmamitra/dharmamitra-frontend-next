@@ -1,56 +1,18 @@
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
-import CssBaseline from "@mui/material/CssBaseline"
-import { ThemeProvider } from "@mui/material/styles"
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter"
-import { NuqsAdapter } from "nuqs/adapters/react"
+import { notFound } from "next/navigation"
 
-import appConfig from "@/config"
-import { I18nMetadataHandlerProps, Metadata } from "@/i18n"
-import QueryProvider from "@/utils/QueryProvider"
-import theme from "@/utils/theme"
+import { DefaultPageProps } from "@/app/types"
+import { LayoutBase } from "@/components/layout"
+import { isValidLocaleRoute } from "@/i18n/routing"
 
-export async function generateMetadata({
-  params: { locale },
-}: I18nMetadataHandlerProps): Promise<Metadata> {
-  const t = await getTranslations({ locale, namespace: "metadata" })
-
-  return {
-    metadataBase: new URL(appConfig.siteUrl),
-    title: {
-      default: t("title"),
-      template: `%s · ${appConfig.siteName}`,
-    },
-    // TODO: handle description for envs.
-    description: t("description"),
-    twitter: {
-      card: "summary_large_image",
-    },
-  }
-}
-
-export default function RootLayout({
+export default async function LocaleLayout({
+  params,
   children,
-  params: { locale },
-}: Readonly<{
-  children: React.ReactNode
-  params: { locale: string }
-}>) {
-  unstable_setRequestLocale(locale)
+}: DefaultPageProps) {
+  const { locale } = await params
 
-  return (
-    <html lang={locale}>
-      <body>
-        <QueryProvider>
-          <AppRouterCacheProvider>
-            <NuqsAdapter>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                {children}
-              </ThemeProvider>
-            </NuqsAdapter>
-          </AppRouterCacheProvider>
-        </QueryProvider>
-      </body>
-    </html>
-  )
+  if (!isValidLocaleRoute(locale)) {
+    notFound()
+  }
+
+  return <LayoutBase locale={locale}>{children}</LayoutBase>
 }

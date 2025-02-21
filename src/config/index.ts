@@ -1,50 +1,27 @@
-import { AppConfig, SUPPORTED_ENVS } from "./defineConfig"
-import createKumarajivaConfig from "./envs/kumarajiva"
-import createLabConfig from "./envs/lab"
-import createLocalConfig from "./envs/local"
-import createPubConfig from "./envs/pub"
-import createRNDConfig from "./envs/rnd"
+import { BUILD_VARIANTS } from "./constants"
+import { AppConfig } from "./defineConfig"
+import { getBuildVariant } from "./utils"
+import createDevConfig from "./variants/dev"
+import createKumarajivaConfig from "./variants/kumarajiva"
+import createLabConfig from "./variants/lab"
+import createPubConfig from "./variants/pub"
+import createRNDConfig from "./variants/rnd"
+
+const configCreatorMap: Record<
+  (typeof BUILD_VARIANTS)[number],
+  () => AppConfig
+> = {
+  pub: createPubConfig,
+  lab: createLabConfig,
+  rnd: createRNDConfig,
+  dev: createDevConfig,
+  kumarajiva: createKumarajivaConfig,
+}
 
 function getConfig() {
-  const setEnv = process.env.NEXT_PUBLIC_APP_ENV as AppEnv
+  const buildVariant = getBuildVariant()
 
-  if (!setEnv) {
-    throw new Error(`NEXT_PUBLIC_APP_ENV is not set`)
-  }
-
-  if (!SUPPORTED_ENVS.includes(setEnv)) {
-    throw new Error(`Invalid NEXT_PUBLIC_APP_ENV value: "${setEnv}"`)
-  }
-
-  let configCreator: () => AppConfig = () => {
-    throw new Error(`Missing environment config creator for "${setEnv}"`)
-  }
-
-  // Loop preferred over a switch statement to guard against
-  // missing config creators.
-  SUPPORTED_ENVS.forEach((env) => {
-    if (env !== setEnv) return
-
-    if (env === "pub") {
-      configCreator = createPubConfig
-    }
-
-    if (env === "lab") {
-      configCreator = createLabConfig
-    }
-
-    if (env === "rnd") {
-      configCreator = createRNDConfig
-    }
-
-    if (env === "local") {
-      configCreator = createLocalConfig
-    }
-
-    if (env === "kumarajiva") {
-      configCreator = createKumarajivaConfig
-    }
-  })
+  const configCreator: () => AppConfig = configCreatorMap[buildVariant]
 
   return configCreator()
 }

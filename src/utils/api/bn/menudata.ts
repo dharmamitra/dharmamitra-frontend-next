@@ -1,4 +1,4 @@
-import { transformDataForTreeView } from "@/features/paramSettings/DbSourceFilter/SearchableDbSourceMenu/utils"
+import { transformDataForTreeView } from "@/components/features/paramSettings/DbSourceFilter/SearchableDbSourceMenu/utils"
 
 import apiClients from "../client"
 import type { APIGetRequestQuery, APIGetResponse } from "./types"

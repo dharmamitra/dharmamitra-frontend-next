@@ -9,7 +9,7 @@ const NavItemButtons = dynamic(() => import("./NavItemButtons"), {
   loading: () => <NavItemButtonsLoading />,
 })
 
-const LocaleSelector = dynamic(() => import("../LocaleSelector"), {
+const LocaleSelector = dynamic(() => import("./LocaleSelector"), {
   loading: () => <LanguageIcon color="action" />,
 })
 

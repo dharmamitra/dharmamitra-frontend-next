@@ -1,7 +1,7 @@
 import { NodeApi, TreeApi } from "react-arborist"
 import { atom } from "jotai"
 
-import { DbSourceTreeNode } from "@/features/paramSettings/DbSourceFilter/types"
+import { DbSourceTreeNode } from "@/components/features/paramSettings/DbSourceFilter/types"
 
 /**
  * SOURCE DATA TREE

@@ -1,0 +1,104 @@
+---
+title: "新闻发布指南"
+date: "3999-02-09"
+type: "更新"
+---
+
+import MDXImage from "@/components/MDXImage"
+
+<MDXImage
+  src="apexinfinity-games-korean-robot.png"
+  alt="Apex Infinity Games Korean Robot"
+  maxHeight={500}
+  style={{
+    margin: "2rem auto",
+  }}
+/>
+
+添加新闻到Mitra网站应该相对无痛，但有一些注意事项。以下概述了过程，突出显示了关键细节。
+
+## 更新工作流程
+
+1. `git switch main && git pull`
+2. `git switch content && git merge main`
+3. 在 `src/content/news/` 中添加一个新目录
+   - 确保目录名称遵循 `YYYY-MM-DD-title-slug` 格式
+4. 在目录中添加一个 `en` (添加任何其他所需的[支持的区域设置](src/i18n/index.ts)) mdx 文件(eg. `2025-02-09-show-case/en.mdx`)并草拟帖子内容。
+5. 提交并推送更改
+6. 打开一个PR
+7. 一旦批准，它将被合并到 `main` 中并准备好部署到生产环境中。
+
+## 文件内容
+
+### <span style={{ color: "red" }}>必需的前端元数据</span>
+
+- 确保 mdx 文件包含必需的前端元数据 (见 [`NewsPostFrontmatterSchema`](src/content/schemas.ts) 和目录中其他新闻帖子以供参考)
+- 此内容填充了 `/news` 页面和帖子页面（如果创建了帖子页面）的头部。
+
+### 可选的 Markdown 内容：
+
+- 如果将 Markdown 内容添加到 mdx 文件中，这将触发生成一个专门的新闻文章页面（否则帖子前端元数据将只列在 `/news` 页面上）。
+- 此内容填充了 `/news` 页面和帖子页面（如果创建了帖子页面）的头部。
+
+#### Markdown 示例
+
+内容可以使用常规的 [Markdown](https://www.markdownguide.org/cheat-sheet/) 草拟。此外，由于帖子使用 MDX 渲染，支持的 MDX 组件可以（目前仅扩展到 `MDXImage`，但可以根据需要将自定义组件添加到项目中）。
+
+##### 外部链接
+
+[External link](https://www.google.com) 可以像正常一样使用，但由于项目具有本地化支持，本地链接必须给出默认语言（en）的 slug，并且本地化将在幕后排序（eg. `[local team page link](/team)`）。
+
+##### 图片
+
+帖子中使用的任何图片：
+
+- 必须添加到 `public/assets/news` 目录
+  - 项目中已设置基础路径处理不同构建变体的逻辑。
+  - 图片文件应调整为合理的大小（例如 1000px 宽）
+- 只需给出图片文件名作为 `src` 值（例如 `apexinfinity-games-korean-robot.png`）。
+
+大多数情况下，图片可以使用常规的 markdown 语法（例如 `![alt text](jacquard-loom.jpg)`）。
+
+![The hand of the diligent](loominaries.jpg)
+
+如果需要自定义样式，可以将 `MDXImage` 组件导入到 mdx 文件中，并按如下方式使用：
+
+```mdx
+---
+... frontmatter ...
+---
+
+import MDXImage from "@/components/MDXImage"
+
+... content ...
+
+<MDXImage
+  src="jacquard-loom.jpg"
+  alt="Jacquard Loom, Alf van Beem"
+  maxHeight={500}
+  style={{
+    margin: "2rem auto",
+    display: "block",
+    padding: "1rem",
+  }}
+/>
+```
+
+<figure>
+  <MDXImage
+    src="jacquard-loom.jpg"
+    alt="Jacquard Loom, Alf van Beem"
+    maxHeight={500}
+    style={{
+      margin: "2rem auto",
+    }}
+/>
+
+  <figcaption>
+    Styled picture using imported <code>MDXImage</code> component
+  </figcaption>
+</figure>
+
+## Localization
+
+项目已本地化（见 [支持的区域设置](src/i18n/index.ts)）。每个新闻帖子必须有一个 `en.mdx` 文件。其他支持的区域设置可以可选地通过在新闻帖子目录中创建一个具有区域设置代码的新文件（例如 `zh-Hant.mdx`）来添加。

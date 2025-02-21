@@ -1,45 +1,49 @@
-TOC:
+<!-- TOC -->
 
-- [ℹ️ About](#ℹ️-about)
+- [ℹ️ About](#-about)
 - [✨ Getting Started](#-getting-started)
-- [🏗️ Workflow](#️-workflow)
-  - [Branches](#branches)
-  - [Commit messages](#commit-messages)
-    - [Public facing features](#public-facing-features)
-    - [`semantic-release`](#semantic-release)
-  - [Development cycle](#development-cycle)
+- [🏗️ Workflow](#-workflow)
+    - [Branches](#branches)
+    - [Commit messages](#commit-messages)
+        - [Public facing features](#public-facing-features)
+        - [semantic-release](#semantic-release)
+    - [Development cycle](#development-cycle)
 - [🔧 Environment setup](#-environment-setup)
-  - [Env config](#env-config)
-  - [Adding a new environment](#adding-a-new-environment)
-  - [Required config](#required-config)
-  - [Env customization](#env-customization)
-    - [Nav \& sub pages](#nav--sub-pages)
-      - [Nav](#nav)
-      - [Sub page creation](#sub-page-creation)
-    - [Theming](#theming)
-    - [Images](#images)
-- [📡 DharmaMitra API client \& typing (UPDATE IN PROGRESS)](#-dharmamitra-api-client--typing-update-in-progress)
-  - [APIs](#apis)
-  - [API models](#api-models)
-  - [Regular fetchs](#regular-fetchs)
-  - [SSE fetchs](#sse-fetchs)
-    - [Stream formatting markers](#stream-formatting-markers)
-- [🌐 Content updates \& Internationalization (i18n)](#-content-updates--internationalization-i18n)
-  - [Locale content update workflow](#locale-content-update-workflow)
-  - [Internal navigation](#internal-navigation)
-  - [Referrences](#referrences)
+    - [Env config](#env-config)
+    - [Adding a new environment](#adding-a-new-environment)
+    - [Required config](#required-config)
+    - [Env customization](#env-customization)
+        - [Nav & sub pages](#nav--sub-pages)
+            - [Nav](#nav)
+            - [Sub page creation](#sub-page-creation)
+        - [Theming](#theming)
+        - [Images](#images)
+- [📡 DharmaMitra API client & typing UPDATE IN PROGRESS](#-dharmamitra-api-client--typing-update-in-progress)
+    - [APIs](#apis)
+    - [API models](#api-models)
+    - [Regular fetchs](#regular-fetchs)
+    - [SSE fetchs](#sse-fetchs)
+        - [Stream formatting markers](#stream-formatting-markers)
+- [🌐 Content updates & Internationalization i18n](#-content-updates--internationalization-i18n)
+    - [Updating news content workflow](#updating-news-content-workflow)
+    - [UI messages](#ui-messages)
+    - [Locale content update workflow](#locale-content-update-workflow)
+    - [Internal navigation](#internal-navigation)
+    - [Referrences](#referrences)
 - [🎨 Theming](#-theming)
-  - [Config](#config)
-  - [Env specific theming](#env-specific-theming)
-  - [References](#references)
-- [🧪 Testing](#-testing)
+    - [Config](#config)
+    - [Env specific theming](#env-specific-theming)
+    - [References](#references)
+- [🧪 Testing](#%F0%9F%A7%AA-testing)
 - [👷 Building](#-building)
-  - [Running a test build by-passing eslint](#running-a-test-build-by-passing-eslint)
-  - [Running a local build](#running-a-local-build)
+    - [Running a test build by-passing eslint](#running-a-test-build-by-passing-eslint)
+    - [Running a local build](#running-a-local-build)
 - [📦 Containerization](#-containerization)
-  - [Single project variant](#single-project-variant)
-  - [Multiple Docker services](#multiple-docker-services)
+    - [Single project variant](#single-project-variant)
+    - [Multiple Docker services](#multiple-docker-services)
 - [🚢 Deployment](#-deployment)
+
+<!-- /TOC -->
 
 ## ℹ️ About
 
@@ -83,11 +87,9 @@ Open [http://localhost:3000](http://localhost:3000) (adding an environment base 
 ### Branches
 
 - `main`: for production deployment
-- `dev`: for staging deployment
-- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, or similar content data files.
+- `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, `src/content/news/*`, or similar content data files.
 - development item branches linked to issue numbers
 
-`dev` has been set as the [default GitHub branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches#about-the-default-branch) and all new PRs will be opened against `dev` by default.
 
 ### Commit messages
 
@@ -136,21 +138,21 @@ In addition to the Angular converntion:
 
 - adapted from [Best Practices for Handling Per-Environment Configuration in Your JS/TS Applications](https://www.raulmelo.me/en/blog/best-practices-for-handling-per-environment-config-js-ts-applications#the-config-strategy)
 
-- environment specific build scripts (in `package.json`) set the `NEXT_PUBLIC_APP_ENV` used to define app config (including features, options to render) for each environment.
-  - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env`. **note**: This overwrites the `.env` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_env.sh`
+- environment specific build scripts (in `package.json`) set the `NEXT_PUBLIC_BUILD_VARIANT` used to define app config (including features, options to render) for each environment.
+  - A prebuild step runs to envoke the env setter. Eg. when `yarn build:pub` is run the `prebuild:pub` script executes first, setting the environment in `.env`. **note**: This overwrites the `.env` file. Almost all app variables should be set in the default / env config files, but if there is a need for additional variables to be added to the env file, it needs to be added to `scripts/set_build_variant.sh`
 
 ### Adding a new environment
 
 These steps can also be adjusted and used for renaming an environment.
 
-- add the env alias to `SUPPORTED_ENVS` in `src/config/defineConfig.ts`
+- add the env alias to `BUILD_VARIANTS` in `src/config/defineConfig.ts`
 - create an new env specific config file in `src/config/envs` (adjust settings as required, with `defineConfig` as a ref.)
 - import the env's config file to `src/config/index.ts` and add the env alias to config getter ("if section")
 - add environment alias to the `servedAtRoot` in `next.config.mjs` if the environment's base path is `/` (_this shouldn't be applicable in most cases_)
 - add an env specific build script to `package.json`. Eg. for the `lab` env:
 
   ```json
-  "prebuild:lab": "sh ./scripts/set_env.sh lab",
+  "prebuild:lab": "sh ./scripts/set_build_variant.sh lab",
   "build:lab": "next build",
   ```
 
@@ -287,11 +289,20 @@ The list of unique characters from unicode emojis (https://emojipedia.org/) used
 
 ## 🌐 Content updates & Internationalization (i18n)
 
+### Updating news content workflow
+
+see:
+
+- [Example news post guide (local)](src/content/news/3999-02-09-example/en.mdx)
+- [Example news post guide (rnd)](https://dharmamitra.org/rnd/news/3999-02-09-example)
+
+### UI messages
+
 - `messages/en.json` defines the message content model for the project and is the template for all locale files.
 - model and content updates are kept in sync across locales by running `yarn i18n:modelsync`
 - message syncing has been added as an automated pre-commit step in `.husky/pre-commit`.
 - The [Unicode Common Locale Data Repository (CLDR)](https://cldr.unicode.org/index/charts) locale codes used by [Javascripts's Internationalization API](https://tc39.es/ecma402/#sec-implementation-dependencies) are used for the project's locale codes to define the project's supported locales.
-- Supported locales are defined in the `supportedLocales` varriable in `src/i18n.ts` and
+- Supported locales are defined in the `SUPPORTED_LOCALES` varriable in `src/i18n.ts` and
 - Locale files named with the locale code are added to the `messages/` directory (eg. `messages/zh-Hant.json`).
 - `messages/` files use the convention of:
   - pascal case keys for page content and
@@ -301,11 +312,9 @@ The list of unique characters from unicode emojis (https://emojipedia.org/) used
 
 (**¡NOTE!** only existing message values can be updated without front-end changes. If a new content item/key is needed, this must be synchronized with a coresponding UI update.)
 
-1. `git checkout dev`
-2. `git pull`
-3. `git checkout content-updates`
-4. `git merge dev`
-5. make content updates
+1. `git switch main && git pull`
+2. `git switch content && git merge main`
+3. make content updates
    - **Updating default locale (EN) content**: make changes to `messages/en.json` values only
      - no changes to keys,
      - no changes to other locale files. Changes to other locale files will be overwritten by `scripts/sync_msg_model.py` on commit. **¡NOTE!** If adding translations as well:
@@ -316,10 +325,10 @@ The list of unique characters from unicode emojis (https://emojipedia.org/) used
      - English values in locale files are ready for translation
      - in addition to synchronizing `en` keys, when a previously translated value is updated in `en` `sync_msg_model.py` will overwrite the translation with the new English value in the other locale files and new translations will be needed.
      - where relevant, diffing previous commits can give context for message/translation updates (a tradeoff for overall i18n stability is the replacement of translated values with new English key values even if the English changes are trivial - reviewing the diffs is a good way understand what has changed and restore previous translations if needed. In GitHub this can be done for a local file via eg. [https://github.com/dharmamitra/dharmamitra-frontend-next/commits/dev/messages/zh-Hant.json](https://github.com/dharmamitra/dharmamitra-frontend-next/commits/dev/messages/zh-Hant.json))
-6. Commit, push and open an PR into `dev`
-7. On PR merge, review changes on staging
-8. If all looks good, open a PR from `dev` to `main`
-9. On PR merge, the updates will be ready for production deploy.
+4. Commit, push and open an PR into `dev`
+5. On PR merge, review changes on staging
+6. If all looks good, open a PR from `dev` to `main`
+7. On PR merge, the updates will be ready for production deploy.
 
 ### Internal navigation
 

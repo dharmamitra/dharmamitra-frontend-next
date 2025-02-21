@@ -1,31 +1,14 @@
-import { NextRequest } from "next/server"
 import createMiddleware from "next-intl/middleware"
 
-import { defaultLocale, localePrefix, supportedLocales } from "@/i18n"
+import { routing } from "./i18n/routing"
 
-const handleI18nRouting = createMiddleware({
-  locales: supportedLocales,
-  localeDetection: true,
-  defaultLocale,
-  localePrefix,
-})
-
-export default async function middleware(request: NextRequest) {
-  const response = handleI18nRouting(request)
-
-  // next-intl cookie opt-out: https://github.com/amannn/next-intl/issues/454#issuecomment-1679998050
-  if (response.cookies.get("NEXT_LOCALE")) {
-    response.cookies.delete("NEXT_LOCALE")
-  }
-
-  return response
-}
+export default createMiddleware(routing)
 
 // Handling pathnames without locale a prefix: https://next-intl-docs.vercel.app/docs/routing/middleware#matcher-no-prefix
 export const config = {
   matcher: [
     // Skip all paths that should not be internationalized (inc ones containing a dot, e.g. `favicon.ico`).
     "/",
-    "/((?!api|next|_next|.*\\..*).*)",
+    "/((?!api|next|_next|monitoring-tunnel|.*\\..*).*)",
   ],
 }

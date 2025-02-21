@@ -40,3 +40,19 @@ export const getOptionI18nKeyPath = (
 
   throw new Error("Invalid InputEncoding, or TargetLanguage option")
 }
+
+export const formatDate = ({
+  date,
+  locale,
+  options,
+}: {
+  date: string
+  locale: string
+  options?: Intl.DateTimeFormatOptions
+}) =>
+  new Intl.DateTimeFormat(locale === "en" ? "en-GB" : locale, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    ...options,
+  }).format(new Date(date))

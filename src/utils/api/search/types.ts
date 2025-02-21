@@ -3,8 +3,11 @@ import type { APIRequestBody, APIResponse } from "@/utils/api/helpers"
 
 export type Schema = components["schemas"]
 export type SearchEndpoint = keyof paths
-export type SearchEndpointName = SearchEndpoint extends `/${infer Key}/`
-  ? Key
+
+export type SearchEndpointName = SearchEndpoint extends `/${infer Key}`
+  ? Key extends `${infer Base}/`
+    ? Base
+    : Key
   : never
 
 export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all" | "aa">
@@ -27,7 +30,6 @@ export type Response<Endpoint extends keyof paths> = APIResponse<
  *
  */
 
-// eslint-disable-next-line no-unused-vars
 // type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
 
 export type SearchTargets = Extract<

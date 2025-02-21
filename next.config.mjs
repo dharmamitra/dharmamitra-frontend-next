@@ -1,11 +1,13 @@
 import createNextIntlPlugin from "next-intl/plugin"
+import createMDX from "@next/mdx"
+import { withSentryConfig } from "@sentry/nextjs"
 
 const withNextIntl = createNextIntlPlugin()
 
-export const getBasePath = () => {
-  const env = process.env.NEXT_PUBLIC_APP_ENV
-  const servedAtRoot = env === "pub" || env === "local"
-  return servedAtRoot ? "" : "/" + env
+const getBasePath = () => {
+  const { NEXT_PUBLIC_BUILD_VARIANT: variant } = process.env
+  const servedAtRoot = variant === "pub" || variant === "dev"
+  return servedAtRoot ? undefined : "/" + variant
 }
 
 /**
@@ -17,15 +19,44 @@ export const getBasePath = () => {
 const nextConfig = {
   basePath: getBasePath(),
   output: "standalone",
-  webpack: (config) => {
-    if (process.env.NODE_ENV === "production") {
-      config.devtool = "hidden-source-map"
-    }
-    return config
-  },
+  productionBrowserSourceMaps: true,
   eslint: {
     ignoreDuringBuilds: process.env.NEXT_DISABLE_ESLINT === "true",
   },
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  reactStrictMode: true,
+  images: {
+    // https://nextjs.org/docs/app/api-reference/components/image#configuration-options
+    formats: ["image/avif", "image/webp"],
+  },
 }
 
-export default withNextIntl(nextConfig)
+/**
+ * @see https://github.com/getsentry/sentry-webpack-plugin#options
+ * @see https://www.npmjs.com/package/@sentry/webpack-plugin
+ * @see https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+ */
+const sentryConfig = {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  reactComponentAnnotation: {
+    enabled: true,
+  },
+  // tunnelRoute: "/monitoring-tunnel",
+  hideSourceMaps: true,
+  disableLogger: false,
+  sourcemaps: {
+    disable: false,
+    deleteSourcemapsAfterUpload: true,
+  },
+}
+
+const withMDX = createMDX({
+  extension: /\.mdx$/,
+  options: { remarkPlugins: [], rehypePlugins: [] },
+})
+
+export default withSentryConfig(withNextIntl(withMDX(nextConfig)), sentryConfig)

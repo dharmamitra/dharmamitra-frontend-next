@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,34 +18,16 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/components/*": [
-        "./src/components/*"
-      ],
-      "@/features/*": [
-        "./src/features/*"
-      ],
-      "@/utils/*": [
-        "./src/utils/*"
-      ],
-      "@/api": [
-        "./src/utils/api/index"
-      ],
-      "@/atoms": [
-        "./src/atoms.ts"
-      ]
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/features/*": ["./src/components/features/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/api": ["./src/utils/api/index"],
+      "@/atoms": ["./src/atoms.ts"]
     },
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "target": "ES2017"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
