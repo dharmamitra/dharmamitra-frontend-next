@@ -43,15 +43,15 @@ export const stableTargetLanguages: StableTargetLanguage[] =
     "sanskrit",
     "sanskrit-dev",
     "buddhist-chinese",
-    "korean",
-    "german",
+    "modern-chinese",
     "russian",
+    "korean",
+    "japanese",
+    "german",
     "french",
     "italian",
-    "spanish",
     "hindi",
-    "japanese",
-    "modern-chinese",
+    "spanish",
   )
 
 export const defaultTargetLanguage: TargetLanguage = "english"
