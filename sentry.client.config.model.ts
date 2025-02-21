@@ -7,7 +7,7 @@
 import * as Sentry from "@sentry/nextjs"
 
 import appConfig from "@/config"
-import { colours } from "@/utils/theme/config"
+import { colours } from "@/utils/theme/colours"
 
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
