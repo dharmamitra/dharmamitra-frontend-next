@@ -59,4 +59,15 @@ const withMDX = createMDX({
   options: { remarkPlugins: [], rehypePlugins: [] },
 })
 
-export default withSentryConfig(withNextIntl(withMDX(nextConfig)), sentryConfig)
+// Conditionally apply Sentry config based on build variant for debugging public deployment resource blocking errors
+const configureApp = () => {
+  const baseConfig = withNextIntl(withMDX(nextConfig))
+
+  if (process.env.NEXT_PUBLIC_SENTRY_ENABLED) {
+    return withSentryConfig(baseConfig, sentryConfig)
+  }
+
+  return baseConfig
+}
+
+export default configureApp()

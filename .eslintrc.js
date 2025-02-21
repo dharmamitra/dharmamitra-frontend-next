@@ -87,6 +87,7 @@ module.exports = {
     "blob-report/",
     "playwright/.cache/",
     "*.d.ts",
+    "sentry/example.instrumentation.ts",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
