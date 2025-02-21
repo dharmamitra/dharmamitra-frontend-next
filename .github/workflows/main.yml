@@ -22,6 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+          cache: "yarn" # Enable built-in yarn caching
 
       - name: Enable Corepack
         run: corepack enable
@@ -29,8 +30,8 @@ jobs:
       - name: Set Yarn version to stable
         run: yarn set version stable
 
-      - name: Install project dependencies
-        run: yarn install --immutable
+      - name: Install dependencies
+        run: yarn install --immutable --check-cache
 
       - name: Yarn Audit
         run: yarn audit --level high
