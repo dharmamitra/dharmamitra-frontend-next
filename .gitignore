@@ -52,7 +52,7 @@ next-env.d.ts
 
 # sentry
 sentry.client.config.ts
-# sentry.server.config.ts
-# sentry.edge.config.ts
-# src/instrumentation.ts
-# src/app/global-error.tsx
+sentry.server.config.ts
+sentry.edge.config.ts
+src/instrumentation.ts
+src/app/global-error.tsx

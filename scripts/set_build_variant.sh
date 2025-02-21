@@ -27,7 +27,7 @@ echo NEXT_PUBLIC_SENTRY_DSN=https://b871842ffbdbe38e2a7af465fc135c60@o4508779444
 
 
 
-if [ "$BUILD_VARIANT" == "pub" ]; then
+if [ "$BUILD_VARIANT" = "pub" ]; then
     echo "NEXT_PUBLIC_SENTRY_ENABLED=" >>.env
     rm -f sentry.client.config.ts
     rm -f sentry.server.config.ts
@@ -37,11 +37,11 @@ if [ "$BUILD_VARIANT" == "pub" ]; then
     echo "removed Sentry files for $BUILD_VARIANT variant"
 else
     echo "NEXT_PUBLIC_SENTRY_ENABLED=true" >>.env
-    cp example.sentry.client.config.ts sentry.client.config.ts
-    cp example.sentry.server.config.ts sentry.server.config.ts
-    cp example.sentry.edge.config.ts sentry.edge.config.ts
-    cp example.instrumentation.ts src/instrumentation.ts
-    cp example.global-error.tsx src/app/global-error.tsx
+    cp sentry/sentry.client.config.model sentry.client.config.ts
+    cp sentry/sentry.server.config.model sentry.server.config.ts
+    cp sentry/sentry.edge.config.model sentry.edge.config.ts
+    cp sentry/instrumentation.model src/instrumentation.ts
+    cp sentry/global-error.model src/app/global-error.tsx
     echo "copied Sentry files for $BUILD_VARIANT variant"
 fi
 
