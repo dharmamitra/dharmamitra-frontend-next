@@ -19,16 +19,16 @@ jobs:
         with:
           fetch-depth: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && '0' || '1' }}
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: "yarn" # Enable built-in yarn caching
-
       - name: Enable Corepack
         run: corepack enable
 
       - name: Set Yarn version to stable
         run: yarn set version stable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "yarn" # Enable built-in yarn caching
 
       - name: Install dependencies
         run: yarn install --immutable --check-cache
