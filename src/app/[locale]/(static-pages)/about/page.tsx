@@ -2,7 +2,7 @@ import { use } from "react"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { setRequestLocale } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import CheckIcon from "@mui/icons-material/Check"
 import {
   Box,
@@ -17,7 +17,7 @@ import Grid from "@mui/material/Grid2"
 import Link from "@mui/material/Link"
 import { visuallyHidden } from "@mui/utils"
 
-import { DefaultPageParams } from "@/app/types"
+import { DefaultPageParams, Metadata } from "@/app/types"
 import dmLogoFull from "@/assets/logos/dm-logo-full.png"
 import IconCard from "@/components/IconCard"
 import Contact from "@/components/layout/Footer/Contact"
@@ -28,6 +28,19 @@ import { linkAttrs } from "@/utils/constants"
 import customTheming from "@/utils/theme/config"
 
 import data from "./data"
+
+export async function generateMetadata({
+  params,
+}: DefaultPageParams): Promise<Metadata> {
+  const resolvedParams = await params
+  const locale = resolvedParams?.locale
+
+  const t = await getTranslations({ locale, namespace: "About.dharmamitra" })
+
+  return {
+    title: t("title"),
+  }
+}
 
 export default function DharmamitraAboutPage({ params }: DefaultPageParams) {
   const variantHasRoute = appConfig.subPages.includes("about")
