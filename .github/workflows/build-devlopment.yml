@@ -1,8 +1,5 @@
 name: Build Development (rnd)
 on:
-  push:
-    branches:
-      - ai-provider
   workflow_dispatch:
 jobs:
   build-and-test:

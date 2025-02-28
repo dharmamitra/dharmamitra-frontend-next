@@ -2,10 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { streamText } from "ai"
 
 import { mitra } from "@/lib/ai/providers"
-import {
-  composeMessageProps,
-  createReadableStreamFromAI,
-} from "@/lib/ai/server-side-utils"
+import { composeMessageProps } from "@/lib/ai/server-side-utils"
 
 export const maxDuration = 30
 
@@ -25,8 +22,7 @@ export async function POST(request: NextRequest) {
   try {
     const { input_sentence } = await request.json()
 
-    // Use the streamText function with custom response handling
-    const { textStream } = streamText({
+    const result = streamText({
       // TODO: file a bug with Vercel AI SDK
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       model: mitra("gpt-3.5-turbo") as any,
@@ -37,15 +33,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    const responseStream = createReadableStreamFromAI(textStream)
-
-    return new NextResponse(responseStream, {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-cache, no-transform",
-        "X-Content-Type-Options": "nosniff",
-      },
-    })
+    return result.toTextStreamResponse()
   } catch (error) {
     console.error("API route error:", error)
     return new Response(
