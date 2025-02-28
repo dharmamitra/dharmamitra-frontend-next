@@ -9,7 +9,6 @@ export default function ClearButton({
   setInput,
 }: {
   input: string
-  // eslint-disable-next-line no-unused-vars
   setInput: (input: string) => void
 }) {
   const t = useTranslations("generic")

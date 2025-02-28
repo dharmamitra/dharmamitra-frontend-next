@@ -1,5 +1,6 @@
-import React from "react"
 import "@mui/material/styles"
+
+import React from "react"
 
 declare module "@mui/material/styles" {
   // https://medium.com/@swalperen3008/creating-custom-typography-themes-in-material-ui-a-step-by-step-guide-714a3e30619a

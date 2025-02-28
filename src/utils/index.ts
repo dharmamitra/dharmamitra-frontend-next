@@ -13,7 +13,6 @@ export const getSettingPriotiryGroups = <T>(params: {
   return [setting.slice(0, noOfPrimaryItems), setting.slice(noOfPrimaryItems)]
 }
 
-// eslint-disable-next-line no-unused-vars
 export function debounce<F extends (...args: Parameters<F>) => ReturnType<F>>(
   callback: F,
   waitFor: number,

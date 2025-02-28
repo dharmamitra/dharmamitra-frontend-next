@@ -20,7 +20,7 @@ import { getValidSourceLanguage } from "@/utils/validators"
 type LanguageSelectProps = {
   label: string
   value: string
-  // eslint-disable-next-line no-unused-vars
+
   handleChange: (event: SelectChangeEvent) => void
 }
 
