@@ -7,8 +7,6 @@ if [ -z "$BUILD_VARIANT" ]; then
     exit 1
 fi
 
-echo "updating project for $BUILD_VARIANT build variant"
-
 echo "# maintained via scripts/set_build_variant.sh\n" >.env
 
 echo "NEXT_PUBLIC_BUILD_VARIANT=$BUILD_VARIANT" >>.env
@@ -25,26 +23,5 @@ echo NEXT_PUBLIC_SENTRY_DSN=https://b871842ffbdbe38e2a7af465fc135c60@o4508779444
 # Optional: Add other variant-specific configurations
 # echo "Other configurations can be added here"
 
-
-
-if [ "$BUILD_VARIANT" = "pub" ]; then
-    echo "NEXT_PUBLIC_SENTRY_ENABLED=" >>.env
-    rm -f sentry.client.config.ts
-    rm -f sentry.server.config.ts
-    rm -f sentry.edge.config.ts
-    rm -f src/instrumentation.ts
-    rm -f src/app/global-error.tsx
-    echo "removed Sentry files for $BUILD_VARIANT variant"
-else
-    echo "NEXT_PUBLIC_SENTRY_ENABLED=true" >>.env
-    cp sentry/sentry.client.config.model sentry.client.config.ts
-    cp sentry/sentry.server.config.model sentry.server.config.ts
-    cp sentry/sentry.edge.config.model sentry.edge.config.ts
-    cp sentry/instrumentation.model src/instrumentation.ts
-    cp sentry/global-error.model src/app/global-error.tsx
-    echo "copied Sentry files for $BUILD_VARIANT variant"
-fi
-
-echo "updated $BUILD_VARIANT build variant .env variables"
-
+echo ".env updated for $BUILD_VARIANT environment"
 

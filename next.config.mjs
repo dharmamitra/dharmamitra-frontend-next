@@ -65,11 +65,11 @@ const withMDX = createMDX({
 const configureApp = () => {
   const baseConfig = withNextIntl(withMDX(nextConfig))
 
-  if (process.env.NEXT_PUBLIC_SENTRY_ENABLED) {
-    return withSentryConfig(baseConfig, sentryConfig)
+  if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "false") {
+    return baseConfig
   }
 
-  return baseConfig
+  return withSentryConfig(baseConfig, sentryConfig)
 }
 
 export default configureApp()
