@@ -1,10 +1,27 @@
-import { setRequestLocale } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 
-import { DefaultPageProps } from "@/app/types"
+import { DefaultPageParams, DefaultPageProps, Metadata } from "@/app/types"
+import appConfig from "@/config"
 import { getPageLocaleRoutes } from "@/i18n/routing"
 
 export function generateStaticParams() {
   return getPageLocaleRoutes()
+}
+
+export async function generateMetadata({
+  params,
+}: DefaultPageParams): Promise<Metadata> {
+  const { locale } = await params
+
+  const t = await getTranslations({ locale, namespace: "metadata" })
+
+  return {
+    title: {
+      default: t("title"),
+      template: `%s · ${appConfig.siteName}`,
+    },
+    description: t("description"),
+  }
 }
 
 export default async function BaseStaticPageLayout({

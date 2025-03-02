@@ -16,16 +16,11 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "metadata" })
 
   return {
-    metadataBase: new URL(appConfig.siteUrl),
     title: {
       default: t("title"),
       template: `%s · ${appConfig.siteName}`,
     },
-    // TODO: handle description for envs.
     description: t("description"),
-    twitter: {
-      card: "summary_large_image",
-    },
   }
 }
 

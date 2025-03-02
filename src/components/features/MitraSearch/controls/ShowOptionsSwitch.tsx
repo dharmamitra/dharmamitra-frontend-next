@@ -8,7 +8,7 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 
 type ShowOptionsSwitchProps = {
   isSearchControlsOpen: boolean
-  // eslint-disable-next-line no-unused-vars
+
   handleToggleShowOptions: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 

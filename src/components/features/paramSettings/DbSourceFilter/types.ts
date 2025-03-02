@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { SourceLanguage } from "@/utils/api/search/types"
 
 export enum DbSourceTreeNodeDataType {

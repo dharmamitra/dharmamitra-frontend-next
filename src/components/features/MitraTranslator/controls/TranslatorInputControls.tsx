@@ -11,7 +11,7 @@ import StartStopStreamButton from "@/components/StartStopStreamButton"
 type TranslationInputFieldProps = {
   chatPropsWithId: UseChatOptions
   input: string
-  // eslint-disable-next-line no-unused-vars
+
   setInput: (event: string) => void
 }
 

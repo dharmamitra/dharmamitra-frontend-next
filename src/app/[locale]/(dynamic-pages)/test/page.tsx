@@ -3,45 +3,36 @@
 import React from "react"
 import Head from "next/head"
 import { useChat } from "@ai-sdk/react"
+import { Button } from "@mui/material"
 import Box from "@mui/material/Box"
 
-import { streamUtils, TranslationApiTypes } from "@/api"
 import ExceptionText from "@/components/ExceptionText"
-import { createTranslationRequestBody } from "@/components/features/MitraTranslator/utils"
-import { createChatProps } from "@/components/features/utils"
 import LoadingDots from "@/components/LoadingDots"
-import { MemoizedMarkdown, PlainContent } from "@/components/memoized-markdown"
-import StartStopStreamButton from "@/components/StartStopStreamButton"
-import {
-  useInputEncodingParamWithLocalStorage,
-  useTargetLangParamWithLocalStorage,
-} from "@/hooks/params"
+import { MemoizedMarkdown } from "@/components/memoized-markdown"
+import appConfig from "@/config"
+import { useInputSentenceParam } from "@/hooks/params"
 
 export default function Page() {
-  const input_sentence = "Tattha katamaṁ rūpaṁ oḷārikaṁ"
-  const model =
-    "GEMINI-MARKUP-RAG" as TranslationApiTypes.RequestBody<"/translation/">["model"] // "default"
-  const [input_encoding] = useInputEncodingParamWithLocalStorage()
-  const [target_lang] = useTargetLangParamWithLocalStorage()
+  const [input_sentence, setInputSentence] = useInputSentenceParam()
 
-  const chatPropsWithId = React.useMemo(() => {
-    const requestBody = createTranslationRequestBody({
+  const { messages, status, error, handleSubmit, setMessages } = useChat({
+    id: "test-stream",
+    api: appConfig.basePath + "/next/api/test-stream",
+    streamProtocol: "text",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
       input_sentence,
-      input_encoding,
-      target_lang,
-      model,
+    },
+  })
+
+  const handleClick = () => {
+    setMessages([])
+    handleSubmit(undefined, {
+      allowEmptySubmit: true,
     })
-
-    const chatProps = createChatProps({
-      localEndpoint: streamUtils.paths.translation,
-      requestBody,
-      initialInput: input_sentence,
-    })
-
-    return { ...chatProps, id: JSON.stringify(requestBody) }
-  }, [input_sentence, input_encoding, target_lang, model])
-
-  const { messages, status, error } = useChat(chatPropsWithId)
+  }
 
   return (
     <div>
@@ -53,58 +44,48 @@ export default function Page() {
       <main
         style={{
           marginInline: "2rem",
-          marginTop: "70px",
+          marginBlock: "70px",
           border: "1px solid gainsboro",
-          padding: "1rem",
+          paddingInline: "1rem",
+          maxWidth: "1000px",
         }}
       >
-        <StartStopStreamButton
-          chatPropsWithId={chatPropsWithId}
-          input={input_sentence}
-        />
+        <h1>Translatior</h1>
+        <div>
+          <textarea
+            style={{
+              display: "block",
+              marginBottom: "1rem",
+              width: "100%",
+              fontSize: "1.12rem",
+              fontFamily: "inherit",
+            }}
+            value={input_sentence}
+            onChange={(e) => setInputSentence(e.target.value)}
+            placeholder="Enter text to translate"
+            rows={6}
+          />
 
-        {status === "submitted" && <LoadingDots />}
-        {error && <ExceptionText type="error" message={error.message} />}
+          <Button type="button" variant="contained" onClick={handleClick}>
+            Translate
+          </Button>
+        </div>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "31% 31% 31%",
-            gap: 4,
-            wordBreak: "break-word",
-          }}
-        >
-          <Box>
-            <h2>Stringified Messages</h2>
-            <div className="prose space-y-2">{JSON.stringify(messages[1])}</div>
-          </Box>
+        <Box pt={2} maxWidth="1000px" minHeight="4rem">
+          <div>
+            {status === "submitted" && <LoadingDots />}
+            {error && <ExceptionText type="error" message={error.message} />}
+          </div>
 
-          <Box>
-            <h2>Memoized Markdown Blocks</h2>
-            {messages.map((message, index) => (
-              <div key={message.id}>
-                <div className="prose space-y-2">
-                  <MemoizedMarkdown
-                    id={index.toString()}
-                    content={message.content}
-                    role={message.role}
-                  />
+          {messages.map((message) => (
+            <React.Fragment key={message.id}>
+              {message.role === "assistant" ? (
+                <div>
+                  <MemoizedMarkdown id={message.id} content={message.content} />
                 </div>
-              </div>
-            ))}
-          </Box>
-
-          <Box>
-            <h2>Markdown</h2>
-            {messages.map((message, index) => (
-              <PlainContent
-                key={message.id}
-                id={index.toString()}
-                content={message.content}
-                role={message.role}
-              />
-            ))}
-          </Box>
+              ) : null}
+            </React.Fragment>
+          ))}
         </Box>
       </main>
     </div>

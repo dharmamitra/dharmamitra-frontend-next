@@ -21,10 +21,6 @@ export default function LocalLink({
   variant = "link",
   buttonVariant,
   buttoColor = "inherit",
-  // eslint-disable-next-line no-unused-vars -- this is just to exclude unused props
-  as,
-  // eslint-disable-next-line no-unused-vars
-  ...rest
 }: ComponentProps<typeof NavigationLink> & {
   sx?: SxProps<Theme>
   variant?: "link" | "button"
@@ -54,7 +50,6 @@ export default function LocalLink({
           variant={buttonVariant}
           color={buttoColor}
           LinkComponent={NavigationLink}
-          // {...rest}
         >
           {children}
         </Button>

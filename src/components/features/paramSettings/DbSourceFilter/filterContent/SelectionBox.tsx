@@ -20,7 +20,7 @@ const MAX_TRUNCATED_ROWS = 1
 
 type DbSourceFilterInputProps = {
   popperId: string | undefined
-  // eslint-disable-next-line no-unused-vars
+
   handleClick: (event: React.MouseEvent<HTMLElement>) => void
   open: boolean
   selectionIds: string[]

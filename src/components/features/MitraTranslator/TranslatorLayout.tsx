@@ -61,7 +61,7 @@ export function LayoutFrame({ children }: LayoutFrameProps) {
       sx={{
         display: "grid",
         gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto auto auto auto",
+        gridTemplateRows: "min-content min-content auto auto",
         "@media (min-width: 760px)": {
           gridTemplateColumns: "1fr 1fr",
           gridTemplateRows: "auto 1fr",

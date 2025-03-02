@@ -1,14 +1,14 @@
-name: Build Staging (pub)
+name: Build Lab
 on:
   push:
     branches:
-      - pub
+      - lab
   workflow_dispatch:
 jobs:
   build-and-test:
     strategy:
       matrix:
-        variant: [pub]
+        variant: [lab]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

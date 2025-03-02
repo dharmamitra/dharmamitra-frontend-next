@@ -2,32 +2,18 @@ import React, { memo, useMemo } from "react"
 import ReactMarkdown from "react-markdown"
 import { marked } from "marked"
 
-// import {
-//   initialParsedStream,
-//   markers,
-//   ParsedStream,
-//   parseStream,
-// } from "@/utils/api/stream"
+/**
+ * @see: https://sdk.vercel.ai/cookbook/next/markdown-chatbot-with-memoization
+ */
 
 function parseMarkdownIntoBlocks(markdown: string): string[] {
   const tokens = marked.lexer(markdown)
   return tokens.map((token) => token.raw)
 }
 
-function parseContent(content: string, id: string, role: string) {
-  //   console.log({ content, id, role })
-
-  if (role !== "assistant") return ""
-
-  const messageParts = content.split("'")
-  const messageContent = messageParts.filter((part) => !part.includes("event:"))
-
-  return messageContent.join("").trim()
-}
-
 const MemoizedMarkdownBlock = memo(
-  ({ content, id, role }: { content: string; id: string; role: string }) => {
-    return <ReactMarkdown>{parseContent(content, id, role)}</ReactMarkdown>
+  ({ content }: { content: string }) => {
+    return <ReactMarkdown>{content}</ReactMarkdown>
   },
   (prevProps, nextProps) => {
     if (prevProps.content !== nextProps.content) return false
@@ -38,31 +24,13 @@ const MemoizedMarkdownBlock = memo(
 MemoizedMarkdownBlock.displayName = "MemoizedMarkdownBlock"
 
 export const MemoizedMarkdown = memo(
-  ({ content, id, role }: { content: string; id: string; role: string }) => {
+  ({ content, id }: { content: string; id: string }) => {
     const blocks = useMemo(() => parseMarkdownIntoBlocks(content), [content])
 
     return blocks.map((block, index) => (
-      <MemoizedMarkdownBlock
-        content={block}
-        key={`${id}-block_${index}`}
-        id={id}
-        role={role}
-      />
+      <MemoizedMarkdownBlock content={block} key={`${id}-block_${index}`} />
     ))
   },
 )
 
 MemoizedMarkdown.displayName = "MemoizedMarkdown"
-
-export const PlainContent = memo(
-  ({ content, id, role }: { content: string; id: string; role: string }) => {
-    const parsedContent = useMemo(
-      () => parseContent(content, id, role),
-      [content, id, role],
-    )
-
-    return <ReactMarkdown>{parsedContent}</ReactMarkdown>
-  },
-)
-
-PlainContent.displayName = "PlainContent"

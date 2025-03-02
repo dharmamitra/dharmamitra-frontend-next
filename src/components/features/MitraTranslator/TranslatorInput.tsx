@@ -9,7 +9,7 @@ import { TargetLanguage } from "@/utils/api/translation/params"
 type TranslationInputFieldProps = {
   input: string
   targetLang: TargetLanguage
-  // eslint-disable-next-line no-unused-vars
+
   setInput: (event: string) => void
 }
 
