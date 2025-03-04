@@ -42,6 +42,9 @@ jobs:
           build-args: |
             BUILD_VARIANT=${{ matrix.variant }}
             SENTRY_RELEASE=${{ env.SENTRY_RELEASE }}
+            SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
+            SENTRY_ORG=${{ secrets.SENTRY_ORG }}
+            SENTRY_PROJECT=${{ secrets.SENTRY_PROJECT }}
           push: true
           tags: "${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.variant }}-${{ steps.timestamp.outputs.NOW }}-${{ steps.short_sha.outputs.SHA }},${{ vars.DM_DH_USER }}/${{ vars.DM_DH_REPO }}:${{ matrix.variant }}-latest"
 
