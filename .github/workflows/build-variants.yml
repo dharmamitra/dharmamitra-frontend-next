@@ -38,7 +38,9 @@ jobs:
           if [[ "${{ github.event.inputs.build_rnd }}" == "true" ]]; then
             variants=$(echo $variants | jq '. += ["rnd"]')
           fi
-          echo "matrix={\"variant\":$variants}" >> $GITHUB_OUTPUT
+          # Properly format the matrix JSON and escape it for GitHub Actions
+          matrix_json=$(echo "{\"variant\":$variants}" | jq -c .)
+          echo "matrix=$matrix_json" >> $GITHUB_OUTPUT
 
   build:
     needs: prepare-matrix
