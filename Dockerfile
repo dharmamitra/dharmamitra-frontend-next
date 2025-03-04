@@ -31,11 +31,8 @@ ARG SENTRY_PROJECT
 # Set environment variables for the build
 ENV NEXT_PUBLIC_BUILD_VARIANT=${BUILD_VARIANT}
 ENV SENTRY_RELEASE=${SENTRY_RELEASE}
-ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
-ENV SENTRY_ORG=${SENTRY_ORG}
-ENV SENTRY_PROJECT=${SENTRY_PROJECT}
 
-RUN yarn build:${BUILD_VARIANT}
+RUN SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN} SENTRY_ORG=${SENTRY_ORG} SENTRY_PROJECT=${SENTRY_PROJECT} yarn build:${BUILD_VARIANT}
 
 # Production image, copy all the files and run next
 FROM base AS runner
@@ -53,7 +50,7 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Pass the build variant and Sentry release to the runtime environment
+# Pass variables to the runtime environment
 ARG BUILD_VARIANT
 ARG SENTRY_RELEASE
 ENV NEXT_PUBLIC_BUILD_VARIANT=${BUILD_VARIANT}
