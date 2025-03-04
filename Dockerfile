@@ -23,6 +23,12 @@ COPY package.json yarn.lock .yarnrc.yml ./
 RUN yarn install --immutable
 
 ARG BUILD_VARIANT
+ARG SENTRY_RELEASE
+
+# Set environment variables for the build
+ENV NEXT_PUBLIC_BUILD_VARIANT=${BUILD_VARIANT}
+ENV SENTRY_RELEASE=${SENTRY_RELEASE}
+
 RUN yarn build:${BUILD_VARIANT}
 
 # Production image, copy all the files and run next
@@ -40,5 +46,11 @@ USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+
+# Pass the build variant and Sentry release to the runtime environment
+ARG BUILD_VARIANT
+ARG SENTRY_RELEASE
+ENV NEXT_PUBLIC_BUILD_VARIANT=${BUILD_VARIANT}
+ENV SENTRY_RELEASE=${SENTRY_RELEASE}
 
 CMD ["dumb-init","node","server.js"]

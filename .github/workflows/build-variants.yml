@@ -1,4 +1,4 @@
-name: Build Production Variants (pub, lab, rnd)
+name: Build Variants
 on:
   workflow_dispatch:
     inputs:

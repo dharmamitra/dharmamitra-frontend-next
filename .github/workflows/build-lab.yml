@@ -1,4 +1,4 @@
-name: Build Lab
+name: Build lab
 on:
   push:
     branches:

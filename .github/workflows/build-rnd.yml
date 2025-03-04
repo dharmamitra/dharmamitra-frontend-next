@@ -1,4 +1,4 @@
-name: Build Development (rnd)
+name: Build rnd
 on:
   push:
     branches:
