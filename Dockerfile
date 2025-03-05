@@ -30,9 +30,12 @@ ARG SENTRY_PROJECT
 
 # Set environment variables for the build
 ENV NEXT_PUBLIC_BUILD_VARIANT=${BUILD_VARIANT}
-ENV SENTRY_RELEASE=${SENTRY_RELEASE}
+ENV NEXT_PUBLIC_SENTRY_RELEASE=${SENTRY_RELEASE}
 
 RUN SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN} SENTRY_ORG=${SENTRY_ORG} SENTRY_PROJECT=${SENTRY_PROJECT} yarn build:${BUILD_VARIANT}
+
+RUN echo "NEXT_PUBLIC_SENTRY_RELEASE=${SENTRY_RELEASE}" > .env.production
+RUN echo "NEXT_PUBLIC_BUILD_VARIANT=${BUILD_VARIANT}" >> .env.production
 
 # Production image, copy all the files and run next
 FROM base AS runner
@@ -42,6 +45,7 @@ WORKDIR /app
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/.env.production ./
 
 USER nextjs
 
@@ -49,11 +53,5 @@ USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
-
-# Pass variables to the runtime environment
-ARG BUILD_VARIANT
-ARG SENTRY_RELEASE
-ENV NEXT_PUBLIC_BUILD_VARIANT=${BUILD_VARIANT}
-ENV SENTRY_RELEASE=${SENTRY_RELEASE}
 
 CMD ["dumb-init","node","server.js"]
