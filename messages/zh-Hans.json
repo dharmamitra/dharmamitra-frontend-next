@@ -43,7 +43,8 @@
       "h2": "We'd love to hear from you!",
       "p": "Please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
       "button": "Email Us"
-    }
+    },
+    "collaboration": "In collaboration with the <link>Tsadra Foundation</link>."
   },
   "localeSwitcher": {
     "label": "切换语言",
@@ -278,7 +279,7 @@
           },
           "kumarajiva": {
             "name": "<link>Kumarajiva project</link>",
-            "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
+            "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes"
           },
           "iitk": {
             "name": "<link>IIT Kharagpur</link>",
@@ -287,6 +288,10 @@
           "ai4bharat": {
             "name": "<link>AI4Bharat</link>",
             "description": "Development of Sanskrit data collection"
+          },
+          "tsadra": {
+            "name": "<link>Tsadra Foundation</link>",
+            "description": "Providing vital funding for the combined study and practice of Tibetan Buddhism in the West"
           }
         }
       }

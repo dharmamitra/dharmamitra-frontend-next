@@ -39,6 +39,7 @@
       "h2": "Dharmamitra",
       "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
     },
+    "collaboration": "In collaboration with the <link>Tsadra Foundation</link>.",
     "contact": {
       "h2": "We'd love to hear from you!",
       "p": "Please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
@@ -272,13 +273,17 @@
       "collaboration": {
         "h2": "Collaborations",
         "collaborators": {
+          "tsadra": {
+            "name": "<link>Tsadra Foundation</link>",
+            "description": "Providing vital funding for the combined study and practice of Tibetan Buddhism in the West"
+          },
           "monlam": {
             "name": "<link>monlam.ai</link>",
             "description": "Machine translation data collection for Tibetan and English"
           },
           "kumarajiva": {
             "name": "<link>Kumarajiva project</link>",
-            "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
+            "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes"
           },
           "iitk": {
             "name": "<link>IIT Kharagpur</link>",
