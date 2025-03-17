@@ -3,6 +3,7 @@
     "copy": {
       "default": "Copy",
       "copied": "Copied!",
+      "copyError": "Failed to copy",
       "copyLink": "Copy link",
       "copyRef": "Copy reference",
       "copyAll": "Copy all",
@@ -152,11 +153,16 @@
       "label": "Grammar",
       "ariaLabel": "Grammar Analysis",
       "heading": "Grammatical Analysis",
+      "unisandhis": "Unisandhis",
       "lemma": "Lemma",
       "tag": "Tag",
       "meanings": "Meanings",
       "unsuccessful": "Grammar analysis was not successful.",
-      "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
+      "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig.",
+      "originalSentence": "Original Sentence",
+      "copy": {
+        "unisandhis": "Copy unisandhis"
+      }
     },
     "targetLanguages": {
       "buddhist-chinese": "Buddhist Chinese",

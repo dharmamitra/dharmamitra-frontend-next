@@ -7,7 +7,8 @@
       "copyRef": "Copy reference",
       "copyAll": "Copy all",
       "copyResultsRefs": "Copy references",
-      "copyResultsList": "Copy full results list"
+      "copyResultsList": "Copy full results list",
+      "copyError": "Failed to copy"
     },
     "other": "其他",
     "clear": "Clear",
@@ -140,7 +141,12 @@
       "tag": "Tag",
       "meanings": "Meanings",
       "unsuccessful": "Grammar analysis was not successful.",
-      "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
+      "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig.",
+      "unisandhis": "Unisandhis",
+      "originalSentence": "Original Sentence",
+      "copy": {
+        "unisandhis": "Copy unisandhis"
+      }
     },
     "targetLanguages": {
       "buddhist-chinese": "佛典中文",
