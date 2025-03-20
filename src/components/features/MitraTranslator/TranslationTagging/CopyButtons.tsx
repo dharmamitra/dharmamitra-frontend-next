@@ -25,11 +25,13 @@ export default function CopyButtons({
 
   const t = useTranslations()
 
-  const unisandhis = grammaticalAnalysis.map((item) => item.unsandhied)
+  const unsandhiedItems = grammaticalAnalysis.map((item) => item.unsandhied)
 
-  const handleCopyUnisandhis = React.useCallback(async () => {
+  const handleCopyUnsandhied = React.useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(unisandhis.join("\n"))
+      await navigator.clipboard.writeText(
+        `${t("translation.tagging.unsandhied")}:\n${unsandhiedItems.join(" ")}`,
+      )
       setCopyUnisandhiSuccess(true)
       setCopyError(false)
       setTimeout(() => {
@@ -41,14 +43,14 @@ export default function CopyButtons({
         setCopyError(false)
       }, 2000)
     }
-  }, [unisandhis])
+  }, [t, unsandhiedItems])
 
   const handleCopyAll = React.useCallback(async () => {
     try {
-      // Format the complete data for all unisandhis
+      // Format the complete data for all unsandhied
       const allText = [
         `${t("translation.tagging.originalSentence")}:\n${sentence}\n`,
-        `${t("translation.tagging.unisandhis")}:\n${unisandhis.join("\n")}`,
+        `${t("translation.tagging.unsandhied")}:\n${unsandhiedItems.join(" ")}`,
         ...grammaticalAnalysis.map((item, index) => {
           const { unsandhied, lemma, tag, meanings } = item
           const meaningsText = meanings ? meanings.join("\n- ") : ""
@@ -80,7 +82,7 @@ export default function CopyButtons({
         setCopyError(false)
       }, 2000)
     }
-  }, [t, grammaticalAnalysis, sentence, unisandhis])
+  }, [t, grammaticalAnalysis, sentence, unsandhiedItems])
 
   const getTooltipTitle = React.useCallback(
     (isSuccess: boolean, defaultTitle: string) => {
@@ -100,11 +102,11 @@ export default function CopyButtons({
       <Tooltip
         title={getTooltipTitle(
           copyUnisandhiSuccess,
-          t("translation.tagging.copy.unisandhis"),
+          t("translation.tagging.copy.unsandhied"),
         )}
       >
         <IconButton
-          onClick={handleCopyUnisandhis}
+          onClick={handleCopyUnsandhied}
           size="small"
           sx={{ mr: 1 }}
           color={

@@ -31,7 +31,7 @@ export default function SentenceAccordion({
 
   const { lemma, tag, meanings } = selectedUnsandhied ?? {}
 
-  const unisandhis = grammaticalAnalysis.map((item) => item.unsandhied)
+  const unsandhiedItems = grammaticalAnalysis.map((item) => item.unsandhied)
 
   return (
     <Accordion
@@ -68,7 +68,7 @@ export default function SentenceAccordion({
             mb: 3,
           }}
         >
-          {unisandhis.map((unisandhi, unsandhiedIndex) => {
+          {unsandhiedItems.map((unsandhied, unsandhiedIndex) => {
             const isSelected = unsandhiedIndex === selectedUnsandhiedIndex
             return (
               <Button
@@ -76,7 +76,7 @@ export default function SentenceAccordion({
                 variant="outlined"
                 color="secondary"
                 sx={(theme) => ({
-                  mr: !unisandhi.endsWith("-") ? 3 : undefined,
+                  mr: !unsandhied.endsWith("-") ? 3 : undefined,
                   textTransform: "none",
                   backgroundColor: isSelected
                     ? alpha(theme.palette.secondary.main, 0.15)
@@ -94,7 +94,7 @@ export default function SentenceAccordion({
                   }
                 }}
               >
-                {unisandhi}
+                {unsandhied}
               </Button>
             )
           })}

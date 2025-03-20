@@ -153,15 +153,15 @@
       "label": "Grammar",
       "ariaLabel": "Grammar Analysis",
       "heading": "Grammatical Analysis",
-      "unisandhis": "Unisandhis",
+      "unsandhied": "Unsandhied sentence",
       "lemma": "Lemma",
       "tag": "Tag",
       "meanings": "Meanings",
       "unsuccessful": "Grammar analysis was not successful.",
       "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig.",
-      "originalSentence": "Original Sentence",
+      "originalSentence": "Original sentence",
       "copy": {
-        "unisandhis": "Copy unisandhis"
+        "unsandhied": "Copy unsandhied sentence"
       }
     },
     "targetLanguages": {

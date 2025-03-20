@@ -142,10 +142,10 @@
       "meanings": "Meanings",
       "unsuccessful": "Grammar analysis was not successful.",
       "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig.",
-      "unisandhis": "Unisandhis",
-      "originalSentence": "Original Sentence",
+      "unsandhied": "Unsandhied sentence",
+      "originalSentence": "Original sentence",
       "copy": {
-        "unisandhis": "Copy unisandhis"
+        "unsandhied": "Copy unsandhied sentence"
       }
     },
     "targetLanguages": {
