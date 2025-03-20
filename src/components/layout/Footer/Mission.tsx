@@ -30,7 +30,7 @@ export default function Mission({
   return (
     <Box
       sx={{
-        maxWidth: { md: "424px" },
+        maxWidth: { md: "474px" },
       }}
     >
       {isLocalized ? <LocalizedMission /> : <FallbackMission />}

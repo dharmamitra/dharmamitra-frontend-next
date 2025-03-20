@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography"
 
 import { TranslationApiTypes } from "@/utils/api"
 
+import CopyButtons from "./CopyButtons"
 import SentenceAnalysis from "./SentenceAnalysis"
 
 type Props = TranslationApiTypes.Schema["Sentence"] & {
@@ -29,6 +30,8 @@ export default function SentenceAccordion({
   const selectedUnsandhied = grammaticalAnalysis[selectedUnsandhiedIndex]
 
   const { lemma, tag, meanings } = selectedUnsandhied ?? {}
+
+  const unsandhiedItems = grammaticalAnalysis.map((item) => item.unsandhied)
 
   return (
     <Accordion
@@ -51,6 +54,10 @@ export default function SentenceAccordion({
       </AccordionSummary>
 
       <AccordionDetails>
+        <CopyButtons
+          grammaticalAnalysis={grammaticalAnalysis}
+          sentence={sentence}
+        />
         <Box
           sx={{
             display: "flex",
@@ -61,7 +68,7 @@ export default function SentenceAccordion({
             mb: 3,
           }}
         >
-          {grammaticalAnalysis.map((item, unsandhiedIndex) => {
+          {unsandhiedItems.map((unsandhied, unsandhiedIndex) => {
             const isSelected = unsandhiedIndex === selectedUnsandhiedIndex
             return (
               <Button
@@ -69,7 +76,7 @@ export default function SentenceAccordion({
                 variant="outlined"
                 color="secondary"
                 sx={(theme) => ({
-                  mr: !item.unsandhied.endsWith("-") ? 3 : undefined,
+                  mr: !unsandhied.endsWith("-") ? 3 : undefined,
                   textTransform: "none",
                   backgroundColor: isSelected
                     ? alpha(theme.palette.secondary.main, 0.15)
@@ -87,7 +94,7 @@ export default function SentenceAccordion({
                   }
                 }}
               >
-                {item.unsandhied}
+                {unsandhied}
               </Button>
             )
           })}

@@ -7,7 +7,8 @@
       "copyRef": "Copy reference",
       "copyAll": "Copy all",
       "copyResultsRefs": "Copy references",
-      "copyResultsList": "Copy full results list"
+      "copyResultsList": "Copy full results list",
+      "copyError": "Failed to copy"
     },
     "other": "其他",
     "clear": "Clear",
@@ -43,7 +44,8 @@
       "h2": "We'd love to hear from you!",
       "p": "Please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
       "button": "Email Us"
-    }
+    },
+    "collaboration": "In collaboration with the <link>Tsadra Foundation</link>."
   },
   "localeSwitcher": {
     "label": "切换语言",
@@ -139,7 +141,12 @@
       "tag": "Tag",
       "meanings": "Meanings",
       "unsuccessful": "Grammar analysis was not successful.",
-      "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig."
+      "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig.",
+      "unsandhied": "Unsandhied sentence",
+      "originalSentence": "Original sentence",
+      "copy": {
+        "unsandhied": "Copy unsandhied sentence"
+      }
     },
     "targetLanguages": {
       "buddhist-chinese": "佛典中文",
@@ -278,7 +285,7 @@
           },
           "kumarajiva": {
             "name": "<link>Kumarajiva project</link>",
-            "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes."
+            "description": "Development of Tibetan<>Chinese capabilities and user interface for specific translation purposes"
           },
           "iitk": {
             "name": "<link>IIT Kharagpur</link>",
@@ -287,6 +294,10 @@
           "ai4bharat": {
             "name": "<link>AI4Bharat</link>",
             "description": "Development of Sanskrit data collection"
+          },
+          "tsadra": {
+            "name": "<link>Tsadra Foundation</link>",
+            "description": "Providing vital funding for the combined study and practice of Tibetan Buddhism in the West"
           }
         }
       }

@@ -7,6 +7,7 @@ import ai4bharatLogoFull from "@/assets/logos/ai4bharat.svg"
 import iitkgpLogoFull from "@/assets/logos/iitkgp.svg"
 import kumarajivaLogoFull from "@/assets/logos/kumarajiva.svg"
 import monlamLogoFull from "@/assets/logos/monlam.svg"
+import tsadraLogoFull from "@/assets/logos/tsadra-1x1.png"
 
 type RoadmapItemKey = keyof Messages["About"]["dharmamitra"]["about"]["roadmap"]
 
@@ -41,6 +42,11 @@ const data: DMAbouPageData = {
   ],
   roadmapItemKeys: ["mandala", "art"],
   collaborators: [
+    {
+      i18nKey: "tsadra",
+      logo: { src: tsadraLogoFull, alt: "Tsadra logo" },
+      url: "https://tsadra.org/",
+    },
     {
       i18nKey: "monlam",
       logo: { src: monlamLogoFull, alt: "Monlam AI logo" },
