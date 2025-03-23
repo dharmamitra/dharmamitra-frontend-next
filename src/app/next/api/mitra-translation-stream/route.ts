@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { streamText } from "ai"
 
-import { mitraTest } from "@/lib/ai/providers"
-import { composeMessageProps } from "@/lib/ai/server-side-utils"
+import { mitra } from "@/lib/ai/providers"
 
 export const maxDuration = 30
 
@@ -19,14 +18,24 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { input_sentence } = await request.json()
+    const { input_sentence, target_language } = await request.json()
 
     const result = streamText({
-      model: mitraTest("gpt-3.5-turbo"),
-      messages: composeMessageProps(input_sentence),
+      model: mitra("gpt-3.5-turbo"),
+      messages: [
+        {
+          role: "user",
+          content: input_sentence,
+        },
+      ],
       temperature: 0.1,
       providerOptions: {
-        "dharma-mitra": { stream: true },
+        "dharma-mitra": {
+          stream: true,
+          do_grammar: false,
+          input_encoding: "default",
+          target_language,
+        },
       },
     })
 
