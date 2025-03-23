@@ -529,44 +529,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/core@npm:^1.6.0":
-  version: 1.6.9
-  resolution: "@floating-ui/core@npm:1.6.9"
-  dependencies:
-    "@floating-ui/utils": "npm:^0.2.9"
-  checksum: 10c0/77debdfc26bc36c6f5ae1f26ab3c15468215738b3f5682af4e1915602fa21ba33ad210273f31c9d2da1c531409929e1afb1138b1608c6b54a0f5853ee84c340d
-  languageName: node
-  linkType: hard
-
-"@floating-ui/dom@npm:^1.0.0":
-  version: 1.6.13
-  resolution: "@floating-ui/dom@npm:1.6.13"
-  dependencies:
-    "@floating-ui/core": "npm:^1.6.0"
-    "@floating-ui/utils": "npm:^0.2.9"
-  checksum: 10c0/272242d2eb6238ffcee0cb1f3c66e0eafae804d5d7b449db5ecf904bc37d31ad96cf575a9e650b93c1190f64f49a684b1559d10e05ed3ec210628b19116991a9
-  languageName: node
-  linkType: hard
-
-"@floating-ui/react-dom@npm:^2.1.1":
-  version: 2.1.2
-  resolution: "@floating-ui/react-dom@npm:2.1.2"
-  dependencies:
-    "@floating-ui/dom": "npm:^1.0.0"
-  peerDependencies:
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 10c0/e855131c74e68cab505f7f44f92cd4e2efab1c125796db3116c54c0859323adae4bf697bf292ee83ac77b9335a41ad67852193d7aeace90aa2e1c4a640cafa60
-  languageName: node
-  linkType: hard
-
-"@floating-ui/utils@npm:^0.2.9":
-  version: 0.2.9
-  resolution: "@floating-ui/utils@npm:0.2.9"
-  checksum: 10c0/48bbed10f91cb7863a796cc0d0e917c78d11aeb89f98d03fc38d79e7eb792224a79f538ed8a2d5d5584511d4ca6354ef35f1712659fd569868e342df4398ad6f
-  languageName: node
-  linkType: hard
-
 "@formatjs/ecma402-abstract@npm:2.3.3":
   version: 2.3.3
   resolution: "@formatjs/ecma402-abstract@npm:2.3.3"
@@ -971,28 +933,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/base@npm:5.0.0-beta.69":
-  version: 5.0.0-beta.69
-  resolution: "@mui/base@npm:5.0.0-beta.69"
-  dependencies:
-    "@babel/runtime": "npm:^7.26.0"
-    "@floating-ui/react-dom": "npm:^2.1.1"
-    "@mui/types": "npm:^7.2.21"
-    "@mui/utils": "npm:^6.4.1"
-    "@popperjs/core": "npm:^2.11.8"
-    clsx: "npm:^2.1.1"
-    prop-types: "npm:^15.8.1"
-  peerDependencies:
-    "@types/react": ^17.0.0 || ^18.0.0 || ^19.0.0
-    react: ^17.0.0 || ^18.0.0 || ^19.0.0
-    react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/587e67c38bd34c26b260b27acc6f0622e63c9880381083017fc4509a549566bff98df716c84e1732c000f950fb1a667a41f5aef3b84e77cfd51f539934abf8ac
-  languageName: node
-  linkType: hard
-
 "@mui/core-downloads-tracker@npm:^6.4.8":
   version: 6.4.8
   resolution: "@mui/core-downloads-tracker@npm:6.4.8"
@@ -1143,18 +1083,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/types@npm:^7.2.21":
-  version: 7.2.22
-  resolution: "@mui/types@npm:7.2.22"
-  peerDependencies:
-    "@types/react": ^17.0.0 || ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/99811e972ac19e256af05ed4047f53f72282c4e239748ebbc9ef4f074f54e0f5d2d99e23210f9faa93fce49ed426ea80021db21d31fc18cd1e878ca1081e1472
-  languageName: node
-  linkType: hard
-
 "@mui/types@npm:~7.2.24":
   version: 7.2.24
   resolution: "@mui/types@npm:7.2.24"
@@ -1164,26 +1092,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/7756339cae70e9b684c4311924e4e3882f908552b69c434b4d13faf2f5908ce72fe889a31890257c5ad42a085207be7c1661981dfc683293e90ac6dfac3759d0
-  languageName: node
-  linkType: hard
-
-"@mui/utils@npm:^6.4.1":
-  version: 6.4.3
-  resolution: "@mui/utils@npm:6.4.3"
-  dependencies:
-    "@babel/runtime": "npm:^7.26.0"
-    "@mui/types": "npm:^7.2.21"
-    "@types/prop-types": "npm:^15.7.14"
-    clsx: "npm:^2.1.1"
-    prop-types: "npm:^15.8.1"
-    react-is: "npm:^19.0.0"
-  peerDependencies:
-    "@types/react": ^17.0.0 || ^18.0.0 || ^19.0.0
-    react: ^17.0.0 || ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/bf199e61bd5d92469b954dd74471db3d27bd6fe43fd13a306056f6cdeb60f5bb1fe1e9ffc4a99e56785c8f56928951e098f340d79aeaf2b3a91041ae8154f934
   languageName: node
   linkType: hard
 
@@ -4640,7 +4548,6 @@ __metadata:
     "@eslint/js": "npm:^9.23.0"
     "@mdx-js/loader": "npm:^3.1.0"
     "@mdx-js/react": "npm:^3.1.0"
-    "@mui/base": "npm:5.0.0-beta.69"
     "@mui/icons-material": "npm:^6.4.8"
     "@mui/material": "npm:^6.4.8"
     "@mui/material-nextjs": "npm:^6.4.3"

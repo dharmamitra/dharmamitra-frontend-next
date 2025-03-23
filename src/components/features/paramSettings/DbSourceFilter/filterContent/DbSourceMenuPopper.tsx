@@ -1,6 +1,5 @@
 import React from "react"
-import { ClickAwayListener } from "@mui/base/ClickAwayListener"
-import { Box, Popper } from "@mui/material"
+import { Box, ClickAwayListener, Popper } from "@mui/material"
 
 import { INPUT_WIDTH } from "@/components/features/paramSettings/DbSourceFilter/DbSourceFilter"
 import { SearchableDbSourceMenu } from "@/components/features/paramSettings/DbSourceFilter/SearchableDbSourceMenu"
@@ -43,9 +42,6 @@ const DbSourceMenuPopper = ({
       }}
       placement="top-start"
     >
-      {/* TODO: following Next 15 upgrade, @mui/base was flagged up as being incompatible.
-      This is the only place where it is used, and can't be tested because search is down.
-      When possible, we need to test if this still works as expected. */}
       <ClickAwayListener onClickAway={handleClose}>
         <Box
           sx={{
