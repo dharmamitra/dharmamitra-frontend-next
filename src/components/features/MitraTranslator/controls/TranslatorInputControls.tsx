@@ -11,8 +11,10 @@ import StartStopStreamButton from "@/components/StartStopStreamButton"
 type TranslationInputFieldProps = {
   chatPropsWithId: UseChatOptions
   input: string
-
+  isTriggerDisabled: boolean
   setInput: (event: string) => void
+  completedQueryIds: Set<string>
+  setCompletedQueryIds: React.Dispatch<React.SetStateAction<Set<string>>>
 }
 
 export default function TranslatorInputControls(

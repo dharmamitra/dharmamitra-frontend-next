@@ -13,6 +13,7 @@ import {
   useTranslationModelParam,
 } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
+import useTranslationDisabled from "@/hooks/useTranslationDisabled"
 
 import TranslatorInputControls from "./controls/TranslatorInputControls"
 import TranslatorKeyboardControls from "./controls/TranslatorKeyboardControls"
@@ -53,6 +54,15 @@ export default function MitraTranslator() {
 
   const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
+  const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(
+    new Set(),
+  )
+  const isTriggerDisabled = useTranslationDisabled(
+    input_sentence,
+    chatPropsWithId.id,
+    completedQueryIds,
+  )
+
   return (
     <>
       <TranslationUsageDialog />
@@ -67,6 +77,9 @@ export default function MitraTranslator() {
             chatPropsWithId={chatPropsWithId}
             input={input_sentence}
             setInput={setInputSentenceParam}
+            isTriggerDisabled={isTriggerDisabled}
+            completedQueryIds={completedQueryIds}
+            setCompletedQueryIds={setCompletedQueryIds}
           />
         }
         outputContoles={<TranslatorOutputControls contentRef={outputBoxRef} />}

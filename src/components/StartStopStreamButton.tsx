@@ -13,25 +13,43 @@ import { tooltipEnterStyles } from "@/components/styled-ssr-safe"
 interface StartStopStreamButtonProps {
   chatPropsWithId: UseChatOptions
   input: string
+  isTriggerDisabled: boolean
+  completedQueryIds: Set<string>
+  setCompletedQueryIds: React.Dispatch<React.SetStateAction<Set<string>>>
 }
 
 export default function StartStopStreamButton({
   chatPropsWithId,
   input,
+  isTriggerDisabled,
+  setCompletedQueryIds,
 }: StartStopStreamButtonProps) {
   const t = useTranslations()
 
-  const { stop, setInput, status, handleSubmit } = useChat(chatPropsWithId)
+  const queryId = chatPropsWithId.id
+
+  const { stop, setInput, status, handleSubmit, messages } =
+    useChat(chatPropsWithId)
 
   React.useEffect(() => {
     // Ensures handlers are able to be called
     setInput(input)
   }, [input, setInput])
 
+  const handleTranslate = React.useCallback(() => {
+    handleSubmit(undefined, { allowEmptySubmit: true })
+  }, [handleSubmit])
+
   const handleAbort = React.useCallback(() => {
     stop()
     setInput(input)
   }, [stop, input, setInput])
+
+  React.useEffect(() => {
+    if (status === "ready" && messages.length > 0 && queryId) {
+      setCompletedQueryIds((prev) => new Set(prev).add(queryId))
+    }
+  }, [status, messages, queryId, setCompletedQueryIds])
 
   if (status === "submitted") {
     return (
@@ -52,8 +70,14 @@ export default function StartStopStreamButton({
       <Tooltip
         title={
           <span>
-            {`${t("translation.translate")}`} (Ctrl +
-            <span style={tooltipEnterStyles}>↵</span>)
+            {isTriggerDisabled ? (
+              <>{t("translation.triggerDisabled")}</>
+            ) : (
+              <>
+                {`${t("translation.translate")}`} (Ctrl +
+                <span style={tooltipEnterStyles}>↵</span>)
+              </>
+            )}
           </span>
         }
         placement="top"
@@ -74,8 +98,8 @@ export default function StartStopStreamButton({
           <IconButton
             aria-label={t("translation.translate")}
             color="secondary"
-            onClick={() => handleSubmit(undefined, { allowEmptySubmit: true })}
-            disabled={!input.match(/\S+/g)?.length}
+            onClick={handleTranslate}
+            disabled={isTriggerDisabled}
           >
             <PlayCircleIcon />
           </IconButton>

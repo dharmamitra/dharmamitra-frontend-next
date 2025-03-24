@@ -124,6 +124,7 @@
   },
   "translation": {
     "translate": "Translate",
+    "triggerDisabled": "Add/update text to translate",
     "heading": "Translate Dharma text",
     "inputAriaLabel": "Translation input field",
     "placeholders": {
