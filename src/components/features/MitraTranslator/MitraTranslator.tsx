@@ -43,7 +43,7 @@ export default function MitraTranslator() {
     })
 
     const chatProps = createChatProps({
-      localEndpoint: streamUtils.paths.translation,
+      localEndpoint: streamUtils.localAPIEndpoints["mitra-translation"],
       requestBody,
       initialInput: input_sentence,
     })
@@ -81,7 +81,6 @@ export default function MitraTranslator() {
           <TranslationOutput
             ref={outputBoxRef}
             chatPropsWithId={chatPropsWithId}
-            input={input_sentence}
           />
         }
       />

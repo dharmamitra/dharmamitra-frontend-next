@@ -102,7 +102,8 @@ export default function CopyButtons({
       <Tooltip
         title={getTooltipTitle(
           copyUnisandhiSuccess,
-          t("translation.tagging.copy.unsandhied"),
+          "Copy unsandhied sentence",
+          // t("translation.tagging.copy.unsandhied"),
         )}
       >
         <IconButton

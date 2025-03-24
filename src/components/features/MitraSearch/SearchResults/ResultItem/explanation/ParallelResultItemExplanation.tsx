@@ -17,7 +17,7 @@ export default function ParallelResultItemExplanation({
   // TODO: pending BE updates
   // const chatPropsWithId = createChatProps({
   //   id: JSON.stringify(parallelRequest),
-  //   localEndpoint: streamUtils.paths["explanation-parallel"],
+  //   localEndpoint: streamUtils.localAPIEndpoints["explanation-parallel"],
   //   requestBody: parallelRequest,
   //   initialInput: parallelRequest.query,
   // })
