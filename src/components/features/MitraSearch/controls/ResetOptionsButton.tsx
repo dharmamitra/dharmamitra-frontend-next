@@ -134,7 +134,7 @@ export default function ResetOptionsButton() {
       badgeContent={customOptionsCount}
       color="secondary"
       aria-label={t("optionCountBadgeLabel", {
-        count: customOptionsCount,
+        count: customOptionsCount ?? 0,
       })}
       sx={{
         "& .MuiBadge-badge": {
