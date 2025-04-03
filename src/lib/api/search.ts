@@ -229,6 +229,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/chat-translate/v1/chat/completions": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Chat Completions
+     * @description This endpoint emulates the OpenAI /v1/chat/completions API.
+     *     It supports streaming via SSE or normal single-response mode.
+     */
+    post: operations["chat_completions_chat_translate_v1_chat_completions_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/rate_translations": {
     parameters: {
       query?: never
@@ -265,6 +286,23 @@ export interface paths {
      *     Expects a JSON payload with translation data.
      */
     post: operations["rate_translations_ref_free_rate_translations_ref_free_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/ocr/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Ocr Endpoint */
+    post: operations["ocr_endpoint_ocr__post"]
     delete?: never
     options?: never
     head?: never
@@ -389,6 +427,14 @@ export interface components {
       /** Password */
       password: string
     }
+    /** Body_ocr_endpoint_ocr__post */
+    Body_ocr_endpoint_ocr__post: {
+      /**
+       * File
+       * Format: binary
+       */
+      file: string
+    }
     /** Body_search_endpoint_secondary_secondary__post */
     Body_search_endpoint_secondary_secondary__post: {
       /** Search Input */
@@ -439,6 +485,43 @@ export interface components {
        * @default en
        */
       locale: string
+    }
+    /** ChatCompletionRequest */
+    ChatCompletionRequest: {
+      /**
+       * Model
+       * @default gpt-3.5-turbo
+       */
+      model: string | null
+      /** Messages */
+      messages: {
+        [key: string]: string
+      }[]
+      /**
+       * Stream
+       * @default false
+       */
+      stream: boolean | null
+      /**
+       * Temperature
+       * @default 0.1
+       */
+      temperature: number | null
+      /**
+       * Do Grammar
+       * @default false
+       */
+      do_grammar: boolean | null
+      /**
+       * Input Encoding
+       * @default default
+       */
+      input_encoding: string | null
+      /**
+       * Target Lang
+       * @default english
+       */
+      target_lang: string | null
     }
     /**
      * FilterLanguage
@@ -1067,6 +1150,39 @@ export interface operations {
       }
     }
   }
+  chat_completions_chat_translate_v1_chat_completions_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChatCompletionRequest"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   rate_translations_rate_translations_post: {
     parameters: {
       query?: never
@@ -1120,6 +1236,42 @@ export interface operations {
         }
         content: {
           "application/json": number[]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  ocr_endpoint_ocr__post: {
+    parameters: {
+      query?: {
+        transliterate_devanagari_to_iast?: boolean
+        transliterate_tibetan_to_wylie?: boolean
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "multipart/form-data": components["schemas"]["Body_ocr_endpoint_ocr__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": unknown
         }
       }
       /** @description Validation Error */

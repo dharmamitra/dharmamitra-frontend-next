@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { useTranslations } from "next-intl"
+import FormatShapesIcon from "@mui/icons-material/FormatShapes"
 import ScreenSearchDesktopOutlinedIcon from "@mui/icons-material/ScreenSearchDesktopOutlined"
 import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined"
 import Tab from "@mui/material/Tab"
@@ -9,7 +10,7 @@ import Tabs from "@mui/material/Tabs"
 
 import { tabsStyles } from "@/components/styled-ssr-safe"
 
-import { a11yProps } from "../DualFeatureMitra"
+import { a11yProps } from "../MultiFeatureMitra"
 import LoadingBox from "./LoadingBox"
 
 export default function DualFeatureMitraLoading() {
@@ -43,6 +44,14 @@ export default function DualFeatureMitraLoading() {
           iconPosition="start"
           label={t("translation.translate")}
           {...a11yProps(1)}
+          disabled
+        />
+
+        <Tab
+          icon={<FormatShapesIcon />}
+          iconPosition="start"
+          label="OCR"
+          {...a11yProps(2)}
           disabled
         />
       </Tabs>

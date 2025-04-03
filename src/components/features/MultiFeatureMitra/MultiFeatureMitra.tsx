@@ -3,12 +3,15 @@
 import * as React from "react"
 import { useInView } from "react-intersection-observer"
 import { useTranslations } from "next-intl"
+import DocumentScannerOutlinedIcon from "@mui/icons-material/DocumentScannerOutlined"
+import FormatShapesIcon from "@mui/icons-material/FormatShapes"
 import ScreenSearchDesktopOutlinedIcon from "@mui/icons-material/ScreenSearchDesktopOutlined"
 import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined"
 import Box from "@mui/material/Box"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
+import MitraOCR from "@/components/features/MitraOCR"
 import MitraSearch from "@/components/features/MitraSearch"
 import MitraTranslator from "@/components/features/MitraTranslator"
 import { tabsStyles } from "@/components/styled-ssr-safe"
@@ -27,7 +30,7 @@ export function a11yProps(index: number) {
   }
 }
 
-export default function DualFeatureMitra() {
+export default function MultiFeatureMitra() {
   const t = useTranslations()
 
   const [viewTabIndex, setViewTabIndex] = useViewTabParamWithLocalStorage()
@@ -74,6 +77,12 @@ export default function DualFeatureMitra() {
             label={t("translation.translate")}
             {...a11yProps(1)}
           />
+          <Tab
+            icon={<DocumentScannerOutlinedIcon />}
+            iconPosition="start"
+            label="OCR"
+            {...a11yProps(2)}
+          />
         </Tabs>
       </Box>
 
@@ -107,6 +116,15 @@ export default function DualFeatureMitra() {
           <FeatureTabPanel value={viewTabIndex} index={1}>
             <Box id="translator-feature-wrapper" sx={{ mt: 6 }}>
               <MitraTranslator />
+            </Box>
+          </FeatureTabPanel>
+
+          <FeatureTabPanel value={viewTabIndex} index={2}>
+            <Box
+              id="ocr-feature-wrapper"
+              sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
+            >
+              <MitraOCR />
             </Box>
           </FeatureTabPanel>
         </Box>

@@ -21,6 +21,7 @@ export const defaultInputEncoding: InputEncoding = "auto"
 export const views: View[] = exhaustiveStringTuple<View>()(
   "search",
   "translation",
+  "ocr",
 )
 export const defaultView: View = "search"
 

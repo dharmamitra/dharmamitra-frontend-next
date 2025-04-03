@@ -13,7 +13,7 @@ export type APIInputEncoding =
 export type InputEncoding = APIInputEncoding &
   keyof Messages["globalParams"]["encodings"]
 
-export type View = "search" | "translation"
+export type View = "search" | "translation" | "ocr"
 
 export type APIGlobalParams = CommonProperties<
   [
