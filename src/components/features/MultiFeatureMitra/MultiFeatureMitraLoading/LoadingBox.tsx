@@ -2,7 +2,7 @@ import React from "react"
 import { Box } from "@mui/material"
 import styled from "@mui/material/styles/styled"
 
-import { minToolBoxHeight } from "../DualFeatureMitra"
+import { minToolBoxHeight } from "../MultiFeatureMitra"
 
 const BorderedBox = styled(Box)(({ theme }) => ({
   "@keyframes boarderTrace": {
