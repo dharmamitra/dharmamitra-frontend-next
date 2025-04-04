@@ -19,7 +19,9 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json()
-    const { messages, target_language } = requestBody
+    const { messages, target_lang } = requestBody
+
+    console.log({ requestLang: target_lang })
 
     const result = streamText({
       model: mitra("gpt-3.5-turbo"),
@@ -27,10 +29,7 @@ export async function POST(request: NextRequest) {
       temperature: 0.1,
       providerOptions: {
         "dharma-mitra": {
-          stream: true,
-          do_grammar: false,
-          input_encoding: "default",
-          target_language,
+          target_lang,
         },
       },
     })
