@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Box, Button, CircularProgress, Typography } from "@mui/material"
 import { useMutation } from "@tanstack/react-query"
 
 import { DMFetchApi } from "@/utils/api"
@@ -21,7 +20,6 @@ export default function MitraOCR() {
       })
     },
     onError: (error) => {
-      // Log the actual error for debugging
       // eslint-disable-next-line no-console
       console.error("OCR processing error:", error)
     },

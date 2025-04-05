@@ -46,8 +46,7 @@ export const validateFile = (file: File | null | undefined): file is File => {
   return true
 }
 
-export const downloadOCRTextFile = (content: string, filename: string) => {
-  const blob = new Blob([content], { type: "text/plain;charset=utf-8" })
+export const downloadOCRTextFile = (blob: Blob, filename: string) => {
   const url = URL.createObjectURL(blob)
   const link = document.createElement("a")
   link.href = url
@@ -55,5 +54,5 @@ export const downloadOCRTextFile = (content: string, filename: string) => {
   document.body.appendChild(link) // Required for Firefox
   link.click()
   document.body.removeChild(link)
-  URL.revokeObjectURL(url) // Clean up
+  URL.revokeObjectURL(url)
 }

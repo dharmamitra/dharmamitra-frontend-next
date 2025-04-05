@@ -6,7 +6,7 @@
 
 import { z } from "zod"
 
-import apiClients from "@/utils/api/client"
+import { searchBaseUrl } from "@/utils/api/client"
 
 const schema = z.object({
   extracted_text: z.string(),
@@ -14,90 +14,92 @@ const schema = z.object({
   processing_time_seconds: z.number(),
 })
 
-// Define the possible return types
 export type ParsedOCRJson = {
   type: "json"
   extractedText: string
   pages: number
 }
 
-export type ParsedOCRText = {
-  type: "text"
-  content: string
+export type ParsedOCRFile = {
+  type: "file"
+  filename: string
+  file: Blob
 }
 
-export type ParsedOCRResponse = ParsedOCRJson | ParsedOCRText
+export type ParsedOCRResponse = ParsedOCRJson | ParsedOCRFile
 
-const parseAPIResponse = (responseData: unknown): ParsedOCRResponse => {
+const parseJSONResponse = (responseData: unknown) => {
   const parseResult = schema.safeParse(responseData)
 
   if (parseResult.success) {
     return {
-      type: "json",
+      type: "json" as const,
       extractedText: parseResult.data.extracted_text,
       pages: parseResult.data.pages,
     }
-  } else {
-    if (typeof responseData === "string") {
-      return {
-        type: "text",
-        content: responseData,
-      }
-    } else {
-      throw new Error("Unexpected API response format received.")
-    }
   }
+
+  throw new Error("Unexpected API response format received.")
 }
 
 export const getOCR = async ({
   file,
-  transliterateDevanagariToIAST,
-  transliterateTibetanToWylie,
+  transliterateDevanagariToIAST = false,
+  transliterateTibetanToWylie = false,
 }: {
   file: File
-  transliterateDevanagariToIAST: boolean
-  transliterateTibetanToWylie: boolean
+  transliterateDevanagariToIAST?: boolean
+  transliterateTibetanToWylie?: boolean
 }) => {
   try {
+    const query = new URLSearchParams()
+    query.set(
+      "transliterate_devanagari_to_iast",
+      String(transliterateDevanagariToIAST),
+    )
+    query.set(
+      "transliterate_tibetan_to_wylie",
+      String(transliterateTibetanToWylie),
+    )
+
+    const url = `${searchBaseUrl}/ocr/?${query}`
+
     const body = new FormData()
     body.append("file", file, file.name)
 
-    const { data, error } = await apiClients.Search.POST("/ocr/", {
+    const response = await fetch(url, {
+      method: "POST",
       headers: {
         "X-Key": process.env.DM_API_KEY ?? "",
       },
-      params: {
-        query: {
-          transliterate_devanagari_to_iast: transliterateDevanagariToIAST,
-          transliterate_tibetan_to_wylie: transliterateTibetanToWylie,
-        },
-      },
-      // Re-add ts-expect-error as the API client type seems incorrect for FormData
-      // @ts-expect-error FormData is the correct type for file uploads.
       body,
     })
 
-    if (error) {
-      let errorMessage = "Failed to process OCR request"
-      if (typeof error === "string") {
-        errorMessage = error
-      } else if (
-        typeof error === "object" &&
-        error !== null &&
-        "message" in error
-      ) {
-        errorMessage = String(error.message)
-      } else {
-        try {
-          errorMessage = JSON.stringify(error)
-        } catch {
-          errorMessage = "Unknown error occurred during OCR request."
-        }
-      }
-      throw new Error(errorMessage)
+    if (!response.ok) {
+      throw new Error(`Failed to process OCR request: ${response.statusText}`)
     }
 
-    return parseAPIResponse(data)
+    const contentDisposition = response.headers.get("content-disposition")
+
+    if (contentDisposition) {
+      const [filenameMatch] =
+        contentDisposition.match(/filename=(.*?)(\s|\r|\n)?$/) ?? []
+
+      if (filenameMatch) {
+        return {
+          type: "file" as const,
+          filename: filenameMatch.replace("filename=", "mitra-ocr-"),
+          file: await response.blob(),
+        }
+      }
+
+      throw new Error(
+        "Failed to extract filename from content-disposition header",
+      )
+    }
+
+    const data = await response.json()
+    return parseJSONResponse(data)
   } catch (error) {
     if (error instanceof Error) {
       throw error

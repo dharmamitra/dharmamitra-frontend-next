@@ -73,15 +73,16 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
     )
   }
 
-  if (isSuccess && data && data.type === "text") {
+  if (isSuccess && data && data.type === "file") {
     return (
       <ResultContainer>
         <Typography sx={{ mb: 2 }}>
-          The extracted text is large and available for download.
+          The extracted text is large and can be download as a file.
         </Typography>
         <Button
           variant="contained"
-          onClick={() => downloadOCRTextFile(data.content, "ocr_result.txt")}
+          color="secondary"
+          onClick={() => downloadOCRTextFile(data.file, data.filename)}
         >
           Download Text File
         </Button>
