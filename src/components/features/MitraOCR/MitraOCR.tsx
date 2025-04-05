@@ -3,26 +3,23 @@ import { Box, Button, CircularProgress, Typography } from "@mui/material"
 import { useMutation } from "@tanstack/react-query"
 
 import { DMFetchApi } from "@/utils/api"
+import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/actions"
 
 import InputBox from "./InputBox"
 import OCRResult from "./OCRResult"
 import SelectedBoxWithTrigger from "./SelectedBoxWithTrigger"
 
-export type OCRResponse = {
-  extractedText: string
-  pages: number
-}
-
 export default function MitraOCR() {
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null)
 
-  const ocrMutation = useMutation<OCRResponse, Error, File>({
-    mutationFn: async (file: File) =>
-      DMFetchApi.ocr.call({
+  const ocrMutation = useMutation<ParsedOCRResponse, Error, File>({
+    mutationFn: async (file: File) => {
+      return DMFetchApi.ocr.call({
         file,
         transliterateDevanagariToIAST: false,
         transliterateTibetanToWylie: false,
-      }),
+      })
+    },
     onError: (error) => {
       // Log the actual error for debugging
       // eslint-disable-next-line no-console

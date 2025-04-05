@@ -1,14 +1,14 @@
 import * as React from "react"
-// import { useTranslations } from "next-intl"
-import { Box, Typography } from "@mui/material"
+import { Box, Button, Typography } from "@mui/material"
 import { UseMutationResult } from "@tanstack/react-query"
 
 import LoadingDots from "@/components/LoadingDots"
+import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/actions"
 
-import { OCRResponse } from "./MitraOCR"
+import { downloadOCRTextFile } from "./utils"
 
 type OCRResultProps = {
-  ocrMutation: UseMutationResult<OCRResponse, Error, File, unknown>
+  ocrMutation: UseMutationResult<ParsedOCRResponse, Error, File, unknown>
 }
 
 const ResultContainer = ({
@@ -18,7 +18,6 @@ const ResultContainer = ({
   children: React.ReactNode
   hasTitleGutter?: boolean
 }) => {
-  // const t = useTranslations("search")
   return (
     <Box sx={{ mt: 4 }}>
       <Typography variant="h5" component="h2" gutterBottom={hasTitleGutter}>
@@ -30,8 +29,6 @@ const ResultContainer = ({
 }
 
 export default function OCRResult({ ocrMutation }: OCRResultProps) {
-  // const t = useTranslations("search")
-
   const { data, isSuccess, isError, isPending, error } = ocrMutation
 
   if (isPending) {
@@ -55,7 +52,7 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
     )
   }
 
-  if (isSuccess && data && data.pages < 6) {
+  if (isSuccess && data && data.type === "json") {
     return (
       <ResultContainer>
         <Typography
@@ -72,6 +69,22 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
         >
           {data.extractedText}
         </Typography>
+      </ResultContainer>
+    )
+  }
+
+  if (isSuccess && data && data.type === "text") {
+    return (
+      <ResultContainer>
+        <Typography sx={{ mb: 2 }}>
+          The extracted text is large and available for download.
+        </Typography>
+        <Button
+          variant="contained"
+          onClick={() => downloadOCRTextFile(data.content, "ocr_result.txt")}
+        >
+          Download Text File
+        </Button>
       </ResultContainer>
     )
   }

@@ -1,8 +1,11 @@
+// 413 errors fail silently see: https://github.com/vercel/next.js/discussions/77368
+// input file size validation must be done by client beforehand in alignment
+// with the bodySizeLimit config value.
+
 "use server"
 
 import { z } from "zod"
 
-import { SearchApiTypes } from "@/api"
 import apiClients from "@/utils/api/client"
 
 const schema = z.object({
@@ -11,12 +14,38 @@ const schema = z.object({
   processing_time_seconds: z.number(),
 })
 
-const parseAPIResponse = (response: SearchApiTypes.Response<"/ocr/">) => {
-  const parsedResponse = schema.parse(response)
+// Define the possible return types
+export type ParsedOCRJson = {
+  type: "json"
+  extractedText: string
+  pages: number
+}
 
-  return {
-    extractedText: parsedResponse.extracted_text,
-    pages: parsedResponse.pages,
+export type ParsedOCRText = {
+  type: "text"
+  content: string
+}
+
+export type ParsedOCRResponse = ParsedOCRJson | ParsedOCRText
+
+const parseAPIResponse = (responseData: unknown): ParsedOCRResponse => {
+  const parseResult = schema.safeParse(responseData)
+
+  if (parseResult.success) {
+    return {
+      type: "json",
+      extractedText: parseResult.data.extracted_text,
+      pages: parseResult.data.pages,
+    }
+  } else {
+    if (typeof responseData === "string") {
+      return {
+        type: "text",
+        content: responseData,
+      }
+    } else {
+      throw new Error("Unexpected API response format received.")
+    }
   }
 }
 
@@ -30,7 +59,6 @@ export const getOCR = async ({
   transliterateTibetanToWylie: boolean
 }) => {
   try {
-    // The file needs to be properly added as a Blob/File object, not as a string
     const body = new FormData()
     body.append("file", file, file.name)
 
@@ -44,18 +72,37 @@ export const getOCR = async ({
           transliterate_tibetan_to_wylie: transliterateTibetanToWylie,
         },
       },
-      // @ts-expect-error FormData is the correct type for file uploads. API is not typed correctly.
+      // Re-add ts-expect-error as the API client type seems incorrect for FormData
+      // @ts-expect-error FormData is the correct type for file uploads.
       body,
     })
 
     if (error) {
-      throw new Error(typeof error === "string" ? error : JSON.stringify(error))
+      let errorMessage = "Failed to process OCR request"
+      if (typeof error === "string") {
+        errorMessage = error
+      } else if (
+        typeof error === "object" &&
+        error !== null &&
+        "message" in error
+      ) {
+        errorMessage = String(error.message)
+      } else {
+        try {
+          errorMessage = JSON.stringify(error)
+        } catch {
+          errorMessage = "Unknown error occurred during OCR request."
+        }
+      }
+      throw new Error(errorMessage)
     }
 
     return parseAPIResponse(data)
   } catch (error) {
-    throw new Error(
-      error instanceof Error ? error.message : "Failed to process OCR request",
-    )
+    if (error instanceof Error) {
+      throw error
+    } else {
+      throw new Error(String(error) || "An unknown error occurred in getOCR")
+    }
   }
 }

@@ -6,8 +6,9 @@ import type { paths as TranslationPaths } from "@/lib/api/translation"
 
 export const defaultTimeout = 20000
 
-const translationBaseUrl = process.env.NEXT_PUBLIC_DM_TRANSLATION_API_BASE_URL
-const searchBaseUrl = process.env.NEXT_PUBLIC_DM_SEARCH_API_BASE_URL
+export const translationBaseUrl =
+  process.env.NEXT_PUBLIC_DM_TRANSLATION_API_BASE_URL
+export const searchBaseUrl = process.env.NEXT_PUBLIC_DM_SEARCH_API_BASE_URL
 /**
  * Temporary API Client to enable file menu dev
  * TODO: remove when api is ready
