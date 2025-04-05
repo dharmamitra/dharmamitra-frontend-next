@@ -2,6 +2,7 @@ import * as React from "react"
 import { Box, Button, Typography } from "@mui/material"
 import { UseMutationResult } from "@tanstack/react-query"
 
+import CopyTextButton from "@/components/CopyTextButton"
 import LoadingDots from "@/components/LoadingDots"
 import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/actions"
 
@@ -30,6 +31,7 @@ const ResultContainer = ({
 
 export default function OCRResult({ ocrMutation }: OCRResultProps) {
   const { data, isSuccess, isError, isPending, error } = ocrMutation
+  const contentRef = React.useRef<HTMLElement | null>(null)
 
   if (isPending) {
     return (
@@ -55,20 +57,38 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
   if (isSuccess && data && data.type === "json") {
     return (
       <ResultContainer>
-        <Typography
-          component="pre"
+        <Box
           sx={{
-            whiteSpace: "pre-wrap",
-            wordBreak: "break-word",
             bgcolor: "grey.100",
             p: 2,
             borderRadius: 1,
-            maxHeight: "400px",
+            maxHeight: {
+              sx: "400px",
+              md: "calc(100vh - 220px)",
+            },
             overflow: "auto",
           }}
         >
-          {data.extractedText}
-        </Typography>
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <CopyTextButton
+              contentRef={contentRef}
+              ariaLabel="Copy extracted text"
+              tooltip="Copy extracted text"
+              color="action"
+            />
+          </Box>
+          <Box ref={contentRef}>
+            <Typography
+              component="pre"
+              sx={{
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+              }}
+            >
+              {data.extractedText}
+            </Typography>
+          </Box>
+        </Box>
       </ResultContainer>
     )
   }
