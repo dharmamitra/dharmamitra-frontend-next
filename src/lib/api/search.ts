@@ -488,11 +488,8 @@ export interface components {
     }
     /** ChatCompletionRequest */
     ChatCompletionRequest: {
-      /**
-       * Model
-       * @default gpt-3.5-turbo
-       */
-      model: string | null
+      /** @default gpt-3.5-turbo */
+      model: components["schemas"]["ModelType"] | null
       /** Messages */
       messages: {
         [key: string]: string
@@ -545,6 +542,11 @@ export interface components {
      * @enum {string}
      */
     LimitsSecondary: "" | "" | ""
+    /**
+     * ModelType
+     * @enum {string}
+     */
+    ModelType: "gpt-3.5-turbo" | "default" | "mitra-base" | "mitra-pro"
     /**
      * ParallelDataSearchResponse
      * @description List of individual search results for the parallel search.

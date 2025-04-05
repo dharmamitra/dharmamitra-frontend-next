@@ -4,7 +4,11 @@ import { Box, Button, Typography } from "@mui/material"
 
 import UploadIcon from "@/components/icons/Upload"
 
-import { ACCEPTED_FILE_TYPES_STRING, validateFile } from "./utils"
+import {
+  ACCEPTED_FILE_TYPES_STRING,
+  MAX_FILE_SIZE_MB,
+  validateFile,
+} from "./utils"
 
 type InputBoxProps = {
   className?: string
@@ -94,7 +98,8 @@ export default function InputBox({ className, onFileSelect }: InputBoxProps) {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {/* {t("upload.title")} */}
-          Supported file types: PDF, JPG, PNG, WEBP (max size: 15MB)
+          Supported file types: PDF, JPG, PNG, WEBP (max size:{" "}
+          {MAX_FILE_SIZE_MB}MB)
         </Typography>
         <Typography
           variant="body2"

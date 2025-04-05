@@ -29,6 +29,11 @@ const nextConfig = {
     // https://nextjs.org/docs/app/api-reference/components/image#configuration-options
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "15mb",
+    },
+  },
 }
 
 /**
