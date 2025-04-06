@@ -2,7 +2,7 @@ import * as React from "react"
 import { useMutation } from "@tanstack/react-query"
 
 import { DMFetchApi } from "@/utils/api"
-import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/query"
+import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/handlers"
 
 import InputBox from "./InputBox"
 import OCRResult from "./OCRResult"

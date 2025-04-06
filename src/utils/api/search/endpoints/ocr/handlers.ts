@@ -1,6 +1,5 @@
 import { z } from "zod"
 
-import { tryCatch } from "@/utils"
 import { searchBaseUrl } from "@/utils/api/client"
 
 const schema = z.object({
@@ -40,7 +39,7 @@ const parseJSONResponse = (responseData: unknown) => {
   }
 }
 
-async function parseOCRResponse(response: Response) {
+export async function parseOCRResponse(response: Response) {
   const contentDisposition = response.headers.get("content-disposition")
 
   if (contentDisposition) {
@@ -71,10 +70,8 @@ async function parseOCRResponse(response: Response) {
   )
 }
 
-async function fetchOCRData(file: File, query: URLSearchParams) {
+export async function fetchOCRData(body: FormData, query: URLSearchParams) {
   const url = `${searchBaseUrl}/ocr/?${query}`
-  const body = new FormData()
-  body.append("file", file, file.name)
   return await fetch(url, {
     method: "POST",
     headers: {
@@ -82,26 +79,4 @@ async function fetchOCRData(file: File, query: URLSearchParams) {
     },
     body,
   })
-}
-
-export const getOCRData = async ({
-  file,
-  query,
-}: {
-  file: File
-  query: URLSearchParams
-}) => {
-  const fetchQuery = await tryCatch(async () => await fetchOCRData(file, query))
-
-  if (fetchQuery.error) {
-    throw fetchQuery.error
-  }
-
-  const data = await tryCatch(async () => parseOCRResponse(fetchQuery.result))
-
-  if (data.error) {
-    throw data.error
-  }
-
-  return data.result
 }

@@ -4,7 +4,7 @@ import { UseMutationResult } from "@tanstack/react-query"
 
 import CopyTextButton from "@/components/CopyTextButton"
 import LoadingDots from "@/components/LoadingDots"
-import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/query"
+import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/handlers"
 
 import { downloadOCRTextFile } from "./utils"
 
@@ -37,7 +37,7 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
     return (
       <ResultContainer hasTitleGutter={false}>
         <Typography variant="body2" color="text.secondary" mb={2}>
-          Please note large files can take several minutes to process.
+          Large files can take several minutes to process.
         </Typography>
         <LoadingDots />
       </ResultContainer>
