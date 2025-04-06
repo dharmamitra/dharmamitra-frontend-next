@@ -25,7 +25,7 @@ export const ALLOWED_FILE_TYPES = [
   "image/webp",
 ]
 
-export const MAX_FILE_SIZE_MB = 10
+export const MAX_FILE_SIZE_MB = 150
 
 export const MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024
 
