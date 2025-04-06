@@ -1,7 +1,7 @@
 import { getDbSourceMenuData } from "./bn/menudata"
 import * as globalParams from "./global/params"
 import * as GlobalParamTypes from "./global/types"
-import { getOCR } from "./search/endpoints/ocr/actions"
+import { getOCRDataAction } from "./search/endpoints/ocr/actions"
 import { getSearchParallelData } from "./search/endpoints/parallel"
 import { getSearchParallelExplanation } from "./search/endpoints/parallel-explanation/actions"
 import { getSearchPrimaryData } from "./search/endpoints/primary"
@@ -62,7 +62,7 @@ const DMFetchApi = {
   },
   ocr: {
     makeQueryKey: (file: File) => ["ocr", file.name],
-    call: getOCR,
+    call: getOCRDataAction,
   },
 }
 

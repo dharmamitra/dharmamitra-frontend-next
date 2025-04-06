@@ -4,7 +4,7 @@ import { UseMutationResult } from "@tanstack/react-query"
 
 import CopyTextButton from "@/components/CopyTextButton"
 import LoadingDots from "@/components/LoadingDots"
-import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/actions"
+import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/query"
 
 import { downloadOCRTextFile } from "./utils"
 
@@ -47,7 +47,7 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
   if (isError) {
     return (
       <ResultContainer>
-        <Typography color="error" sx={{ mt: 2, textAlign: "center" }}>
+        <Typography color="error" sx={{ mt: 2 }}>
           {error?.message || "Failed to process the file. Please try again."}
         </Typography>
       </ResultContainer>
