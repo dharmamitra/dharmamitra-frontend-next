@@ -7,6 +7,12 @@ import customTheming from "@/utils/theme/config"
  * COMMON COMPONENT STYLES
  *
  */
+export const tabSelectedButtonStyles = {
+  backgroundColor: "#fff",
+  boxShadow: "0px 4px 4px 0px #0000001C",
+  transition: "box-shadow 0.3s ease-in-out, background-color 0.1s ease-in-out",
+  color: customTheming.baseColors.secondary,
+}
 
 export const tabsStyles = {
   borderRadius: "50px",
@@ -23,13 +29,7 @@ export const tabsStyles = {
   minWidth: "210px",
   width: "fit-content",
   marginInline: "auto",
-  "& button.Mui-selected": {
-    backgroundColor: "#fff",
-    boxShadow: "0px 4px 4px 0px #0000001C",
-    transition:
-      "box-shadow 0.3s ease-in-out, background-color 0.1s ease-in-out",
-    color: customTheming.baseColors.secondary,
-  },
+  "& button.Mui-selected": tabSelectedButtonStyles,
   "*": {
     animation: "none !important",
   },
