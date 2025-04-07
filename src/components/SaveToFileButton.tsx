@@ -69,8 +69,9 @@ export default function SaveToFileButton({
   fileName,
   sx,
 }: SaveToFileProps) {
-  const t = useTranslations("generic.copy")
-  const [toolTip, setToolTip] = React.useState<string>(tooltip || t("default"))
+  const t = useTranslations("generic")
+  const title = tooltip || t("saveToFile")
+
   const [isContent, setIsContent] = React.useState<boolean>(false)
 
   const saveContent = React.useCallback(async () => {
@@ -106,19 +107,14 @@ export default function SaveToFileButton({
 
   return (
     <>
-      <Tooltip title={toolTip} placement="top">
+      <Tooltip title={title} placement="top">
         <span>
           <IconButton
             data-testid={"save-to-file-button"}
-            aria-label={ariaLabel || t("default")}
+            aria-label={ariaLabel || title}
             color="secondary"
             onClick={saveContent}
             disabled={!isContent}
-            onMouseLeave={() =>
-              setTimeout(() => {
-                setToolTip(tooltip || t("default"))
-              }, 500)
-            }
           >
             {icon || (
               <SaveOutlinedIcon color={color} fontSize={fontSize} sx={sx} />

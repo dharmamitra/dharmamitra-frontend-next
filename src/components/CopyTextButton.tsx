@@ -63,8 +63,8 @@ export default function CopyTextButton({
   color = "action",
   fontSize = "small",
 }: CopyTextProps) {
-  const t = useTranslations("generic.copy")
-  const [toolTip, setToolTip] = React.useState<string>(tooltip || t("default"))
+  const t = useTranslations("generic")
+  const [toolTip, setToolTip] = React.useState<string>(tooltip || t("copy"))
   const [isContent, setIsContent] = React.useState<boolean>(false)
 
   const copyContent = React.useCallback(async () => {
@@ -104,13 +104,13 @@ export default function CopyTextButton({
         <span>
           <IconButton
             data-testid={"copy-button"}
-            aria-label={ariaLabel || t("default")}
+            aria-label={ariaLabel || t("copy")}
             color="secondary"
             onClick={copyContent}
             disabled={!isContent}
             onMouseLeave={() =>
               setTimeout(() => {
-                setToolTip(tooltip || t("default"))
+                setToolTip(tooltip || t("copy"))
               }, 500)
             }
           >

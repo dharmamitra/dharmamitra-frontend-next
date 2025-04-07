@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react"
+import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
-// import { useTranslations } from "next-intl"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
 import useMediaQuery from "@mui/material/useMediaQuery"
@@ -19,7 +19,7 @@ export default function TransliterationSwitchs({
   devanagariToIASTState,
   tibetanToWylieState,
 }: TransliterationSwitchsProps) {
-  // const t = useTranslations("search")
+  const t = useTranslations("ocr")
   const isSmallScreen = useMediaQuery("(max-width:750px)")
   const [isDevanagariToIASTState, setIsDevanagariToIASTState] =
     devanagariToIASTState
@@ -58,8 +58,7 @@ export default function TransliterationSwitchs({
           />
         }
         sx={{ ml: 0 }}
-        // label={t("optionsSwitchLabel")}
-        label="Devanagari to IAST"
+        label={t("devanagariToIASTSwitchLabel")}
         labelPlacement={isSmallScreen ? "end" : "start"}
       />
       <FormControlLabel
@@ -71,8 +70,7 @@ export default function TransliterationSwitchs({
           />
         }
         sx={{ ml: 0 }}
-        // label={t("optionsSwitchLabel")}
-        label="Tibetan to Wylie"
+        label={t("tibetanToWylieSwitchLabel")}
         labelPlacement={isSmallScreen ? "end" : "start"}
       />
     </Box>

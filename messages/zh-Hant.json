@@ -1,15 +1,13 @@
 {
   "generic": {
-    "copy": {
-      "default": "Copy",
-      "copied": "Copied!",
-      "copyLink": "Copy link",
-      "copyRef": "Copy reference",
-      "copyAll": "Copy all",
-      "copyResultsRefs": "Copy references",
-      "copyResultsList": "Copy full results list",
-      "copyError": "Failed to copy"
-    },
+    "copy": "Copy",
+    "copied": "Copied!",
+    "copyLink": "Copy link",
+    "copyRef": "Copy reference",
+    "copyAll": "Copy all",
+    "copyResultsRefs": "Copy references",
+    "copyResultsList": "Copy full results list",
+    "copyError": "Failed to copy",
     "other": "其他",
     "clear": "Clear",
     "stop": "Stop",
@@ -19,16 +17,23 @@
     "loading": "Loading",
     "noResult": "No results found.",
     "exception": {
-      "default": "Oh no! Something went wrong!<newline>Please try again later.</newline>",
+      "default": "Ooops! Something went wrong!<newline>Please try again later.</newline>",
       "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
       "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
       "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input.",
-      "experimentalLanguageWarning": "Support for this language is experimental."
+      "experimentalLanguageWarning": "Support for this language is experimental.",
+      "fileFailure": "Failed to process the file. Please try again.",
+      "invalidFileType": "Invalid file type. Please upload a {fileTypes} file.",
+      "invalidFileSize": "File size should be less than {maxFileSize}MB"
     },
     "openAll": "Open all",
     "closeAll": "Close all",
     "showLess": "Show less",
-    "showAll": "Show all {count, number}"
+    "showAll": "Show all {count, number}",
+    "dragAndDrop": "Drag and drop your file here",
+    "supportedFileTypes": "Supported file types: {fileTypes} (max size: {maxFileSize}MB)",
+    "browseFiles": "Browse files",
+    "saveToFile": "Save to file"
   },
   "navigation": {
     "mobileButtonAriaLabel": "开放导航菜单",
@@ -341,5 +346,12 @@
     "noNews": "No news found! :-)",
     "localeNotAvailable": "Sorry, this page is not available in the selected language. :-(",
     "goToDefaultLocale": "Go to English"
+  },
+  "ocr": {
+    "processingTimeNote": "Please note that large files can take several minutes to process and it is advised to break them into smaller chunks.",
+    "processingTimeNoteShort": "Large files can take several minutes to process.",
+    "devanagariToIASTSwitchLabel": "Devanagari to IAST",
+    "tibetanToWylieSwitchLabel": "Tibetan to Wylie",
+    "largeDownload": "The extracted text is larger than 100kB and can be downloaded as a file."
   }
 }
