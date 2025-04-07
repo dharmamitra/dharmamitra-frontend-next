@@ -2,18 +2,22 @@
 
 import React, { type JSX } from "react"
 import { useTranslations } from "next-intl"
-import ContentCopyIcon from "@mui/icons-material/ContentCopy"
-import { IconButton, IconButtonProps } from "@mui/material"
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined"
+import { IconButton } from "@mui/material"
 import { SvgIconProps } from "@mui/material/SvgIcon"
 import Tooltip from "@mui/material/Tooltip"
 
-interface CopyTextProps {
+import { saveAsTxtFile } from "@/utils"
+
+interface SaveToFileProps {
   contentRef: React.RefObject<HTMLElement | null>
   ariaLabel?: string
   icon?: JSX.Element
   tooltip?: string
   color?: SvgIconProps["color"]
   fontSize?: SvgIconProps["fontSize"]
+  fileName?: string
+  sx?: SvgIconProps["sx"]
 }
 
 const blockElements = [
@@ -55,26 +59,28 @@ const getTextWithLinks = (node: Node): string => {
   }
 }
 
-export default function CopyTextButton({
+export default function SaveToFileButton({
   contentRef,
   ariaLabel,
   icon,
   tooltip,
   color = "action",
   fontSize = "small",
-}: CopyTextProps) {
+  fileName,
+  sx,
+}: SaveToFileProps) {
   const t = useTranslations("generic.copy")
   const [toolTip, setToolTip] = React.useState<string>(tooltip || t("default"))
   const [isContent, setIsContent] = React.useState<boolean>(false)
 
-  const copyContent = React.useCallback(async () => {
+  const saveContent = React.useCallback(async () => {
     const element = contentRef.current
     if (element) {
       const text = getTextWithLinks(element)
-      await navigator.clipboard.writeText(text)
-      setToolTip(t("copied"))
+      const blob = new Blob([text], { type: "text/plain" })
+      saveAsTxtFile(blob, fileName || "mitra-result.txt")
     }
-  }, [contentRef, t])
+  }, [contentRef, fileName])
 
   React.useEffect(() => {
     const element = contentRef.current
@@ -103,10 +109,10 @@ export default function CopyTextButton({
       <Tooltip title={toolTip} placement="top">
         <span>
           <IconButton
-            data-testid={"copy-button"}
+            data-testid={"save-to-file-button"}
             aria-label={ariaLabel || t("default")}
             color="secondary"
-            onClick={copyContent}
+            onClick={saveContent}
             disabled={!isContent}
             onMouseLeave={() =>
               setTimeout(() => {
@@ -114,7 +120,9 @@ export default function CopyTextButton({
               }, 500)
             }
           >
-            {icon || <ContentCopyIcon color={color} fontSize={fontSize} />}
+            {icon || (
+              <SaveOutlinedIcon color={color} fontSize={fontSize} sx={sx} />
+            )}
           </IconButton>
         </span>
       </Tooltip>

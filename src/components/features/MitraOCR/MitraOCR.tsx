@@ -70,7 +70,7 @@ export default function MitraOCR() {
         <InputBox onFileSelect={handleFileSelect} />
       )}
 
-      <OCRResult ocrMutation={ocrMutation} />
+      <OCRResult ocrMutation={ocrMutation} fileName={selectedFile?.name} />
     </>
   )
 }

@@ -3,13 +3,15 @@ import { Box, Button, Typography } from "@mui/material"
 import { UseMutationResult } from "@tanstack/react-query"
 
 import CopyTextButton from "@/components/CopyTextButton"
+import { makeOCROutputFileName } from "@/components/features/MitraOCR/utils"
 import LoadingDots from "@/components/LoadingDots"
+import SaveToFileButton from "@/components/SaveToFileButton"
+import { saveAsTxtFile } from "@/utils"
 import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/handlers"
-
-import { downloadOCRTextFile } from "./utils"
 
 type OCRResultProps = {
   ocrMutation: UseMutationResult<ParsedOCRResponse, Error, File, unknown>
+  fileName?: string
 }
 
 const ResultContainer = ({
@@ -29,7 +31,7 @@ const ResultContainer = ({
   )
 }
 
-export default function OCRResult({ ocrMutation }: OCRResultProps) {
+export default function OCRResult({ ocrMutation, fileName }: OCRResultProps) {
   const { data, isSuccess, isError, isPending, error } = ocrMutation
   const contentRef = React.useRef<HTMLElement | null>(null)
 
@@ -74,7 +76,13 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
               contentRef={contentRef}
               ariaLabel="Copy extracted text"
               tooltip="Copy extracted text"
-              color="action"
+            />
+            <SaveToFileButton
+              contentRef={contentRef}
+              ariaLabel="Save extracted text"
+              tooltip="Save extracted text"
+              fileName={makeOCROutputFileName(fileName)}
+              sx={{ fontSize: 26 }}
             />
           </Box>
           <Box ref={contentRef}>
@@ -102,9 +110,9 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => downloadOCRTextFile(data.file, data.filename)}
+          onClick={() => saveAsTxtFile(data.file, data.fileName)}
         >
-          Download Text File
+          Save text file
         </Button>
       </ResultContainer>
     )

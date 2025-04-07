@@ -40,7 +40,7 @@ export const getOCRDataCall = async ({
   }
 
   const parseQuery = await tryCatch(
-    async () => await parseOCRResponse(fetchQuery.result),
+    async () => await parseOCRResponse(fetchQuery.result, file.name),
   )
 
   if (parseQuery.error) {
