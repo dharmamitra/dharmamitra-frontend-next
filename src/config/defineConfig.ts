@@ -80,6 +80,7 @@ export const appConfigSchema = z.object({
       hasNexus: z.boolean().default(false),
       hasTranslateExtendedOptions: z.boolean().default(false),
       hasFeedbackWidget: z.boolean().default(false),
+      hasOCR: z.boolean().default(false),
     })
     .default({}),
 })
