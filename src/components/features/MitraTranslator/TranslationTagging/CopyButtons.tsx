@@ -86,8 +86,8 @@ export default function CopyButtons({
 
   const getTooltipTitle = React.useCallback(
     (isSuccess: boolean, defaultTitle: string) => {
-      if (copyError) return t("generic.copy.copyError")
-      return isSuccess ? t("generic.copy.copied") : defaultTitle
+      if (copyError) return t("generic.copyError")
+      return isSuccess ? t("generic.copied") : defaultTitle
     },
     [copyError, t],
   )
@@ -116,9 +116,7 @@ export default function CopyButtons({
           <NoteAltOutlinedIcon fontSize="small" />
         </IconButton>
       </Tooltip>
-      <Tooltip
-        title={getTooltipTitle(copyAllSuccess, t("generic.copy.copyAll"))}
-      >
+      <Tooltip title={getTooltipTitle(copyAllSuccess, t("generic.copyAll"))}>
         <IconButton
           onClick={handleCopyAll}
           size="small"

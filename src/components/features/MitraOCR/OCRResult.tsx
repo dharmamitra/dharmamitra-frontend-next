@@ -1,15 +1,18 @@
 import * as React from "react"
+import { useTranslations } from "next-intl"
 import { Box, Button, Typography } from "@mui/material"
 import { UseMutationResult } from "@tanstack/react-query"
 
 import CopyTextButton from "@/components/CopyTextButton"
+import { makeOCROutputFileName } from "@/components/features/MitraOCR/utils"
 import LoadingDots from "@/components/LoadingDots"
+import SaveToFileButton from "@/components/SaveToFileButton"
+import { saveAsTxtFile } from "@/utils"
 import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/handlers"
-
-import { downloadOCRTextFile } from "./utils"
 
 type OCRResultProps = {
   ocrMutation: UseMutationResult<ParsedOCRResponse, Error, File, unknown>
+  fileName?: string
 }
 
 const ResultContainer = ({
@@ -29,7 +32,9 @@ const ResultContainer = ({
   )
 }
 
-export default function OCRResult({ ocrMutation }: OCRResultProps) {
+export default function OCRResult({ ocrMutation, fileName }: OCRResultProps) {
+  const t = useTranslations("generic")
+  const ocrT = useTranslations("ocr")
   const { data, isSuccess, isError, isPending, error } = ocrMutation
   const contentRef = React.useRef<HTMLElement | null>(null)
 
@@ -37,7 +42,7 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
     return (
       <ResultContainer hasTitleGutter={false}>
         <Typography variant="body2" color="text.secondary" mb={2}>
-          Large files can take several minutes to process.
+          {ocrT("processingTimeNoteShort")}
         </Typography>
         <LoadingDots />
       </ResultContainer>
@@ -48,7 +53,7 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
     return (
       <ResultContainer>
         <Typography color="error" sx={{ mt: 2 }}>
-          {error?.message || "Failed to process the file. Please try again."}
+          {error?.message || t("exception.fileFailure")}
         </Typography>
       </ResultContainer>
     )
@@ -70,11 +75,11 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
           }}
         >
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <CopyTextButton
+            <CopyTextButton contentRef={contentRef} />
+            <SaveToFileButton
               contentRef={contentRef}
-              ariaLabel="Copy extracted text"
-              tooltip="Copy extracted text"
-              color="action"
+              fileName={makeOCROutputFileName(fileName)}
+              sx={{ fontSize: 26 }}
             />
           </Box>
           <Box ref={contentRef}>
@@ -96,15 +101,13 @@ export default function OCRResult({ ocrMutation }: OCRResultProps) {
   if (isSuccess && data && data.type === "file") {
     return (
       <ResultContainer>
-        <Typography sx={{ mb: 2 }}>
-          The extracted text is large and can be download as a file.
-        </Typography>
+        <Typography sx={{ mb: 2 }}>{ocrT("largeDownload")}</Typography>
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => downloadOCRTextFile(data.file, data.filename)}
+          onClick={() => saveAsTxtFile(data.file, data.fileName)}
         >
-          Download Text File
+          {t("saveToFile")}
         </Button>
       </ResultContainer>
     )

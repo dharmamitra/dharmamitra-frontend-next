@@ -1,11 +1,12 @@
 import * as React from "react"
-// import { useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 import { Box, Button, Typography } from "@mui/material"
 
 import UploadIcon from "@/components/icons/Upload"
 
 import {
   ACCEPTED_FILE_TYPES_STRING,
+  ACCEPTED_FILE_TYPES_UI_STRING,
   MAX_FILE_SIZE_MB,
   validateFile,
 } from "./utils"
@@ -16,7 +17,15 @@ type InputBoxProps = {
 }
 
 export default function InputBox({ className, onFileSelect }: InputBoxProps) {
-  // const t = useTranslations("search")
+  const t = useTranslations("generic")
+  const ocrT = useTranslations("ocr")
+  const invalidTypeMessage = t("exception.invalidFileType", {
+    fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
+  })
+  const invalidSizeMessage = t("exception.invalidFileSize", {
+    maxFileSize: MAX_FILE_SIZE_MB,
+  })
+
   const [isDragging, setIsDragging] = React.useState(false)
   const fileInputRef = React.useRef<HTMLInputElement>(null)
 
@@ -37,24 +46,24 @@ export default function InputBox({ className, onFileSelect }: InputBoxProps) {
 
       const file = e.dataTransfer.files[0]
 
-      if (validateFile(file)) {
+      if (validateFile(file, { invalidTypeMessage, invalidSizeMessage })) {
         onFileSelect(file)
       }
     },
-    [onFileSelect],
+    [onFileSelect, invalidTypeMessage, invalidSizeMessage],
   )
 
   const handleFileInput = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0]
 
-      if (validateFile(file)) {
+      if (validateFile(file, { invalidTypeMessage, invalidSizeMessage })) {
         onFileSelect(file)
       }
       // Reset file input value to allow selecting the same file again
       e.target.value = ""
     },
-    [onFileSelect],
+    [onFileSelect, invalidTypeMessage, invalidSizeMessage],
   )
 
   const handleBrowseClick = React.useCallback(() => {
@@ -93,27 +102,25 @@ export default function InputBox({ className, onFileSelect }: InputBoxProps) {
 
       <Box sx={{ textAlign: "center", mt: 1, mb: 2 }}>
         <Typography variant="h6" component="p" color="text.primary">
-          {/* {t("upload.title")} */}
-          Drag and drop your file here
+          {t("dragAndDrop")}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {/* {t("upload.title")} */}
-          Supported file types: PDF, JPG, PNG, WEBP (max size:{" "}
-          {MAX_FILE_SIZE_MB}MB)
+          {t("supportedFileTypes", {
+            fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
+            maxFileSize: MAX_FILE_SIZE_MB,
+          })}
         </Typography>
         <Typography
           variant="body2"
           color="text.secondary"
           sx={{ my: 1, maxWidth: "520px" }}
         >
-          {/* {t("upload.title")} */}
-          Please note that very long files can take a few minutes to process and
-          it is advised to break them into smaller chunks.
+          {ocrT("processingTimeNote")}
         </Typography>
       </Box>
 
       <Button variant="contained" color="inherit" onClick={handleBrowseClick}>
-        Browse files
+        {t("browseFiles")}
       </Button>
     </Box>
   )

@@ -55,6 +55,9 @@ const exceptionMessages = exhaustiveStringTuple<ExceptionMessageKey>()(
   "inputLengthError",
   "inputLengthWarning",
   "experimentalLanguageWarning",
+  "fileFailure",
+  "invalidFileType",
+  "invalidFileSize",
 )
 
 export const getValidI18nExceptionKey = (key: string | undefined) => {

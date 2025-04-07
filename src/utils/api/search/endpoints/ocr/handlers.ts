@@ -1,5 +1,6 @@
 import { z } from "zod"
 
+import { makeOCROutputFileName } from "@/components/features/MitraOCR/utils"
 import { searchBaseUrl } from "@/utils/api/client"
 
 const schema = z.object({
@@ -16,7 +17,7 @@ export type ParsedOCRJson = {
 
 export type ParsedOCRFile = {
   type: "file"
-  filename: string
+  fileName: string
   file: Blob
 }
 
@@ -39,22 +40,13 @@ const parseJSONResponse = (responseData: unknown) => {
   }
 }
 
-export async function parseOCRResponse(response: Response) {
+export async function parseOCRResponse(response: Response, fileName?: string) {
   const contentDisposition = response.headers.get("content-disposition")
 
   if (contentDisposition) {
-    const [filenameMatch] =
-      contentDisposition.match(/filename=(.*?)(\s|\r|\n)?$/) ?? []
-
-    if (!filenameMatch) {
-      throw new Error(
-        "Failed to extract filename from content-disposition header",
-      )
-    }
-
     return {
       type: "file" as const,
-      filename: filenameMatch.replace("filename=", "mitra-ocr-"),
+      fileName: makeOCROutputFileName(fileName),
       file: await response.blob(),
     }
   }

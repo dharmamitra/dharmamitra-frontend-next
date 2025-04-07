@@ -4,8 +4,6 @@ import FileIcon from "@mui/icons-material/InsertDriveFile"
 import PlayCircleIcon from "@mui/icons-material/PlayCircle"
 import { Box, IconButton, Typography } from "@mui/material"
 
-import { ocrSelectionBoxId } from "./utils"
-
 type SelectedFileProps = {
   file: File
   onClear: () => void
@@ -21,7 +19,6 @@ export default function SelectedBoxWithTrigger({
 }: SelectedFileProps) {
   return (
     <Box
-      id={ocrSelectionBoxId}
       sx={{
         display: "flex",
         justifyContent: "space-between",

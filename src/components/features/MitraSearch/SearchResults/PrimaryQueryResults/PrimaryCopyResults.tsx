@@ -19,7 +19,7 @@ export default function PrimaryCopyResults({
   results,
   type,
 }: PrimaryCopyResultsProps) {
-  const t = useTranslations("generic.copy")
+  const t = useTranslations("generic")
   const [toolTip, setToolTip] = React.useState<string>(t(tipMsgs[type]))
 
   const copyContent = React.useCallback(async () => {

@@ -10,6 +10,7 @@ import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined"
 import Box from "@mui/material/Box"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 import MitraOCR from "@/components/features/MitraOCR"
 import MitraSearch from "@/components/features/MitraSearch"
@@ -32,6 +33,8 @@ export function a11yProps(index: number) {
 
 export default function MultiFeatureMitra() {
   const t = useTranslations()
+
+  const isXsScreen = useMediaQuery("(max-width:480px)")
 
   const [viewTabIndex, setViewTabIndex] = useViewTabParamWithLocalStorage()
 
@@ -57,28 +60,30 @@ export default function MultiFeatureMitra() {
           aria-label="navigation tabs"
           centered
           onChange={handleTabChange}
-          TabIndicatorProps={{
-            sx: {
-              display: "none",
+          slotProps={{
+            indicator: {
+              sx: {
+                display: "none",
+              },
             },
           }}
           sx={tabsStyles}
         >
           <Tab
-            icon={<ScreenSearchDesktopOutlinedIcon />}
+            icon={isXsScreen ? undefined : <ScreenSearchDesktopOutlinedIcon />}
             iconPosition="start"
             label={t("search.search")}
             {...a11yProps(0)}
           />
 
           <Tab
-            icon={<TranslateOutlinedIcon />}
+            icon={isXsScreen ? undefined : <TranslateOutlinedIcon />}
             iconPosition="start"
             label={t("translation.translate")}
             {...a11yProps(1)}
           />
           <Tab
-            icon={<DocumentScannerOutlinedIcon />}
+            icon={isXsScreen ? undefined : <DocumentScannerOutlinedIcon />}
             iconPosition="start"
             label="OCR"
             {...a11yProps(2)}
