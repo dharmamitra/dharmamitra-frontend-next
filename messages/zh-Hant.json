@@ -215,6 +215,11 @@
       "tibetan": "Tibetan Unicode",
       "velthuis": "Velthuis",
       "wylie": "Wylie"
+    },
+    "modelType": {
+      "default": "Default",
+      "mitra-base": "Mitra Base",
+      "mitra-pro": "Mitra Pro"
     }
   },
   "metadata": {

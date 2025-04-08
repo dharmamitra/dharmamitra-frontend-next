@@ -2,10 +2,14 @@ import { NextRequest, NextResponse } from "next/server"
 import { streamText } from "ai"
 
 import { mitra } from "@/lib/ai/providers"
+import { type ModelType, modelTypes } from "@/utils/api/global/params"
 
 export const maxDuration = 30
 
 export const dynamic = "force-dynamic"
+
+const validateModel = (model: unknown): model is ModelType =>
+  modelTypes.some((m) => m === model)
 
 export async function GET() {
   return NextResponse.json({
@@ -19,20 +23,23 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json()
-    const { messages, target_lang } = requestBody
+    const { messages, target_lang, input_encoding, model } = requestBody
 
-    console.log({ requestLang: target_lang })
+    const providerModel = validateModel(model) ? model : "default"
 
     const result = streamText({
-      model: mitra("gpt-3.5-turbo"),
+      model: mitra(providerModel),
       messages,
       temperature: 0.1,
       providerOptions: {
-        "dharma-mitra": {
+        mitra: {
           target_lang,
+          input_encoding,
         },
       },
     })
+
+    console.log({ return: "true", response: result.response })
 
     return result.toTextStreamResponse()
   } catch (error) {

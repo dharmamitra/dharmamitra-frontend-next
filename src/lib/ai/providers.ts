@@ -1,27 +1,34 @@
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
 
+import { ModelType } from "@/utils/api/global/params"
+
 /**
  * @see: https://sdk.vercel.ai/providers/openai-compatible-providers
  */
 
-type CompletionModelIds = "gpt-3.5-turbo" | (string & {})
+type TestModelId = "gpt-3.5-turbo" | (string & {})
+
+type MitraModelId = ModelType | (string & {})
+type MitraChatModelId = MitraModelId
+type MitraCompletionModelId = MitraModelId
+type MitraEmbeddingModelId = MitraModelId
 
 export const mitra = createOpenAICompatible<
-  CompletionModelIds,
-  CompletionModelIds,
-  CompletionModelIds
+  MitraCompletionModelId,
+  MitraChatModelId,
+  MitraEmbeddingModelId
 >({
-  name: "dharma-mitra",
+  name: "mitra",
   apiKey: process.env.DM_CHAT_API_KEY,
   baseURL: process.env.DM_CHAT_BASE_URL ?? "",
 })
 
 export const mitraTest = createOpenAICompatible<
-  CompletionModelIds,
-  CompletionModelIds,
-  CompletionModelIds
+  TestModelId,
+  TestModelId,
+  TestModelId
 >({
-  name: "dharma-mitra-test",
+  name: "mitra-test",
   apiKey: process.env.DM_CHAT_API_KEY,
   baseURL: process.env.DM_CHAT_TEST_BASE_URL ?? "",
 })
