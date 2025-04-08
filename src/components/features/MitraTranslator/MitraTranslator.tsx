@@ -71,6 +71,20 @@ export default function MitraTranslator() {
         isInput={Boolean(input_sentence)}
       />
 
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          columnGap: 4,
+          rowGap: 2,
+          mb: 3,
+        }}
+      >
+        <TranslationModelSelector isRendered={hasTranslateExtendedOptions} />
+
+        <TranslationTagging />
+      </Box>
+
       <TranslatorLayout
         inputControls={
           <TranslatorInputControls
@@ -97,20 +111,6 @@ export default function MitraTranslator() {
           />
         }
       />
-
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          columnGap: 4,
-          rowGap: 2,
-          mt: 3,
-        }}
-      >
-        <TranslationModelSelector isRendered={hasTranslateExtendedOptions} />
-
-        <TranslationTagging />
-      </Box>
     </>
   )
 }

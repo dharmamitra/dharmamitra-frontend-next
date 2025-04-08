@@ -1,4 +1,5 @@
 import { TranslationApiTypes } from "@/api"
+import { ModelType } from "@/utils/api/global/params"
 import { allTranslationDefaultParams } from "@/utils/api/translation/params"
 
 const {
@@ -10,18 +11,20 @@ const {
   mode,
 } = allTranslationDefaultParams
 
-export const defaultTranslationRequestBody: TranslationApiTypes.RequestBody<"/translation/"> =
-  {
-    input_sentence: "",
-    input_encoding,
-    target_lang,
-    do_grammar_explanation,
-    model,
-  }
+type TranslationRequestBodyV2 = Omit<
+  TranslationApiTypes.RequestBody<"/translation/">,
+  "model"
+> & { model: ModelType }
 
-type CreateTranslationRequestBody = Partial<
-  TranslationApiTypes.RequestBody<"/translation/">
->
+export const defaultTranslationRequestBody: TranslationRequestBodyV2 = {
+  input_sentence: "",
+  input_encoding,
+  target_lang,
+  do_grammar_explanation,
+  model,
+}
+
+type CreateTranslationRequestBody = Partial<TranslationRequestBodyV2>
 export function createTranslationRequestBody(
   params: CreateTranslationRequestBody,
 ) {

@@ -509,11 +509,8 @@ export interface components {
        * @default false
        */
       do_grammar: boolean | null
-      /**
-       * Input Encoding
-       * @default default
-       */
-      input_encoding: string | null
+      /** @default auto */
+      input_encoding: components["schemas"]["InputEncoding"] | null
       /**
        * Target Lang
        * @default english

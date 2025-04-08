@@ -5,6 +5,7 @@ import { DMFetchApi } from "@/api"
 
 const excludedModels = /(NO)/
 
+// TODO: remove once BE model handling is confirmed
 export function useTranslationModelsData() {
   const { data, isError, error } = useQuery({
     queryKey: DMFetchApi.translationModels.makeQueryKey(),
