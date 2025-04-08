@@ -3,7 +3,6 @@
 import { useEffect } from "react"
 
 import useAppConfig from "@/hooks/useAppConfig"
-import { searchParamsNames } from "@/utils/api/search/params"
 import { localStorageKeys } from "@/utils/constants"
 
 const { storageVersionId: storageVersionIdKey } = localStorageKeys
@@ -22,8 +21,7 @@ export default function StorageCheck() {
       localStorage.clear()
     } else {
       // targeted props for given version
-      localStorage.removeItem(searchParamsNames.api.filter_source_language)
-      localStorage.removeItem(searchParamsNames.api.filter_target_language)
+      localStorage.removeItem("view")
     }
   }, [storageVersionId])
 

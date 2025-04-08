@@ -23,10 +23,10 @@ function MultiFeatureMitraPage() {
 }
 
 export default function HomePage() {
-  const { hasSearch } = useAppConfig().featureFlags
+  const { hasSearch, hasOCR } = useAppConfig().featureFlags
   const t = useTranslations("Home")
 
-  if (hasSearch === true) {
+  if (hasSearch === true || hasOCR === true) {
     return <MultiFeatureMitraPage />
   }
 

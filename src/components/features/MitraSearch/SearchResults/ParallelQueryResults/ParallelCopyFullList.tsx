@@ -12,9 +12,7 @@ export default function ParallelCopyFullList({
   results: SearchApiTypes.Response<"/parallel/">["results"]
 }) {
   const t = useTranslations("generic")
-  const [toolTip, setToolTip] = React.useState<string>(
-    t("copy.copyResultsList"),
-  )
+  const [toolTip, setToolTip] = React.useState<string>(t("copyResultsList"))
 
   const copyContent = React.useCallback(async () => {
     const content = results
@@ -37,7 +35,7 @@ export default function ParallelCopyFullList({
 
     if (content) {
       await navigator.clipboard.writeText(content)
-      setToolTip(t("copy.copied"))
+      setToolTip(t("copied"))
     }
   }, [results, t])
 
@@ -45,12 +43,12 @@ export default function ParallelCopyFullList({
     <>
       <Tooltip title={toolTip} placement="top">
         <IconButton
-          aria-label={t("copy.copyResultsList")}
+          aria-label={t("copyResultsList")}
           color="secondary"
           onClick={copyContent}
           onMouseLeave={() =>
             setTimeout(() => {
-              setToolTip(t("copy.copyResultsList"))
+              setToolTip(t("copyResultsList"))
             }, 500)
           }
         >

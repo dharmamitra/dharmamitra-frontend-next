@@ -13,6 +13,7 @@ export default function createRNDConfig() {
       hasTranslateExtendedOptions: true,
       hasNexus: true,
       hasFeedbackWidget: true,
+      hasOCR: true,
     },
   })
 }

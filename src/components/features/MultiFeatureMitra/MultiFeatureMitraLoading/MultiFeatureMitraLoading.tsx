@@ -9,11 +9,13 @@ import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
 import { tabsStyles } from "@/components/styled-ssr-safe"
+import useAppConfig from "@/hooks/useAppConfig"
 
 import LoadingBox from "./LoadingBox"
 
 export default function MultiFeatureMitraLoading() {
   const t = useTranslations()
+  const { hasSearch, hasOCR } = useAppConfig().featureFlags
   return (
     <>
       <Tabs
@@ -34,7 +36,7 @@ export default function MultiFeatureMitraLoading() {
           },
         }}
       >
-        {/* Tabs are duplicated to prevent post-load layout shift on given screen size. Under SM no icons are displayed. Duplicates are hidden by screen size and are necessary, because `Tabs` expects only `Tab` as children  */}
+        {/* Tabs are duplicated to prevent post-load layout shift on a given screen size. Under SM no icons are displayed. Duplicates are hidden by screen size and are necessary, because `Tabs` expects only `Tab` as children  */}
         <Tab
           value={0}
           sx={{
@@ -49,23 +51,28 @@ export default function MultiFeatureMitraLoading() {
           label={t("search.search")}
           disabled
         />
-        <Tab
-          sx={{
-            display: { sm: "none" },
-          }}
-          iconPosition="start"
-          label={t("search.search")}
-          disabled
-        />
-        <Tab
-          sx={{
-            display: { xs: "none", sm: "flex" },
-          }}
-          icon={<ScreenSearchDesktopOutlinedIcon />}
-          iconPosition="start"
-          label={t("search.search")}
-          disabled
-        />
+
+        {hasSearch ? (
+          <Tab
+            sx={{
+              display: { sm: "none" },
+            }}
+            iconPosition="start"
+            label={t("search.search")}
+            disabled
+          />
+        ) : null}
+        {hasSearch ? (
+          <Tab
+            sx={{
+              display: { xs: "none", sm: "flex" },
+            }}
+            icon={<ScreenSearchDesktopOutlinedIcon />}
+            iconPosition="start"
+            label={t("search.search")}
+            disabled
+          />
+        ) : null}
 
         <Tab
           sx={{
@@ -85,23 +92,27 @@ export default function MultiFeatureMitraLoading() {
           disabled
         />
 
-        <Tab
-          sx={{
-            display: { sm: "none" },
-          }}
-          iconPosition="start"
-          label="OCR"
-          disabled
-        />
-        <Tab
-          sx={{
-            display: { xs: "none", sm: "flex" },
-          }}
-          icon={<DocumentScannerOutlinedIcon />}
-          iconPosition="start"
-          label="OCR"
-          disabled
-        />
+        {hasOCR ? (
+          <Tab
+            sx={{
+              display: { sm: "none" },
+            }}
+            iconPosition="start"
+            label="OCR"
+            disabled
+          />
+        ) : null}
+        {hasOCR ? (
+          <Tab
+            sx={{
+              display: { xs: "none", sm: "flex" },
+            }}
+            icon={<DocumentScannerOutlinedIcon />}
+            iconPosition="start"
+            label="OCR"
+            disabled
+          />
+        ) : null}
       </Tabs>
 
       <LoadingBox />
