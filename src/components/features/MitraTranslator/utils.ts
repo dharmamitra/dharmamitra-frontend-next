@@ -45,3 +45,7 @@ type CreateTaggingnRequestBody = Partial<
 export function createTaggingRequestBody(params: CreateTaggingnRequestBody) {
   return { ...defaultTaggingnRequestBody, ...params }
 }
+
+export const MAX_FILE_INPUT_SIZE_MB = 12
+
+export const MAX_FILE_INPUT_SIZE = MAX_FILE_INPUT_SIZE_MB * 1024 * 1024
