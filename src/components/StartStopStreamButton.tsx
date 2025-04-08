@@ -28,6 +28,7 @@ export default function StartStopStreamButton({
 
   const queryId = chatPropsWithId.id
 
+  // TODO: review & fix message duplication & empty messages case
   const { stop, setInput, status, handleSubmit, messages } =
     useChat(chatPropsWithId)
 

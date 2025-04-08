@@ -23,13 +23,15 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json()
-    const { messages, target_lang, input_encoding, model } = requestBody
+    const { input_sentence, target_lang, input_encoding, model } = requestBody
 
     const providerModel = validateModel(model) ? model : "default"
 
+    console.log({ input_sentence })
+
     const result = streamText({
       model: mitra(providerModel),
-      messages,
+      messages: [{ role: "user", content: input_sentence }],
       temperature: 0.1,
       providerOptions: {
         mitra: {
@@ -38,8 +40,6 @@ export async function POST(request: NextRequest) {
         },
       },
     })
-
-    console.log({ return: "true", response: result.response })
 
     return result.toTextStreamResponse()
   } catch (error) {
