@@ -1,4 +1,5 @@
 import React from "react"
+import { Box } from "@mui/material"
 
 import useAppConfig from "@/hooks/useAppConfig"
 import { inputEncodings } from "@/utils/api/global/params"
@@ -20,18 +21,28 @@ export default function MitraTranslatorLoading() {
   }
 
   return (
-    <TranslatorLayout
-      inputControls={
-        <OptionsLoading options={inputEncodings} keyBase="input-encoding" />
-      }
-      outputContoles={
-        <OptionsLoading
-          options={servedTargetLanguages}
-          keyBase="target-language"
-        />
-      }
-      inputBlock={null}
-      outputBlock={null}
-    />
+    <>
+      <Box
+        sx={{
+          mb: 3,
+          minHeight: 40,
+        }}
+      >
+        {/* Placeholder for tagging button */}
+      </Box>
+      <TranslatorLayout
+        inputControls={
+          <OptionsLoading options={inputEncodings} keyBase="input-encoding" />
+        }
+        outputContoles={
+          <OptionsLoading
+            options={servedTargetLanguages}
+            keyBase="target-language"
+          />
+        }
+        inputBlock={null}
+        outputBlock={null}
+      />
+    </>
   )
 }
