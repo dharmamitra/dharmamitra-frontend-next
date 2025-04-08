@@ -78,6 +78,7 @@ export default function MitraTranslator() {
           columnGap: 4,
           rowGap: 2,
           mb: 3,
+          minHeight: 40,
         }}
       >
         <TranslationModelSelector isRendered={hasTranslateExtendedOptions} />

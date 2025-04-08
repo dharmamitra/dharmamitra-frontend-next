@@ -44,7 +44,7 @@ export default function HomePage() {
           component="h1"
           align="center"
           sx={{
-            mb: { xs: 4, lg: 10 },
+            mb: { xs: 4, lg: 6 },
           }}
         >
           {t("h1")}
