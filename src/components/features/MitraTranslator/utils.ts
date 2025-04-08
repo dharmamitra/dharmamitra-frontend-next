@@ -49,3 +49,5 @@ export function createTaggingRequestBody(params: CreateTaggingnRequestBody) {
 export const MAX_FILE_INPUT_SIZE_MB = 12
 
 export const MAX_FILE_INPUT_SIZE = MAX_FILE_INPUT_SIZE_MB * 1024 * 1024
+
+export const MAX_INPUT_CHARACTERS = 6000

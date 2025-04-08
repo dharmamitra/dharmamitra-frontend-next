@@ -1,14 +1,14 @@
 import React from "react"
-import { useQueryState } from "nuqs"
+import { parseAsInteger, useQueryState } from "nuqs"
 
 import { globalParamsNames } from "@/utils/api/global/params"
-import {
-  getValidViewFromIndex,
-  getValidViewIndex,
-  ViewIndex,
-} from "@/utils/api/global/validators"
+// import {
+// getValidViewFromIndex,
+// getValidViewIndex,
+// ViewIndex,
+// } from "@/utils/api/global/validators"
 
-import { parseAsView } from "./parsers"
+// import { parseAsView } from "./parsers"
 
 const {
   local: { view },
@@ -16,21 +16,21 @@ const {
 
 export function useViewTabParamWithLocalStorage() {
   const [viewParam, setViewParam] = useQueryState(view, {
-    ...parseAsView.withDefault(0),
+    ...parseAsInteger.withDefault(0),
   })
 
   React.useEffect(() => {
     // Initialize
     const localValue = localStorage?.getItem(view)
     if (localValue) {
-      setViewParam(getValidViewIndex(localValue))
+      setViewParam(parseInt(localValue))
     }
   }, [setViewParam])
 
   const setViewParamWithLocalStorage = React.useCallback(
-    (value: ViewIndex) => {
+    (value: number) => {
       setViewParam(value)
-      localStorage.setItem(view, getValidViewFromIndex(value))
+      localStorage.setItem(view, value.toString())
     },
     [setViewParam],
   )

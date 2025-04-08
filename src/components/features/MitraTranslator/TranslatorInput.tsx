@@ -2,8 +2,8 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
+import { Alert, AlertTitle } from "@mui/material"
 import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import Typography from "@mui/material/Typography"
 import { useMutation } from "@tanstack/react-query"
@@ -12,31 +12,36 @@ import { ACCEPTED_FILE_TYPES_UI_STRING } from "@/components/features/MitraOCR/ut
 import {
   MAX_FILE_INPUT_SIZE,
   MAX_FILE_INPUT_SIZE_MB,
+  MAX_INPUT_CHARACTERS,
 } from "@/components/features/MitraTranslator/utils"
 import UploadIcon from "@/components/icons/Upload"
 import { useFileUpload } from "@/hooks/useFileUpload"
 import { DMFetchApi } from "@/utils/api"
 import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/handlers"
-import { TargetLanguage } from "@/utils/api/translation/params"
+
+const OCR_LENGTH_ERROR_NAME = "OcrLengthError"
 
 type TranslationInputFieldProps = {
   input: string
-  targetLang: TargetLanguage
   setInput: (event: string) => void
+  fileInputRef?: React.RefObject<HTMLInputElement | null>
+  onDragOver?: (e: React.DragEvent) => void
+  onDragLeave?: (e: React.DragEvent) => void
+  onDrop?: (e: React.DragEvent) => void
+  onFileUploadStateChange?: (isPending: boolean) => void
 }
 
 const TranslatorInput = ({
   input,
   setInput,
-  targetLang,
+  fileInputRef: externalFileInputRef,
+  onDragOver: externalHandleDragOver,
+  onDragLeave: externalHandleDragLeave,
+  onDrop: externalHandleDrop,
+  onFileUploadStateChange,
 }: TranslationInputFieldProps) => {
   const t = useTranslations("translation")
   const genericT = useTranslations("generic")
-
-  const placeholder =
-    targetLang === "english-explained"
-      ? t("placeholders.englishExplained")
-      : t("placeholders.default")
 
   const invalidTypeMessage = genericT("exception.invalidFileType", {
     fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
@@ -44,44 +49,51 @@ const TranslatorInput = ({
   const invalidSizeMessage = genericT("exception.invalidFileSize", {
     maxFileSize: MAX_FILE_INPUT_SIZE_MB,
   })
+  const ocrLengthErrorMessage = t("ocr.lengthErrorText", {
+    maxInputCharacters: MAX_INPUT_CHARACTERS,
+  })
 
   const ocrMutation = useMutation<ParsedOCRResponse, Error, File>({
     mutationFn: async (file: File) => {
-      return DMFetchApi.ocr.call({
+      onFileUploadStateChange?.(true)
+      const response = await DMFetchApi.ocr.call({
         file,
         transliterateDevanagariToIAST: false,
         transliterateTibetanToWylie: false,
       })
-    },
-    onSuccess: (data) => {
-      if (data.type === "json") {
-        if (data.extractedText.length > 5000) {
-          throw new Error(
-            "Input text is too long for translation. This feature can support approximately 5000 characters.",
-          )
-        }
-        setInput(data.extractedText)
+
+      if (
+        (response.type === "json" &&
+          response.extractedText.length > MAX_INPUT_CHARACTERS) ||
+        response.type === "file"
+      ) {
+        throw {
+          message: ocrLengthErrorMessage,
+          name: OCR_LENGTH_ERROR_NAME,
+        } satisfies Error
       }
 
-      if (data.type === "file") {
-        throw new Error(
-          "Input file is too large for translation input. This feature can support approximately 5000 characters.",
-        )
+      return response
+    },
+    onSuccess: (data) => {
+      onFileUploadStateChange?.(false)
+      if (data.type === "json") {
+        setInput(data.extractedText)
       }
     },
     onError: () => {
-      // Error handling can be added here if needed
+      onFileUploadStateChange?.(false)
+      // TODO: Error handling
     },
   })
 
   const {
     isDragging,
-    fileInputRef,
-    handleDragOver,
-    handleDragLeave,
-    handleDrop: baseHandleDrop,
+    fileInputRef: internalFileInputRef,
+    handleDragOver: internalHandleDragOver,
+    handleDragLeave: internalHandleDragLeave,
+    handleDrop: internalHandleDrop,
     handleFileInput: baseHandleFileInput,
-    handleBrowseClick,
     acceptedFileTypes,
   } = useFileUpload({
     onFileSelect: (file) => ocrMutation.mutate(file),
@@ -89,6 +101,11 @@ const TranslatorInput = ({
     invalidSizeMessage,
     maxSize: MAX_FILE_INPUT_SIZE,
   })
+
+  const fileInputRef = externalFileInputRef || internalFileInputRef
+  const handleDragOver = externalHandleDragOver || internalHandleDragOver
+  const handleDragLeave = externalHandleDragLeave || internalHandleDragLeave
+  const handleDrop = externalHandleDrop || internalHandleDrop
 
   return (
     <Box
@@ -99,8 +116,19 @@ const TranslatorInput = ({
       }}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
-      onDrop={baseHandleDrop}
+      onDrop={handleDrop}
     >
+      {ocrMutation.error ? (
+        <Alert severity="error" onClose={() => ocrMutation.reset()}>
+          <AlertTitle>
+            {ocrMutation.error.name === OCR_LENGTH_ERROR_NAME
+              ? t("ocr.lengthErrorTitle")
+              : t("ocr.unknownErrorTitle")}
+          </AlertTitle>
+          {ocrMutation.error.message}
+        </Alert>
+      ) : null}
+
       <OutlinedInput
         sx={{
           p: 0,
@@ -115,7 +143,9 @@ const TranslatorInput = ({
             border: "none",
           },
         }}
-        placeholder={placeholder}
+        placeholder={t("placeholders.default", {
+          acceptedFileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
+        })}
         inputProps={{
           "data-testid": "translation-input",
           "aria-label": t("inputAriaLabel"),
@@ -124,7 +154,7 @@ const TranslatorInput = ({
           },
         }}
         multiline
-        value={ocrMutation.isPending ? "Loading..." : input}
+        value={ocrMutation.isPending ? genericT("processing") : input}
         onChange={(event) => setInput(event.target.value)}
         disabled={ocrMutation.isPending}
       />
@@ -169,25 +199,6 @@ const TranslatorInput = ({
           </Typography>
         </Box>
       )}
-
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: 16,
-          right: 16,
-          zIndex: 5,
-        }}
-      >
-        <Button
-          variant="contained"
-          color="inherit"
-          onClick={handleBrowseClick}
-          disabled={ocrMutation.isPending}
-          size="small"
-        >
-          {genericT("browseFiles")}
-        </Button>
-      </Box>
     </Box>
   )
 }

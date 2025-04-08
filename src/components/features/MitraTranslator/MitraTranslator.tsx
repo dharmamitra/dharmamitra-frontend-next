@@ -4,6 +4,7 @@ import React from "react"
 import Box from "@mui/material/Box"
 
 import { streamUtils } from "@/api"
+import { ACCEPTED_FILE_TYPES_UI_STRING } from "@/components/features/MitraOCR/utils"
 import TranslationModelSelector from "@/components/features/paramSettings/TranslationModelSelector"
 import { createChatProps } from "@/components/features/utils"
 import {
@@ -35,6 +36,10 @@ export default function MitraTranslator() {
   const [target_lang] = useTargetLangParamWithLocalStorage()
   const [model] = useTranslationModelParam()
 
+  // Ref for file input to be shared between components
+  // Use a more specific type that matches what TranslatorInput expects
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null)
+
   const chatPropsWithId = React.useMemo(() => {
     const requestBody = createTranslationRequestBody({
       input_sentence,
@@ -62,6 +67,22 @@ export default function MitraTranslator() {
     chatPropsWithId.id,
     completedQueryIds,
   )
+
+  // State to track if file upload is in progress
+  const [isFileUploadPending, setIsFileUploadPending] = React.useState(false)
+
+  // Pass the file upload state to the TranslatorInput component
+  const handleFileUploadStateChange = React.useCallback(
+    (isPending: boolean) => {
+      setIsFileUploadPending(isPending)
+    },
+    [],
+  )
+
+  // Function to trigger file browse dialog
+  const handleFileButtonClick = React.useCallback(() => {
+    fileInputRef.current?.click()
+  }, [])
 
   return (
     <>
@@ -95,6 +116,9 @@ export default function MitraTranslator() {
             isTriggerDisabled={isTriggerDisabled}
             completedQueryIds={completedQueryIds}
             setCompletedQueryIds={setCompletedQueryIds}
+            onFileButtonClick={handleFileButtonClick}
+            fileUploadDisabled={isFileUploadPending}
+            acceptedFileTypes={ACCEPTED_FILE_TYPES_UI_STRING}
           />
         }
         outputContoles={<TranslatorOutputControls contentRef={outputBoxRef} />}
@@ -102,7 +126,8 @@ export default function MitraTranslator() {
           <TranslatorInput
             input={input_sentence}
             setInput={setInputSentenceParam}
-            targetLang={target_lang}
+            fileInputRef={fileInputRef}
+            onFileUploadStateChange={handleFileUploadStateChange}
           />
         }
         outputBlock={
