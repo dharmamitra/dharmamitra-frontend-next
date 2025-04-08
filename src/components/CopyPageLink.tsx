@@ -5,7 +5,7 @@ import { IconButton } from "@mui/material"
 import Tooltip from "@mui/material/Tooltip"
 
 export default function CopyPageLink() {
-  const t = useTranslations("generic.copy")
+  const t = useTranslations("generic")
   const [toolTip, setToolTip] = React.useState<string>(t("copyLink"))
 
   const copyLink = React.useCallback(async () => {

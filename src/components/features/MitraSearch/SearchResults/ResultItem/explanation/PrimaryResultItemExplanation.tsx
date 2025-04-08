@@ -21,7 +21,7 @@ export default function PrimaryResultItemExplanation({
 
   const chatPropsWithId = createChatProps({
     id: JSON.stringify(primaryRequest),
-    localEndpoint: streamUtils.paths["explanation-primary"],
+    localEndpoint: streamUtils.localAPIEndpoints["explanation-primary"],
     requestBody: primaryRequest,
     initialInput: primaryRequest.query,
   })

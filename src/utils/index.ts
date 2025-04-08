@@ -5,6 +5,8 @@ import {
   TargetLanguage,
 } from "@/utils/api/translation/params"
 
+export { tryCatch } from "@/utils/try-catch"
+
 export const getSettingPriotiryGroups = <T>(params: {
   setting: T[]
   noOfPrimaryItems: number
@@ -55,3 +57,14 @@ export const formatDate = ({
     day: "numeric",
     ...options,
   }).format(new Date(date))
+
+export const saveAsTxtFile = (blob: Blob, filename: string) => {
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement("a")
+  link.href = url
+  link.download = filename
+  document.body.appendChild(link) // Required for Firefox
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url)
+}

@@ -127,14 +127,14 @@ export default function ResultItemHeader({
         >
           <CopyText
             contentRef={headerContentRef}
-            tooltip={t("generic.copy.copyRef")}
-            ariaLabel={t("generic.copy.copyRef")}
+            tooltip={t("generic.copyRef")}
+            ariaLabel={t("generic.copyRef")}
             color="action"
           />
           <CopyText
             contentRef={fullResultContentRef}
-            tooltip={t("generic.copy.copyAll")}
-            ariaLabel={t("generic.copy.copyAll")}
+            tooltip={t("generic.copyAll")}
+            ariaLabel={t("generic.copyAll")}
             icon={<FeedOutlinedIcon color="action" />}
           />
         </Box>

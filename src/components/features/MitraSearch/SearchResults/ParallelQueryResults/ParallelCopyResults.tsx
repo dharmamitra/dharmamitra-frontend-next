@@ -24,9 +24,7 @@ export default function ParallelCopyResults({
   type,
 }: ParallelCopyResultsProps) {
   const t = useTranslations("generic")
-  const [toolTip, setToolTip] = React.useState<string>(
-    t(`copy.${tipMsgs[type]}`),
-  )
+  const [toolTip, setToolTip] = React.useState<string>(t(`${tipMsgs[type]}`))
 
   const copyContent = React.useCallback(async () => {
     const content = results
@@ -57,7 +55,7 @@ export default function ParallelCopyResults({
 
     if (content) {
       await navigator.clipboard.writeText(content)
-      setToolTip(t("copy.copied"))
+      setToolTip(t("copied"))
     }
   }, [results, type, t])
 
@@ -65,12 +63,12 @@ export default function ParallelCopyResults({
     <>
       <Tooltip title={toolTip} placement="top">
         <IconButton
-          aria-label={t(`copy.${tipMsgs[type]}`)}
+          aria-label={t(`${tipMsgs[type]}`)}
           color="secondary"
           onClick={copyContent}
           onMouseLeave={() =>
             setTimeout(() => {
-              setToolTip(t(`copy.${tipMsgs[type]}`))
+              setToolTip(t(`${tipMsgs[type]}`))
             }, 500)
           }
         >

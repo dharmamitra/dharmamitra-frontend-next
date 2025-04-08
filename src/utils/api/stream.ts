@@ -1,11 +1,13 @@
 import { ExceptionMessageKey, getValidI18nExceptionKey } from "../validators"
 
-export const paths = {
+export const localAPIEndpoints = {
   translation: "/next/api/translation-stream",
+  "mitra-translation": "/next/api/mitra-translation-stream",
   "explanation-primary": "/next/api/search-summary-stream",
   "explanation-parallel": "/next/api/awaiting-backend-update",
 }
 
+// TODO: This should be deprecated once we switch to the new stream protocol
 export const markers = {
   lineBreak: "🔽",
   wordAnalaysis: "%",

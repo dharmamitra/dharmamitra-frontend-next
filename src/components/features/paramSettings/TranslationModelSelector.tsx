@@ -1,13 +1,13 @@
 "use client"
 
 import React from "react"
+import { useTranslations } from "next-intl"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
-import ExceptionText from "@/components/ExceptionText"
 import { useTranslationModelParam } from "@/hooks/params"
-import { useTranslationModelsData } from "@/hooks/translation/useTranslationModelsData"
+import { modelTypes } from "@/utils/api/global/params"
 
 export default function TranslationModelSelectorRenderer({
   isRendered,
@@ -20,18 +20,12 @@ export default function TranslationModelSelectorRenderer({
 }
 
 function TranslationModelSelector() {
-  const { models, isError, error } = useTranslationModelsData()
+  const t = useTranslations("globalParams.modelType")
 
   const [translationModelParam, setTranslationModelParam] =
     useTranslationModelParam()
 
   const isGrid = useMediaQuery("(max-width: 810px)")
-
-  if (isError) {
-    return (
-      <ExceptionText message={`Problem loading models: ${error?.message}`} />
-    )
-  }
 
   return (
     <ToggleButtonGroup
@@ -50,7 +44,7 @@ function TranslationModelSelector() {
       onChange={(_event, value) => value && setTranslationModelParam(value)}
       aria-label="Model"
     >
-      {models?.map((model) => (
+      {modelTypes.map((model) => (
         <ToggleButton
           key={model + "-model-option-loader"}
           value={model}
@@ -66,7 +60,7 @@ function TranslationModelSelector() {
               : {}),
           }}
         >
-          {model}
+          {t(model)}
         </ToggleButton>
       ))}
     </ToggleButtonGroup>

@@ -4,6 +4,7 @@ import { marked } from "marked"
 
 /**
  * @see: https://sdk.vercel.ai/cookbook/next/markdown-chatbot-with-memoization
+ * react-markdown used for lightweight, synchronous markdown parsing.
  */
 
 function parseMarkdownIntoBlocks(markdown: string): string[] {

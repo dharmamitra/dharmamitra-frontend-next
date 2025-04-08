@@ -237,10 +237,7 @@ export interface components {
       | "FGS-RAG"
       | "MITRA-BASE"
       | "MITRA-PRO"
-      | "GEMINI-RAG"
       | "GEMINI-MARKUP-RAG"
-      | "gemma2"
-      | "claude"
     /** ValidationError */
     ValidationError: {
       /** Location */

@@ -2,13 +2,13 @@ import { useTranslations } from "next-intl"
 import { Typography } from "@mui/material"
 import visuallyHidden from "@mui/utils/visuallyHidden"
 
-import DualFeatureMitra from "@/components/features/DualFeatureMitra"
 import MitraTranslator from "@/components/features/MitraTranslator"
+import MultiFeatureMitra from "@/components/features/MultiFeatureMitra"
 import PageContentFrame from "@/components/layout/PageContentFrame"
 import StorageCheck from "@/components/StorageCheck"
 import useAppConfig from "@/hooks/useAppConfig"
 
-function DualFeatureMitraPage() {
+function MultiFeatureMitraPage() {
   return (
     <>
       <StorageCheck />
@@ -16,18 +16,18 @@ function DualFeatureMitraPage() {
         <Typography component="h1" sx={visuallyHidden}>
           Dharmamitra
         </Typography>
-        <DualFeatureMitra />
+        <MultiFeatureMitra />
       </PageContentFrame>
     </>
   )
 }
 
 export default function HomePage() {
-  const { hasSearch } = useAppConfig().featureFlags
+  const { hasSearch, hasOCR } = useAppConfig().featureFlags
   const t = useTranslations("Home")
 
-  if (hasSearch === true) {
-    return <DualFeatureMitraPage />
+  if (hasSearch === true || hasOCR === true) {
+    return <MultiFeatureMitraPage />
   }
 
   return (

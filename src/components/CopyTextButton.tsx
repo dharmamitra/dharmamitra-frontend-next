@@ -3,7 +3,7 @@
 import React, { type JSX } from "react"
 import { useTranslations } from "next-intl"
 import ContentCopyIcon from "@mui/icons-material/ContentCopy"
-import { IconButton } from "@mui/material"
+import { IconButton, IconButtonProps } from "@mui/material"
 import { SvgIconProps } from "@mui/material/SvgIcon"
 import Tooltip from "@mui/material/Tooltip"
 
@@ -13,6 +13,7 @@ interface CopyTextProps {
   icon?: JSX.Element
   tooltip?: string
   color?: SvgIconProps["color"]
+  fontSize?: SvgIconProps["fontSize"]
 }
 
 const blockElements = [
@@ -59,10 +60,11 @@ export default function CopyTextButton({
   ariaLabel,
   icon,
   tooltip,
-  color,
+  color = "action",
+  fontSize = "small",
 }: CopyTextProps) {
-  const t = useTranslations("generic.copy")
-  const [toolTip, setToolTip] = React.useState<string>(tooltip || t("default"))
+  const t = useTranslations("generic")
+  const [toolTip, setToolTip] = React.useState<string>(tooltip || t("copy"))
   const [isContent, setIsContent] = React.useState<boolean>(false)
 
   const copyContent = React.useCallback(async () => {
@@ -102,17 +104,17 @@ export default function CopyTextButton({
         <span>
           <IconButton
             data-testid={"copy-button"}
-            aria-label={ariaLabel || t("default")}
+            aria-label={ariaLabel || t("copy")}
             color="secondary"
             onClick={copyContent}
             disabled={!isContent}
             onMouseLeave={() =>
               setTimeout(() => {
-                setToolTip(tooltip || t("default"))
+                setToolTip(tooltip || t("copy"))
               }, 500)
             }
           >
-            {icon || <ContentCopyIcon color={color} fontSize="small" />}
+            {icon || <ContentCopyIcon color={color} fontSize={fontSize} />}
           </IconButton>
         </span>
       </Tooltip>

@@ -3,16 +3,21 @@
 import * as React from "react"
 import { useInView } from "react-intersection-observer"
 import { useTranslations } from "next-intl"
+import DocumentScannerOutlinedIcon from "@mui/icons-material/DocumentScannerOutlined"
+import FormatShapesIcon from "@mui/icons-material/FormatShapes"
 import ScreenSearchDesktopOutlinedIcon from "@mui/icons-material/ScreenSearchDesktopOutlined"
 import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined"
 import Box from "@mui/material/Box"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
+import MitraOCR from "@/components/features/MitraOCR"
 import MitraSearch from "@/components/features/MitraSearch"
 import MitraTranslator from "@/components/features/MitraTranslator"
 import { tabsStyles } from "@/components/styled-ssr-safe"
 import { useViewTabParamWithLocalStorage } from "@/hooks/params"
+import useAppConfig from "@/hooks/useAppConfig"
 import { ViewIndex } from "@/utils/api/global/validators"
 
 import FeatureTabPanel from "./FeatureTabPanel"
@@ -27,8 +32,11 @@ export function a11yProps(index: number) {
   }
 }
 
-export default function DualFeatureMitra() {
+export default function MultiFeatureMitra() {
   const t = useTranslations()
+  const { hasSearch, hasOCR } = useAppConfig().featureFlags
+
+  const isXsScreen = useMediaQuery("(max-width:480px)")
 
   const [viewTabIndex, setViewTabIndex] = useViewTabParamWithLocalStorage()
 
@@ -54,26 +62,41 @@ export default function DualFeatureMitra() {
           aria-label="navigation tabs"
           centered
           onChange={handleTabChange}
-          TabIndicatorProps={{
-            sx: {
-              display: "none",
+          slotProps={{
+            indicator: {
+              sx: {
+                display: "none",
+              },
             },
           }}
           sx={tabsStyles}
         >
-          <Tab
-            icon={<ScreenSearchDesktopOutlinedIcon />}
-            iconPosition="start"
-            label={t("search.search")}
-            {...a11yProps(0)}
-          />
+          {hasSearch ? (
+            <Tab
+              icon={
+                isXsScreen ? undefined : <ScreenSearchDesktopOutlinedIcon />
+              }
+              iconPosition="start"
+              label={t("search.search")}
+              {...a11yProps(0)}
+            />
+          ) : null}
 
           <Tab
-            icon={<TranslateOutlinedIcon />}
+            icon={isXsScreen ? undefined : <TranslateOutlinedIcon />}
             iconPosition="start"
             label={t("translation.translate")}
             {...a11yProps(1)}
           />
+
+          {hasOCR ? (
+            <Tab
+              icon={isXsScreen ? undefined : <DocumentScannerOutlinedIcon />}
+              iconPosition="start"
+              label="OCR"
+              {...a11yProps(2)}
+            />
+          ) : null}
         </Tabs>
       </Box>
 
@@ -92,23 +115,36 @@ export default function DualFeatureMitra() {
         ></div>
 
         <Box sx={{ height: "100%" }}>
-          <FeatureTabPanel value={viewTabIndex} index={0}>
-            <Box
-              id="search-feature-wrapper"
-              sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
-            >
-              <MitraSearch
-                isSearchControlsOpen={isSearchControlsOpen}
-                setIsSearchControlsOpen={setIsSearchControlsOpen}
-              />
-            </Box>
-          </FeatureTabPanel>
+          {hasSearch ? (
+            <FeatureTabPanel value={viewTabIndex} index={0}>
+              <Box
+                id="search-feature-wrapper"
+                sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
+              >
+                <MitraSearch
+                  isSearchControlsOpen={isSearchControlsOpen}
+                  setIsSearchControlsOpen={setIsSearchControlsOpen}
+                />
+              </Box>
+            </FeatureTabPanel>
+          ) : null}
 
-          <FeatureTabPanel value={viewTabIndex} index={1}>
+          <FeatureTabPanel value={viewTabIndex} index={hasSearch ? 1 : 0}>
             <Box id="translator-feature-wrapper" sx={{ mt: 6 }}>
               <MitraTranslator />
             </Box>
           </FeatureTabPanel>
+
+          {hasOCR ? (
+            <FeatureTabPanel value={viewTabIndex} index={hasSearch ? 2 : 1}>
+              <Box
+                id="ocr-feature-wrapper"
+                sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
+              >
+                <MitraOCR />
+              </Box>
+            </FeatureTabPanel>
+          ) : null}
         </Box>
       </Box>
 

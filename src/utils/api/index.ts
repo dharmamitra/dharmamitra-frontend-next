@@ -1,6 +1,7 @@
 import { getDbSourceMenuData } from "./bn/menudata"
 import * as globalParams from "./global/params"
 import * as GlobalParamTypes from "./global/types"
+import { getOCRDataCall } from "./search/endpoints/ocr/call"
 import { getSearchParallelData } from "./search/endpoints/parallel"
 import { getSearchParallelExplanation } from "./search/endpoints/parallel-explanation/actions"
 import { getSearchPrimaryData } from "./search/endpoints/primary"
@@ -58,6 +59,10 @@ const DMFetchApi = {
       body: SearchApiTypes.RequestBody<"/explanation-parallel/">,
     ) => ["searchParallelExplanation", JSON.stringify(body)],
     call: getSearchParallelExplanation,
+  },
+  ocr: {
+    makeQueryKey: (file: File) => ["ocr", file.name],
+    call: getOCRDataCall,
   },
 }
 
