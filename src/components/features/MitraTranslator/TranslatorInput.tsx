@@ -88,11 +88,11 @@ const TranslatorInput = ({
   })
 
   const {
-    isDragging,
+    isDragging: rawIsDragging,
     fileInputRef: internalFileInputRef,
-    handleDragOver: internalHandleDragOver,
-    handleDragLeave: internalHandleDragLeave,
-    handleDrop: internalHandleDrop,
+    handleDragOver: baseHandleDragOver,
+    handleDragLeave: baseHandleDragLeave,
+    handleDrop: baseHandleDrop,
     handleFileInput: baseHandleFileInput,
     acceptedFileTypes,
   } = useFileUpload({
@@ -102,7 +102,55 @@ const TranslatorInput = ({
     maxSize: MAX_FILE_INPUT_SIZE,
   })
 
+  // Add a small debounce to isDragging state to prevent flickering
+  // The ref tracks the drag timeout for debouncing
+  const dragTimeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+  const [isDragging, setIsDragging] = React.useState(false)
+
+  React.useEffect(() => {
+    if (rawIsDragging) {
+      if (dragTimeoutRef.current) {
+        clearTimeout(dragTimeoutRef.current)
+        dragTimeoutRef.current = null
+      }
+      setIsDragging(true)
+    } else {
+      dragTimeoutRef.current = setTimeout(() => {
+        setIsDragging(false)
+        dragTimeoutRef.current = null
+      }, 50) // 50ms debounce
+    }
+
+    return () => {
+      if (dragTimeoutRef.current) {
+        clearTimeout(dragTimeoutRef.current)
+      }
+    }
+  }, [rawIsDragging])
+
   const fileInputRef = externalFileInputRef || internalFileInputRef
+
+  const internalHandleDragOver = React.useCallback(
+    (e: React.DragEvent) => {
+      baseHandleDragOver(e)
+    },
+    [baseHandleDragOver],
+  )
+
+  const internalHandleDragLeave = React.useCallback(
+    (e: React.DragEvent) => {
+      baseHandleDragLeave(e)
+    },
+    [baseHandleDragLeave],
+  )
+
+  const internalHandleDrop = React.useCallback(
+    (e: React.DragEvent) => {
+      baseHandleDrop(e)
+    },
+    [baseHandleDrop],
+  )
+
   const handleDragOver = externalHandleDragOver || internalHandleDragOver
   const handleDragLeave = externalHandleDragLeave || internalHandleDragLeave
   const handleDrop = externalHandleDrop || internalHandleDrop
@@ -167,48 +215,51 @@ const TranslatorInput = ({
         accept={acceptedFileTypes}
       />
 
-      {/* Drag overlay - only visible when dragging */}
-      {isDragging && (
+      {/* Drag overlay only visible when dragging - uses opacity transitions 
+      instead of conditional rendering to prevent flickering */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "white",
+          border: "3px dashed",
+          borderColor: "divider",
+          borderRadius: 3,
+          zIndex: 10,
+          opacity: isDragging ? 1 : 0,
+          visibility: isDragging ? "visible" : "hidden",
+          transition: "opacity 0.15s ease, visibility 0.15s ease",
+          pointerEvents: isDragging ? "auto" : "none",
+        }}
+      >
         <Box
+          inert={true}
           sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "white",
-            border: "3px dashed",
-            borderColor: "divider",
-            borderRadius: 3,
-            zIndex: 10,
           }}
         >
-          <Box
-            inert={true}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <UploadIcon />
-            <Typography variant="h6" component="p" color="text.primary">
-              {genericT("dragAndDrop")}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {genericT("supportedFileTypes", {
-                fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
-                maxFileSize: MAX_FILE_INPUT_SIZE_MB,
-              })}
-            </Typography>
-          </Box>
+          <UploadIcon />
+          <Typography variant="h6" component="p" color="text.primary">
+            {genericT("dragAndDrop")}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {genericT("supportedFileTypes", {
+              fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
+              maxFileSize: MAX_FILE_INPUT_SIZE_MB,
+            })}
+          </Typography>
         </Box>
-      )}
+      </Box>
     </Box>
   )
 }
