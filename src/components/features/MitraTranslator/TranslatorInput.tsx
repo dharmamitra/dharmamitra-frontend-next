@@ -180,23 +180,33 @@ const TranslatorInput = ({
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            backgroundColor: "white",
             border: "3px dashed",
-            borderColor: "primary.main",
+            borderColor: "divider",
             borderRadius: 3,
             zIndex: 10,
           }}
         >
-          <UploadIcon />
-          <Typography variant="h6" component="p" color="text.primary">
-            {genericT("dragAndDrop")}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {genericT("supportedFileTypes", {
-              fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
-              maxFileSize: MAX_FILE_INPUT_SIZE_MB,
-            })}
-          </Typography>
+          <Box
+            inert={true}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <UploadIcon />
+            <Typography variant="h6" component="p" color="text.primary">
+              {genericT("dragAndDrop")}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {genericT("supportedFileTypes", {
+                fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
+                maxFileSize: MAX_FILE_INPUT_SIZE_MB,
+              })}
+            </Typography>
+          </Box>
         </Box>
       )}
     </Box>

@@ -38,7 +38,8 @@
     "uploadDisabled": "Upload disabled",
     "ocr": "OCR",
     "translation": "Translation",
-    "search": "Search"
+    "search": "Search",
+    "upload": "Upload {fileTypes}file"
   },
   "navigation": {
     "mobileButtonAriaLabel": "开放导航菜单",
@@ -214,7 +215,7 @@
     "ocr": {
       "unknownErrorTitle": "OCR Failed",
       "lengthErrorTitle": "OCR output too long",
-      "lengthErrorText": "Translation input can support approximately {maxInputCharacters} characters. Please try again with a shorter text, or use the OCR feature to process longer texts."
+      "lengthErrorText": "Translation input can support up to {maxInputCharacters} characters. Please try again with a shorter text, or use the OCR feature to process longer texts."
     }
   },
   "globalParams": {

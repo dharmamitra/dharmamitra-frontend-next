@@ -32,8 +32,9 @@ export default function AttachFileButton({
             <>{t("uploadDisabled")}</>
           ) : (
             <>
-              {`${t("browseFiles")}`}
-              {acceptedFileTypes && ` (${acceptedFileTypes})`}
+              {t("upload", {
+                fileTypes: `${acceptedFileTypes} `,
+              })}
             </>
           )}
         </span>
@@ -51,7 +52,9 @@ export default function AttachFileButton({
     >
       <span>
         <IconButton
-          aria-label={t("browseFiles")}
+          aria-label={t("upload", {
+            fileTypes: `${acceptedFileTypes} `,
+          })}
           onClick={onClick}
           disabled={disabled}
           color="inherit"
