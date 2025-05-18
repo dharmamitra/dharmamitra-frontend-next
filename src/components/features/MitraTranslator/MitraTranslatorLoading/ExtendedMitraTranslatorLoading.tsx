@@ -2,13 +2,11 @@ import React from "react"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
-import { inputEncodings } from "@/utils/api/global/params"
+import { inputEncodings, modelTypes } from "@/utils/api/global/params"
 import { TargetLanguage } from "@/utils/api/translation/params"
 
 import TranslatorLayout from "../TranslatorLayout"
 import OptionsLoading from "./OptionsLoading"
-
-const placeholderModels = ["default", "model 1", "model 2", "model 3"]
 
 export default function ExtendedMitraTranslatorLoading({
   targetLanguages,
@@ -17,6 +15,23 @@ export default function ExtendedMitraTranslatorLoading({
 }) {
   return (
     <>
+      <ToggleButtonGroup
+        color="secondary"
+        value={0}
+        exclusive
+        aria-label="Model"
+      >
+        {modelTypes.slice(0, 4).map((model, index) => (
+          <ToggleButton
+            key={model + "-model-option-loader"}
+            value={index}
+            sx={{ filter: "blur(1px)" }}
+          >
+            {model}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
+
       <TranslatorLayout
         inputControls={
           <OptionsLoading options={inputEncodings} keyBase="input-encoding" />
@@ -27,23 +42,6 @@ export default function ExtendedMitraTranslatorLoading({
         inputBlock={null}
         outputBlock={null}
       />
-
-      <ToggleButtonGroup
-        color="secondary"
-        value={0}
-        exclusive
-        aria-label="Model"
-      >
-        {placeholderModels.slice(0, 4).map((model, index) => (
-          <ToggleButton
-            key={model + "-model-option-loader"}
-            value={index}
-            sx={{ filter: "blur(1px)" }}
-          >
-            {model}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
     </>
   )
 }

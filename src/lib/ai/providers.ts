@@ -12,11 +12,13 @@ type MitraModelId = ModelType | (string & {})
 type MitraChatModelId = MitraModelId
 type MitraCompletionModelId = MitraModelId
 type MitraEmbeddingModelId = MitraModelId
+type _ImgModelId = TestModelId
 
 export const mitra = createOpenAICompatible<
   MitraCompletionModelId,
   MitraChatModelId,
-  MitraEmbeddingModelId
+  MitraEmbeddingModelId,
+  _ImgModelId
 >({
   name: "mitra",
   apiKey: process.env.DM_CHAT_API_KEY,
@@ -24,6 +26,7 @@ export const mitra = createOpenAICompatible<
 })
 
 export const mitraTest = createOpenAICompatible<
+  TestModelId,
   TestModelId,
   TestModelId,
   TestModelId
