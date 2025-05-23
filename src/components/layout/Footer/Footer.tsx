@@ -1,9 +1,9 @@
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 
 import customTheming from "@/utils/theme/config"
 
 import LogoBlock from "./LogoBlock"
-import Mission from "./Mission"
+import Statements from "./Statements"
 
 export default function Footer({
   isLocalized = true,
@@ -32,7 +32,7 @@ export default function Footer({
       >
         <LogoBlock isLocalized={isLocalized} />
 
-        <Mission isLocalized={isLocalized} />
+        <Statements isLocalized={isLocalized} />
       </Box>
     </Box>
   )

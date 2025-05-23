@@ -50,7 +50,8 @@
       "p": "Please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
       "button": "Email Us"
     },
-    "collaboration": "In collaboration with the <link>Tsadra Foundation</link>."
+    "collaboration": "In collaboration with the <link>Tsadra Foundation</link>.",
+    "engine": "Powered by the Gemini API"
   },
   "localeSwitcher": {
     "label": "切换语言",
