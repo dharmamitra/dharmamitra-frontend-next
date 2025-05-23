@@ -72,7 +72,7 @@ export default function MobileNavMenu({
   )
 
   return (
-    <Box sx={{ display: { sm: "none" } }}>
+    <Box>
       <Box>
         <IconButton
           aria-label={messages.ariaButton}
@@ -94,7 +94,6 @@ export default function MobileNavMenu({
             keepMounted: true,
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,

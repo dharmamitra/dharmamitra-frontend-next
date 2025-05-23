@@ -42,25 +42,48 @@ const MitraLogoImage = () => {
   )
 }
 
-export function TsadraLogo() {
+const LogoBlock = ({ mitraLogo }: { mitraLogo: React.ReactNode }) => {
   return (
-    <Link href="https://tsadra.org/" {...linkAttrs} sx={linkStyles}>
-      <Image
-        src={tsadraLogo}
-        alt="Tsadra Foundation Logo"
-        sizes="(max-width: 1200px) 220px, 286px"
-        width={tsadraLogo.width}
-        height={tsadraLogo.height}
-        style={{
-          width: "auto",
-          height: "100%",
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: { xs: "column", sm: "row" },
+        width: "100%",
+        flexWrap: "wrap",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: { xs: 2, md: 4 },
+      }}
+    >
+      {mitraLogo}
+
+      <Link
+        href="https://tsadra.org/"
+        {...linkAttrs}
+        sx={{
+          ...linkStyles,
+          height: "auto",
+          width: "100%",
+          maxWidth: { xs: "140px", lg: "180px" },
         }}
-      />
-    </Link>
+      >
+        <Image
+          src={tsadraLogo}
+          alt="Tsadra Foundation Logo"
+          sizes="(max-width: 1200px) 140px, 180px"
+          width={tsadraLogo.width}
+          height={tsadraLogo.height}
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
+        />
+      </Link>
+    </Box>
   )
 }
 
-export default function LogoBlock({
+export default function LogoBlockComponent({
   isLocalized = true,
 }: {
   isLocalized?: boolean
@@ -69,37 +92,23 @@ export default function LogoBlock({
 
   if (isLocalized) {
     return (
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: { xs: "center", md: "space-between" },
-          gap: { xs: 2, md: 6 },
-        }}
-      >
-        <LocalLink href="/" sx={linkStyles}>
-          <MitraLogoImage />
-        </LocalLink>
-        <TsadraLogo />
-      </Box>
+      <LogoBlock
+        mitraLogo={
+          <LocalLink href="/" sx={linkStyles}>
+            <MitraLogoImage />
+          </LocalLink>
+        }
+      />
     )
   }
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        alignItems: "center",
-        justifyContent: { xs: "center", md: "space-between" },
-        gap: { xs: 2, md: 6 },
-      }}
-    >
-      <Link href={basePath} sx={linkStyles}>
-        <MitraLogoImage />
-      </Link>
-      <TsadraLogo />
-    </Box>
+    <LogoBlock
+      mitraLogo={
+        <Link href={basePath} sx={linkStyles}>
+          <MitraLogoImage />
+        </Link>
+      }
+    />
   )
 }

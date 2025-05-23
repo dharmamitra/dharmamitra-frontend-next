@@ -10,9 +10,9 @@ const getLinkStyles = (width: number) => {
     textDecoration: "none",
     display: "block",
     width: {
-      xs: `${width * 0.73}px`,
+      xs: `${width * 0.64}px`,
       sm: `${width * 0.82}px`,
-      md: `${width}px`,
+      md: `${width * 0.9}px`,
     },
   }
 }

@@ -3,6 +3,7 @@
 import React from "react"
 import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
+import { Breakpoint } from "@mui/material"
 
 import { useNavItems } from "@/hooks/useNavItems"
 
@@ -10,6 +11,8 @@ import AppBar from "./AppBar"
 import DesktopNavMenu from "./DesktopNavMenu"
 import MobileNavMenuLoading from "./LazyMobileNavMenu"
 import LocaleSelector from "./LocaleSelector"
+
+const DESKTOP_BREAKPOINT: Breakpoint = "md"
 
 const MobileNavMenu = dynamic(() => import("./MobileNavMenuRenderer"), {
   loading: () => <MobileNavMenuLoading />,
@@ -30,9 +33,10 @@ export default function NavigationBar() {
           },
           children: <LocaleSelector />,
         }}
+        desktopBreakpoint={DESKTOP_BREAKPOINT}
       />
 
-      <DesktopNavMenu />
+      <DesktopNavMenu desktopBreakpoint={DESKTOP_BREAKPOINT} />
     </AppBar>
   )
 }
