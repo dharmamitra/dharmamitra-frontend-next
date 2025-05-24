@@ -16,25 +16,22 @@ export default function ExtendedMitraTranslatorLoading({
 }) {
   return (
     <>
-      <Box sx={{ mb: 3, minHeight: 40 }}>
-        <ToggleButtonGroup
-          color="secondary"
-          size="small"
-          value={0}
-          exclusive
-          aria-label="Model"
-        >
-          {modelTypes.slice(0, 4).map((model, index) => (
-            <ToggleButton
-              key={model + "-model-option-loader"}
-              value={index}
-              sx={{ filter: "blur(1px)" }}
-            >
-              {model}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-      </Box>
+      <ToggleButtonGroup
+        color="secondary"
+        value={0}
+        exclusive
+        aria-label="Model"
+      >
+        {modelTypes.slice(0, 4).map((model, index) => (
+          <ToggleButton
+            key={model + "-model-option-loader"}
+            value={index}
+            sx={{ filter: "blur(1px)" }}
+          >
+            {model}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
 
       <TranslatorLayout
         inputControls={

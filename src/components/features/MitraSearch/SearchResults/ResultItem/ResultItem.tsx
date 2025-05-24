@@ -1,6 +1,6 @@
 import React from "react"
 import Box from "@mui/material/Box"
-import Grid, { Grid2Props } from "@mui/material/Grid2"
+import Grid, { GridProps } from "@mui/material/Grid"
 
 import { SearchApiTypes } from "@/api"
 import { getParagraphsFromString } from "@/utils/api/stream"
@@ -21,7 +21,7 @@ type ResultItemProps = {
   isParallel?: boolean
   query?: string
   summary?: string
-  size: Grid2Props["size"]
+  size: GridProps["size"]
 }
 
 function ResultItem({
