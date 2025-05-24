@@ -45,13 +45,8 @@
       "h2": "Dharmamitra",
       "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
     },
-    "contact": {
-      "h2": "We'd love to hear from you!",
-      "p": "Please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
-      "button": "Email Us"
-    },
     "collaboration": "In collaboration with the <link>Tsadra Foundation</link>.",
-    "engine": "Powered by the Gemini API"
+    "engine": "Powered by Gemini API"
   },
   "localeSwitcher": {
     "label": "切換語言",
@@ -312,6 +307,24 @@
             "description": "Providing vital funding for the combined study and practice of Tibetan Buddhism in the West"
           }
         }
+      },
+      "development": {
+        "h2": "Development",
+        "p1": "We’re continuously developing our custom APIs to iteratively improve the quality of Dharmamitra’s translation and other capabilities, as well as offer new features. To learn more about the theoretical background behind Mitra’s development, check our <locallink>news feed</locallink> where we periodically share updates that include information about the project’s underpinning ideas.",
+        "p2": "Dharmamitra uses Gemini API services to provide the best possible results to users, and its Sanskrit grammatical parser relies on data from the <link>Digital Corpus of Sanskrit</link>."
+      },
+      "contact": {
+        "h2": "Contact",
+        "card1": {
+          "title": "We'd love to hear from you!",
+          "text": "If you have any comments or suggestions, please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
+          "button": "Send feedback"
+        },
+        "card2": {
+          "title": "Building on Mitra",
+          "text": "If you are interested in using the Dharmamitra, or its API to build your own project, please contact us beforehand to discuss this with us.",
+          "button": "Request permission"
+        }
       }
     }
   },
@@ -325,7 +338,7 @@
       },
       "features": {
         "h2": "Features",
-        "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source matiral and modern research literature."
+        "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
       }
     }
   },

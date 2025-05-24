@@ -23,7 +23,7 @@ const LocalizedMission = () => {
           })}
         </Typography>
       </Box>
-      <Typography variant="body2" textAlign="center">
+      <Typography variant="body2" textAlign="center" color="text.secondary">
         {t("engine")}
       </Typography>
     </>
@@ -49,7 +49,7 @@ const FallbackMission = () => {
           {"."}
         </Typography>
       </Box>
-      <Typography variant="body2" textAlign="center">
+      <Typography variant="body2" textAlign="center" color="text.secondary">
         "Powered by the Gemini API"
       </Typography>
     </>
