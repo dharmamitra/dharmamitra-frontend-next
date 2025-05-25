@@ -215,7 +215,7 @@
     "ocr": {
       "unknownErrorTitle": "OCR Failed",
       "lengthErrorTitle": "OCR output too long",
-      "lengthErrorText": "Translation input can support up to {maxInputCharacters} characters. Please try again with a shorter text, or use the OCR feature to process longer texts.",
+      "lengthErrorText": "Translation input can support up to {maxInputCharacters} characters (approx. {maxInputPageEquivalent} pages of text). Please try again with a shorter text, or use the OCR feature to process longer texts.",
       "dragAndDropOverlay": "Supported file types: {fileTypes}<br></br>Max characters: {maxInputCharacters} (approx. {maxInputPageEquivalent} pages of text)<br></br>Max file size: {maxFileSize}MB"
     }
   },

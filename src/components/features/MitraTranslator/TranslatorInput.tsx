@@ -52,6 +52,7 @@ const TranslatorInput = ({
   })
   const ocrLengthErrorMessage = t("ocr.lengthErrorText", {
     maxInputCharacters: MAX_INPUT_CHARACTERS,
+    maxInputPageEquivalent: MAX_INPUT_PAGE_EQUIVALENT,
   })
 
   const ocrMutation = useMutation<ParsedOCRResponse, Error, File>({
