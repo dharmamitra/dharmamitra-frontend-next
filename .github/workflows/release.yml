@@ -18,9 +18,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
-          cache: "yarn" 
-          # corepack-version: latest # Optionally, as needed
+          node-version: "22.x"
+          cache: "yarn"
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies
         run: yarn install --immutable --check-cache
