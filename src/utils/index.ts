@@ -5,7 +5,7 @@ import {
   TargetLanguage,
 } from "@/utils/api/translation/params"
 
-export { tryCatch } from "@/utils/try-catch"
+export { awaitedTryCatch, tryCatch } from "@/utils/try-catch"
 
 export const getSettingPriotiryGroups = <T>(params: {
   setting: T[]

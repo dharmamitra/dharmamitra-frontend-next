@@ -1,5 +1,5 @@
 import appConfig from "@/config"
-import { tryCatch } from "@/utils"
+import { awaitedTryCatch } from "@/utils"
 
 import { parseOCRResponse } from "./handlers"
 
@@ -27,7 +27,7 @@ export const getOCRDataCall = async ({
 
   const url = `${appConfig.basePath}/next/api/ocr`
 
-  const fetchQuery = await tryCatch(
+  const fetchQuery = await awaitedTryCatch(
     async () =>
       await fetch(url, {
         method: "POST",
@@ -39,7 +39,7 @@ export const getOCRDataCall = async ({
     throw fetchQuery.error
   }
 
-  const parseQuery = await tryCatch(
+  const parseQuery = await awaitedTryCatch(
     async () => await parseOCRResponse(fetchQuery.result, file.name),
   )
 
