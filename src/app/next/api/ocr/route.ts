@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 
-import { tryCatch } from "@/utils"
+import { awaitedTryCatch } from "@/utils"
 import { searchBaseUrl } from "@/utils/api/client"
 
 export const dynamic = "force-dynamic"
@@ -53,7 +53,9 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const formDataResult = await tryCatch(async () => await request.formData())
+  const formDataResult = await awaitedTryCatch(
+    async () => await request.formData(),
+  )
   if (formDataResult.error) {
     return NextResponse.json(formDataResult.error, { status: 400 })
   }
@@ -90,7 +92,7 @@ export async function POST(request: NextRequest) {
   const apiFormData = new FormData()
   apiFormData.append("file", file, file.name)
 
-  const fetchResult = await tryCatch(async () =>
+  const fetchResult = await awaitedTryCatch(async () =>
     fetchOCRData(apiFormData, query),
   )
 
@@ -100,7 +102,9 @@ export async function POST(request: NextRequest) {
 
   const response = fetchResult.result
 
-  const fileResponse = await tryCatch(async () => handleFileResponse(response))
+  const fileResponse = await awaitedTryCatch(async () =>
+    handleFileResponse(response),
+  )
 
   if (fileResponse.error) {
     return NextResponse.json(fileResponse.error, { status: 500 })
@@ -110,7 +114,9 @@ export async function POST(request: NextRequest) {
     return fileResponse.result
   }
 
-  const jsonResult = await tryCatch(async () => handleJsonResponse(response))
+  const jsonResult = await awaitedTryCatch(async () =>
+    handleJsonResponse(response),
+  )
 
   if (jsonResult.error) {
     return NextResponse.json(jsonResult.error, { status: 500 })
