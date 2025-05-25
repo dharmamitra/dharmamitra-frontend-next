@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 
 import { tryCatch } from "@/utils"
-import { fetchOCRData } from "@/utils/api/search/endpoints/ocr/handlers"
+import { searchBaseUrl } from "@/utils/api/client"
 
 export const dynamic = "force-dynamic"
 
@@ -31,6 +31,17 @@ async function handleFileResponse(response: Response) {
 async function handleJsonResponse(response: Response) {
   const responseData = await response.json()
   return NextResponse.json(responseData)
+}
+
+async function fetchOCRData(body: FormData, query: URLSearchParams) {
+  const url = `${searchBaseUrl}/ocr/?${query}`
+  return await fetch(url, {
+    method: "POST",
+    headers: {
+      "X-Key": process.env.DM_API_KEY ?? "",
+    },
+    body,
+  })
 }
 
 export async function POST(request: NextRequest) {

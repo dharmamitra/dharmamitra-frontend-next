@@ -1,7 +1,6 @@
 import { z } from "zod"
 
 import { makeOCROutputFileName } from "@/components/features/MitraOCR/utils"
-import { searchBaseUrl } from "@/utils/api/client"
 
 const schema = z.object({
   extracted_text: z.string(),
@@ -60,15 +59,4 @@ export async function parseOCRResponse(response: Response, fileName?: string) {
   throw new Error(
     `Unexpected return from OCR request. Return is not a file, or cannot be parsed. ${pasrsedData.parserError}`,
   )
-}
-
-export async function fetchOCRData(body: FormData, query: URLSearchParams) {
-  const url = `${searchBaseUrl}/ocr/?${query}`
-  return await fetch(url, {
-    method: "POST",
-    headers: {
-      "X-Key": process.env.DM_API_KEY ?? "",
-    },
-    body,
-  })
 }
