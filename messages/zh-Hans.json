@@ -33,7 +33,13 @@
     "dragAndDrop": "Drag and drop your file here",
     "supportedFileTypes": "Supported file types: {fileTypes} (max size: {maxFileSize}MB)",
     "browseFiles": "Browse files",
-    "saveToFile": "Save to file"
+    "saveToFile": "Save to file",
+    "processing": "Processing...",
+    "uploadDisabled": "Upload disabled",
+    "ocr": "OCR",
+    "translation": "Translation",
+    "search": "Search",
+    "upload": "Upload a {fileTypes}file<br></br>(Supports approx. 10 pages of text)"
   },
   "navigation": {
     "mobileButtonAriaLabel": "开放导航菜单",
@@ -198,10 +204,16 @@
     "usageH2": "Usage",
     "usageAccept": "Accept",
     "placeholders": {
-      "default": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+      "default": "Enter text, or drag and drop a {acceptedFileTypes} file (of upto approx. 10 pages of text). Supports Sanskrit, Tibetan, Buddhist scriptural Chinese and English.",
       "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
     },
-    "triggerDisabled": "Add/update text to translate"
+    "triggerDisabled": "Add/update text to translate",
+    "ocr": {
+      "unknownErrorTitle": "OCR Failed",
+      "lengthErrorTitle": "OCR output too long",
+      "lengthErrorText": "Translation input can support up to {maxInputCharacters} characters. Please try again with a shorter text, or use the OCR feature to process longer texts.",
+      "dragAndDropOverlay": "Supported file types: {fileTypes}<br></br>Max characters: {maxInputCharacters} (approx. {maxInputPageEquivalent} pages of text)<br></br>Max file size: {maxFileSize}MB"
+    }
   },
   "globalParams": {
     "encodingSelectLabel": "Input encoding",

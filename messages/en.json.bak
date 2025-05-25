@@ -24,7 +24,10 @@
     "source": "Source",
     "target": "Target",
     "loading": "Loading",
+    "processing": "Processing...",
     "englishTranslation": "English Translation",
+    "upload": "Upload a {fileTypes}file<br></br>(Supports approx. 10 pages of text)",
+    "uploadDisabled": "Upload disabled",
     "noResult": "No results found.",
     "openAll": "Open all",
     "closeAll": "Close all",
@@ -33,7 +36,10 @@
     "dragAndDrop": "Drag and drop your file here",
     "supportedFileTypes": "Supported file types: {fileTypes} (max size: {maxFileSize}MB)",
     "browseFiles": "Browse files",
-    "saveToFile": "Save to file"
+    "saveToFile": "Save to file",
+    "ocr": "OCR",
+    "translation": "Translation",
+    "search": "Search"
   },
   "navigation": {
     "nexusLinkLabel": "Database",
@@ -129,7 +135,7 @@
     "heading": "Translate Dharma text",
     "inputAriaLabel": "Translation input field",
     "placeholders": {
-      "default": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+      "default": "Enter text, or drag and drop a {acceptedFileTypes} file (of upto approx. 10 pages of text). Supports Sanskrit, Tibetan, Buddhist scriptural Chinese and English.",
       "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
     },
     "otherLabel": "Other",
@@ -142,6 +148,12 @@
     "usageH2": "Usage",
     "usageAccept": "Accept",
     "usageNoticeShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
+    "ocr": {
+      "dragAndDropOverlay": "Supported file types: {fileTypes}<br></br>Max characters: {maxInputCharacters} (approx. {maxInputPageEquivalent} pages of text)<br></br>Max file size: {maxFileSize}MB",
+      "unknownErrorTitle": "OCR Failed",
+      "lengthErrorTitle": "OCR output too long",
+      "lengthErrorText": "Translation input can support up to {maxInputCharacters} characters. Please try again with a shorter text, or use the OCR feature to process longer texts."
+    },
     "usageNoticeLong": {
       "p1": "Dharmamitra leverages cutting-edge deep neural networks to efficiently provide machine translations. We are working hard to provide the best possible quality. While our technology continues to advance and our services are frequently updated, please keep in mind:",
       "ul": {

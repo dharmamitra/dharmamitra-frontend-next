@@ -3,12 +3,12 @@ import { useTranslations } from "next-intl"
 import { Box, Button, Typography } from "@mui/material"
 
 import UploadIcon from "@/components/icons/Upload"
+import { useFileUpload } from "@/hooks/useFileUpload"
 
 import {
-  ACCEPTED_FILE_TYPES_STRING,
   ACCEPTED_FILE_TYPES_UI_STRING,
+  MAX_FILE_SIZE,
   MAX_FILE_SIZE_MB,
-  validateFile,
 } from "./utils"
 
 type InputBoxProps = {
@@ -26,49 +26,21 @@ export default function InputBox({ className, onFileSelect }: InputBoxProps) {
     maxFileSize: MAX_FILE_SIZE_MB,
   })
 
-  const [isDragging, setIsDragging] = React.useState(false)
-  const fileInputRef = React.useRef<HTMLInputElement>(null)
-
-  const handleDragOver = React.useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(true)
-  }, [])
-
-  const handleDragLeave = React.useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(false)
-  }, [])
-
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault()
-      setIsDragging(false)
-
-      const file = e.dataTransfer.files[0]
-
-      if (validateFile(file, { invalidTypeMessage, invalidSizeMessage })) {
-        onFileSelect(file)
-      }
-    },
-    [onFileSelect, invalidTypeMessage, invalidSizeMessage],
-  )
-
-  const handleFileInput = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0]
-
-      if (validateFile(file, { invalidTypeMessage, invalidSizeMessage })) {
-        onFileSelect(file)
-      }
-      // Reset file input value to allow selecting the same file again
-      e.target.value = ""
-    },
-    [onFileSelect, invalidTypeMessage, invalidSizeMessage],
-  )
-
-  const handleBrowseClick = React.useCallback(() => {
-    fileInputRef.current?.click()
-  }, [])
+  const {
+    isDragging,
+    fileInputRef,
+    handleDragOver,
+    handleDragLeave,
+    handleDrop,
+    handleFileInput,
+    handleBrowseClick,
+    acceptedFileTypes,
+  } = useFileUpload({
+    onFileSelect,
+    invalidTypeMessage,
+    invalidSizeMessage,
+    maxSize: MAX_FILE_SIZE,
+  })
 
   return (
     <Box
@@ -95,7 +67,7 @@ export default function InputBox({ className, onFileSelect }: InputBoxProps) {
         ref={fileInputRef}
         style={{ display: "none" }}
         onChange={handleFileInput}
-        accept={ACCEPTED_FILE_TYPES_STRING}
+        accept={acceptedFileTypes}
       />
 
       <UploadIcon />
