@@ -27,8 +27,6 @@ export async function POST(request: NextRequest) {
 
     const providerModel = validateModel(model) ? model : "default"
 
-    console.log({ input_sentence })
-
     const result = streamText({
       model: mitra(providerModel),
       messages: [{ role: "user", content: input_sentence }],
