@@ -16,16 +16,13 @@ jobs:
         with:
           fetch-depth: 0 # Needed for semantic-release
 
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Set Yarn version to stable
-        run: yarn set version stable
-
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
-          cache: "yarn" # Enable built-in yarn caching
+          node-version: "22.x"
+          cache: "yarn"
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install dependencies
         run: yarn install --immutable --check-cache

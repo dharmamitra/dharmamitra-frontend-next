@@ -3,7 +3,7 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Box, Typography } from "@mui/material"
-import Grid from "@mui/material/Grid2"
+import Grid from "@mui/material/Grid"
 
 // import { Member as MemberType } from "@/app/[locale]/(static-pages)/team/data"
 import customTheming from "@/utils/theme/config"

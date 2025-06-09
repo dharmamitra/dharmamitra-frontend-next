@@ -1,18 +1,19 @@
 import * as React from "react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 import appConfig from "@/config"
 
 export const useNavItems = () => {
   const t = useTranslations()
+  const locale = useLocale()
 
   return React.useMemo<{ id: string; label: string; href: string }[]>(
     () =>
       appConfig.subPages.map((page) => ({
-        id: crypto.randomUUID(),
+        id: `${locale}-${page}-nav-item`,
         label: t(`pages.${page}`),
         href: `/${page}`,
       })),
-    [t],
+    [t, locale],
   )
 }
