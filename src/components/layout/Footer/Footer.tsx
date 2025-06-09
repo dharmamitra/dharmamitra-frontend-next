@@ -1,10 +1,9 @@
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 
 import customTheming from "@/utils/theme/config"
 
-import Collaboration from "./Collaboration"
-import Logo from "./Logo"
-import Mission from "./Mission"
+import LogoBlock from "./LogoBlock"
+import Statements from "./Statements"
 
 export default function Footer({
   isLocalized = true,
@@ -26,32 +25,14 @@ export default function Footer({
         sx={{
           display: "flex",
           flexDirection: "column",
+          justifyContent: "center",
           alignItems: "center",
-          gap: 4,
+          gap: { xs: 2, lg: 3 },
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: { md: "center" },
-            alignItems: "center",
-            gap: { xs: 2, md: 6 },
-          }}
-        >
-          <Logo isLocalized={isLocalized} />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-            }}
-          >
-            <Mission isLocalized={isLocalized} />
-          </Box>
-        </Box>
+        <LogoBlock isLocalized={isLocalized} />
 
-        <Collaboration isLocalized={isLocalized} />
+        <Statements isLocalized={isLocalized} />
       </Box>
     </Box>
   )

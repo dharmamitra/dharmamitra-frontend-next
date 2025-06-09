@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     languages: localePrefixs,
   },
   openGraph: {
-    images: "/assets/dm-og.png",
+    images: "/assets/dm-og.jpg",
   },
   twitter: {
     card: "summary_large_image",

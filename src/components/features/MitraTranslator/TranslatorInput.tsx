@@ -13,6 +13,7 @@ import {
   MAX_FILE_INPUT_SIZE,
   MAX_FILE_INPUT_SIZE_MB,
   MAX_INPUT_CHARACTERS,
+  MAX_INPUT_PAGE_EQUIVALENT,
 } from "@/components/features/MitraTranslator/utils"
 import UploadIcon from "@/components/icons/Upload"
 import { useFileUpload } from "@/hooks/useFileUpload"
@@ -51,6 +52,7 @@ const TranslatorInput = ({
   })
   const ocrLengthErrorMessage = t("ocr.lengthErrorText", {
     maxInputCharacters: MAX_INPUT_CHARACTERS,
+    maxInputPageEquivalent: MAX_INPUT_PAGE_EQUIVALENT,
   })
 
   const ocrMutation = useMutation<ParsedOCRResponse, Error, File>({
@@ -248,16 +250,44 @@ const TranslatorInput = ({
             alignItems: "center",
           }}
         >
-          <UploadIcon />
-          <Typography variant="h6" component="p" color="text.primary">
-            {genericT("dragAndDrop")}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {genericT("supportedFileTypes", {
-              fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
-              maxFileSize: MAX_FILE_INPUT_SIZE_MB,
-            })}
-          </Typography>
+          <Box
+            inert={true}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
+            <Box
+              sx={{
+                display: "grid",
+                placeItems: "center",
+                pt: 1.5,
+              }}
+            >
+              <UploadIcon size={1.6} />
+            </Box>
+            <Box>
+              <Typography
+                variant="h6"
+                component="p"
+                color="text.primary"
+                textAlign="left"
+              >
+                {genericT("dragAndDrop")}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {t.rich("ocr.dragAndDropOverlay", {
+                  fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
+                  maxFileSize: MAX_FILE_INPUT_SIZE_MB,
+                  maxInputCharacters: MAX_INPUT_CHARACTERS,
+                  maxInputPageEquivalent: MAX_INPUT_PAGE_EQUIVALENT,
+                  br: () => <br />,
+                })}
+              </Typography>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>

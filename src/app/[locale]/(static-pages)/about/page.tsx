@@ -22,6 +22,7 @@ import dmLogoFull from "@/assets/logos/dm-logo-full.png"
 import IconCard from "@/components/IconCard"
 import Contact from "@/components/layout/Footer/Contact"
 import { stylePageContainer } from "@/components/layout/PageContentFrame"
+import LocalLink from "@/components/LocalLink"
 import Section from "@/components/Section"
 import appConfig from "@/config"
 import { linkAttrs } from "@/utils/constants"
@@ -148,6 +149,31 @@ export default function DharmamitraAboutPage({ params }: DefaultPageParams) {
       </Section>
 
       <Container {...stylePageContainer()}>
+        <Section sx={{ pt: 3, pb: 2, maxWidth: 690 }}>
+          <Typography variant="h2" mb={2}>
+            {t("development.h2")}
+          </Typography>
+          <Typography mb={2}>
+            {t.rich("development.p1", {
+              locallink: (chunks) => (
+                <LocalLink href="/news">{chunks}</LocalLink>
+              ),
+            })}
+          </Typography>
+          <Typography mb={2}>
+            {t.rich("development.p2", {
+              link: (chunks) => (
+                <Link
+                  href="http://www.sanskrit-linguistics.org/dcs/"
+                  {...linkAttrs}
+                >
+                  {chunks}
+                </Link>
+              ),
+            })}
+          </Typography>
+        </Section>
+
         <Section>
           <Typography variant="h2" mb={4}>
             {t("collaboration.h2")}
@@ -205,7 +231,7 @@ export default function DharmamitraAboutPage({ params }: DefaultPageParams) {
           </Grid>
         </Section>
 
-        <Section sx={{ py: 8 }}>
+        <Section sx={{ pt: 3, pb: 6 }}>
           <Contact />
         </Section>
       </Container>

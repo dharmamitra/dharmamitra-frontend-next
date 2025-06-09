@@ -27,13 +27,14 @@ export default function AttachFileButton({
   return (
     <Tooltip
       title={
-        <span>
+        <span style={{ display: "block", textAlign: "center" }}>
           {disabled ? (
             <>{t("uploadDisabled")}</>
           ) : (
             <>
-              {t("upload", {
+              {t.rich("upload", {
                 fileTypes: `${acceptedFileTypes} `,
+                br: () => <br />,
               })}
             </>
           )}
@@ -52,9 +53,10 @@ export default function AttachFileButton({
     >
       <span>
         <IconButton
-          aria-label={t("upload", {
+          aria-label={`${t.rich("upload", {
             fileTypes: `${acceptedFileTypes} `,
-          })}
+            br: () => "",
+          })}`}
           onClick={onClick}
           disabled={disabled}
           color="inherit"

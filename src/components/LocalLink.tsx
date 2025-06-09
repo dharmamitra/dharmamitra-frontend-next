@@ -14,6 +14,10 @@ const NavigationLinkForwardRef = React.forwardRef<
 >((props, ref) => <NavigationLink {...props} ref={ref} />)
 NavigationLinkForwardRef.displayName = "NavigationLinkForwardRef"
 
+/**
+ * A link component that works with the i18n routing system.
+ * The `href` prop should give the default locale path.
+ */
 export default function LocalLink({
   href,
   children,
