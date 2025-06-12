@@ -14,7 +14,6 @@ export default function createDevConfig() {
       hasSearch: true,
       hasNexus: true,
       hasFeedbackWidget: true,
-      hasOCR: true,
     },
   })
 }

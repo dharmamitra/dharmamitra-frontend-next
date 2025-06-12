@@ -41,11 +41,10 @@ const TabIcons: Record<View, React.ComponentType<SvgIconProps>> = {
 
 export default function MultiFeatureMitra() {
   const t = useTranslations()
-  const { hasSearch, hasOCR } = useAppConfig().featureFlags
+  const { hasSearch } = useAppConfig().featureFlags
 
   const availableViews = views.filter((view) => {
     if (view === "search" && !hasSearch) return false
-    if (view === "ocr" && !hasOCR) return false
     return true
   })
   const isXsScreen = useMediaQuery("(max-width:480px)")
@@ -91,7 +90,6 @@ export default function MultiFeatureMitra() {
                 value={index}
                 icon={isXsScreen ? undefined : <Icon />}
                 iconPosition="start"
-                // label={view}
                 label={t(`generic.${view}`)}
                 {...a11yProps(index)}
               />
@@ -130,21 +128,19 @@ export default function MultiFeatureMitra() {
           ) : null}
 
           <FeatureTabPanel value={viewTabIndex} index={hasSearch ? 1 : 0}>
-            <Box id="translator-feature-wrapper" sx={{ mt: 6 }}>
+            <Box id="translator-feature-wrapper">
               <MitraTranslator />
             </Box>
           </FeatureTabPanel>
 
-          {hasOCR ? (
-            <FeatureTabPanel value={viewTabIndex} index={hasSearch ? 2 : 1}>
-              <Box
-                id="ocr-feature-wrapper"
-                sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
-              >
-                <MitraOCR />
-              </Box>
-            </FeatureTabPanel>
-          ) : null}
+          <FeatureTabPanel value={viewTabIndex} index={hasSearch ? 2 : 1}>
+            <Box
+              id="ocr-feature-wrapper"
+              sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
+            >
+              <MitraOCR />
+            </Box>
+          </FeatureTabPanel>
         </Box>
       </Box>
 

@@ -10,7 +10,6 @@ export default function createLabConfig() {
     featureFlags: {
       hasTranslateExtendedOptions: true,
       hasFeedbackWidget: true,
-      hasOCR: true,
     },
   })
 }
