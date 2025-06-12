@@ -11,7 +11,7 @@ export const tabSelectedButtonStyles = {
   backgroundColor: "#fff",
   boxShadow: "0px 4px 4px 0px #0000001C",
   transition: "box-shadow 0.3s ease-in-out, background-color 0.1s ease-in-out",
-  color: customTheming.baseColors.secondary,
+  color: customTheming.baseColors?.secondary?.main,
 }
 
 export const tabsStyles = {
@@ -96,7 +96,7 @@ export const CustomFormControlLabel = ({
     sx={{
       ...(checked && {
         ".MuiFormControlLabel-label": {
-          color: customTheming.baseColors.secondary,
+          color: customTheming.baseColors?.secondary?.main,
           ...selectedOptionsStyles,
         },
       }),

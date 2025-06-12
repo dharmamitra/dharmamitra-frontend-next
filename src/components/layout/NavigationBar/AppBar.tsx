@@ -4,6 +4,8 @@ import { AppBar as MuiAppBar, Box, Toolbar } from "@mui/material"
 import Logo from "@/components/Logo"
 import SponsorLogo from "@/components/SponsorLogo"
 
+import ExtensionBanner from "./ExtensionBanner"
+
 const appBarHeight = {
   xs: "60px",
   sm: "70px",
@@ -19,9 +21,11 @@ export default function AppBar({
 }) {
   return (
     <>
+      <ExtensionBanner />
       <MuiAppBar
         component="nav"
         elevation={0}
+        position="relative"
         sx={{
           height: appBarHeight,
           py: "0.2rem",
@@ -29,17 +33,25 @@ export default function AppBar({
           boxShadow: "0px 4px 4px 0px #0000001A",
         }}
       >
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Logo isLocalized={isLocalized} />
-            <SponsorLogo />
-          </Box>
+        <Toolbar sx={{ display: "block" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "100%",
+              gap: 1,
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Logo isLocalized={isLocalized} />
+              <SponsorLogo />
+            </Box>
 
-          {children}
+            {children}
+          </Box>
         </Toolbar>
       </MuiAppBar>
-      {/* navbar offset */}
-      <Box sx={{ width: "100%", height: appBarHeight }} />
     </>
   )
 }

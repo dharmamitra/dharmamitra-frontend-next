@@ -39,7 +39,8 @@
     "saveToFile": "Save to file",
     "ocr": "OCR",
     "translation": "Translation",
-    "search": "Search"
+    "search": "Search",
+    "extensionCTA": "Use mitra translate where your texts are; get the <chromelink>Chrome</chromelink> extension."
   },
   "navigation": {
     "nexusLinkLabel": "Database",

@@ -7,7 +7,7 @@ import { Breakpoint } from "@mui/material"
 
 import { useNavItems } from "@/hooks/useNavItems"
 
-import AppBar from "./AppBar"
+import MitraAppBar from "./AppBar"
 import DesktopNavMenu from "./DesktopNavMenu"
 import MobileNavMenuLoading from "./LazyMobileNavMenu"
 import LocaleSelector from "./LocaleSelector"
@@ -23,7 +23,7 @@ export default function NavigationBar() {
   const navItems = useNavItems()
   const t = useTranslations("navigation")
   return (
-    <AppBar>
+    <MitraAppBar>
       <MobileNavMenu
         mobileProps={{
           navItems,
@@ -37,6 +37,6 @@ export default function NavigationBar() {
       />
 
       <DesktopNavMenu desktopBreakpoint={DESKTOP_BREAKPOINT} />
-    </AppBar>
+    </MitraAppBar>
   )
 }

@@ -12,8 +12,10 @@ import customTheming from "@/utils/theme/config"
  *
  */
 
-export const focusBgColor = alpha(customTheming.baseColors.secondary!, 0.1)
-export const focusBgColorDark = alpha(customTheming.baseColors.secondary!, 0.25)
+const secondaryShade = customTheming.baseColors?.secondary?.main
+
+export const focusBgColor = alpha(secondaryShade!, 0.1)
+export const focusBgColorDark = alpha(secondaryShade!, 0.25)
 
 /**
  * STYLED COMPONENTS
