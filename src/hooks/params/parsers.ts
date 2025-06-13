@@ -3,6 +3,7 @@ import { createParser } from "nuqs"
 import {
   getValidViewFromIndex,
   getValidViewIndex,
+  ViewIndex,
 } from "@/utils/api/global/validators"
 
 export const parseAsMultiLineString = createParser({
@@ -19,6 +20,6 @@ export const parseAsView = createParser({
     return getValidViewIndex(paramValue)
   },
   serialize(value) {
-    return getValidViewFromIndex(value)
+    return getValidViewFromIndex(value as ViewIndex)
   },
 })

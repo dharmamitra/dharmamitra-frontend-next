@@ -36,7 +36,8 @@ export const baseTheme: ThemeOptions = {
       main: colours.primary,
     },
     secondary: {
-      main: colours.secondary,
+      main: colours.secondary.main,
+      dark: colours.secondary.dark,
     },
     text: {
       primary: colours.text.primary,

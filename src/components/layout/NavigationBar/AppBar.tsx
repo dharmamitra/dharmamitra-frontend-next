@@ -1,7 +1,16 @@
 import React from "react"
-import { AppBar as MuiAppBar, Toolbar } from "@mui/material"
+import { AppBar as MuiAppBar, Box, Toolbar } from "@mui/material"
 
 import Logo from "@/components/Logo"
+import SponsorLogo from "@/components/SponsorLogo"
+
+import ExtensionBanner from "./ExtensionBanner"
+
+const appBarHeight = {
+  xs: "60px",
+  sm: "70px",
+  md: "80px",
+}
 
 export default function AppBar({
   children,
@@ -12,24 +21,37 @@ export default function AppBar({
 }) {
   return (
     <>
+      <ExtensionBanner />
       <MuiAppBar
         component="nav"
         elevation={0}
+        position="relative"
         sx={{
-          height: { xs: "78px", sm: "85px", md: "96px" },
+          height: appBarHeight,
           py: "0.2rem",
           backgroundColor: "common.white",
           boxShadow: "0px 4px 4px 0px #0000001A",
         }}
       >
-        <Toolbar>
-          <Logo isLocalized={isLocalized} />
+        <Toolbar sx={{ display: "block" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "100%",
+              gap: 1,
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Logo isLocalized={isLocalized} />
+              <SponsorLogo />
+            </Box>
 
-          {children}
+            {children}
+          </Box>
         </Toolbar>
       </MuiAppBar>
-      {/* navbar offset */}
-      <div style={{ width: "100%", height: 80 }} />
     </>
   )
 }

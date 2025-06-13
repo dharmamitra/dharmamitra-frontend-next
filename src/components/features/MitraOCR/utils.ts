@@ -27,6 +27,7 @@ export const makeOCROutputFileName = (fileName?: string) =>
 export const validateFile = (
   file: File | null | undefined,
   messages: { invalidTypeMessage: string; invalidSizeMessage: string },
+  maxSize: number,
 ): file is File => {
   if (!file || !(file instanceof File)) {
     return false
@@ -35,7 +36,7 @@ export const validateFile = (
     alert(messages.invalidTypeMessage)
     return false
   }
-  if (file.size > MAX_FILE_SIZE) {
+  if (file.size > maxSize) {
     alert(messages.invalidSizeMessage)
     return false
   }

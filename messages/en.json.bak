@@ -24,7 +24,10 @@
     "source": "Source",
     "target": "Target",
     "loading": "Loading",
+    "processing": "Processing...",
     "englishTranslation": "English Translation",
+    "upload": "Upload a {fileTypes}file<br></br>(Supports approx. 10 pages of text)",
+    "uploadDisabled": "Upload disabled",
     "noResult": "No results found.",
     "openAll": "Open all",
     "closeAll": "Close all",
@@ -33,7 +36,11 @@
     "dragAndDrop": "Drag and drop your file here",
     "supportedFileTypes": "Supported file types: {fileTypes} (max size: {maxFileSize}MB)",
     "browseFiles": "Browse files",
-    "saveToFile": "Save to file"
+    "saveToFile": "Save to file",
+    "ocr": "OCR",
+    "translation": "Translation",
+    "search": "Search",
+    "extensionCTA": "Use mitra translate where your texts are; get the <chromelink>Chrome</chromelink> extension."
   },
   "navigation": {
     "nexusLinkLabel": "Database",
@@ -46,11 +53,7 @@
       "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
     },
     "collaboration": "In collaboration with the <link>Tsadra Foundation</link>.",
-    "contact": {
-      "h2": "We'd love to hear from you!",
-      "p": "Please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
-      "button": "Email Us"
-    }
+    "engine": "Powered by Gemini API"
   },
   "localeSwitcher": {
     "label": "Change language",
@@ -133,7 +136,7 @@
     "heading": "Translate Dharma text",
     "inputAriaLabel": "Translation input field",
     "placeholders": {
-      "default": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+      "default": "Enter text, or drag and drop a {acceptedFileTypes} file (of upto approx. 10 pages of text). Supports Sanskrit, Tibetan, Buddhist scriptural Chinese and English.",
       "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
     },
     "otherLabel": "Other",
@@ -146,6 +149,12 @@
     "usageH2": "Usage",
     "usageAccept": "Accept",
     "usageNoticeShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
+    "ocr": {
+      "dragAndDropOverlay": "Supported file types: {fileTypes}<br></br>Max characters: {maxInputCharacters} (approx. {maxInputPageEquivalent} pages of text)<br></br>Max file size: {maxFileSize}MB",
+      "unknownErrorTitle": "OCR Failed",
+      "lengthErrorTitle": "OCR output too long",
+      "lengthErrorText": "Translation input can support up to {maxInputCharacters} characters (approx. {maxInputPageEquivalent} pages of text). Please try again with a shorter text, or use the OCR feature to process longer texts."
+    },
     "usageNoticeLong": {
       "p1": "Dharmamitra leverages cutting-edge deep neural networks to efficiently provide machine translations. We are working hard to provide the best possible quality. While our technology continues to advance and our services are frequently updated, please keep in mind:",
       "ul": {
@@ -294,6 +303,11 @@
         "p2": "Initiated in 2023, the project quickly evolved from its conceptual phase to a dynamic development process, accelerated  by its collaborative efforts with organizations such as monlam.ai and with contributions from a diverse array of sources, including translators and AI researchers. Leveraging a robust corpus of over four million sentence pairs from various sourcesand utilizing Google's MADLAD-400 model as a foundation, MITRA has fine-tuned a specialized translation model that not only promises enhanced fluency in translations but also aims to significantly expand access to ancient wisdom texts.",
         "p3": "Through continuous improvements in data quality, sentence alignment, and model fine-tuning, the project seeks to overcome the challenges inherent in low-resource language translation. The MITRA project stands as a testament to the transformative potential of AI in transcending language barriers, embodying a commitment to cultural preservation, academic research, and the democratization of access to Tibetan literature and wisdom."
       },
+      "development": {
+        "h2": "Development",
+        "p1": "We’re continuously developing our custom APIs to iteratively improve the quality of Dharmamitra’s translation and other capabilities, as well as offer new features. To learn more about the theoretical background behind Mitra’s development, check our <locallink>news feed</locallink> where we periodically share updates that include information about the project’s underpinning ideas.",
+        "p2": "Dharmamitra uses Gemini API services to provide the best possible results to users, and its Sanskrit grammatical parser relies on data from the <link>Digital Corpus of Sanskrit</link>."
+      },
       "collaboration": {
         "h2": "Collaborations",
         "collaborators": {
@@ -318,6 +332,19 @@
             "description": "Development of Sanskrit data collection"
           }
         }
+      },
+      "contact": {
+        "h2": "Contact",
+        "card1": {
+          "title": "We'd love to hear from you!",
+          "text": "If you have any comments or suggestions, please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
+          "button": "Send feedback"
+        },
+        "card2": {
+          "title": "Building on Mitra",
+          "text": "If you are interested in using the Dharmamitra, or its API to build your own project, please contact us beforehand to discuss this with us.",
+          "button": "Request permission"
+        }
       }
     }
   },
@@ -331,7 +358,7 @@
       },
       "features": {
         "h2": "Features",
-        "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source matiral and modern research literature."
+        "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
       }
     }
   },

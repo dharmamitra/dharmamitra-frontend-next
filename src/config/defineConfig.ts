@@ -22,7 +22,7 @@ export const defaultSubPages: Page[] = ["about", "team", "news"]
 
 export const appConfigSchema = z.object({
   variant: z.enum(BUILD_VARIANTS).default(getBuildVariant()),
-  storageVersionId: z.string().default("2"),
+  storageVersionId: z.string().default("4"),
   isClient: z.boolean().default(false),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
@@ -80,7 +80,6 @@ export const appConfigSchema = z.object({
       hasNexus: z.boolean().default(false),
       hasTranslateExtendedOptions: z.boolean().default(false),
       hasFeedbackWidget: z.boolean().default(false),
-      hasOCR: z.boolean().default(false),
     })
     .default({}),
 })

@@ -15,7 +15,7 @@ import LoadingBox from "./LoadingBox"
 
 export default function MultiFeatureMitraLoading() {
   const t = useTranslations()
-  const { hasSearch, hasOCR } = useAppConfig().featureFlags
+  const { hasSearch } = useAppConfig().featureFlags
   return (
     <>
       <Tabs
@@ -51,7 +51,6 @@ export default function MultiFeatureMitraLoading() {
           label={t("search.search")}
           disabled
         />
-
         {hasSearch ? (
           <Tab
             sx={{
@@ -73,7 +72,7 @@ export default function MultiFeatureMitraLoading() {
             disabled
           />
         ) : null}
-
+        {/* Translation */}
         <Tab
           sx={{
             display: { sm: "none" },
@@ -91,28 +90,25 @@ export default function MultiFeatureMitraLoading() {
           label={t("translation.translate")}
           disabled
         />
-
-        {hasOCR ? (
-          <Tab
-            sx={{
-              display: { sm: "none" },
-            }}
-            iconPosition="start"
-            label="OCR"
-            disabled
-          />
-        ) : null}
-        {hasOCR ? (
-          <Tab
-            sx={{
-              display: { xs: "none", sm: "flex" },
-            }}
-            icon={<DocumentScannerOutlinedIcon />}
-            iconPosition="start"
-            label="OCR"
-            disabled
-          />
-        ) : null}
+        {/* OCR */}
+        <Tab
+          sx={{
+            display: { sm: "none" },
+          }}
+          iconPosition="start"
+          label="OCR"
+          disabled
+        />
+        )
+        <Tab
+          sx={{
+            display: { xs: "none", sm: "flex" },
+          }}
+          icon={<DocumentScannerOutlinedIcon />}
+          iconPosition="start"
+          label="OCR"
+          disabled
+        />
       </Tabs>
 
       <LoadingBox />

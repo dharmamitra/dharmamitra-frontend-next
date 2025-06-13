@@ -14,7 +14,10 @@ declare module "@mui/material/styles" {
   interface CustomTheming {
     baseColors: {
       primary?: string
-      secondary?: string
+      secondary?: {
+        main: string
+        dark: string
+      }
       light?: string
       text?: {
         primary?: string

@@ -33,7 +33,14 @@
     "dragAndDrop": "Drag and drop your file here",
     "supportedFileTypes": "Supported file types: {fileTypes} (max size: {maxFileSize}MB)",
     "browseFiles": "Browse files",
-    "saveToFile": "Save to file"
+    "saveToFile": "Save to file",
+    "processing": "Processing...",
+    "uploadDisabled": "Upload disabled",
+    "ocr": "OCR",
+    "translation": "Translation",
+    "search": "Search",
+    "upload": "Upload a {fileTypes}file<br></br>(Supports approx. 10 pages of text)",
+    "extensionCTA": "Use mitra translate where your texts are; get the <chromelink>Chrome</chromelink> extension."
   },
   "navigation": {
     "mobileButtonAriaLabel": "开放导航菜单",
@@ -45,12 +52,8 @@
       "h2": "Dharmamitra",
       "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
     },
-    "contact": {
-      "h2": "We'd love to hear from you!",
-      "p": "Please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
-      "button": "Email Us"
-    },
-    "collaboration": "In collaboration with the <link>Tsadra Foundation</link>."
+    "collaboration": "In collaboration with the <link>Tsadra Foundation</link>.",
+    "engine": "Powered by Gemini API"
   },
   "localeSwitcher": {
     "label": "切換語言",
@@ -202,10 +205,16 @@
     "usageH2": "Usage",
     "usageAccept": "Accept",
     "placeholders": {
-      "default": "Enter text to translate in Sanskrit, Tibetan, Buddhist scriptural Chinese or English.",
+      "default": "Enter text, or drag and drop a {acceptedFileTypes} file (of upto approx. 10 pages of text). Supports Sanskrit, Tibetan, Buddhist scriptural Chinese and English.",
       "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
     },
-    "triggerDisabled": "Add/update text to translate"
+    "triggerDisabled": "Add/update text to translate",
+    "ocr": {
+      "unknownErrorTitle": "OCR Failed",
+      "lengthErrorTitle": "OCR output too long",
+      "lengthErrorText": "Translation input can support up to {maxInputCharacters} characters (approx. {maxInputPageEquivalent} pages of text). Please try again with a shorter text, or use the OCR feature to process longer texts.",
+      "dragAndDropOverlay": "Supported file types: {fileTypes}<br></br>Max characters: {maxInputCharacters} (approx. {maxInputPageEquivalent} pages of text)<br></br>Max file size: {maxFileSize}MB"
+    }
   },
   "globalParams": {
     "encodingSelectLabel": "Input encoding",
@@ -311,6 +320,24 @@
             "description": "Providing vital funding for the combined study and practice of Tibetan Buddhism in the West"
           }
         }
+      },
+      "development": {
+        "h2": "Development",
+        "p1": "We’re continuously developing our custom APIs to iteratively improve the quality of Dharmamitra’s translation and other capabilities, as well as offer new features. To learn more about the theoretical background behind Mitra’s development, check our <locallink>news feed</locallink> where we periodically share updates that include information about the project’s underpinning ideas.",
+        "p2": "Dharmamitra uses Gemini API services to provide the best possible results to users, and its Sanskrit grammatical parser relies on data from the <link>Digital Corpus of Sanskrit</link>."
+      },
+      "contact": {
+        "h2": "Contact",
+        "card1": {
+          "title": "We'd love to hear from you!",
+          "text": "If you have any comments or suggestions, please take a moment to share your thoughts with us. We really appreciate every message we get helping to make Dharmamitra better for everyone.",
+          "button": "Send feedback"
+        },
+        "card2": {
+          "title": "Building on Mitra",
+          "text": "If you are interested in using the Dharmamitra, or its API to build your own project, please contact us beforehand to discuss this with us.",
+          "button": "Request permission"
+        }
       }
     }
   },
@@ -324,7 +351,7 @@
       },
       "features": {
         "h2": "Features",
-        "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source matiral and modern research literature."
+        "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
       }
     }
   },

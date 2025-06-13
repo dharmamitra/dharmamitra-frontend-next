@@ -33,51 +33,52 @@ export default function LocaleSelector() {
 
   return (
     <FormControl>
-      <nav>
-        <IconButton
-          aria-label={t("label")}
-          aria-controls="locale-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
-        >
-          <LanguageIcon color="action" />
-        </IconButton>
-        <Menu
-          id="locale-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={open}
-          onClose={handleClose}
-        >
-          {routing.locales.map((locale) => (
-            <Link
+      <IconButton
+        aria-label={t("label")}
+        aria-controls="locale-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+        sx={{
+          pr: 0,
+        }}
+      >
+        <LanguageIcon color="action" />
+      </IconButton>
+      <Menu
+        id="locale-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={open}
+        onClose={handleClose}
+      >
+        {routing.locales.map((locale) => (
+          <Link
+            key={locale + "-locale-switcher-link"}
+            href={{ pathname }}
+            locale={locale}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <MenuItem
               key={locale + "-locale-switcher-link"}
-              href={{ pathname }}
-              locale={locale}
-              style={{
-                textDecoration: "none",
-                color: "inherit",
-              }}
+              value={locale}
+              selected={locale === activeLocale}
             >
-              <MenuItem
-                key={locale + "-locale-switcher-link"}
-                value={locale}
-                selected={locale === activeLocale}
+              <Typography
+                variant="body2"
+                sx={{ textTransform: "uppercase" }}
+                lineHeight={1.5}
               >
-                <Typography
-                  variant="body2"
-                  sx={{ textTransform: "uppercase" }}
-                  lineHeight={1.5}
-                >
-                  {t("locale", {
-                    locale: locale.replace(/-/g, "_"),
-                  })}
-                </Typography>
-              </MenuItem>
-            </Link>
-          ))}
-        </Menu>
-      </nav>
+                {t("locale", {
+                  locale: locale.replace(/-/g, "_"),
+                })}
+              </Typography>
+            </MenuItem>
+          </Link>
+        ))}
+      </Menu>
     </FormControl>
   )
 }

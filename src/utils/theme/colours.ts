@@ -2,7 +2,10 @@ import appConfig from "@/config"
 
 const getDefaultColors = () => ({
   primary: "0, 0, 0", // #000
-  secondary: "151, 46, 58", // #972e3a
+  secondary: {
+    main: "151, 46, 58", // #972e3a
+    dark: "117, 35, 45", // #75232d
+  },
   light: "251, 238, 235", // #FBEEEB
   "grey-100": "247, 247, 247", // #F7F7F7
   text: {
@@ -24,7 +27,10 @@ const variantRgbCodes: VariantRGBCodes = {
   kumarajiva: {
     // primary: "246, 220, 31", // #f6dc1f
     primary: "4, 60, 133", // #043c85
-    secondary: "4, 60, 133", // #043c85
+    secondary: {
+      main: "4, 60, 133", // #043c85
+      dark: "4, 60, 133", // #043c85
+    },
     light: "255, 252, 231", //  #fffce7
     "grey-100": "247, 247, 247", // #F7F7F7
     text: {
@@ -43,7 +49,10 @@ export const rgbCodes =
 
 export const colours = {
   primary: `rgb(${rgbCodes.primary}, 1)`,
-  secondary: `rgb(${rgbCodes.secondary}, 1)`,
+  secondary: {
+    main: `rgb(${rgbCodes.secondary.main}, 1)`,
+    dark: `rgb(${rgbCodes.secondary.dark}, 1)`,
+  },
   light: `rgb(${rgbCodes.light}, 1)`,
   soft: `rgb(${rgbCodes.light}, 0.5)`,
   panel: `rgb(${rgbCodes["grey-100"]}, 1)`,

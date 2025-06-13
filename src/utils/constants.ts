@@ -12,6 +12,7 @@ export const localStorageKeys = {
   showSearchControls: "show-search-options",
   showParallelTranslations: "show-parallel-translations",
   showSummary: "show-search-result-summary",
+  extensionBannerClosed: "extension-banner-closed",
 } as const
 
 export const smMediaQuery = "(max-width: 500px)"
@@ -40,3 +41,6 @@ export const exampleSearchQueries = [
   "the factors of stream-entry",
   "The purpose of ordination",
 ]
+
+export const chromeExtensionUrl =
+  "https://chromewebstore.google.com/detail/dharmamitra-language-tool/jlmleoklbpdehnokplffodjomekoiadl?hl=en-GB&utm_source=ext_sidebar"

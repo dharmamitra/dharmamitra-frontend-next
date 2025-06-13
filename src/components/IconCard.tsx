@@ -27,7 +27,7 @@ const IconHeader = ({ icon }: { icon: JSX.Element }) => (
         transform: "translate(-50%, 50%)",
         p: "1px",
         borderRadius: "6px",
-        background: `linear-gradient(${customTheming.baseColors.secondary} 0%, ${customTheming.palette.soft} 40%, white 50%)`,
+        background: `linear-gradient(${customTheming.baseColors?.secondary?.main} 0%, ${customTheming.palette.soft} 40%, white 50%)`,
       }}
     >
       <Box
