@@ -21,9 +21,6 @@ jobs:
           node-version: "22.x"
           cache: "yarn"
 
-      - name: Enable Corepack
-        run: corepack enable
-
       - name: Install dependencies
         run: yarn install --immutable --check-cache
 
