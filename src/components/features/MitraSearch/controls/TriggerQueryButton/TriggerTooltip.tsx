@@ -15,8 +15,7 @@ export default function TriggerTooltip({ children }: TriggerQueryButtonProps) {
       <Tooltip
         title={
           <span>
-            {`${t("search.search")}`} (Ctrl +
-            <span style={tooltipEnterStyles}>↵</span>)
+            {`${t("search.search")}`} (Ctrl +<span style={tooltipEnterStyles}>↵</span>)
           </span>
         }
         placement="top"

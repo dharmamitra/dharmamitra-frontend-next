@@ -22,9 +22,7 @@ export default function TranslationTagging() {
   const [open, setOpen] = React.useState(false)
 
   const isSmallScreen = useMediaQuery("(max-width:750px)")
-  const [drawerWidth, setDrawerWidth] = React.useState<string | number>(
-    defaultSmDrawerWidth,
-  )
+  const [drawerWidth, setDrawerWidth] = React.useState<string | number>(defaultSmDrawerWidth)
 
   const [targetLanguageParam] = useTargetLangParamWithLocalStorage()
   const requestBody = useTaggingRequestBody()

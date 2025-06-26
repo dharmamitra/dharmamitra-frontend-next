@@ -45,11 +45,7 @@ const FallbackMessage = () => {
 const LocalizedHomeLink = () => {
   const t = useTranslations("NotFound")
   return (
-    <LocalLink
-      sx={{ display: "flex", alignItems: "center", mt: 6 }}
-      variant="button"
-      href="/"
-    >
+    <LocalLink sx={{ display: "flex", alignItems: "center", mt: 6 }} variant="button" href="/">
       <ArrowBackIcon /> {t("home")}
     </LocalLink>
   )
@@ -58,21 +54,13 @@ const LocalizedHomeLink = () => {
 const FallbackHomeLink = () => {
   const { basePath } = useAppConfig()
   return (
-    <Link
-      sx={{ display: "flex", alignItems: "center", mt: 6 }}
-      variant="button"
-      href={basePath}
-    >
+    <Link sx={{ display: "flex", alignItems: "center", mt: 6 }} variant="button" href={basePath}>
       <ArrowBackIcon /> {"Go home"}
     </Link>
   )
 }
 
-export default function NotFound({
-  isLocalized = true,
-}: {
-  isLocalized?: boolean
-}) {
+export default function NotFound({ isLocalized = true }: { isLocalized?: boolean }) {
   return (
     <Box
       sx={{
@@ -84,22 +72,10 @@ export default function NotFound({
       }}
     >
       <hgroup>
-        <Typography
-          variant="h1"
-          component="p"
-          align="center"
-          color="error"
-          mb={2}
-        >
+        <Typography variant="h1" component="p" align="center" color="error" mb={2}>
           {"404"}
         </Typography>
-        <Typography
-          variant="h2"
-          component="h1"
-          align="center"
-          color="error"
-          mb={4}
-        >
+        <Typography variant="h2" component="h1" align="center" color="error" mb={4}>
           {isLocalized ? <LocalizedTitle /> : <FallbackTitle />}
         </Typography>
       </hgroup>

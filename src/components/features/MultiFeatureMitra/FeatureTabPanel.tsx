@@ -18,9 +18,7 @@ export default function FeatureTabPanel(props: TabPanelProps) {
       style={{ height: "100%" }}
       {...other}
     >
-      {value === index ? (
-        <Box sx={{ width: "100%", height: "100%", py: 3 }}>{children}</Box>
-      ) : null}
+      {value === index ? <Box sx={{ width: "100%", height: "100%", py: 3 }}>{children}</Box> : null}
     </div>
   )
 }

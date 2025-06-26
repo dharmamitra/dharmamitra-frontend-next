@@ -5,9 +5,7 @@ import Tooltip from "@mui/material/Tooltip"
 
 import { SearchApiTypes } from "@/api"
 
-import ResultsListCopyIcon, {
-  type ResultsListCopyType,
-} from "../ResultsListCopyIcon"
+import ResultsListCopyIcon, { type ResultsListCopyType } from "../ResultsListCopyIcon"
 
 export const tipMsgs = {
   full: "copyResultsList",
@@ -19,10 +17,7 @@ type ParallelCopyResultsProps = {
   type: ResultsListCopyType
 }
 
-export default function ParallelCopyResults({
-  results,
-  type,
-}: ParallelCopyResultsProps) {
+export default function ParallelCopyResults({ results, type }: ParallelCopyResultsProps) {
   const t = useTranslations("generic")
   const [toolTip, setToolTip] = React.useState<string>(t(`${tipMsgs[type]}`))
 

@@ -7,10 +7,7 @@ import createLabConfig from "./variants/lab"
 import createPubConfig from "./variants/pub"
 import createRNDConfig from "./variants/rnd"
 
-const configCreatorMap: Record<
-  (typeof BUILD_VARIANTS)[number],
-  () => AppConfig
-> = {
+const configCreatorMap: Record<(typeof BUILD_VARIANTS)[number], () => AppConfig> = {
   pub: createPubConfig,
   lab: createLabConfig,
   rnd: createRNDConfig,

@@ -19,10 +19,7 @@ type PageContainerFrameProps = {
   contained?: boolean
 }
 
-export const stylePageContainer = ({
-  sx,
-  maxWidth,
-}: ContainerStyleProps = {}) => ({
+export const stylePageContainer = ({ sx, maxWidth }: ContainerStyleProps = {}) => ({
   maxWidth: maxWidth || "lg",
   sx: {
     flexGrow: 1,

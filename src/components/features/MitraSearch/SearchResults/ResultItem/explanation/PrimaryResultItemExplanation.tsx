@@ -28,10 +28,7 @@ export default function PrimaryResultItemExplanation({
 
   return (
     <ExplanationFrame setIsExpanded={setIsExpanded} sx={{ pb: 1 }}>
-      <PrimaryExplanationStream
-        isExpanded={isExpanded}
-        chatPropsWithId={chatPropsWithId}
-      />
+      <PrimaryExplanationStream isExpanded={isExpanded} chatPropsWithId={chatPropsWithId} />
     </ExplanationFrame>
   )
 }

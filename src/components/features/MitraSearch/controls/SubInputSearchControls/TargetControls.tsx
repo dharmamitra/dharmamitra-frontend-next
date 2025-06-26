@@ -17,8 +17,7 @@ import { defaultSourceLanguage } from "@/utils/api/search/params"
 
 export default function TargetControls() {
   const [searchTarget] = useSearchTargetParam()
-  const [filterSourceLanguage, setFilterSourceLanguage] =
-    useFilterSourceLanguageParam()
+  const [filterSourceLanguage, setFilterSourceLanguage] = useFilterSourceLanguageParam()
   const resetSourceFilters = useResetSourceFilters()
 
   const showDbSourceFilter = filterSourceLanguage !== defaultSourceLanguage
@@ -44,9 +43,7 @@ export default function TargetControls() {
 
       <LanguageFilterSelector />
 
-      {showDbSourceFilter ? (
-        <DbSourceFilter sourceLanguage={filterSourceLanguage} />
-      ) : null}
+      {showDbSourceFilter ? <DbSourceFilter sourceLanguage={filterSourceLanguage} /> : null}
     </Box>
   )
 }

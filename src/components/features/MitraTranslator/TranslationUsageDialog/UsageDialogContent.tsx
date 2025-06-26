@@ -11,9 +11,7 @@ export default function UsageDialogContent({ dense }: { dense?: boolean }) {
     <Box>
       <h2>{t("usageH2")}</h2>
 
-      <Typography variant={dense ? "body2" : "body1"}>
-        {t(`usageNoticeLong.p1`)}
-      </Typography>
+      <Typography variant={dense ? "body2" : "body1"}>{t(`usageNoticeLong.p1`)}</Typography>
       <List
         dense={dense}
         sx={{
@@ -33,9 +31,7 @@ export default function UsageDialogContent({ dense }: { dense?: boolean }) {
         ))}
       </List>
 
-      <Typography variant={dense ? "body2" : "body1"}>
-        {t(`usageNoticeLong.p2`)}
-      </Typography>
+      <Typography variant={dense ? "body2" : "body1"}>{t(`usageNoticeLong.p2`)}</Typography>
     </Box>
   )
 }

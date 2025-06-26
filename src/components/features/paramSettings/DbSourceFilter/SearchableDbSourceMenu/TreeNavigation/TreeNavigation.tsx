@@ -14,13 +14,7 @@ export default function TreeNavigation() {
   const t = useTranslations()
 
   return (
-    <Box
-      display="flex"
-      justifyContent="space-between"
-      gap="0.5rem"
-      minHeight="1.75rem"
-      my={1}
-    >
+    <Box display="flex" justifyContent="space-between" gap="0.5rem" minHeight="1.75rem" my={1}>
       <TreeBreadcrumbs />
 
       <Box display="flex" justifySelf="flex-end">

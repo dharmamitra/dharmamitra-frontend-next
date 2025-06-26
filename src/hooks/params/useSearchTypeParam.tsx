@@ -1,10 +1,6 @@
 import { parseAsStringLiteral, useQueryState } from "nuqs"
 
-import {
-  defaultSearchType,
-  searchParamsNames,
-  searchTypes,
-} from "@/utils/api/search/params"
+import { defaultSearchType, searchParamsNames, searchTypes } from "@/utils/api/search/params"
 
 const {
   api: { search_type },

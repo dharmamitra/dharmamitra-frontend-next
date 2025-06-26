@@ -25,10 +25,7 @@ export default function MitraSearch({
       setIsSearchControlsOpen(event.target.checked)
 
       if (event.target.checked) {
-        localStorage.setItem(
-          localStorageKeys.showSearchControls,
-          String(event.target.checked),
-        )
+        localStorage.setItem(localStorageKeys.showSearchControls, String(event.target.checked))
       } else {
         localStorage.removeItem(localStorageKeys.showSearchControls)
       }

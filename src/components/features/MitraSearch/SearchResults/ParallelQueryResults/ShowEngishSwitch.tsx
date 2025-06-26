@@ -20,9 +20,7 @@ const getInitialShowEnglishValue = () => {
 
 export default function ShowEngishSwitch() {
   const t = useTranslations("search")
-  const [showEnglish, setShowEnglish] = React.useState(
-    getInitialShowEnglishValue(),
-  )
+  const [showEnglish, setShowEnglish] = React.useState(getInitialShowEnglishValue())
 
   const isMounted = React.useRef(true)
 
@@ -42,15 +40,10 @@ export default function ShowEngishSwitch() {
       if (selector.trim().length < 2) {
         throw new Error("Invalid target selector.")
       }
-      const targetElements = document.querySelectorAll(
-        selector,
-      ) as NodeListOf<HTMLElement>
+      const targetElements = document.querySelectorAll(selector) as NodeListOf<HTMLElement>
 
       targetElements.forEach((target) => {
-        target.style.setProperty(
-          cssRenderProps.displayVar,
-          showEnglish ? "block" : "none",
-        )
+        target.style.setProperty(cssRenderProps.displayVar, showEnglish ? "block" : "none")
       })
       localStorage.setItem(storageKey, showEnglish.toString())
     }

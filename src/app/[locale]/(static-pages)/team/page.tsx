@@ -10,9 +10,7 @@ import Section from "@/components/Section"
 
 import membersData from "./data"
 
-export async function generateMetadata({
-  params,
-}: DefaultPageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const resolvedParams = await params
   const locale = resolvedParams?.locale
 

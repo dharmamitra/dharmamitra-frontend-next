@@ -1,10 +1,7 @@
 import React from "react"
 
 import { createTaggingRequestBody } from "@/components/features/MitraTranslator/utils"
-import {
-  useInputEncodingParamWithLocalStorage,
-  useInputSentenceParam,
-} from "@/hooks/params"
+import { useInputEncodingParamWithLocalStorage, useInputSentenceParam } from "@/hooks/params"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
 
 export default function useTaggingRequestBody() {

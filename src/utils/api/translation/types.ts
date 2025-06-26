@@ -19,14 +19,17 @@ export type TranslationGetEndpoint = FilterGetEndpoints<paths>
  * REQUEST & RESPONSE MODELS
  */
 
-export type RequestBody<Endpoint extends TranslationPostEndpoint> =
-  APIRequestBody<paths[Endpoint]["post"]>
+export type RequestBody<Endpoint extends TranslationPostEndpoint> = APIRequestBody<
+  paths[Endpoint]["post"]
+>
 
-export type PostResponse<Endpoint extends TranslationPostEndpoint> =
-  APIResponse<paths[Endpoint]["post"]>
+export type PostResponse<Endpoint extends TranslationPostEndpoint> = APIResponse<
+  paths[Endpoint]["post"]
+>
 
-export type RequestParams<Endpoint extends TranslationGetEndpoint> =
-  APIRequestParams<paths[Endpoint]["get"]>
+export type RequestParams<Endpoint extends TranslationGetEndpoint> = APIRequestParams<
+  paths[Endpoint]["get"]
+>
 
 export type GetResponse<Endpoint extends TranslationGetEndpoint> = APIResponse<
   paths[Endpoint]["get"]

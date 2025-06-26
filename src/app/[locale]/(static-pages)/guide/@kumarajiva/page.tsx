@@ -6,9 +6,7 @@ import { Typography } from "@mui/material"
 import { DefaultPageParams, Metadata } from "@/app/types"
 import Section from "@/components/Section"
 
-export async function generateMetadata({
-  params,
-}: DefaultPageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
 
   const t = await getTranslations({ locale, namespace: "Guide.kumarajiva" })

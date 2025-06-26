@@ -9,11 +9,7 @@ type Props = {
   sx?: SxProps
 }
 
-export default function OpenSubOptionsButton({
-  isShown,
-  setShowSubOption,
-  sx,
-}: Props) {
+export default function OpenSubOptionsButton({ isShown, setShowSubOption, sx }: Props) {
   if (!isShown) return null
 
   //   const t = useTranslations("search")

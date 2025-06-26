@@ -16,8 +16,10 @@ export type { AllSearchApiParams, AllSearchParamDefaults, SearchTarget }
  * LOCAL PARAMS
  */
 
-export const searchTargets: SearchTarget[] =
-  exhaustiveStringTuple<SearchTargets>()("primary", "parallel")
+export const searchTargets: SearchTarget[] = exhaustiveStringTuple<SearchTargets>()(
+  "primary",
+  "parallel",
+)
 export const defaultSearchTarget = "primary" as const
 export const disabledSearchTargets: SearchTarget[] = []
 
@@ -28,9 +30,10 @@ export const disabledSearchTargets: SearchTarget[] = []
 export type SearchType = AllSearchApiParams["search_type"] &
   keyof Messages["search"]["commonParams"]["searchTypes"]
 
-export const searchTypes: SearchType[] = exhaustiveStringTuple<
-  AllSearchApiParams["search_type"]
->()("regular", "semantic")
+export const searchTypes: SearchType[] = exhaustiveStringTuple<AllSearchApiParams["search_type"]>()(
+  "regular",
+  "semantic",
+)
 export const defaultSearchType: SearchType = "semantic"
 
 export type SearchPostProcessModel = Schema["PostProcessModel"]
@@ -47,14 +50,15 @@ export const searchPostProcessModels: SearchPostProcessModel[] =
 export type SearchFilterLanguage = Schema["FilterLanguage"] &
   keyof Messages["search"]["commonParams"]["filterLanguages"]
 
-export const searchFilterLanguages: SearchFilterLanguage[] =
-  exhaustiveStringTuple<Schema["FilterLanguage"]>()(
-    "all",
-    "bo", // tibetan
-    "sa", // sankrit
-    "zh", // chinese
-    "pa", // pali
-  )
+export const searchFilterLanguages: SearchFilterLanguage[] = exhaustiveStringTuple<
+  Schema["FilterLanguage"]
+>()(
+  "all",
+  "bo", // tibetan
+  "sa", // sankrit
+  "zh", // chinese
+  "pa", // pali
+)
 export const defaultSourceLanguage = "all" as const
 
 export const searchParamsNames: SearchParamNames = {

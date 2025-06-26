@@ -15,8 +15,7 @@ export function tryCatch<T>(fn: () => T, operationName?: string): TryResult<T> {
     const result = fn()
     return { result, error: null }
   } catch (rawError: unknown) {
-    const processedError =
-      rawError instanceof Error ? rawError : new Error(String(rawError))
+    const processedError = rawError instanceof Error ? rawError : new Error(String(rawError))
 
     if (operationName) {
       processedError.message = `Operation "${operationName}" failed: ${processedError.message}`
@@ -41,8 +40,7 @@ export async function awaitedTryCatch<T>(
     const result = await fn()
     return { result, error: null }
   } catch (rawError: unknown) {
-    const processedError =
-      rawError instanceof Error ? rawError : new Error(String(rawError))
+    const processedError = rawError instanceof Error ? rawError : new Error(String(rawError))
 
     if (operationName) {
       processedError.message = `Operation "${operationName}" failed: ${processedError.message}`
