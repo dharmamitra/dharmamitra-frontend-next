@@ -10,19 +10,12 @@ import { BUILD_VARIANTS } from "./constants"
 import { getBasePath, getBuildVariant } from "./utils"
 
 type Page = keyof Messages["pages"]
-export const allPages = [
-  "home",
-  "about",
-  "team",
-  "guide",
-  "news",
-  "test",
-] as const
+export const allPages = ["home", "about", "team", "guide", "news", "test"] as const
 export const defaultSubPages: Page[] = ["about", "team", "news"]
 
 export const appConfigSchema = z.object({
   variant: z.enum(BUILD_VARIANTS).default(getBuildVariant()),
-  storageVersionId: z.string().default("4"),
+  storageVersionId: z.string().default("5"),
   isClient: z.boolean().default(false),
   siteName: z.string().default("Dharmamitra"),
   orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
@@ -63,11 +56,9 @@ export const appConfigSchema = z.object({
         .array(
           z.string().refine(
             // validates at build & runtime
-            (val): val is TargetLanguage =>
-              allTargetLanguages.includes(val as TargetLanguage),
+            (val): val is TargetLanguage => allTargetLanguages.includes(val as TargetLanguage),
             {
-              message:
-                "Invalid `customParamOptions.targetLanguage` value given to app config.",
+              message: "Invalid `customParamOptions.targetLanguage` value given to app config.",
             },
           ),
         )
