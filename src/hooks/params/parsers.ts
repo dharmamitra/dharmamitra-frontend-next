@@ -1,10 +1,6 @@
 import { createParser } from "nuqs"
 
-import {
-  getValidViewFromIndex,
-  getValidViewIndex,
-  ViewIndex,
-} from "@/utils/api/global/validators"
+import { getValidViewFromIndex, getValidViewIndex, ViewIndex } from "@/utils/api/global/validators"
 
 export const parseAsMultiLineString = createParser({
   parse(paramValue) {

@@ -5,11 +5,7 @@ import { Box, Button, Typography } from "@mui/material"
 import UploadIcon from "@/components/icons/Upload"
 import { useFileUpload } from "@/hooks/useFileUpload"
 
-import {
-  ACCEPTED_FILE_TYPES_UI_STRING,
-  MAX_FILE_SIZE,
-  MAX_FILE_SIZE_MB,
-} from "./utils"
+import { ACCEPTED_FILE_TYPES_UI_STRING, MAX_FILE_SIZE, MAX_FILE_SIZE_MB } from "./utils"
 
 type InputBoxProps = {
   className?: string
@@ -82,11 +78,7 @@ export default function InputBox({ className, onFileSelect }: InputBoxProps) {
             maxFileSize: MAX_FILE_SIZE_MB,
           })}
         </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ my: 1, maxWidth: "520px" }}
-        >
+        <Typography variant="body2" color="text.secondary" sx={{ my: 1, maxWidth: "520px" }}>
           {ocrT("processingTimeNote")}
         </Typography>
       </Box>

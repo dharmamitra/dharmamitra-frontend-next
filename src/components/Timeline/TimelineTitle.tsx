@@ -8,11 +8,7 @@ type TimelineTitleProps = {
   content?: React.ReactNode | null
 }
 
-export default function TimelineTitle({
-  title,
-  slug,
-  content,
-}: TimelineTitleProps) {
+export default function TimelineTitle({ title, slug, content }: TimelineTitleProps) {
   const titleStyles = {
     fontSize: "1.35rem !important",
     mb: 0,

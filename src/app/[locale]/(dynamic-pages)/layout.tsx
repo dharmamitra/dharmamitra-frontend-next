@@ -8,9 +8,7 @@ import appConfig from "@/config"
 import { isValidLocaleRoute } from "@/i18n/routing"
 import QueryProvider from "@/utils/QueryProvider"
 
-export async function generateMetadata({
-  params,
-}: DefaultPageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
 
   const t = await getTranslations({ locale, namespace: "metadata" })
@@ -24,10 +22,7 @@ export async function generateMetadata({
   }
 }
 
-export default async function DynamicPageLayout({
-  children,
-  params,
-}: DefaultPageProps) {
+export default async function DynamicPageLayout({ children, params }: DefaultPageProps) {
   const { locale } = await params
 
   if (!isValidLocaleRoute(locale)) {

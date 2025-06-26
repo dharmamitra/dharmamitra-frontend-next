@@ -11,9 +11,7 @@ type TranslationInputFieldProps = {
   contentRef: React.RefObject<HTMLElement | null>
 }
 
-export default function TranslatorOutputControls({
-  contentRef,
-}: TranslationInputFieldProps) {
+export default function TranslatorOutputControls({ contentRef }: TranslationInputFieldProps) {
   return (
     <Box
       sx={{

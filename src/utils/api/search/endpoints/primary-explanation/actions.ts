@@ -3,9 +3,7 @@
 import { SearchApiTypes } from "@/api"
 import apiClients, { defaultTimeout } from "@/utils/api/client"
 
-const parseAPIResponse = (
-  response: SearchApiTypes.Response<"/explanation/">,
-) => {
+const parseAPIResponse = (response: SearchApiTypes.Response<"/explanation/">) => {
   return {
     relevance: response.relevance,
     summary: response.summary.split(/\n+/g),

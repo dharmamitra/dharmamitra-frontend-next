@@ -12,10 +12,7 @@ export type ExplanationProps = {
   request: SearchApiTypes.RequestBody<"/explanation-parallel/">
 }
 
-export default function PrimaryExplanation({
-  isExpanded,
-  request,
-}: ExplanationProps) {
+export default function PrimaryExplanation({ isExpanded, request }: ExplanationProps) {
   const t = useTranslations()
 
   const { data, isLoading, error } = useQuery({
@@ -29,17 +26,9 @@ export default function PrimaryExplanation({
 
   if (error) {
     return (
-      <Typography
-        variant="body2"
-        color="error.main"
-        borderRadius={1}
-        display="inline-block"
-        my={1}
-      >
+      <Typography variant="body2" color="error.main" borderRadius={1} display="inline-block" my={1}>
         {t.rich("generic.exception.default", {
-          newline: (chunks) => (
-            <span style={{ marginLeft: "1ch" }}>{chunks}</span>
-          ),
+          newline: (chunks) => <span style={{ marginLeft: "1ch" }}>{chunks}</span>,
         })}
       </Typography>
     )
@@ -59,12 +48,7 @@ export default function PrimaryExplanation({
   return (
     <Box color="grey.800">
       <Box display="inline-flex items-center" mb={0.25}>
-        <Typography
-          fontSize="1.1rem !important"
-          component="span"
-          color="grey.500"
-          fontWeight={600}
-        >
+        <Typography fontSize="1.1rem !important" component="span" color="grey.500" fontWeight={600}>
           {t("search.relevance")}:{" "}
         </Typography>
 

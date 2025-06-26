@@ -7,9 +7,7 @@ import {
 } from "@/components/features/paramSettings/DbSourceFilter/types"
 import type { ParsedStructuredDbSourceMenuData } from "@/utils/api/bn/menudata"
 
-export function transformDataForTreeView(
-  data: ParsedStructuredDbSourceMenuData,
-) {
+export function transformDataForTreeView(data: ParsedStructuredDbSourceMenuData) {
   /**
    * TODO - check if:
    *  - if it's possible to enforce id uniqueness on BE - duplicate `id`s (eg. dhp) cause react-arborist to trigger key errors and rendering issues. Creating unique ids on FE breaks currnet file selection.
@@ -24,15 +22,13 @@ export function transformDataForTreeView(
       name: displayName,
       dataType: DbSourceTreeNodeDataType.CATEGORY,
       searchField: `${displayName}/${name}`,
-      children: files.map(
-        ({ fileName, displayName: fileDisplayName, searchField }) => ({
-          id: fileName,
-          name: fileDisplayName,
-          fileName,
-          dataType: DbSourceTreeNodeDataType.TEXT,
-          searchField,
-        }),
-      ),
+      children: files.map(({ fileName, displayName: fileDisplayName, searchField }) => ({
+        id: fileName,
+        name: fileDisplayName,
+        fileName,
+        dataType: DbSourceTreeNodeDataType.TEXT,
+        searchField,
+      })),
     })),
   }))
 }
@@ -55,12 +51,8 @@ export function getTreeBreadcrumbs(node: NodeApi<DbSourceTreeNode>) {
 
 type InitializeTreeProps = {
   activeTree: TreeApi<DbSourceTreeNode> | null | undefined
-  setActiveTree: React.Dispatch<
-    React.SetStateAction<TreeApi<DbSourceTreeNode> | null | undefined>
-  >
-  setBreadcrumbs: React.Dispatch<
-    React.SetStateAction<NodeApi<DbSourceTreeNode>[]>
-  >
+  setActiveTree: React.Dispatch<React.SetStateAction<TreeApi<DbSourceTreeNode> | null | undefined>>
+  setBreadcrumbs: React.Dispatch<React.SetStateAction<NodeApi<DbSourceTreeNode>[]>>
 }
 
 export const handleTreeChange = ({

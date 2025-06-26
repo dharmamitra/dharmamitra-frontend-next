@@ -19,13 +19,8 @@ export const useResponsiveSizes = () => {
 }
 
 export const useResponsiveOptions = <T extends string>(options: T[]) => {
-  const {
-    isSmTablet,
-    isLgTablet,
-    isSmDesktop,
-    isLgDesktop,
-    isSingleColLayout,
-  } = useResponsiveSizes()
+  const { isSmTablet, isLgTablet, isSmDesktop, isLgDesktop, isSingleColLayout } =
+    useResponsiveSizes()
 
   return React.useMemo<[T[], T[]]>(() => {
     let noOfPrimaryItems = 1
@@ -38,12 +33,5 @@ export const useResponsiveOptions = <T extends string>(options: T[]) => {
       setting: options,
       noOfPrimaryItems,
     })
-  }, [
-    options,
-    isSmTablet,
-    isLgTablet,
-    isSmDesktop,
-    isLgDesktop,
-    isSingleColLayout,
-  ])
+  }, [options, isSmTablet, isLgTablet, isSmDesktop, isLgDesktop, isSingleColLayout])
 }

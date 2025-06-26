@@ -67,11 +67,7 @@ export default function IconCard({ icon, title, description }: IconCardProps) {
         <Typography variant="h3" color="secondary" fontWeight={600}>
           {title}
         </Typography>
-        <Typography
-          color="text.secondary"
-          textAlign="center"
-          sx={{ fontSize: "14px !important" }}
-        >
+        <Typography color="text.secondary" textAlign="center" sx={{ fontSize: "14px !important" }}>
           {description}
         </Typography>
       </Box>

@@ -9,9 +9,7 @@ import { PageContentFrame } from "@/components/layout"
 import Timeline from "@/components/Timeline"
 import { defaultLocale } from "@/i18n"
 
-export async function generateMetadata({
-  params,
-}: DefaultPageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "News" })
 

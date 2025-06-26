@@ -37,8 +37,7 @@ export default function SearchInput({ className }: { className?: string }) {
       if (key === "Enter" && ctrlKey) {
         const input = document.getElementById(searchInputId)
 
-        if (!input || !(input instanceof HTMLTextAreaElement) || !input.value)
-          return
+        if (!input || !(input instanceof HTMLTextAreaElement) || !input.value) return
 
         const { selectionStart, value } = input
         const positionIndex = selectionStart || value.length
@@ -88,10 +87,7 @@ export default function SearchInput({ className }: { className?: string }) {
             >
               <TriggerQueryButton input={searchInputParam} />
 
-              <ClearButton
-                input={searchInputParam}
-                setInput={setSearchInputParam}
-              />
+              <ClearButton input={searchInputParam} setInput={setSearchInputParam} />
             </Box>
           }
         />

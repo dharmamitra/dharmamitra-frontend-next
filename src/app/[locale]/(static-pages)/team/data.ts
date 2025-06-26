@@ -82,9 +82,7 @@ const members: TeamMembers = {
     {
       id: crypto.randomUUID(),
       name: "Aminah Borg-Luck",
-      roles: [
-        { role: "Website development", i18nRoleKey: "websiteDevelopment" },
-      ],
+      roles: [{ role: "Website development", i18nRoleKey: "websiteDevelopment" }],
       image: imgAminahBorgLuck,
     },
     {

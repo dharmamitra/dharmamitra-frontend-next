@@ -29,8 +29,7 @@ export default function StartStopStreamButton({
   const queryId = chatPropsWithId.id
 
   // TODO: review & fix message duplication & empty messages case
-  const { stop, setInput, status, handleSubmit, messages } =
-    useChat(chatPropsWithId)
+  const { stop, setInput, status, handleSubmit, messages } = useChat(chatPropsWithId)
 
   React.useEffect(() => {
     // Ensures handlers are able to be called
@@ -55,11 +54,7 @@ export default function StartStopStreamButton({
   if (status === "submitted") {
     return (
       <Tooltip title={`${t("generic.stop")} (Esc)`} placement="top">
-        <IconButton
-          aria-label={t("generic.stop")}
-          color="secondary"
-          onClick={handleAbort}
-        >
+        <IconButton aria-label={t("generic.stop")} color="secondary" onClick={handleAbort}>
           <StopCircleIcon />
         </IconButton>
       </Tooltip>
@@ -75,8 +70,7 @@ export default function StartStopStreamButton({
               <>{t("translation.triggerDisabled")}</>
             ) : (
               <>
-                {`${t("translation.translate")}`} (Ctrl +
-                <span style={tooltipEnterStyles}>↵</span>)
+                {`${t("translation.translate")}`} (Ctrl +<span style={tooltipEnterStyles}>↵</span>)
               </>
             )}
           </span>

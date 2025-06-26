@@ -24,8 +24,7 @@ export default function SentenceAccordion({
   grammatical_analysis: grammaticalAnalysis,
   sentenceIndex = 0,
 }: Props) {
-  const [selectedUnsandhiedIndex, setSelectedUnsandhiedIndex] =
-    React.useState<number>(0)
+  const [selectedUnsandhiedIndex, setSelectedUnsandhiedIndex] = React.useState<number>(0)
 
   const selectedUnsandhied = grammaticalAnalysis[selectedUnsandhiedIndex]
 
@@ -54,10 +53,7 @@ export default function SentenceAccordion({
       </AccordionSummary>
 
       <AccordionDetails>
-        <CopyButtons
-          grammaticalAnalysis={grammaticalAnalysis}
-          sentence={sentence}
-        />
+        <CopyButtons grammaticalAnalysis={grammaticalAnalysis} sentence={sentence} />
         <Box
           sx={{
             display: "flex",
@@ -99,9 +95,7 @@ export default function SentenceAccordion({
             )
           })}
         </Box>
-        {lemma ? (
-          <SentenceAnalysis lemma={lemma} tag={tag!} meanings={meanings!} />
-        ) : null}
+        {lemma ? <SentenceAnalysis lemma={lemma} tag={tag!} meanings={meanings!} /> : null}
       </AccordionDetails>
     </Accordion>
   )

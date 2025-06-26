@@ -61,11 +61,7 @@ export default function AttachFileButton({
           disabled={disabled}
           color="inherit"
         >
-          <UploadFileIcon
-            color={disabled ? "disabled" : color}
-            fontSize={fontSize}
-            sx={sx}
-          />
+          <UploadFileIcon color={disabled ? "disabled" : color} fontSize={fontSize} sx={sx} />
         </IconButton>
       </span>
     </Tooltip>

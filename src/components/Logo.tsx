@@ -39,11 +39,7 @@ const LogoImage = () => {
   )
 }
 
-export default function Logo({
-  isLocalized = true,
-}: {
-  isLocalized?: boolean
-}) {
+export default function Logo({ isLocalized = true }: { isLocalized?: boolean }) {
   const {
     basePath,
     assetPaths: { logo },

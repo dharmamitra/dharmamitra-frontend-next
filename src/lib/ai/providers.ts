@@ -25,13 +25,10 @@ export const mitra = createOpenAICompatible<
   baseURL: process.env.DM_CHAT_BASE_URL ?? "",
 })
 
-export const mitraTest = createOpenAICompatible<
-  TestModelId,
-  TestModelId,
-  TestModelId,
-  TestModelId
->({
-  name: "mitra-test",
-  apiKey: process.env.DM_CHAT_API_KEY,
-  baseURL: process.env.DM_CHAT_TEST_BASE_URL ?? "",
-})
+export const mitraTest = createOpenAICompatible<TestModelId, TestModelId, TestModelId, TestModelId>(
+  {
+    name: "mitra-test",
+    apiKey: process.env.DM_CHAT_API_KEY,
+    baseURL: process.env.DM_CHAT_TEST_BASE_URL ?? "",
+  },
+)

@@ -14,10 +14,7 @@ export const routing = defineRouting({
 })
 
 export function isValidLocaleRoute(locale: unknown): locale is SupportedLocale {
-  return (
-    typeof locale === "string" &&
-    routing.locales.some((value) => value === locale)
-  )
+  return typeof locale === "string" && routing.locales.some((value) => value === locale)
 }
 
 export function getPageLocaleRoutes() {
@@ -26,5 +23,4 @@ export function getPageLocaleRoutes() {
 
 // Lightweight wrappers around Next.js' navigation APIs
 // that will consider the routing configuration
-export const { Link, redirect, usePathname, useRouter, getPathname } =
-  createNavigation(routing)
+export const { Link, redirect, usePathname, useRouter, getPathname } = createNavigation(routing)

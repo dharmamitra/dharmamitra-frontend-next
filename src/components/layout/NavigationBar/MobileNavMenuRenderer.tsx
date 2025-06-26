@@ -15,9 +15,7 @@ export type NavMenuProps = {
 // This is used to make sure only the necessary JS is for the users viewport.
 const MobileNavMenuRenderer = (props: NavMenuProps) => {
   const theme = useTheme()
-  const isMobile = useMediaQuery(
-    theme.breakpoints.down(props.desktopBreakpoint),
-  )
+  const isMobile = useMediaQuery(theme.breakpoints.down(props.desktopBreakpoint))
 
   if (isMobile) {
     return <MobileNavMenu {...props.mobileProps} />

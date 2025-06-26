@@ -15,9 +15,7 @@ export default function MitraTranslatorLoading() {
   } = useAppConfig()
 
   if (hasTranslateExtendedOptions) {
-    return (
-      <ExtendedMitraTranslatorLoading targetLanguages={servedTargetLanguages} />
-    )
+    return <ExtendedMitraTranslatorLoading targetLanguages={servedTargetLanguages} />
   }
 
   return (
@@ -31,14 +29,9 @@ export default function MitraTranslatorLoading() {
         {/* Placeholder for tagging button */}
       </Box>
       <TranslatorLayout
-        inputControls={
-          <OptionsLoading options={inputEncodings} keyBase="input-encoding" />
-        }
+        inputControls={<OptionsLoading options={inputEncodings} keyBase="input-encoding" />}
         outputContoles={
-          <OptionsLoading
-            options={servedTargetLanguages}
-            keyBase="target-language"
-          />
+          <OptionsLoading options={servedTargetLanguages} keyBase="target-language" />
         }
         inputBlock={null}
         outputBlock={null}

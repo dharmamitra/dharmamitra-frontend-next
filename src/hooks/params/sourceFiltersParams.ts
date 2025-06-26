@@ -44,9 +44,5 @@ export const useResetSourceFilters = () => {
     setIncludeCollectionsParam(null)
     setIncludeCategoriesParam(null)
     setIncludeFilesParam(null)
-  }, [
-    setIncludeCollectionsParam,
-    setIncludeCategoriesParam,
-    setIncludeFilesParam,
-  ])
+  }, [setIncludeCollectionsParam, setIncludeCategoriesParam, setIncludeFilesParam])
 }

@@ -11,15 +11,10 @@ import { getTreeBreadcrumbs } from "../utils"
 
 type HandleBreadcrumbClickProps = {
   node: NodeApi<DbSourceTreeNode> | null | undefined
-  setBreadcrumbs: React.Dispatch<
-    React.SetStateAction<NodeApi<DbSourceTreeNode>[]>
-  >
+  setBreadcrumbs: React.Dispatch<React.SetStateAction<NodeApi<DbSourceTreeNode>[]>>
 }
 
-const handleBreadcrumbClick = ({
-  node,
-  setBreadcrumbs,
-}: HandleBreadcrumbClickProps) => {
+const handleBreadcrumbClick = ({ node, setBreadcrumbs }: HandleBreadcrumbClickProps) => {
   if (!node) return
 
   node?.select()
@@ -30,9 +25,7 @@ const handleBreadcrumbClick = ({
 }
 
 const TreeBreadcrumbs = () => {
-  const [breadcrumbs, setBreadcrumbs] = useAtom(
-    activeDbSourceTreeBreadcrumbsAtom,
-  )
+  const [breadcrumbs, setBreadcrumbs] = useAtom(activeDbSourceTreeBreadcrumbsAtom)
 
   return (
     <Box
@@ -54,8 +47,7 @@ const TreeBreadcrumbs = () => {
               "polygon(0 0,calc(100% - 1rem) 0,100% 50%,calc(100% - 1rem) 100%,0 100%,1rem 50%)",
             margin: "0 calc(1rem/-2)",
             "&:first-of-type": {
-              clipPath:
-                "polygon(0 0,calc(100% - 1rem) 0,100% 50%,calc(100% - 1rem) 100%,0 100%)",
+              clipPath: "polygon(0 0,calc(100% - 1rem) 0,100% 50%,calc(100% - 1rem) 100%,0 100%)",
               marginLeft: "0",
             },
             "&:last-of-type": {
@@ -74,10 +66,7 @@ const TreeBreadcrumbs = () => {
               color: theme.palette.text.primary,
               background: theme.custom.palette?.background?.selected,
               "&:hover": {
-                background: lighten(
-                  theme.custom.palette?.background?.selected ?? "lightgray",
-                  0.2,
-                ),
+                background: lighten(theme.custom.palette?.background?.selected ?? "lightgray", 0.2),
               },
             })}
             onClick={() => handleBreadcrumbClick({ node, setBreadcrumbs })}
@@ -91,11 +80,7 @@ const TreeBreadcrumbs = () => {
                 fontSize: "0.7rem",
               }}
             >
-              <Typography
-                variant="body2"
-                color="text.primary"
-                fontSize="inherit"
-              >
+              <Typography variant="body2" color="text.primary" fontSize="inherit">
                 {node.id}
               </Typography>
             </Box>

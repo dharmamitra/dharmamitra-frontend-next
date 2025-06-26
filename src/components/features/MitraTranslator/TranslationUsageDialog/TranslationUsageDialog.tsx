@@ -48,11 +48,7 @@ export default function TranslationUsageDialog() {
     >
       <UsageDialogContent />
 
-      <Button
-        variant="contained"
-        sx={{ alignSelf: "flex-end", mt: 3 }}
-        onClick={closeDialog}
-      >
+      <Button variant="contained" sx={{ alignSelf: "flex-end", mt: 3 }} onClick={closeDialog}>
         {t("usageAccept")}
       </Button>
     </dialog>

@@ -34,11 +34,7 @@ export const getValidSearchType = (searchType: string | null) => {
 
 type RelevanceTypes = SearchSchema["SummaryRespone"]["relevance"]
 type Relevance = RelevanceTypes & keyof Messages["search"]["relevanceTypes"]
-const relevanceTypes: Relevance[] = exhaustiveStringTuple<RelevanceTypes>()(
-  "low",
-  "medium",
-  "high",
-)
+const relevanceTypes: Relevance[] = exhaustiveStringTuple<RelevanceTypes>()("low", "medium", "high")
 
 export const getValidRelevance = (relevance: string) => {
   if (!relevanceTypes.some((value) => value === relevance)) {

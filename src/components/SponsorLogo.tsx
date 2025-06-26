@@ -20,11 +20,7 @@ const getLinkStyles = (width: number) => {
 
 export default function SponsorLogo() {
   return (
-    <Link
-      href="https://tsadra.org/"
-      sx={getLinkStyles(tsadraLogo.width)}
-      {...linkAttrs}
-    >
+    <Link href="https://tsadra.org/" sx={getLinkStyles(tsadraLogo.width)} {...linkAttrs}>
       <Image
         src={tsadraLogo}
         alt="Tsadra Foundation Logo"

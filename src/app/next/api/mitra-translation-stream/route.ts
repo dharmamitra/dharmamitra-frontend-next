@@ -8,8 +8,7 @@ export const maxDuration = 30
 
 export const dynamic = "force-dynamic"
 
-const validateModel = (model: unknown): model is ModelType =>
-  modelTypes.some((m) => m === model)
+const validateModel = (model: unknown): model is ModelType => modelTypes.some((m) => m === model)
 
 export async function GET() {
   return NextResponse.json({
