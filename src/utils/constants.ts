@@ -46,4 +46,4 @@ export const chromeExtensionUrl =
   "https://chromewebstore.google.com/detail/dharmamitra-language-tool/jlmleoklbpdehnokplffodjomekoiadl?hl=en-GB&utm_source=ext_sidebar"
 
 export const firefoxExtensionUrl =
-  "https://addons.mozilla.org/de/firefox/addon/dharmamitra-language-tools/"
+  "https://addons.mozilla.org/firefox/addon/dharmamitra-language-tools/"

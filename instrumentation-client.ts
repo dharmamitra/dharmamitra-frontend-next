@@ -59,3 +59,5 @@ Sentry.init({
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false, // (requires `disableLogger: true` in next.config.mjs)
 })
+
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart
