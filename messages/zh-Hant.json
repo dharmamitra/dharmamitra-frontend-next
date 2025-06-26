@@ -40,7 +40,7 @@
     "translation": "Translation",
     "search": "Search",
     "upload": "Upload a {fileTypes}file<br></br>(Supports approx. 10 pages of text)",
-    "extensionCTA": "Use mitra translate where your texts are; get the <chromelink>Chrome</chromelink> extension."
+    "extensionCTA": "Use mitra translate where your texts are; get the <chromelink>Chrome</chromelink>, or <firefoxlink>Firefox</firefoxlink> extension."
   },
   "navigation": {
     "mobileButtonAriaLabel": "开放导航菜单",
