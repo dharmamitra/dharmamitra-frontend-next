@@ -30,10 +30,7 @@ export default function SearchTargetButtons() {
           placement="top"
         >
           <span>
-            <ToggleButton
-              value={target}
-              disabled={disabledSearchTargets.includes(target)}
-            >
+            <ToggleButton value={target} disabled={disabledSearchTargets.includes(target)}>
               {t(`targets.${target}`)}
             </ToggleButton>
           </span>

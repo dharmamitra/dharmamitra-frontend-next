@@ -4,14 +4,7 @@ import { notFound } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import CheckIcon from "@mui/icons-material/Check"
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-} from "@mui/material"
+import { Box, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material"
 import Container from "@mui/material/Container"
 import Grid from "@mui/material/Grid"
 import Link from "@mui/material/Link"
@@ -30,9 +23,7 @@ import customTheming from "@/utils/theme/config"
 
 import data from "./data"
 
-export async function generateMetadata({
-  params,
-}: DefaultPageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const resolvedParams = await params
   const locale = resolvedParams?.locale
 
@@ -127,12 +118,7 @@ export default function DharmamitraAboutPage({ params }: DefaultPageParams) {
                   backgroundColor: customTheming.baseColors.light,
                 }}
               >
-                <Image
-                  src={dmLogoFull}
-                  alt="Dharmamitra"
-                  width={450}
-                  height={240}
-                />
+                <Image src={dmLogoFull} alt="Dharmamitra" width={450} height={240} />
               </Box>
             </Grid>
 
@@ -155,18 +141,13 @@ export default function DharmamitraAboutPage({ params }: DefaultPageParams) {
           </Typography>
           <Typography mb={2}>
             {t.rich("development.p1", {
-              locallink: (chunks) => (
-                <LocalLink href="/news">{chunks}</LocalLink>
-              ),
+              locallink: (chunks) => <LocalLink href="/news">{chunks}</LocalLink>,
             })}
           </Typography>
           <Typography mb={2}>
             {t.rich("development.p2", {
               link: (chunks) => (
-                <Link
-                  href="http://www.sanskrit-linguistics.org/dcs/"
-                  {...linkAttrs}
-                >
+                <Link href="http://www.sanskrit-linguistics.org/dcs/" {...linkAttrs}>
                   {chunks}
                 </Link>
               ),
@@ -179,17 +160,9 @@ export default function DharmamitraAboutPage({ params }: DefaultPageParams) {
             {t("collaboration.h2")}
           </Typography>
 
-          <Grid
-            container
-            columnSpacing={{ xs: 3, sm: 1, md: 8 }}
-            rowSpacing={6}
-            columns={16}
-          >
+          <Grid container columnSpacing={{ xs: 3, sm: 1, md: 8 }} rowSpacing={6} columns={16}>
             {data.collaborators.map((collaborator) => (
-              <Grid
-                key={`colaborator-${collaborator.i18nKey}`}
-                size={{ xs: 16, sm: 8, md: 7 }}
-              >
+              <Grid key={`colaborator-${collaborator.i18nKey}`} size={{ xs: 16, sm: 8, md: 7 }}>
                 <div>
                   <Grid container spacing={{ xs: 3 }}>
                     <Grid size={{ xs: 2 }}>
@@ -203,25 +176,20 @@ export default function DharmamitraAboutPage({ params }: DefaultPageParams) {
                     </Grid>
                     <Grid size={{ xs: 10 }}>
                       <Typography variant="h5" component="h3" mb={1}>
-                        {t.rich(
-                          `collaboration.collaborators.${collaborator.i18nKey}.name`,
-                          {
-                            link: (chunks) => (
-                              <Link
-                                sx={{ color: "text.primary", fontWeight: 500 }}
-                                href={collaborator.url}
-                                {...linkAttrs}
-                              >
-                                {chunks}
-                              </Link>
-                            ),
-                          },
-                        )}
+                        {t.rich(`collaboration.collaborators.${collaborator.i18nKey}.name`, {
+                          link: (chunks) => (
+                            <Link
+                              sx={{ color: "text.primary", fontWeight: 500 }}
+                              href={collaborator.url}
+                              {...linkAttrs}
+                            >
+                              {chunks}
+                            </Link>
+                          ),
+                        })}
                       </Typography>
                       <Typography variant="body2">
-                        {t(
-                          `collaboration.collaborators.${collaborator.i18nKey}.description`,
-                        )}
+                        {t(`collaboration.collaborators.${collaborator.i18nKey}.description`)}
                       </Typography>
                     </Grid>
                   </Grid>

@@ -26,12 +26,7 @@ export default function OptionsLoading({
         py: 1,
       }}
     >
-      <RadioGroup
-        aria-label="loading"
-        value="option"
-        row
-        sx={{ ...flatRadioGroupStyles }}
-      >
+      <RadioGroup aria-label="loading" value="option" row sx={{ ...flatRadioGroupStyles }}>
         <Box sx={{ display: "flex" }}>
           <Typography component="div" variant="body1">
             {t(getOptionI18nKeyPath(options[0]))}

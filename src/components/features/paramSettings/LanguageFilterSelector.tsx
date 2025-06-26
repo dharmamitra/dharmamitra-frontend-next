@@ -11,10 +11,7 @@ import {
   useFilterTargetLanguageParam,
   useSearchTargetParam,
 } from "@/hooks/params"
-import {
-  defaultSourceLanguage,
-  searchFilterLanguages,
-} from "@/utils/api/search/params"
+import { defaultSourceLanguage, searchFilterLanguages } from "@/utils/api/search/params"
 import { getValidSourceLanguage } from "@/utils/validators"
 
 type LanguageSelectProps = {
@@ -24,11 +21,7 @@ type LanguageSelectProps = {
   handleChange: (event: SelectChangeEvent) => void
 }
 
-const LanguageSelect = ({
-  label,
-  value,
-  handleChange,
-}: LanguageSelectProps) => {
+const LanguageSelect = ({ label, value, handleChange }: LanguageSelectProps) => {
   const t = useTranslations("search.commonParams.filterLanguages")
 
   return (
@@ -56,10 +49,8 @@ export default function LanguageFilterSelector() {
   const t = useTranslations("generic")
 
   const [searchTarget] = useSearchTargetParam()
-  const [filterSourceLanguage, setFilterSourceLanguage] =
-    useFilterSourceLanguageParam()
-  const [filterTargetLanguage, setFilterTargetLanguage] =
-    useFilterTargetLanguageParam()
+  const [filterSourceLanguage, setFilterSourceLanguage] = useFilterSourceLanguageParam()
+  const [filterTargetLanguage, setFilterTargetLanguage] = useFilterTargetLanguageParam()
 
   if (searchTarget === "primary") {
     return (

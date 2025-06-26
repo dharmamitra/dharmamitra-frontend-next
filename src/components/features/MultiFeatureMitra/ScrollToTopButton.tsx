@@ -2,11 +2,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import Box from "@mui/material/Box"
 import IconButton from "@mui/material/IconButton"
 
-export default function ScrollToTopButton({
-  scrollMarkerInView,
-}: {
-  scrollMarkerInView: boolean
-}) {
+export default function ScrollToTopButton({ scrollMarkerInView }: { scrollMarkerInView: boolean }) {
   return (
     <Box
       sx={{

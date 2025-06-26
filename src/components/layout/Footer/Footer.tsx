@@ -5,11 +5,7 @@ import customTheming from "@/utils/theme/config"
 import LogoBlock from "./LogoBlock"
 import Statements from "./Statements"
 
-export default function Footer({
-  isLocalized = true,
-}: {
-  isLocalized?: boolean
-}) {
+export default function Footer({ isLocalized = true }: { isLocalized?: boolean }) {
   return (
     <Box
       sx={{

@@ -6,11 +6,7 @@ import Typography from "@mui/material/Typography"
 
 import ExceptionText from "@/components/ExceptionText"
 import LoadingDots from "@/components/LoadingDots"
-import {
-  initialParsedStream,
-  ParsedStream,
-  parseStream,
-} from "@/utils/api/stream"
+import { initialParsedStream, ParsedStream, parseStream } from "@/utils/api/stream"
 
 export type ExplanationProps = {
   isExpanded: boolean
@@ -37,9 +33,7 @@ export default function PrimaryExplanationStream({
     messages.forEach((message) => {
       if (message.role !== "assistant") return
       const messageParts = message.content.split("'")
-      const messageContent = messageParts.filter(
-        (part) => !part.includes("event:"),
-      )
+      const messageContent = messageParts.filter((part) => !part.includes("event:"))
       setStream(parseStream(messageContent.join("").trim()))
     })
   }, [messages, setStream])
@@ -53,17 +47,9 @@ export default function PrimaryExplanationStream({
 
   if (error) {
     return (
-      <Typography
-        variant="body2"
-        color="error.main"
-        borderRadius={1}
-        display="inline-block"
-        my={1}
-      >
+      <Typography variant="body2" color="error.main" borderRadius={1} display="inline-block" my={1}>
         {t.rich("exception.default", {
-          newline: (chunks) => (
-            <span style={{ marginLeft: "1ch" }}>{chunks}</span>
-          ),
+          newline: (chunks) => <span style={{ marginLeft: "1ch" }}>{chunks}</span>,
         })}
       </Typography>
     )

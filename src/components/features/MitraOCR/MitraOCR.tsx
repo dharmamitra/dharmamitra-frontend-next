@@ -11,10 +11,8 @@ import TransliterationSwitchs from "./TransliterationSwitchs"
 
 export default function MitraOCR() {
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null)
-  const [transliterateDevanagariToIAST, setTransliterateDevanagariToIAST] =
-    React.useState(false)
-  const [transliterateTibetanToWylie, setTransliterateTibetanToWylie] =
-    React.useState(false)
+  const [transliterateDevanagariToIAST, setTransliterateDevanagariToIAST] = React.useState(false)
+  const [transliterateTibetanToWylie, setTransliterateTibetanToWylie] = React.useState(false)
 
   const ocrMutation = useMutation<ParsedOCRResponse, Error, File>({
     mutationFn: async (file: File) => {
@@ -54,10 +52,7 @@ export default function MitraOCR() {
               transliterateDevanagariToIAST,
               setTransliterateDevanagariToIAST,
             ]}
-            tibetanToWylieState={[
-              transliterateTibetanToWylie,
-              setTransliterateTibetanToWylie,
-            ]}
+            tibetanToWylieState={[transliterateTibetanToWylie, setTransliterateTibetanToWylie]}
           />
           <SelectedBoxWithTrigger
             file={selectedFile}

@@ -23,8 +23,7 @@ export const tabsStyles = {
     margin: "8px",
     borderRadius: "50px",
     border: "3px solid transparent",
-    transition:
-      "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
+    transition: "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out",
   },
   minWidth: "210px",
   width: "fit-content",

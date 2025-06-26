@@ -8,10 +8,7 @@ import Switch from "@mui/material/Switch"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
 type TransliterationSwitchsProps = {
-  devanagariToIASTState: [
-    boolean,
-    React.Dispatch<React.SetStateAction<boolean>>,
-  ]
+  devanagariToIASTState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]
   tibetanToWylieState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]
 }
 
@@ -21,8 +18,7 @@ export default function TransliterationSwitchs({
 }: TransliterationSwitchsProps) {
   const t = useTranslations("ocr")
   const isSmallScreen = useMediaQuery("(max-width:750px)")
-  const [isDevanagariToIASTState, setIsDevanagariToIASTState] =
-    devanagariToIASTState
+  const [isDevanagariToIASTState, setIsDevanagariToIASTState] = devanagariToIASTState
   const [isTibetanToWylieState, setIsTibetanToWylieState] = tibetanToWylieState
 
   const handleToggleDevanagariToIAST = React.useCallback(

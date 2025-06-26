@@ -17,13 +17,7 @@ export default function ExtendedMitraTranslatorLoading({
   return (
     <>
       <Box sx={{ mb: 3, minHeight: 40 }}>
-        <ToggleButtonGroup
-          color="secondary"
-          size="small"
-          value={0}
-          exclusive
-          aria-label="Model"
-        >
+        <ToggleButtonGroup color="secondary" size="small" value={0} exclusive aria-label="Model">
           {modelTypes.slice(0, 4).map((model, index) => (
             <ToggleButton
               key={model + "-model-option-loader"}
@@ -37,12 +31,8 @@ export default function ExtendedMitraTranslatorLoading({
       </Box>
 
       <TranslatorLayout
-        inputControls={
-          <OptionsLoading options={inputEncodings} keyBase="input-encoding" />
-        }
-        outputContoles={
-          <OptionsLoading options={targetLanguages} keyBase="target-language" />
-        }
+        inputControls={<OptionsLoading options={inputEncodings} keyBase="input-encoding" />}
+        outputContoles={<OptionsLoading options={targetLanguages} keyBase="target-language" />}
         inputBlock={null}
         outputBlock={null}
       />

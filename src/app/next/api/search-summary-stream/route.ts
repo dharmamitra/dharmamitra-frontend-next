@@ -41,12 +41,9 @@ export async function POST(request: NextRequest) {
     // const contentType = headers.get("content-type")
 
     if (!ok) {
-      return new NextResponse(
-        `¡Failed to open stream!\nResponse not ok.\nStatus: ${statusText}`,
-        {
-          status,
-        },
-      )
+      return new NextResponse(`¡Failed to open stream!\nResponse not ok.\nStatus: ${statusText}`, {
+        status,
+      })
     }
 
     // TODO: See why content type is not being set as stream

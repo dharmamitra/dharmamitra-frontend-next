@@ -23,10 +23,7 @@ type Props = {
     | readonly React.ReactNode[]
 }
 
-export default function Error({
-  imgWdiths = { xs: "80px", sm: "100px" },
-  message,
-}: Props) {
+export default function Error({ imgWdiths = { xs: "80px", sm: "100px" }, message }: Props) {
   return (
     <Box
       sx={{
@@ -56,13 +53,7 @@ export default function Error({
           priority
         />
       </Box>
-      <Typography
-        component="div"
-        variant="h6"
-        mt={0}
-        color="error"
-        align="center"
-      >
+      <Typography component="div" variant="h6" mt={0} color="error" align="center">
         {message ?? <DefaultMessage />}
       </Typography>
     </Box>

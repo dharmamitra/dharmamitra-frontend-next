@@ -4,13 +4,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 
 import { DbSourceTreeNode } from "@/components/features/paramSettings/DbSourceFilter/types"
 
-export function ExpanderArrow({
-  node,
-  mr = 1,
-}: {
-  node: NodeApi<DbSourceTreeNode>
-  mr?: number
-}) {
+export function ExpanderArrow({ node, mr = 1 }: { node: NodeApi<DbSourceTreeNode>; mr?: number }) {
   if (!node.isInternal) return null
 
   return (

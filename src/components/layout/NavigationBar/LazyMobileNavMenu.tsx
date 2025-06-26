@@ -8,12 +8,7 @@ export default function MobileNavMenuLoading() {
   const t = useTranslations("navigation")
   return (
     <Box sx={{ display: { sm: "none" } }}>
-      <IconButton
-        color="primary"
-        aria-label={t("mobileMenuAriaLabel")}
-        edge="start"
-        sx={{ ml: 1 }}
-      >
+      <IconButton color="primary" aria-label={t("mobileMenuAriaLabel")} edge="start" sx={{ ml: 1 }}>
         <MenuIcon />
       </IconButton>
       <IconButton color="primary" aria-label={t("mobileButtonAriaLabel")}>

@@ -7,10 +7,7 @@ import { useQuery } from "@tanstack/react-query"
 import { useAtomValue, useSetAtom } from "jotai"
 
 import { DMFetchApi } from "@/api"
-import {
-  activeDbSourceTreeAtom,
-  activeDbSourceTreeBreadcrumbsAtom,
-} from "@/atoms"
+import { activeDbSourceTreeAtom, activeDbSourceTreeBreadcrumbsAtom } from "@/atoms"
 import {
   DbSourceFilterSelectorTreeProps,
   DbSourceTreeNode,
@@ -27,8 +24,7 @@ type SearchableDbSourceMenuBaseProps = {
   padding?: number
 }
 
-type SearchableDbSourceMenuProps = SearchableDbSourceMenuBaseProps &
-  DbSourceFilterSelectorTreeProps
+type SearchableDbSourceMenuProps = SearchableDbSourceMenuBaseProps & DbSourceFilterSelectorTreeProps
 
 export const SearchableDbSourceMenu = memo<SearchableDbSourceMenuProps>(
   function SearchableDbSourceMenu({
@@ -65,8 +61,7 @@ export const SearchableDbSourceMenu = memo<SearchableDbSourceMenuProps>(
 
     const { data, isLoading, isError, error } = useQuery<DbSourceTreeNode[]>({
       queryKey: DMFetchApi.dbSourceMenuData.makeQueryKey(sourceLanguage),
-      queryFn: () =>
-        DMFetchApi.dbSourceMenuData.call({ language: sourceLanguage }),
+      queryFn: () => DMFetchApi.dbSourceMenuData.call({ language: sourceLanguage }),
     })
 
     if (isLoading) {
@@ -75,10 +70,7 @@ export const SearchableDbSourceMenu = memo<SearchableDbSourceMenuProps>(
 
     if (isError || !data) {
       return (
-        <TreeException
-          padding={padding}
-          message={error ? error.message : t("generic.noResult")}
-        />
+        <TreeException padding={padding} message={error ? error.message : t("generic.noResult")} />
       )
     }
 

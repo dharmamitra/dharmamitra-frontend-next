@@ -107,10 +107,7 @@ export default function MultiFeatureMitra() {
           position: "relative",
         }}
       >
-        <div
-          style={{ height: "1px", width: "1px" }}
-          ref={scrollMarkerRef}
-        ></div>
+        <div style={{ height: "1px", width: "1px" }} ref={scrollMarkerRef}></div>
 
         <Box sx={{ height: "100%" }}>
           {hasSearch ? (
@@ -134,10 +131,7 @@ export default function MultiFeatureMitra() {
           </FeatureTabPanel>
 
           <FeatureTabPanel value={viewTabIndex} index={hasSearch ? 2 : 1}>
-            <Box
-              id="ocr-feature-wrapper"
-              sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
-            >
+            <Box id="ocr-feature-wrapper" sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}>
               <MitraOCR />
             </Box>
           </FeatureTabPanel>

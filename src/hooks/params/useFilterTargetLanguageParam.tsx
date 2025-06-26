@@ -12,8 +12,6 @@ const {
 
 export function useFilterTargetLanguageParam() {
   return useQueryState(filter_target_language, {
-    ...parseAsStringLiteral(searchFilterLanguages).withDefault(
-      defaultSourceLanguage,
-    ),
+    ...parseAsStringLiteral(searchFilterLanguages).withDefault(defaultSourceLanguage),
   })
 }

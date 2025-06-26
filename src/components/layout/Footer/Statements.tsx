@@ -56,10 +56,6 @@ const FallbackMission = () => {
   )
 }
 
-export default function Statements({
-  isLocalized = true,
-}: {
-  isLocalized?: boolean
-}) {
+export default function Statements({ isLocalized = true }: { isLocalized?: boolean }) {
   return <>{isLocalized ? <LocalizedMission /> : <FallbackMission />}</>
 }

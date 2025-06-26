@@ -29,11 +29,9 @@ export default function ParralelSearchResultItems({
           tgt_text,
         } = result
 
-        const sourceText =
-          src_text.text_before + src_text.text_main + src_text.text_after
+        const sourceText = src_text.text_before + src_text.text_main + src_text.text_after
 
-        const targetText =
-          tgt_text.text_before + tgt_text.text_main + tgt_text.text_after
+        const targetText = tgt_text.text_before + tgt_text.text_main + tgt_text.text_after
 
         return (
           <Box key={`parallel-result-${index}`}>

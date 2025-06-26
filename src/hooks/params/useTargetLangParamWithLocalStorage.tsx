@@ -14,22 +14,17 @@ export function useTargetLangParamWithLocalStorage() {
     customParamOptions: { targetLanguages: availableLanguages },
   } = useAppConfig()
 
-  const [targetLanguageParam, setTargetLanguageParam] = useQueryState(
-    target_lang,
-    {
-      ...parseAsStringLiteral(availableLanguages).withDefault(
-        getValidTargetLanguage(undefined, availableLanguages),
-      ),
-    },
-  )
+  const [targetLanguageParam, setTargetLanguageParam] = useQueryState(target_lang, {
+    ...parseAsStringLiteral(availableLanguages).withDefault(
+      getValidTargetLanguage(undefined, availableLanguages),
+    ),
+  })
 
   React.useEffect(() => {
     // Initialize
     const localValue = localStorage?.getItem(target_lang)
     if (localValue) {
-      setTargetLanguageParam(
-        getValidTargetLanguage(localValue, availableLanguages),
-      )
+      setTargetLanguageParam(getValidTargetLanguage(localValue, availableLanguages))
     }
   }, [setTargetLanguageParam, availableLanguages])
 

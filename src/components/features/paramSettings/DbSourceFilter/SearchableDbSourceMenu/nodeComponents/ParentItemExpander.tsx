@@ -10,11 +10,7 @@ import {
 import { SourceTypeIcon } from "./SourceTypeIcon"
 import { RowBox } from "./styledComponents"
 
-export function ParentItemExpander({
-  node,
-}: {
-  node: NodeApi<DbSourceTreeNode>
-}) {
+export function ParentItemExpander({ node }: { node: NodeApi<DbSourceTreeNode> }) {
   const { dataType, name, id } = node.data
 
   return (

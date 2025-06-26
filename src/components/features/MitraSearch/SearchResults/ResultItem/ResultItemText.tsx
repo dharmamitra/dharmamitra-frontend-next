@@ -14,17 +14,10 @@ export type ResultItemTextProps = {
   isTextExpanded: boolean
 }
 
-export default function ResultItemText({
-  text,
-  isTextExpanded,
-}: ResultItemTextProps) {
+export default function ResultItemText({ text, isTextExpanded }: ResultItemTextProps) {
   return (
     <Box>
-      <ResultItemTextContext
-        keyPrefix="before"
-        text={text.before}
-        expanded={isTextExpanded}
-      />
+      <ResultItemTextContext keyPrefix="before" text={text.before} expanded={isTextExpanded} />
 
       <Box>
         {text.main.map((paragraph, index) => (
@@ -44,11 +37,7 @@ export default function ResultItemText({
         ))}
       </Box>
 
-      <ResultItemTextContext
-        keyPrefix="after"
-        text={text.after}
-        expanded={isTextExpanded}
-      />
+      <ResultItemTextContext keyPrefix="after" text={text.after} expanded={isTextExpanded} />
     </Box>
   )
 }

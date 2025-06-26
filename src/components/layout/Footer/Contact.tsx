@@ -38,11 +38,7 @@ const ContactCard = ({
       <Typography variant="body2" mb={2}>
         {text}
       </Typography>
-      <Button
-        {...buttonAttributes}
-        sx={{ justifySelf: "flex-start" }}
-        href={buttonHref}
-      >
+      <Button {...buttonAttributes} sx={{ justifySelf: "flex-start" }} href={buttonHref}>
         {buttonLabel}
       </Button>
     </Box>
@@ -129,11 +125,7 @@ const FallbackContact = ({ orgEmail }: { orgEmail: string }) => {
   )
 }
 
-export default function Contact({
-  isLocalized = true,
-}: {
-  isLocalized?: boolean
-}) {
+export default function Contact({ isLocalized = true }: { isLocalized?: boolean }) {
   const { orgEmail } = useAppConfig()
 
   return (
