@@ -5,23 +5,21 @@ import { useEffect } from "react"
 import useAppConfig from "@/hooks/useAppConfig"
 import { localStorageKeys } from "@/utils/constants"
 
-const { storageVersionId: storageVersionIdKey } = localStorageKeys
-
 export default function StorageCheck() {
   const { storageVersionId } = useAppConfig()
 
   useEffect(() => {
-    const localStorageId = localStorage.getItem(storageVersionIdKey)
+    const clientStorageId = localStorage.getItem(localStorageKeys.storageVersionId)
 
-    if (localStorageId === storageVersionId) return
+    if (clientStorageId === storageVersionId) return
 
-    localStorage.setItem(storageVersionIdKey, storageVersionId)
+    localStorage.setItem(localStorageKeys.storageVersionId, storageVersionId)
 
     if (storageVersionId === "nuke") {
       localStorage.clear()
     } else {
       // targeted props for given version
-      localStorage.removeItem("view")
+      localStorage.removeItem(localStorageKeys.extensionBannerClosed)
     }
   }, [storageVersionId])
 

@@ -1,13 +1,13 @@
-import globals from "globals"
 import pluginJs from "@eslint/js"
-import tseslint from "typescript-eslint"
-import reactPlugin from "eslint-plugin-react"
-import reactHooks from "eslint-plugin-react-hooks"
+import nextPlugin from "@next/eslint-plugin-next"
+import importPlugin from "eslint-plugin-import"
 import jsxA11y from "eslint-plugin-jsx-a11y"
 import prettier from "eslint-plugin-prettier"
+import reactPlugin from "eslint-plugin-react"
+import reactHooks from "eslint-plugin-react-hooks"
 import simpleImportSort from "eslint-plugin-simple-import-sort"
-import importPlugin from "eslint-plugin-import"
-import nextPlugin from "@next/eslint-plugin-next"
+import globals from "globals"
+import tseslint from "typescript-eslint"
 
 const ignorePatterns = [
   ".next/",
@@ -58,7 +58,7 @@ export default [
       react: reactPlugin,
       "react-hooks": reactHooks,
       "jsx-a11y": jsxA11y,
-      prettier: prettier,
+      prettier,
       "simple-import-sort": simpleImportSort,
       import: importPlugin,
       "@next/next": nextPlugin,
@@ -95,12 +95,15 @@ export default [
           objectLiteralTypeAssertions: "never",
         },
       ],
-      "@typescript-eslint/no-unused-vars": ["error", {
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_|^[A-Z]",
-        "ignoreRestSiblings": true,
-        "args": "after-used"
-      }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_|^[A-Z]",
+          ignoreRestSiblings: true,
+          args: "after-used",
+        },
+      ],
 
       /**
        * REACT RULES
@@ -117,12 +120,11 @@ export default [
       "react/react-in-jsx-scope": "off", // Not needed in Next.js
       "react/prop-types": "off", // Not needed with TypeScript
 
-       /**
+      /**
        * NEXT.JS RULES
        */
-       ...nextPlugin.configs.recommended.rules,
-       ...nextPlugin.configs["core-web-vitals"].rules,
- 
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs["core-web-vitals"].rules,
 
       /**
        * ACCESSIBILITY RULES
@@ -141,7 +143,6 @@ export default [
        */
       "prettier/prettier": "error",
 
-     
       /**
        * IMPORT RULES
        */
@@ -178,10 +179,9 @@ export default [
       ],
       "simple-import-sort/exports": "error",
       "import/first": "error",
-      "import/newline-after-import": "error",
+      "import/newline-after-import": "off",
       "import/no-duplicates": "error",
       "import/no-anonymous-default-export": "off",
-
     },
   },
 
@@ -190,10 +190,7 @@ export default [
    */
   {
     // Allow console logs in server-side code
-    files: [
-      "**/app/next/api/**/*.ts", 
-      "**/lib/ai/server-side-utils.ts"
-    ],
+    files: ["**/app/next/api/**/*.ts", "**/lib/ai/server-side-utils.ts"],
     rules: {
       "no-console": "off",
     },

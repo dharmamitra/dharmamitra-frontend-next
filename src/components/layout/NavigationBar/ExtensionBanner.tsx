@@ -5,16 +5,14 @@ import { useTranslations } from "next-intl"
 import CloseIcon from "@mui/icons-material/Close"
 import { Box, IconButton, Link as MuiLink, Typography } from "@mui/material"
 
-import { chromeExtensionUrl, localStorageKeys } from "@/utils/constants"
+import { chromeExtensionUrl, firefoxExtensionUrl, localStorageKeys } from "@/utils/constants"
 
 export default function ExtensionBanner() {
   const t = useTranslations("generic")
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const bannerClosed = localStorage.getItem(
-      localStorageKeys.extensionBannerClosed,
-    )
+    const bannerClosed = localStorage.getItem(localStorageKeys.extensionBannerClosed)
     if (bannerClosed !== "true") {
       setIsVisible(true)
     }
@@ -52,6 +50,16 @@ export default function ExtensionBanner() {
           chromelink: (chunk) => (
             <MuiLink
               href={chromeExtensionUrl}
+              color="inherit"
+              underline="always"
+              sx={{ fontWeight: "bold", "&:hover": { opacity: 0.9 } }}
+            >
+              {chunk}
+            </MuiLink>
+          ),
+          firefoxlink: (chunk) => (
+            <MuiLink
+              href={firefoxExtensionUrl}
               color="inherit"
               underline="always"
               sx={{ fontWeight: "bold", "&:hover": { opacity: 0.9 } }}
