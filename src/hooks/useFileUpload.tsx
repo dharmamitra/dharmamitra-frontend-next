@@ -1,9 +1,6 @@
 import React from "react"
 
-import {
-  ACCEPTED_FILE_TYPES_STRING,
-  validateFile,
-} from "@/components/features/MitraOCR/utils"
+import { ACCEPTED_FILE_TYPES_STRING, validateFile } from "@/components/features/MitraOCR/utils"
 
 type FileUploadHookProps = {
   onFileSelect: (file: File) => void
@@ -52,9 +49,7 @@ export function useFileUpload({
 
       const file = e.dataTransfer.files[0]
 
-      if (
-        validateFile(file, { invalidTypeMessage, invalidSizeMessage }, maxSize)
-      ) {
+      if (validateFile(file, { invalidTypeMessage, invalidSizeMessage }, maxSize)) {
         onFileSelect(file)
       }
     },
@@ -65,9 +60,7 @@ export function useFileUpload({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0]
 
-      if (
-        validateFile(file, { invalidTypeMessage, invalidSizeMessage }, maxSize)
-      ) {
+      if (validateFile(file, { invalidTypeMessage, invalidSizeMessage }, maxSize)) {
         onFileSelect(file)
       }
       // Reset file input value to allow selecting the same file again

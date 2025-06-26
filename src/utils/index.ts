@@ -1,9 +1,6 @@
 import { inputEncodings } from "@/utils/api/global/params"
 import { InputEncoding } from "@/utils/api/global/types"
-import {
-  allTargetLanguages,
-  TargetLanguage,
-} from "@/utils/api/translation/params"
+import { allTargetLanguages, TargetLanguage } from "@/utils/api/translation/params"
 
 export { awaitedTryCatch, tryCatch } from "@/utils/try-catch"
 
@@ -31,9 +28,7 @@ type OptionI18nKeyPath =
   | `globalParams.encodings.${keyof Messages["globalParams"]["encodings"]}`
   | `translation.targetLanguages.${keyof Messages["translation"]["targetLanguages"]}`
 
-export const getOptionI18nKeyPath = (
-  option: InputEncoding | TargetLanguage | undefined,
-) => {
+export const getOptionI18nKeyPath = (option: InputEncoding | TargetLanguage | undefined) => {
   if (inputEncodings.includes(option as InputEncoding))
     return `globalParams.encodings.${option}` as OptionI18nKeyPath
   if (allTargetLanguages.includes(option as TargetLanguage))

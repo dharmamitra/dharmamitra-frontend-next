@@ -38,13 +38,7 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
     }
 
     if (error) {
-      return (
-        <ExceptionText
-          type="error"
-          message={error.message}
-          sx={{ border: 0, p: 0, m: 0 }}
-        />
-      )
+      return <ExceptionText type="error" message={error.message} sx={{ border: 0, p: 0, m: 0 }} />
     }
 
     return (

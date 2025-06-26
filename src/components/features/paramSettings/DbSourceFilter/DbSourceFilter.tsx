@@ -14,22 +14,14 @@ import SelectionHead from "./filterContent/SelectionHead"
 
 export const INPUT_WIDTH = 340
 
-const DbSourceFilter = ({
-  sourceLanguage,
-}: {
-  sourceLanguage: SourceLanguage
-}) => {
+const DbSourceFilter = ({ sourceLanguage }: { sourceLanguage: SourceLanguage }) => {
   const [includeCollectionsParam] = useIncludeCollectionsParam()
   const [includeCategoriesParam] = useIncludeCategoriesParam()
   const [includeFilesParam] = useIncludeFilesParam()
 
   const allSelectionIds = React.useMemo(
     () =>
-      [
-        includeCollectionsParam,
-        includeCategoriesParam,
-        includeFilesParam,
-      ].flatMap((value) => {
+      [includeCollectionsParam, includeCategoriesParam, includeFilesParam].flatMap((value) => {
         if (!value) return []
         return value
       }),

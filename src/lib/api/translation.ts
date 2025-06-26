@@ -231,13 +231,7 @@ export interface components {
      * TranslationModel
      * @enum {string}
      */
-    TranslationModel:
-      | ""
-      | "default"
-      | "FGS-RAG"
-      | "MITRA-BASE"
-      | "MITRA-PRO"
-      | "GEMINI-MARKUP-RAG"
+    TranslationModel: "" | "default" | "FGS-RAG" | "MITRA-BASE" | "MITRA-PRO" | "GEMINI-MARKUP-RAG"
     /** ValidationError */
     ValidationError: {
       /** Location */

@@ -3,10 +3,7 @@ import { setRequestLocale } from "next-intl/server"
 import ArrowBack from "@mui/icons-material/ArrowBack"
 import { Box, Button, Divider, Typography } from "@mui/material"
 
-import {
-  getNewsPost,
-  getStaticNewsPostsParams,
-} from "@/app/[locale]/(static-pages)/news/utils"
+import { getNewsPost, getStaticNewsPostsParams } from "@/app/[locale]/(static-pages)/news/utils"
 import { DefaultPageParams, NewsPostParams } from "@/app/types"
 import { PageContentFrame } from "@/components/layout"
 import LocalLink from "@/components/LocalLink"

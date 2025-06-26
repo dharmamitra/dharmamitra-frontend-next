@@ -65,8 +65,7 @@ const TranslatorInput = ({
       })
 
       if (
-        (response.type === "json" &&
-          response.extractedText.length > MAX_INPUT_CHARACTERS) ||
+        (response.type === "json" && response.extractedText.length > MAX_INPUT_CHARACTERS) ||
         response.type === "file"
       ) {
         throw {
@@ -269,12 +268,7 @@ const TranslatorInput = ({
               <UploadIcon size={1.6} />
             </Box>
             <Box>
-              <Typography
-                variant="h6"
-                component="p"
-                color="text.primary"
-                textAlign="left"
-              >
+              <Typography variant="h6" component="p" color="text.primary" textAlign="left">
                 {genericT("dragAndDrop")}
               </Typography>
               <Typography variant="body2" color="text.secondary">

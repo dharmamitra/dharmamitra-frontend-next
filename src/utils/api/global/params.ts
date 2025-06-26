@@ -1,30 +1,20 @@
 import { SearchApiTypes } from "@/utils/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import {
-  APIInputEncoding,
-  GlobalParamNames,
-  InputEncoding,
-  View,
-} from "./types"
+import { APIInputEncoding, GlobalParamNames, InputEncoding, View } from "./types"
 
-export const inputEncodings: InputEncoding[] =
-  exhaustiveStringTuple<APIInputEncoding>()(
-    "auto",
-    "dev",
-    "hk",
-    "iast",
-    "tibetan",
-    "wylie",
-  )
+export const inputEncodings: InputEncoding[] = exhaustiveStringTuple<APIInputEncoding>()(
+  "auto",
+  "dev",
+  "hk",
+  "iast",
+  "tibetan",
+  "wylie",
+)
 export const defaultInputEncoding: InputEncoding = "auto"
 
 // Ordered list of views. Corresponds to feature tab order (& ViewIndex)
-export const views: View[] = exhaustiveStringTuple<View>()(
-  "search",
-  "translation",
-  "ocr",
-)
+export const views: View[] = exhaustiveStringTuple<View>()("search", "translation", "ocr")
 export const defaultView: View = "search"
 
 // "gpt-3.5-turbo" can't be used as an i18n key (decimal point forbidden)

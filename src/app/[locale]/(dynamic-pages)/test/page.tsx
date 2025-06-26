@@ -104,11 +104,7 @@ export default function Page() {
             <code>/api-search/v1/</code>
 
             <div style={{ marginTop: "1rem" }}>
-              <Button
-                type="button"
-                variant="contained"
-                onClick={handleTestSubmit}
-              >
+              <Button type="button" variant="contained" onClick={handleTestSubmit}>
                 Translate
               </Button>
             </div>
@@ -116,19 +112,14 @@ export default function Page() {
             <Box pt={2} maxWidth="1000px" minHeight="4rem">
               <div>
                 {statusTest === "submitted" && <LoadingDots />}
-                {errorTest && (
-                  <ExceptionText type="error" message={errorTest.message} />
-                )}
+                {errorTest && <ExceptionText type="error" message={errorTest.message} />}
               </div>
 
               {messagesTest.map((message) => (
                 <React.Fragment key={message.id}>
                   {message.role === "assistant" ? (
                     <div>
-                      <MemoizedMarkdown
-                        id={message.id}
-                        content={message.content}
-                      />
+                      <MemoizedMarkdown id={message.id} content={message.content} />
                     </div>
                   ) : null}
                 </React.Fragment>
@@ -141,11 +132,7 @@ export default function Page() {
             <code>/api-search/chat-translate/v1/</code>
 
             <div style={{ marginTop: "1rem" }}>
-              <Button
-                type="button"
-                variant="contained"
-                onClick={handleMitraSubmit}
-              >
+              <Button type="button" variant="contained" onClick={handleMitraSubmit}>
                 Translate
               </Button>
             </div>
@@ -153,19 +140,14 @@ export default function Page() {
             <Box pt={2} maxWidth="1000px" minHeight="4rem">
               <div>
                 {statusMitra === "submitted" && <LoadingDots />}
-                {errorMitra && (
-                  <ExceptionText type="error" message={errorMitra.message} />
-                )}
+                {errorMitra && <ExceptionText type="error" message={errorMitra.message} />}
               </div>
 
               {messagesMitra.map((message) => (
                 <React.Fragment key={message.id}>
                   {message.role === "assistant" ? (
                     <div>
-                      <MemoizedMarkdown
-                        id={message.id}
-                        content={message.content}
-                      />
+                      <MemoizedMarkdown id={message.id} content={message.content} />
                     </div>
                   ) : null}
                 </React.Fragment>

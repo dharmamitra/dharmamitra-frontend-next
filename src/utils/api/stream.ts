@@ -44,21 +44,16 @@ export const getParagraphsFromString = (string: string) => {
 export const parseStream = (stream: string | undefined) => {
   if (!stream) return initialParsedStream
 
-  const checkedStream = Object.entries(exceptionChecks).reduce<ParsedStream>(
-    (acc, [, pattern]) => {
-      const exceptionCheck = stream.match(pattern)
-      const [, streamWihException, exception] = exceptionCheck ?? ["", "", ""]
+  const checkedStream = Object.entries(exceptionChecks).reduce<ParsedStream>((acc, [, pattern]) => {
+    const exceptionCheck = stream.match(pattern)
+    const [, streamWihException, exception] = exceptionCheck ?? ["", "", ""]
 
-      return {
-        ...acc,
-        content: streamWihException || acc.content || stream,
-        exceptionI18nKey: getValidI18nExceptionKey(
-          exception || acc.exceptionI18nKey,
-        ),
-      }
-    },
-    initialParsedStream,
-  )
+    return {
+      ...acc,
+      content: streamWihException || acc.content || stream,
+      exceptionI18nKey: getValidI18nExceptionKey(exception || acc.exceptionI18nKey),
+    }
+  }, initialParsedStream)
 
   return {
     ...checkedStream,

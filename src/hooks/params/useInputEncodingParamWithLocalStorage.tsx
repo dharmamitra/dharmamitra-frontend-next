@@ -9,14 +9,9 @@ const {
 } = globalParamsNames
 
 export function useInputEncodingParamWithLocalStorage() {
-  const [inputEncodingParam, setInputEncodingParam] = useQueryState(
-    input_encoding,
-    {
-      ...parseAsStringLiteral(inputEncodings).withDefault(
-        getValidInputEncoding(undefined),
-      ),
-    },
-  )
+  const [inputEncodingParam, setInputEncodingParam] = useQueryState(input_encoding, {
+    ...parseAsStringLiteral(inputEncodings).withDefault(getValidInputEncoding(undefined)),
+  })
 
   React.useEffect(() => {
     // Initialize

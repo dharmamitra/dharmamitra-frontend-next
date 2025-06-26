@@ -49,9 +49,7 @@ const getTextWithLinks = (node: Node): string => {
         return `${textContent} (${href})`
       }
       const isBlockElement = blockElements.includes(elementNode.tagName)
-      const childText = Array.from(elementNode.childNodes)
-        .map(getTextWithLinks)
-        .join("")
+      const childText = Array.from(elementNode.childNodes).map(getTextWithLinks).join("")
       return isBlockElement ? `${childText}\n` : childText
     }
     default:
@@ -116,9 +114,7 @@ export default function SaveToFileButton({
             onClick={saveContent}
             disabled={!isContent}
           >
-            {icon || (
-              <SaveOutlinedIcon color={color} fontSize={fontSize} sx={sx} />
-            )}
+            {icon || <SaveOutlinedIcon color={color} fontSize={fontSize} sx={sx} />}
           </IconButton>
         </span>
       </Tooltip>

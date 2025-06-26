@@ -50,14 +50,7 @@ type MDXImageProps = Omit<ImageProps, "src"> & {
   style?: React.CSSProperties
 }
 
-const MDXImage = ({
-  src,
-  alt,
-  maxWidth,
-  maxHeight,
-  style,
-  ...props
-}: MDXImageProps) => {
+const MDXImage = ({ src, alt, maxWidth, maxHeight, style, ...props }: MDXImageProps) => {
   const { basePath } = appConfig
   const assetPath = `${basePath}/public/assets/news/${src}`
   const normalizedSrc = `${basePath}/assets/news/${src}`

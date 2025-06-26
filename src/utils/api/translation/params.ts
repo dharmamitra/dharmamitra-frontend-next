@@ -1,7 +1,4 @@
-import {
-  defaultInputEncoding,
-  globalParamsNames,
-} from "@/utils/api/global/params"
+import { defaultInputEncoding, globalParamsNames } from "@/utils/api/global/params"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
 import { Schema, TranslationParamNames } from "./types"
@@ -35,31 +32,29 @@ export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
 export type StableTargetLanguage = Schema["TargetLanguage"] &
   keyof Messages["translation"]["targetLanguages"]
 
-export const stableTargetLanguages: StableTargetLanguage[] =
-  exhaustiveStringTuple<Schema["TargetLanguage"]>()(
-    "english",
-    "english-explained",
-    "tibetan",
-    "sanskrit",
-    "sanskrit-dev",
-    "buddhist-chinese",
-    "modern-chinese",
-    "russian",
-    "korean",
-    "japanese",
-    "german",
-    "french",
-    "italian",
-    "hindi",
-    "spanish",
-  )
+export const stableTargetLanguages: StableTargetLanguage[] = exhaustiveStringTuple<
+  Schema["TargetLanguage"]
+>()(
+  "english",
+  "english-explained",
+  "tibetan",
+  "sanskrit",
+  "sanskrit-dev",
+  "buddhist-chinese",
+  "modern-chinese",
+  "russian",
+  "korean",
+  "japanese",
+  "german",
+  "french",
+  "italian",
+  "hindi",
+  "spanish",
+)
 
 export const defaultTargetLanguage: TargetLanguage = "english"
 
-export const defaultTranslationModel: Extract<
-  Schema["TranslationModel"],
-  "default"
-> = "default"
+export const defaultTranslationModel: Extract<Schema["TranslationModel"], "default"> = "default"
 
 export const translationParamsNames: TranslationParamNames = {
   // common across all apis (translation & search)

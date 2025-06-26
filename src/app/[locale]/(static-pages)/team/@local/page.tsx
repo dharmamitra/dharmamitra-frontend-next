@@ -11,9 +11,7 @@ export function generateStaticParams() {
   return getPageLocaleRoutes()
 }
 
-export async function generateMetadata({
-  params,
-}: DefaultPageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
 
   const t = await getTranslations({ locale, namespace: "Team.dharmamitra" })
@@ -23,9 +21,7 @@ export async function generateMetadata({
   }
 }
 
-export default function ExampleParallelRouteTeamPage({
-  params,
-}: DefaultPageParams) {
+export default function ExampleParallelRouteTeamPage({ params }: DefaultPageParams) {
   const { locale } = use(params)
 
   setRequestLocale(locale)
@@ -43,9 +39,8 @@ export default function ExampleParallelRouteTeamPage({
       </hgroup>
 
       <Typography>
-        Our team is passionate about developing and sharing tools for
-        developling in and sharing the Dhamma, for the benefit of any and all
-        beings.
+        Our team is passionate about developing and sharing tools for developling in and sharing the
+        Dhamma, for the benefit of any and all beings.
       </Typography>
     </PageContentFrame>
   )

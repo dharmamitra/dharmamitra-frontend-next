@@ -6,19 +6,14 @@ import Tooltip from "@mui/material/Tooltip"
 import { SearchApiTypes } from "@/api"
 
 import { tipMsgs } from "../ParallelQueryResults/ParallelCopyResults"
-import ResultsListCopyIcon, {
-  type ResultsListCopyType,
-} from "../ResultsListCopyIcon"
+import ResultsListCopyIcon, { type ResultsListCopyType } from "../ResultsListCopyIcon"
 
 type PrimaryCopyResultsProps = {
   results: SearchApiTypes.Response<"/primary/">["results"]
   type: ResultsListCopyType
 }
 
-export default function PrimaryCopyResults({
-  results,
-  type,
-}: PrimaryCopyResultsProps) {
+export default function PrimaryCopyResults({ results, type }: PrimaryCopyResultsProps) {
   const t = useTranslations("generic")
   const [toolTip, setToolTip] = React.useState<string>(t(tipMsgs[type]))
 

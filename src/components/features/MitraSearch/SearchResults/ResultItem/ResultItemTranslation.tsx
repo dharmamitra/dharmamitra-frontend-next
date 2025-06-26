@@ -9,9 +9,7 @@ type ResultItemTranslationProps = {
   translation?: string
 }
 
-export default function ResultItemTranslation({
-  translation,
-}: ResultItemTranslationProps) {
+export default function ResultItemTranslation({ translation }: ResultItemTranslationProps) {
   if (!translation) return null
 
   return (

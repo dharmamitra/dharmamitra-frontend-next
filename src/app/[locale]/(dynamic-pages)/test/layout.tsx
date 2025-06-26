@@ -4,10 +4,7 @@ import { setRequestLocale } from "next-intl/server"
 import { DefaultPageProps } from "@/app/types"
 import appConfig from "@/config"
 
-export default async function NewsLayout({
-  children,
-  params,
-}: DefaultPageProps) {
+export default async function NewsLayout({ children, params }: DefaultPageProps) {
   const { subPages } = appConfig
   const variantHasRoute = subPages.includes("test")
 

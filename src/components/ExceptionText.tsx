@@ -9,11 +9,7 @@ type BaseProps = {
   type?: "error" | "warning"
 }
 
-function Message({
-  message,
-  sx,
-  type = "warning",
-}: BaseProps & { message: string }) {
+function Message({ message, sx, type = "warning" }: BaseProps & { message: string }) {
   return (
     <Typography
       variant="body2"
@@ -42,10 +38,7 @@ type I18nKeyProps = {
   exceptionI18nKey?: ExceptionMessageKey
 }
 
-type ExceptionTextProps = BaseProps & { isRendered?: boolean } & (
-    | MessageProps
-    | I18nKeyProps
-  )
+type ExceptionTextProps = BaseProps & { isRendered?: boolean } & (MessageProps | I18nKeyProps)
 
 export default function ExceptionText({
   isRendered = true,

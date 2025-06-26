@@ -7,17 +7,12 @@ import apiClients from "@/utils/api/client"
  */
 export type TimedError = Error & { queryDuration: number; response: Response }
 
-export const getTaggingData = async (
-  body: TranslationApiTypes.RequestBody<"/tagging/">,
-) => {
+export const getTaggingData = async (body: TranslationApiTypes.RequestBody<"/tagging/">) => {
   const queryStart = performance.now()
 
-  const { data, error, response } = await apiClients.Translation.POST(
-    `/tagging/`,
-    {
-      body,
-    },
-  )
+  const { data, error, response } = await apiClients.Translation.POST(`/tagging/`, {
+    body,
+  })
 
   const queryDuration = performance.now() - queryStart
 

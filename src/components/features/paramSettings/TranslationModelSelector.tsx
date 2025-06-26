@@ -9,11 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 import { useTranslationModelParam } from "@/hooks/params"
 import { modelTypes } from "@/utils/api/global/params"
 
-export default function TranslationModelSelectorRenderer({
-  isRendered,
-}: {
-  isRendered: boolean
-}) {
+export default function TranslationModelSelectorRenderer({ isRendered }: { isRendered: boolean }) {
   if (!isRendered) return null
 
   return <TranslationModelSelector />
@@ -22,8 +18,7 @@ export default function TranslationModelSelectorRenderer({
 function TranslationModelSelector() {
   const t = useTranslations("globalParams.modelType")
 
-  const [translationModelParam, setTranslationModelParam] =
-    useTranslationModelParam()
+  const [translationModelParam, setTranslationModelParam] = useTranslationModelParam()
 
   const isGrid = useMediaQuery("(max-width: 810px)")
 

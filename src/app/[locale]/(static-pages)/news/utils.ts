@@ -102,9 +102,7 @@ export async function getNewsPosts(locale: string) {
     }
 
     return {
-      posts: posts.sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-      ),
+      posts: posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
     }
   } catch (error) {
     if (error instanceof Error) {
@@ -128,13 +126,7 @@ export async function getStaticNewsPostsParams(locale: string) {
   return posts.filter((post) => post.content)
 }
 
-export async function getNewsPost({
-  slug,
-  locale,
-}: {
-  slug: string
-  locale: string
-}) {
+export async function getNewsPost({ slug, locale }: { slug: string; locale: string }) {
   try {
     const post = await getPostFileContent({
       filePath: path.join(NEWS_PATH, slug, `${locale}.mdx`),

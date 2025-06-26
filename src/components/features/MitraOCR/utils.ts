@@ -1,9 +1,4 @@
-export const ALLOWED_FILE_TYPES = [
-  "application/pdf",
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-]
+export const ALLOWED_FILE_TYPES = ["application/pdf", "image/jpeg", "image/png", "image/webp"]
 
 export const MAX_FILE_SIZE_MB = 150
 
@@ -19,9 +14,7 @@ export const OUTPUT_FILE_NAME_SUFFIX = "_mitra-ocr.txt"
 
 export const makeOCROutputFileName = (fileName?: string) =>
   fileName
-    ? fileName
-        .replace("filename=", "")
-        .replace(/\.[^/.]+$/, OUTPUT_FILE_NAME_SUFFIX)
+    ? fileName.replace("filename=", "").replace(/\.[^/.]+$/, OUTPUT_FILE_NAME_SUFFIX)
     : "document" + OUTPUT_FILE_NAME_SUFFIX
 
 export const validateFile = (

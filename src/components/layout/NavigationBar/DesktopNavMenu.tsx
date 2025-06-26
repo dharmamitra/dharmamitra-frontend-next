@@ -13,11 +13,7 @@ const LocaleSelector = dynamic(() => import("./LocaleSelector"), {
   loading: () => <LanguageIcon color="action" />,
 })
 
-export default function DesktopNavMenu({
-  desktopBreakpoint,
-}: {
-  desktopBreakpoint: Breakpoint
-}) {
+export default function DesktopNavMenu({ desktopBreakpoint }: { desktopBreakpoint: Breakpoint }) {
   return (
     <Box
       sx={{

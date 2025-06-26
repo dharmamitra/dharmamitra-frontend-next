@@ -15,10 +15,7 @@ type CopyButtonsProps = {
   sentence: string
 }
 
-export default function CopyButtons({
-  grammaticalAnalysis,
-  sentence,
-}: CopyButtonsProps) {
+export default function CopyButtons({ grammaticalAnalysis, sentence }: CopyButtonsProps) {
   const [copyUnisandhiSuccess, setCopyUnisandhiSuccess] = React.useState(false)
   const [copyAllSuccess, setCopyAllSuccess] = React.useState(false)
   const [copyError, setCopyError] = React.useState(false)
@@ -59,9 +56,7 @@ export default function CopyButtons({
             `\n#${index + 1}: ${unsandhied}`,
             lemma ? `${t("translation.tagging.lemma")}: ${lemma}` : "",
             tag ? `${t("translation.tagging.tag")}: ${tag}` : "",
-            meaningsText
-              ? `${t("translation.tagging.meanings")}:\n- ${meaningsText}`
-              : "",
+            meaningsText ? `${t("translation.tagging.meanings")}:\n- ${meaningsText}` : "",
           ]
             .filter(Boolean)
             .join("\n")
@@ -100,18 +95,13 @@ export default function CopyButtons({
       }}
     >
       <Tooltip
-        title={getTooltipTitle(
-          copyUnisandhiSuccess,
-          t("translation.tagging.copy.unsandhied"),
-        )}
+        title={getTooltipTitle(copyUnisandhiSuccess, t("translation.tagging.copy.unsandhied"))}
       >
         <IconButton
           onClick={handleCopyUnsandhied}
           size="small"
           sx={{ mr: 1 }}
-          color={
-            copyError ? "error" : copyUnisandhiSuccess ? "success" : "default"
-          }
+          color={copyError ? "error" : copyUnisandhiSuccess ? "success" : "default"}
         >
           <NoteAltOutlinedIcon fontSize="small" />
         </IconButton>

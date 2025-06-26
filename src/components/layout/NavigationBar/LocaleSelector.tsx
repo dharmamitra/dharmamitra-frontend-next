@@ -3,13 +3,7 @@
 import React from "react"
 import { useLocale, useTranslations } from "next-intl"
 import LanguageIcon from "@mui/icons-material/Language"
-import {
-  FormControl,
-  IconButton,
-  Menu,
-  MenuItem,
-  Typography,
-} from "@mui/material"
+import { FormControl, IconButton, Menu, MenuItem, Typography } from "@mui/material"
 
 import { Link, routing, usePathname } from "@/i18n/routing"
 
@@ -44,13 +38,7 @@ export default function LocaleSelector() {
       >
         <LanguageIcon color="action" />
       </IconButton>
-      <Menu
-        id="locale-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={open}
-        onClose={handleClose}
-      >
+      <Menu id="locale-menu" anchorEl={anchorEl} keepMounted open={open} onClose={handleClose}>
         {routing.locales.map((locale) => (
           <Link
             key={locale + "-locale-switcher-link"}
@@ -66,11 +54,7 @@ export default function LocaleSelector() {
               value={locale}
               selected={locale === activeLocale}
             >
-              <Typography
-                variant="body2"
-                sx={{ textTransform: "uppercase" }}
-                lineHeight={1.5}
-              >
+              <Typography variant="body2" sx={{ textTransform: "uppercase" }} lineHeight={1.5}>
                 {t("locale", {
                   locale: locale.replace(/-/g, "_"),
                 })}

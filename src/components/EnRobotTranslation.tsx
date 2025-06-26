@@ -9,9 +9,7 @@ type EnRobotTranslationProps = {
   translation: string
 }
 
-export default function EnRobotTranslation({
-  translation,
-}: EnRobotTranslationProps) {
+export default function EnRobotTranslation({ translation }: EnRobotTranslationProps) {
   const t = useTranslations("generic")
 
   return (

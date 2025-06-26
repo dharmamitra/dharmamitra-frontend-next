@@ -16,10 +16,7 @@ import {
   useSearchTypeParam,
   useSourceFiltersValue,
 } from "@/hooks/params"
-import {
-  allSearchDefaultParams as allDefaults,
-  searchParamsNames,
-} from "@/utils/api/search/params"
+import { allSearchDefaultParams as allDefaults, searchParamsNames } from "@/utils/api/search/params"
 import { AllSearchParams, LocalParams } from "@/utils/api/search/types"
 
 const {
@@ -34,11 +31,7 @@ type GetIsCustomValueAsBinaryProps = {
   value: unknown
 }
 
-const getIsCustomValueAsBinary = ({
-  defaults,
-  key,
-  value,
-}: GetIsCustomValueAsBinaryProps) => {
+const getIsCustomValueAsBinary = ({ defaults, key, value }: GetIsCustomValueAsBinaryProps) => {
   if (key === search_target && value !== allDefaults.search_target) {
     return 1
   }
@@ -76,20 +69,15 @@ const getParamCount = ({ params }: GetParamCountProps) => {
 export default function ResetOptionsButton() {
   const t = useTranslations("search")
 
-  const [input_encoding, setInputEncoding] =
-    useInputEncodingParamWithLocalStorage()
+  const [input_encoding, setInputEncoding] = useInputEncodingParamWithLocalStorage()
   const [search_type, setSearchType] = useSearchTypeParam()
   const [search_target, setSearchTarget] = useSearchTargetParam()
-  const [filter_source_language, setFilterSourceLanguage] =
-    useFilterSourceLanguageParam()
-  const [filter_target_language, setFilterTargetLanguage] =
-    useFilterTargetLanguageParam()
+  const [filter_source_language, setFilterSourceLanguage] = useFilterSourceLanguageParam()
+  const [filter_target_language, setFilterTargetLanguage] = useFilterTargetLanguageParam()
   const source_filters = useSourceFiltersValue()
   const resetSourceFilters = useResetSourceFilters()
 
-  const [customOptionsCount, setCustomOptionsCount] = React.useState<
-    number | undefined
-  >()
+  const [customOptionsCount, setCustomOptionsCount] = React.useState<number | undefined>()
 
   React.useEffect(() => {
     setCustomOptionsCount(() => {

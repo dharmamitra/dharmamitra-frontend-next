@@ -24,9 +24,7 @@ export default function SearchExamples({ isShown }: Props) {
   const examples = React.useMemo(() => {
     const uniqueExamples = new Set<string>()
     while (uniqueExamples.size < 9) {
-      const randomIndex = Math.floor(
-        Math.random() * exampleSearchStrings[locale].length,
-      )
+      const randomIndex = Math.floor(Math.random() * exampleSearchStrings[locale].length)
       uniqueExamples.add(exampleSearchStrings[locale][randomIndex] ?? "")
     }
     return Array.from(uniqueExamples)
