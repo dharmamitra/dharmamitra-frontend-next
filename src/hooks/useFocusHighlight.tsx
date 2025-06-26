@@ -43,20 +43,12 @@ export default function useFocusHighlight({
         return
       }
 
-      targetElement.addEventListener("focusin", () =>
-        handleFocusIn(styledElement),
-      )
-      targetElement.addEventListener("focusout", () =>
-        handleFocusReset(styledElement),
-      )
+      targetElement.addEventListener("focusin", () => handleFocusIn(styledElement))
+      targetElement.addEventListener("focusout", () => handleFocusReset(styledElement))
 
       return () => {
-        targetElement.removeEventListener("focusin", () =>
-          handleFocusIn(styledElement),
-        )
-        targetElement.removeEventListener("focusout", () =>
-          handleFocusReset(styledElement),
-        )
+        targetElement.removeEventListener("focusin", () => handleFocusIn(styledElement))
+        targetElement.removeEventListener("focusout", () => handleFocusReset(styledElement))
       }
     },
     [handleFocusIn, handleFocusReset],

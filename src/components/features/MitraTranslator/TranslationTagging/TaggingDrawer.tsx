@@ -49,10 +49,7 @@ export default function TaggingDrawer({
         }}
       >
         {/* asbsolute wrapper ensures resize handle grows with accordion expantion */}
-        <Box
-          id="tagging-drawer-content"
-          sx={{ position: "absolute", top: 0, left: 0, right: 0 }}
-        >
+        <Box id="tagging-drawer-content" sx={{ position: "absolute", top: 0, left: 0, right: 0 }}>
           <ResizeHandle setDrawerWidth={setDrawerWidth} />
 
           <Stack

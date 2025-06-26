@@ -90,21 +90,11 @@ const DbSourceFilterInput = ({
 
   const handleClearSourcesById = React.useCallback(
     async (id: string) => {
-      setIncludeCollectionsParam(
-        (prev) => prev?.filter((item) => item !== id) ?? null,
-      )
-      setIncludeCategoriesParam(
-        (prev) => prev?.filter((item) => item !== id) ?? null,
-      )
-      setIncludeFilesParam(
-        (prev) => prev?.filter((item) => item !== id) ?? null,
-      )
+      setIncludeCollectionsParam((prev) => prev?.filter((item) => item !== id) ?? null)
+      setIncludeCategoriesParam((prev) => prev?.filter((item) => item !== id) ?? null)
+      setIncludeFilesParam((prev) => prev?.filter((item) => item !== id) ?? null)
     },
-    [
-      setIncludeCollectionsParam,
-      setIncludeCategoriesParam,
-      setIncludeFilesParam,
-    ],
+    [setIncludeCollectionsParam, setIncludeCategoriesParam, setIncludeFilesParam],
   )
 
   return (
@@ -116,19 +106,11 @@ const DbSourceFilterInput = ({
           maxRows={MAX_TRUNCATED_ROWS}
         >
           {selectionIds.map((id, i) => (
-            <Chip
-              key={id + i}
-              label={id}
-              onDelete={() => handleClearSourcesById(id)}
-            />
+            <Chip key={id + i} label={id} onDelete={() => handleClearSourcesById(id)} />
           ))}
         </SelectionChipsBox>
 
-        <IconButton
-          aria-describedby={popperId}
-          type="button"
-          onClick={handleClick}
-        >
+        <IconButton aria-describedby={popperId} type="button" onClick={handleClick}>
           <ArrowDropDownIcon
             sx={{
               transform: open ? "rotate(180deg)" : undefined,

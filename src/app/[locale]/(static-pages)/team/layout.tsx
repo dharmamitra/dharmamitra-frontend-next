@@ -8,11 +8,7 @@ type LayoutProps = {
   local: React.ReactNode
 } & DefaultPageProps
 
-export default async function TeamVariantLayout({
-  children,
-  params,
-  ...variants
-}: LayoutProps) {
+export default async function TeamVariantLayout({ children, params, ...variants }: LayoutProps) {
   const { subPages, variant } = appConfig
   const variantHasRoute = subPages.includes("team")
 
@@ -23,8 +19,7 @@ export default async function TeamVariantLayout({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const content =
-    variant in variants ? variants[variant as keyof typeof variants] : children
+  const content = variant in variants ? variants[variant as keyof typeof variants] : children
 
   return content ?? notFound()
 }

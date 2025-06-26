@@ -4,10 +4,7 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle"
 import IconButton from "@mui/material/IconButton"
 
 import { useSearchTargetParam } from "@/hooks/params"
-import {
-  useParallelSearchQuery,
-  usePrimarySearchQuery,
-} from "@/hooks/search/queries"
+import { useParallelSearchQuery, usePrimarySearchQuery } from "@/hooks/search/queries"
 
 import TriggerTooltip from "./TriggerTooltip"
 

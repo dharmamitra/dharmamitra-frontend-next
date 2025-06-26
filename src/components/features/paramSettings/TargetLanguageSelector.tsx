@@ -22,10 +22,8 @@ import RadioOption from "../../RadioOption"
 export default function TargetLanguageSelector() {
   const t = useTranslations()
 
-  const { targetLanguages: servedTargetLanguages } =
-    useAppConfig().customParamOptions
-  const [targetLanguageParam, setTargetLanguageParam] =
-    useTargetLangParamWithLocalStorage()
+  const { targetLanguages: servedTargetLanguages } = useAppConfig().customParamOptions
+  const [targetLanguageParam, setTargetLanguageParam] = useTargetLangParamWithLocalStorage()
 
   const primaryOptionsSelectorId = "primary-target-language-options"
   useFocusHighlight({
@@ -101,11 +99,7 @@ export default function TargetLanguageSelector() {
             id={secondaryOptionsSelectorId}
             data-testid="secondary-target-language-options"
             aria-label={t("translation.secondaryTargetLanguagesAriaLabel")}
-            value={
-              isPrimaryValueSelected || !targetLanguageParam
-                ? ""
-                : targetLanguageParam
-            }
+            value={isPrimaryValueSelected || !targetLanguageParam ? "" : targetLanguageParam}
             onChange={(event) => setTargetLanguageParam(event.target.value)}
             inputProps={{
               "aria-label": t("translation.secondaryTargetLanguagesAriaLabel"),

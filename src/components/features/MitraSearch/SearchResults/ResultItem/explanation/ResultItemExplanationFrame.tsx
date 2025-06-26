@@ -18,12 +18,7 @@ export default function ResultItemExplanationFrame({
   const t = useTranslations("search")
 
   return (
-    <Box
-      component="details"
-      mb={2}
-      sx={sx}
-      onToggle={() => setIsExpanded((prev) => !prev)}
-    >
+    <Box component="details" mb={2} sx={sx} onToggle={() => setIsExpanded((prev) => !prev)}>
       <Box
         component="summary"
         sx={{

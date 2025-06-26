@@ -12,8 +12,7 @@ import ParralelSearchResultItems from "./ParralelSearchResultItems"
 
 export default function ParallelQueryResults() {
   const [searchInput] = useSearchInputParam()
-  const { data, isLoading, isError, error } =
-    useParallelSearchQuery(searchInput)
+  const { data, isLoading, isError, error } = useParallelSearchQuery(searchInput)
 
   if (isLoading || isError || !data || !data.length) {
     return (

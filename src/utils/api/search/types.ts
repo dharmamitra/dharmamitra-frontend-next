@@ -16,13 +16,9 @@ export type SourceLanguage = Exclude<Schema["FilterLanguage"], "all" | "aa">
  * REQUEST & RESPONSE GENERICS
  */
 
-export type RequestBody<Endpoint extends keyof paths> = APIRequestBody<
-  paths[Endpoint]["post"]
->
+export type RequestBody<Endpoint extends keyof paths> = APIRequestBody<paths[Endpoint]["post"]>
 
-export type Response<Endpoint extends keyof paths> = APIResponse<
-  paths[Endpoint]["post"]
->
+export type Response<Endpoint extends keyof paths> = APIResponse<paths[Endpoint]["post"]>
 
 /**
  *  LOCAL PARAMS
@@ -44,8 +40,7 @@ export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
  *  REQUEST PROPS
  */
 
-export type AllSearchApiParams = RequestBody<"/primary/"> &
-  RequestBody<"/parallel/">
+export type AllSearchApiParams = RequestBody<"/primary/"> & RequestBody<"/parallel/">
 // RequestBody<"/secondary/">
 
 type AssertAllKeys<T> = {
@@ -67,5 +62,4 @@ export type LocalParams = {
 
 export type AllSearchParams = AllSearchApiParams & LocalParams
 
-export type AllSearchParamDefaults = Omit<AllSearchParams, "search_input"> &
-  LocalParams
+export type AllSearchParamDefaults = Omit<AllSearchParams, "search_input"> & LocalParams

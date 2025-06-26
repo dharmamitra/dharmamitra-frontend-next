@@ -15,22 +15,15 @@ export function createParallelSearchRequestBody(
   return { ...allSearchDefaultParams, ...params }
 }
 
-export function handleSearchKeyPress(
-  event: KeyboardEvent,
-  triggerFn: () => void,
-) {
+export function handleSearchKeyPress(event: KeyboardEvent, triggerFn: () => void) {
   const { key, ctrlKey, shiftKey } = event
 
   if (key === "Enter" && !ctrlKey && !shiftKey) {
     const input = document.getElementById(searchInputId)
 
-    if (!input || !(input instanceof HTMLTextAreaElement) || !input.value)
-      return
+    if (!input || !(input instanceof HTMLTextAreaElement) || !input.value) return
 
-    if (
-      input === document.activeElement ||
-      document.activeElement?.tagName === "BODY"
-    ) {
+    if (input === document.activeElement || document.activeElement?.tagName === "BODY") {
       triggerFn()
     }
   }

@@ -8,9 +8,7 @@ export function generateStaticParams() {
   return getPageLocaleRoutes()
 }
 
-export async function generateMetadata({
-  params,
-}: DefaultPageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
 
   const t = await getTranslations({ locale, namespace: "metadata" })
@@ -24,10 +22,7 @@ export async function generateMetadata({
   }
 }
 
-export default async function BaseStaticPageLayout({
-  params,
-  children,
-}: DefaultPageProps) {
+export default async function BaseStaticPageLayout({ params, children }: DefaultPageProps) {
   const { locale } = await params
 
   /** Enable static rendering

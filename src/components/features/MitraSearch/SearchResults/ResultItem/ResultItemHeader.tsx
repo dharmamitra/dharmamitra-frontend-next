@@ -98,9 +98,7 @@ export default function ResultItemHeader({
       >
         {hasMoreText ? (
           <Tooltip
-            title={
-              isTextExpanded ? t("search.collapseText") : t("search.expandText")
-            }
+            title={isTextExpanded ? t("search.collapseText") : t("search.expandText")}
             placement="top"
           >
             <IconButton

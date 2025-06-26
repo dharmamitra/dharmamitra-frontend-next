@@ -7,9 +7,5 @@ import { DbSourceTreeNode } from "@/components/features/paramSettings/DbSourceFi
  * SOURCE DATA TREE
  */
 
-export const activeDbSourceTreeAtom = atom<
-  TreeApi<DbSourceTreeNode> | null | undefined
->(null)
-export const activeDbSourceTreeBreadcrumbsAtom = atom<
-  NodeApi<DbSourceTreeNode>[]
->([])
+export const activeDbSourceTreeAtom = atom<TreeApi<DbSourceTreeNode> | null | undefined>(null)
+export const activeDbSourceTreeBreadcrumbsAtom = atom<NodeApi<DbSourceTreeNode>[]>([])

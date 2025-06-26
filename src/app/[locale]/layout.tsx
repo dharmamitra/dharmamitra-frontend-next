@@ -24,10 +24,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function LocaleLayout({
-  params,
-  children,
-}: DefaultPageProps) {
+export default async function LocaleLayout({ params, children }: DefaultPageProps) {
   const { locale } = await params
 
   if (!isValidLocaleRoute(locale)) {

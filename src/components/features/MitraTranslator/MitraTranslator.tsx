@@ -59,9 +59,7 @@ export default function MitraTranslator() {
 
   const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
-  const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(
-    new Set(),
-  )
+  const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(new Set())
   const isTriggerDisabled = useTranslationDisabled(
     input_sentence,
     chatPropsWithId.id,
@@ -72,12 +70,9 @@ export default function MitraTranslator() {
   const [isFileUploadPending, setIsFileUploadPending] = React.useState(false)
 
   // Pass the file upload state to the TranslatorInput component
-  const handleFileUploadStateChange = React.useCallback(
-    (isPending: boolean) => {
-      setIsFileUploadPending(isPending)
-    },
-    [],
-  )
+  const handleFileUploadStateChange = React.useCallback((isPending: boolean) => {
+    setIsFileUploadPending(isPending)
+  }, [])
 
   // Function to trigger file browse dialog
   const handleFileButtonClick = React.useCallback(() => {
@@ -130,12 +125,7 @@ export default function MitraTranslator() {
             onFileUploadStateChange={handleFileUploadStateChange}
           />
         }
-        outputBlock={
-          <TranslationOutput
-            ref={outputBoxRef}
-            chatPropsWithId={chatPropsWithId}
-          />
-        }
+        outputBlock={<TranslationOutput ref={outputBoxRef} chatPropsWithId={chatPropsWithId} />}
       />
     </>
   )

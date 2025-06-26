@@ -3,16 +3,10 @@ import { useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Box, Button, Typography } from "@mui/material"
 
-import {
-  DefaultPageParams,
-  Metadata,
-  UnsupportedNewsPostParams,
-} from "@/app/types"
+import { DefaultPageParams, Metadata, UnsupportedNewsPostParams } from "@/app/types"
 import { PageContentFrame } from "@/components/layout"
 
-export async function generateMetadata({
-  params,
-}: DefaultPageParams): Promise<Metadata> {
+export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "News" })
 
@@ -36,11 +30,7 @@ export default function NewsPage({ params }: UnsupportedNewsPostParams) {
         <Typography variant="body1" textAlign="center">
           {t("localeNotAvailable")}
         </Typography>
-        <Button
-          variant="contained"
-          color="secondary"
-          href={`/news/${unsupported}`}
-        >
+        <Button variant="contained" color="secondary" href={`/news/${unsupported}`}>
           {t("goToDefaultLocale")}
         </Button>
       </Box>

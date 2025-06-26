@@ -37,12 +37,7 @@ export default function TranslationTaggingOutput() {
         {t("translation.tagging.heading")}
       </Typography>
 
-      <Typography
-        variant="body2"
-        mt={1}
-        mb={4}
-        sx={{ color: "text.secondary" }}
-      >
+      <Typography variant="body2" mt={1} mb={4} sx={{ color: "text.secondary" }}>
         {t.rich("translation.tagging.credit", {
           link: (chunks) => (
             <Link

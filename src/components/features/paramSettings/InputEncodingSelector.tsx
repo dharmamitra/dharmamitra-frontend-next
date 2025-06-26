@@ -20,11 +20,7 @@ import { InputEncoding } from "@/utils/api/global/types"
 
 import RadioOption from "../../RadioOption"
 
-export default function InputEncodingSelector({
-  isRendered = true,
-}: {
-  isRendered?: boolean
-}) {
+export default function InputEncodingSelector({ isRendered = true }: { isRendered?: boolean }) {
   if (!isRendered) return null
 
   return <Selector />
@@ -33,8 +29,7 @@ export default function InputEncodingSelector({
 function Selector() {
   const t = useTranslations()
 
-  const [inputEncoding, setInputEncoding] =
-    useInputEncodingParamWithLocalStorage()
+  const [inputEncoding, setInputEncoding] = useInputEncodingParamWithLocalStorage()
 
   const primaryOptionsSelectorId = "primary-encoding-options"
   useFocusHighlight({
@@ -49,8 +44,7 @@ function Selector() {
     focusInset: "8px -4px 8px -8px",
   })
 
-  const [primaryEncodingOptions, otherEncodingOptions] =
-    useResponsiveOptions(inputEncodings)
+  const [primaryEncodingOptions, otherEncodingOptions] = useResponsiveOptions(inputEncodings)
 
   const isPrimaryValueSelected = React.useMemo<boolean>(
     () => primaryEncodingOptions.includes(inputEncoding as InputEncoding),
@@ -108,9 +102,7 @@ function Selector() {
           <Select
             id={secondaryOptionsSelectorId}
             data-testid="other-input-encoding-options"
-            value={
-              isPrimaryValueSelected || !inputEncoding ? "" : inputEncoding
-            }
+            value={isPrimaryValueSelected || !inputEncoding ? "" : inputEncoding}
             onChange={(e) => setInputEncoding(e.target.value)}
             inputProps={{
               "aria-label": t("globalParams.secondaryEncodingsAriaLabel"),

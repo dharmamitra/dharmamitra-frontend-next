@@ -15,12 +15,7 @@ import {
 
 import { ExpanderArrow } from "./ExpanderArrow"
 import { SourceTypeIcon } from "./SourceTypeIcon"
-import {
-  NodeBox,
-  NodeLabelsBox,
-  RowBox,
-  TextNameTypography,
-} from "./styledComponents"
+import { NodeBox, NodeLabelsBox, RowBox, TextNameTypography } from "./styledComponents"
 import styles from "./TextItemLink.module.css"
 
 const CHARACTER_WIDTH = 6.5
@@ -46,11 +41,7 @@ type DbSourceFilterTreeNodeProps = {
   selectionIds: string[]
 } & NodeRendererProps<DbSourceTreeNode>
 
-export function DbSourceFilterTreeNode({
-  node,
-  style,
-  selectionIds,
-}: DbSourceFilterTreeNodeProps) {
+export function DbSourceFilterTreeNode({ node, style, selectionIds }: DbSourceFilterTreeNodeProps) {
   const { name, id, dataType } = node.data
 
   const [, setIncludeCollectionsParam] = useIncludeCollectionsParam()
@@ -65,13 +56,7 @@ export function DbSourceFilterTreeNode({
   }
 
   const handleFilterParamUpdate = React.useCallback(
-    async ({
-      action,
-      item,
-    }: {
-      action: "add" | "remove"
-      item: DbSourceTreeNode
-    }) => {
+    async ({ action, item }: { action: "add" | "remove"; item: DbSourceTreeNode }) => {
       const { dataType, id } = item
 
       if (dataType === NodeType.COLLECTION) {
@@ -106,11 +91,7 @@ export function DbSourceFilterTreeNode({
         )
       }
     },
-    [
-      setIncludeCollectionsParam,
-      setIncludeCategoriesParam,
-      setIncludeFilesParam,
-    ],
+    [setIncludeCollectionsParam, setIncludeCategoriesParam, setIncludeFilesParam],
   )
 
   return (

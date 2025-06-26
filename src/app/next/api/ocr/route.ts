@@ -53,9 +53,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const formDataResult = await awaitedTryCatch(
-    async () => await request.formData(),
-  )
+  const formDataResult = await awaitedTryCatch(async () => await request.formData())
   if (formDataResult.error) {
     return NextResponse.json(formDataResult.error, { status: 400 })
   }
@@ -68,33 +66,20 @@ export async function POST(request: NextRequest) {
   }
 
   if (!(file instanceof File)) {
-    return NextResponse.json(
-      { error: "File is not a File object" },
-      { status: 400 },
-    )
+    return NextResponse.json({ error: "File is not a File object" }, { status: 400 })
   }
 
-  const transliterateDevanagariToIAST =
-    formData.get("transliterate_devanagari_to_iast") === "true"
-  const transliterateTibetanToWylie =
-    formData.get("transliterate_tibetan_to_wylie") === "true"
+  const transliterateDevanagariToIAST = formData.get("transliterate_devanagari_to_iast") === "true"
+  const transliterateTibetanToWylie = formData.get("transliterate_tibetan_to_wylie") === "true"
 
   const query = new URLSearchParams()
-  query.set(
-    "transliterate_devanagari_to_iast",
-    String(transliterateDevanagariToIAST),
-  )
-  query.set(
-    "transliterate_tibetan_to_wylie",
-    String(transliterateTibetanToWylie),
-  )
+  query.set("transliterate_devanagari_to_iast", String(transliterateDevanagariToIAST))
+  query.set("transliterate_tibetan_to_wylie", String(transliterateTibetanToWylie))
 
   const apiFormData = new FormData()
   apiFormData.append("file", file, file.name)
 
-  const fetchResult = await awaitedTryCatch(async () =>
-    fetchOCRData(apiFormData, query),
-  )
+  const fetchResult = await awaitedTryCatch(async () => fetchOCRData(apiFormData, query))
 
   if (fetchResult.error) {
     return NextResponse.json(fetchResult.error, { status: 500 })
@@ -102,9 +87,7 @@ export async function POST(request: NextRequest) {
 
   const response = fetchResult.result
 
-  const fileResponse = await awaitedTryCatch(async () =>
-    handleFileResponse(response),
-  )
+  const fileResponse = await awaitedTryCatch(async () => handleFileResponse(response))
 
   if (fileResponse.error) {
     return NextResponse.json(fileResponse.error, { status: 500 })
@@ -114,9 +97,7 @@ export async function POST(request: NextRequest) {
     return fileResponse.result
   }
 
-  const jsonResult = await awaitedTryCatch(async () =>
-    handleJsonResponse(response),
-  )
+  const jsonResult = await awaitedTryCatch(async () => handleJsonResponse(response))
 
   if (jsonResult.error) {
     return NextResponse.json(jsonResult.error, { status: 500 })

@@ -46,11 +46,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (
-      !fetchResponse.headers
-        .get("content-type")
-        ?.startsWith("text/event-stream")
-    ) {
+    if (!fetchResponse.headers.get("content-type")?.startsWith("text/event-stream")) {
       return new NextResponse(
         "¡Failed to open stream!\nContent type is not a valid event stream.",
         {

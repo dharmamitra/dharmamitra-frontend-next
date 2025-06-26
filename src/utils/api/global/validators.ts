@@ -1,9 +1,4 @@
-import {
-  defaultInputEncoding,
-  defaultView,
-  inputEncodings,
-  views,
-} from "./params"
+import { defaultInputEncoding, defaultView, inputEncodings, views } from "./params"
 import { InputEncoding, View } from "./types"
 
 export const isInputEncoding = (encoding: unknown): encoding is InputEncoding =>

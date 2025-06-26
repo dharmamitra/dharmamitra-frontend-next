@@ -14,10 +14,7 @@ export const NodeBox = styled(Box, {
     fontWeight: 500,
   }),
   "&:hover": {
-    backgroundColor: lighten(
-      theme.custom.palette?.background?.selected ?? "lightgray",
-      0.2,
-    ),
+    backgroundColor: lighten(theme.custom.palette?.background?.selected ?? "lightgray", 0.2),
     fontWeight: 500,
   },
 }))

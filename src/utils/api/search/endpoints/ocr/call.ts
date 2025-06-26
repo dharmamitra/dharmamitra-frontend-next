@@ -16,14 +16,8 @@ export const getOCRDataCall = async ({
 
   formData.append("file", file, file.name)
 
-  formData.append(
-    "transliterate_devanagari_to_iast",
-    String(transliterateDevanagariToIAST),
-  )
-  formData.append(
-    "transliterate_tibetan_to_wylie",
-    String(transliterateTibetanToWylie),
-  )
+  formData.append("transliterate_devanagari_to_iast", String(transliterateDevanagariToIAST))
+  formData.append("transliterate_tibetan_to_wylie", String(transliterateTibetanToWylie))
 
   const url = `${appConfig.basePath}/next/api/ocr`
 

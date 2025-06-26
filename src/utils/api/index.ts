@@ -27,10 +27,7 @@ const DMFetchApi = {
     call: getTaggingData,
   },
   dbSourceMenuData: {
-    makeQueryKey: (sourceLanguage: string) => [
-      "dbMenuSourceTexts",
-      sourceLanguage,
-    ],
+    makeQueryKey: (sourceLanguage: string) => ["dbMenuSourceTexts", sourceLanguage],
     call: getDbSourceMenuData,
   },
   searchPrimary: {
@@ -55,9 +52,10 @@ const DMFetchApi = {
     call: getSearchParallelData,
   },
   searchParallelExplanation: {
-    makeQueryKey: (
-      body: SearchApiTypes.RequestBody<"/explanation-parallel/">,
-    ) => ["searchParallelExplanation", JSON.stringify(body)],
+    makeQueryKey: (body: SearchApiTypes.RequestBody<"/explanation-parallel/">) => [
+      "searchParallelExplanation",
+      JSON.stringify(body),
+    ],
     call: getSearchParallelExplanation,
   },
   ocr: {

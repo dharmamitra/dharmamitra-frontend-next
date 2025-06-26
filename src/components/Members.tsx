@@ -76,11 +76,7 @@ export function Member({ id, name, roles, image }: MemberType) {
           </Typography>
           {roles &&
             roles.map(({ i18nRoleKey }, index) => (
-              <Typography
-                key={id + "-" + i18nRoleKey}
-                variant="body2"
-                color="text.secondary"
-              >
+              <Typography key={id + "-" + i18nRoleKey} variant="body2" color="text.secondary">
                 {t(`roles.${i18nRoleKey}`)}
                 {index < roles.length - 1 && ","}
               </Typography>

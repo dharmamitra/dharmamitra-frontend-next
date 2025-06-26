@@ -21,9 +21,7 @@ type TranslationInputFieldProps = {
   acceptedFileTypes?: string
 }
 
-export default function TranslatorInputControls(
-  props: TranslationInputFieldProps,
-) {
+export default function TranslatorInputControls(props: TranslationInputFieldProps) {
   return (
     <Box
       sx={{

@@ -16,17 +16,14 @@ export const MultiSelectionBox = styled(Box)(({ theme }) => ({
 
 const unforwardedSelectionChipsBoxProps = ["isExpanded", "maxRows"]
 export const SelectionChipsBox = styled(Box, {
-  shouldForwardProp: (prop) =>
-    !unforwardedSelectionChipsBoxProps.includes(String(prop)),
-})<{ isExpanded: boolean; maxRows: number }>(
-  ({ theme, isExpanded, maxRows }) => ({
-    display: "flex",
-    flexWrap: "wrap",
-    gap: theme.spacing(1),
-    maxHeight: isExpanded ? "none" : `calc(${maxRows} * 2.3rem)`,
-    overflow: "clip",
-  }),
-)
+  shouldForwardProp: (prop) => !unforwardedSelectionChipsBoxProps.includes(String(prop)),
+})<{ isExpanded: boolean; maxRows: number }>(({ theme, isExpanded, maxRows }) => ({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: theme.spacing(1),
+  maxHeight: isExpanded ? "none" : `calc(${maxRows} * 2.3rem)`,
+  overflow: "clip",
+}))
 
 export const SelectionHeadBox = styled(Box)({
   display: "flex",

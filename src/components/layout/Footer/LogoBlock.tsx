@@ -83,11 +83,7 @@ const LogoBlock = ({ mitraLogo }: { mitraLogo: React.ReactNode }) => {
   )
 }
 
-export default function LogoBlockComponent({
-  isLocalized = true,
-}: {
-  isLocalized?: boolean
-}) {
+export default function LogoBlockComponent({ isLocalized = true }: { isLocalized?: boolean }) {
   const { basePath } = appConfig
 
   if (isLocalized) {

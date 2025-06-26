@@ -7,11 +7,7 @@ type Props = {
   size?: number
 } & SVGProps<SVGSVGElement>
 
-export default function UploadIcon({
-  color = "#e0e0e0",
-  size = 1,
-  ...props
-}: Props) {
+export default function UploadIcon({ color = "#e0e0e0", size = 1, ...props }: Props) {
   return (
     <svg
       width={size * 75}

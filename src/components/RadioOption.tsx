@@ -1,9 +1,6 @@
 import React from "react"
 
-import {
-  CustomFormControlLabel,
-  VisuallyHiddenRadio,
-} from "@/components/styled-ssr-safe"
+import { CustomFormControlLabel, VisuallyHiddenRadio } from "@/components/styled-ssr-safe"
 import { InputEncoding } from "@/utils/api/global/types"
 import { TargetLanguage } from "@/utils/api/translation/params"
 
