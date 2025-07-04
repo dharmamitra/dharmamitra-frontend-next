@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { components, operations, paths } from "@/lib/api/bn"
+import type { components, operations, paths } from "@/lib/api/nexus"
 // TODO: most endpoint query functions have a `if undefined` check, this is to match a temp fix for BE data issues. The check should be cleared onee Pali data is updated on the BE.
 
 /**

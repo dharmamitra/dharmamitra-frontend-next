@@ -73,6 +73,7 @@ export const searchParamsNames: SearchParamNames = {
     filter_source_language: "filter_source_language",
     filter_target_language: "filter_target_language",
     source_filters: "source_filters",
+    max_depth: "max_depth",
   },
 }
 
@@ -95,4 +96,5 @@ export const allSearchDefaultParams: AllSearchParamDefaults = {
   [filter_target_language]: defaultSourceLanguage,
   [source_filters]: undefined,
   do_ranking: true,
+  max_depth: 50,
 }

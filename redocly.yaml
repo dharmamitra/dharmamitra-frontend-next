@@ -7,7 +7,7 @@ apis:
     root: https://dharmamitra.org/api-search/openapi.json
     x-openapi-ts:
       output: ./src/lib/api/search.ts
-  bn@v2:
+  nexus@v1:
     root: https://dharmamitra.org/api-db/openapi.json
     x-openapi-ts:
-      output: ./src/lib/api/bn.ts
+      output: ./src/lib/api/nexus.ts
