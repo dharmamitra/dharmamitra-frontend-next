@@ -101,7 +101,9 @@ export interface components {
     /** Body_tagging_tagging__post */
     Body_tagging_tagging__post: {
       /** Input Sentence */
-      input_sentence: string
+      input_sentence?: string
+      /** Input Sentences Batch */
+      input_sentences_batch?: string[]
       mode: components["schemas"]["GrammarModes"]
       /** @default auto */
       input_encoding: components["schemas"]["InputEncoding"]
@@ -210,6 +212,7 @@ export interface components {
     TargetLanguageExperimental:
       | "english"
       | "english-explained"
+      | "english-deep-research"
       | "tibetan"
       | "sanskrit"
       | "sanskrit-dev"
