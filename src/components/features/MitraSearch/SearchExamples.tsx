@@ -4,6 +4,7 @@ import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 
 import { useSearchInputParam } from "@/hooks/params"
+import { usePrimarySearchQuery } from "@/hooks/search/queries"
 import { exampleSearchStrings } from "@/utils/searchExamples"
 
 type Props = {
@@ -13,13 +14,24 @@ type Props = {
 export default function SearchExamples({ isShown }: Props) {
   const [search_input, setSearchInput] = useSearchInputParam()
   const locale = useLocale() as SupportedLocale
+  const { refetch } = usePrimarySearchQuery(search_input)
+
+  const [selectedExample, setSelectedExample] = React.useState<string | null>(null)
 
   const handleClick = React.useCallback(
     (example: string) => {
+      setSelectedExample(example)
       setSearchInput(example)
     },
     [setSearchInput],
   )
+
+  React.useEffect(() => {
+    if (selectedExample) {
+      refetch()
+      setSelectedExample(null)
+    }
+  }, [selectedExample, refetch])
 
   const examples = React.useMemo(() => {
     const uniqueExamples = new Set<string>()

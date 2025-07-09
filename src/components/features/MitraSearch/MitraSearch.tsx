@@ -7,8 +7,8 @@ import { localStorageKeys } from "@/utils/constants"
 import ResetOptionsButton from "./controls/ResetOptionsButton"
 import ShowOptionsSwitch from "./controls/ShowOptionsSwitch"
 import SubInputSearchControls from "./controls/SubInputSearchControls"
+import SearchExamples from "./SearchExamples"
 import SearchInput from "./SearchInput"
-// import SearchExamples from "./SearchControls/SearchExamples"
 import SearchResults from "./SearchResults"
 
 type TranslationFeatureProps = {
@@ -80,8 +80,7 @@ export default function MitraSearch({
 
         <SubInputSearchControls isOpen={isSearchControlsOpen} />
 
-        {/* TODO: determin if to be removed or added to variant config
-        <SearchExamples isShown={!isSearchControlsOpen} /> */}
+        <SearchExamples isShown={!isSearchControlsOpen} />
       </Box>
 
       <SearchResults />

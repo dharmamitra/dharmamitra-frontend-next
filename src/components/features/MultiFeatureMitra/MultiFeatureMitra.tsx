@@ -51,7 +51,7 @@ export default function MultiFeatureMitra() {
 
   const [viewTabIndex, setViewTabIndex] = useViewTabParamWithLocalStorage()
 
-  const [isSearchControlsOpen, setIsSearchControlsOpen] = React.useState(true)
+  const [isSearchControlsOpen, setIsSearchControlsOpen] = React.useState(false)
 
   const handleTabChange = React.useCallback(
     (event: React.SyntheticEvent, newValue: number) => {
