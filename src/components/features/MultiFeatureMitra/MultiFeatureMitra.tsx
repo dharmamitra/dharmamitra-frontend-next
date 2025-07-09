@@ -20,6 +20,7 @@ import { useViewTabParamWithLocalStorage } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
 import { views } from "@/utils/api/global/params"
 import { View } from "@/utils/api/global/types"
+import { localStorageKeys } from "@/utils/constants"
 
 import FeatureTabPanel from "./FeatureTabPanel"
 import ScrollToTopButton from "./ScrollToTopButton"
@@ -51,7 +52,10 @@ export default function MultiFeatureMitra() {
 
   const [viewTabIndex, setViewTabIndex] = useViewTabParamWithLocalStorage()
 
-  const [isSearchControlsOpen, setIsSearchControlsOpen] = React.useState(false)
+  const [isSearchControlsOpen, setIsSearchControlsOpen] = React.useState(() => {
+    if (typeof window === "undefined") return false
+    return localStorage.getItem(localStorageKeys.showSearchControls) === "true"
+  })
 
   const handleTabChange = React.useCallback(
     (event: React.SyntheticEvent, newValue: number) => {
