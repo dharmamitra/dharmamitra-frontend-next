@@ -1,0 +1,298 @@
+{
+  "generic": {
+    "exception": {
+      "default": "問題が発生しました。<newline>後でもう一度お試しください。</newline>",
+      "timeout": "現在、サーバーへのアクセスが集中しています。<newline>しばらくしてからもう一度お試しください。</newline>",
+      "inputLengthWarning": "入力テキストが非常に長いです。サーバーが出力を切り捨てた可能性があります。短いテキストでもう一度お試しください。",
+      "inputLengthError": "入力テキストが長すぎてモデルが処理できません。短い入力でもう一度お試しください。",
+      "experimentalLanguageWarning": "この言語のサポートは実験的なものです。",
+      "fileFailure": "ファイルの処理に失敗しました。もう一度お試しください。",
+      "invalidFileType": "無効なファイルタイプです。{fileTypes}ファイルをアップロードしてください。",
+      "invalidFileSize": "ファイルサイズは{maxFileSize}MB未満にしてください"
+    },
+    "copy": "コピー",
+    "copied": "コピーしました！",
+    "copyError": "コピーに失敗しました",
+    "copyLink": "リンクをコピー",
+    "copyRef": "参照をコピー",
+    "copyAll": "すべてコピー",
+    "copyResultsRefs": "参照をコピー",
+    "copyResultsList": "結果リスト全体をコピー",
+    "other": "その他",
+    "clear": "クリア",
+    "stop": "停止",
+    "source": "ソース",
+    "target": "ターゲット",
+    "loading": "読み込み中",
+    "processing": "処理中...",
+    "englishTranslation": "英語翻訳",
+    "upload": "{fileTypes}ファイルをアップロード<br></br>（約10ページのテキストをサポート）",
+    "uploadDisabled": "アップロード無効",
+    "noResult": "結果が見つかりません。",
+    "openAll": "すべて開く",
+    "closeAll": "すべて閉じる",
+    "showLess": "少なく表示",
+    "showAll": "{count, number}件すべて表示",
+    "dragAndDrop": "ここにファイルをドラッグ＆ドロップしてください",
+    "supportedFileTypes": "サポートされているファイルタイプ：{fileTypes}（最大サイズ：{maxFileSize}MB）",
+    "browseFiles": "ファイルを参照",
+    "saveToFile": "ファイルに保存",
+    "ocr": "OCR",
+    "translation": "翻訳",
+    "search": "検索",
+    "extensionCTA": "mitra翻訳をあなたのテキストがある場所で使いましょう。 <chromelink>Chrome</chromelink>または<firefoxlink>Firefox</firefoxlink>拡張機能を入手してください。"
+  },
+  "navigation": {
+    "nexusLinkLabel": "データベース",
+    "mobileButtonAriaLabel": "ナビゲーションメニューを開く",
+    "mobileMenuAriaLabel": "ナビゲーションメニュー"
+  },
+  "footer": {
+    "mission": {
+      "h2": "ダルマミトラ",
+      "p": "Dharmamitraは、サンスクリット語、パーリ語、チベット語、漢文のテキストを研究するためのAI搭載ツールです。私たちは、機械翻訳、意味検索、文法分析などを通して、言語の壁を越えた人文学研究を支援します。"
+    },
+    "collaboration": "<link>Tsadra Foundation</link>との協力。",
+    "engine": "Gemini API搭載"
+  },
+  "localeSwitcher": {
+    "label": "言語を変更",
+    "locale": "{locale, select, en {English} ja {日本語} zh_Hans {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "localePlaceholder": "日本語"
+  },
+  "search": {
+    "search": "検索",
+    "results": "検索結果",
+    "heading": "2500年にわたる仏教を検索",
+    "placeholder": "検索語を入力してください。",
+    "optionsSwitchLabel": "オプションを表示",
+    "resetOptionsLabel": "デフォルトの検索オプションを使用",
+    "optionCountBadgeLabel": "{count, plural, =1 {1つのカスタム検索オプション} other {#つのカスタム検索オプション}}が設定されています",
+    "parallelEnglishSwitch": "英語を表示",
+    "precisionLabel": "完全一致のみ",
+    "explanation": "説明",
+    "expandText": "結果テキストを展開",
+    "collapseText": "結果テキストを折りたたむ",
+    "targetTips": {
+      "primary": "正典および伝統的なソーステキストを検索",
+      "secondary": "現代の注釈文献を検索",
+      "parallel": "異伝統間のテキスト並行コンパイルデータセットを検索"
+    },
+    "targets": {
+      "primary": "伝統的",
+      "secondary": "現代的",
+      "parallel": "並行"
+    },
+    "limits": {
+      "labels": {
+        "category_include": "含めるカテゴリを選択",
+        "file_include": "含めるテキストを選択"
+      }
+    },
+    "sourceFilter": {
+      "labels": {
+        "include": "ソースを含める"
+      }
+    },
+    "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "ソースカテゴリを選択",
+        "sourceTextLimit": "ソーステキストを選択"
+      },
+      "inputEncodings": {
+        "auto": "自動検出",
+        "tibetan": "チベット語",
+        "wylie": "ワイリー式",
+        "dev": "デーヴァナーガリー文字",
+        "iast": "IASTローマ字",
+        "hk": "ハーバード・京都"
+      },
+      "searchTypes": {
+        "regular": "通常",
+        "semantic": "意味的"
+      },
+      "filterLanguages": {
+        "bo": "チベット語",
+        "sa": "サンスクリット語",
+        "zh": "中国語",
+        "pa": "パーリ語",
+        "all": "すべて"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "含めるカテゴリを選択",
+        "file_include": "含めるテキストを選択"
+      }
+    },
+    "relevance": "関連性",
+    "relevanceTypes": {
+      "high": "高",
+      "medium": "中",
+      "low": "低"
+    }
+  },
+  "translation": {
+    "translate": "翻訳",
+    "triggerDisabled": "翻訳するテキストを追加/更新",
+    "heading": "法（ダルマ）のテキストを翻訳",
+    "inputAriaLabel": "翻訳入力フィールド",
+    "placeholders": {
+      "default": "テキストを入力するか、{acceptedFileTypes}ファイルをドラッグ＆ドロップしてください（約10ページのテキストまで）。サンスクリット語、チベット語、仏教経典中国語、英語をサポートしています。",
+      "englishExplained": "翻訳して説明するためにサンスクリット語のテキストを入力し、1文につき1行を使用してください。（現在、説明はサンスクリット語でのみ利用可能です）"
+    },
+    "otherLabel": "その他",
+    "targetLanguageSelectLabel": "出力言語",
+    "primaryTargetLanguagesAriaLabel": "主要なターゲット言語オプション",
+    "secondaryTargetLanguagesAriaLabel": "その他のターゲット言語オプション",
+    "modelLabel": "モデル",
+    "grammarLabel": "文法分析",
+    "copyTranslation": "翻訳をコピー",
+    "usageH2": "使用方法",
+    "usageAccept": "同意する",
+    "usageNoticeShort": "ダルマミトラの機械翻訳は間違いを犯す可能性があります。責任を持ってご使用ください。",
+    "ocr": {
+      "dragAndDropOverlay": "サポートされているファイルタイプ：{fileTypes}<br></br>最大文字数：{maxInputCharacters}（約{maxInputPageEquivalent}ページのテキスト）<br></br>最大ファイルサイズ：{maxFileSize}MB",
+      "unknownErrorTitle": "OCR失敗",
+      "lengthErrorTitle": "OCR出力が長すぎます",
+      "lengthErrorText": "翻訳入力は最大{maxInputCharacters}文字（約{maxInputPageEquivalent}ページのテキスト）までサポートしています。短いテキストで再試行するか、OCR機能を使用して長いテキストを処理してください。"
+    },
+    "usageNoticeLong": {
+      "p1": "ダルマミトラは最先端の深層ニューラルネットワークを活用して、効率的に機械翻訳を提供しています。私たちは可能な限り最高の品質を提供するために努力しています。私たちの技術は進化し続け、サービスは頻繁に更新されますが、次の点にご留意ください：",
+      "ul": {
+        "1": "ダルマミトラは、異なる言語で保存されている古典的なアジアのテキストを理解するのに役立つツールです",
+        "2": "疑問がある場合は、言語の専門家に相談するか、確立された人間の翻訳を参照することをお勧めします。",
+        "3": "ダルマミトラの出力を共有する前に、確認および検証することをお勧めします。"
+      },
+      "p2": "ダルマミトラは、人間の専門知識を置き換えるのではなく、補完するように設計されています。私たちの高度な技術とあなたの識別力を組み合わせることで、私たちの翻訳サービスを最大限に活用することができます。"
+    },
+    "tagging": {
+      "label": "文法",
+      "ariaLabel": "文法分析",
+      "heading": "文法分析",
+      "unsandhied": "非連声文",
+      "lemma": "見出し語",
+      "tag": "タグ",
+      "meanings": "意味",
+      "unsuccessful": "文法分析は成功しませんでした。",
+      "credit": "この文法パーサーはサンスクリット語入力をサポートしており、<link>Digital Corpus of Sanskrit</link>（Oliver Hellwig著）のデータを使用して可能になりました。",
+      "originalSentence": "元の文",
+      "copy": {
+        "unsandhied": "非連声文をコピー"
+      }
+    },
+    "targetLanguages": {
+      "buddhist-chinese": "漢文",
+      "english": "英語",
+      "english-explained": "英語（説明付き）",
+      "japanese": "日本語",
+      "korean": "韓国語",
+      "modern-chinese": "現代中国語",
+      "pali": "パーリ語",
+      "sa-en": "SA英語",
+      "sanskrit-dev": "サンスクリット語（デーヴァナーガリー）",
+      "sanskrit-knn": "サンスクリット語（KNN）",
+      "sanskrit": "サンスクリット語",
+      "tibetan": "チベット語",
+      "hindi": "ヒンディー語",
+      "german": "ドイツ語",
+      "russian": "ロシア語",
+      "french": "フランス語",
+      "italian": "イタリア語",
+      "spanish": "スペイン語",
+      "portuguese": "ポルトガル語",
+      "dutch": "オランダ語"
+    },
+    "models": {
+      "": "",
+      "NO": "モデルなし",
+      "none": "モデルなし",
+      "madlad": "Madlad",
+      "madlad2": "Madlad2",
+      "llama3": "Llama3",
+      "llama3-fgs": "Llama3-fgs",
+      "gemma2": "GEMMA2"
+    },
+    "grammar": {
+      "on": "オン",
+      "off": "オフ"
+    }
+  },
+  "ocr": {
+    "processingTimeNote": "大きなファイルは処理に数分かかる場合があるため、小さなチャンクに分割することをお勧めします。",
+    "processingTimeNoteShort": "大きなファイルの処理には数分かかる場合があります。",
+    "devanagariToIASTSwitchLabel": "デーヴァナーガリーからIASTへ",
+    "tibetanToWylieSwitchLabel": "チベット語からワイリー式へ",
+    "largeDownload": "抽出されたテキストは100kBより大きいため、ファイルとしてダウンロードできます。"
+  },
+  "globalParams": {
+    "encodingSelectLabel": "入力エンコーディング",
+    "primaryEncodingsAriaLabel": "主要なエンコーディングオプション",
+    "secondaryEncodingsAriaLabel": "その他のエンコーディングオプション",
+    "encodings": {
+      "auto": "自動検出",
+      "dev": "デーヴァナーガリー",
+      "hk": "ハーバード・京都",
+      "iast": "IASTローマ字",
+      "itrans": "ITRANS",
+      "tibetan": "チベット語Unicode",
+      "velthuis": "フェルトハイス",
+      "wylie": "ワイリー"
+    },
+    "modelType": {
+      "default": "デフォルト",
+      "mitra-base": "Mitraベース",
+      "mitra-pro": "Mitraプロ"
+    }
+  },
+  "metadata": {
+    "title": "Dharmamitra：仏教文献学の新時代のためのAIツール",
+    "description": "仏典のAI自動翻訳の最先端。Dharmamitraは、仏教学と自然言語処理を融合させ、研究者に強力なデジタルツールを提供します。"
+  },
+  "pages": {
+    "about": {
+      "title": "ダルマミトラについて",
+      "h1": "ダルマミトラについて",
+      "introduction": {
+        "h2": "はじめに",
+        "p": "Dharmamitraは、仏教学と最先端のAI技術を融合させるプロジェクトです。私たちは、歴史的に多言語で形成されてきた仏典の研究が直面する課題を解決するため、機械翻訳、意味検索、文法分析などの高度なNLP（自然言語処理）ツールを開発しています。これにより、世界中の研究者が言語の壁を越えて、より深く、効率的に文献研究に取り組めるよう支援します。"
+      },
+      "whatWeOffer": {
+        "h2": "私たちが提供するもの",
+        "p": "法友は、仏教研究のさまざまな側面に対応する包括的なツールスイートを提供します。",
+        "ul": {
+          "1": "<bold>意味検索：</bold>膨大な仏典コーパスから、自然言語の問いによって関連文章を検索します。言語を越えた検索も可能です。",
+          "2": "<bold>AI翻訳：</bold>サンスクリット語、パーリ語、チベット語、漢文から、英語などの現代言語へ高精度な機械翻訳を提供します。文法解説機能も搭載しています。",
+          "3": "<bold>テキストの類似性：</bold>異なるテキスト間の類似性を発見します。",
+          "4": "<bold>ファイル翻訳：</bold>ドキュメント全体を翻訳します。"
+        }
+      },
+      "ourTechnology": {
+        "h2": "私たちの技術",
+        "p": "私たちのプラットフォームは、最新のAIと言語モデルによって支えられています。私たちは、私たちのツールが仏教研究の特定のニーズに合わせて調整されていることを確認するために、学者や実践者と協力しています。"
+      },
+      "theTeam": {
+        "h2": "チーム",
+        "p": "私たちのチームは、学術研究と技術革新の両方に情熱を傾ける、献身的な個人で構成されています。詳細については、<link>チームページ</link>をご覧ください。"
+      },
+      "contact": {
+        "h2": "お問い合わせ",
+        "p": "質問、提案、または貢献に興味がありますか？ <link>メールでお問い合わせください</link>。"
+      }
+    }
+  },
+  "team": {
+    "title": "チーム",
+    "h1": "私たちのチームに会う",
+    "director": {
+      "name": "D.D.ネールディッヒ",
+      "role": "事務局長"
+    },
+    "leadDeveloper": {
+      "name": "T. アンソニー",
+      "role": "主任開発者"
+    },
+    "projectManager": {
+      "name": "E. ロドリゲス",
+      "role": "プロジェクトマネージャー"
+    }
+  }
+} 
