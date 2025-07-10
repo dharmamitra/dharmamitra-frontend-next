@@ -10,9 +10,9 @@ const getLinkStyles = (width: number) => {
     textDecoration: "none",
     display: "block",
     width: {
-      xs: `${width * 0.64}px`,
-      sm: `${width * 0.82}px`,
-      md: `${width * 0.9}px`,
+      xs: `${width * 0.54}px`,
+      sm: `${width * 0.54}px`,
+      md: `${width * 0.62}px`,
     },
   }
 }
@@ -46,7 +46,7 @@ export default function Logo({ isLocalized = true }: { isLocalized?: boolean }) 
   } = appConfig
 
   return (
-    <Box sx={{ flexGrow: 1, py: 1 }}>
+    <Box sx={{ flexGrow: 1 }}>
       {isLocalized ? (
         <LocalLink href="/" sx={getLinkStyles(logo.width)}>
           <LogoImage />

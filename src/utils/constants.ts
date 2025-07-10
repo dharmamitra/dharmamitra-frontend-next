@@ -47,3 +47,7 @@ export const chromeExtensionUrl =
 
 export const firefoxExtensionUrl =
   "https://addons.mozilla.org/firefox/addon/dharmamitra-language-tools/"
+
+export const nexusUrl = "https://dharmamitra.org/nexus"
+
+export const docsSiteUrl = "https://dharmamitra.github.io/dharmamitra-guides/"

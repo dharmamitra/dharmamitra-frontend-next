@@ -7,12 +7,12 @@ import SponsorLogo from "@/components/SponsorLogo"
 import ExtensionBanner from "./ExtensionBanner"
 
 const appBarHeight = {
-  xs: "60px",
-  sm: "70px",
-  md: "80px",
+  xs: "57px",
+  sm: "57px",
+  md: "64px",
 }
 
-export default function AppBar({
+export default function AppBarFrame({
   children,
   isLocalized = true,
 }: {
@@ -28,7 +28,6 @@ export default function AppBar({
         position="relative"
         sx={{
           height: appBarHeight,
-          py: "0.2rem",
           backgroundColor: "common.white",
           boxShadow: "0px 4px 4px 0px #0000001A",
         }}
@@ -40,6 +39,7 @@ export default function AppBar({
               alignItems: "center",
               justifyContent: "space-between",
               width: "100%",
+              py: 1,
               gap: 1,
             }}
           >

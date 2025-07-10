@@ -1,12 +1,14 @@
 "use client"
 
 import * as React from "react"
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward"
 import MenuIcon from "@mui/icons-material/Menu"
 import {
   Box,
   Divider,
   Drawer,
   IconButton,
+  Link,
   List,
   ListItem,
   ListItemButton,
@@ -16,25 +18,21 @@ import {
 
 import LocalLink from "@/components/LocalLink"
 import Logo from "@/components/Logo"
-import { useNavItems } from "@/hooks/useNavItems"
+import { NavItems } from "@/hooks/useNavItems"
+
+import LocaleSelector from "./LocaleSelector"
 
 const drawerWidth = 240
 
 export type MobileNavMenuProps = {
-  navItems: ReturnType<typeof useNavItems>
-  children: React.ReactNode
+  navItems: NavItems
   messages: {
     ariaButton: string
     ariaMenu: string
   }
 }
 
-export default function MobileNavMenu({
-  // navItems & locale selector passed as a child to avoid the need for i18n provider
-  navItems,
-  messages,
-  children,
-}: MobileNavMenuProps) {
+export default function MobileNavMenu({ navItems, messages }: MobileNavMenuProps) {
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
@@ -48,13 +46,31 @@ export default function MobileNavMenu({
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => {
+        {navItems.external.map((item) => {
+          const { id, label, href } = item
+          return (
+            <ListItem key={id + "-mobile-menu-item"} disablePadding color="text.primary">
+              <ListItemButton color="inherit">
+                <Link
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ textDecoration: "none", color: "text.primary" }}
+                >
+                  <ListItemText sx={{ textTransform: "uppercase", mr: 1 }}>{label}</ListItemText>
+                </Link>
+                <ArrowOutwardIcon />
+              </ListItemButton>
+            </ListItem>
+          )
+        })}
+        {navItems.internal.map((item) => {
           const { id, label, href } = item
           return (
             <ListItem key={id + "-mobile-menu-item"} disablePadding color="text.primary">
               <ListItemButton color="inherit">
                 <LocalLink href={href} sx={{ textDecoration: "none", color: "text.primary" }}>
-                  <ListItemText>{label}</ListItemText>
+                  <ListItemText sx={{ textTransform: "uppercase" }}>{label}</ListItemText>
                 </LocalLink>
               </ListItemButton>
             </ListItem>
@@ -75,7 +91,8 @@ export default function MobileNavMenu({
         >
           <MenuIcon />
         </IconButton>
-        {children}
+
+        <LocaleSelector />
       </Box>
       <nav aria-label={messages.ariaMenu}>
         <Drawer
