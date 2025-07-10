@@ -8,7 +8,7 @@ import LocalLink from "@/components/LocalLink"
 import useAppConfig from "@/hooks/useAppConfig"
 
 const LocalizedTitle = () => {
-  const t = useTranslations("NotFound")
+  const t = useTranslations("pages.notFound")
   return t("h1")
 }
 
@@ -17,7 +17,7 @@ const FallbackTitle = () => {
 }
 
 const LocalizedMessage = () => {
-  const t = useTranslations("NotFound")
+  const t = useTranslations("pages.notFound")
   return t.rich("message", {
     cite: (chunks) => (
       <cite style={{ display: "block", fontSize: "0.8em" }}>
@@ -43,7 +43,7 @@ const FallbackMessage = () => {
 }
 
 const LocalizedHomeLink = () => {
-  const t = useTranslations("NotFound")
+  const t = useTranslations("pages.notFound")
   return (
     <LocalLink sx={{ display: "flex", alignItems: "center", mt: 6 }} variant="button" href="/">
       <ArrowBackIcon /> {t("home")}

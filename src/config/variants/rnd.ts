@@ -1,10 +1,9 @@
 import { allTargetLanguages } from "@/utils/api/translation/params"
 
-import defineConfig, { defaultSubPages } from "../defineConfig"
+import defineConfig from "../defineConfig"
 
 export default function createRNDConfig() {
   return defineConfig({
-    subPages: [...defaultSubPages, "test"],
     customParamOptions: {
       targetLanguages: allTargetLanguages,
     },

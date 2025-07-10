@@ -11,7 +11,7 @@ export const useNavItems = () => {
     () =>
       appConfig.subPages.map((page) => ({
         id: `${locale}-${page}-nav-item`,
-        label: t(`pages.${page}`),
+        label: t(`pages.nav.${page}`),
         href: `/${page}`,
       })),
     [t, locale],
