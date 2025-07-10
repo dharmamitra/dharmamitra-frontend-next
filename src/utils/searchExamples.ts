@@ -31,6 +31,24 @@ const en = [
   "Looking with kindly eyes",
   "Subjects for frequent recollection",
 ]
+const ko = [
+  // TODO
+  ...en,
+]
+const ja = [
+  // TODO
+  ...en,
+]
+const bo = [
+  "སངས་རྒྱས་ལ་དགའ་བ།",
+  "སེམས་ཅན་ཐམས་ཅད་ལ་བྱམས་པ།",
+  "བཟོད་པའི་ཡོན་ཏན།",
+  "སྟོང་ཉིད་ཀྱི་དོན།",
+  "བྱང་ཆུབ་ཀྱི་སེམས།",
+  "The Buddha’s compassion",
+  "Definition of peace",
+  "The benefits of giving",
+]
 const zhHans = [
   // TODO
   ...en,
@@ -42,6 +60,9 @@ const zhHant = [
 
 export const exampleSearchStrings: Record<SupportedLocale, string[]> = {
   en,
+  ko,
+  ja,
+  bo,
   "zh-Hans": zhHans,
   "zh-Hant": zhHant,
 }
