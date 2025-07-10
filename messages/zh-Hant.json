@@ -49,12 +49,7 @@
     "docsLinkLabel": "Docs"
   },
   "footer": {
-    "mission": {
-      "h2": "Dharmamitra",
-      "p": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma and to accelerate academic and individual research through open-source collaboration on datasets, models and applications."
-    },
-    "collaboration": "In collaboration with the <link>Tsadra Foundation</link>.",
-    "engine": "Powered by Gemini API"
+    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
   },
   "localeSwitcher": {
     "label": "切換語言",
