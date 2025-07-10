@@ -5,7 +5,7 @@ import {
   DbSourceTreeNode,
   DbSourceTreeNodeDataType,
 } from "@/components/features/paramSettings/DbSourceFilter/types"
-import type { ParsedStructuredDbSourceMenuData } from "@/utils/api/bn/menudata"
+import type { ParsedStructuredDbSourceMenuData } from "@/utils/api/nexus/menudata"
 
 export function transformDataForTreeView(data: ParsedStructuredDbSourceMenuData) {
   /**

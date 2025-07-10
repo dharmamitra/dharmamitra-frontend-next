@@ -22,7 +22,7 @@ function parseStructuredDbSourceMenuData(data: APIGetResponse<"/menudata/">) {
 export type ParsedStructuredDbSourceMenuData = ReturnType<typeof parseStructuredDbSourceMenuData>
 
 export async function getDbSourceMenuData(query: APIGetRequestQuery<"/menudata/">) {
-  const { data } = await apiClients.BNv2.GET("/menudata/", {
+  const { data } = await apiClients.Nexus.GET("/menudata/", {
     params: { query },
   })
 

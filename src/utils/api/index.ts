@@ -1,6 +1,6 @@
-import { getDbSourceMenuData } from "./bn/menudata"
 import * as globalParams from "./global/params"
 import * as GlobalParamTypes from "./global/types"
+import { getDbSourceMenuData } from "./nexus/menudata"
 import { getOCRDataCall } from "./search/endpoints/ocr/call"
 import { getSearchParallelData } from "./search/endpoints/parallel"
 import { getSearchParallelExplanation } from "./search/endpoints/parallel-explanation/actions"
