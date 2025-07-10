@@ -6,7 +6,7 @@ import { DefaultPageParams, Metadata } from "@/app/types"
 export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
 
-  const t = await getTranslations({ locale, namespace: "NotFound" })
+  const t = await getTranslations({ locale, namespace: "pages.notFound" })
 
   return { title: t("title") }
 }

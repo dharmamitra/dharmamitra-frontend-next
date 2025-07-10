@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: DefaultPageParams): Promise<M
   const resolvedParams = await params
   const locale = resolvedParams?.locale
 
-  const t = await getTranslations({ locale, namespace: "Team.dharmamitra" })
+  const t = await getTranslations({ locale, namespace: "pages.team.dharmamitra" })
 
   return {
     title: t("title"),
@@ -41,7 +41,7 @@ export default function TeamPage({ params }: DefaultPageParams) {
   const { locale } = use(params)
 
   setRequestLocale(locale)
-  const t = useTranslations("Team.dharmamitra")
+  const t = useTranslations("pages.team.dharmamitra")
 
   return (
     <PageContentFrame>
