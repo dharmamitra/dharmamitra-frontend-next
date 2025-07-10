@@ -45,7 +45,8 @@
   "navigation": {
     "mobileButtonAriaLabel": "开放导航菜单",
     "mobileMenuAriaLabel": "导航菜单",
-    "nexusLinkLabel": "Database"
+    "nexusLinkLabel": "Database",
+    "docsLinkLabel": "Docs"
   },
   "footer": {
     "mission": {
