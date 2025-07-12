@@ -16,10 +16,7 @@ export type { AllSearchApiParams, AllSearchParamDefaults, SearchTarget }
  * LOCAL PARAMS
  */
 
-export const searchTargets: SearchTarget[] = exhaustiveStringTuple<SearchTargets>()(
-  "primary",
-  "parallel",
-)
+export const searchTargets: SearchTarget[] = exhaustiveStringTuple<SearchTargets>()("primary")
 export const defaultSearchTarget = "primary" as const
 export const disabledSearchTargets: SearchTarget[] = []
 
