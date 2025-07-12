@@ -54,6 +54,7 @@ const exceptionMessages = exhaustiveStringTuple<ExceptionMessageKey>()(
   "fileFailure",
   "invalidFileType",
   "invalidFileSize",
+  "maxSearchResultsWarning",
 )
 
 export const getValidI18nExceptionKey = (key: string | undefined) => {

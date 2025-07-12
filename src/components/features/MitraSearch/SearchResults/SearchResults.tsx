@@ -6,12 +6,12 @@ import Box from "@mui/material/Box"
 import { useSearchInputParam, useSearchTargetParam } from "@/hooks/params"
 import { defaultSearchTarget, SearchTarget } from "@/utils/api/search/params"
 
-import ParallelQueryResults from "./ParallelQueryResults"
+// import ParallelQueryResults from "./ParallelQueryResults"
 import PrimaryQueryResults from "./PrimaryQueryResults"
 
 const results: Record<SearchTarget, JSX.Element> = {
   primary: <PrimaryQueryResults />,
-  parallel: <ParallelQueryResults />,
+  // parallel: <ParallelQueryResults />,
   // secondary: <div />,
 }
 

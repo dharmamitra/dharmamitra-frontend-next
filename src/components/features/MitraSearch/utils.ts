@@ -28,3 +28,5 @@ export function handleSearchKeyPress(event: KeyboardEvent, triggerFn: () => void
     }
   }
 }
+
+export const MAX_PRIMARY_RESULTS = 50
