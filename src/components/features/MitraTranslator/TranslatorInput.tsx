@@ -16,6 +16,7 @@ import {
   MAX_INPUT_PAGE_EQUIVALENT,
 } from "@/components/features/MitraTranslator/utils"
 import UploadIcon from "@/components/icons/Upload"
+import { useTargetLangParamWithLocalStorage } from "@/hooks/params/useTargetLangParamWithLocalStorage"
 import { useFileUpload } from "@/hooks/useFileUpload"
 import { DMFetchApi } from "@/utils/api"
 import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/handlers"
@@ -43,6 +44,8 @@ const TranslatorInput = ({
 }: TranslationInputFieldProps) => {
   const t = useTranslations("translation")
   const genericT = useTranslations("generic")
+
+  const [targetLanguageParam] = useTargetLangParamWithLocalStorage()
 
   const invalidTypeMessage = genericT("exception.invalidFileType", {
     fileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
@@ -156,6 +159,14 @@ const TranslatorInput = ({
   const handleDragLeave = externalHandleDragLeave || internalHandleDragLeave
   const handleDrop = externalHandleDrop || internalHandleDrop
 
+  const standardPlaceholder = t("placeholders.default", {
+    acceptedFileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
+  })
+  const deepResearchPlaceholder = t("placeholders.deepResearch")
+
+  const placeholder =
+    targetLanguageParam === "english-deep-research" ? deepResearchPlaceholder : standardPlaceholder
+
   return (
     <Box
       sx={{
@@ -192,9 +203,7 @@ const TranslatorInput = ({
             border: "none",
           },
         }}
-        placeholder={t("placeholders.default", {
-          acceptedFileTypes: ACCEPTED_FILE_TYPES_UI_STRING,
-        })}
+        placeholder={placeholder}
         inputProps={{
           "data-testid": "translation-input",
           "aria-label": t("inputAriaLabel"),
