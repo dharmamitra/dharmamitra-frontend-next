@@ -39,6 +39,9 @@ export const baseTheme: ThemeOptions = {
       main: colours.secondary.main,
       dark: colours.secondary.dark,
     },
+    warning: {
+      main: "rgb(196, 80, 15)", // passes WCAG AA
+    },
     text: {
       primary: colours.text.primary,
     },

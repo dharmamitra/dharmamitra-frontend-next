@@ -17,13 +17,14 @@ export default function SubInputSearchControls({ isOpen }: Props) {
       sx={{
         display: "flex",
         flexDirection: { xs: "column-reverse", md: "row" },
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         flexWrap: "wrap",
         gap: 2,
         my: 4,
       }}
     >
-      <TargetControls />
+      {/* Disabled for Summer 2025 release. Due to be re-enabled in due course. */}
+      {/* <TargetControls /> */}
 
       <Box
         sx={{
