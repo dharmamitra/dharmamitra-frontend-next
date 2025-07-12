@@ -200,8 +200,42 @@ export interface paths {
     }
     get?: never
     put?: never
-    /** Knn Translate Gemini Endpoint No Stream */
-    post: operations["knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post"]
+    /** Knn Translate Gemini No Stream Endpoint */
+    post: operations["knn_translate_gemini_no_stream_endpoint_knn_translate_gemini_no_stream__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/knn-translate-gemini-base/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Knn Translate Gemini Base Endpoint */
+    post: operations["knn_translate_gemini_base_endpoint_knn_translate_gemini_base__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/knn-translate-gemini-pro/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /** Knn Translate Gemini Pro Endpoint */
+    post: operations["knn_translate_gemini_pro_endpoint_knn_translate_gemini_pro__post"]
     delete?: never
     options?: never
     head?: never
@@ -244,6 +278,27 @@ export interface paths {
      *     It supports streaming via SSE or normal single-response mode.
      */
     post: operations["chat_completions_chat_translate_v1_chat_completions_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/chat-translate/v1/chat/completions-v2": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Chat Completions
+     * @description This endpoint emulates the OpenAI /v1/chat/completions API.
+     *     It supports streaming via SSE or normal single-response mode.
+     */
+    post: operations["chat_completions_chat_translate_v1_chat_completions_v2_post"]
     delete?: never
     options?: never
     head?: never
@@ -383,6 +438,18 @@ export interface components {
        */
       mode: string
     }
+    /** Body_knn_translate_gemini_base_endpoint_knn_translate_gemini_base__post */
+    Body_knn_translate_gemini_base_endpoint_knn_translate_gemini_base__post: {
+      /** Query */
+      query: string
+      /**
+       * Language
+       * @default english
+       */
+      language: string
+      /** Password */
+      password?: string
+    }
     /** Body_knn_translate_gemini_endpoint_knn_translate_gemini__post */
     Body_knn_translate_gemini_endpoint_knn_translate_gemini__post: {
       /** Query */
@@ -405,8 +472,8 @@ export interface components {
       /** Password */
       password: string
     }
-    /** Body_knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post */
-    Body_knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post: {
+    /** Body_knn_translate_gemini_no_stream_endpoint_knn_translate_gemini_no_stream__post */
+    Body_knn_translate_gemini_no_stream_endpoint_knn_translate_gemini_no_stream__post: {
       /** Query */
       query: string
       /**
@@ -416,7 +483,7 @@ export interface components {
       language: string
       /**
        * Do Grammar
-       * @default true
+       * @default false
        */
       do_grammar: boolean
       /**
@@ -424,6 +491,18 @@ export interface components {
        * @default false
        */
       use_pro_model: boolean
+      /** Password */
+      password: string
+    }
+    /** Body_knn_translate_gemini_pro_endpoint_knn_translate_gemini_pro__post */
+    Body_knn_translate_gemini_pro_endpoint_knn_translate_gemini_pro__post: {
+      /** Query */
+      query: string
+      /**
+       * Language
+       * @default english
+       */
+      language: string
       /** Password */
       password: string
     }
@@ -625,6 +704,11 @@ export interface components {
        * @default true
        */
       do_ranking: boolean
+      /**
+       * Max Depth
+       * @default 50
+       */
+      max_depth: number
     }
     /**
      * SearchType
@@ -1096,7 +1180,7 @@ export interface operations {
       }
     }
   }
-  knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post: {
+  knn_translate_gemini_no_stream_endpoint_knn_translate_gemini_no_stream__post: {
     parameters: {
       query?: never
       header?: never
@@ -1105,7 +1189,7 @@ export interface operations {
     }
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Body_knn_translate_gemini_endpoint_no_stream_knn_translate_gemini_no_stream__post"]
+        "application/json": components["schemas"]["Body_knn_translate_gemini_no_stream_endpoint_knn_translate_gemini_no_stream__post"]
       }
     }
     responses: {
@@ -1116,6 +1200,75 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["TranslationResponse"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  knn_translate_gemini_base_endpoint_knn_translate_gemini_base__post: {
+    parameters: {
+      query?: never
+      header?: {
+        "x-dm-key"?: string
+        origin?: string
+      }
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_knn_translate_gemini_base_endpoint_knn_translate_gemini_base__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  knn_translate_gemini_pro_endpoint_knn_translate_gemini_pro__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Body_knn_translate_gemini_pro_endpoint_knn_translate_gemini_pro__post"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": unknown
         }
       }
       /** @description Validation Error */
@@ -1150,6 +1303,39 @@ export interface operations {
     }
   }
   chat_completions_chat_translate_v1_chat_completions_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChatCompletionRequest"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  chat_completions_chat_translate_v1_chat_completions_v2_post: {
     parameters: {
       query?: never
       header?: never
@@ -1253,6 +1439,7 @@ export interface operations {
       query?: {
         transliterate_devanagari_to_iast?: boolean
         transliterate_tibetan_to_wylie?: boolean
+        instruction?: string
       }
       header?: never
       path?: never

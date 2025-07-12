@@ -2,8 +2,8 @@ import { ReactNode } from "react"
 import { Box } from "@mui/material"
 import { SxProps } from "@mui/material/styles"
 
+import AppBar from "./AppBar"
 import Footer from "./Footer"
-import NavigationBar from "./NavigationBar"
 
 type Props = {
   children?: ReactNode
@@ -20,7 +20,7 @@ export default function PageShell({ children, sx }: Props) {
         gridTemplateColumns: "100%",
       }}
     >
-      <NavigationBar />
+      <AppBar />
       <Box
         sx={{
           minHeight: "50vh",

@@ -9,9 +9,9 @@ import {
 import { BUILD_VARIANTS } from "./constants"
 import { getBasePath, getBuildVariant } from "./utils"
 
-type Page = keyof Messages["pages"]
-export const allPages = ["home", "about", "team", "guide", "news", "test"] as const
-export const defaultSubPages: Page[] = ["about", "team", "news"]
+type Page = Exclude<keyof Messages["pages"]["nav"], "notFound">
+export const allPages = ["home", "team", "test", "guide"] as const
+export const defaultSubPages: Page[] = ["team"]
 
 export const appConfigSchema = z.object({
   variant: z.enum(BUILD_VARIANTS).default(getBuildVariant()),

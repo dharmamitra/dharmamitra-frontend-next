@@ -9,7 +9,7 @@ import Section from "@/components/Section"
 export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
 
-  const t = await getTranslations({ locale, namespace: "Guide.kumarajiva" })
+  const t = await getTranslations({ locale, namespace: "pages.guide.kumarajiva" })
 
   return { title: t("title") }
 }
@@ -18,7 +18,7 @@ export default function KumarajivaAboutPage({ params }: DefaultPageParams) {
   const { locale } = use(params)
 
   setRequestLocale(locale)
-  const t = useTranslations("Guide.kumarajiva")
+  const t = useTranslations("pages.guide.kumarajiva")
 
   return (
     <>

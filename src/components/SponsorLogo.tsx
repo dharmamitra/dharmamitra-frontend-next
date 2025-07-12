@@ -12,8 +12,8 @@ const getLinkStyles = (width: number) => {
     overflow: "hidden",
     width: {
       xs: `${width * 0.11}px`,
-      sm: `${width * 0.15}px`,
-      md: `${width * 0.175}px`,
+      sm: `${width * 0.11}px`,
+      md: `${width * 0.13}px`,
     },
   }
 }
