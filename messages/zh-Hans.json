@@ -24,7 +24,8 @@
       "experimentalLanguageWarning": "Support for this language is experimental.",
       "fileFailure": "Failed to process the file. Please try again.",
       "invalidFileType": "Invalid file type. Please upload a {fileTypes} file.",
-      "invalidFileSize": "File size should be less than {maxFileSize}MB"
+      "invalidFileSize": "File size should be less than {maxFileSize}MB",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
     "openAll": "Open all",
     "closeAll": "Close all",
