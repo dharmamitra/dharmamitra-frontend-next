@@ -51,7 +51,7 @@ export default function PrimaryQueryResults() {
 
       <PrimarySearchResultItems results={data} />
       <ExceptionText
-        isRendered={data.length > MAX_PRIMARY_RESULTS}
+        isRendered={data.length >= MAX_PRIMARY_RESULTS}
         exceptionI18nKey="maxSearchResultsWarning"
       />
     </>
