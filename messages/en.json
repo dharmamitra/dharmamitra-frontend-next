@@ -8,7 +8,8 @@
       "experimentalLanguageWarning": "Support for this language is experimental.",
       "fileFailure": "Failed to process the file. Please try again.",
       "invalidFileType": "Invalid file type. Please upload a {fileTypes} file.",
-      "invalidFileSize": "File size should be less than {maxFileSize}MB"
+      "invalidFileSize": "File size should be less than {maxFileSize}MB",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
     "copy": "Copy",
     "copied": "Copied!",
@@ -133,7 +134,7 @@
     "inputAriaLabel": "Translation input field",
     "placeholders": {
       "default": "Enter text, or drag and drop a {acceptedFileTypes} file (of upto approx. 10 pages of text). Supports Sanskrit, Tibetan, Buddhist scriptural Chinese and English.",
-      "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
+      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
     },
     "otherLabel": "Other",
     "targetLanguageSelectLabel": "Output language",
@@ -179,7 +180,7 @@
       "buddhist-chinese": "Buddhist Chinese",
       "english": "English",
       "english-explained": "English (explained)",
-      "english-deep-research": "English (deep research)",
+      "english-deep-research": "English (research)",
       "japanese": "Japanese",
       "korean": "Korean",
       "modern-chinese": "Modern Chinese",
