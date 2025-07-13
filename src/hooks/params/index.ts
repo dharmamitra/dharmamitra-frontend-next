@@ -1,6 +1,5 @@
 // Global
 export { useInputEncodingParamWithLocalStorage } from "./useInputEncodingParamWithLocalStorage"
-export { useViewTabParamWithLocalStorage } from "./useViewTabParamWithLocalStorage"
 
 // Translation
 export { useInputSentenceParam } from "./useInputSentenceParam"
