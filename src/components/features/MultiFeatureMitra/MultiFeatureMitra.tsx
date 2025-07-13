@@ -16,7 +16,7 @@ import MitraOCR from "@/components/features/MitraOCR"
 import MitraSearch from "@/components/features/MitraSearch"
 import MitraTranslator from "@/components/features/MitraTranslator"
 import { tabsStyles } from "@/components/styled-ssr-safe"
-import { useViewTabParamWithLocalStorage } from "@/hooks/params"
+import { useViewParamWithLocalStorage } from "@/hooks/params/useViewParamWithLocalStorage"
 import useAppConfig from "@/hooks/useAppConfig"
 import { views } from "@/utils/api/global/params"
 import { View } from "@/utils/api/global/types"
@@ -27,10 +27,10 @@ import ScrollToTopButton from "./ScrollToTopButton"
 
 export const minToolBoxHeight = "70vh"
 
-export function a11yProps(index: number) {
+export function a11yProps(view: View) {
   return {
-    id: `feature-selector-tab-${index}`,
-    "aria-controls": `feature-selector-tabpanel-${index}`,
+    id: `feature-selector-tab-${view}`,
+    "aria-controls": `feature-selector-tabpanel-${view}`,
   }
 }
 
@@ -50,7 +50,7 @@ export default function MultiFeatureMitra() {
   })
   const isXsScreen = useMediaQuery("(max-width:480px)")
 
-  const [viewTabIndex, setViewTabIndex] = useViewTabParamWithLocalStorage()
+  const [currentView, setView] = useViewParamWithLocalStorage(availableViews)
 
   const [isSearchControlsOpen, setIsSearchControlsOpen] = React.useState(() => {
     if (typeof window === "undefined") return false
@@ -58,14 +58,14 @@ export default function MultiFeatureMitra() {
   })
 
   const handleTabChange = React.useCallback(
-    (event: React.SyntheticEvent, newValue: number) => {
-      setViewTabIndex(newValue)
+    (event: React.SyntheticEvent, newView: View) => {
+      setView(newView)
     },
-    [setViewTabIndex],
+    [setView],
   )
 
   const { ref: scrollMarkerRef, inView: scrollMarkerInView } = useInView({
-    rootMargin: viewTabIndex === 0 ? "200px 0px" : "400px 0px",
+    rootMargin: currentView === "search" ? "200px 0px" : "400px 0px",
     initialInView: true,
   })
 
@@ -73,7 +73,7 @@ export default function MultiFeatureMitra() {
     <>
       <Box>
         <Tabs
-          value={viewTabIndex}
+          value={currentView}
           aria-label="navigation tabs"
           centered
           onChange={handleTabChange}
@@ -86,16 +86,16 @@ export default function MultiFeatureMitra() {
           }}
           sx={tabsStyles}
         >
-          {availableViews.map((view, index) => {
+          {availableViews.map((view) => {
             const Icon = TabIcons[view]
             return (
               <Tab
                 key={view}
-                value={index}
+                value={view}
                 icon={isXsScreen ? undefined : <Icon />}
                 iconPosition="start"
                 label={t(`generic.${view}`)}
-                {...a11yProps(index)}
+                {...a11yProps(view)}
               />
             )
           })}
@@ -115,7 +115,7 @@ export default function MultiFeatureMitra() {
 
         <Box sx={{ height: "100%" }}>
           {hasSearch ? (
-            <FeatureTabPanel value={viewTabIndex} index={0}>
+            <FeatureTabPanel currentView={currentView} view="search">
               <Box
                 id="search-feature-wrapper"
                 sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
@@ -128,13 +128,13 @@ export default function MultiFeatureMitra() {
             </FeatureTabPanel>
           ) : null}
 
-          <FeatureTabPanel value={viewTabIndex} index={hasSearch ? 1 : 0}>
+          <FeatureTabPanel currentView={currentView} view="translation">
             <Box id="translator-feature-wrapper">
               <MitraTranslator />
             </Box>
           </FeatureTabPanel>
 
-          <FeatureTabPanel value={viewTabIndex} index={hasSearch ? 2 : 1}>
+          <FeatureTabPanel currentView={currentView} view="ocr">
             <Box id="ocr-feature-wrapper" sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}>
               <MitraOCR />
             </Box>
