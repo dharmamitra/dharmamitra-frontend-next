@@ -15,6 +15,7 @@ const en = [
   "云何三十七菩提分法？",
   "a definition of the term “change”",
   "What is the ‘threefold truth’ (一心三觀)?",
+  "What is a kalyāṇamitra?",
 ]
 
 const zhHans = [

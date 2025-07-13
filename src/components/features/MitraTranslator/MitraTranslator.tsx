@@ -14,7 +14,6 @@ import {
   useTranslationModelParam,
 } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
-import useTranslationDisabled from "@/hooks/useTranslationDisabled"
 
 import TranslatorInputControls from "./controls/TranslatorInputControls"
 import TranslatorKeyboardControls from "./controls/TranslatorKeyboardControls"
@@ -60,12 +59,6 @@ export default function MitraTranslator() {
   const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
   const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(new Set())
-  const isTriggerDisabled = useTranslationDisabled(
-    input_sentence,
-    chatPropsWithId.id,
-    completedQueryIds,
-  )
-
   // State to track if file upload is in progress
   const [isFileUploadPending, setIsFileUploadPending] = React.useState(false)
 
@@ -108,7 +101,7 @@ export default function MitraTranslator() {
             chatPropsWithId={chatPropsWithId}
             input={input_sentence}
             setInput={setInputSentenceParam}
-            isTriggerDisabled={isTriggerDisabled}
+            isTriggerDisabled={!input_sentence.match(/\S+/g)?.length}
             completedQueryIds={completedQueryIds}
             setCompletedQueryIds={setCompletedQueryIds}
             onFileButtonClick={handleFileButtonClick}

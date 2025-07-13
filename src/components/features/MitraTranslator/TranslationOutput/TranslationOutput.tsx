@@ -14,20 +14,13 @@ type TranslationOutputProps = {
 
 const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
   function TranslationOutput({ chatPropsWithId }, ref) {
-    const { messages, status, error, setMessages } = useChat(chatPropsWithId)
+    const { messages, status, error } = useChat(chatPropsWithId)
 
     // Stable array of filtered messages
     const assistantMessages = React.useMemo(
       () => messages.filter((msg) => msg.role === "assistant"),
       [messages],
     )
-
-    // Cleanup messages when component unmounts or when chatPropsWithId changes
-    React.useEffect(() => {
-      return () => {
-        setMessages([])
-      }
-    }, [chatPropsWithId.id, setMessages])
 
     if (status === "submitted") {
       return (
@@ -38,11 +31,15 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
     }
 
     if (error) {
-      return <ExceptionText type="error" message={error.message} sx={{ border: 0, p: 0, m: 0 }} />
+      return (
+        <Box sx={{ py: 2.5 }}>
+          <ExceptionText type="error" message={error.message} sx={{ border: 0, p: 0, m: 0 }} />
+        </Box>
+      )
     }
 
     return (
-      <Box ref={ref}>
+      <Box ref={ref} sx={{ py: 2.5 }}>
         {assistantMessages.map((message) => (
           <MemoizedMarkdown
             key={`${chatPropsWithId.id}-${message.id}`}
