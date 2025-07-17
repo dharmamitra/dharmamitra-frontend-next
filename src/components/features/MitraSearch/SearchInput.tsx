@@ -18,13 +18,19 @@ export default function SearchInput({ className }: { className?: string }) {
 
   const [searchInputParam, setSearchInputParam] = useSearchInputParam()
 
-  const [searchInput, setSearchInput] = React.useState(searchInputParam)
+  // Local state for immediate input updates (prevents character loss)
+  const [localInput, setLocalInput] = React.useState(searchInputParam)
 
-  const debouncedSearchInput = useDebouncedValue(searchInput, 100)
+  const debouncedLocalInput = useDebouncedValue(localInput, 200)
 
   React.useEffect(() => {
-    setSearchInputParam(debouncedSearchInput)
-  }, [debouncedSearchInput, setSearchInputParam])
+    setSearchInputParam(debouncedLocalInput)
+  }, [debouncedLocalInput, setSearchInputParam])
+
+  // Initialize local input from URL parameter on mount only
+  React.useEffect(() => {
+    setLocalInput(searchInputParam)
+  }, [])
 
   const handleKeyPress = React.useCallback(
     (event: React.KeyboardEvent) => {
@@ -46,7 +52,7 @@ export default function SearchInput({ className }: { className?: string }) {
 
         // flushSync batches state update and DOM manipulation, reducing layout thrashing.
         flushSync(() => {
-          setSearchInput(updatedValue)
+          setLocalInput(updatedValue)
         })
 
         // Makes sure the cursor position is set after the DOM update
@@ -55,7 +61,7 @@ export default function SearchInput({ className }: { className?: string }) {
         })
       }
     },
-    [setSearchInput],
+    [setLocalInput],
   )
 
   return (
@@ -73,10 +79,10 @@ export default function SearchInput({ className }: { className?: string }) {
           inputProps={{
             "aria-label": "search",
           }}
-          value={searchInputParam}
+          value={localInput}
           multiline
           type="search"
-          onChange={(event) => setSearchInputParam(event.target.value)}
+          onChange={(event) => setLocalInput(event.target.value)}
           onKeyDown={handleKeyPress}
           endAdornment={
             <Box
@@ -85,14 +91,14 @@ export default function SearchInput({ className }: { className?: string }) {
                 alignItems: "center",
               }}
             >
-              <TriggerQueryButton input={searchInputParam} />
+              <TriggerQueryButton input={localInput} />
 
-              <ClearButton input={searchInputParam} setInput={setSearchInputParam} />
+              <ClearButton input={localInput} setInput={setLocalInput} />
             </Box>
           }
         />
       </Box>
-      <SearchKeyboardControls input={searchInputParam} />
+      <SearchKeyboardControls input={localInput} />
     </>
   )
 }
