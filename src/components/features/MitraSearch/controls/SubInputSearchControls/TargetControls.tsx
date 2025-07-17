@@ -6,7 +6,7 @@ import Box from "@mui/material/Box"
 import {
   DbSourceFilter,
   LanguageFilterSelector,
-  SearchTargetButtons,
+  // SearchTargetButtons,
 } from "@/components/features/paramSettings"
 import {
   useFilterSourceLanguageParam,
@@ -39,7 +39,8 @@ export default function TargetControls() {
         gap: 2,
       }}
     >
-      <SearchTargetButtons />
+      {/* Disabled for Summer 2025 release. Due to be re-enabled in due course. */}
+      {/* <SearchTargetButtons /> */}
 
       <LanguageFilterSelector />
 
