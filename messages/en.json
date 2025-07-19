@@ -57,7 +57,7 @@
   },
   "localeSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, en {English} zh_Hans {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "locale": "{locale, select, en {English} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "English"
   },
   "search": {
@@ -137,12 +137,12 @@
     "inputAriaLabel": "Translation input field",
     "placeholders": {
       "default": "Enter text, or drag and drop a {acceptedFileTypes} file (of upto approx. 10 pages of text). Supports Sanskrit, Tibetan, Buddhist scriptural Chinese and English.",
-      "englishExplained": "Enter Sanskrit text to translate and explaine, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
+      "englishExplained": "Enter Sanskrit text to translate and explain, using one line per sentence. (Currently, explanation is only available for Sanskrit)"
     },
     "otherLabel": "Other",
     "targetLanguageSelectLabel": "Output language",
-    "primaryTargetLanguagesAriaLabel": "Primary traget language options",
-    "secondaryTargetLanguagesAriaLabel": "Other traget language options",
+    "primaryTargetLanguagesAriaLabel": "Primary target language options",
+    "secondaryTargetLanguagesAriaLabel": "Other target language options",
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
     "copyTranslation": "Copy translation",

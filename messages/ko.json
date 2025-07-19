@@ -1,13 +1,13 @@
 {
   "generic": {
     "exception": {
-      "default": "おっと! 문제가 발생했습니다!<newline>나중에 다시 시도해 주세요.</newline>",
+      "default": "오류가 발생했습니다.<newline>나중에 다시 시도해 주세요.</newline>",
       "timeout": "현재 서버에 부하가 많습니다.<newline>잠시 후 다시 시도해 주세요.</newline>",
-      "inputLengthWarning": "입력 텍스트가 너무 깁니다. 서버가 출력을 잘랐을 수 있습니다. 더 짧은 텍스트로 다시 시도해 주세요.",
-      "inputLengthError": "입력 텍스트가 너무 길어 모델이 처리할 수 없습니다. 더 짧은 입력으로 다시 시도해 주세요.",
-      "experimentalLanguageWarning": "이 언어에 대한 지원은 실험적입니다.",
+      "inputLengthWarning": "입력된 텍스트가 너무 깁니다. 결과의 일부가 잘렸을 수 있습니다. 더 짧은 텍스트로 다시 시도해 주세요.",
+      "inputLengthError": "입력된 텍스트가 너무 길어 모델이 처리할 수 없습니다. 더 짧은 텍스트를 입력해 주세요.",
+      "experimentalLanguageWarning": "이 언어에 대한 지원은 실험 단계에 있습니다.",
       "fileFailure": "파일을 처리하지 못했습니다. 다시 시도해 주세요.",
-      "invalidFileType": "잘못된 파일 유형입니다. {fileTypes} 파일을 업로드해 주세요.",
+      "invalidFileType": "지원하지 않는 파일 형식입니다. {fileTypes} 파일을 업로드해 주세요.",
       "invalidFileSize": "파일 크기는 {maxFileSize}MB 미만이어야 합니다."
     },
     "copy": "복사",
@@ -21,26 +21,26 @@
     "other": "기타",
     "clear": "지우기",
     "stop": "중지",
-    "source": "소스",
-    "target": "타겟",
-    "loading": "로드 중",
+    "source": "원본",
+    "target": "번역문",
+    "loading": "불러오는 중...",
     "processing": "처리 중...",
     "englishTranslation": "영어 번역",
-    "upload": "{fileTypes} 파일 업로드<br></br>(약 10페이지 분량의 텍스트 지원)",
+    "upload": "{fileTypes} 파일 업로드<br></br>(최대 10페이지 분량)",
     "uploadDisabled": "업로드 비활성화됨",
-    "noResult": "결과를 찾을 수 없습니다.",
+    "noResult": "검색 결과가 없습니다.",
     "openAll": "모두 열기",
     "closeAll": "모두 닫기",
     "showLess": "간략히 보기",
     "showAll": "{count, number}개 모두 보기",
     "dragAndDrop": "여기에 파일을 드래그 앤 드롭하세요",
-    "supportedFileTypes": "지원되는 파일 유형: {fileTypes} (최대 크기: {maxFileSize}MB)",
+    "supportedFileTypes": "지원 파일 형식: {fileTypes} (최대 {maxFileSize}MB)",
     "browseFiles": "파일 찾아보기",
     "saveToFile": "파일로 저장",
     "ocr": "OCR",
     "translation": "번역",
     "search": "검색",
-    "extensionCTA": "mitra 번역을 당신의 텍스트가 있는 곳에서 사용하세요; <chromelink>Chrome</chromelink> 또는 <firefoxlink>Firefox</firefoxlink> 확장 프로그램을 받으세요."
+    "extensionCTA": "웹사이트 어디서든 Mitra 번역을 사용해 보세요. <chromelink>Chrome</chromelink> 또는 <firefoxlink>Firefox</firefoxlink> 확장 프로그램을 설치하세요."
   },
   "navigation": {
     "nexusLinkLabel": "데이터베이스",
@@ -50,10 +50,10 @@
   "footer": {
     "mission": {
       "h2": "Dharmamitra",
-      "p": "AI 기술을 활용하여 법(dharma)의 학술적 연구와 개인적 실천을 증진하고, 데이터 세트, 모델 및 응용 프로그램에 대한 오픈 소스 협업을 통해 학술 및 개인 연구를 가속화합니다."
+      "p": "Dharmamitra는 AI 기술을 통해 법(dharma)의 학술 연구와 개인의 수행을 돕습니다. 저희는 데이터 세트, 모델, 애플리케이션의 오픈 소스 협업을 통해 학문적, 개인적 탐구를 지원합니다."
     },
-    "collaboration": "<link>Tsadra 재단</link>과 협력.",
-    "engine": "Gemini API 제공"
+    "collaboration": "<link>Tsadra 재단</link>과 협력하여 제작되었습니다.",
+    "engine": "Powered by Gemini API"
   },
   "localeSwitcher": {
     "label": "언어 변경",
@@ -63,25 +63,25 @@
   "search": {
     "search": "검색",
     "results": "검색 결과",
-    "heading": "2500년 불교 검색",
+    "heading": "2500년 불교 문헌 검색",
     "placeholder": "검색어를 입력하세요.",
     "optionsSwitchLabel": "옵션 표시",
-    "resetOptionsLabel": "기본 검색 옵션 사용",
-    "optionCountBadgeLabel": "{count, plural, =1 {1개의 맞춤 검색 옵션} other {#개의 맞춤 검색 옵션}} 설정",
-    "parallelEnglishSwitch": "영어 표시",
+    "resetOptionsLabel": "기본 검색 옵션으로 초기화",
+    "optionCountBadgeLabel": "{count, plural, =1 {맞춤 검색 옵션 1개 적용됨} other {맞춤 검색 옵션 #개 적용됨}}",
+    "parallelEnglishSwitch": "영어 대역 표시",
     "precisionLabel": "정확히 일치",
     "explanation": "설명",
-    "expandText": "결과 텍스트 확장",
-    "collapseText": "결과 텍스트 축소",
+    "expandText": "결과 펼치기",
+    "collapseText": "결과 접기",
     "targetTips": {
-      "primary": "정식 및 전통 원본 텍스트 검색",
-      "secondary": "현대 주석 문헌 검색",
-      "parallel": "교차 전통 텍스트 병렬 컴파일 데이터 세트 검색"
+      "primary": "정통 및 전통 원전 텍스트를 검색합니다.",
+      "secondary": "현대 주석 문헌을 검색합니다.",
+      "parallel": "여러 전통에 걸친 대역(parallel) 텍스트 데이터 세트를 검색합니다."
     },
     "targets": {
       "primary": "전통",
       "secondary": "현대",
-      "parallel": "병렬"
+      "parallel": "대역"
     },
     "limits": {
       "labels": {
@@ -109,7 +109,7 @@
       },
       "searchTypes": {
         "regular": "일반",
-        "semantic": "의미"
+        "semantic": "의미 기반"
       },
       "filterLanguages": {
         "bo": "티베트어",
@@ -123,7 +123,7 @@
         "file_include": "포함할 텍스트 선택"
       }
     },
-    "relevance": "관련성",
+    "relevance": "관련도",
     "relevanceTypes": {
       "high": "높음",
       "medium": "중간",
@@ -131,65 +131,65 @@
     }
   },
   "translation": {
-    "translate": "번역",
-    "triggerDisabled": "번역할 텍스트 추가/업데이트",
+    "translate": "번역하기",
+    "triggerDisabled": "번역할 텍스트를 입력하거나 업로드하세요.",
     "heading": "법(Dharma) 텍스트 번역",
     "inputAriaLabel": "번역 입력 필드",
     "placeholders": {
-      "default": "텍스트를 입력하거나 {acceptedFileTypes} 파일을 드래그 앤 드롭하세요(최대 약 10페이지 분량). 산스크리트어, 티베트어, 불교 경전 중국어 및 영어를 지원합니다.",
-      "englishExplained": "번역하고 설명할 산스크리트어 텍스트를 한 문장씩 입력하세요. (현재 설명은 산스크리트어만 가능합니다)"
+      "default": "텍스트를 입력하거나 {acceptedFileTypes} 파일을 드래그 앤 드롭하세요(최대 10페이지 분량). 산스크리트어, 티베트어, 불교 한문, 영어를 지원합니다.",
+      "englishExplained": "번역 및 설명을 원하는 산스크리트어 텍스트를 한 문장씩 입력하세요. (현재 설명 기능은 산스크리트어만 지원됩니다)"
     },
     "otherLabel": "기타",
-    "targetLanguageSelectLabel": "출력 언어",
-    "primaryTargetLanguagesAriaLabel": "기본 대상 언어 옵션",
-    "secondaryTargetLanguagesAriaLabel": "기타 대상 언어 옵션",
+    "targetLanguageSelectLabel": "번역 언어",
+    "primaryTargetLanguagesAriaLabel": "주요 번역 언어 옵션",
+    "secondaryTargetLanguagesAriaLabel": "기타 번역 언어 옵션",
     "modelLabel": "모델",
     "grammarLabel": "문법 분석",
-    "copyTranslation": "번역 복사",
-    "usageH2": "사용법",
-    "usageAccept": "수락",
-    "usageNoticeShort": "Dharmamitra의 기계 번역은 실수가 있을 수 있습니다. 책임감 있게 사용해 주세요.",
+    "copyTranslation": "번역문 복사",
+    "usageH2": "사용 안내",
+    "usageAccept": "확인 및 동의",
+    "usageNoticeShort": "Dharmamitra의 기계 번역은 정확하지 않을 수 있습니다. 결과를 신중하게 사용해 주세요.",
     "ocr": {
-      "dragAndDropOverlay": "지원되는 파일 유형: {fileTypes}<br></br>최대 문자: {maxInputCharacters} (약 {maxInputPageEquivalent} 페이지 분량)<br></br>최대 파일 크기: {maxFileSize}MB",
+      "dragAndDropOverlay": "지원 파일 형식: {fileTypes}<br></br>최대 글자 수: {maxInputCharacters}자 (약 {maxInputPageEquivalent} 페이지)<br></br>최대 파일 크기: {maxFileSize}MB",
       "unknownErrorTitle": "OCR 실패",
-      "lengthErrorTitle": "OCR 출력이 너무 깁니다",
-      "lengthErrorText": "번역 입력은 최대 {maxInputCharacters}자(약 {maxInputPageEquivalent} 페이지 분량)까지 지원합니다. 더 짧은 텍스트로 다시 시도하거나 OCR 기능을 사용하여 더 긴 텍스트를 처리하세요."
+      "lengthErrorTitle": "OCR 결과가 너무 깁니다",
+      "lengthErrorText": "번역 입력은 최대 {maxInputCharacters}자(약 {maxInputPageEquivalent} 페이지)까지 가능합니다. 더 짧은 텍스트로 다시 시도하거나, OCR 기능을 사용해 더 긴 텍스트를 처리하세요."
     },
     "usageNoticeLong": {
-      "p1": "Dharmamitra는 최첨단 심층 신경망을 활용하여 효율적으로 기계 번역을 제공합니다. 우리는 가능한 최고의 품질을 제공하기 위해 열심히 노력하고 있습니다. 우리의 기술은 계속 발전하고 서비스는 자주 업데이트되지만 다음 사항을 명심하십시오:",
+      "p1": "Dharmamitra는 최첨단 신경망 기술을 활용하여 기계 번역을 제공합니다. 저희는 최고의 번역 품질을 제공하기 위해 기술을 꾸준히 발전시키고 서비스를 업데이트하고 있습니다. 다만, 다음 사항에 유의해 주시기 바랍니다:",
       "ul": {
         "1": "Dharmamitra는 다른 언어로 보존된 고전 아시아 텍스트를 이해하는 데 도움이 되는 도구입니다.",
-        "2": "확실하지 않은 경우 언어 전문가와 상담하거나 기존의 인간 번역을 참조하는 것이 좋습니다.",
-        "3": "Dharmamitra의 출력을 공유하기 전에 검토하고 확인하는 것이 좋습니다."
+        "2": "내용이 확실하지 않은 경우, 언어 전문가와 상담하거나 기존 전문 번역본을 참조하는 것이 좋습니다.",
+        "3": "Dharmamitra의 번역 결과를 공유하기 전에 내용을 직접 검토하고 확인하는 것이 좋습니다."
       },
-      "p2": "Dharmamitra는 인간의 전문 지식을 대체하는 것이 아니라 보완하도록 설계되었습니다. 우리의 고급 기술과 귀하의 분별력을 결합하여 번역 서비스를 최대한 활용할 수 있습니다."
+      "p2": "Dharmamitra는 전문가의 번역을 대체하는 것이 아니라 보완하는 도구입니다. Dharmamitra의 기술과 사용자의 신중한 판단이 결합될 때, 이 서비스의 가치를 최대한 활용할 수 있습니다."
     },
     "tagging": {
       "label": "문법",
       "ariaLabel": "문법 분석",
       "heading": "문법 분석",
-      "unsandhied": "연성되지 않은 문장",
+      "unsandhied": "연성 원형 복원",
       "lemma": "표제어",
       "tag": "태그",
       "meanings": "의미",
       "unsuccessful": "문법 분석에 실패했습니다.",
-      "credit": "이 문법 파서는 산스크리트어 입력을 지원하며 Oliver Hellwig의 <link>Digital Corpus of Sanskrit</link>의 데이터로 가능했습니다.",
+      "credit": "이 문법 분석기는 산스크리트어 입력을 지원하며, Oliver Hellwig의 <link>Digital Corpus of Sanskrit</link> 데이터를 기반으로 구현되었습니다.",
       "originalSentence": "원본 문장",
       "copy": {
-        "unsandhied": "연성되지 않은 문장 복사"
+        "unsandhied": "연성 원형 복원 문장 복사"
       }
     },
     "targetLanguages": {
       "buddhist-chinese": "불교 한문",
       "english": "영어",
-      "english-explained": "영어(설명 포함)",
+      "english-explained": "영어 (설명 포함)",
       "japanese": "일본어",
       "korean": "한국어",
       "modern-chinese": "현대 중국어",
       "pali": "팔리어",
       "sa-en": "SA 영어",
-      "sanskrit-dev": "산스크리트어(데바나가리)",
-      "sanskrit-knn": "산스크리트어(KNN)",
+      "sanskrit-dev": "산스크리트어 (데바나가리)",
+      "sanskrit-knn": "산스크리트어 (KNN)",
       "sanskrit": "산스크리트어",
       "tibetan": "티베트어",
       "hindi": "힌디어",
@@ -217,11 +217,11 @@
     }
   },
   "ocr": {
-    "processingTimeNote": "큰 파일은 처리하는 데 몇 분이 걸릴 수 있으므로 더 작은 덩어리로 나누는 것이 좋습니다.",
-    "processingTimeNoteShort": "큰 파일은 처리하는 데 몇 분이 걸릴 수 있습니다.",
-    "devanagariToIASTSwitchLabel": "데바나가리를 IAST로",
-    "tibetanToWylieSwitchLabel": "티베트어를 와일리로",
-    "largeDownload": "추출된 텍스트가 100kB보다 크므로 파일로 다운로드할 수 있습니다."
+    "processingTimeNote": "파일 크기가 큰 경우 처리 시간이 몇 분 정도 걸릴 수 있습니다. 파일을 작게 나누어 업로드하는 것을 권장합니다.",
+    "processingTimeNoteShort": "파일 크기가 큰 경우 처리 시간이 몇 분 정도 걸릴 수 있습니다.",
+    "devanagariToIASTSwitchLabel": "데바나가리 → IAST",
+    "tibetanToWylieSwitchLabel": "티베트어 → 와일리",
+    "largeDownload": "추출된 텍스트가 100kB를 초과하여 파일로 다운로드됩니다."
   },
   "globalParams": {
     "encodingSelectLabel": "입력 인코딩",
