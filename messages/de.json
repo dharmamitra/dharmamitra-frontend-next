@@ -8,7 +8,8 @@
       "experimentalLanguageWarning": "Die Unterstützung für diese Sprache ist experimentell.",
       "fileFailure": "Die Datei konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut.",
       "invalidFileType": "Ungültiger Dateityp. Bitte laden Sie eine {fileTypes} Datei hoch.",
-      "invalidFileSize": "Die Dateigröße sollte weniger als {maxFileSize}MB betragen"
+      "invalidFileSize": "Die Dateigröße sollte weniger als {maxFileSize}MB betragen",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
     "copy": "Kopieren",
     "copied": "Kopiert!",
@@ -182,6 +183,7 @@
     "targetLanguages": {
       "buddhist-chinese": "Buddhistisches Chinesisch",
       "english": "Englisch",
+      "english-deep-research": "English (research)",
       "english-explained": "Englisch (erklärt)",
       "japanese": "Japanisch",
       "korean": "Koreanisch",
@@ -387,4 +389,4 @@
     "message": "Kein Anfangspunkt wird gefunden von Wesen, die wandern und umherstreifen. <cite>— Assusutta</cite>",
     "home": "Zur Startseite"
   }
-} 
+}

@@ -8,7 +8,8 @@
       "experimentalLanguageWarning": "इस भाषा के लिए समर्थन प्रायोगिक है।",
       "fileFailure": "फ़ाइल को प्रोसेस करने में विफल। कृपया पुनः प्रयास करें।",
       "invalidFileType": "अमान्य फ़ाइल प्रकार। कृपया {fileTypes} फ़ाइल अपलोड करें।",
-      "invalidFileSize": "फ़ाइल का आकार {maxFileSize}MB से कम होना चाहिए"
+      "invalidFileSize": "फ़ाइल का आकार {maxFileSize}MB से कम होना चाहिए",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
     "copy": "कॉपी करें",
     "copied": "कॉपी किया गया!",
@@ -181,25 +182,26 @@
     },
     "targetLanguages": {
       "buddhist-chinese": "बौद्ध चीनी",
-      "english": "अंग्रेज़ी",
+      "dutch": "डच",
+      "english-deep-research": "English (research)",
       "english-explained": "अंग्रेज़ी (व्याख्या के साथ)",
+      "english": "अंग्रेज़ी",
+      "french": "फ्रेंच",
+      "german": "जर्मन",
+      "hindi": "हिंदी",
+      "italian": "इतालवी",
       "japanese": "जापानी",
       "korean": "कोरियाई",
       "modern-chinese": "आधुनिक चीनी",
       "pali": "पाली",
+      "portuguese": "पुर्तगाली",
+      "russian": "रूसी",
       "sa-en": "SA अंग्रेज़ी",
       "sanskrit-dev": "संस्कृत (देवनागरी)",
       "sanskrit-knn": "संस्कृत (KNN)",
       "sanskrit": "संस्कृत",
-      "tibetan": "तिब्बती",
-      "hindi": "हिंदी",
-      "german": "जर्मन",
-      "russian": "रूसी",
-      "french": "फ्रेंच",
-      "italian": "इतालवी",
       "spanish": "स्पेनिश",
-      "portuguese": "पुर्तगाली",
-      "dutch": "डच"
+      "tibetan": "तिब्बती"
     },
     "models": {
       "": "",
@@ -387,4 +389,4 @@
     "message": "भटकते और घूमते हुए प्राणियों का कोई आरंभ बिंदु नहीं मिलता। <cite>— अस्सुसुत्त</cite>",
     "home": "होम जाएँ"
   }
-} 
+}

@@ -1,9 +1,12 @@
 import React from "react"
-import { parseAsStringLiteral, useQueryState } from "nuqs"
 import { useLocale } from "next-intl"
+import { parseAsStringLiteral, useQueryState } from "nuqs"
 
 import useAppConfig from "@/hooks/useAppConfig"
-import { translationParamsNames, getDefaultTargetLanguageForLocale } from "@/utils/api/translation/params"
+import {
+  getDefaultTargetLanguageForLocale,
+  translationParamsNames,
+} from "@/utils/api/translation/params"
 import { getValidTargetLanguage } from "@/utils/api/translation/validators"
 
 const {

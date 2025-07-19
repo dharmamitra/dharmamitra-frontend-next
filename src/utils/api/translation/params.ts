@@ -67,7 +67,7 @@ export const getDefaultTargetLanguageForLocale = (locale: string): TargetLanguag
     bo: "tibetan",
     de: "german",
   }
-  
+
   return localeToTargetLanguage[locale] || "english"
 }
 

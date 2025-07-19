@@ -8,7 +8,8 @@
       "experimentalLanguageWarning": "སྐད་ཡིག་འདིའི་རྒྱབ་སྐྱོར་ནི་ཚོད་ལྟའི་རང་བཞིན་ཡིན།",
       "fileFailure": "ཡིག་ཆ་ལས་སྣོན་བྱེད་མ་ཐུབ། ཡང་བསྐྱར་འབད་རོགས།",
       "invalidFileType": "ཡིག་ཆའི་རྣམ་པ་ནོར་འདུག ཉིད་ནས་ {fileTypes} རྣམ་པའི་ཡིག་ཆ་ཞིག་ཡར་སྤྲོད་གནང་རོགས།",
-      "invalidFileSize": "ཡིག་ཆའི་ཆེ་ཆུང་ {maxFileSize}MB ལས་ཆུང་དགོས།"
+      "invalidFileSize": "ཡིག་ཆའི་ཆེ་ཆུང་ {maxFileSize}MB ལས་ཆུང་དགོས།",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
     "copy": "འདྲ་བཤུ།",
     "copied": "འདྲ་བཤུ་བྱས་ཚར།",
@@ -182,6 +183,7 @@
     "targetLanguages": {
       "buddhist-chinese": "ནང་བསྟན་གྱི་རྒྱ་ཡིག",
       "english": "ཨིན་ཡིག",
+      "english-deep-research": "English (research)",
       "english-explained": "ཨིན་ཡིག (འགྲེལ་བཤད་དང་བཅས།)",
       "japanese": "ཉི་ཧོང་སྐད།",
       "korean": "ཀོ་རེ་ཡའི་སྐད།",
@@ -291,4 +293,4 @@
       "role": "གསར་སྤེལ་བ་གཙོ་བོ།"
     }
   }
-} 
+}

@@ -42,6 +42,14 @@ const zhHant = [
   // TODO
   ...en,
 ]
+const hi = [
+  // TODO
+  ...en,
+]
+const de = [
+  // TODO
+  ...en,
+]
 
 export const exampleSearchStrings: Record<SupportedLocale, string[]> = {
   en,
@@ -50,4 +58,6 @@ export const exampleSearchStrings: Record<SupportedLocale, string[]> = {
   bo,
   "zh-Hans": zhHans,
   "zh-Hant": zhHant,
+  hi,
+  de,
 }

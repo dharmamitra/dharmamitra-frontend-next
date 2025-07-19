@@ -87,4 +87,5 @@ def update_language_files():
 
 
 if __name__ == "__main__":
+    print("Syncing EN message model with other locales...")
     update_language_files()

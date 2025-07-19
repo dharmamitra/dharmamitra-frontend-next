@@ -8,7 +8,8 @@
       "experimentalLanguageWarning": "この言語のサポートは実験的なものです。",
       "fileFailure": "ファイルの処理に失敗しました。もう一度お試しください。",
       "invalidFileType": "無効なファイルタイプです。{fileTypes}ファイルをアップロードしてください。",
-      "invalidFileSize": "ファイルサイズは{maxFileSize}MB未満にしてください"
+      "invalidFileSize": "ファイルサイズは{maxFileSize}MB未満にしてください",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
     "copy": "コピー",
     "copied": "コピーしました！",
@@ -182,6 +183,7 @@
     "targetLanguages": {
       "buddhist-chinese": "漢文",
       "english": "英語",
+      "english-deep-research": "English (research)",
       "english-explained": "英語（説明付き）",
       "japanese": "日本語",
       "korean": "韓国語",
@@ -387,4 +389,4 @@
     "message": "さまよい歩く衆生の始点はない。<cite>—アッススッタ</cite>",
     "home": "ホームに戻る"
   }
-} 
+}

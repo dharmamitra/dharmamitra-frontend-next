@@ -24,7 +24,8 @@
       "experimentalLanguageWarning": "此語言支援為實驗性功能。",
       "fileFailure": "檔案處理失敗。請重試。",
       "invalidFileType": "無效的檔案類型。請上傳 {fileTypes} 檔案。",
-      "invalidFileSize": "檔案大小應小於 {maxFileSize}MB"
+      "invalidFileSize": "檔案大小應小於 {maxFileSize}MB",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
     "openAll": "全部開啟",
     "closeAll": "全部關閉",
@@ -159,6 +160,7 @@
     "targetLanguages": {
       "buddhist-chinese": "佛典漢文",
       "english": "英文",
+      "english-deep-research": "English (research)",
       "japanese": "日文",
       "korean": "韓文",
       "modern-chinese": "現代中文",

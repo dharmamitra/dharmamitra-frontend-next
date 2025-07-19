@@ -8,7 +8,8 @@
       "experimentalLanguageWarning": "이 언어에 대한 지원은 실험 단계에 있습니다.",
       "fileFailure": "파일을 처리하지 못했습니다. 다시 시도해 주세요.",
       "invalidFileType": "지원하지 않는 파일 형식입니다. {fileTypes} 파일을 업로드해 주세요.",
-      "invalidFileSize": "파일 크기는 {maxFileSize}MB 미만이어야 합니다."
+      "invalidFileSize": "파일 크기는 {maxFileSize}MB 미만이어야 합니다.",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
     "copy": "복사",
     "copied": "복사되었습니다!",
@@ -182,6 +183,7 @@
     "targetLanguages": {
       "buddhist-chinese": "불교 한문",
       "english": "영어",
+      "english-deep-research": "English (research)",
       "english-explained": "영어 (설명 포함)",
       "japanese": "일본어",
       "korean": "한국어",
@@ -295,4 +297,4 @@
       "role": "프로젝트 관리자"
     }
   }
-} 
+}
