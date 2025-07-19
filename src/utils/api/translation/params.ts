@@ -10,6 +10,7 @@ export const allTargetLanguages: TargetLanguage[] = exhaustiveStringTuple<
 >()(
   "english",
   "english-explained",
+  "english-deep-research",
   "tibetan",
   "sanskrit",
   "sanskrit-dev",

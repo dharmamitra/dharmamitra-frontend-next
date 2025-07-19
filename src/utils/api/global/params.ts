@@ -13,7 +13,6 @@ export const inputEncodings: InputEncoding[] = exhaustiveStringTuple<APIInputEnc
 )
 export const defaultInputEncoding: InputEncoding = "auto"
 
-// Ordered list of views. Corresponds to feature tab order (& ViewIndex)
 export const views: View[] = exhaustiveStringTuple<View>()("search", "translation", "ocr")
 export const defaultView: View = "search"
 

@@ -2,6 +2,8 @@ import React from "react"
 import Box from "@mui/material/Box"
 
 import CopyPageLink from "@/components/CopyPageLink"
+import ExceptionText from "@/components/ExceptionText"
+import { MAX_PRIMARY_RESULTS } from "@/components/features/MitraSearch/utils"
 import { useSearchInputParam } from "@/hooks/params"
 import { usePrimarySearchQuery } from "@/hooks/search/queries"
 
@@ -48,6 +50,10 @@ export default function PrimaryQueryResults() {
       </Box>
 
       <PrimarySearchResultItems results={data} />
+      <ExceptionText
+        isRendered={data.length >= MAX_PRIMARY_RESULTS}
+        exceptionI18nKey="maxSearchResultsWarning"
+      />
     </>
   )
 }

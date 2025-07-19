@@ -24,26 +24,12 @@ export const sourceLangColors: Record<SourceLanguage, string> = {
   bo: "#66160E",
 }
 
-export const exampleSearchQueries = [
-  "Ven. Ānanda's care for the Buddha",
-  "Faith leading to happiness",
-  "Similes for nirvana",
-  "The Buddha’s compassion",
-  "Definition of peace",
-  "The purpose of giving",
-  "consciousness and the sense bases",
-  "Overcoming dullness",
-  "Householders living well",
-  "heart’s release through rejoicing",
-  "living in harmony",
-  "death and dying",
-  "bright and dark results of karma",
-  "the factors of stream-entry",
-  "The purpose of ordination",
-]
-
 export const chromeExtensionUrl =
   "https://chromewebstore.google.com/detail/dharmamitra-language-tool/jlmleoklbpdehnokplffodjomekoiadl?hl=en-GB&utm_source=ext_sidebar"
 
 export const firefoxExtensionUrl =
   "https://addons.mozilla.org/firefox/addon/dharmamitra-language-tools/"
+
+export const nexusUrl = "https://dharmamitra.org/nexus"
+
+export const docsSiteUrl = "https://dharmamitra.github.io/dharmamitra-guides/"

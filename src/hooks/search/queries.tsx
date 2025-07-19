@@ -24,6 +24,7 @@ export function usePrimarySearchQuery(search_input: string) {
     filter_target_language,
     source_filters,
     do_ranking: true,
+    max_depth: 50,
   }
 
   return useQuery({
@@ -48,6 +49,7 @@ export function useParallelSearchQuery(search_input: string) {
     filter_target_language,
     source_filters,
     do_ranking: true,
+    max_depth: 50,
   }
 
   return useQuery({

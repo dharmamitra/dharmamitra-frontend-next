@@ -17,6 +17,15 @@
     "loading": "加载中",
     "noResult": "未找到结果。",
     "exception": {
+      "default": "Ooops! Something went wrong!<newline>Please try again later.</newline>",
+      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
+      "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
+      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input.",
+      "experimentalLanguageWarning": "Support for this language is experimental.",
+      "fileFailure": "Failed to process the file. Please try again.",
+      "invalidFileType": "Invalid file type. Please upload a {fileTypes} file.",
+      "invalidFileSize": "File size should be less than {maxFileSize}MB",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
       "default": "发生错误！<newline>请稍后重试。</newline>",
       "timeout": "目前服务器负载较高。<newline>请稍后重试。</newline>",
       "inputLengthWarning": "输入文字过长。服务器可能已截断输出。请使用较短的文字重试。",

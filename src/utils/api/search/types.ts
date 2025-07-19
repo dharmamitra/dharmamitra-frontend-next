@@ -30,8 +30,8 @@ export type Response<Endpoint extends keyof paths> = APIResponse<paths[Endpoint]
 
 export type SearchTargets = Extract<
   SearchEndpointName,
-  "primary" | "parallel"
-  // | "secondary" // TODO: awaiting BE implementation
+  "primary"
+  // | "parallel" | "secondary" // TODO: awaiting BE work
 >
 
 export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]

@@ -1,6 +1,7 @@
-import { createParser } from "nuqs"
+import { createParser, Parser } from "nuqs"
 
-import { getValidViewFromIndex, getValidViewIndex, ViewIndex } from "@/utils/api/global/validators"
+import { defaultView, views } from "@/utils/api/global/params"
+import { View } from "@/utils/api/global/types"
 
 export const parseAsMultiLineString = createParser({
   parse(paramValue) {
@@ -11,11 +12,18 @@ export const parseAsMultiLineString = createParser({
   },
 })
 
-export const parseAsView = createParser({
-  parse(paramValue) {
-    return getValidViewIndex(paramValue)
+export const parseAsView: Parser<View> = {
+  parse: (v) => {
+    if (v && views.includes(v as View)) {
+      return v as View
+    }
+    return null
   },
-  serialize(value) {
-    return getValidViewFromIndex(value as ViewIndex)
+
+  serialize: (v) => {
+    if (views.includes(v)) {
+      return v
+    }
+    return defaultView
   },
-})
+}

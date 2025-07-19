@@ -8,7 +8,9 @@ export default function createLabConfig() {
       targetLanguages: allTargetLanguages,
     },
     featureFlags: {
+      hasSearch: true,
       hasTranslateExtendedOptions: true,
+      hasNexus: true,
       hasFeedbackWidget: true,
     },
   })

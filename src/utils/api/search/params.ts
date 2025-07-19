@@ -16,10 +16,7 @@ export type { AllSearchApiParams, AllSearchParamDefaults, SearchTarget }
  * LOCAL PARAMS
  */
 
-export const searchTargets: SearchTarget[] = exhaustiveStringTuple<SearchTargets>()(
-  "primary",
-  "parallel",
-)
+export const searchTargets: SearchTarget[] = exhaustiveStringTuple<SearchTargets>()("primary")
 export const defaultSearchTarget = "primary" as const
 export const disabledSearchTargets: SearchTarget[] = []
 
@@ -73,6 +70,7 @@ export const searchParamsNames: SearchParamNames = {
     filter_source_language: "filter_source_language",
     filter_target_language: "filter_target_language",
     source_filters: "source_filters",
+    max_depth: "max_depth",
   },
 }
 
@@ -95,4 +93,5 @@ export const allSearchDefaultParams: AllSearchParamDefaults = {
   [filter_target_language]: defaultSourceLanguage,
   [source_filters]: undefined,
   do_ranking: true,
+  max_depth: 50,
 }
