@@ -45,16 +45,12 @@
   },
   "navigation": {
     "nexusLinkLabel": "데이터베이스",
+    "docsLinkLabel": "Docs",
     "mobileButtonAriaLabel": "탐색 메뉴 열기",
     "mobileMenuAriaLabel": "탐색 메뉴"
   },
   "footer": {
-    "mission": {
-      "h2": "Dharmamitra",
-      "p": "Dharmamitra는 AI 기술을 통해 법(dharma)의 학술 연구와 개인의 수행을 돕습니다. 저희는 데이터 세트, 모델, 애플리케이션의 오픈 소스 협업을 통해 학문적, 개인적 탐구를 지원합니다."
-    },
-    "collaboration": "<link>Tsadra 재단</link>과 협력하여 제작되었습니다.",
-    "engine": "Powered by Gemini API"
+    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
   },
   "localeSwitcher": {
     "label": "언어 변경",
@@ -138,7 +134,7 @@
     "inputAriaLabel": "번역 입력 필드",
     "placeholders": {
       "default": "텍스트를 입력하거나 {acceptedFileTypes} 파일을 드래그 앤 드롭하세요(최대 10페이지 분량). 산스크리트어, 티베트어, 불교 한문, 영어를 지원합니다.",
-      "englishExplained": "번역 및 설명을 원하는 산스크리트어 텍스트를 한 문장씩 입력하세요. (현재 설명 기능은 산스크리트어만 지원됩니다)"
+      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
     },
     "otherLabel": "기타",
     "targetLanguageSelectLabel": "번역 언어",
@@ -182,26 +178,26 @@
     },
     "targetLanguages": {
       "buddhist-chinese": "불교 한문",
-      "english": "영어",
+      "dutch": "네덜란드어",
       "english-deep-research": "English (research)",
       "english-explained": "영어 (설명 포함)",
+      "english": "영어",
+      "french": "프랑스어",
+      "german": "독일어",
+      "hindi": "힌디어",
+      "italian": "이탈리아어",
       "japanese": "일본어",
       "korean": "한국어",
       "modern-chinese": "현대 중국어",
       "pali": "팔리어",
+      "portuguese": "포르투갈어",
+      "russian": "러시아어",
       "sa-en": "SA 영어",
       "sanskrit-dev": "산스크리트어 (데바나가리)",
       "sanskrit-knn": "산스크리트어 (KNN)",
       "sanskrit": "산스크리트어",
-      "tibetan": "티베트어",
-      "hindi": "힌디어",
-      "german": "독일어",
-      "russian": "러시아어",
-      "french": "프랑스어",
-      "italian": "이탈리아어",
       "spanish": "스페인어",
-      "portuguese": "포르투갈어",
-      "dutch": "네덜란드어"
+      "tibetan": "티베트어"
     },
     "models": {
       "": "",
@@ -249,52 +245,59 @@
     "title": "Dharmamitra · 법의 언어를 위한 툴킷",
     "description": "법의 언어를 위한 툴킷"
   },
-  "pages": {
-    "about": {
-      "title": "Dharmamitra 정보",
-      "h1": "Dharmamitra 정보",
-      "introduction": {
-        "h2": "소개",
-        "p": "Dharmamitra는 AI 기술의 힘을 활용하여 불교의 학술적 연구와 실천을 지원하는 오픈 소스 프로젝트입니다. 우리의 임무는 데이터 세트, 모델 및 응용 프로그램에 대한 오픈 소스 협업을 통해 학술 및 개인 연구를 가속화하는 것입니다."
-      },
-      "whatWeOffer": {
-        "h2": "우리가 제공하는 것",
-        "p": "Dharmamitra는 불교 연구의 다양한 측면을 다루는 포괄적인 도구 모음을 제공합니다.",
-        "ul": {
-          "1": "<bold>검색:</bold> 방대한 불교 문헌 코퍼스를 검색합니다.",
-          "2": "<bold>번역:</bold> 다양한 불교 언어로 된 텍스트를 번역합니다.",
-          "3": "<bold>텍스트 유사성:</bold> 다른 텍스트 간의 유사성을 발견합니다.",
-          "4": "<bold>파일 번역:</bold> 전체 문서를 번역합니다."
-        }
-      },
-      "ourTechnology": {
-        "h2": "우리의 기술",
-        "p": "우리의 플랫폼은 최신 AI 및 언어 모델을 기반으로 합니다. 우리는 우리의 도구가 불교 연구의 특정 요구에 맞게 조정되었는지 확인하기 위해 학자 및 실무자와 협력합니다."
-      },
-      "theTeam": {
-        "h2": "팀",
-        "p": "우리 팀은 학술 연구와 기술 혁신 모두에 열정을 가진 헌신적인 개인들로 구성되어 있습니다. 자세한 내용은 <link>팀 페이지</link>를 참조하십시오."
-      },
-      "contact": {
-        "h2": "문의하기",
-        "p": "질문, 제안이 있거나 기여에 관심이 있으십니까? <link>이메일로 문의</link>하십시오."
-      }
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "websiteDevelopment": "Website development",
+      "productDesigner": "Product Designer",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
     }
   },
-  "team": {
-    "title": "팀",
-    "h1": "우리 팀을 만나보세요",
-    "director": {
-      "name": "D.D. 네르디히",
-      "role": "전무 이사"
+  "pages": {
+    "nav": {
+      "home": "Home",
+      "guide": "Guide",
+      "team": "Team",
+      "notFound": "Not Found"
     },
-    "leadDeveloper": {
-      "name": "T. 앤서니",
-      "role": "수석 개발자"
+    "home": {
+      "title": "Welcome to Dharmamitra",
+      "h1": "Dharmamitra Translator"
     },
-    "projectManager": {
-      "name": "E. 로드리게스",
-      "role": "프로젝트 관리자"
+    "guide": {
+      "kumarajiva": {
+        "title": "Guide",
+        "h1": "Guide",
+        "intro": {
+          "h2": "Introduction",
+          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+        },
+        "features": {
+          "h2": "Features",
+          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+        }
+      }
+    },
+    "team": {
+      "dharmamitra": {
+        "title": "Meet Our Team",
+        "h1": "Meet Our Team",
+        "main": {
+          "h2": "Main"
+        },
+        "volunteers": {
+          "h2": "Student Volunteers"
+        }
+      }
+    },
+    "notFound": {
+      "title": "404 · Page Not Found",
+      "h1": "Oh no! Page Not Found",
+      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
+      "home": "Go Home"
     }
   }
 }

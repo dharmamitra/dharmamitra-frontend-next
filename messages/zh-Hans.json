@@ -1,21 +1,5 @@
 {
   "generic": {
-    "copy": "复制",
-    "copied": "已复制！",
-    "copyLink": "复制链接",
-    "copyRef": "复制参考",
-    "copyAll": "复制全部",
-    "copyResultsRefs": "复制参考",
-    "copyResultsList": "复制完整结果列表",
-    "copyError": "复制失败",
-    "other": "其他",
-    "clear": "清除",
-    "stop": "停止",
-    "source": "来源",
-    "target": "目标",
-    "englishTranslation": "英文翻译",
-    "loading": "加载中",
-    "noResult": "未找到结果。",
     "exception": {
       "default": "发生错误！<newline>请稍后重试。</newline>",
       "timeout": "目前服务器负载较高。<newline>请稍后重试。</newline>",
@@ -27,6 +11,25 @@
       "invalidFileSize": "文件大小应小于 {maxFileSize}MB",
       "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
+    "copy": "复制",
+    "copied": "已复制！",
+    "copyError": "复制失败",
+    "copyLink": "复制链接",
+    "copyRef": "复制参考",
+    "copyAll": "复制全部",
+    "copyResultsRefs": "复制参考",
+    "copyResultsList": "复制完整结果列表",
+    "other": "其他",
+    "clear": "清除",
+    "stop": "停止",
+    "source": "来源",
+    "target": "目标",
+    "loading": "加载中",
+    "processing": "处理中...",
+    "englishTranslation": "英文翻译",
+    "upload": "上传 {fileTypes} 文件<br></br>（支持约10页文字）",
+    "uploadDisabled": "上传已禁用",
+    "noResult": "未找到结果。",
     "openAll": "全部打开",
     "closeAll": "全部关闭",
     "showLess": "显示较少",
@@ -35,26 +38,19 @@
     "supportedFileTypes": "支持的文件类型：{fileTypes}（最大大小：{maxFileSize}MB）",
     "browseFiles": "浏览文件",
     "saveToFile": "保存至文件",
-    "processing": "处理中...",
-    "uploadDisabled": "上传已禁用",
     "ocr": "OCR",
     "translation": "翻译",
     "search": "搜索",
-    "upload": "上传 {fileTypes} 文件<br></br>（支持约10页文字）",
     "extensionCTA": "在您的文字所在之处使用 mitra 翻译；获取 <chromelink>Chrome</chromelink> 或 <firefoxlink>Firefox</firefoxlink> 扩展。"
   },
   "navigation": {
+    "nexusLinkLabel": "数据库",
+    "docsLinkLabel": "Docs",
     "mobileButtonAriaLabel": "打开导航菜单",
-    "mobileMenuAriaLabel": "导航菜单",
-    "nexusLinkLabel": "数据库"
+    "mobileMenuAriaLabel": "导航菜单"
   },
   "footer": {
-    "mission": {
-      "h2": "法之善友",
-      "p": "法之善友是一个配备AI的工具，用于研究梵文、巴利文、藏文和汉文文本。我们通过机器翻译、语义搜索、语法分析等方式，支持跨越语言障碍的人文学研究。"
-    },
-    "collaboration": "与 <link>Tsadra Foundation</link> 合作。",
-    "engine": "由 Gemini API 提供支持"
+    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
   },
   "localeSwitcher": {
     "label": "切换语言",
@@ -63,13 +59,17 @@
   },
   "search": {
     "search": "搜索",
+    "results": "搜索结果",
     "heading": "搜索2500年的佛教",
     "placeholder": "输入搜索词",
-    "results": "搜索结果",
     "optionsSwitchLabel": "显示选项",
     "resetOptionsLabel": "使用默认搜索选项",
     "optionCountBadgeLabel": "{count, plural, =1 {1个自定义搜索选项} other {#个自定义搜索选项}}已设置",
     "parallelEnglishSwitch": "显示英文",
+    "precisionLabel": "仅完全匹配",
+    "explanation": "说明",
+    "expandText": "展开结果文字",
+    "collapseText": "收起结果文字",
     "targetTips": {
       "primary": "搜索正典和传统源文本",
       "secondary": "搜索现代注释文献",
@@ -84,6 +84,11 @@
       "labels": {
         "category_include": "选择包含的类别",
         "file_include": "选择包含的文本"
+      }
+    },
+    "sourceFilter": {
+      "labels": {
+        "include": "包含来源"
       }
     },
     "commonParams": {
@@ -115,26 +120,22 @@
         "file_include": "选择包含的文本"
       }
     },
-    "explanation": "说明",
     "relevance": "相关性",
     "relevanceTypes": {
       "high": "高",
       "medium": "中",
       "low": "低"
-    },
-    "precisionLabel": "仅完全匹配",
-    "expandText": "展开结果文字",
-    "collapseText": "收起结果文字",
-    "sourceFilter": {
-      "labels": {
-        "include": "包含来源"
-      }
     }
   },
   "translation": {
     "translate": "翻译",
+    "triggerDisabled": "添加/更新要翻译的文字",
     "heading": "翻译法（达摩）文本",
     "inputAriaLabel": "翻译输入字段",
+    "placeholders": {
+      "default": "输入文字，或拖放 {acceptedFileTypes} 文件（最多约10页文字）。支持梵文、藏文、佛典汉文和英文。",
+      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
+    },
     "otherLabel": "其他",
     "targetLanguageSelectLabel": "目标语言",
     "primaryTargetLanguagesAriaLabel": "主要目标语言选项",
@@ -142,16 +143,34 @@
     "modelLabel": "模型",
     "grammarLabel": "语法分析",
     "copyTranslation": "复制翻译",
+    "usageH2": "使用方式",
+    "usageAccept": "同意",
+    "usageNoticeShort": "法之善友的机器翻译可能会有错误。请谨慎使用。",
+    "ocr": {
+      "dragAndDropOverlay": "支持的文件类型：{fileTypes}<br></br>最大字符数：{maxInputCharacters}（约 {maxInputPageEquivalent} 页文字）<br></br>最大文件大小：{maxFileSize}MB",
+      "unknownErrorTitle": "OCR失败",
+      "lengthErrorTitle": "OCR输出过长",
+      "lengthErrorText": "翻译输入最多支持 {maxInputCharacters} 个字符（约 {maxInputPageEquivalent} 页文字）。请使用较短的文字重试，或使用OCR功能处理较长的文字。"
+    },
+    "usageNoticeLong": {
+      "p1": "法之善友利用最先进的深度神经网络，高效提供机器翻译。我们正努力提供最佳质量。虽然我们的技术持续进步，服务也经常更新，但请记住：",
+      "ul": {
+        "1": "法之善友是帮助理解以不同语言保存的古典亚洲文本的工具",
+        "2": "如有疑问，我们建议咨询语言专家，或参考已建立的人类翻译。",
+        "3": "我们鼓励用户在分享法之善友的输出前进行审查和验证。"
+      },
+      "p2": "法之善友旨在补充人类专业知识，而非取代。通过结合我们的先进技术与您的判断力，您可以充分利用我们的翻译服务。"
+    },
     "tagging": {
       "label": "语法",
       "ariaLabel": "语法分析",
       "heading": "语法分析",
+      "unsandhied": "非连声句",
       "lemma": "词形变化",
       "tag": "标签",
       "meanings": "意义",
       "unsuccessful": "语法分析未成功。",
       "credit": "此语法解析器支持梵文输入，并由 <link>Digital Corpus of Sanskrit</link>（Oliver Hellwig著）的数据支持。",
-      "unsandhied": "非连声句",
       "originalSentence": "原始句子",
       "copy": {
         "unsandhied": "复制非连声句"
@@ -159,64 +178,48 @@
     },
     "targetLanguages": {
       "buddhist-chinese": "佛典汉文",
-      "english": "英文",
+      "dutch": "荷兰文",
       "english-deep-research": "English (research)",
+      "english-explained": "英文（说明版）",
+      "english": "英文",
+      "french": "法文",
+      "german": "德文",
+      "hindi": "印地文",
+      "italian": "意大利文",
       "japanese": "日文",
       "korean": "韩文",
       "modern-chinese": "现代中文",
       "pali": "巴利文",
+      "portuguese": "葡萄牙文",
+      "russian": "俄文",
       "sa-en": "梵英",
       "sanskrit-dev": "梵文（天城文）",
       "sanskrit-knn": "梵文（KNN）",
       "sanskrit": "梵文",
-      "tibetan": "藏文",
-      "hindi": "印地文",
-      "german": "德文",
-      "russian": "俄文",
-      "french": "法文",
-      "italian": "意大利文",
       "spanish": "西班牙文",
-      "portuguese": "葡萄牙文",
-      "dutch": "荷兰文",
-      "english-explained": "英文（说明版）"
+      "tibetan": "藏文"
     },
     "models": {
+      "": "",
       "NO": "无模型",
       "none": "无模型",
       "madlad": "Madlad",
-      "llama3": "Llama3",
-      "": "",
       "madlad2": "Madlad2",
+      "llama3": "Llama3",
       "llama3-fgs": "Llama3-fgs",
       "gemma2": "GEMMA2"
     },
     "grammar": {
       "on": "开启",
       "off": "关闭"
-    },
-    "usageNoticeShort": "法之善友的机器翻译可能会有错误。请谨慎使用。",
-    "usageNoticeLong": {
-      "p1": "法之善友利用最先进的深度神经网络，高效提供机器翻译。我们正努力提供最佳质量。虽然我们的技术持续进步，服务也经常更新，但请记住：",
-      "p2": "法之善友旨在补充人类专业知识，而非取代。通过结合我们的先进技术与您的判断力，您可以充分利用我们的翻译服务。",
-      "ul": {
-        "1": "法之善友是帮助理解以不同语言保存的古典亚洲文本的工具",
-        "2": "如有疑问，我们建议咨询语言专家，或参考已建立的人类翻译。",
-        "3": "我们鼓励用户在分享法之善友的输出前进行审查和验证。"
-      }
-    },
-    "usageH2": "使用方式",
-    "usageAccept": "同意",
-    "placeholders": {
-      "default": "输入文字，或拖放 {acceptedFileTypes} 文件（最多约10页文字）。支持梵文、藏文、佛典汉文和英文。",
-      "englishExplained": "输入梵文进行翻译和说明，每句一行。（目前说明功能仅适用于梵文）"
-    },
-    "triggerDisabled": "添加/更新要翻译的文字",
-    "ocr": {
-      "unknownErrorTitle": "OCR失败",
-      "lengthErrorTitle": "OCR输出过长",
-      "lengthErrorText": "翻译输入最多支持 {maxInputCharacters} 个字符（约 {maxInputPageEquivalent} 页文字）。请使用较短的文字重试，或使用OCR功能处理较长的文字。",
-      "dragAndDropOverlay": "支持的文件类型：{fileTypes}<br></br>最大字符数：{maxInputCharacters}（约 {maxInputPageEquivalent} 页文字）<br></br>最大文件大小：{maxFileSize}MB"
     }
+  },
+  "ocr": {
+    "processingTimeNote": "请注意，大文件可能需要数分钟处理，建议将其分割成较小的块。",
+    "processingTimeNoteShort": "大文件可能需要数分钟处理。",
+    "devanagariToIASTSwitchLabel": "天城文转IAST",
+    "tibetanToWylieSwitchLabel": "藏文转威利转写",
+    "largeDownload": "提取的文字大于100kB，可以作为文件下载。"
   },
   "globalParams": {
     "encodingSelectLabel": "输入编码",
@@ -242,14 +245,6 @@
     "title": "法之善友：佛教文献学新时代的AI工具",
     "description": "佛典AI自动翻译的前沿。法之善友融合佛教学与自然语言处理，为研究者提供强大的数字工具。"
   },
-  "pages": {
-    "home": "首页",
-    "about": "计划介绍",
-    "team": "团队",
-    "guide": "指南",
-    "news": "新闻",
-    "test": "测试"
-  },
   "staticContent": {
     "roles": {
       "directorExecutive": "执行总监",
@@ -261,132 +256,48 @@
       "nlpResearchSanskrit": "梵文NLP研究"
     }
   },
-  "Home": {
-    "title": "欢迎来到法之善友AI计划",
-    "h1": "法之善友翻译器"
-  },
-  "About": {
-    "dharmamitra": {
-      "title": "计划介绍",
-      "h1": "计划介绍",
-      "about": {
-        "h2": "关于我们",
-        "p1": "MITRA的使命是运用快速发展的AI技术，促进法（达摩）的学术研究和个人实践，并通过数据集、模型和应用程序的开源合作，加速学术和个人研究。",
+  "pages": {
+    "nav": {
+      "home": "首页",
+      "guide": "指南",
+      "team": "团队",
+      "notFound": "Not Found"
+    },
+    "home": {
+      "title": "Welcome to Dharmamitra",
+      "h1": "Dharmamitra Translator"
+    },
+    "guide": {
+      "kumarajiva": {
+        "title": "Guide",
+        "h1": "Guide",
+        "intro": {
+          "h2": "Introduction",
+          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+        },
         "features": {
-          "auto-translation": {
-            "title": "自动翻译",
-            "description": "从梵文、古典藏文、古典中文到现代语言，包括中文、藏文、韩文和日文"
-          },
-          "semantic-search": {
-            "title": "语义搜索",
-            "description": "在不断增长的梵文、古典藏文和古典中文文本中精炼语义搜索"
-          },
-          "toolkit": {
-            "title": "文献学家工具包",
-            "description": "开发促进梵文和古典藏文研究的工具"
-          }
+          "h2": "Features",
+          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+        }
+      }
+    },
+    "team": {
+      "dharmamitra": {
+        "title": "Meet Our Team",
+        "h1": "Meet Our Team",
+        "main": {
+          "h2": "Main"
         },
-        "p2": "未来我们希望提供生成式AI工具，通过以下方式实现提升和变革性体验：",
-        "roadmap": {
-          "mandala": "曼陀罗中的沉浸式3D体验",
-          "art": "基于正典指南生成2D艺术"
-        }
-      },
-      "project": {
-        "h2": "MITRA项目",
-        "p1": "MITRA是加州大学伯克利分校EECS伯克利AI研究实验室的研究项目。由Kurt Keutzer和Sebastian Nehrdich主导，专注于通过先进的深度学习和AI技术应用，弥合古代智慧源语言与当代语言之间的语言鸿沟。",
-        "p2": "始于2023年，该项目从概念阶段快速演进为动态开发过程，这得益于与monlam.ai等组织的协作努力，以及来自翻译者和AI研究者等多元来源的贡献。利用来自各种来源的超过400万句对的强大语料库，并以Google的MADLAD-400模型为基础，MITRA已微调出专业翻译模型，不仅承诺提升翻译流畅度，还旨在显著扩展对古代智慧文本的访问。",
-        "p3": "通过持续改进数据质量、句子对齐和模型微调，该项目寻求克服低资源语言翻译固有的挑战。MITRA项目是AI在超越语言障碍方面变革潜力的见证，体现了对文化保护、学术研究和藏文文学与智慧访问民主化的承诺。"
-      },
-      "collaboration": {
-        "h2": "合作伙伴",
-        "collaborators": {
-          "monlam": {
-            "name": "<link>monlam.ai</link>",
-            "description": "藏文和英文机器翻译数据收集"
-          },
-          "kumarajiva": {
-            "name": "<link>Kumarajiva项目</link>",
-            "description": "开发藏文<>中文功能和特定翻译用途的用户界面"
-          },
-          "iitk": {
-            "name": "<link>IIT Kharagpur</link>",
-            "description": "梵文翻译模型开发。梵文<>英文数据集编译"
-          },
-          "ai4bharat": {
-            "name": "<link>AI4Bharat</link>",
-            "description": "梵文数据收集开发"
-          },
-          "tsadra": {
-            "name": "<link>Tsadra Foundation</link>",
-            "description": "为西方藏传佛教的综合研究和实践提供重要资金"
-          }
-        }
-      },
-      "development": {
-        "h2": "开发",
-        "p1": "我们持续开发自定义API，以迭代改进法之善友翻译和其他功能的质量，并提供新功能。要了解更多关于Mitra开发背后理论背景的信息，请查看我们的<locallink>新闻动态</locallink>，我们定期分享包含项目基础理念信息的更新。",
-        "p2": "法之善友使用Gemini API服务为用户提供最佳结果，其梵文语法解析器依赖<link>Digital Corpus of Sanskrit</link>的数据。"
-      },
-      "contact": {
-        "h2": "联系我们",
-        "card1": {
-          "title": "我们很乐意听到您的意见！",
-          "text": "如果您有任何意见或建议，请花点时间与我们分享您的想法。我们非常感谢每一条帮助让法之善友对每个人更好的消息。",
-          "button": "发送反馈"
-        },
-        "card2": {
-          "title": "基于Mitra构建",
-          "text": "如果您有兴趣使用法之善友或其API构建自己的项目，请事先联系我们讨论此事。",
-          "button": "请求许可"
+        "volunteers": {
+          "h2": "Student Volunteers"
         }
       }
+    },
+    "notFound": {
+      "title": "404 · Page Not Found",
+      "h1": "Oh no! Page Not Found",
+      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
+      "home": "Go Home"
     }
-  },
-  "Guide": {
-    "kumarajiva": {
-      "title": "指南",
-      "h1": "指南",
-      "intro": {
-        "h2": "介绍",
-        "p1": "法之善友是为支持Kumarajiva翻译者翻译法文本的工作而开发的。"
-      },
-      "features": {
-        "h2": "功能",
-        "p1": "法之善友提供搜索引擎和翻译服务，专门针对法文本，包括传统源材料和现代研究文献。"
-      }
-    }
-  },
-  "Team": {
-    "dharmamitra": {
-      "title": "团队介绍",
-      "h1": "团队介绍",
-      "main": {
-        "h2": "主要成员"
-      },
-      "volunteers": {
-        "h2": "学生志愿者"
-      }
-    }
-  },
-  "NotFound": {
-    "title": "404 · 页面未找到",
-    "h1": "糟糕！页面未找到",
-    "message": "众生流浪漂泊无始点。<cite>—阿苏经</cite>",
-    "home": "返回首页"
-  },
-  "News": {
-    "title": "新闻",
-    "h1": "新闻",
-    "noNews": "未找到新闻！:-)",
-    "localeNotAvailable": "抱歉，此页面在选定语言中不可用。:-(",
-    "goToDefaultLocale": "前往英文版"
-  },
-  "ocr": {
-    "processingTimeNote": "请注意，大文件可能需要数分钟处理，建议将其分割成较小的块。",
-    "processingTimeNoteShort": "大文件可能需要数分钟处理。",
-    "devanagariToIASTSwitchLabel": "天城文转IAST",
-    "tibetanToWylieSwitchLabel": "藏文转威利转写",
-    "largeDownload": "提取的文字大于100kB，可以作为文件下载。"
   }
 }

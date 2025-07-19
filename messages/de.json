@@ -45,16 +45,12 @@
   },
   "navigation": {
     "nexusLinkLabel": "Datenbank",
+    "docsLinkLabel": "Docs",
     "mobileButtonAriaLabel": "Navigationsmenü öffnen",
     "mobileMenuAriaLabel": "Navigationsmenü"
   },
   "footer": {
-    "mission": {
-      "h2": "Dharmamitra",
-      "p": "KI-Technologien nutzen, um das wissenschaftliche Studium und die persönliche Praxis des Dharma zu fördern und akademische und individuelle Forschung durch Open-Source-Zusammenarbeit an Datensätzen, Modellen und Anwendungen zu beschleunigen."
-    },
-    "collaboration": "In Zusammenarbeit mit der <link>Tsadra Foundation</link>.",
-    "engine": "Unter Nutzung der Gemini API"
+    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
   },
   "localeSwitcher": {
     "label": "Sprache ändern",
@@ -138,7 +134,7 @@
     "inputAriaLabel": "Übersetzungseingabefeld",
     "placeholders": {
       "default": "Geben Sie Text ein oder ziehen Sie eine {acceptedFileTypes} Datei hierher (bis zu ca. 10 Seiten Text). Unterstützt Sanskrit, Tibetisch, buddhistisches Schriftchinesisch und Englisch.",
-      "englishExplained": "Geben Sie Sanskrit-Text zum Übersetzen und Erklären ein, verwenden Sie eine Zeile pro Satz. (Derzeit ist die Erklärung nur für Sanskrit verfügbar)"
+      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
     },
     "otherLabel": "Andere",
     "targetLanguageSelectLabel": "Ausgabesprache",
@@ -182,26 +178,26 @@
     },
     "targetLanguages": {
       "buddhist-chinese": "Buddhistisches Chinesisch",
-      "english": "Englisch",
+      "dutch": "Niederländisch",
       "english-deep-research": "English (research)",
       "english-explained": "Englisch (erklärt)",
+      "english": "Englisch",
+      "french": "Französisch",
+      "german": "Deutsch",
+      "hindi": "Hindi",
+      "italian": "Italienisch",
       "japanese": "Japanisch",
       "korean": "Koreanisch",
       "modern-chinese": "Modernes Chinesisch",
       "pali": "Pali",
+      "portuguese": "Portugiesisch",
+      "russian": "Russisch",
       "sa-en": "SA Englisch",
       "sanskrit-dev": "Sanskrit (Devanagari)",
       "sanskrit-knn": "Sanskrit (KNN)",
       "sanskrit": "Sanskrit",
-      "tibetan": "Tibetisch",
-      "hindi": "Hindi",
-      "german": "Deutsch",
-      "russian": "Russisch",
-      "french": "Französisch",
-      "italian": "Italienisch",
       "spanish": "Spanisch",
-      "portuguese": "Portugiesisch",
-      "dutch": "Niederländisch"
+      "tibetan": "Tibetisch"
     },
     "models": {
       "": "",
@@ -249,14 +245,6 @@
     "title": "Dharmamitra · Werkzeuge für die Sprachen des Dharma",
     "description": "Werkzeuge für die Sprachen des Dharma"
   },
-  "pages": {
-    "home": "Startseite",
-    "about": "Über uns",
-    "team": "Team",
-    "guide": "Anleitung",
-    "news": "Neuigkeiten",
-    "test": "Test"
-  },
   "staticContent": {
     "roles": {
       "directorExecutive": "Geschäftsführender Direktor",
@@ -268,125 +256,48 @@
       "nlpResearchSanskrit": "Sanskrit-NLP-Forschung"
     }
   },
-  "Home": {
-    "title": "Willkommen bei Dharmamitra",
-    "h1": "Dharmamitra Übersetzer"
-  },
-  "About": {
-    "dharmamitra": {
-      "title": "Über uns",
-      "h1": "Über uns",
-      "about": {
-        "h2": "Über uns",
-        "p1": "MITRAs Mission ist es, die sich rasch entwickelnden KI-Technologien zu nutzen, um das wissenschaftliche Studium und die persönliche Praxis des Dharma zu fördern und akademische und individuelle Forschung durch Open-Source-Zusammenarbeit an Datensätzen, Modellen und Anwendungen zu beschleunigen.",
+  "pages": {
+    "nav": {
+      "home": "Startseite",
+      "guide": "Anleitung",
+      "team": "Team",
+      "notFound": "Not Found"
+    },
+    "home": {
+      "title": "Welcome to Dharmamitra",
+      "h1": "Dharmamitra Translator"
+    },
+    "guide": {
+      "kumarajiva": {
+        "title": "Guide",
+        "h1": "Guide",
+        "intro": {
+          "h2": "Introduction",
+          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+        },
         "features": {
-          "auto-translation": {
-            "title": "Automatisierte Übersetzung",
-            "description": "Sanskrit, klassisches Tibetisch und klassisches Chinesisch in moderne Sprachen einschließlich Chinesisch, Tibetisch, Koreanisch und Japanisch"
-          },
-          "semantic-search": {
-            "title": "Semantische Suche",
-            "description": "Verfeinerung der semantischen Suche in einem wachsenden Korpus von Sanskrit-, klassischen tibetischen und klassischen chinesischen Texten"
-          },
-          "toolkit": {
-            "title": "Philologen-Werkzeugkasten",
-            "description": "Entwicklung von Werkzeugen zur Erleichterung des Studiums von Sanskrit und klassischem Tibetisch"
-          }
+          "h2": "Features",
+          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+        }
+      }
+    },
+    "team": {
+      "dharmamitra": {
+        "title": "Meet Our Team",
+        "h1": "Meet Our Team",
+        "main": {
+          "h2": "Main"
         },
-        "p2": "In Zukunft hoffen wir, generative KI-Werkzeuge bereitzustellen, die erhebende und transformative Erfahrungen ermöglichen durch:",
-        "roadmap": {
-          "mandala": "Immersive 3D-Erfahrungen im Maṇḍala",
-          "art": "Generierung von 2D-Kunst basierend auf kanonischen Richtlinien"
-        }
-      },
-      "project": {
-        "h2": "Das MITRA-Projekt",
-        "p1": "MITRA ist ein Forschungsprojekt im Berkeley AI Research Lab in EECS an der University of California, Berkeley. Es wird von Kurt Keutzer und Sebastian Nehrdich geleitet und konzentriert sich darauf, die sprachliche Kluft zwischen antiken Weisheitsquellsprachen und zeitgenössischen Sprachen durch die Anwendung fortschrittlicher Deep Learning und KI-Technologien zu überbrücken.",
-        "p2": "Das 2023 initiierte Projekt entwickelte sich schnell von seiner konzeptionellen Phase zu einem dynamischen Entwicklungsprozess, beschleunigt durch seine kollaborativen Bemühungen mit Organisationen wie monlam.ai und mit Beiträgen aus verschiedenen Quellen, einschließlich Übersetzern und KI-Forschern. Durch die Nutzung eines robusten Korpus von über vier Millionen Satzpaaren aus verschiedenen Quellen und die Verwendung von Googles MADLAD-400-Modell als Grundlage hat MITRA ein spezialisiertes Übersetzungsmodell feinabgestimmt, das nicht nur verbesserte Flüssigkeit in Übersetzungen verspricht, sondern auch darauf abzielt, den Zugang zu antiken Weisheitstexten erheblich zu erweitern.",
-        "p3": "Durch kontinuierliche Verbesserungen der Datenqualität, Satzausrichtung und Modellfeinabstimmung sucht das Projekt, die Herausforderungen der Übersetzung ressourcenarmer Sprachen zu überwinden. Das MITRA-Projekt steht als Zeugnis für das transformative Potenzial von KI bei der Überwindung von Sprachbarrieren und verkörpert ein Engagement für kulturelle Bewahrung, akademische Forschung und die Demokratisierung des Zugangs zu tibetischer Literatur und Weisheit."
-      },
-      "development": {
-        "h2": "Entwicklung",
-        "p1": "Wir entwickeln kontinuierlich unsere benutzerdefinierten APIs, um die Qualität von Dharmamitras Übersetzung und anderen Fähigkeiten iterativ zu verbessern sowie neue Funktionen anzubieten. Um mehr über den theoretischen Hintergrund hinter Mitras Entwicklung zu erfahren, schauen Sie sich unseren <locallink>News-Feed</locallink> an, wo wir regelmäßig Updates teilen, die Informationen über die zugrunde liegenden Ideen des Projekts enthalten.",
-        "p2": "Dharmamitra verwendet Gemini API-Dienste, um Benutzern die bestmöglichen Ergebnisse zu bieten, und sein Sanskrit-Grammatikparser stützt sich auf Daten aus dem <link>Digital Corpus of Sanskrit</link>."
-      },
-      "collaboration": {
-        "h2": "Zusammenarbeit",
-        "collaborators": {
-          "tsadra": {
-            "name": "<link>Tsadra Foundation</link>",
-            "description": "Bereitstellung wichtiger Finanzierung für das kombinierte Studium und die Praxis des tibetischen Buddhismus im Westen"
-          },
-          "monlam": {
-            "name": "<link>monlam.ai</link>",
-            "description": "Maschinelle Übersetzungsdatensammlung für Tibetisch und Englisch"
-          },
-          "kumarajiva": {
-            "name": "<link>Kumarajiva-Projekt</link>",
-            "description": "Entwicklung von Tibetisch<>Chinesisch-Fähigkeiten und Benutzeroberfläche für spezifische Übersetzungszwecke"
-          },
-          "iitk": {
-            "name": "<link>IIT Kharagpur</link>",
-            "description": "Entwicklung des Sanskrit-Übersetzungsmodells. Sanskrit<>Englisch-Datensatzkompilierung"
-          },
-          "ai4bharat": {
-            "name": "<link>AI4Bharat</link>",
-            "description": "Entwicklung der Sanskrit-Datensammlung"
-          }
-        }
-      },
-      "contact": {
-        "h2": "Kontakt",
-        "card1": {
-          "title": "Wir würden gerne von Ihnen hören!",
-          "text": "Wenn Sie Kommentare oder Vorschläge haben, nehmen Sie sich bitte einen Moment Zeit, um Ihre Gedanken mit uns zu teilen. Wir schätzen wirklich jede Nachricht, die uns hilft, Dharmamitra für alle besser zu machen.",
-          "button": "Feedback senden"
-        },
-        "card2": {
-          "title": "Auf Mitra aufbauen",
-          "text": "Wenn Sie daran interessiert sind, Dharmamitra oder seine API zu verwenden, um Ihr eigenes Projekt zu erstellen, kontaktieren Sie uns bitte vorher, um dies mit uns zu besprechen.",
-          "button": "Erlaubnis anfordern"
+        "volunteers": {
+          "h2": "Student Volunteers"
         }
       }
+    },
+    "notFound": {
+      "title": "404 · Page Not Found",
+      "h1": "Oh no! Page Not Found",
+      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
+      "home": "Go Home"
     }
-  },
-  "Guide": {
-    "kumarajiva": {
-      "title": "Anleitung",
-      "h1": "Anleitung",
-      "intro": {
-        "h2": "Einführung",
-        "p1": "Dharmamitra wurde entwickelt, um Kumarajiva-Übersetzer bei ihrer Arbeit beim Übersetzen von Dharma-Texten zu unterstützen."
-      },
-      "features": {
-        "h2": "Funktionen",
-        "p1": "Dharmamitra bietet sowohl eine Suchmaschine als auch einen Übersetzungsdienst, die speziell auf Dharma-Texte abzielen, einschließlich traditioneller Quellenmaterialien und moderner Forschungsliteratur."
-      }
-    }
-  },
-  "Team": {
-    "dharmamitra": {
-      "title": "Unser Team kennenlernen",
-      "h1": "Unser Team kennenlernen",
-      "main": {
-        "h2": "Hauptteam"
-      },
-      "volunteers": {
-        "h2": "Studentische Freiwillige"
-      }
-    }
-  },
-  "News": {
-    "title": "Neuigkeiten",
-    "h1": "Neuigkeiten",
-    "noNews": "Keine Neuigkeiten gefunden! :-)",
-    "localeNotAvailable": "Diese Seite ist in der ausgewählten Sprache nicht verfügbar. Bitte wählen Sie eine andere Sprache.",
-    "goToDefaultLocale": "Zu Englisch"
-  },
-  "NotFound": {
-    "title": "404 · Seite nicht gefunden",
-    "h1": "Oh nein! Seite nicht gefunden",
-    "message": "Kein Anfangspunkt wird gefunden von Wesen, die wandern und umherstreifen. <cite>— Assusutta</cite>",
-    "home": "Zur Startseite"
   }
 }

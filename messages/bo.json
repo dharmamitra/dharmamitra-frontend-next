@@ -45,16 +45,12 @@
   },
   "navigation": {
     "nexusLinkLabel": "གྲངས་མཛོད།",
+    "docsLinkLabel": "Docs",
     "mobileButtonAriaLabel": "ཕྱོགས་ཁྲིད་འདེམ་བྱང་གི་ཁ་འབྱེད་པ།",
     "mobileMenuAriaLabel": "ཕྱོགས་ཁྲིད་འདེམ་བྱང་།"
   },
   "footer": {
-    "mission": {
-      "h2": "Dharmamitra (དྷརྨ་མིཏྲ།)",
-      "p": "AI ལག་རྩལ་བེད་སྤྱད་ནས་ཆོས་ཀྱི་རིག་གཞུང་སློབ་གཉེར་དང་སྒེར་གྱི་ཉམས་ལེན་གོང་འཕེལ་གཏོང་བ། དེ་བཞིན་གྲངས་མཛོད། དཔེ་དབྱིབས། ཉེར་སྤྱོད་མෘදුකාංག་སོགས་ཀྱི་ཐད་ལ་ཁུངས་འབྱེད་མཉམ་ལས་བརྒྱུད་ནས་རིག་གཞུང་དང་སྒེར་གྱི་ཞིབ་འཇུག་མགྱོགས་སུ་གཏོང་བ།"
-    },
-    "collaboration": "Tsadra Foundation དང་མཉམ་ལས།",
-    "engine": "Gemini API སྤྱད་དེ་བཟོས།"
+    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
   },
   "localeSwitcher": {
     "label": "སྐད་ཡིག་བརྗེ་སྒྱུར།",
@@ -138,7 +134,7 @@
     "inputAriaLabel": "ཡིག་སྒྱུར་ནང་འཇུག་བྱེད་ས།",
     "placeholders": {
       "default": "ཡི་གེ་ནང་འཇུག་བྱེད་པའམ། ཡང་ན། {acceptedFileTypes} ཡིག་ཆ་དྲུད་དེ་བཞག་ཆོག  (ཤོག་གྲངས་ 10 ཙམ་གྱི་ཡི་གེ་ནང་འཇུག་བྱེད་ཐུབ།) ལེགས་སྦྱར། བོད་ཡིག རྒྱ་ཡིག་དང་ཨིན་ཡིག་གི་ནང་བསྟན་གྱི་ཡི་གེ་བཅས་ལ་རྒྱབ་སྐྱོར་ཡོདད།",
-      "englishExplained": "ཡིག་སྒྱུར་དང་འགྲེལ་བཤད་བྱ་རྒྱུའི་ལེགས་སྦྱར་གྱི་ཡི་གེ་ནང་འཇུག་བྱེད་རོགས། ཚིག་གྲུབ་རེར་ཚིག་རྐང་གཅིག་རེ་བཞིན་ནང་འཇུག་བྱེད་དགོས། (མིག་སྔར། ལེགས་སྦྱར་ཁོ་ན་ལས་འགྲེལ་བཤད་མེད།)"
+      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
     },
     "otherLabel": "གཞན༑",
     "targetLanguageSelectLabel": "ཕྱིར་་འདྲེན་སྐད་ཡིག",
@@ -182,26 +178,26 @@
     },
     "targetLanguages": {
       "buddhist-chinese": "ནང་བསྟན་གྱི་རྒྱ་ཡིག",
-      "english": "ཨིན་ཡིག",
+      "dutch": "ཧོ་ལནྜིའི་སྐད།",
       "english-deep-research": "English (research)",
       "english-explained": "ཨིན་ཡིག (འགྲེལ་བཤད་དང་བཅས།)",
+      "english": "ཨིན་ཡིག",
+      "french": "ཧྥ་རན་སི་སྐད།",
+      "german": "འཇར་མན་གྱི་སྐད།",
+      "hindi": "ཧིན་དྷིའི་སྐད",
+      "italian": "ཨི་ཏ་ལི་སྐད།",
       "japanese": "ཉི་ཧོང་སྐད།",
       "korean": "ཀོ་རེ་ཡའི་སྐད།",
       "modern-chinese": "དེང་རབས་རྒྱ་ཡིག",
       "pali": "པཱ་ལིའི་སྐད།",
+      "portuguese": "པོར་ཅུ་གལ་གྱི་སྐད།",
+      "russian": "ཨུ་རུ་སུའི་སྐད།",
       "sa-en": "SA ཨིན་ཡིག",
       "sanskrit-dev": "ལེགས་སྦྱར། (དེ་བ་ན་ག་རིའི་ཡི་གེ)",
       "sanskrit-knn": "ལེགས་སྦྱར། (KNN)",
       "sanskrit": "ལེགས་སྦྱར།",
-      "tibetan": "བོད་ཡིག",
-      "hindi": "ཧིན་དྷིའི་སྐད",
-      "german": "འཇར་མན་གྱི་སྐད།",
-      "russian": "ཨུ་རུ་སུའི་སྐད།",
-      "french": "ཧྥ་རན་སི་སྐད།",
-      "italian": "ཨི་ཏ་ལི་སྐད།",
       "spanish": "སི་པེན་གྱི་སྐད།",
-      "portuguese": "པོར་ཅུ་གལ་གྱི་སྐད།",
-      "dutch": "ཧོ་ལནྜིའི་སྐད།"
+      "tibetan": "བོད་ཡིག"
     },
     "models": {
       "": "",
@@ -249,48 +245,59 @@
     "title": "Dharmamitra · ཆོས་ཀྱི་སྐད་ཡིག་ལ་བཟོས་པའི་ལག་ཆའི་སྒྲོམ།",
     "description": "ཆོས་ཀྱི་སྐད་ཡིག་ལ་བཟོས་པའི་ལག་ཆའི་སྒྲོམ།"
   },
-  "pages": {
-    "about": {
-      "title": "Dharmamitra སྐོར།",
-      "h1": "Dharmamitra སྐོར།",
-      "introduction": {
-        "h2": "ངོ་སྤྲོད།",
-        "p": "Dharmamitra ནི་ AI ལག་རྩལ་གྱི་ནུས་པ་བེད་སྤྱད་ནས་ནང་བསྟན་གྱི་རིག་གཞུང་སློབ་གཉེར་དང་ཉམས་ལེན་ལ་རྒྱབ་སྐྱོར་བྱེད་པའི་ཁུངས་འབྱེད་ལས་གཞི་ཞིག་ཡིན། ང་ཚོའི་འགན་འཁྲི་ནི་གྲངས་མཛོད། མེ་ལོང་། ཉེར་སྤྱོད་མෘදුකාංག་སོགས་ཀྱི་ཐད་ལ་ཁུངས་འབྱེད་མཉམ་ལས་བརྒྱུད་ནས་རིག་གཞུང་དང་སྒེར་གྱི་ཞིབ་འཇུག་མགྱོགས་སུ་གཏོང་རྒྱུ་དེ་ཡིན།"
-      },
-      "whatWeOffer": {
-        "h2": "ང་ཚོས་ག་རེ་མཁོ་འདོན་བྱེད་ཀྱི་ཡོད།",
-        "p": "Dharmamitra ཡིས་ནང་བསྟན་ཞིབ་འཇུག་གི་ཕྱོགས་མི་འདྲ་བར་ཁྱབ་པའི་ལག་ཆ་སྒྲོམ་ཆ་ཚང་ཞིག་མཁོ་འདོན་བྱེད་ཀྱི་ཡོད།",
-        "ul": {
-          "1": "<bold>འཚོལ་བཤེར།:</bold> ནང་བསྟན་གྱི་ཡིག་ཚང་ཆེན་པོ་ནང་འཚོལ་བཤེར་བྱེད་པ།",
-          "2": "<bold>སྐད་སྒྱུར།:</bold> ནང་བསྟན་གྱི་སྐད་ཡིག་མི་འདྲ་བའི་ནང་གི་ཡི་གེ་རྣམས་སྐད་སྒྱུར་བྱེད་པ།",
-          "3": "<bold>ཡི་གེ་འདྲ་མཚུངས།:</bold> ཡི་གེ་མི་འདྲ་བ་དག་གི་དབར་གྱི་འདྲ་མཚུངས་རྙེད་པ།",
-          "4": "<bold>ཡིག་ཆ་སྐད་སྒྱུར།:</bold> ཡིག་ཆ་ཆ་ཚང་སྐད་སྒྱུར་བྱེད་པ།"
-        }
-      },
-      "ourTechnology": {
-        "h2": "ང་ཚོའི་ལག་རྩལ།",
-        "p": "ང་ཚོའི་སྟེགས་བུ་འདི་ཆེས་གསར་པའི་ AI དང་སྐད་ཡིག་གི་མེ་ལོང་གིས་བསྐྲུན་ཡོད། ང་ཚོས་མཁས་པ་དང་ཉམས་ལེན་པ་རྣམས་དང་མཉམ་ལས་བྱས་ནས་ང་ཚོའི་ལག་ཆ་རྣམས་ནང་བསྟན་ཞིབ་འཇུག་གི་དམིགས་བསལ་དགོས་མཁོ་དང་འཚམ་པར་བཟོ་བཞིན་ཡོད།"
-      },
-      "theTeam": {
-        "h2": "ཚོགས་པ།",
-        "p": "ང་ཚོའི་ཚོགས་པ་ནི་རིག་གཞུང་ཞིབ་འཇུག་དང་ལག་རྩལ་གསར་གཏོད་གཉིས་ཀར་དགའ་ཞེན་ཆེ་བའི་ཆེད་ལས་མི་སྣས་གྲུབ་ཡོད། རྒྱས་པར་ཤེས་འདོད་ན་<link>ཚོགས་པའི་ཤོག་ངོས།</link>ལ་གཟིགས་རོགས།"
-      },
-      "contact": {
-        "h2": "འབྲེལ་གཏུགས།",
-        "p": "དྲི་བ། གྲོས་འགོ། ཡང་ན་མཉམ་རུབ་བྱེད་འདོད་ཡོད་ན། <link>གློག་འཕྲིན་བརྒྱུད་ནས་འབྲེལ་བ་གནང་རོགས།</link>"
-      }
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "websiteDevelopment": "Website development",
+      "productDesigner": "Product Designer",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
     }
   },
-  "team": {
-    "title": "ང་ཚོའི་དཔུང་སྡེ།",
-    "h1": "ང་ཚོའི་དཔུང་སྡེ་ལ་རྒྱུས་ལོན།",
-    "director": {
-      "name": "Kurt Keutzer",
-      "role": "སྤྱི་ཁྱབ་འགན་འཛིན་པ།"
+  "pages": {
+    "nav": {
+      "home": "Home",
+      "guide": "Guide",
+      "team": "ང་ཚོའི་དཔུང་སྡེ།",
+      "notFound": "Not Found"
     },
-    "leadDeveloper": {
-      "name": "Sebastian Nehrdich",
-      "role": "གསར་སྤེལ་བ་གཙོ་བོ།"
+    "home": {
+      "title": "Welcome to Dharmamitra",
+      "h1": "Dharmamitra Translator"
+    },
+    "guide": {
+      "kumarajiva": {
+        "title": "Guide",
+        "h1": "Guide",
+        "intro": {
+          "h2": "Introduction",
+          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+        },
+        "features": {
+          "h2": "Features",
+          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+        }
+      }
+    },
+    "team": {
+      "dharmamitra": {
+        "title": "ང་ཚོའི་དཔུང་སྡེ་ལ་རྒྱུས་ལོན།",
+        "h1": "ང་ཚོའི་དཔུང་སྡེ་ལ་རྒྱུས་ལོན།",
+        "main": {
+          "h2": "Main"
+        },
+        "volunteers": {
+          "h2": "Student Volunteers"
+        }
+      }
+    },
+    "notFound": {
+      "title": "404 · Page Not Found",
+      "h1": "Oh no! Page Not Found",
+      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
+      "home": "Go Home"
     }
   }
 }
