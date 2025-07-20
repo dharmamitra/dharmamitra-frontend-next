@@ -16,7 +16,24 @@ const en = [
   "a definition of the term “change”",
   "What is the ‘threefold truth’ (一心三觀)?",
 ]
-
+const ko = [
+  // TODO
+  ...en,
+]
+const ja = [
+  // TODO
+  ...en,
+]
+const bo = [
+  "སངས་རྒྱས་ལ་དགའ་བ།",
+  "སེམས་ཅན་ཐམས་ཅད་ལ་བྱམས་པ།",
+  "བཟོད་པའི་ཡོན་ཏན།",
+  "སྟོང་ཉིད་ཀྱི་དོན།",
+  "བྱང་ཆུབ་ཀྱི་སེམས།",
+  "The Buddha’s compassion",
+  "Definition of peace",
+  "The benefits of giving",
+]
 const zhHans = [
   // TODO
   ...en,
@@ -25,9 +42,22 @@ const zhHant = [
   // TODO
   ...en,
 ]
+const hi = [
+  // TODO
+  ...en,
+]
+const de = [
+  // TODO
+  ...en,
+]
 
 export const exampleSearchStrings: Record<SupportedLocale, string[]> = {
   en,
+  ko,
+  ja,
+  bo,
   "zh-Hans": zhHans,
   "zh-Hant": zhHant,
+  hi,
+  de,
 }
