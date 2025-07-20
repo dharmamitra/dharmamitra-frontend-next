@@ -15,12 +15,9 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Set Yarn version to stable
-        run: yarn set version stable
-
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: "22.x"
           cache: "yarn" # Enable built-in yarn caching
 
       - name: Install dependencies
