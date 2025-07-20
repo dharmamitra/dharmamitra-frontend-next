@@ -54,7 +54,7 @@
   },
   "localeSwitcher": {
     "label": "भाषा बदलें",
-    "locale": "{locale, select, en {अंग्रेज़ी} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {जर्मन} other {अज्ञात}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "हिंदी"
   },
   "search": {
@@ -261,6 +261,7 @@
       "home": "होम",
       "guide": "गाइड",
       "team": "टीम",
+      "test": "Test",
       "notFound": "Not Found"
     },
     "home": {

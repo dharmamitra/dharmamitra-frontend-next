@@ -54,7 +54,7 @@
   },
   "localeSwitcher": {
     "label": "언어 변경",
-    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} zh_Hans {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "한국어"
   },
   "search": {
@@ -261,6 +261,7 @@
       "home": "Home",
       "guide": "Guide",
       "team": "Team",
+      "test": "Test",
       "notFound": "Not Found"
     },
     "home": {
