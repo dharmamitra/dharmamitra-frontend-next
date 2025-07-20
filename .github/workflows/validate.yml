@@ -15,13 +15,18 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Set Yarn version to stable
-        run: yarn set version stable
-
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: "22.x"
           cache: "yarn" # Enable built-in yarn caching
+
+      - name: Clear Yarn cache (cache bust)
+        run: yarn cache clean --all
+        continue-on-error: true
+
+      - name: Clear TypeScript cache
+        run: rm -rf .next node_modules/.cache tsconfig.tsbuildinfo
+        continue-on-error: true
 
       - name: Install dependencies
         run: yarn install --immutable --check-cache
