@@ -22,18 +22,3 @@ declare module "next-intl" {
 
 // Export to make this a module (required for global declarations with imports)
 export {}
-
-declare module "*.png" {
-  const value: any
-  export default value
-}
-
-declare module "*.jpg" {
-  const value: any
-  export default value
-}
-
-declare module "*.svg" {
-  const value: any
-  export default value
-}

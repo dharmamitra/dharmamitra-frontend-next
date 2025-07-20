@@ -37,6 +37,7 @@
   "include": [
     "next-env.d.ts",
     "global.d.ts",
+    "src/types/assets.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
