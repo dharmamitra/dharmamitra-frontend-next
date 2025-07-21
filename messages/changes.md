@@ -45,3 +45,11 @@ This change log serves as a TODO list for localizations that may need to be upda
 
 - Added missing key `pages.nav.test`: `""` → `"Test"`
 - Added missing key `pages.nav.test`: `""` → `"Test"`
+
+---
+
+## Changes - 2025-07-21 22:36:25
+
+### English Value Changes
+
+- `search.sourceFilter.labels.include`: 'Include sources' → 'Only include sources'

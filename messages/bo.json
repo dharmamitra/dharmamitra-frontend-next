@@ -88,7 +88,7 @@
     },
     "sourceFilter": {
       "labels": {
-        "include": "ཡོངས་ཁུངས་རྣམས་ཁོངས་སུ་འདུས་པ།"
+        "include": "Only include sources"
       }
     },
     "commonParams": {
