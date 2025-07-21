@@ -88,7 +88,7 @@
     },
     "sourceFilter": {
       "labels": {
-        "include": "स्रोत शामिल करें"
+        "include": "Only include sources"
       }
     },
     "commonParams": {

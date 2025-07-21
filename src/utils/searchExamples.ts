@@ -1,6 +1,6 @@
 const en = [
   "The definition of cetanā",
-  "Texts that compare the suffering of ordinary people",
+  "Texts that compare types of suffering",
   "Can an arahat feel doubts?",
   "Verses similar to “yena yena vikalpena yadyad vastu vikalpyate”",
   "A passage describing the Buddha being asked to remain in the world",
@@ -16,41 +16,27 @@ const en = [
   "a definition of the term “change”",
   "What is the ‘threefold truth’ (一心三觀)?",
   "What is a kalyāṇamitra?",
+  "The Buddha’s compassion",
+  "Definition of peace",
+  "The benefits of generosity",
+  "ཟག་པ་ཟད་པ་ནི་ཉོན་མོངས་པ་ཐམས་ཅད་སྤངས་པའི་ཕྱིར་རོ་༎",
+  "ṣoḍaśākārā ānāpānasmṛtiḥ",
+  "སེམས་ཅན་ཐམས་ཅད་ལ་བྱམས་པ།",
+  "བཟོད་པའི་ཡོན་ཏན།",
+  "སྟོང་ཉིད་ཀྱི་དོན།",
+  "བྱང་ཆུབ་ཀྱི་སེམས།",
+  "paccattaṁ veditabbo viññūhī",
+  "mano āditto",
 ]
 const ko = [
   // TODO
   ...en,
 ]
-const ja = [
-  // TODO
-  ...en,
-]
-const bo = [
-  "སངས་རྒྱས་ལ་དགའ་བ།",
-  "སེམས་ཅན་ཐམས་ཅད་ལ་བྱམས་པ།",
-  "བཟོད་པའི་ཡོན་ཏན།",
-  "སྟོང་ཉིད་ཀྱི་དོན།",
-  "བྱང་ཆུབ་ཀྱི་སེམས།",
-  "The Buddha’s compassion",
-  "Definition of peace",
-  "The benefits of giving",
-]
-const zhHans = [
-  // TODO
-  ...en,
-]
-const zhHant = [
-  // TODO
-  ...en,
-]
-const hi = [
-  // TODO
-  ...en,
-]
-const de = [
-  // TODO
-  ...en,
-]
+const ja = [...en]
+const bo = [...en]
+const zhHans = [...en]
+const zhHant = [...en]
+const hi = [...en]
 
 export const exampleSearchStrings: Record<SupportedLocale, string[]> = {
   en,
@@ -60,5 +46,4 @@ export const exampleSearchStrings: Record<SupportedLocale, string[]> = {
   "zh-Hans": zhHans,
   "zh-Hant": zhHant,
   hi,
-  de,
 }

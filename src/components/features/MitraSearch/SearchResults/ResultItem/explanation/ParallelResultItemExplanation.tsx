@@ -23,7 +23,7 @@ export default function ParallelResultItemExplanation({
   // })
 
   return (
-    <ExplanationFrame setIsExpanded={setIsExpanded}>
+    <ExplanationFrame setIsExpanded={setIsExpanded} handleSubmit={() => {}}>
       <ParallelExplanation isExpanded={isExpanded} request={parallelRequest} />
     </ExplanationFrame>
   )
