@@ -40,7 +40,7 @@ export const baseTheme: ThemeOptions = {
       dark: colours.secondary.dark,
     },
     warning: {
-      main: "rgb(196, 80, 15)", // passes WCAG AA
+      main: "rgb(173 28 10)", // passes WCAG AAA
     },
     text: {
       primary: colours.text.primary,
