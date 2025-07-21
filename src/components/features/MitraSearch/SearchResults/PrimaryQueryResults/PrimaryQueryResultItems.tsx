@@ -1,5 +1,4 @@
 import React from "react"
-import { useLocale } from "next-intl"
 import Box from "@mui/material/Box"
 
 import { SearchApiTypes } from "@/api"
@@ -11,8 +10,6 @@ type Props = {
 }
 
 export default function PrimarySearchResultItems({ results }: Props) {
-  const locale = useLocale()
-
   return (
     <Box>
       {results.map((result, index) => {
@@ -23,7 +20,8 @@ export default function PrimarySearchResultItems({ results }: Props) {
               size={{ xs: 12 }}
               language={lang}
               link={src_link}
-              primaryRequest={{ locale, query, summary }}
+              primarySearchResult={result}
+              // TODO: clean up
               {...props}
             />
           </ResultItemsFrame>

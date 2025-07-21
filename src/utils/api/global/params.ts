@@ -1,7 +1,6 @@
-import { SearchApiTypes } from "@/utils/api"
 import { exhaustiveStringTuple } from "@/utils/typescript"
 
-import { APIInputEncoding, GlobalParamNames, InputEncoding, View } from "./types"
+import { APIInputEncoding, GlobalParamNames, InputEncoding, ModelType, View } from "./types"
 
 export const inputEncodings: InputEncoding[] = exhaustiveStringTuple<APIInputEncoding>()(
   "auto",
@@ -15,10 +14,6 @@ export const defaultInputEncoding: InputEncoding = "auto"
 
 export const views: View[] = exhaustiveStringTuple<View>()("search", "translation", "ocr")
 export const defaultView: View = "search"
-
-// "gpt-3.5-turbo" can't be used as an i18n key (decimal point forbidden)
-export type ModelType = SearchApiTypes.Schema["ModelType"] &
-  keyof Messages["globalParams"]["modelType"]
 
 export const modelTypes: ModelType[] = exhaustiveStringTuple<
   keyof Messages["globalParams"]["modelType"]
