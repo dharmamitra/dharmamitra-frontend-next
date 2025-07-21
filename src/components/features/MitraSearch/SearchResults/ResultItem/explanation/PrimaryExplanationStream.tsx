@@ -7,21 +7,11 @@ import LoadingDots from "@/components/LoadingDots"
 import { MemoizedMarkdown } from "@/components/memoized-markdown"
 
 export type ExplanationProps = {
-  isExpanded: boolean
   chatPropsWithId: UseChatOptions
 }
 
-export default function PrimaryExplanationStream({
-  isExpanded,
-  chatPropsWithId,
-}: ExplanationProps) {
-  const { messages, status, handleSubmit, error } = useChat(chatPropsWithId)
-
-  React.useEffect(() => {
-    if (isExpanded) {
-      handleSubmit()
-    }
-  }, [isExpanded, handleSubmit])
+export default function PrimaryExplanationStream({ chatPropsWithId }: ExplanationProps) {
+  const { messages, status, error } = useChat(chatPropsWithId)
 
   const assistantMessages = React.useMemo(
     () => messages.filter((msg) => msg.role === "assistant"),
