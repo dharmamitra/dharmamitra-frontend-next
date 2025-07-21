@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { streamText } from "ai"
 
-import { mitraTranslate } from "@/lib/ai/providers"
+import { mitraSearchSummary } from "@/lib/ai/providers"
 import { validateModel } from "@/utils/api/global/validators"
 
 export const maxDuration = 30
@@ -20,18 +20,19 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json()
-    const { input_sentence, target_lang, input_encoding, model } = requestBody
+
+    const { messages, locale, model, ...searchResult } = requestBody
 
     const providerModel = validateModel(model) ? model : "default"
 
     const result = streamText({
-      model: mitraTranslate(providerModel),
-      messages: [{ role: "user", content: input_sentence }],
+      model: mitraSearchSummary(providerModel),
+      messages,
       temperature: 0.1,
       providerOptions: {
-        "mitra-translate": {
-          target_lang,
-          input_encoding,
+        "mitra-search-summary": {
+          locale,
+          search_result: searchResult,
         },
       },
     })

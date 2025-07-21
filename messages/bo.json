@@ -1,0 +1,304 @@
+{
+  "generic": {
+    "exception": {
+      "default": "ཨོ། ནོར་འཁྲུལ་ཞིག་བྱུང་སོང་། ཅུང་ཙམ་འགོར་རྗེས་ཡང་བསྐྱར་ཚོད་ལྟ་བྱེད་རོགས།",
+      "timeout": "ད་ལྟ་ང་ཚོའི་ཞབས་ཞུ་ཆས་ལ་བཀོལ་སྤྱོད་མང་པོ་ཡོང་བཞིན་འདུག  ཅུང་ཙམ་འགོར་རྗེས་ཡང་བསྐྱར་ཚོད་ལྟ་བྱེད་རོགས།",
+      "inputLengthWarning": "ནང་འཇུག་བྱས་པའིཡི་གེ་རིང་དྲགས་འདུག ཞབས་ཞུ་ཆས་ཀྱིས་ཕྱིར་འདྲེན་ནང་དོན་འབྲེག་གཅོད་བྱས་ཡོད་སྲིད། ཡི་གེ་ཐུང་ཐུང་ཞིག་གིས་ཡང་བསྐྱར་འབད་རོགས།",
+      "inputLengthError": "ནང་འཇུག་བྱས་པའིཡི་གེ་ང་ཚོའི་དཔེ་དབྱིབས་ཀྱིས་སྒྲིག་གཅོད་བྱེད་བྱེད་མ་ཐུབ། དགོངས་འགལ་མེད་པར་ནང་འཇུག་ཐུང་ཙམ་་གྱིས་ཡང་བསྐྱར་འབད་རོགས།",
+      "experimentalLanguageWarning": "སྐད་ཡིག་འདིའི་རྒྱབ་སྐྱོར་ནི་ཚོད་ལྟའི་རང་བཞིན་ཡིན།",
+      "fileFailure": "ཡིག་ཆ་ལས་སྣོན་བྱེད་མ་ཐུབ། ཡང་བསྐྱར་འབད་རོགས།",
+      "invalidFileType": "ཡིག་ཆའི་རྣམ་པ་ནོར་འདུག ཉིད་ནས་ {fileTypes} རྣམ་པའི་ཡིག་ཆ་ཞིག་ཡར་སྤྲོད་གནང་རོགས།",
+      "invalidFileSize": "ཡིག་ཆའི་ཆེ་ཆུང་ {maxFileSize}MB ལས་ཆུང་དགོས།",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
+    },
+    "copy": "འདྲ་བཤུ།",
+    "copied": "འདྲ་བཤུ་བྱས་ཚར།",
+    "copyError": "འདྲ་བཤུ་བྱེད་ཐུབ་མ་སོང་།",
+    "copyLink": "སྦྲེལ་ཐག་འདྲ་བཤུ།",
+    "copyRef": "ལུང་ཁུངས་འདྲ་བཤུ།",
+    "copyAll": "ཆ་ཚང་འདྲ་བཤུ།",
+    "copyResultsRefs": "ལུང་ཁུངས་རྣམས་འདྲ་བཤུ།",
+    "copyResultsList": "གྲུབ་འབྲས་ཐོ་ཡིག་ཆ་ཚང་འདྲ་བཤུ།",
+    "other": "གཞན།",
+    "clear": "གཙང་བཟོ།",
+    "stop": "མཚམས་འཇོག",
+    "source": "ཁུངས།",
+    "target": "དམིགས་ཡུལ།",
+    "loading": "འཇུག་བཞིན་ཡོད་་་་་",
+    "processing": "ལས་སྣོན་བྱེད་བཞིན་པ་་་་་",
+    "englishTranslation": "ཨིན་སྐད་ཀྱི་འགྱུར།",
+    "upload": "{fileTypes}ཡིག་ཆ་ཞིག་ཡར་སྤྲོད་གནང་རོགས།<br></br>(ཡིག་ཤོག་ 10 ཙམ་གྱི་ནང་དོན་ལ་རྒྱབ་སྐྱོར་བྱེད།)",
+    "uploadDisabled": "ཡར་སྤྲོད་བྱེད་མི་ཐུབ།",
+    "noResult": "བཙལ་འབྲས་རྙེད་མ་སོང་།",
+    "openAll": "ཆ་ཚང་ཁ་ཕྱེས།",
+    "closeAll": "ཆ་ཚང་ཁ་རྒྱོབ།",
+    "showLess": "ཉུང་ཙམ་སྟོན།",
+    "showAll": "ཆ་ཚང་སྟོན་ ({{count}})",
+    "dragAndDrop": "ཡིག་ཆ་འདིར་དྲུད་དེ་ཞོག",
+    "supportedFileTypes": "རྒྱབ་སྐྱོར་ཡོད་པའི་ཡིག་ཆའི་རིགས། {fileTypes} (ཆེ་ཤོས། {maxFileSize}MB)",
+    "browseFiles": "ཡིག་ཆརལྟ་ཀློག",
+    "saveToFile": "ཡིག་ཆར་ཉར་ཚགས།",
+    "ocr": "OCR (ཡིག་འཛིན་ལག་རྩལ།)",
+    "translation": "ཡིག་སྒྱུར།",
+    "search": "འཚོལ་བཤེར།",
+    "extensionCTA": "ཁྱེད་ཀྱི་ཡི་གེ་ཡོད་སར་ mitra translate བེད་སྤྱོད་གྱིས། , ཡང་ན། རྒྱ་བསྐྱེད་ལག་ཆ་ལེན་རོགས།"
+  },
+  "navigation": {
+    "nexusLinkLabel": "གྲངས་མཛོད།",
+    "docsLinkLabel": "Docs",
+    "mobileButtonAriaLabel": "ཕྱོགས་ཁྲིད་འདེམ་བྱང་གི་ཁ་འབྱེད་པ།",
+    "mobileMenuAriaLabel": "ཕྱོགས་ཁྲིད་འདེམ་བྱང་།"
+  },
+  "footer": {
+    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
+  },
+  "localeSwitcher": {
+    "label": "སྐད་ཡིག་བརྗེ་སྒྱུར།",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "localePlaceholder": "བོད་ཡིག"
+  },
+  "search": {
+    "search": "འཚོལ་བཤེར།",
+    "results": "འཚོལ་བཤེར་གྱི་གྲུབ་འབྲས།",
+    "heading": "ལོ་ངོ་ ༢༥༠༠ རིང་གི་ནང་བསྟན་འཚོལ་བཤེར།",
+    "placeholder": "འཚོལ་བཤེར་གྱི་ཐ་སྙད་ཅིག་ནང་འཇུག་བྱེད་རོགས།",
+    "optionsSwitchLabel": "གདམ་ཀ་སྟོན་པ།",
+    "resetOptionsLabel": "སོར་བཞག་འཚོལ་བཤེར་གདམ་ཀ་བེད་སྤྱོད།",
+    "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
+    "parallelEnglishSwitch": "ཨིན་ཡིག་སྟོན།",
+    "precisionLabel": "ཏག་ཏག་མཐུན་པ་ཁོ་ན།",
+    "explanation": "འགྲེལ་བཤད།",
+    "expandText": "གྲུབ་འབྲས་ཡི་གེ་རྒྱ་སྐྱེད།",
+    "collapseText": "གྲུབ་འབྲས་ཡི་གེ་སྐུམས།",
+    "targetTips": {
+      "primary": "བཀའ་བསྟན་དང་སྲོལ་རྒྱུན་གྱི་གཞུང་རྣམས་འཚོལ་བཤེར།",
+      "secondary": "དེང་རབས་ཀྱི་གཞུང་འགྲེལ་་བསྟན་བཅོས་འཚོལ་བཤེར།",
+      "parallel": "གཞུང་མི་འདྲ་བའི་ཡི་གེ་མཉམ་སྒྲིག་བྱས་པའི་གྲངས་མཛོད་འཚོལ་བཤེར།"
+    },
+    "targets": {
+      "primary": "སྲོལ་རྒྱུན།",
+      "secondary": "དེང་རབས།",
+      "parallel": "མཉམ་སྒྲིག"
+    },
+    "limits": {
+      "labels": {
+        "category_include": "ཁོངས་གཏོགས་སྡེ་ཚན་འདེམས་པ།",
+        "file_include": "ཁོངས་གཏོགས་ཡི་གེ་འདེམས་པ།"
+      }
+    },
+    "sourceFilter": {
+      "labels": {
+        "include": "Only include sources"
+      }
+    },
+    "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "ཡོངས་ཁུངས་ཀྱི་སྡེ་ཚན་འདེམས་པ།",
+        "sourceTextLimit": "ཁུངས་ཡིག་འདེམས་པ།"
+      },
+      "inputEncodings": {
+        "auto": "རང་འགུལ་ངོས་འཛིན།",
+        "tibetan": "བོད་ཡིག",
+        "wylie": "ཝེལི།",
+        "dev": "དེ་བ་ན་ག་རིའི་ཡི་གེ",
+        "iast": "IAST རོ་མན་ཡི་གེ།",
+        "hk": "ཧར་ཝར་ཌི་-ཀྱོ་ཏོ།"
+      },
+      "searchTypes": {
+        "regular": "དཀྱུས་མ།",
+        "semantic": "བརྡ་དོན།"
+      },
+      "filterLanguages": {
+        "bo": "བོད་ཡིག",
+        "sa": "ལེགས་སྦྱར་སྐད།",
+        "zh": "རྒྱ་ཡིག",
+        "pa": "པཱ་ལིའི་སྐད།",
+        "all": "ཚང་མ།"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "ཁོངས་གཏོགས་སྡེ་ཚན་འདེམས་པ།",
+        "file_include": "ཁོངས་གཏོགས་ཡི་གེ་འདེམས་པ།"
+      }
+    },
+    "relevance": "འབྲེལ་ཆགས།",
+    "relevanceTypes": {
+      "high": "མཐོ།",
+      "medium": "འབྲིང་།",
+      "low": "དམའ།"
+    }
+  },
+  "translation": {
+    "translate": "ཡིག་སྒྱུར།",
+    "triggerDisabled": "སྒྱུར་བྱའི་ཡི་གེ་ཁ་སྣོན་ནམ་གསར་སྒྱུར།",
+    "heading": "ཆོས་ཀྱི་ཡི་གེ་ཡིག་སྒྱུར་བྱེད་པ།",
+    "inputAriaLabel": "ཡིག་སྒྱུར་ནང་འཇུག་བྱེད་ས།",
+    "placeholders": {
+      "default": "ཡི་གེ་ནང་འཇུག་བྱེད་པའམ། ཡང་ན། {acceptedFileTypes} ཡིག་ཆ་དྲུད་དེ་བཞག་ཆོག  (ཤོག་གྲངས་ 10 ཙམ་གྱི་ཡི་གེ་ནང་འཇུག་བྱེད་ཐུབ།) ལེགས་སྦྱར། བོད་ཡིག རྒྱ་ཡིག་དང་ཨིན་ཡིག་གི་ནང་བསྟན་གྱི་ཡི་གེ་བཅས་ལ་རྒྱབ་སྐྱོར་ཡོདད།",
+      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
+    },
+    "otherLabel": "གཞན༑",
+    "targetLanguageSelectLabel": "ཕྱིར་་འདྲེན་སྐད་ཡིག",
+    "primaryTargetLanguagesAriaLabel": "དམིགས་ཡུལ་གཙོ་བོའི་སྐད་ཡིག་གདམ་ཀ",
+    "secondaryTargetLanguagesAriaLabel": "དམིགས་ཡུལ་གཞན་པའི་སྐད་ཡིག་གདམ་ཀ",
+    "modelLabel": "དཔེ་དབྱིབས།",
+    "grammarLabel": "བརྡ་སྤྲོད་དབྱེ་ཞིབ།",
+    "copyTranslation": "ཡིག་སྒྱུར་འདྲ་བཤུ།",
+    "usageH2": "སྤྱོད་སྒོ།",
+    "usageAccept": "དང་ལེན།",
+    "usageNoticeShort": "Dharmamitra ཡི་འཕྲུལ་ཆས་སྒྱུར་ལ་ནོར་འཁྲུལ་ཡོད་སྲིད་པས། ཉིད་ཀྱིས་འགན་འཁྲི་་ཡོད་པའི་སྒོ་ནས་བེད་སྤྱོད་གནང་རོགས།",
+    "ocr": {
+      "dragAndDropOverlay": "རྒྱབ་སྐྱོར་ཡོད་པའི་ཡིག་ཆའི་རིགས།: {fileTypes}<br></br>ཡིག་འབྲུ་མང་ཤོས།: {maxInputCharacters} (ཤོག་གྲངས་ {maxInputPageEquivalent} ཙམ་)<br></br>ཡིག་ཆ་ཆེ་ཤོས།: {maxFileSize}MB",
+      "unknownErrorTitle": "OCR བྱེད་མ་ཐུབ།",
+      "lengthErrorTitle": "OCR ཕྱིར་འདྲེན་རིང་དྲགས་འདུག",
+      "lengthErrorText": "ཡིག་སྒྱུར་ནང་འཇུག་གི་ཡིག་འབྲུ་ {maxInputCharacters} ཙམ་ལ་རྒྱབ་སྐྱོར་བྱེད། (ཤོག་གྲངས་ {maxInputPageEquivalent} ཙམ་) ཡི་གེ་དེ་ལས་ཐུང་བ་ཞིག་གིས་ཡང་བསྐྱར་འབད་རོགས། ཡང་ན་ OCR བྱེད་ནུསསྤྱད་དེ་ཡི་གེ་རིང་བ་ལས་སྣོན་བྱེད་རོགས།"
+    },
+    "usageNoticeLong": {
+      "p1": "དྷརྨ་མིཏྲ་ཡིས་ཆེས་སྔོན་ཐོན་གྱི་དབང་རྩའི་དྲ་རྒྱ་གཏིང་ཟབ་བེད་སྤྱད་དེ་ནུས་ལྡན་གྱི་འཕྲུལ་ཆས་ཡིག་སྒྱུར་མཁོ་འདོན་བྱེད་ཀྱི་ཡོད་ལ། ནུས་པ་ཡོད་དགུས་ཡིག་སྒྱུར་སྤུས་དག་ཤོས་མཁོ་འདོན་བྱེད་ཀྱིན་ཡོད་མོད། ང་ཚོའི་ལག་རྩལ་མུ་མཐུད་དུ་ཡར་རྒྱས་འགྲོ་བཞིན་ཡོད་པ་དང་། ཞབས་ཞུ་རྣམས་དུས་རྣམ་པ་ཀུན་ཏུ་གསར་སྒྱུར་བྱེད་ཀྱི་ཡོད་པས། འོག་གི་དོན་ཚན་རྣམས་ལ་ཐུགས་འཇགས་གནངས་རོགས་ཞུ།",
+      "ul": {
+        "1": "དྷརྨ་མི་ཏྲ་ནི་སྐད་རིགས་མི་འདྲ་བའི་ནང་དུ་རྒྱུད་འཛིན་་བྱས་ཡོད་པའི་ཨེ་ཤ་ཡའི་གནའ་རབས་ཡི་གེ་རྣམས་རྟོགས་པས་་རོགས་རམ་བྱེད་པའི་ལག་ཆ་ཞིག་ཡིན།",
+        "2": "འགྱུར་གཞི་དོགས་པ་ཅན་ཡོད་ཚེ། སྐད་ཡིག་གི་ཆེད་མཁས་པར་བཀའ་འདྲི་བྱེད་པའམ། ཡང་ན་མིས་ལོ་ཙཱ་དང་གཏན་འབེབས་བྱས་པའི་འགྱུར་ཡིག་ལ་གཞི་བཅོལ་རོགས་གནངས།།",
+        "3": "དྷརྨ་མི་ཏྲ་ཡི་ཕྱིར་འདྲེན་ནང་དོན་གཞན་ལ་མ་སྤེལ་གོང་། ཞིབ་བཤེར་དང་ངོས་ལེན་བྱེད་པར་སྐུལ་མ་བྱེད་ཀྱི་ཡོད།"
+      },
+      "p2": "དྷརྨ་མི་ཏྲ་ནི། མིའི་ལོཙཱ་བྱེད་པར་ཁ་གསབ་བྱེད་པར་ཇུས་འགོད་བྱས་པ་ལས། མིའི་ཚབ་བྱེད་པ་མིན། ང་ཚོའི་སྔོན་ཐོན་ལག་རྩལ་དང་ཁྱེད་ཀྱི་རྣམ་དཔྱོད་གཉིས་མཉམ་སྦྲེལ་བྱས་ནས་ང་ཚོའི་ཡིག་སྒྱུར་ཞབས་ཞུ་ཆེས་ལེགས་པར་བེད་སྤྱོད་བྱེད་ཐུབ།"
+    },
+    "tagging": {
+      "label": "བརྡ་སྤྲོད།",
+      "ariaLabel": "བརྡ་སྤྲོད་དབྱེ་ཞིབ།",
+      "heading": "བརྡ་སྤྲོད་ཀྱི་དབྱེ་ཞིབ།",
+      "unsandhied": "མཚམས་མ་སྦྱར་བའི་ཚིག",
+      "lemma": "མིང་ཚིག",
+      "tag": "མཆན་འདོགས།",
+      "meanings": "ནང་དོན།",
+      "unsuccessful": "བརྡ་སྤྲོད་དབྱེ་ཞིབ་བྱེད་མ་ཐུབ།",
+      "credit": "བརྡ་སྤྲོད་ཀྱི་དབྱེ་ཞིབ་འདིས་ལེགས་སྦྱར་གྱི་ནང་འཇུག་ལ་རྒྱབ་སྐྱོར་ཡོད་པ་དང་། Oliver Hellwig ལགས་ཀྱི་ Digital Corpus of Sanskrit ༼སཾསྐྲིཏའི་ཨང་ཀིའི་ཕུང་པོ།༽ ཞེས་པའི་གྲངས་མཛོད་ལ་བརྟེན་ནས་བཟོས་པ་ཡིན།",
+      "originalSentence": "མ་ཚིག",
+      "copy": {
+        "unsandhied": "མཚམས་མ་སྦྱར་བའི་ཚིག་འདྲ་བཤུ།"
+      }
+    },
+    "targetLanguages": {
+      "buddhist-chinese": "ནང་བསྟན་གྱི་རྒྱ་ཡིག",
+      "dutch": "ཧོ་ལནྜིའི་སྐད།",
+      "english-deep-research": "English (research)",
+      "english-explained": "ཨིན་ཡིག (འགྲེལ་བཤད་དང་བཅས།)",
+      "english": "ཨིན་ཡིག",
+      "french": "ཧྥ་རན་སི་སྐད།",
+      "german": "འཇར་མན་གྱི་སྐད།",
+      "hindi": "ཧིན་དྷིའི་སྐད",
+      "italian": "ཨི་ཏ་ལི་སྐད།",
+      "japanese": "ཉི་ཧོང་སྐད།",
+      "korean": "ཀོ་རེ་ཡའི་སྐད།",
+      "modern-chinese": "དེང་རབས་རྒྱ་ཡིག",
+      "pali": "པཱ་ལིའི་སྐད།",
+      "portuguese": "པོར་ཅུ་གལ་གྱི་སྐད།",
+      "russian": "ཨུ་རུ་སུའི་སྐད།",
+      "sa-en": "SA ཨིན་ཡིག",
+      "sanskrit-dev": "ལེགས་སྦྱར། (དེ་བ་ན་ག་རིའི་ཡི་གེ)",
+      "sanskrit-knn": "ལེགས་སྦྱར། (KNN)",
+      "sanskrit": "ལེགས་སྦྱར།",
+      "spanish": "སི་པེན་གྱི་སྐད།",
+      "tibetan": "བོད་ཡིག"
+    },
+    "models": {
+      "": "",
+      "NO": "དཔེ་དབྱིབས་མེད།",
+      "none": "དཔེ་དབྱིབས་མེད།",
+      "madlad": "Madlad",
+      "madlad2": "Madlad2",
+      "llama3": "Llama3",
+      "llama3-fgs": "Llama3-fgs",
+      "gemma2": "GEMMA2"
+    },
+    "grammar": {
+      "on": "ཁ་ཕྱེ།",
+      "off": "ཁ་རྒྱོབ།"
+    }
+  },
+  "ocr": {
+    "processingTimeNote": "ཡིག་ཆ་ཆེ་བ་ལས་སྣོན་བྱེད་པར་སྐར་མ་མང་པོ་འགོར་སྲིད་པས། ཆུང་དུ་བགོས་ནས་བེད་སྤྱོད་བྱེད་ན་ལེགས།",
+    "processingTimeNoteShort": "ཡིག་ཆ་ཆེ་བ་ལས་སྣོན་བྱེད་པར་སྐར་མ་མང་པོ་འགོར་སྲིད།",
+    "devanagariToIASTSwitchLabel": "དེ་བ་ན་ག་ར་ནས་ IAST",
+    "tibetanToWylieSwitchLabel": "བོད་ཡིག་ནས་ཝེ་ལི།",
+    "largeDownload": "ཕྱིར་འདོན་བྱས་པའི་ཡི་གེ་ 100kB ལས་ཆེ་བས་ཡིག་ཆར་ཕབ་ལེན་བྱེད་ཐུབ།"
+  },
+  "globalParams": {
+    "encodingSelectLabel": "ནང་འཇུག་གི་ཨང་སྒྲིག",
+    "primaryEncodingsAriaLabel": "གཙོ་བོའི་ཨང་སྒྲིག་གདམ་ཀ",
+    "secondaryEncodingsAriaLabel": "གཞན་པའི་ཨང་སྒྲིག་གདམ་ཀ",
+    "encodings": {
+      "auto": "རང་འགུལ་ངོས་འཛིན།",
+      "dev": "དེ་བ་ན་ག་རིའི་ཡི་གེ",
+      "hk": "ཧར་ཝར་ཌི་-ཀྱོ་ཏོ།",
+      "iast": "IAST རོ་མན་ཡི་གེ།",
+      "itrans": "ITRANS",
+      "tibetan": "གཅིག་གྱུར་ཨང་སྒྲིག་བོད་ཡིག",
+      "velthuis": "Velthuis",
+      "wylie": "ཝེལི།"
+    },
+    "modelType": {
+      "default": "སོར་བཞག",
+      "mitra-base": "Mitra མ་གཞི།",
+      "mitra-pro": "Mitra ཚད་མཐོ།"
+    }
+  },
+  "metadata": {
+    "title": "Dharmamitra · ཆོས་ཀྱི་སྐད་ཡིག་ལ་བཟོས་པའི་ལག་ཆའི་སྒྲོམ།",
+    "description": "ཆོས་ཀྱི་སྐད་ཡིག་ལ་བཟོས་པའི་ལག་ཆའི་སྒྲོམ།"
+  },
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "websiteDevelopment": "Website development",
+      "productDesigner": "Product Designer",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
+    }
+  },
+  "pages": {
+    "nav": {
+      "home": "Home",
+      "guide": "Guide",
+      "team": "ང་ཚོའི་དཔུང་སྡེ།",
+      "test": "Test",
+      "notFound": "Not Found"
+    },
+    "home": {
+      "title": "Welcome to Dharmamitra",
+      "h1": "Dharmamitra Translator"
+    },
+    "guide": {
+      "kumarajiva": {
+        "title": "Guide",
+        "h1": "Guide",
+        "intro": {
+          "h2": "Introduction",
+          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+        },
+        "features": {
+          "h2": "Features",
+          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+        }
+      }
+    },
+    "team": {
+      "dharmamitra": {
+        "title": "ང་ཚོའི་དཔུང་སྡེ་ལ་རྒྱུས་ལོན།",
+        "h1": "ང་ཚོའི་དཔུང་སྡེ་ལ་རྒྱུས་ལོན།",
+        "main": {
+          "h2": "Main"
+        },
+        "volunteers": {
+          "h2": "Student Volunteers"
+        }
+      }
+    },
+    "notFound": {
+      "title": "404 · Page Not Found",
+      "h1": "Oh no! Page Not Found",
+      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
+      "home": "Go Home"
+    }
+  }
+}

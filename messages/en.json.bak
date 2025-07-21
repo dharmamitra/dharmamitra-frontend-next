@@ -54,7 +54,7 @@
   },
   "localeSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, en {English} zh_Hans {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "English"
   },
   "search": {
@@ -88,7 +88,7 @@
     },
     "sourceFilter": {
       "labels": {
-        "include": "Include sources"
+        "include": "Only include sources"
       }
     },
     "commonParams": {
@@ -138,8 +138,8 @@
     },
     "otherLabel": "Other",
     "targetLanguageSelectLabel": "Output language",
-    "primaryTargetLanguagesAriaLabel": "Primary traget language options",
-    "secondaryTargetLanguagesAriaLabel": "Other traget language options",
+    "primaryTargetLanguagesAriaLabel": "Primary target language options",
+    "secondaryTargetLanguagesAriaLabel": "Other target language options",
     "modelLabel": "Model",
     "grammarLabel": "Grammar Analysis",
     "copyTranslation": "Copy translation",
@@ -178,26 +178,26 @@
     },
     "targetLanguages": {
       "buddhist-chinese": "Buddhist Chinese",
-      "english": "English",
-      "english-explained": "English (explained)",
+      "dutch": "Dutch",
       "english-deep-research": "English (research)",
+      "english-explained": "English (explained)",
+      "english": "English",
+      "french": "French",
+      "german": "German",
+      "hindi": "Hindi",
+      "italian": "Italian",
       "japanese": "Japanese",
       "korean": "Korean",
       "modern-chinese": "Modern Chinese",
       "pali": "Pali",
+      "portuguese": "Portuguese",
+      "russian": "Russian",
       "sa-en": "SA English",
       "sanskrit-dev": "Sanskrit (Devanagari)",
       "sanskrit-knn": "Sanskrit (KNN)",
       "sanskrit": "Sanskrit",
-      "tibetan": "Tibetan",
-      "hindi": "Hindi",
-      "german": "German",
-      "russian": "Russian",
-      "french": "French",
-      "italian": "Italian",
       "spanish": "Spanish",
-      "portuguese": "Portuguese",
-      "dutch": "Dutch"
+      "tibetan": "Tibetan"
     },
     "models": {
       "": "",
@@ -261,6 +261,7 @@
       "home": "Home",
       "guide": "Guide",
       "team": "Team",
+      "test": "Test",
       "notFound": "Not Found"
     },
     "home": {

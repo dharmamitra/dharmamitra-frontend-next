@@ -5,6 +5,7 @@ import { SxProps } from "@mui/material/styles"
 
 type ResultItemExplanationProps = {
   setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>
+  handleSubmit: () => void
   children?: React.ReactNode
   isParallel?: boolean
   sx?: SxProps
@@ -14,11 +15,20 @@ export default function ResultItemExplanationFrame({
   children,
   sx,
   setIsExpanded,
+  handleSubmit,
 }: ResultItemExplanationProps) {
   const t = useTranslations("search")
+  const hasExpanded = React.useRef(false)
+
+  const handleExpand = React.useCallback(() => {
+    setIsExpanded((prev) => !prev)
+    if (hasExpanded.current) return
+    handleSubmit()
+    hasExpanded.current = true
+  }, [setIsExpanded, handleSubmit, hasExpanded])
 
   return (
-    <Box component="details" mb={2} sx={sx} onToggle={() => setIsExpanded((prev) => !prev)}>
+    <Box component="details" mb={2} sx={sx} onToggle={handleExpand}>
       <Box
         component="summary"
         sx={{

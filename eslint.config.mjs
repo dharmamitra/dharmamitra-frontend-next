@@ -18,14 +18,18 @@ const ignorePatterns = [
   "playwright-report/",
   "blob-report/",
   "playwright/.cache/",
-  "*.d.ts",
+  "**/*.d.ts",
 ]
 
 /** @type {import('eslint').Linter.Config} */
 export default [
-  // Global configuration
+  // Ignore patterns (must be first for editor compatibility)
   {
     ignores: ignorePatterns,
+  },
+
+  // Global configuration
+  {
     linterOptions: {
       reportUnusedDisableDirectives: true,
     },

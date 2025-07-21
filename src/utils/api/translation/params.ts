@@ -55,6 +55,22 @@ export const stableTargetLanguages: StableTargetLanguage[] = exhaustiveStringTup
 
 export const defaultTargetLanguage: TargetLanguage = "english"
 
+// Map locales to their default target languages
+export const getDefaultTargetLanguageForLocale = (locale: string): TargetLanguage => {
+  const localeToTargetLanguage: Record<string, TargetLanguage> = {
+    en: "english",
+    hi: "hindi",
+    ja: "japanese",
+    "zh-Hans": "modern-chinese",
+    "zh-Hant": "modern-chinese",
+    ko: "korean",
+    bo: "tibetan",
+    de: "german",
+  }
+
+  return localeToTargetLanguage[locale] || "english"
+}
+
 export const defaultTranslationModel: Extract<Schema["TranslationModel"], "default"> = "default"
 
 export const translationParamsNames: TranslationParamNames = {

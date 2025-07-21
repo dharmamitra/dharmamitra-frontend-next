@@ -1,10 +1,10 @@
 import React from "react"
-import Box from "@mui/material/Box"
+// import Box from "@mui/material/Box"
 import Grid from "@mui/material/Grid"
 
 import { SearchApiTypes } from "@/api"
 
-import ResultItemExplanation from "./explanation/ResultItemExplanation"
+// import ResultItemExplanation from "./explanation/ResultItemExplanation"
 
 const frameStyles = {
   border: "1px solid",
@@ -15,21 +15,21 @@ const frameStyles = {
 
 export default function ResultItemsFrame({
   children,
-  parallelRequest,
+  // parallelRequest,
 }: {
   children: React.ReactNode
   parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
 }) {
-  if (parallelRequest) {
-    return (
-      <Box sx={frameStyles}>
-        <Grid container>{children}</Grid>
-        <Box px={2} mt={3}>
-          <ResultItemExplanation parallelRequest={parallelRequest} />
-        </Box>
-      </Box>
-    )
-  }
+  // if (parallelRequest) {
+  //   return (
+  //     <Box sx={frameStyles}>
+  //       <Grid container>{children}</Grid>
+  //       <Box px={2} mt={3}>
+  //         <ResultItemExplanation parallelRequest={parallelRequest} />
+  //       </Box>
+  //     </Box>
+  //   )
+  // }
 
   return (
     <Grid container sx={frameStyles}>

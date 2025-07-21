@@ -1,5 +1,5 @@
 import { TranslationApiTypes } from "@/api"
-import { ModelType } from "@/utils/api/global/params"
+import { ModelType } from "@/utils/api/global/types"
 import { allTranslationDefaultParams } from "@/utils/api/translation/params"
 
 const { input_encoding, target_lang, model, do_grammar_explanation, human_readable_tags, mode } =
