@@ -14,6 +14,10 @@ export type InputEncoding = APIInputEncoding & keyof Messages["globalParams"]["e
 
 export type View = "search" | "translation" | "ocr"
 
+// "gpt-3.5-turbo" can't be used as an i18n key (decimal point forbidden)
+export type ModelType = SearchApiTypes.Schema["ModelType"] &
+  keyof Messages["globalParams"]["modelType"]
+
 export type APIGlobalParams = CommonProperties<
   [
     SearchApiTypes.RequestBody<"/primary/">,

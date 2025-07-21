@@ -1,259 +1,272 @@
 {
   "generic": {
-    "copy": "Copy",
-    "copied": "Copied!",
-    "copyLink": "Copy link",
-    "copyRef": "Copy reference",
-    "copyAll": "Copy all",
-    "copyResultsRefs": "Copy references",
-    "copyResultsList": "Copy full results list",
-    "copyError": "Failed to copy",
-    "other": "其他",
-    "clear": "Clear",
-    "stop": "Stop",
-    "source": "Source",
-    "target": "Target",
-    "englishTranslation": "English Translation",
-    "loading": "Loading",
-    "noResult": "No results found.",
     "exception": {
-      "default": "Ooops! Something went wrong!<newline>Please try again later.</newline>",
-      "timeout": "Our servers are currently under a high load.<newline>Please try again in a few moments.</newline>",
-      "inputLengthWarning": "The input text is very long. The server may have truncated the output. Please try again with a shorter text.",
-      "inputLengthError": "The input text is too long for our model to process. Please try again with a shorter input.",
-      "experimentalLanguageWarning": "Support for this language is experimental.",
-      "fileFailure": "Failed to process the file. Please try again.",
-      "invalidFileType": "Invalid file type. Please upload a {fileTypes} file.",
-      "invalidFileSize": "File size should be less than {maxFileSize}MB",
+      "default": "發生錯誤！<newline>請稍後再試。</newline>",
+      "timeout": "目前伺服器負載較高。<newline>請稍後再試。</newline>",
+      "inputLengthWarning": "輸入文字過長。伺服器可能已截斷輸出。請使用較短的文字重試。",
+      "inputLengthError": "輸入文字過長，模型無法處理。請使用較短的輸入重試。",
+      "experimentalLanguageWarning": "此語言支援為實驗性功能。",
+      "fileFailure": "檔案處理失敗。請重試。",
+      "invalidFileType": "無效的檔案類型。請上傳 {fileTypes} 檔案。",
+      "invalidFileSize": "檔案大小應小於 {maxFileSize}MB",
       "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
     },
-    "openAll": "Open all",
-    "closeAll": "Close all",
-    "showLess": "Show less",
-    "showAll": "Show all {count, number}",
-    "dragAndDrop": "Drag and drop your file here",
-    "supportedFileTypes": "Supported file types: {fileTypes} (max size: {maxFileSize}MB)",
-    "browseFiles": "Browse files",
-    "saveToFile": "Save to file",
-    "processing": "Processing...",
-    "uploadDisabled": "Upload disabled",
+    "copy": "複製",
+    "copied": "已複製！",
+    "copyError": "複製失敗",
+    "copyLink": "複製連結",
+    "copyRef": "複製參考",
+    "copyAll": "複製全部",
+    "copyResultsRefs": "複製參考",
+    "copyResultsList": "複製完整結果清單",
+    "other": "其他",
+    "clear": "清除",
+    "stop": "停止",
+    "source": "來源",
+    "target": "目標",
+    "loading": "載入中",
+    "processing": "處理中...",
+    "englishTranslation": "英文翻譯",
+    "upload": "上傳 {fileTypes} 檔案<br></br>（支援約10頁文字）",
+    "uploadDisabled": "上傳已停用",
+    "noResult": "未找到結果。",
+    "openAll": "全部開啟",
+    "closeAll": "全部關閉",
+    "showLess": "顯示較少",
+    "showAll": "顯示全部 {count, number} 項",
+    "dragAndDrop": "將檔案拖放至此處",
+    "supportedFileTypes": "支援的檔案類型：{fileTypes}（最大大小：{maxFileSize}MB）",
+    "browseFiles": "瀏覽檔案",
+    "saveToFile": "儲存至檔案",
     "ocr": "OCR",
-    "translation": "Translation",
-    "search": "Search",
-    "upload": "Upload a {fileTypes}file<br></br>(Supports approx. 10 pages of text)",
-    "extensionCTA": "Use mitra translate where your texts are; get the <chromelink>Chrome</chromelink>, or <firefoxlink>Firefox</firefoxlink> extension."
+    "translation": "翻譯",
+    "search": "搜尋",
+    "extensionCTA": "在您的文字所在之處使用 mitra 翻譯；取得 <chromelink>Chrome</chromelink> 或 <firefoxlink>Firefox</firefoxlink> 擴充功能。"
   },
   "navigation": {
-    "mobileButtonAriaLabel": "开放导航菜单",
-    "mobileMenuAriaLabel": "导航菜单",
-    "nexusLinkLabel": "Database",
-    "docsLinkLabel": "Docs"
+    "nexusLinkLabel": "資料庫",
+    "docsLinkLabel": "Docs",
+    "mobileButtonAriaLabel": "開啟導航選單",
+    "mobileMenuAriaLabel": "導航選單"
   },
   "footer": {
     "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
   },
   "localeSwitcher": {
     "label": "切換語言",
-    "locale": "{locale, select, en {English} zh_Hans {简体中文} zh_Hant {繁體中文} other {Unknown}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "繁體中文"
   },
   "search": {
-    "search": "搜索",
-    "heading": "搜索2500年的佛教",
-    "placeholder": "搜索一些东西",
-    "results": "Search results",
-    "optionsSwitchLabel": "Show options",
-    "resetOptionsLabel": "Use default search options",
-    "optionCountBadgeLabel": "{count, plural, =1 {1 custom search option} other {# custom search options}} set",
-    "parallelEnglishSwitch": "Show English",
+    "search": "搜尋",
+    "results": "搜尋結果",
+    "heading": "搜尋2500年的佛教",
+    "placeholder": "輸入搜尋詞",
+    "optionsSwitchLabel": "顯示選項",
+    "resetOptionsLabel": "使用預設搜尋選項",
+    "optionCountBadgeLabel": "{count, plural, =1 {1個自訂搜尋選項} other {#個自訂搜尋選項}}已設定",
+    "parallelEnglishSwitch": "顯示英文",
+    "precisionLabel": "僅完全匹配",
+    "explanation": "說明",
+    "expandText": "展開結果文字",
+    "collapseText": "收合結果文字",
     "targetTips": {
-      "primary": "Search canonical and traditional source texts",
-      "secondary": "Search modern commentarial literature",
-      "parallel": "Search cross-tradition text parallel compiled dataset"
+      "primary": "搜尋正典和傳統源文本",
+      "secondary": "搜尋現代註釋文獻",
+      "parallel": "搜尋跨傳統文本平行編譯資料集"
     },
     "targets": {
-      "primary": "Traditional",
-      "secondary": "Modern",
-      "parallel": "Parallels"
+      "primary": "傳統",
+      "secondary": "現代",
+      "parallel": "平行"
     },
     "limits": {
       "labels": {
-        "category_include": "Select included categories",
-        "file_include": "Select included texts"
+        "category_include": "選擇包含的類別",
+        "file_include": "選擇包含的文本"
+      }
+    },
+    "sourceFilter": {
+      "labels": {
+        "include": "包含來源"
       }
     },
     "commonParams": {
       "labels": {
-        "sourceCategoryLimit": "Select source categories",
-        "sourceTextLimit": "Select source texts"
+        "sourceCategoryLimit": "選擇來源類別",
+        "sourceTextLimit": "選擇來源文本"
       },
       "inputEncodings": {
-        "auto": "Autodetect",
-        "tibetan": "Tibetan",
-        "wylie": "Wylie",
-        "dev": "Devanagari",
-        "iast": "IAST Roman",
-        "hk": "Harvard-Kyoto"
+        "auto": "自動偵測",
+        "tibetan": "藏文",
+        "wylie": "威利轉寫",
+        "dev": "天城文",
+        "iast": "IAST羅馬字",
+        "hk": "哈佛-京都"
       },
       "searchTypes": {
-        "regular": "Regular",
-        "semantic": "Semantic"
+        "regular": "一般",
+        "semantic": "語義"
       },
       "filterLanguages": {
-        "bo": "Tibetan",
-        "sa": "Sanskrit",
-        "zh": "Chinese",
-        "pa": "Pali",
-        "all": "All"
+        "bo": "藏文",
+        "sa": "梵文",
+        "zh": "中文",
+        "pa": "巴利文",
+        "all": "全部"
       },
       "limitsPrimaryLabels": {
-        "category_include": "Select included categories",
-        "file_include": "Select included texts"
+        "category_include": "選擇包含的類別",
+        "file_include": "選擇包含的文本"
       }
     },
-    "explanation": "Explanation",
-    "relevance": "Relevance",
+    "relevance": "相關性",
     "relevanceTypes": {
-      "high": "High",
-      "medium": "Medium",
-      "low": "Low"
-    },
-    "precisionLabel": "Exact matches only",
-    "expandText": "Expand result text",
-    "collapseText": "Collapse result text",
-    "sourceFilter": {
-      "labels": {
-        "include": "Include sources"
-      }
+      "high": "高",
+      "medium": "中",
+      "low": "低"
     }
   },
   "translation": {
     "translate": "翻譯",
-    "heading": "",
-    "inputAriaLabel": "翻譯欄位",
+    "triggerDisabled": "新增/更新要翻譯的文字",
+    "heading": "翻譯法（達摩）文本",
+    "inputAriaLabel": "翻譯輸入欄位",
+    "placeholders": {
+      "default": "輸入文字，或拖放 {acceptedFileTypes} 檔案（最多約10頁文字）。支援梵文、藏文、佛典漢文和英文。",
+      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
+    },
     "otherLabel": "其他",
-    "targetLanguageSelectLabel": "翻譯目標語",
-    "primaryTargetLanguagesAriaLabel": "Primary traget language options",
-    "secondaryTargetLanguagesAriaLabel": "Other traget language options",
-    "modelLabel": "Model",
-    "grammarLabel": "Grammar Analysis",
+    "targetLanguageSelectLabel": "目標語言",
+    "primaryTargetLanguagesAriaLabel": "主要目標語言選項",
+    "secondaryTargetLanguagesAriaLabel": "其他目標語言選項",
+    "modelLabel": "模型",
+    "grammarLabel": "文法分析",
     "copyTranslation": "複製翻譯",
+    "usageH2": "使用方式",
+    "usageAccept": "同意",
+    "usageNoticeShort": "法之善友的機器翻譯可能會有錯誤。請謹慎使用。",
+    "ocr": {
+      "dragAndDropOverlay": "支援的檔案類型：{fileTypes}<br></br>最大字元數：{maxInputCharacters}（約 {maxInputPageEquivalent} 頁文字）<br></br>最大檔案大小：{maxFileSize}MB",
+      "unknownErrorTitle": "OCR失敗",
+      "lengthErrorTitle": "OCR輸出過長",
+      "lengthErrorText": "翻譯輸入最多支援 {maxInputCharacters} 個字元（約 {maxInputPageEquivalent} 頁文字）。請使用較短的文字重試，或使用OCR功能處理較長的文字。"
+    },
+    "usageNoticeLong": {
+      "p1": "法之善友利用最先進的深度神經網路，高效提供機器翻譯。我們正努力提供最佳品質。雖然我們的技術持續進步，服務也經常更新，但請記住：",
+      "ul": {
+        "1": "法之善友是幫助理解以不同語言保存的古典亞洲文本的工具",
+        "2": "如有疑問，我們建議諮詢語言專家，或參考已建立的人類翻譯。",
+        "3": "我們鼓勵使用者在分享法之善友的輸出前進行審查和驗證。"
+      },
+      "p2": "法之善友旨在補充人類專業知識，而非取代。透過結合我們的先進技術與您的判斷力，您可以充分利用我們的翻譯服務。"
+    },
     "tagging": {
-      "label": "Grammar",
-      "ariaLabel": "Grammar Analysis",
-      "heading": "Grammatical Analysis",
-      "lemma": "Lemma",
-      "tag": "Tag",
-      "meanings": "Meanings",
-      "unsuccessful": "Grammar analysis was not successful.",
-      "credit": "This grammatical parser supports Sanskrit input and was made possible with data from the <link>Digital Corpus of Sanskrit</link> by Oliver Hellwig.",
-      "unsandhied": "Unsandhied sentence",
-      "originalSentence": "Original sentence",
+      "label": "文法",
+      "ariaLabel": "文法分析",
+      "heading": "文法分析",
+      "unsandhied": "非連聲句",
+      "lemma": "詞形變化",
+      "tag": "標籤",
+      "meanings": "意義",
+      "unsuccessful": "文法分析未成功。",
+      "credit": "此文法解析器支援梵文輸入，並由 <link>Digital Corpus of Sanskrit</link>（Oliver Hellwig著）的資料支援。",
+      "originalSentence": "原始句子",
       "copy": {
-        "unsandhied": "Copy unsandhied sentence"
+        "unsandhied": "複製非連聲句"
       }
     },
     "targetLanguages": {
       "buddhist-chinese": "佛典漢文",
+      "dutch": "荷蘭文",
+      "english-deep-research": "English (research)",
+      "english-explained": "英文（說明版）",
       "english": "英文",
+      "french": "法文",
+      "german": "德文",
+      "hindi": "印地文",
+      "italian": "義大利文",
       "japanese": "日文",
       "korean": "韓文",
       "modern-chinese": "現代中文",
-      "pali": "Pali",
-      "sa-en": "梵文",
-      "sanskrit-dev": "梵文",
-      "sanskrit-knn": "Sanskrit (KNN)",
+      "pali": "巴利文",
+      "portuguese": "葡萄牙文",
+      "russian": "俄文",
+      "sa-en": "梵英",
+      "sanskrit-dev": "梵文（天城文）",
+      "sanskrit-knn": "梵文（KNN）",
       "sanskrit": "梵文",
-      "tibetan": "藏文",
-      "hindi": "Hindi",
-      "german": "German",
-      "russian": "Russian",
-      "french": "French",
-      "italian": "Italian",
-      "spanish": "Spanish",
-      "portuguese": "Portuguese",
-      "dutch": "Dutch",
-      "english-explained": "English (explained)",
-      "english-deep-research": "English (research)"
+      "spanish": "西班牙文",
+      "tibetan": "藏文"
     },
     "models": {
-      "NO": "No model",
-      "none": "No model",
-      "madlad": "Madlad",
-      "llama3": "Llama3",
       "": "",
+      "NO": "無模型",
+      "none": "無模型",
+      "madlad": "Madlad",
       "madlad2": "Madlad2",
+      "llama3": "Llama3",
       "llama3-fgs": "Llama3-fgs",
       "gemma2": "GEMMA2"
     },
     "grammar": {
-      "on": "On",
-      "off": "Off"
-    },
-    "usageNoticeShort": "Dharmamitra's machine translation can make mistakes. Please use responsibly.",
-    "usageNoticeLong": {
-      "p1": "Dharmamitra leverages cutting-edge deep neural networks to efficiently provide machine translations. We are working hard to provide the best possible quality. While our technology continues to advance and our services are frequently updated, please keep in mind:",
-      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services.",
-      "ul": {
-        "1": "Dharmamitra is a tool to help understand classical Asian texts preserved in different languages",
-        "2": "When in doubt, we recommend consulting with language experts, or referring to established human translations.",
-        "3": "We encourage users to review and verify Dharmamitra's output before sharing it."
-      }
-    },
-    "usageH2": "Usage",
-    "usageAccept": "Accept",
-    "placeholders": {
-      "default": "Enter text, or drag and drop a {acceptedFileTypes} file (of upto approx. 10 pages of text). Supports Sanskrit, Tibetan, Buddhist scriptural Chinese and English.",
-      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
-    },
-    "triggerDisabled": "Add/update text to translate",
-    "ocr": {
-      "unknownErrorTitle": "OCR Failed",
-      "lengthErrorTitle": "OCR output too long",
-      "lengthErrorText": "Translation input can support up to {maxInputCharacters} characters (approx. {maxInputPageEquivalent} pages of text). Please try again with a shorter text, or use the OCR feature to process longer texts.",
-      "dragAndDropOverlay": "Supported file types: {fileTypes}<br></br>Max characters: {maxInputCharacters} (approx. {maxInputPageEquivalent} pages of text)<br></br>Max file size: {maxFileSize}MB"
+      "on": "開啟",
+      "off": "關閉"
     }
   },
+  "ocr": {
+    "processingTimeNote": "請注意，大檔案可能需要數分鐘處理，建議將其分割成較小的區塊。",
+    "processingTimeNoteShort": "大檔案可能需要數分鐘處理。",
+    "devanagariToIASTSwitchLabel": "天城文轉IAST",
+    "tibetanToWylieSwitchLabel": "藏文轉威利轉寫",
+    "largeDownload": "提取的文字大於100kB，可以作為檔案下載。"
+  },
   "globalParams": {
-    "encodingSelectLabel": "Input encoding",
-    "primaryEncodingsAriaLabel": "Primary encoding options",
-    "secondaryEncodingsAriaLabel": "Other encoding options",
+    "encodingSelectLabel": "輸入編碼",
+    "primaryEncodingsAriaLabel": "主要編碼選項",
+    "secondaryEncodingsAriaLabel": "其他編碼選項",
     "encodings": {
-      "auto": "Autodetect",
-      "dev": "Devanagari",
-      "hk": "Harvard-Kyoto",
-      "iast": "IAST Roman",
+      "auto": "自動偵測",
+      "dev": "天城文",
+      "hk": "哈佛-京都",
+      "iast": "IAST羅馬字",
       "itrans": "ITRANS",
-      "tibetan": "Tibetan Unicode",
+      "tibetan": "藏文Unicode",
       "velthuis": "Velthuis",
-      "wylie": "Wylie"
+      "wylie": "威利轉寫"
     },
     "modelType": {
-      "default": "Default",
-      "mitra-base": "Mitra Base",
-      "mitra-pro": "Mitra Pro"
+      "default": "預設",
+      "mitra-base": "Mitra基礎版",
+      "mitra-pro": "Mitra專業版"
     }
   },
   "metadata": {
-    "title": "Dharmamitra · a toolkit for the languages of the Dharma",
-    "description": "A toolkit for the languages of the Dharma"
+    "title": "法之善友：佛教文獻學新時代的AI工具",
+    "description": "佛典AI自動翻譯的前沿。法之善友融合佛教學與自然語言處理，為研究者提供強大的數位工具。"
+  },
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "執行總監",
+      "directorTechnical": "技術總監",
+      "dataCollectionSanskrit": "梵文資料收集",
+      "projectInfrastructure": "專案基礎設施",
+      "websiteDevelopment": "網站開發",
+      "productDesigner": "產品設計師",
+      "nlpResearchSanskrit": "梵文NLP研究"
+    }
   },
   "pages": {
+    "nav": {
+      "home": "首頁",
+      "guide": "指南",
+      "team": "團隊",
+      "test": "Test",
+      "notFound": "Not Found"
+    },
     "home": {
       "title": "Welcome to Dharmamitra",
       "h1": "Dharmamitra Translator"
-    },
-    "team": {
-      "dharmamitra": {
-        "title": "Meet Our Team",
-        "h1": "Meet Our Team",
-        "main": {
-          "h2": "Main"
-        },
-        "volunteers": {
-          "h2": "Student Volunteers"
-        }
-      }
     },
     "guide": {
       "kumarajiva": {
@@ -269,35 +282,23 @@
         }
       }
     },
+    "team": {
+      "dharmamitra": {
+        "title": "Meet Our Team",
+        "h1": "Meet Our Team",
+        "main": {
+          "h2": "Main"
+        },
+        "volunteers": {
+          "h2": "Student Volunteers"
+        }
+      }
+    },
     "notFound": {
       "title": "404 · Page Not Found",
       "h1": "Oh no! Page Not Found",
       "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
       "home": "Go Home"
-    },
-    "nav": {
-      "home": "Home",
-      "guide": "Guide",
-      "team": "Team",
-      "notFound": "Not Found"
     }
-  },
-  "staticContent": {
-    "roles": {
-      "directorExecutive": "Executive Director",
-      "directorTechnical": "Technical Director",
-      "dataCollectionSanskrit": "Sanskrit data collection",
-      "projectInfrastructure": "Project infrastructure",
-      "websiteDevelopment": "Website development",
-      "productDesigner": "Product Designer",
-      "nlpResearchSanskrit": "Sanskrit NLP research"
-    }
-  },
-  "ocr": {
-    "processingTimeNote": "Please note that large files can take several minutes to process and it is advised to break them into smaller chunks.",
-    "processingTimeNoteShort": "Large files can take several minutes to process.",
-    "devanagariToIASTSwitchLabel": "Devanagari to IAST",
-    "tibetanToWylieSwitchLabel": "Tibetan to Wylie",
-    "largeDownload": "The extracted text is larger than 100kB and can be downloaded as a file."
   }
 }

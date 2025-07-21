@@ -5,13 +5,13 @@ import { useLocale, useTranslations } from "next-intl"
 import LanguageIcon from "@mui/icons-material/Language"
 import { FormControl, IconButton, Menu, MenuItem, Typography } from "@mui/material"
 
-import { Link, routing, usePathname } from "@/i18n/routing"
+import { routing, usePathname, useRouter } from "@/i18n/routing"
 
 export default function LocaleSelector() {
   const t = useTranslations("localeSwitcher")
 
   const pathname = usePathname()
-
+  const router = useRouter()
   const activeLocale = useLocale()
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -24,6 +24,17 @@ export default function LocaleSelector() {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  const handleLocaleChange = React.useCallback(
+    (locale: SupportedLocale) => {
+      const currentSearch = typeof window !== "undefined" ? window.location.search : ""
+      const fullPath = pathname + currentSearch
+
+      router.replace(fullPath, { locale })
+      handleClose()
+    },
+    [router, pathname, handleClose],
+  )
 
   return (
     <FormControl>
@@ -40,27 +51,18 @@ export default function LocaleSelector() {
       </IconButton>
       <Menu id="locale-menu" anchorEl={anchorEl} keepMounted open={open} onClose={handleClose}>
         {routing.locales.map((locale) => (
-          <Link
+          <MenuItem
             key={locale + "-locale-switcher-link"}
-            href={{ pathname }}
-            locale={locale}
-            style={{
-              textDecoration: "none",
-              color: "inherit",
-            }}
+            value={locale}
+            selected={locale === activeLocale}
+            onClick={() => handleLocaleChange(locale)}
           >
-            <MenuItem
-              key={locale + "-locale-switcher-link"}
-              value={locale}
-              selected={locale === activeLocale}
-            >
-              <Typography variant="body2" sx={{ textTransform: "uppercase" }} lineHeight={1.5}>
-                {t("locale", {
-                  locale: locale.replace(/-/g, "_"),
-                })}
-              </Typography>
-            </MenuItem>
-          </Link>
+            <Typography variant="body2" sx={{ textTransform: "uppercase" }} lineHeight={1.5}>
+              {t("locale", {
+                locale: locale.replace(/-/g, "_"),
+              })}
+            </Typography>
+          </MenuItem>
         ))}
       </Menu>
     </FormControl>

@@ -6,25 +6,30 @@ import ParallelResultItemExplanation from "./ParallelResultItemExplanation"
 import PrimaryResultItemExplanation from "./PrimaryResultItemExplanation"
 
 export type ResultItemExplanationProps = {
-  primaryRequest?: SearchApiTypes.RequestBody<"/explanation/">
-  parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
+  primarySearchResult?: SearchApiTypes.Response<"/primary/">["results"][0]
+  // parallelRequest?: SearchApiTypes.Response<"/explanation-parallel/">
   isRendered?: boolean
 }
 
-export default function ResultItemExplanationRenderer({
-  primaryRequest,
-  parallelRequest,
+/**
+ * @todo:
+ * - Add parallel explanation support when available from BE
+ * - Clean up related code both up and down the component tree
+ */
+export default function ResultItemExplanation({
+  primarySearchResult,
+  // parallelRequest,
   isRendered = true,
 }: ResultItemExplanationProps) {
   if (!isRendered) return null
 
-  if (primaryRequest) {
-    return <PrimaryResultItemExplanation primaryRequest={primaryRequest} />
+  if (primarySearchResult) {
+    return <PrimaryResultItemExplanation primarySearchResult={primarySearchResult} />
   }
 
-  if (parallelRequest) {
-    return <ParallelResultItemExplanation parallelRequest={parallelRequest} />
-  }
+  // if (parallelRequest) {
+  //   return <ParallelResultItemExplanation parallelRequest={parallelRequest} />
+  // }
 
   return null
 }

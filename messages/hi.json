@@ -1,0 +1,304 @@
+{
+  "generic": {
+    "exception": {
+      "default": "उफ्फ! कुछ गलत हो गया!<newline>कृपया बाद में पुनः प्रयास करें।</newline>",
+      "timeout": "हमारे सर्वर वर्तमान में अधिक लोड के अधीन हैं।<newline>कृपया कुछ क्षणों में पुनः प्रयास करें।</newline>",
+      "inputLengthWarning": "इनपुट टेक्स्ट बहुत लंबा है। सर्वर ने आउटपुट को छोटा कर दिया होगा। कृपया छोटे टेक्स्ट के साथ पुनः प्रयास करें।",
+      "inputLengthError": "इनपुट टेक्स्ट हमारे मॉडल के लिए बहुत लंबा है। कृपया छोटे इनपुट के साथ पुनः प्रयास करें।",
+      "experimentalLanguageWarning": "इस भाषा के लिए समर्थन प्रायोगिक है।",
+      "fileFailure": "फ़ाइल को प्रोसेस करने में विफल। कृपया पुनः प्रयास करें।",
+      "invalidFileType": "अमान्य फ़ाइल प्रकार। कृपया {fileTypes} फ़ाइल अपलोड करें।",
+      "invalidFileSize": "फ़ाइल का आकार {maxFileSize}MB से कम होना चाहिए",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
+    },
+    "copy": "कॉपी करें",
+    "copied": "कॉपी किया गया!",
+    "copyError": "कॉपी करने में विफल",
+    "copyLink": "लिंक कॉपी करें",
+    "copyRef": "संदर्भ कॉपी करें",
+    "copyAll": "सभी कॉपी करें",
+    "copyResultsRefs": "संदर्भ कॉपी करें",
+    "copyResultsList": "पूरी परिणाम सूची कॉपी करें",
+    "other": "अन्य",
+    "clear": "साफ़ करें",
+    "stop": "रोकें",
+    "source": "स्रोत",
+    "target": "लक्ष्य",
+    "loading": "लोड हो रहा है",
+    "processing": "प्रोसेसिंग...",
+    "englishTranslation": "अंग्रेज़ी अनुवाद",
+    "upload": "एक {fileTypes}फ़ाइल अपलोड करें<br></br>(लगभग 10 पृष्ठों के टेक्स्ट का समर्थन करता है)",
+    "uploadDisabled": "अपलोड अक्षम",
+    "noResult": "कोई परिणाम नहीं मिला।",
+    "openAll": "सभी खोलें",
+    "closeAll": "सभी बंद करें",
+    "showLess": "कम दिखाएं",
+    "showAll": "सभी {count, number} दिखाएं",
+    "dragAndDrop": "अपनी फ़ाइल यहाँ खींचें और छोड़ें",
+    "supportedFileTypes": "समर्थित फ़ाइल प्रकार: {fileTypes} (अधिकतम आकार: {maxFileSize}MB)",
+    "browseFiles": "फ़ाइलें ब्राउज़ करें",
+    "saveToFile": "फ़ाइल में सहेजें",
+    "ocr": "OCR",
+    "translation": "अनुवाद",
+    "search": "खोज",
+    "extensionCTA": "अपने टेक्स्ट जहाँ हैं वहाँ mitra translate का उपयोग करें; <chromelink>Chrome</chromelink> या <firefoxlink>Firefox</firefoxlink> एक्सटेंशन प्राप्त करें।"
+  },
+  "navigation": {
+    "nexusLinkLabel": "डेटाबेस",
+    "docsLinkLabel": "Docs",
+    "mobileButtonAriaLabel": "नेविगेशन मेनू खोलें",
+    "mobileMenuAriaLabel": "नेविगेशन मेनू"
+  },
+  "footer": {
+    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
+  },
+  "localeSwitcher": {
+    "label": "भाषा बदलें",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "localePlaceholder": "हिंदी"
+  },
+  "search": {
+    "search": "खोज",
+    "results": "खोज परिणाम",
+    "heading": "2500 वर्षों के बौद्ध धर्म को खोजें",
+    "placeholder": "एक खोज शब्द दर्ज करें।",
+    "optionsSwitchLabel": "विकल्प दिखाएं",
+    "resetOptionsLabel": "डिफ़ॉल्ट खोज विकल्पों का उपयोग करें",
+    "optionCountBadgeLabel": "{count, plural, =1 {1 कस्टम खोज विकल्प} other {# कस्टम खोज विकल्प}} सेट",
+    "parallelEnglishSwitch": "अंग्रेज़ी दिखाएं",
+    "precisionLabel": "केवल सटीक मिलान",
+    "explanation": "व्याख्या",
+    "expandText": "परिणाम टेक्स्ट विस्तारित करें",
+    "collapseText": "परिणाम टेक्स्ट संकुचित करें",
+    "targetTips": {
+      "primary": "कैनोनिकल और पारंपरिक स्रोत ग्रंथों को खोजें",
+      "secondary": "आधुनिक टिप्पणी साहित्य को खोजें",
+      "parallel": "क्रॉस-परंपरा टेक्स्ट समानांतर संकलित डेटासेट को खोजें"
+    },
+    "targets": {
+      "primary": "पारंपरिक",
+      "secondary": "आधुनिक",
+      "parallel": "समानांतर"
+    },
+    "limits": {
+      "labels": {
+        "category_include": "शामिल श्रेणियों का चयन करें",
+        "file_include": "शामिल ग्रंथों का चयन करें"
+      }
+    },
+    "sourceFilter": {
+      "labels": {
+        "include": "स्रोत शामिल करें"
+      }
+    },
+    "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "स्रोत श्रेणियों का चयन करें",
+        "sourceTextLimit": "स्रोत ग्रंथों का चयन करें"
+      },
+      "inputEncodings": {
+        "auto": "स्वतः पता लगाएं",
+        "tibetan": "तिब्बती",
+        "wylie": "वायली",
+        "dev": "देवनागरी",
+        "iast": "IAST रोमन",
+        "hk": "हार्वर्ड-क्योटो"
+      },
+      "searchTypes": {
+        "regular": "नियमित",
+        "semantic": "अर्थपूर्ण"
+      },
+      "filterLanguages": {
+        "bo": "तिब्बती",
+        "sa": "संस्कृत",
+        "zh": "चीनी",
+        "pa": "पाली",
+        "all": "सभी"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "शामिल श्रेणियों का चयन करें",
+        "file_include": "शामिल ग्रंथों का चयन करें"
+      }
+    },
+    "relevance": "प्रासंगिकता",
+    "relevanceTypes": {
+      "high": "उच्च",
+      "medium": "मध्यम",
+      "low": "निम्न"
+    }
+  },
+  "translation": {
+    "translate": "अनुवाद करें",
+    "triggerDisabled": "अनुवाद के लिए टेक्स्ट जोड़ें/अपडेट करें",
+    "heading": "धर्म ग्रंथ का अनुवाद करें",
+    "inputAriaLabel": "अनुवाद इनपुट फ़ील्ड",
+    "placeholders": {
+      "default": "टेक्स्ट दर्ज करें, या एक {acceptedFileTypes} फ़ाइल को यहाँ खींचें और छोड़ें (लगभग 10 पृष्ठों के टेक्स्ट तक)। संस्कृत, तिब्बती, बौद्ध लिपि चीनी और अंग्रेज़ी का समर्थन करता है।",
+      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
+    },
+    "otherLabel": "अन्य",
+    "targetLanguageSelectLabel": "आउटपुट भाषा",
+    "primaryTargetLanguagesAriaLabel": "प्राथमिक लक्ष्य भाषा विकल्प",
+    "secondaryTargetLanguagesAriaLabel": "अन्य लक्ष्य भाषा विकल्प",
+    "modelLabel": "मॉडल",
+    "grammarLabel": "व्याकरण विश्लेषण",
+    "copyTranslation": "अनुवाद कॉपी करें",
+    "usageH2": "उपयोग",
+    "usageAccept": "स्वीकार करें",
+    "usageNoticeShort": "धर्ममित्र का मशीन अनुवाद गलतियाँ कर सकता है। कृपया जिम्मेदारी से उपयोग करें।",
+    "ocr": {
+      "dragAndDropOverlay": "समर्थित फ़ाइल प्रकार: {fileTypes}<br></br>अधिकतम अक्षर: {maxInputCharacters} (लगभग {maxInputPageEquivalent} पृष्ठों का टेक्स्ट)<br></br>अधिकतम फ़ाइल आकार: {maxFileSize}MB",
+      "unknownErrorTitle": "OCR विफल",
+      "lengthErrorTitle": "OCR आउटपुट बहुत लंबा",
+      "lengthErrorText": "अनुवाद इनपुट {maxInputCharacters} अक्षरों तक का समर्थन कर सकता है (लगभग {maxInputPageEquivalent} पृष्ठों का टेक्स्ट)। कृपया छोटे टेक्स्ट के साथ पुनः प्रयास करें, या लंबे ग्रंथों के लिए OCR सुविधा का उपयोग करें।"
+    },
+    "usageNoticeLong": {
+      "p1": "धर्ममित्र कुशलतापूर्वक मशीन अनुवाद प्रदान करने के लिए अत्याधुनिक डीप लर्निंग नेटवर्क का लाभ उठाता है। हम सर्वोत्तम संभव गुणवत्ता प्रदान करने के लिए कड़ी मेहनत कर रहे हैं। जबकि हमारी तकनीक विकसित हो रही है और हमारी सेवाएँ अक्सर अपडेट की जाती हैं, कृपया ध्यान रखें:",
+      "ul": {
+        "1": "धर्ममित्र विभिन्न भाषाओं में संरक्षित शास्त्रीय एशियाई ग्रंथों को समझने में मदद करने के लिए एक उपकरण है",
+        "2": "संदेह की स्थिति में, हम भाषा विशेषज्ञों से परामर्श करने, या स्थापित मानव अनुवादों का संदर्भ लेने की सलाह देते हैं।",
+        "3": "हम उपयोगकर्ताओं को धर्ममित्र के आउटपुट को साझा करने से पहले उसकी समीक्षा और सत्यापन करने के लिए प्रोत्साहित करते हैं।"
+      },
+      "p2": "धर्ममित्र मानव विशेषज्ञता को पूरक बनाने के लिए डिज़ाइन किया गया है, न कि उसे प्रतिस्थापित करने के लिए। हमारी उन्नत तकनीक को आपकी विवेकशीलता के साथ जोड़कर, आप हमारी अनुवाद सेवाओं का सर्वोत्तम लाभ उठा सकते हैं।"
+    },
+    "tagging": {
+      "label": "व्याकरण",
+      "ariaLabel": "व्याकरण विश्लेषण",
+      "heading": "व्याकरणिक विश्लेषण",
+      "unsandhied": "असंधि वाक्य",
+      "lemma": "लेम्मा",
+      "tag": "टैग",
+      "meanings": "अर्थ",
+      "unsuccessful": "व्याकरण विश्लेषण सफल नहीं था।",
+      "credit": "यह व्याकरणिक पार्सर संस्कृत इनपुट का समर्थन करता है और ओलिवर हेलविग के <link>डिजिटल कॉर्पस ऑफ संस्कृत</link> से डेटा के साथ संभव बनाया गया था।",
+      "originalSentence": "मूल वाक्य",
+      "copy": {
+        "unsandhied": "असंधि वाक्य कॉपी करें"
+      }
+    },
+    "targetLanguages": {
+      "buddhist-chinese": "बौद्ध चीनी",
+      "dutch": "डच",
+      "english-deep-research": "English (research)",
+      "english-explained": "अंग्रेज़ी (व्याख्या के साथ)",
+      "english": "अंग्रेज़ी",
+      "french": "फ्रेंच",
+      "german": "जर्मन",
+      "hindi": "हिंदी",
+      "italian": "इतालवी",
+      "japanese": "जापानी",
+      "korean": "कोरियाई",
+      "modern-chinese": "आधुनिक चीनी",
+      "pali": "पाली",
+      "portuguese": "पुर्तगाली",
+      "russian": "रूसी",
+      "sa-en": "SA अंग्रेज़ी",
+      "sanskrit-dev": "संस्कृत (देवनागरी)",
+      "sanskrit-knn": "संस्कृत (KNN)",
+      "sanskrit": "संस्कृत",
+      "spanish": "स्पेनिश",
+      "tibetan": "तिब्बती"
+    },
+    "models": {
+      "": "",
+      "NO": "कोई मॉडल नहीं",
+      "none": "कोई मॉडल नहीं",
+      "madlad": "मैडलैड",
+      "madlad2": "मैडलैड2",
+      "llama3": "ल्लामा3",
+      "llama3-fgs": "ल्लामा3-fgs",
+      "gemma2": "जेम्मा2"
+    },
+    "grammar": {
+      "on": "चालू",
+      "off": "बंद"
+    }
+  },
+  "ocr": {
+    "processingTimeNote": "कृपया ध्यान दें कि बड़ी फ़ाइलों को प्रोसेस करने में कई मिनट लग सकते हैं और उन्हें छोटे टुकड़ों में तोड़ने की सलाह दी जाती है।",
+    "processingTimeNoteShort": "बड़ी फ़ाइलों को प्रोसेस करने में कई मिनट लग सकते हैं।",
+    "devanagariToIASTSwitchLabel": "देवनागरी से IAST",
+    "tibetanToWylieSwitchLabel": "तिब्बती से वायली",
+    "largeDownload": "निकाला गया टेक्स्ट 100kB से बड़ा है और फ़ाइल के रूप में डाउनलोड किया जा सकता है।"
+  },
+  "globalParams": {
+    "encodingSelectLabel": "इनपुट एनकोडिंग",
+    "primaryEncodingsAriaLabel": "प्राथमिक एनकोडिंग विकल्प",
+    "secondaryEncodingsAriaLabel": "अन्य एनकोडिंग विकल्प",
+    "encodings": {
+      "auto": "स्वतः पता लगाएं",
+      "dev": "देवनागरी",
+      "hk": "हार्वर्ड-क्योटो",
+      "iast": "IAST रोमन",
+      "itrans": "आईट्रांस",
+      "tibetan": "तिब्बती यूनिकोड",
+      "velthuis": "वेल्थुइस",
+      "wylie": "वायली"
+    },
+    "modelType": {
+      "default": "डिफ़ॉल्ट",
+      "mitra-base": "मित्र बेस",
+      "mitra-pro": "मित्र प्रो"
+    }
+  },
+  "metadata": {
+    "title": "धर्ममित्र · धर्म की भाषाओं के लिए एक टूलकिट",
+    "description": "धर्म की भाषाओं के लिए एक टूलकिट"
+  },
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "कार्यकारी निदेशक",
+      "directorTechnical": "तकनीकी निदेशक",
+      "dataCollectionSanskrit": "संस्कृत डेटा संग्रह",
+      "projectInfrastructure": "प्रोजेक्ट बुनियादी ढांचा",
+      "websiteDevelopment": "वेबसाइट विकास",
+      "productDesigner": "उत्पाद डिज़ाइनर",
+      "nlpResearchSanskrit": "संस्कृत NLP अनुसंधान"
+    }
+  },
+  "pages": {
+    "nav": {
+      "home": "होम",
+      "guide": "गाइड",
+      "team": "टीम",
+      "test": "Test",
+      "notFound": "Not Found"
+    },
+    "home": {
+      "title": "Welcome to Dharmamitra",
+      "h1": "Dharmamitra Translator"
+    },
+    "guide": {
+      "kumarajiva": {
+        "title": "Guide",
+        "h1": "Guide",
+        "intro": {
+          "h2": "Introduction",
+          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+        },
+        "features": {
+          "h2": "Features",
+          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+        }
+      }
+    },
+    "team": {
+      "dharmamitra": {
+        "title": "Meet Our Team",
+        "h1": "Meet Our Team",
+        "main": {
+          "h2": "Main"
+        },
+        "volunteers": {
+          "h2": "Student Volunteers"
+        }
+      }
+    },
+    "notFound": {
+      "title": "404 · Page Not Found",
+      "h1": "Oh no! Page Not Found",
+      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
+      "home": "Go Home"
+    }
+  }
+}

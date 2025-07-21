@@ -350,6 +350,26 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/matches/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Get Matches
+     * @description :return: List of matches for a list of segment numbers
+     */
+    post: operations["get_matches_matches__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/": {
     parameters: {
       query?: never
@@ -609,6 +629,41 @@ export interface components {
       /** Vri */
       vri: string
     }
+    /** Match */
+    Match: {
+      /** Id */
+      id: string
+      /** Root Segnr */
+      root_segnr: string[]
+      /** Par Segnr */
+      par_segnr: string[]
+      /** Root Offset Beg */
+      root_offset_beg: number
+      /** Root Offset End */
+      root_offset_end: number
+      /** Par Offset Beg */
+      par_offset_beg: number
+      /** Par Offset End */
+      par_offset_end: number
+      /** Score */
+      score: number
+      /** Par Length */
+      par_length: number
+      /** Root Text */
+      root_text: string
+      /** Par Text */
+      par_text: string
+    }
+    /** MatchesInput */
+    MatchesInput: {
+      /** Segment Nrs */
+      segment_nrs: string[]
+    }
+    /** MatchesOutput */
+    MatchesOutput: {
+      /** Matches */
+      matches: components["schemas"]["Match"][]
+    }
     /** MenuItem */
     MenuItem: {
       /** Id */
@@ -650,6 +705,8 @@ export interface components {
       segnr: string
       /** Segtext */
       segtext: components["schemas"]["FullMatchText"][]
+      /** Lang */
+      lang: string
     }
     /** TextParallelsInput */
     TextParallelsInput: {
@@ -673,6 +730,11 @@ export interface components {
        * @default 0
        */
       page: number
+      /**
+       * Include Matches
+       * @default true
+       */
+      include_matches: boolean
     }
     /** TextViewLeftOutput */
     TextViewLeftOutput: {
@@ -1175,6 +1237,39 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["MenudataOutput"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_matches_matches__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MatchesInput"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["MatchesOutput"]
         }
       }
       /** @description Validation Error */

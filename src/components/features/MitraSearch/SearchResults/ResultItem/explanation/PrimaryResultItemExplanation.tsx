@@ -1,4 +1,5 @@
 import React from "react"
+import { useLocale } from "next-intl"
 
 import { SearchApiTypes, streamUtils } from "@/api"
 import { createChatProps } from "@/components/features/utils"
@@ -7,23 +8,25 @@ import PrimaryExplanationStream from "./PrimaryExplanationStream"
 import ExplanationFrame from "./ResultItemExplanationFrame"
 
 export type ResultItemExplanationProps = {
-  primaryRequest?: SearchApiTypes.RequestBody<"/explanation/">
+  primarySearchResult?: SearchApiTypes.Response<"/primary/">["results"][0]
   parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
   isRendered: boolean
 }
 
 export default function PrimaryResultItemExplanation({
-  primaryRequest,
+  primarySearchResult,
 }: {
-  primaryRequest: SearchApiTypes.RequestBody<"/explanation/">
+  primarySearchResult: SearchApiTypes.Response<"/primary/">["results"][0]
 }) {
   const [isExpanded, setIsExpanded] = React.useState(false)
 
+  const locale = useLocale()
+
   const chatPropsWithId = createChatProps({
-    id: JSON.stringify(primaryRequest),
+    id: JSON.stringify(primarySearchResult),
     localEndpoint: streamUtils.localAPIEndpoints["explanation-primary"],
-    requestBody: primaryRequest,
-    initialInput: primaryRequest.query,
+    requestBody: { ...primarySearchResult, locale },
+    initialInput: primarySearchResult.query,
   })
 
   return (

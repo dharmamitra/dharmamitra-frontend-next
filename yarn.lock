@@ -4669,7 +4669,7 @@ __metadata:
     jotai: "npm:^2.12.5"
     lint-staged: "npm:^16.1.2"
     next: "npm:15.3.4"
-    next-intl: "npm:^4.3.1"
+    next-intl: "npm:^4.3.4"
     next-mdx-remote: "npm:^5.0.0"
     nuqs: "npm:^2.4.3"
     openapi-fetch: "npm:^0.14.0"
@@ -8436,13 +8436,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-intl@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "next-intl@npm:4.3.1"
+"next-intl@npm:^4.3.4":
+  version: 4.3.4
+  resolution: "next-intl@npm:4.3.4"
   dependencies:
     "@formatjs/intl-localematcher": "npm:^0.5.4"
     negotiator: "npm:^1.0.0"
-    use-intl: "npm:^4.3.1"
+    use-intl: "npm:^4.3.4"
   peerDependencies:
     next: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
@@ -8450,7 +8450,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/6fa7136a6a9869b5262af469bddfdfea8a9170f7f2a7514a1ef21c35f761a71805d875ce19658092372febf43e1e00a3a413d36f0faa5cb038b9506c2aa90ece
+  checksum: 10c0/59e41457c0298fc3d247062b567851badd015649a62658a0b3f88d304c4d1625dc48822a4f00dcd498196408af18c8e8bac62642a1c8f63bbc84b33adf86d8f3
   languageName: node
   linkType: hard
 
@@ -11807,16 +11807,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-intl@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "use-intl@npm:4.3.1"
+"use-intl@npm:^4.3.4":
+  version: 4.3.4
+  resolution: "use-intl@npm:4.3.4"
   dependencies:
     "@formatjs/fast-memoize": "npm:^2.2.0"
     "@schummar/icu-type-parser": "npm:1.21.5"
     intl-messageformat: "npm:^10.5.14"
   peerDependencies:
     react: ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
-  checksum: 10c0/c41e61e69341e40722471aeafce70019c0f4637a4dbde296a9c415b2977f4f6aa986d94a9d58a6f69e9eda78aaad200c0de4dd9463f4a365219db8bcdeda6473
+  checksum: 10c0/0a34bfab56f88e399ef7ee4ce0784355e2f4b977c746541b3fbe3ee3a4d2c747fce24748864532c03ff5f3411eb837f7f9d187c4e7076d62e0f181c499491096
   languageName: node
   linkType: hard
 

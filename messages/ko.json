@@ -1,0 +1,304 @@
+{
+  "generic": {
+    "exception": {
+      "default": "오류가 발생했습니다.<newline>나중에 다시 시도해 주세요.</newline>",
+      "timeout": "현재 서버에 부하가 많습니다.<newline>잠시 후 다시 시도해 주세요.</newline>",
+      "inputLengthWarning": "입력된 텍스트가 너무 깁니다. 결과의 일부가 잘렸을 수 있습니다. 더 짧은 텍스트로 다시 시도해 주세요.",
+      "inputLengthError": "입력된 텍스트가 너무 길어 모델이 처리할 수 없습니다. 더 짧은 텍스트를 입력해 주세요.",
+      "experimentalLanguageWarning": "이 언어에 대한 지원은 실험 단계에 있습니다.",
+      "fileFailure": "파일을 처리하지 못했습니다. 다시 시도해 주세요.",
+      "invalidFileType": "지원하지 않는 파일 형식입니다. {fileTypes} 파일을 업로드해 주세요.",
+      "invalidFileSize": "파일 크기는 {maxFileSize}MB 미만이어야 합니다.",
+      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
+    },
+    "copy": "복사",
+    "copied": "복사되었습니다!",
+    "copyError": "복사 실패",
+    "copyLink": "링크 복사",
+    "copyRef": "참조 복사",
+    "copyAll": "모두 복사",
+    "copyResultsRefs": "참조 복사",
+    "copyResultsList": "전체 결과 목록 복사",
+    "other": "기타",
+    "clear": "지우기",
+    "stop": "중지",
+    "source": "원본",
+    "target": "번역문",
+    "loading": "불러오는 중...",
+    "processing": "처리 중...",
+    "englishTranslation": "영어 번역",
+    "upload": "{fileTypes} 파일 업로드<br></br>(최대 10페이지 분량)",
+    "uploadDisabled": "업로드 비활성화됨",
+    "noResult": "검색 결과가 없습니다.",
+    "openAll": "모두 열기",
+    "closeAll": "모두 닫기",
+    "showLess": "간략히 보기",
+    "showAll": "{count, number}개 모두 보기",
+    "dragAndDrop": "여기에 파일을 드래그 앤 드롭하세요",
+    "supportedFileTypes": "지원 파일 형식: {fileTypes} (최대 {maxFileSize}MB)",
+    "browseFiles": "파일 찾아보기",
+    "saveToFile": "파일로 저장",
+    "ocr": "OCR",
+    "translation": "번역",
+    "search": "검색",
+    "extensionCTA": "웹사이트 어디서든 Mitra 번역을 사용해 보세요. <chromelink>Chrome</chromelink> 또는 <firefoxlink>Firefox</firefoxlink> 확장 프로그램을 설치하세요."
+  },
+  "navigation": {
+    "nexusLinkLabel": "데이터베이스",
+    "docsLinkLabel": "Docs",
+    "mobileButtonAriaLabel": "탐색 메뉴 열기",
+    "mobileMenuAriaLabel": "탐색 메뉴"
+  },
+  "footer": {
+    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
+  },
+  "localeSwitcher": {
+    "label": "언어 변경",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "localePlaceholder": "한국어"
+  },
+  "search": {
+    "search": "검색",
+    "results": "검색 결과",
+    "heading": "2500년 불교 문헌 검색",
+    "placeholder": "검색어를 입력하세요.",
+    "optionsSwitchLabel": "옵션 표시",
+    "resetOptionsLabel": "기본 검색 옵션으로 초기화",
+    "optionCountBadgeLabel": "{count, plural, =1 {맞춤 검색 옵션 1개 적용됨} other {맞춤 검색 옵션 #개 적용됨}}",
+    "parallelEnglishSwitch": "영어 대역 표시",
+    "precisionLabel": "정확히 일치",
+    "explanation": "설명",
+    "expandText": "결과 펼치기",
+    "collapseText": "결과 접기",
+    "targetTips": {
+      "primary": "정통 및 전통 원전 텍스트를 검색합니다.",
+      "secondary": "현대 주석 문헌을 검색합니다.",
+      "parallel": "여러 전통에 걸친 대역(parallel) 텍스트 데이터 세트를 검색합니다."
+    },
+    "targets": {
+      "primary": "전통",
+      "secondary": "현대",
+      "parallel": "대역"
+    },
+    "limits": {
+      "labels": {
+        "category_include": "포함할 카테고리 선택",
+        "file_include": "포함할 텍스트 선택"
+      }
+    },
+    "sourceFilter": {
+      "labels": {
+        "include": "소스 포함"
+      }
+    },
+    "commonParams": {
+      "labels": {
+        "sourceCategoryLimit": "소스 카테고리 선택",
+        "sourceTextLimit": "소스 텍스트 선택"
+      },
+      "inputEncodings": {
+        "auto": "자동 감지",
+        "tibetan": "티베트어",
+        "wylie": "와일리",
+        "dev": "데바나가리",
+        "iast": "IAST 로마자",
+        "hk": "하버드-교토"
+      },
+      "searchTypes": {
+        "regular": "일반",
+        "semantic": "의미 기반"
+      },
+      "filterLanguages": {
+        "bo": "티베트어",
+        "sa": "산스크리트어",
+        "zh": "중국어",
+        "pa": "팔리어",
+        "all": "모두"
+      },
+      "limitsPrimaryLabels": {
+        "category_include": "포함할 카테고리 선택",
+        "file_include": "포함할 텍스트 선택"
+      }
+    },
+    "relevance": "관련도",
+    "relevanceTypes": {
+      "high": "높음",
+      "medium": "중간",
+      "low": "낮음"
+    }
+  },
+  "translation": {
+    "translate": "번역하기",
+    "triggerDisabled": "번역할 텍스트를 입력하거나 업로드하세요.",
+    "heading": "법(Dharma) 텍스트 번역",
+    "inputAriaLabel": "번역 입력 필드",
+    "placeholders": {
+      "default": "텍스트를 입력하거나 {acceptedFileTypes} 파일을 드래그 앤 드롭하세요(최대 10페이지 분량). 산스크리트어, 티베트어, 불교 한문, 영어를 지원합니다.",
+      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
+    },
+    "otherLabel": "기타",
+    "targetLanguageSelectLabel": "번역 언어",
+    "primaryTargetLanguagesAriaLabel": "주요 번역 언어 옵션",
+    "secondaryTargetLanguagesAriaLabel": "기타 번역 언어 옵션",
+    "modelLabel": "모델",
+    "grammarLabel": "문법 분석",
+    "copyTranslation": "번역문 복사",
+    "usageH2": "사용 안내",
+    "usageAccept": "확인 및 동의",
+    "usageNoticeShort": "Dharmamitra의 기계 번역은 정확하지 않을 수 있습니다. 결과를 신중하게 사용해 주세요.",
+    "ocr": {
+      "dragAndDropOverlay": "지원 파일 형식: {fileTypes}<br></br>최대 글자 수: {maxInputCharacters}자 (약 {maxInputPageEquivalent} 페이지)<br></br>최대 파일 크기: {maxFileSize}MB",
+      "unknownErrorTitle": "OCR 실패",
+      "lengthErrorTitle": "OCR 결과가 너무 깁니다",
+      "lengthErrorText": "번역 입력은 최대 {maxInputCharacters}자(약 {maxInputPageEquivalent} 페이지)까지 가능합니다. 더 짧은 텍스트로 다시 시도하거나, OCR 기능을 사용해 더 긴 텍스트를 처리하세요."
+    },
+    "usageNoticeLong": {
+      "p1": "Dharmamitra는 최첨단 신경망 기술을 활용하여 기계 번역을 제공합니다. 저희는 최고의 번역 품질을 제공하기 위해 기술을 꾸준히 발전시키고 서비스를 업데이트하고 있습니다. 다만, 다음 사항에 유의해 주시기 바랍니다:",
+      "ul": {
+        "1": "Dharmamitra는 다른 언어로 보존된 고전 아시아 텍스트를 이해하는 데 도움이 되는 도구입니다.",
+        "2": "내용이 확실하지 않은 경우, 언어 전문가와 상담하거나 기존 전문 번역본을 참조하는 것이 좋습니다.",
+        "3": "Dharmamitra의 번역 결과를 공유하기 전에 내용을 직접 검토하고 확인하는 것이 좋습니다."
+      },
+      "p2": "Dharmamitra는 전문가의 번역을 대체하는 것이 아니라 보완하는 도구입니다. Dharmamitra의 기술과 사용자의 신중한 판단이 결합될 때, 이 서비스의 가치를 최대한 활용할 수 있습니다."
+    },
+    "tagging": {
+      "label": "문법",
+      "ariaLabel": "문법 분석",
+      "heading": "문법 분석",
+      "unsandhied": "연성 원형 복원",
+      "lemma": "표제어",
+      "tag": "태그",
+      "meanings": "의미",
+      "unsuccessful": "문법 분석에 실패했습니다.",
+      "credit": "이 문법 분석기는 산스크리트어 입력을 지원하며, Oliver Hellwig의 <link>Digital Corpus of Sanskrit</link> 데이터를 기반으로 구현되었습니다.",
+      "originalSentence": "원본 문장",
+      "copy": {
+        "unsandhied": "연성 원형 복원 문장 복사"
+      }
+    },
+    "targetLanguages": {
+      "buddhist-chinese": "불교 한문",
+      "dutch": "네덜란드어",
+      "english-deep-research": "English (research)",
+      "english-explained": "영어 (설명 포함)",
+      "english": "영어",
+      "french": "프랑스어",
+      "german": "독일어",
+      "hindi": "힌디어",
+      "italian": "이탈리아어",
+      "japanese": "일본어",
+      "korean": "한국어",
+      "modern-chinese": "현대 중국어",
+      "pali": "팔리어",
+      "portuguese": "포르투갈어",
+      "russian": "러시아어",
+      "sa-en": "SA 영어",
+      "sanskrit-dev": "산스크리트어 (데바나가리)",
+      "sanskrit-knn": "산스크리트어 (KNN)",
+      "sanskrit": "산스크리트어",
+      "spanish": "스페인어",
+      "tibetan": "티베트어"
+    },
+    "models": {
+      "": "",
+      "NO": "모델 없음",
+      "none": "모델 없음",
+      "madlad": "Madlad",
+      "madlad2": "Madlad2",
+      "llama3": "Llama3",
+      "llama3-fgs": "Llama3-fgs",
+      "gemma2": "GEMMA2"
+    },
+    "grammar": {
+      "on": "켜기",
+      "off": "끄기"
+    }
+  },
+  "ocr": {
+    "processingTimeNote": "파일 크기가 큰 경우 처리 시간이 몇 분 정도 걸릴 수 있습니다. 파일을 작게 나누어 업로드하는 것을 권장합니다.",
+    "processingTimeNoteShort": "파일 크기가 큰 경우 처리 시간이 몇 분 정도 걸릴 수 있습니다.",
+    "devanagariToIASTSwitchLabel": "데바나가리 → IAST",
+    "tibetanToWylieSwitchLabel": "티베트어 → 와일리",
+    "largeDownload": "추출된 텍스트가 100kB를 초과하여 파일로 다운로드됩니다."
+  },
+  "globalParams": {
+    "encodingSelectLabel": "입력 인코딩",
+    "primaryEncodingsAriaLabel": "기본 인코딩 옵션",
+    "secondaryEncodingsAriaLabel": "기타 인코딩 옵션",
+    "encodings": {
+      "auto": "자동 감지",
+      "dev": "데바나가리",
+      "hk": "하버드-교토",
+      "iast": "IAST 로마자",
+      "itrans": "ITRANS",
+      "tibetan": "티베트어 유니코드",
+      "velthuis": "벨트하우스",
+      "wylie": "와일리"
+    },
+    "modelType": {
+      "default": "기본값",
+      "mitra-base": "Mitra 베이스",
+      "mitra-pro": "Mitra 프로"
+    }
+  },
+  "metadata": {
+    "title": "Dharmamitra · 법의 언어를 위한 툴킷",
+    "description": "법의 언어를 위한 툴킷"
+  },
+  "staticContent": {
+    "roles": {
+      "directorExecutive": "Executive Director",
+      "directorTechnical": "Technical Director",
+      "dataCollectionSanskrit": "Sanskrit data collection",
+      "projectInfrastructure": "Project infrastructure",
+      "websiteDevelopment": "Website development",
+      "productDesigner": "Product Designer",
+      "nlpResearchSanskrit": "Sanskrit NLP research"
+    }
+  },
+  "pages": {
+    "nav": {
+      "home": "Home",
+      "guide": "Guide",
+      "team": "Team",
+      "test": "Test",
+      "notFound": "Not Found"
+    },
+    "home": {
+      "title": "Welcome to Dharmamitra",
+      "h1": "Dharmamitra Translator"
+    },
+    "guide": {
+      "kumarajiva": {
+        "title": "Guide",
+        "h1": "Guide",
+        "intro": {
+          "h2": "Introduction",
+          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+        },
+        "features": {
+          "h2": "Features",
+          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+        }
+      }
+    },
+    "team": {
+      "dharmamitra": {
+        "title": "Meet Our Team",
+        "h1": "Meet Our Team",
+        "main": {
+          "h2": "Main"
+        },
+        "volunteers": {
+          "h2": "Student Volunteers"
+        }
+      }
+    },
+    "notFound": {
+      "title": "404 · Page Not Found",
+      "h1": "Oh no! Page Not Found",
+      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
+      "home": "Go Home"
+    }
+  }
+}

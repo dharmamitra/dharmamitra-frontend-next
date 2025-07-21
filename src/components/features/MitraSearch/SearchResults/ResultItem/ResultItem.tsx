@@ -16,7 +16,7 @@ type ResultItemProps = {
   link: string
   text: SearchApiTypes.Response<"/primary/">["results"][0]["text"]
   text_new?: SearchApiTypes.Response<"/primary/">["results"][0]["text_new"] // TODO: remove
-  primaryRequest?: SearchApiTypes.RequestBody<"/explanation/">
+  primarySearchResult?: SearchApiTypes.Response<"/primary/">["results"][0]
   parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
   isParallel?: boolean
   query?: string
@@ -31,7 +31,7 @@ function ResultItem({
   segmentnr,
   text,
   text_new,
-  primaryRequest,
+  primarySearchResult,
   parallelRequest,
   isParallel,
   size,
@@ -102,9 +102,9 @@ function ResultItem({
         </Box>
 
         <ResultItemExplanation
-          isRendered={!!primaryRequest || !!parallelRequest}
-          primaryRequest={primaryRequest}
-          parallelRequest={parallelRequest}
+          isRendered={!!primarySearchResult || !!parallelRequest}
+          primarySearchResult={primarySearchResult}
+          // parallelRequest={parallelRequest}
         />
       </Box>
     </Grid>

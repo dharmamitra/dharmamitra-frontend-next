@@ -3,7 +3,9 @@ import { ExceptionMessageKey, getValidI18nExceptionKey } from "../validators"
 export const localAPIEndpoints = {
   translation: "/next/api/translation-stream",
   "mitra-translation": "/next/api/mitra-translation-stream",
-  "explanation-primary": "/next/api/search-summary-stream",
+  // TODO: strip out endpoint when migration tested
+  // "explanation-primary": "/next/api/search-summary-stream",
+  "explanation-primary": "/next/api/mitra-search-summary",
   "explanation-parallel": "/next/api/awaiting-backend-update",
 }
 

@@ -305,6 +305,28 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/chat-summary/v1/chat/completions": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Chat Summary V2
+     * @description This endpoint provides a summary using the ChatSummaryRequest type.
+     *     It follows the OpenAI /v1/chat/completions format and supports streaming.
+     *     This endpoint is designed for better type safety and automatic TypeScript generation.
+     */
+    post: operations["chat_summary_v2_chat_summary_v1_chat_completions_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/rate_translations": {
     parameters: {
       query?: never
@@ -597,6 +619,34 @@ export interface components {
       target_lang: string | null
     }
     /**
+     * ChatSummaryRequest
+     * @description Request model for the chat-summary endpoint.
+     *     Takes a locale (target language) and PrimarySearchResult as children.
+     */
+    ChatSummaryRequest: {
+      /** @default gpt-3.5-turbo */
+      model: components["schemas"]["ModelType"] | null
+      /**
+       * Stream
+       * @default true
+       */
+      stream: boolean | null
+      /**
+       * Temperature
+       * @default 0.1
+       */
+      temperature: number | null
+      /** Messages */
+      messages?:
+        | {
+            [key: string]: string
+          }[]
+        | null
+      /** Locale */
+      locale: string
+      search_result: components["schemas"]["PrimarySearchResult"]
+    }
+    /**
      * FilterLanguage
      * @description For primary and parallel data, we can filter by these languages.
      * @enum {string}
@@ -685,6 +735,8 @@ export interface components {
       text_new: components["schemas"]["TextSegment"]
       /** Src Link */
       src_link: string
+      /** Vector */
+      vector?: number[] | null
     }
     /** SearchRequest */
     SearchRequest: {
@@ -706,7 +758,7 @@ export interface components {
       do_ranking: boolean
       /**
        * Max Depth
-       * @default 50
+       * @default 200
        */
       max_depth: number
     }
@@ -1345,6 +1397,39 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["ChatCompletionRequest"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  chat_summary_v2_chat_summary_v1_chat_completions_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChatSummaryRequest"]
       }
     }
     responses: {
