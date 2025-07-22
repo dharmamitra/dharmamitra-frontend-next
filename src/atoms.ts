@@ -9,3 +9,9 @@ import { DbSourceTreeNode } from "@/components/features/paramSettings/DbSourceFi
 
 export const activeDbSourceTreeAtom = atom<TreeApi<DbSourceTreeNode> | null | undefined>(null)
 export const activeDbSourceTreeBreadcrumbsAtom = atom<NodeApi<DbSourceTreeNode>[]>([])
+
+/**
+ * SEARCH INPUT
+ */
+
+export const searchInputAtom = atom<string>("")

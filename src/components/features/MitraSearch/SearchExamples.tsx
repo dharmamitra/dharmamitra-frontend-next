@@ -2,7 +2,9 @@ import React from "react"
 import { useLocale } from "next-intl"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
+import { useAtom } from "jotai"
 
+import { searchInputAtom } from "@/atoms"
 import { useSearchInputParam } from "@/hooks/params"
 import { usePrimarySearchQuery } from "@/hooks/search/queries"
 import { exampleSearchStrings } from "@/utils/searchExamples"
@@ -13,14 +15,16 @@ type Props = {
 
 function SearchExampleButton({ example }: { example: string }) {
   const { refetch } = usePrimarySearchQuery(example)
-  const [, setSearchInput] = useSearchInputParam()
+  const [, setSearchInputParam] = useSearchInputParam()
+  const [, setLocalSearchInput] = useAtom(searchInputAtom)
 
   const handleClick = React.useCallback(
     (example: string) => {
-      setSearchInput(example)
+      setLocalSearchInput(example)
+      setSearchInputParam(example)
       refetch()
     },
-    [setSearchInput, refetch],
+    [setLocalSearchInput, setSearchInputParam, refetch],
   )
 
   return (
