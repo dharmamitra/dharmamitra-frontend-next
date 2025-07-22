@@ -2,7 +2,9 @@ import React from "react"
 import { useLocale } from "next-intl"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
+import { useAtom } from "jotai"
 
+import { searchInputAtom } from "@/atoms"
 import { useSearchInputParam } from "@/hooks/params"
 import { usePrimarySearchQuery } from "@/hooks/search/queries"
 import { exampleSearchStrings } from "@/utils/searchExamples"
@@ -11,27 +13,41 @@ type Props = {
   isShown: boolean
 }
 
-export default function SearchExamples({ isShown }: Props) {
-  const [search_input, setSearchInput] = useSearchInputParam()
-  const locale = useLocale() as SupportedLocale
-  const { refetch } = usePrimarySearchQuery(search_input)
-
-  const [selectedExample, setSelectedExample] = React.useState<string | null>(null)
+function SearchExampleButton({ example }: { example: string }) {
+  const { refetch } = usePrimarySearchQuery(example)
+  const [, setSearchInputParam] = useSearchInputParam()
+  const [, setLocalSearchInput] = useAtom(searchInputAtom)
 
   const handleClick = React.useCallback(
     (example: string) => {
-      setSelectedExample(example)
-      setSearchInput(example)
+      setLocalSearchInput(example)
+      setSearchInputParam(example)
+      refetch()
     },
-    [setSearchInput],
+    [setLocalSearchInput, setSearchInputParam, refetch],
   )
 
-  React.useEffect(() => {
-    if (selectedExample) {
-      refetch()
-      setSelectedExample(null)
-    }
-  }, [selectedExample, refetch])
+  return (
+    <Button
+      variant="outlined"
+      size="small"
+      sx={{
+        color: "text.secondary",
+        borderColor: "grey.400",
+        borderRadius: "25px",
+        px: 2,
+        py: 0.5,
+      }}
+      onClick={() => handleClick(example)}
+    >
+      {example}
+    </Button>
+  )
+}
+
+export default function SearchExamples({ isShown }: Props) {
+  const [search_input] = useSearchInputParam()
+  const locale = useLocale()
 
   const examples = React.useMemo(() => {
     const uniqueExamples = new Set<string>()
@@ -42,12 +58,12 @@ export default function SearchExamples({ isShown }: Props) {
     return Array.from(uniqueExamples)
   }, [locale])
 
-  if (!isShown) return null
+  if (!isShown || search_input) return null
 
   return (
     <Box
       sx={{
-        display: search_input ? "none" : "flex",
+        display: "flex",
         flexWrap: "wrap",
         gap: 2,
         my: 6,
@@ -64,21 +80,7 @@ export default function SearchExamples({ isShown }: Props) {
       }}
     >
       {examples.map((example, index) => (
-        <Button
-          key={`example-search-term-${index}`}
-          variant="outlined"
-          size="small"
-          sx={{
-            color: "text.secondary",
-            borderColor: "grey.400",
-            borderRadius: "25px",
-            px: 2,
-            py: 0.5,
-          }}
-          onClick={() => handleClick(example)}
-        >
-          {example}
-        </Button>
+        <SearchExampleButton key={`example-search-term-${index}`} example={example} />
       ))}
     </Box>
   )

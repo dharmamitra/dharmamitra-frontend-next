@@ -3,7 +3,9 @@ import { flushSync } from "react-dom"
 import { useTranslations } from "next-intl"
 import Box from "@mui/material/Box"
 import OutlinedInput from "@mui/material/OutlinedInput"
+import { useAtom } from "jotai"
 
+import { searchInputAtom } from "@/atoms"
 import ClearButton from "@/components/ClearButton"
 import TriggerQueryButton from "@/components/features/MitraSearch/controls/TriggerQueryButton"
 import { useSearchInputParam } from "@/hooks/params"
@@ -16,15 +18,21 @@ export const searchInputId = "search-input-field"
 export default function SearchInput({ className }: { className?: string }) {
   const t = useTranslations("search")
 
-  const [searchInputParam, setSearchInputParam] = useSearchInputParam()
+  const [, setSearchInputParam] = useSearchInputParam()
+  const [localSearchInput, setLocalSearchInput] = useAtom(searchInputAtom)
 
-  const [searchInput, setSearchInput] = React.useState(searchInputParam)
-
-  const debouncedSearchInput = useDebouncedValue(searchInput, 100)
+  const isInitializedRef = React.useRef(false)
+  const debouncedLocalSearchInput = useDebouncedValue(localSearchInput, 200)
 
   React.useEffect(() => {
-    setSearchInputParam(debouncedSearchInput)
-  }, [debouncedSearchInput, setSearchInputParam])
+    setSearchInputParam((prev) => {
+      if (!isInitializedRef.current) {
+        setLocalSearchInput(prev)
+        isInitializedRef.current = true
+      }
+      return debouncedLocalSearchInput
+    })
+  }, [debouncedLocalSearchInput, setSearchInputParam, setLocalSearchInput, isInitializedRef])
 
   const handleKeyPress = React.useCallback(
     (event: React.KeyboardEvent) => {
@@ -46,7 +54,7 @@ export default function SearchInput({ className }: { className?: string }) {
 
         // flushSync batches state update and DOM manipulation, reducing layout thrashing.
         flushSync(() => {
-          setSearchInput(updatedValue)
+          setLocalSearchInput(updatedValue)
         })
 
         // Makes sure the cursor position is set after the DOM update
@@ -55,7 +63,7 @@ export default function SearchInput({ className }: { className?: string }) {
         })
       }
     },
-    [setSearchInput],
+    [setLocalSearchInput],
   )
 
   return (
@@ -73,10 +81,10 @@ export default function SearchInput({ className }: { className?: string }) {
           inputProps={{
             "aria-label": "search",
           }}
-          value={searchInputParam}
+          value={localSearchInput}
           multiline
           type="search"
-          onChange={(event) => setSearchInputParam(event.target.value)}
+          onChange={(event) => setLocalSearchInput(event.target.value)}
           onKeyDown={handleKeyPress}
           endAdornment={
             <Box
@@ -85,14 +93,14 @@ export default function SearchInput({ className }: { className?: string }) {
                 alignItems: "center",
               }}
             >
-              <TriggerQueryButton input={searchInputParam} />
+              <TriggerQueryButton input={localSearchInput} />
 
-              <ClearButton input={searchInputParam} setInput={setSearchInputParam} />
+              <ClearButton input={localSearchInput} setInput={setLocalSearchInput} />
             </Box>
           }
         />
       </Box>
-      <SearchKeyboardControls input={searchInputParam} />
+      <SearchKeyboardControls input={localSearchInput} />
     </>
   )
 }

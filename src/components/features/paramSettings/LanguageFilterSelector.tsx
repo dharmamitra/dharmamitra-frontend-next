@@ -21,11 +21,13 @@ type LanguageSelectProps = {
   handleChange: (event: SelectChangeEvent) => void
 }
 
+const LANGUAGE_LIST_WIDTH = 140
+
 const LanguageSelect = ({ label, value, handleChange }: LanguageSelectProps) => {
   const t = useTranslations("search.commonParams.filterLanguages")
 
   return (
-    <FormControl sx={{ width: "100%", maxWidth: 140 }} size="small">
+    <FormControl sx={{ width: "100%", maxWidth: LANGUAGE_LIST_WIDTH }} size="small">
       <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
       <Select
         labelId={`${label}-select-label`}
@@ -54,13 +56,15 @@ export default function LanguageFilterSelector() {
 
   if (searchTarget === "primary") {
     return (
-      <LanguageSelect
-        label={t("source")}
-        value={filterSourceLanguage}
-        handleChange={(event) =>
-          setFilterSourceLanguage(getValidSourceLanguage(event.target.value))
-        }
-      />
+      <Box sx={{ display: "flex", gap: 1, minWidth: LANGUAGE_LIST_WIDTH }}>
+        <LanguageSelect
+          label={t("source")}
+          value={filterSourceLanguage}
+          handleChange={(event) =>
+            setFilterSourceLanguage(getValidSourceLanguage(event.target.value))
+          }
+        />
+      </Box>
     )
   }
 
