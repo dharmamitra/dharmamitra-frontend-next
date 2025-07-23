@@ -9,7 +9,7 @@
       "fileFailure": "ファイルの処理に失敗しました。もう一度お試しください。",
       "invalidFileType": "無効なファイルタイプです。{fileTypes}ファイルをアップロードしてください。",
       "invalidFileSize": "ファイルサイズは{maxFileSize}MB未満にしてください",
-      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
+      "maxSearchResultsWarning": "MITRA Searchは現在、一度に最大50件の結果のみを提供します。特定の言語、コレクション、または個別のテキストについてより具体的な結果をお探しの場合は、フィルターオプションを使用して検索範囲を絞り込んでください。これにより、MITRA Searchがより関連性の高い結果を提供できるようになります。"
     },
     "copy": "コピー",
     "copied": "コピーしました！",
@@ -45,16 +45,16 @@
   },
   "navigation": {
     "nexusLinkLabel": "データベース",
-    "docsLinkLabel": "Docs",
+    "docsLinkLabel": "ドキュメント",
     "mobileButtonAriaLabel": "ナビゲーションメニューを開く",
     "mobileMenuAriaLabel": "ナビゲーションメニュー"
   },
   "footer": {
-    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
+    "blurb": "AI技術を活用し、法（ダルマ）の学術的研究と個人的な実践を促進します。<link>Tsadra Foundation</link>との協力により、Gemini APIを搭載しています。"
   },
   "localeSwitcher": {
     "label": "言語を変更",
-    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {チベット語} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {不明}}",
     "localePlaceholder": "日本語"
   },
   "search": {
@@ -88,7 +88,7 @@
     },
     "sourceFilter": {
       "labels": {
-        "include": "Only include sources"
+        "include": "ソースのみを含める"
       }
     },
     "commonParams": {
@@ -134,7 +134,7 @@
     "inputAriaLabel": "翻訳入力フィールド",
     "placeholders": {
       "default": "テキストを入力するか、{acceptedFileTypes}ファイルをドラッグ＆ドロップしてください（約10ページのテキストまで）。サンスクリット語、チベット語、仏教経典中国語、英語をサポートしています。",
-      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
+      "deepResearch": "サンスクリット語、チベット語、仏典漢文、または英語のテキストを入力してください。リサーチモードは、入力リクエストが短い（1〜4行）場合に最も効果的です。"
     },
     "otherLabel": "その他",
     "targetLanguageSelectLabel": "出力言語",
@@ -179,7 +179,7 @@
     "targetLanguages": {
       "buddhist-chinese": "漢文",
       "dutch": "オランダ語",
-      "english-deep-research": "English (research)",
+      "english-deep-research": "英語 (リサーチ)",
       "english-explained": "英語（説明付き）",
       "english": "英語",
       "french": "フランス語",
@@ -261,44 +261,44 @@
       "home": "ホーム",
       "guide": "ガイド",
       "team": "チーム",
-      "test": "Test",
-      "notFound": "Not Found"
+      "test": "テスト",
+      "notFound": "見つかりません"
     },
     "home": {
-      "title": "Welcome to Dharmamitra",
-      "h1": "Dharmamitra Translator"
+      "title": "Dharmamitraへようこそ",
+      "h1": "Dharmamitra 翻訳者"
     },
     "guide": {
       "kumarajiva": {
-        "title": "Guide",
-        "h1": "Guide",
+        "title": "ガイド",
+        "h1": "ガイド",
         "intro": {
-          "h2": "Introduction",
-          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+          "h2": "はじめに",
+          "p1": "Dharmamitraは、クマーラジーヴァの翻訳者が法典を翻訳する作業を支援するために開発されました。"
         },
         "features": {
-          "h2": "Features",
-          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+          "h2": "特徴",
+          "p1": "Dharmamitraは、伝統的な原典資料や現代の研究文献など、法典を対象とした検索エンジンと翻訳サービスの両方を提供します。"
         }
       }
     },
     "team": {
       "dharmamitra": {
-        "title": "Meet Our Team",
-        "h1": "Meet Our Team",
+        "title": "私たちのチームに会う",
+        "h1": "私たちのチームに会う",
         "main": {
-          "h2": "Main"
+          "h2": "メイン"
         },
         "volunteers": {
-          "h2": "Student Volunteers"
+          "h2": "学生ボランティア"
         }
       }
     },
     "notFound": {
-      "title": "404 · Page Not Found",
-      "h1": "Oh no! Page Not Found",
-      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
-      "home": "Go Home"
+      "title": "404 · ページが見つかりません",
+      "h1": "ページが見つかりません",
+      "message": "彷徨い歩く衆生の始点を見出すことはできない。<cite>— アッススッタ</cite>",
+      "home": "ホームへ戻る"
     }
   }
 }

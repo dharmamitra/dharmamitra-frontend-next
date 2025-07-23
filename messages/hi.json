@@ -9,7 +9,7 @@
       "fileFailure": "फ़ाइल को प्रोसेस करने में विफल। कृपया पुनः प्रयास करें।",
       "invalidFileType": "अमान्य फ़ाइल प्रकार। कृपया {fileTypes} फ़ाइल अपलोड करें।",
       "invalidFileSize": "फ़ाइल का आकार {maxFileSize}MB से कम होना चाहिए",
-      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
+      "maxSearchResultsWarning": "मित्र खोज वर्तमान में एक समय में केवल 50 परिणाम प्रदान करता है। यदि आप किसी निश्चित भाषा, संग्रह, या व्यक्तिगत ग्रंथों के लिए अधिक विशिष्ट परिणाम खोज रहे हैं, तो कृपया खोज के दायरे को कम करने के लिए फ़िल्टर विकल्पों का उपयोग करें। यह मित्र खोज को अधिक प्रासंगिक परिणाम प्रदान करने में मदद करेगा।"
     },
     "copy": "कॉपी करें",
     "copied": "कॉपी किया गया!",
@@ -45,16 +45,16 @@
   },
   "navigation": {
     "nexusLinkLabel": "डेटाबेस",
-    "docsLinkLabel": "Docs",
+    "docsLinkLabel": "दस्तावेज़",
     "mobileButtonAriaLabel": "नेविगेशन मेनू खोलें",
     "mobileMenuAriaLabel": "नेविगेशन मेनू"
   },
   "footer": {
-    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
+    "blurb": "धर्म के विद्वतापूर्ण अध्ययन और व्यक्तिगत अभ्यास को बढ़ावा देने के लिए एआई प्रौद्योगिकियों का उपयोग करना। <link>Tsadra Foundation</link> के सहयोग से; Gemini API द्वारा संचालित।"
   },
   "localeSwitcher": {
     "label": "भाषा बदलें",
-    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {तिब्बती} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {अज्ञात}}",
     "localePlaceholder": "हिंदी"
   },
   "search": {
@@ -88,7 +88,7 @@
     },
     "sourceFilter": {
       "labels": {
-        "include": "Only include sources"
+        "include": "केवल स्रोत शामिल करें"
       }
     },
     "commonParams": {
@@ -134,7 +134,7 @@
     "inputAriaLabel": "अनुवाद इनपुट फ़ील्ड",
     "placeholders": {
       "default": "टेक्स्ट दर्ज करें, या एक {acceptedFileTypes} फ़ाइल को यहाँ खींचें और छोड़ें (लगभग 10 पृष्ठों के टेक्स्ट तक)। संस्कृत, तिब्बती, बौद्ध लिपि चीनी और अंग्रेज़ी का समर्थन करता है।",
-      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
+      "deepResearch": "संस्कृत, तिब्बती, बौद्ध शास्त्रीय चीनी, या अंग्रेजी पाठ दर्ज करें। अनुसंधान मोड सबसे अच्छा काम करता है जब इनपुट अनुरोध छोटे होते हैं (1-4 पंक्तियाँ)।"
     },
     "otherLabel": "अन्य",
     "targetLanguageSelectLabel": "आउटपुट भाषा",
@@ -179,7 +179,7 @@
     "targetLanguages": {
       "buddhist-chinese": "बौद्ध चीनी",
       "dutch": "डच",
-      "english-deep-research": "English (research)",
+      "english-deep-research": "अंग्रेजी (अनुसंधान)",
       "english-explained": "अंग्रेज़ी (व्याख्या के साथ)",
       "english": "अंग्रेज़ी",
       "french": "फ्रेंच",
@@ -261,44 +261,44 @@
       "home": "होम",
       "guide": "गाइड",
       "team": "टीम",
-      "test": "Test",
-      "notFound": "Not Found"
+      "test": "टेस्ट",
+      "notFound": "नहीं मिला"
     },
     "home": {
-      "title": "Welcome to Dharmamitra",
-      "h1": "Dharmamitra Translator"
+      "title": "धर्ममित्र में आपका स्वागत है",
+      "h1": "धर्ममित्र अनुवादक"
     },
     "guide": {
       "kumarajiva": {
-        "title": "Guide",
-        "h1": "Guide",
+        "title": "गाइड",
+        "h1": "गाइड",
         "intro": {
-          "h2": "Introduction",
-          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+          "h2": "परिचय",
+          "p1": "धर्ममित्र को कुमारजीव अनुवादकों को उनके धर्म ग्रंथों के अनुवाद कार्य में सहायता के लिए विकसित किया गया है।"
         },
         "features": {
-          "h2": "Features",
-          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+          "h2": "विशेषताएँ",
+          "p1": "धर्ममित्र पारंपरिक स्रोत सामग्री और आधुनिक शोध साहित्य सहित धर्म ग्रंथों को विशेष रूप से लक्षित करने वाली एक खोज इंजन और एक अनुवाद सेवा दोनों प्रदान करता है।"
         }
       }
     },
     "team": {
       "dharmamitra": {
-        "title": "Meet Our Team",
-        "h1": "Meet Our Team",
+        "title": "हमारी टीम से मिलें",
+        "h1": "हमारी टीम से मिलें",
         "main": {
-          "h2": "Main"
+          "h2": "मुख्य"
         },
         "volunteers": {
-          "h2": "Student Volunteers"
+          "h2": "छात्र स्वयंसेवक"
         }
       }
     },
     "notFound": {
-      "title": "404 · Page Not Found",
-      "h1": "Oh no! Page Not Found",
-      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
-      "home": "Go Home"
+      "title": "404 · पेज नहीं मिला",
+      "h1": "ओह नो! पेज नहीं मिला",
+      "message": "भटकते और घूमते प्राणियों का कोई आरंभ बिंदु नहीं मिलता। <cite>— अस्‍सुसुत्त</cite>",
+      "home": "होम पर जाएं"
     }
   }
 }
