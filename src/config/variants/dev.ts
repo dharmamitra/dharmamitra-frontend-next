@@ -11,8 +11,6 @@ export default function createDevConfig() {
     },
     featureFlags: {
       hasTranslateExtendedOptions: true,
-      hasSearch: true,
-      hasNexus: true,
       hasFeedbackWidget: true,
     },
   })

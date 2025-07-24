@@ -9,13 +9,11 @@ import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
 import { tabsStyles } from "@/components/styled-ssr-safe"
-import useAppConfig from "@/hooks/useAppConfig"
 
 import LoadingBox from "./LoadingBox"
 
 export default function MultiFeatureMitraLoading() {
   const t = useTranslations()
-  const { hasSearch } = useAppConfig().featureFlags
   return (
     <>
       <Tabs
@@ -51,27 +49,24 @@ export default function MultiFeatureMitraLoading() {
           label={t("search.search")}
           disabled
         />
-        {hasSearch ? (
-          <Tab
-            sx={{
-              display: { sm: "none" },
-            }}
-            iconPosition="start"
-            label={t("search.search")}
-            disabled
-          />
-        ) : null}
-        {hasSearch ? (
-          <Tab
-            sx={{
-              display: { xs: "none", sm: "flex" },
-            }}
-            icon={<ScreenSearchDesktopOutlinedIcon />}
-            iconPosition="start"
-            label={t("search.search")}
-            disabled
-          />
-        ) : null}
+        {/* Search */}
+        <Tab
+          sx={{
+            display: { sm: "none" },
+          }}
+          iconPosition="start"
+          label={t("search.search")}
+          disabled
+        />
+        <Tab
+          sx={{
+            display: { xs: "none", sm: "flex" },
+          }}
+          icon={<ScreenSearchDesktopOutlinedIcon />}
+          iconPosition="start"
+          label={t("search.search")}
+          disabled
+        />
         {/* Translation */}
         <Tab
           sx={{

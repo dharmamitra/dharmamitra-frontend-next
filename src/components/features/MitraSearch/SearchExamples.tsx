@@ -71,11 +71,14 @@ export default function SearchExamples({ isShown }: Props) {
           "0%": {
             opacity: 0,
           },
+          "98%": {
+            opacity: 0,
+          },
           "100%": {
             opacity: 1,
           },
         },
-        animation: "fadeIn 0.6s ease-in-out",
+        animation: "fadeIn 2s ease-in-out",
         transition: "display 2s ease-in-out",
       }}
     >
