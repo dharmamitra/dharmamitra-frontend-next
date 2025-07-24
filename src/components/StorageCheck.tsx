@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 
 import useAppConfig from "@/hooks/useAppConfig"
+import { globalParamsNames } from "@/utils/api/global/params"
 import { localStorageKeys } from "@/utils/constants"
 
 export default function StorageCheck() {
@@ -15,12 +16,11 @@ export default function StorageCheck() {
 
     localStorage.setItem(localStorageKeys.storageVersionId, storageVersionId)
 
-    if (storageVersionId === "nuke") {
-      localStorage.clear()
-    } else {
-      // targeted props for given version
-      localStorage.removeItem(localStorageKeys.extensionBannerClosed)
-    }
+    // nuke storage
+    // localStorage.clear()
+
+    // targeted props for given version
+    localStorage.removeItem(globalParamsNames.local.view)
   }, [storageVersionId])
 
   return null

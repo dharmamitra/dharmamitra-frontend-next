@@ -2,7 +2,9 @@ import React from "react"
 import { useLocale } from "next-intl"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
+import { useAtom } from "jotai"
 
+import { searchInputAtom } from "@/atoms"
 import { useSearchInputParam } from "@/hooks/params"
 import { usePrimarySearchQuery } from "@/hooks/search/queries"
 import { exampleSearchStrings } from "@/utils/searchExamples"
@@ -13,14 +15,16 @@ type Props = {
 
 function SearchExampleButton({ example }: { example: string }) {
   const { refetch } = usePrimarySearchQuery(example)
-  const [, setSearchInput] = useSearchInputParam()
+  const [, setSearchInputParam] = useSearchInputParam()
+  const [, setLocalSearchInput] = useAtom(searchInputAtom)
 
   const handleClick = React.useCallback(
     (example: string) => {
-      setSearchInput(example)
+      setLocalSearchInput(example)
+      setSearchInputParam(example)
       refetch()
     },
-    [setSearchInput, refetch],
+    [setLocalSearchInput, setSearchInputParam, refetch],
   )
 
   return (
@@ -67,11 +71,14 @@ export default function SearchExamples({ isShown }: Props) {
           "0%": {
             opacity: 0,
           },
+          "98%": {
+            opacity: 0,
+          },
           "100%": {
             opacity: 1,
           },
         },
-        animation: "fadeIn 0.6s ease-in-out",
+        animation: "fadeIn 2s ease-in-out",
         transition: "display 2s ease-in-out",
       }}
     >

@@ -62,8 +62,26 @@ export const baseTheme: ThemeOptions = {
       marginBlockEnd: "1rem",
     },
     h3: {
-      fontSize: "1.25rem",
+      fontSize: "1.4rem",
       fontWeight: 500,
+    },
+    h4: {
+      fontSize: "1.175rem",
+      fontWeight: 500,
+      marginBottom: "0",
+      color: grey[900],
+    },
+    h5: {
+      fontSize: "1.175rem",
+      fontWeight: 400,
+      marginBottom: "0",
+      color: grey[900],
+    },
+    h6: {
+      fontSize: "1rem",
+      fontWeight: 400,
+      marginBottom: "0",
+      color: grey[800],
     },
     reader: {
       marginBlock: "1rem",
