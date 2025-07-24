@@ -9,7 +9,7 @@
       "fileFailure": "檔案處理失敗。請重試。",
       "invalidFileType": "無效的檔案類型。請上傳 {fileTypes} 檔案。",
       "invalidFileSize": "檔案大小應小於 {maxFileSize}MB",
-      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
+      "maxSearchResultsWarning": "MITRA Search 目前一次最多僅提供 50 筆結果。如果您正在尋找特定語言、藏經或個別文本的更具體結果，請使用篩選選項來縮小搜尋範圍。這將有助於 MITRA Search 提供更相關的結果。"
     },
     "copy": "複製",
     "copied": "已複製！",
@@ -45,16 +45,16 @@
   },
   "navigation": {
     "nexusLinkLabel": "資料庫",
-    "docsLinkLabel": "Docs",
+    "docsLinkLabel": "文件",
     "mobileButtonAriaLabel": "開啟導航選單",
     "mobileMenuAriaLabel": "導航選單"
   },
   "footer": {
-    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
+    "blurb": "利用人工智慧技術，促進對佛法的學術研究和個人實踐。與<link>欽哲基金會</link>合作；由 Gemini API 提供技術支援。"
   },
   "localeSwitcher": {
     "label": "切換語言",
-    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {藏文} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {未知}}",
     "localePlaceholder": "繁體中文"
   },
   "search": {
@@ -88,7 +88,7 @@
     },
     "sourceFilter": {
       "labels": {
-        "include": "Only include sources"
+        "include": "僅包括來源"
       }
     },
     "commonParams": {
@@ -134,7 +134,7 @@
     "inputAriaLabel": "翻譯輸入欄位",
     "placeholders": {
       "default": "輸入文字，或拖放 {acceptedFileTypes} 檔案（最多約10頁文字）。支援梵文、藏文、佛典漢文和英文。",
-      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
+      "deepResearch": "輸入梵文、藏文、佛教經文或英文文本。當輸入請求簡短（1-4行）時，研究模式效果最佳。"
     },
     "otherLabel": "其他",
     "targetLanguageSelectLabel": "目標語言",
@@ -179,7 +179,7 @@
     "targetLanguages": {
       "buddhist-chinese": "佛典漢文",
       "dutch": "荷蘭文",
-      "english-deep-research": "English (research)",
+      "english-deep-research": "英文（研究）",
       "english-explained": "英文（說明版）",
       "english": "英文",
       "french": "法文",
@@ -261,44 +261,44 @@
       "home": "首頁",
       "guide": "指南",
       "team": "團隊",
-      "test": "Test",
-      "notFound": "Not Found"
+      "test": "測試",
+      "notFound": "未找到"
     },
     "home": {
-      "title": "Welcome to Dharmamitra",
-      "h1": "Dharmamitra Translator"
+      "title": "歡迎來到Dharmamitra",
+      "h1": "Dharmamitra 翻譯器"
     },
     "guide": {
       "kumarajiva": {
-        "title": "Guide",
-        "h1": "Guide",
+        "title": "指南",
+        "h1": "指南",
         "intro": {
-          "h2": "Introduction",
-          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+          "h2": "簡介",
+          "p1": "Dharmamitra 的開發旨在支援鳩摩羅什譯者翻譯佛法文本的工作。"
         },
         "features": {
-          "h2": "Features",
-          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+          "h2": "功能",
+          "p1": "Dharmamitra 提供專門針對佛法文本的搜尋引擎和翻譯服務，包括傳統原始資料和現代研究文獻。"
         }
       }
     },
     "team": {
       "dharmamitra": {
-        "title": "Meet Our Team",
-        "h1": "Meet Our Team",
+        "title": "認識我們的團隊",
+        "h1": "認識我們的團隊",
         "main": {
-          "h2": "Main"
+          "h2": "主要成員"
         },
         "volunteers": {
-          "h2": "Student Volunteers"
+          "h2": "學生志工"
         }
       }
     },
     "notFound": {
-      "title": "404 · Page Not Found",
-      "h1": "Oh no! Page Not Found",
-      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
-      "home": "Go Home"
+      "title": "404 · 頁面未找到",
+      "h1": "哎呀！頁面未找到",
+      "message": "找不到眾生飄泊輪迴的起點。<cite>—《淚水經》</cite>",
+      "home": "返回首頁"
     }
   }
 }

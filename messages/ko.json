@@ -9,7 +9,7 @@
       "fileFailure": "파일을 처리하지 못했습니다. 다시 시도해 주세요.",
       "invalidFileType": "지원하지 않는 파일 형식입니다. {fileTypes} 파일을 업로드해 주세요.",
       "invalidFileSize": "파일 크기는 {maxFileSize}MB 미만이어야 합니다.",
-      "maxSearchResultsWarning": "MITRA Search currently only provides up to 50 results at a time. If you are looking for more specific results for a certain language, collection, or individual texts, please use the filter options to narrow down the search scope. This will help MITRA Search to offer more relevant results."
+      "maxSearchResultsWarning": "MITRA Search는 현재 한 번에 최대 50개의 결과만 제공합니다. 특정 언어, 컬렉션 또는 개별 텍스트에 대한 더 구체적인 결과를 찾고 있다면 필터 옵션을 사용하여 검색 범위를 좁혀주세요. 이렇게 하면 MITRA Search가 더 관련성 높은 결과를 제공하는 데 도움이 됩니다."
     },
     "copy": "복사",
     "copied": "복사되었습니다!",
@@ -50,11 +50,11 @@
     "mobileMenuAriaLabel": "탐색 메뉴"
   },
   "footer": {
-    "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."
+    "blurb": "AI 기술을 활용하여 법(dharma)의 학술적 연구와 개인적 수행을 증진합니다. <link>Tsadra Foundation</link>과 협력하여 Gemini API로 구동됩니다."
   },
   "localeSwitcher": {
     "label": "언어 변경",
-    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "locale": "{locale, select, en {영어} ko {한국어} ja {日本語} bo {티베트어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {알 수 없음}}",
     "localePlaceholder": "한국어"
   },
   "search": {
@@ -88,7 +88,7 @@
     },
     "sourceFilter": {
       "labels": {
-        "include": "Only include sources"
+        "include": "소스만 포함"
       }
     },
     "commonParams": {
@@ -134,7 +134,7 @@
     "inputAriaLabel": "번역 입력 필드",
     "placeholders": {
       "default": "텍스트를 입력하거나 {acceptedFileTypes} 파일을 드래그 앤 드롭하세요(최대 10페이지 분량). 산스크리트어, 티베트어, 불교 한문, 영어를 지원합니다.",
-      "deepResearch": "Enter Sanskrit, Tibetan, Buddhist scriptural Chinese, or English text. Research mode works best when input requests are short (1-4 lines)."
+      "deepResearch": "산스크리트어, 티베트어, 불교 경전 한문 또는 영어 텍스트를 입력하세요. 리서치 모드는 입력 요청이 짧을 때(1-4줄) 가장 잘 작동합니다."
     },
     "otherLabel": "기타",
     "targetLanguageSelectLabel": "번역 언어",
@@ -179,7 +179,7 @@
     "targetLanguages": {
       "buddhist-chinese": "불교 한문",
       "dutch": "네덜란드어",
-      "english-deep-research": "English (research)",
+      "english-deep-research": "영어 (리서치)",
       "english-explained": "영어 (설명 포함)",
       "english": "영어",
       "french": "프랑스어",
@@ -247,58 +247,58 @@
   },
   "staticContent": {
     "roles": {
-      "directorExecutive": "Executive Director",
-      "directorTechnical": "Technical Director",
-      "dataCollectionSanskrit": "Sanskrit data collection",
-      "projectInfrastructure": "Project infrastructure",
-      "websiteDevelopment": "Website development",
-      "productDesigner": "Product Designer",
-      "nlpResearchSanskrit": "Sanskrit NLP research"
+      "directorExecutive": "상임 이사",
+      "directorTechnical": "기술 이사",
+      "dataCollectionSanskrit": "산스크리트어 데이터 수집",
+      "projectInfrastructure": "프로젝트 인프라",
+      "websiteDevelopment": "웹사이트 개발",
+      "productDesigner": "제품 디자이너",
+      "nlpResearchSanskrit": "산스크리트어 NLP 연구"
     }
   },
   "pages": {
     "nav": {
-      "home": "Home",
-      "guide": "Guide",
-      "team": "Team",
-      "test": "Test",
-      "notFound": "Not Found"
+      "home": "홈",
+      "guide": "가이드",
+      "team": "팀",
+      "test": "테스트",
+      "notFound": "찾을 수 없음"
     },
     "home": {
-      "title": "Welcome to Dharmamitra",
-      "h1": "Dharmamitra Translator"
+      "title": "Dharmamitra에 오신 것을 환영합니다",
+      "h1": "Dharmamitra 번역기"
     },
     "guide": {
       "kumarajiva": {
-        "title": "Guide",
-        "h1": "Guide",
+        "title": "가이드",
+        "h1": "가이드",
         "intro": {
-          "h2": "Introduction",
-          "p1": "Dharmamitra has been developed to support Kumarajiva translators in their work translating Dharma texts."
+          "h2": "소개",
+          "p1": "Dharmamitra는 쿠마라지바 번역가들이 법(Dharma) 텍스트를 번역하는 작업을 지원하기 위해 개발되었습니다."
         },
         "features": {
-          "h2": "Features",
-          "p1": "Dharmamitra provides both a search engine and a translation service specifically targetting Dharma texts, including traditional source material and modern research literature."
+          "h2": "기능",
+          "p1": "Dharmamitra는 전통적인 원전 자료와 현대 연구 문헌을 포함하여 법 텍스트를 특정 대상으로 하는 검색 엔진과 번역 서비스를 모두 제공합니다."
         }
       }
     },
     "team": {
       "dharmamitra": {
-        "title": "Meet Our Team",
-        "h1": "Meet Our Team",
+        "title": "팀원 소개",
+        "h1": "팀원 소개",
         "main": {
-          "h2": "Main"
+          "h2": "주요 팀원"
         },
         "volunteers": {
-          "h2": "Student Volunteers"
+          "h2": "학생 자원봉사자"
         }
       }
     },
     "notFound": {
-      "title": "404 · Page Not Found",
-      "h1": "Oh no! Page Not Found",
-      "message": "No beginning point is found of beings wandering and roaming. <cite>— Assusutta</cite>",
-      "home": "Go Home"
+      "title": "404 · 페이지를 찾을 수 없음",
+      "h1": "오 이런! 페이지를 찾을 수 없음",
+      "message": "헤매고 떠도는 존재들에게서 시작점을 찾을 수 없다. <cite>— Assusutta</cite>",
+      "home": "홈으로 가기"
     }
   }
 }
