@@ -6,12 +6,8 @@ import { View } from "@/utils/api/global/types"
 
 import { parseAsView } from "./parsers"
 
-const {
-  local: { view },
-} = globalParamsNames
-
 export function useViewParamWithLocalStorage(availableViews: View[]) {
-  const [viewParam, setViewParam] = useQueryState(view, {
+  const [viewParam, setViewParam] = useQueryState(globalParamsNames.local.view, {
     ...parseAsView,
     defaultValue: defaultView,
   })
@@ -21,7 +17,7 @@ export function useViewParamWithLocalStorage(availableViews: View[]) {
       if (availableViews.includes(viewParam)) {
         return viewParam
       }
-      const localValue = localStorage.getItem(view) as View | null
+      const localValue = localStorage.getItem(globalParamsNames.local.view) as View | null
       if (localValue && availableViews.includes(localValue)) {
         return localValue
       }
@@ -41,7 +37,7 @@ export function useViewParamWithLocalStorage(availableViews: View[]) {
   const setViewParamWithLocalStorage = React.useCallback(
     (value: View) => {
       setViewParam(value)
-      localStorage.setItem(view, value)
+      localStorage.setItem(globalParamsNames.local.view, value)
     },
     [setViewParam],
   )

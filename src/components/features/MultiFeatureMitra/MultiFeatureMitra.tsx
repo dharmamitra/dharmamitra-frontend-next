@@ -17,7 +17,6 @@ import MitraSearch from "@/components/features/MitraSearch"
 import MitraTranslator from "@/components/features/MitraTranslator"
 import { tabsStyles } from "@/components/styled-ssr-safe"
 import { useViewParamWithLocalStorage } from "@/hooks/params/useViewParamWithLocalStorage"
-import useAppConfig from "@/hooks/useAppConfig"
 import { views } from "@/utils/api/global/params"
 import { View } from "@/utils/api/global/types"
 import { localStorageKeys } from "@/utils/constants"
@@ -42,15 +41,10 @@ const TabIcons: Record<View, React.ComponentType<SvgIconProps>> = {
 
 export default function MultiFeatureMitra() {
   const t = useTranslations()
-  const { hasSearch } = useAppConfig().featureFlags
 
-  const availableViews = views.filter((view) => {
-    if (view === "search" && !hasSearch) return false
-    return true
-  })
   const isXsScreen = useMediaQuery("(max-width:480px)")
 
-  const [currentView, setView] = useViewParamWithLocalStorage(availableViews)
+  const [currentView, setView] = useViewParamWithLocalStorage(views)
 
   const [isSearchControlsOpen, setIsSearchControlsOpen] = React.useState(() => {
     if (typeof window === "undefined") return false
@@ -86,7 +80,7 @@ export default function MultiFeatureMitra() {
           }}
           sx={tabsStyles}
         >
-          {availableViews.map((view) => {
+          {views.map((view) => {
             const Icon = TabIcons[view]
             return (
               <Tab
@@ -114,19 +108,14 @@ export default function MultiFeatureMitra() {
         <div style={{ height: "1px", width: "1px" }} ref={scrollMarkerRef}></div>
 
         <Box sx={{ height: "100%" }}>
-          {hasSearch ? (
-            <FeatureTabPanel currentView={currentView} view="search">
-              <Box
-                id="search-feature-wrapper"
-                sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}
-              >
-                <MitraSearch
-                  isSearchControlsOpen={isSearchControlsOpen}
-                  setIsSearchControlsOpen={setIsSearchControlsOpen}
-                />
-              </Box>
-            </FeatureTabPanel>
-          ) : null}
+          <FeatureTabPanel currentView={currentView} view="search">
+            <Box id="search-feature-wrapper" sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}>
+              <MitraSearch
+                isSearchControlsOpen={isSearchControlsOpen}
+                setIsSearchControlsOpen={setIsSearchControlsOpen}
+              />
+            </Box>
+          </FeatureTabPanel>
 
           <FeatureTabPanel currentView={currentView} view="translation">
             <Box id="translator-feature-wrapper">
