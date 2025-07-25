@@ -38,6 +38,7 @@ export const stableTargetLanguages: StableTargetLanguage[] = exhaustiveStringTup
 >()(
   "english",
   "english-explained",
+  "english-deep-research",
   "tibetan",
   "sanskrit",
   "sanskrit-dev",

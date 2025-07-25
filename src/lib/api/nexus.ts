@@ -653,6 +653,8 @@ export interface components {
       root_text: string
       /** Par Text */
       par_text: string
+      par_full_names: components["schemas"]["FullNames"]
+      root_full_names: components["schemas"]["FullNames"]
     }
     /** MatchesInput */
     MatchesInput: {
