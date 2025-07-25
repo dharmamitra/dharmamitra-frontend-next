@@ -54,7 +54,7 @@
   },
   "localeSwitcher": {
     "label": "སྐད་ཡིག་བརྗེ་སྒྱུར།",
-    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {བོད་ཡིག} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "བོད་ཡིག"
   },
   "search": {
