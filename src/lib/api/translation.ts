@@ -192,6 +192,7 @@ export interface components {
     TargetLanguage:
       | "english"
       | "english-explained"
+      | "english-deep-research"
       | "tibetan"
       | "sanskrit"
       | "sanskrit-dev"
