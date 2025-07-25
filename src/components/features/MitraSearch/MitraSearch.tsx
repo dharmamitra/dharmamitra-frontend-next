@@ -10,6 +10,7 @@ import SubInputSearchControls from "./controls/SubInputSearchControls"
 import SearchExamples from "./SearchExamples"
 import SearchInput from "./SearchInput"
 import SearchResults from "./SearchResults"
+import SearchUsageDialog from "./SearchUsageDialog"
 
 type TranslationFeatureProps = {
   isSearchControlsOpen: boolean
@@ -35,6 +36,8 @@ export default function MitraSearch({
 
   return (
     <>
+      <SearchUsageDialog />
+
       <Box
         id="search-input-wrapper"
         sx={{
