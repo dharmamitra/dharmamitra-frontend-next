@@ -9,6 +9,7 @@ export const linkAttrs = {
 export const localStorageKeys = {
   storageVersionId: "storage-id",
   translationUsageAccepted: "translation-usage-accepted",
+  searchUsageAccepted: "search-usage-accepted",
   showSearchControls: "show-search-options",
   showParallelTranslations: "show-parallel-translations",
   showSummary: "show-search-result-summary",
