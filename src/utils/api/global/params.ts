@@ -12,8 +12,8 @@ export const inputEncodings: InputEncoding[] = exhaustiveStringTuple<APIInputEnc
 )
 export const defaultInputEncoding: InputEncoding = "auto"
 
-export const views: View[] = exhaustiveStringTuple<View>()("search", "translation", "ocr")
-export const defaultView: View = "search"
+export const views: View[] = exhaustiveStringTuple<View>()("translation", "search", "ocr")
+export const defaultView: View = "translation"
 
 export const modelTypes: ModelType[] = exhaustiveStringTuple<
   keyof Messages["globalParams"]["modelType"]
