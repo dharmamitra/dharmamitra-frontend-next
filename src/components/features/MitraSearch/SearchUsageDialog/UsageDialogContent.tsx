@@ -4,10 +4,10 @@ import { Box, Link, List, ListItem, ListItemText, Typography } from "@mui/materi
 
 import { docsSiteUrl, linkAttrs } from "@/utils/constants"
 
-const noticeListKeys = ["1", "2", "3"] as const
+const noticeListKeys = ["1", "2", "3", "4"] as const
 
 export default function UsageDialogContent({ dense }: { dense?: boolean }) {
-  const t = useTranslations("translation")
+  const t = useTranslations("search")
 
   return (
     <Box>
@@ -34,7 +34,12 @@ export default function UsageDialogContent({ dense }: { dense?: boolean }) {
       >
         {noticeListKeys.map((key) => (
           <ListItem key={`usage-notice-list-${key}`}>
-            <ListItemText primary={t(`usageNoticeLong.ul.${key}`)} />
+            <ListItemText
+              primary={t.rich(`usageNoticeLong.ul.${key}`, {
+                strong: (chunks) => <strong>{chunks}</strong>,
+                i: (chunks) => <i>{chunks}</i>,
+              })}
+            />
           </ListItem>
         ))}
       </List>

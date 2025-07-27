@@ -45,7 +45,7 @@
   },
   "navigation": {
     "nexusLinkLabel": "데이터베이스",
-    "docsLinkLabel": "Docs",
+    "docsLinkLabel": "문서",
     "mobileButtonAriaLabel": "탐색 메뉴 열기",
     "mobileMenuAriaLabel": "탐색 메뉴"
   },
@@ -54,7 +54,7 @@
   },
   "localeSwitcher": {
     "label": "언어 변경",
-    "locale": "{locale, select, en {영어} ko {한국어} ja {日本語} bo {티베트어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {알 수 없음}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {བོད་ཡིག} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "한국어"
   },
   "search": {
@@ -125,6 +125,18 @@
       "high": "높음",
       "medium": "중간",
       "low": "낮음"
+    },
+    "usageH2": "Welcome to MITRA Search!",
+    "usageAccept": "Got it!",
+    "usageNoticeLong": {
+      "p1": "MITRA Search is for discovering passages in Buddhist source texts. Here are a few tips to get you started:",
+      "ul": {
+        "1": "<strong>Keywords & concepts:</strong> by default, search returns both exact text matches and conceptually related results. For precise results, use the <i>Exact matches only</i> option.",
+        "2": "<strong>Cross-language capability:</strong> use English and other languages to find passages in Pāli, Sanskrit, Tibetan, and Chinese.",
+        "3": "<strong>Filter for best results:</strong> search within a specific language, collection, or text using the filter options to get targeted results.",
+        "4": "<strong>Text-discovery search terms:</strong> MITRA Search does not offer synthesised analysis of broad topics and themes. Focus searches on specific passages and subjects you'd like to find in source texts for your own research."
+      },
+      "p2": "See our <a>documentation</a> for more info."
     }
   },
   "translation": {
@@ -159,7 +171,7 @@
         "2": "내용이 확실하지 않은 경우, 언어 전문가와 상담하거나 기존 전문 번역본을 참조하는 것이 좋습니다.",
         "3": "Dharmamitra의 번역 결과를 공유하기 전에 내용을 직접 검토하고 확인하는 것이 좋습니다."
       },
-      "p2": "Dharmamitra는 전문가의 번역을 대체하는 것이 아니라 보완하는 도구입니다. Dharmamitra의 기술과 사용자의 신중한 판단이 결합될 때, 이 서비스의 가치를 최대한 활용할 수 있습니다."
+      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services. See our <a>documentation</a> for more info."
     },
     "tagging": {
       "label": "문법",

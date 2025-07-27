@@ -315,12 +315,12 @@ export interface paths {
     get?: never
     put?: never
     /**
-     * Chat Summary V2
+     * Chat Summary
      * @description This endpoint provides a summary using the ChatSummaryRequest type.
      *     It follows the OpenAI /v1/chat/completions format and supports streaming.
      *     This endpoint is designed for better type safety and automatic TypeScript generation.
      */
-    post: operations["chat_summary_v2_chat_summary_v1_chat_completions_post"]
+    post: operations["chat_summary_chat_summary_v1_chat_completions_post"]
     delete?: never
     options?: never
     head?: never
@@ -718,14 +718,23 @@ export interface components {
       /** Results */
       results: components["schemas"]["PrimarySearchResult"][]
     }
-    /** PrimarySearchResult */
+    /**
+     * PrimarySearchResult
+     * @description Represents a single search result from the primary literature database.
+     */
     PrimarySearchResult: {
+      /** Id */
+      id: string
       /** Query */
       query: string
       /** Lang */
       lang: string
       /** Segmentnr */
       segmentnr: string
+      /** All Segmentnrs */
+      all_segmentnrs?: string[] | null
+      /** Source */
+      source: string
       /** Title */
       title: string
       /** Summary */
@@ -1420,7 +1429,7 @@ export interface operations {
       }
     }
   }
-  chat_summary_v2_chat_summary_v1_chat_completions_post: {
+  chat_summary_chat_summary_v1_chat_completions_post: {
     parameters: {
       query?: never
       header?: never

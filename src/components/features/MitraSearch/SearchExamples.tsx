@@ -78,8 +78,7 @@ export default function SearchExamples({ isShown }: Props) {
             opacity: 1,
           },
         },
-        animation: "fadeIn 2s ease-in-out",
-        transition: "display 2s ease-in-out",
+        animation: "fadeIn 1.6s ease-in-out",
       }}
     >
       {examples.map((example, index) => (

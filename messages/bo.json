@@ -54,7 +54,7 @@
   },
   "localeSwitcher": {
     "label": "སྐད་ཡིག་བརྗེ་སྒྱུར།",
-    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {བོད་ཡིག} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "བོད་ཡིག"
   },
   "search": {
@@ -125,6 +125,18 @@
       "high": "མཐོ།",
       "medium": "འབྲིང་།",
       "low": "དམའ།"
+    },
+    "usageH2": "Welcome to MITRA Search!",
+    "usageAccept": "Got it!",
+    "usageNoticeLong": {
+      "p1": "MITRA Search is for discovering passages in Buddhist source texts. Here are a few tips to get you started:",
+      "ul": {
+        "1": "<strong>Keywords & concepts:</strong> by default, search returns both exact text matches and conceptually related results. For precise results, use the <i>Exact matches only</i> option.",
+        "2": "<strong>Cross-language capability:</strong> use English and other languages to find passages in Pāli, Sanskrit, Tibetan, and Chinese.",
+        "3": "<strong>Filter for best results:</strong> search within a specific language, collection, or text using the filter options to get targeted results.",
+        "4": "<strong>Text-discovery search terms:</strong> MITRA Search does not offer synthesised analysis of broad topics and themes. Focus searches on specific passages and subjects you'd like to find in source texts for your own research."
+      },
+      "p2": "See our <a>documentation</a> for more info."
     }
   },
   "translation": {
@@ -159,7 +171,7 @@
         "2": "འགྱུར་གཞི་དོགས་པ་ཅན་ཡོད་ཚེ། སྐད་ཡིག་གི་ཆེད་མཁས་པར་བཀའ་འདྲི་བྱེད་པའམ། ཡང་ན་མིས་ལོ་ཙཱ་དང་གཏན་འབེབས་བྱས་པའི་འགྱུར་ཡིག་ལ་གཞི་བཅོལ་རོགས་གནངས།།",
         "3": "དྷརྨ་མི་ཏྲ་ཡི་ཕྱིར་འདྲེན་ནང་དོན་གཞན་ལ་མ་སྤེལ་གོང་། ཞིབ་བཤེར་དང་ངོས་ལེན་བྱེད་པར་སྐུལ་མ་བྱེད་ཀྱི་ཡོད།"
       },
-      "p2": "དྷརྨ་མི་ཏྲ་ནི། མིའི་ལོཙཱ་བྱེད་པར་ཁ་གསབ་བྱེད་པར་ཇུས་འགོད་བྱས་པ་ལས། མིའི་ཚབ་བྱེད་པ་མིན། ང་ཚོའི་སྔོན་ཐོན་ལག་རྩལ་དང་ཁྱེད་ཀྱི་རྣམ་དཔྱོད་གཉིས་མཉམ་སྦྲེལ་བྱས་ནས་ང་ཚོའི་ཡིག་སྒྱུར་ཞབས་ཞུ་ཆེས་ལེགས་པར་བེད་སྤྱོད་བྱེད་ཐུབ།"
+      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services. See our <a>documentation</a> for more info."
     },
     "tagging": {
       "label": "བརྡ་སྤྲོད།",

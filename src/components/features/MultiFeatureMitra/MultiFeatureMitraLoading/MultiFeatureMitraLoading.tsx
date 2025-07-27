@@ -49,24 +49,6 @@ export default function MultiFeatureMitraLoading() {
           label={t("search.search")}
           disabled
         />
-        {/* Search */}
-        <Tab
-          sx={{
-            display: { sm: "none" },
-          }}
-          iconPosition="start"
-          label={t("search.search")}
-          disabled
-        />
-        <Tab
-          sx={{
-            display: { xs: "none", sm: "flex" },
-          }}
-          icon={<ScreenSearchDesktopOutlinedIcon />}
-          iconPosition="start"
-          label={t("search.search")}
-          disabled
-        />
         {/* Translation */}
         <Tab
           sx={{
@@ -83,6 +65,24 @@ export default function MultiFeatureMitraLoading() {
           icon={<TranslateOutlinedIcon />}
           iconPosition="start"
           label={t("translation.translate")}
+          disabled
+        />
+        {/* Search */}
+        <Tab
+          sx={{
+            display: { sm: "none" },
+          }}
+          iconPosition="start"
+          label={t("search.search")}
+          disabled
+        />
+        <Tab
+          sx={{
+            display: { xs: "none", sm: "flex" },
+          }}
+          icon={<ScreenSearchDesktopOutlinedIcon />}
+          iconPosition="start"
+          label={t("search.search")}
           disabled
         />
         {/* OCR */}

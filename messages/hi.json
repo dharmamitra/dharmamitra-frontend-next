@@ -54,7 +54,7 @@
   },
   "localeSwitcher": {
     "label": "भाषा बदलें",
-    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {तिब्बती} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {अज्ञात}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {བོད་ཡིག} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "हिंदी"
   },
   "search": {
@@ -125,6 +125,18 @@
       "high": "उच्च",
       "medium": "मध्यम",
       "low": "निम्न"
+    },
+    "usageH2": "Welcome to MITRA Search!",
+    "usageAccept": "Got it!",
+    "usageNoticeLong": {
+      "p1": "MITRA Search is for discovering passages in Buddhist source texts. Here are a few tips to get you started:",
+      "ul": {
+        "1": "<strong>Keywords & concepts:</strong> by default, search returns both exact text matches and conceptually related results. For precise results, use the <i>Exact matches only</i> option.",
+        "2": "<strong>Cross-language capability:</strong> use English and other languages to find passages in Pāli, Sanskrit, Tibetan, and Chinese.",
+        "3": "<strong>Filter for best results:</strong> search within a specific language, collection, or text using the filter options to get targeted results.",
+        "4": "<strong>Text-discovery search terms:</strong> MITRA Search does not offer synthesised analysis of broad topics and themes. Focus searches on specific passages and subjects you'd like to find in source texts for your own research."
+      },
+      "p2": "See our <a>documentation</a> for more info."
     }
   },
   "translation": {
@@ -159,7 +171,7 @@
         "2": "संदेह की स्थिति में, हम भाषा विशेषज्ञों से परामर्श करने, या स्थापित मानव अनुवादों का संदर्भ लेने की सलाह देते हैं।",
         "3": "हम उपयोगकर्ताओं को धर्ममित्र के आउटपुट को साझा करने से पहले उसकी समीक्षा और सत्यापन करने के लिए प्रोत्साहित करते हैं।"
       },
-      "p2": "धर्ममित्र मानव विशेषज्ञता को पूरक बनाने के लिए डिज़ाइन किया गया है, न कि उसे प्रतिस्थापित करने के लिए। हमारी उन्नत तकनीक को आपकी विवेकशीलता के साथ जोड़कर, आप हमारी अनुवाद सेवाओं का सर्वोत्तम लाभ उठा सकते हैं।"
+      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services. See our <a>documentation</a> for more info."
     },
     "tagging": {
       "label": "व्याकरण",

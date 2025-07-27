@@ -54,7 +54,7 @@
   },
   "localeSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {한국어} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
+    "locale": "{locale, select, en {English} ko {한국어} ja {日本語} bo {བོད་ཡིག} zh_Hans {简体中文} zh_Hant {繁體中文} hi {हिंदी} de {Deutsch} other {Unknown}}",
     "localePlaceholder": "English"
   },
   "search": {
@@ -125,6 +125,18 @@
       "high": "High",
       "medium": "Medium",
       "low": "Low"
+    },
+    "usageH2": "Welcome to MITRA Search!",
+    "usageAccept": "Got it!",
+    "usageNoticeLong": {
+      "p1": "MITRA Search is for discovering passages in Buddhist source texts. Here are a few tips to get you started:",
+      "ul": {
+        "1": "<strong>Keywords & concepts:</strong> by default, search returns both exact text matches and conceptually related results. For precise results, use the <i>Exact matches only</i> option.",
+        "2": "<strong>Cross-language capability:</strong> use English and other languages to find passages in Pāli, Sanskrit, Tibetan, and Chinese.",
+        "3": "<strong>Filter for best results:</strong> search within a specific language, collection, or text using the filter options to get targeted results.",
+        "4": "<strong>Text-discovery search terms:</strong> MITRA Search does not offer synthesised analysis of broad topics and themes. Focus searches on specific passages and subjects you'd like to find in source texts for your own research."
+      },
+      "p2": "See our <a>documentation</a> for more info."
     }
   },
   "translation": {
@@ -159,7 +171,7 @@
         "2": "When in doubt, we recommend consulting with language experts, or referring to established human translations.",
         "3": "We encourage users to review and verify Dharmamitra's output before sharing it."
       },
-      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services."
+      "p2": "Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services. See our <a>documentation</a> for more info."
     },
     "tagging": {
       "label": "Grammar",

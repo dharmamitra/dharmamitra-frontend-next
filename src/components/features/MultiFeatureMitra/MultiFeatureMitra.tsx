@@ -108,18 +108,18 @@ export default function MultiFeatureMitra() {
         <div style={{ height: "1px", width: "1px" }} ref={scrollMarkerRef}></div>
 
         <Box sx={{ height: "100%" }}>
+          <FeatureTabPanel currentView={currentView} view="translation">
+            <Box id="translator-feature-wrapper">
+              <MitraTranslator />
+            </Box>
+          </FeatureTabPanel>
+
           <FeatureTabPanel currentView={currentView} view="search">
             <Box id="search-feature-wrapper" sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}>
               <MitraSearch
                 isSearchControlsOpen={isSearchControlsOpen}
                 setIsSearchControlsOpen={setIsSearchControlsOpen}
               />
-            </Box>
-          </FeatureTabPanel>
-
-          <FeatureTabPanel currentView={currentView} view="translation">
-            <Box id="translator-feature-wrapper">
-              <MitraTranslator />
             </Box>
           </FeatureTabPanel>
 
