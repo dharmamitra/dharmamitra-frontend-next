@@ -224,7 +224,8 @@
     "grammar": {
       "on": "An",
       "off": "Aus"
-    }
+    },
+    "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
     "processingTimeNote": "Bitte beachten Sie, dass große Dateien mehrere Minuten zur Verarbeitung benötigen können und es ratsam ist, sie in kleinere Teile zu zerlegen.",
