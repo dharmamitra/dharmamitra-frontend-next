@@ -30,7 +30,7 @@ function TranslatorLayout({
         type="text"
         placement="start"
         sx={{
-          py: 1,
+          pb: 1,
         }}
       >
         {inputBlock}
@@ -40,6 +40,7 @@ function TranslatorLayout({
         type="text"
         placement="end"
         sx={{
+          pt: 1.5,
           pb: 1,
         }}
       >

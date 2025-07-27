@@ -224,7 +224,8 @@
     "grammar": {
       "on": "ཁ་ཕྱེ།",
       "off": "ཁ་རྒྱོབ།"
-    }
+    },
+    "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
     "processingTimeNote": "ཡིག་ཆ་ཆེ་བ་ལས་སྣོན་བྱེད་པར་སྐར་མ་མང་པོ་འགོར་སྲིད་པས། ཆུང་དུ་བགོས་ནས་བེད་སྤྱོད་བྱེད་ན་ལེགས།",

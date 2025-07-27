@@ -224,7 +224,8 @@
     "grammar": {
       "on": "オン",
       "off": "オフ"
-    }
+    },
+    "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
     "processingTimeNote": "大きなファイルは処理に数分かかる場合があるため、小さなチャンクに分割することをお勧めします。",

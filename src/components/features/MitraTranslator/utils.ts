@@ -5,7 +5,10 @@ import { allTranslationDefaultParams } from "@/utils/api/translation/params"
 const { input_encoding, target_lang, model, do_grammar_explanation, human_readable_tags, mode } =
   allTranslationDefaultParams
 
-type TranslationRequestBodyV2 = Omit<TranslationApiTypes.RequestBody<"/translation/">, "model"> & {
+export type TranslationRequestBodyV2 = Omit<
+  TranslationApiTypes.RequestBody<"/translation/">,
+  "model"
+> & {
   model: ModelType
 }
 

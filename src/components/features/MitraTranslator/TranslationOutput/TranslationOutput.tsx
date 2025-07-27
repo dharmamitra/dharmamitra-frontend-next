@@ -1,15 +1,18 @@
 "use client"
 
 import React, { forwardRef } from "react"
-import { useChat, UseChatOptions } from "@ai-sdk/react"
+import { useChat } from "@ai-sdk/react"
 import Box from "@mui/material/Box"
 
 import ExceptionText from "@/components/ExceptionText"
+import { TranslationChatPropsWithId } from "@/components/features/utils"
 import LoadingDots from "@/components/LoadingDots"
 import { MemoizedMarkdown } from "@/components/memoized-markdown"
 
+import DeepResearchPrompt from "./DeepResearchPrompt"
+
 type TranslationOutputProps = {
-  chatPropsWithId: UseChatOptions
+  chatPropsWithId: TranslationChatPropsWithId
 }
 
 const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
@@ -22,9 +25,14 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
       [messages],
     )
 
+    const showDeepResearchPrompt =
+      chatPropsWithId.body?.target_lang === "english" &&
+      assistantMessages.length > 0 &&
+      status !== "streaming"
+
     if (status === "submitted") {
       return (
-        <Box sx={{ py: 2.5 }}>
+        <Box sx={{ pt: 1 }}>
           <LoadingDots />
         </Box>
       )
@@ -32,14 +40,23 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
 
     if (error) {
       return (
-        <Box sx={{ py: 2.5 }}>
+        <Box
+          sx={{
+            pb: 2.5,
+          }}
+        >
           <ExceptionText type="error" message={error.message} sx={{ border: 0, p: 0, m: 0 }} />
         </Box>
       )
     }
 
     return (
-      <Box ref={ref} sx={{ py: 2.5 }}>
+      <Box
+        ref={ref}
+        sx={{
+          pb: 2.5,
+        }}
+      >
         {assistantMessages.map((message) => (
           <MemoizedMarkdown
             key={`${chatPropsWithId.id}-${message.id}`}
@@ -47,6 +64,8 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
             content={message.content}
           />
         ))}
+
+        <DeepResearchPrompt isRendered={showDeepResearchPrompt} chatPropsWithId={chatPropsWithId} />
       </Box>
     )
   },

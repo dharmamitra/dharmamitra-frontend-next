@@ -180,3 +180,46 @@ This change log serves as a TODO list for localizations that may need to be upda
 - Added missing key `search.usageNoticeLong.ul.3`: `""` → `"<strong>Filter for best results:</strong> search within a specific language, collection, or text using the filter options to get targeted results."`
 - Added missing key `search.usageNoticeLong.ul.4`: `""` → `"<strong>Text-discovery search terms:</strong> MITRA Search does not offer synthesised analysis of broad topics and themes. Focus searches on specific passages and subjects you'd like to find in source texts for your own research."`
 - Added missing key `search.usageNoticeLong.p2`: `""` → `"See our <a>documentation</a> for more info."`
+
+---
+
+## Changes - 2025-07-27 13:48:50
+
+### English Value Changes
+
+- `translation.deepResearchPrompt`: '(missing)' → 'See related passages and doctrinal explanations'
+
+### bo.json
+
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+
+### de.json
+
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+
+### hi.json
+
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+
+### ja.json
+
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+
+### ko.json
+
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+
+### zh-Hans.json
+
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+
+### zh-Hant.json
+
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+- Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`

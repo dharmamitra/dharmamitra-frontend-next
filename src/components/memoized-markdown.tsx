@@ -22,7 +22,7 @@ const MemoizedMarkdownBlock = memo(
             <Typography
               component="h2"
               fontWeight={500}
-              sx={{ mt: 2, mb: 0.5, fontSize: "1.5rem !important" }}
+              sx={{ mb: 0.5, fontSize: "1.5rem !important" }}
               {...props}
             />
           ),
