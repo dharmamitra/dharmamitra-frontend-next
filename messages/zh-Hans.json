@@ -224,7 +224,8 @@
     "grammar": {
       "on": "开启",
       "off": "关闭"
-    }
+    },
+    "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
     "processingTimeNote": "请注意，大文件可能需要数分钟处理，建议将其分割成较小的块。",

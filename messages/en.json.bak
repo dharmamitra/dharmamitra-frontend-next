@@ -224,7 +224,8 @@
     "grammar": {
       "on": "On",
       "off": "Off"
-    }
+    },
+    "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
     "processingTimeNote": "Please note that large files can take several minutes to process and it is advised to break them into smaller chunks.",

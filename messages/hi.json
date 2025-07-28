@@ -224,7 +224,8 @@
     "grammar": {
       "on": "चालू",
       "off": "बंद"
-    }
+    },
+    "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
     "processingTimeNote": "कृपया ध्यान दें कि बड़ी फ़ाइलों को प्रोसेस करने में कई मिनट लग सकते हैं और उन्हें छोटे टुकड़ों में तोड़ने की सलाह दी जाती है।",
