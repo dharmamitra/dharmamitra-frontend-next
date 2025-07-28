@@ -32,7 +32,7 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
 
     if (status === "submitted") {
       return (
-        <Box sx={{ pt: 1 }}>
+        <Box ref={ref} sx={{ pt: 1 }}>
           <LoadingDots />
         </Box>
       )
@@ -40,11 +40,7 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
 
     if (error) {
       return (
-        <Box
-          sx={{
-            pb: 2.5,
-          }}
-        >
+        <Box ref={ref} sx={{ pb: 2.5 }}>
           <ExceptionText type="error" message={error.message} sx={{ border: 0, p: 0, m: 0 }} />
         </Box>
       )
@@ -54,6 +50,9 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
       <Box
         sx={{
           pb: 2.5,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
         }}
       >
         <Box ref={ref}>
