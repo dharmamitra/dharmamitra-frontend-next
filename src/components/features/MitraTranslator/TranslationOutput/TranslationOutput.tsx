@@ -52,18 +52,19 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
 
     return (
       <Box
-        ref={ref}
         sx={{
           pb: 2.5,
         }}
       >
-        {assistantMessages.map((message) => (
-          <MemoizedMarkdown
-            key={`${chatPropsWithId.id}-${message.id}`}
-            id={message.id}
-            content={message.content}
-          />
-        ))}
+        <Box ref={ref}>
+          {assistantMessages.map((message) => (
+            <MemoizedMarkdown
+              key={`${chatPropsWithId.id}-${message.id}`}
+              id={message.id}
+              content={message.content}
+            />
+          ))}
+        </Box>
 
         <DeepResearchPrompt isRendered={showDeepResearchPrompt} chatPropsWithId={chatPropsWithId} />
       </Box>
