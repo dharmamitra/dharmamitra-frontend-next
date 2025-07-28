@@ -42,7 +42,7 @@ const TabIcons: Record<View, React.ComponentType<SvgIconProps>> = {
 export default function MultiFeatureMitra() {
   const t = useTranslations()
 
-  const isXsScreen = useMediaQuery("(max-width:480px)")
+  const isXsScreen = useMediaQuery("(max-width:520px)")
 
   const [currentView, setView] = useViewParamWithLocalStorage(views)
 
