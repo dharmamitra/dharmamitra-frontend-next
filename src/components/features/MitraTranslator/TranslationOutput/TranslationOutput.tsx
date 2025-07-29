@@ -30,39 +30,30 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
       assistantMessages.length > 0 &&
       status !== "streaming"
 
-    if (status === "submitted") {
-      return (
-        <Box ref={ref} sx={{ pt: 1 }}>
-          <LoadingDots />
-        </Box>
-      )
-    }
-
-    if (error) {
-      return (
-        <Box ref={ref} sx={{ pb: 2.5 }}>
-          <ExceptionText type="error" message={error.message} sx={{ border: 0, p: 0, m: 0 }} />
-        </Box>
-      )
-    }
-
     return (
       <Box
         sx={{
-          pb: 2.5,
+          pb: status === "submitted" ? 1 : 2.5,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
-        <Box ref={ref}>
-          {assistantMessages.map((message) => (
-            <MemoizedMarkdown
-              key={`${chatPropsWithId.id}-${message.id}`}
-              id={message.id}
-              content={message.content}
-            />
-          ))}
+        <Box>
+          <Box ref={ref}>
+            {assistantMessages.map((message) => (
+              <MemoizedMarkdown
+                key={`${chatPropsWithId.id}-${message.id}`}
+                id={message.id}
+                content={message.content}
+              />
+            ))}
+          </Box>
+
+          {status === "submitted" ? <LoadingDots /> : null}
+          {error ? (
+            <ExceptionText type="error" message={error.message} sx={{ border: 0, p: 0, m: 0 }} />
+          ) : null}
         </Box>
 
         <DeepResearchPrompt isRendered={showDeepResearchPrompt} chatPropsWithId={chatPropsWithId} />
