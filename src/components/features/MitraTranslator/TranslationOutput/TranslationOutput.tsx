@@ -33,7 +33,8 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
     return (
       <Box
         sx={{
-          pb: status === "submitted" ? 1 : 2.5,
+          pt: status === "submitted" ? 1 : 0,
+          pb: 2.5,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
