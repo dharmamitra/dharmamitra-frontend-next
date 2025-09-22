@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server"
 import { awaitedTryCatch } from "@/utils"
 import { searchBaseUrl } from "@/utils/api/client"
 
+import { createStreamHeaders } from "../utils"
+
 export const dynamic = "force-dynamic"
 
 export async function GET() {
@@ -33,12 +35,13 @@ async function handleJsonResponse(response: Response) {
   return NextResponse.json(responseData)
 }
 
-async function fetchOCRData(body: FormData, query: URLSearchParams) {
+async function fetchOCRData(headers: Headers, body: FormData, query: URLSearchParams) {
   const url = `${searchBaseUrl}/ocr/?${query}`
   return await fetch(url, {
     method: "POST",
     headers: {
       "X-Key": process.env.DM_API_KEY ?? "",
+      ...createStreamHeaders(headers),
     },
     body,
   })
@@ -79,7 +82,9 @@ export async function POST(request: NextRequest) {
   const apiFormData = new FormData()
   apiFormData.append("file", file, file.name)
 
-  const fetchResult = await awaitedTryCatch(async () => fetchOCRData(apiFormData, query))
+  const fetchResult = await awaitedTryCatch(async () =>
+    fetchOCRData(request.headers, apiFormData, query),
+  )
 
   if (fetchResult.error) {
     return NextResponse.json(fetchResult.error, { status: 500 })

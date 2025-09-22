@@ -4,6 +4,8 @@ import { streamText } from "ai"
 import { mitraSearchSummary } from "@/lib/ai/providers"
 import { validateModel } from "@/utils/api/global/validators"
 
+import { createStreamHeaders } from "../utils"
+
 export const maxDuration = 30
 
 export const dynamic = "force-dynamic"
@@ -29,6 +31,7 @@ export async function POST(request: NextRequest) {
       model: mitraSearchSummary(providerModel),
       messages,
       temperature: 0.1,
+      headers: createStreamHeaders(request.headers),
       providerOptions: {
         "mitra-search-summary": {
           locale,
