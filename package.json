@@ -62,6 +62,7 @@
     "react-markdown": "^10.1.0",
     "react-window": "^1.8.11",
     "sharp": "^0.34.2",
+    "undici": "^7.16.0",
     "zod": "^3.25.67"
   },
   "devDependencies": {

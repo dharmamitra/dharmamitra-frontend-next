@@ -1,4 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
+import {
+  Agent,
+  fetch as undiciFetch,
+  FormData as UndiciFormData,
+  Response as UndiciResponse,
+} from "undici"
 
 import { awaitedTryCatch } from "@/utils"
 import { searchBaseUrl } from "@/utils/api/client"
@@ -13,34 +19,44 @@ export async function GET() {
   })
 }
 
-async function handleFileResponse(response: Response) {
+async function handleFileResponse(response: UndiciResponse) {
   const contentDisposition = response.headers.get("content-disposition")
   if (!contentDisposition) return null
 
-  const fileBlob = await response.blob()
+  const contentType = response.headers.get("content-type") || "application/octet-stream"
+  const arrayBuffer = await response.arrayBuffer()
 
-  return new NextResponse(fileBlob, {
+  return new NextResponse(arrayBuffer, {
     status: 200,
     headers: {
-      "Content-Type": fileBlob.type || "application/octet-stream",
+      "Content-Type": contentType,
       "Content-Disposition": contentDisposition,
     },
   })
 }
 
-async function handleJsonResponse(response: Response) {
+async function handleJsonResponse(response: UndiciResponse) {
   const responseData = await response.json()
   return NextResponse.json(responseData)
 }
 
-async function fetchOCRData(body: FormData, query: URLSearchParams) {
+async function fetchOCRData(body: UndiciFormData, query: URLSearchParams) {
+  const longAgent = new Agent({
+    // disable timeouts to prevent long-running requests from being aborted
+    headersTimeout: 0,
+    bodyTimeout: 0,
+  })
+
   const url = `${searchBaseUrl}/ocr/?${query}`
-  return await fetch(url, {
+
+  return await undiciFetch(url, {
     method: "POST",
     headers: {
       "X-Key": process.env.DM_API_KEY ?? "",
     },
     body,
+    // Non-standard option recognized by Node's fetch (Undici)
+    dispatcher: longAgent,
   })
 }
 
@@ -76,13 +92,14 @@ export async function POST(request: NextRequest) {
   query.set("transliterate_devanagari_to_iast", String(transliterateDevanagariToIAST))
   query.set("transliterate_tibetan_to_wylie", String(transliterateTibetanToWylie))
 
-  const apiFormData = new FormData()
+  const apiFormData = new UndiciFormData()
   apiFormData.append("file", file, file.name)
 
   const fetchResult = await awaitedTryCatch(async () => fetchOCRData(apiFormData, query))
 
   if (fetchResult.error) {
-    return NextResponse.json(fetchResult.error, { status: 500 })
+    console.error("FETCH ERROR:", JSON.stringify(fetchResult.error))
+    return NextResponse.json(fetchResult.error, { status: fetchResult.error.status ?? 500 })
   }
 
   const response = fetchResult.result
@@ -90,7 +107,8 @@ export async function POST(request: NextRequest) {
   const fileResponse = await awaitedTryCatch(async () => handleFileResponse(response))
 
   if (fileResponse.error) {
-    return NextResponse.json(fileResponse.error, { status: 500 })
+    console.error("FILE RESPONSE ERROR:", fileResponse.error)
+    return NextResponse.json(fileResponse.error, { status: fileResponse.error.status ?? 500 })
   }
 
   if (fileResponse.result) {
@@ -100,7 +118,8 @@ export async function POST(request: NextRequest) {
   const jsonResult = await awaitedTryCatch(async () => handleJsonResponse(response))
 
   if (jsonResult.error) {
-    return NextResponse.json(jsonResult.error, { status: 500 })
+    console.error("JSON RESPONSE ERROR:", jsonResult.error)
+    return NextResponse.json(jsonResult.error, { status: jsonResult.error.status ?? 500 })
   }
 
   return jsonResult.result

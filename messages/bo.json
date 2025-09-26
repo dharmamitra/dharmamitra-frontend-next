@@ -228,8 +228,8 @@
     "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
-    "processingTimeNote": "ཡིག་ཆ་ཆེ་བ་ལས་སྣོན་བྱེད་པར་སྐར་མ་མང་པོ་འགོར་སྲིད་པས། ཆུང་དུ་བགོས་ནས་བེད་སྤྱོད་བྱེད་ན་ལེགས།",
-    "processingTimeNoteShort": "ཡིག་ཆ་ཆེ་བ་ལས་སྣོན་བྱེད་པར་སྐར་མ་མང་པོ་འགོར་སྲིད།",
+    "processingTimeNote": "Please note that large files can take a long time to process and it is advised to break them into smaller chunks.",
+    "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "དེ་བ་ན་ག་ར་ནས་ IAST",
     "tibetanToWylieSwitchLabel": "བོད་ཡིག་ནས་ཝེ་ལི།",
     "largeDownload": "ཕྱིར་འདོན་བྱས་པའི་ཡི་གེ་ 100kB ལས་ཆེ་བས་ཡིག་ཆར་ཕབ་ལེན་བྱེད་ཐུབ།"

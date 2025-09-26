@@ -228,8 +228,8 @@
     "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
-    "processingTimeNote": "大きなファイルは処理に数分かかる場合があるため、小さなチャンクに分割することをお勧めします。",
-    "processingTimeNoteShort": "大きなファイルの処理には数分かかる場合があります。",
+    "processingTimeNote": "Please note that large files can take a long time to process and it is advised to break them into smaller chunks.",
+    "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "デーヴァナーガリーからIASTへ",
     "tibetanToWylieSwitchLabel": "チベット語からワイリー式へ",
     "largeDownload": "抽出されたテキストは100kBより大きいため、ファイルとしてダウンロードできます。"

@@ -40,6 +40,10 @@ const parseJSONResponse = (responseData: unknown) => {
 }
 
 export async function parseOCRResponse(response: Response, fileName?: string) {
+  if (!response.ok) {
+    throw new Error(`OCR request failed. ${response.statusText}`)
+  }
+
   const contentDisposition = response.headers.get("content-disposition")
 
   if (contentDisposition) {

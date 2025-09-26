@@ -228,8 +228,8 @@
     "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
-    "processingTimeNote": "कृपया ध्यान दें कि बड़ी फ़ाइलों को प्रोसेस करने में कई मिनट लग सकते हैं और उन्हें छोटे टुकड़ों में तोड़ने की सलाह दी जाती है।",
-    "processingTimeNoteShort": "बड़ी फ़ाइलों को प्रोसेस करने में कई मिनट लग सकते हैं।",
+    "processingTimeNote": "Please note that large files can take a long time to process and it is advised to break them into smaller chunks.",
+    "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "देवनागरी से IAST",
     "tibetanToWylieSwitchLabel": "तिब्बती से वायली",
     "largeDownload": "निकाला गया टेक्स्ट 100kB से बड़ा है और फ़ाइल के रूप में डाउनलोड किया जा सकता है।"

@@ -223,3 +223,12 @@ This change log serves as a TODO list for localizations that may need to be upda
 
 - Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
 - Added missing key `translation.deepResearchPrompt`: `""` → `"See related passages and doctrinal explanations"`
+
+---
+
+## Changes - 2025-09-27 00:11:02
+
+### English Value Changes
+
+- `ocr.processingTimeNote`: 'Please note that large files can take several minutes to process and it is advised to break them into smaller chunks.' → 'Please note that large files can take a long time to process and it is advised to break them into smaller chunks.'
+- `ocr.processingTimeNoteShort`: 'Large files can take several minutes to process.' → 'Large files can take a long time to process.'
