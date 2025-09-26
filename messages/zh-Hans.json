@@ -228,8 +228,8 @@
     "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
-    "processingTimeNote": "请注意，大文件可能需要数分钟处理，建议将其分割成较小的块。",
-    "processingTimeNoteShort": "大文件可能需要数分钟处理。",
+    "processingTimeNote": "Please note that large files can take a long time to process and it is advised to break them into smaller chunks.",
+    "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "天城文转IAST",
     "tibetanToWylieSwitchLabel": "藏文转威利转写",
     "largeDownload": "提取的文字大于100kB，可以作为文件下载。"

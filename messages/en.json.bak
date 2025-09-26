@@ -228,8 +228,8 @@
     "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
-    "processingTimeNote": "Please note that large files can take several minutes to process and it is advised to break them into smaller chunks.",
-    "processingTimeNoteShort": "Large files can take several minutes to process.",
+    "processingTimeNote": "Please note that large files can take a long time to process and it is advised to break them into smaller chunks.",
+    "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "Devanagari to IAST",
     "tibetanToWylieSwitchLabel": "Tibetan to Wylie",
     "largeDownload": "The extracted text is larger than 100kB and can be downloaded as a file."
