@@ -9,9 +9,9 @@ import {
 import { awaitedTryCatch } from "@/utils"
 import { searchBaseUrl } from "@/utils/api/client"
 
-export const dynamic = "force-dynamic"
+export const maxDuration = 3600 // 1hr
 
-export const maxDuration = 60 * 60 * 1000 // 1 hour
+export const dynamic = "force-dynamic"
 
 export async function GET() {
   return new Response("Namo tassa bhagavato arahato sammāsambuddhassa.", {
