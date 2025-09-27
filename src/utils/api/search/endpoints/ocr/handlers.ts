@@ -41,7 +41,7 @@ const parseJSONResponse = (responseData: unknown) => {
 
 export async function parseOCRResponse(response: Response, fileName?: string) {
   if (!response.ok) {
-    throw new Error(`OCR request failed. ${response.statusText}`)
+    throw new Error(`OCR request failed. ${response.statusText} (Status ${response.status})`)
   }
 
   const contentDisposition = response.headers.get("content-disposition")
@@ -61,6 +61,6 @@ export async function parseOCRResponse(response: Response, fileName?: string) {
   }
 
   throw new Error(
-    `Unexpected return from OCR request. Return is not a file, or cannot be parsed. ${pasrsedData.parserError}`,
+    `Unexpected return from OCR request. Return is not a file, or cannot be parsed. (Status ${response.status})`,
   )
 }

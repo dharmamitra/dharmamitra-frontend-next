@@ -11,6 +11,8 @@ import { searchBaseUrl } from "@/utils/api/client"
 
 export const dynamic = "force-dynamic"
 
+export const maxDuration = 60 * 60 * 1000 // 1 hour
+
 export async function GET() {
   return new Response("Namo tassa bhagavato arahato sammāsambuddhassa.", {
     headers: {
@@ -49,7 +51,7 @@ async function fetchOCRData(body: UndiciFormData, query: URLSearchParams) {
 
   const url = `${searchBaseUrl}/ocr/?${query}`
 
-  return await undiciFetch(url, {
+  const result = await undiciFetch(url, {
     method: "POST",
     headers: {
       "X-Key": process.env.DM_API_KEY ?? "",
@@ -58,9 +60,15 @@ async function fetchOCRData(body: UndiciFormData, query: URLSearchParams) {
     // Non-standard option recognized by Node's fetch (Undici)
     dispatcher: longAgent,
   })
+
+  console.log(`OCR request status: ${result.status}`)
+  console.log(`OCR request status text: ${result.statusText}`)
+  return result
 }
 
 export async function POST(request: NextRequest) {
+  console.debug("Fetching ocr data")
+
   const contentType = request.headers.get("content-type") || ""
   if (!contentType.includes("multipart/form-data")) {
     return NextResponse.json(
