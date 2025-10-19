@@ -26,6 +26,7 @@ export default function MitraOCR() {
       // eslint-disable-next-line no-console
       console.error("OCR processing error:", error)
     },
+    retry: 0,
   })
 
   const handleFileSelect = React.useCallback((file: File) => {
