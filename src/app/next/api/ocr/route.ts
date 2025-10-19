@@ -110,21 +110,14 @@ export async function POST(request: NextRequest) {
   const apiFormData = new UndiciFormData()
   apiFormData.append("file", file, file.name)
 
-  // Log a sanitized curl to reproduce the backend call outside the app
-  const requestUrl = `${searchBaseUrl}/ocr/?${query.toString()}`
-  const curl = `curl -v --http1.1 -X POST -H "X-Key: ${process.env.DM_API_KEY ? "REDACTED" : ""}" -F "file=@/path/to/${file.name};filename=${file.name}" "${requestUrl}"`
-  console.info({ ocrBackendCurl: curl, requestUrl })
+  const fetchResult = await fetchOCRData(apiFormData, query)
 
-  const fetchResult = await awaitedTryCatch(async () => fetchOCRData(apiFormData, query))
-
-  if (fetchResult.error) {
-    console.error({ fetchError: fetchResult.error })
-    return NextResponse.json(fetchResult.error, { status: fetchResult.error.status ?? 500 })
+  if (!fetchResult.ok) {
+    console.error({ fetchError: fetchResult.status })
+    return NextResponse.json(fetchResult, { status: fetchResult.status })
   }
 
-  const response = fetchResult.result
-
-  const fileResponse = await awaitedTryCatch(async () => handleFileResponse(response))
+  const fileResponse = await awaitedTryCatch(async () => handleFileResponse(fetchResult))
 
   if (fileResponse.error) {
     console.error({ fileResponseError: fileResponse.error })
@@ -137,14 +130,12 @@ export async function POST(request: NextRequest) {
     return fileResponse.result
   }
 
-  const jsonResult = await awaitedTryCatch(async () => handleJsonResponse(response))
+  const jsonResult = await awaitedTryCatch(async () => handleJsonResponse(fetchResult))
 
   if (jsonResult.error) {
     console.error({ jsonResponseError: jsonResult.error })
     return NextResponse.json(jsonResult.error, { status: jsonResult.error.status ?? 500 })
   }
 
-  const finishedAt = Date.now()
-  console.debug({ ocrRouteEnd: finishedAt, durationMs: finishedAt - startedAt })
   return jsonResult.result
 }

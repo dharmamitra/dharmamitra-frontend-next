@@ -22,10 +22,6 @@ export default function MitraOCR() {
         transliterateTibetanToWylie,
       })
     },
-    onError: (error) => {
-      // eslint-disable-next-line no-console
-      console.error("OCR processing error:", error)
-    },
     retry: 0,
   })
 

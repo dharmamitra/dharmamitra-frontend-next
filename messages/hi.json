@@ -232,7 +232,10 @@
     "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "देवनागरी से IAST",
     "tibetanToWylieSwitchLabel": "तिब्बती से वायली",
-    "largeDownload": "निकाला गया टेक्स्ट 100kB से बड़ा है और फ़ाइल के रूप में डाउनलोड किया जा सकता है।"
+    "largeDownload": "निकाला गया टेक्स्ट 100kB से बड़ा है और फ़ाइल के रूप में डाउनलोड किया जा सकता है।",
+    "fileTooLarge": "The file is too large to process. Please try again with a smaller file.",
+    "tooManyRequests": "Too many requests. Please try again later.",
+    "unknownError": "An unknown error occurred with your OCR request. Please try again later."
   },
   "globalParams": {
     "encodingSelectLabel": "इनपुट एनकोडिंग",

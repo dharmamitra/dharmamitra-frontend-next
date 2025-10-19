@@ -232,7 +232,10 @@
     "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "デーヴァナーガリーからIASTへ",
     "tibetanToWylieSwitchLabel": "チベット語からワイリー式へ",
-    "largeDownload": "抽出されたテキストは100kBより大きいため、ファイルとしてダウンロードできます。"
+    "largeDownload": "抽出されたテキストは100kBより大きいため、ファイルとしてダウンロードできます。",
+    "fileTooLarge": "The file is too large to process. Please try again with a smaller file.",
+    "tooManyRequests": "Too many requests. Please try again later.",
+    "unknownError": "An unknown error occurred with your OCR request. Please try again later."
   },
   "globalParams": {
     "encodingSelectLabel": "入力エンコーディング",

@@ -232,7 +232,10 @@
     "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "데바나가리 → IAST",
     "tibetanToWylieSwitchLabel": "티베트어 → 와일리",
-    "largeDownload": "추출된 텍스트가 100kB를 초과하여 파일로 다운로드됩니다."
+    "largeDownload": "추출된 텍스트가 100kB를 초과하여 파일로 다운로드됩니다.",
+    "fileTooLarge": "The file is too large to process. Please try again with a smaller file.",
+    "tooManyRequests": "Too many requests. Please try again later.",
+    "unknownError": "An unknown error occurred with your OCR request. Please try again later."
   },
   "globalParams": {
     "encodingSelectLabel": "입력 인코딩",
