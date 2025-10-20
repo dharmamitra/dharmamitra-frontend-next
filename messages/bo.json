@@ -232,7 +232,10 @@
     "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "དེ་བ་ན་ག་ར་ནས་ IAST",
     "tibetanToWylieSwitchLabel": "བོད་ཡིག་ནས་ཝེ་ལི།",
-    "largeDownload": "ཕྱིར་འདོན་བྱས་པའི་ཡི་གེ་ 100kB ལས་ཆེ་བས་ཡིག་ཆར་ཕབ་ལེན་བྱེད་ཐུབ།"
+    "largeDownload": "ཕྱིར་འདོན་བྱས་པའི་ཡི་གེ་ 100kB ལས་ཆེ་བས་ཡིག་ཆར་ཕབ་ལེན་བྱེད་ཐུབ།",
+    "fileTooLarge": "The file is too large to process. Please try again with a smaller file.",
+    "tooManyRequests": "Too many requests. Please try again later.",
+    "unknownError": "An unknown error occurred with your OCR request. Please try again later."
   },
   "globalParams": {
     "encodingSelectLabel": "ནང་འཇུག་གི་ཨང་སྒྲིག",

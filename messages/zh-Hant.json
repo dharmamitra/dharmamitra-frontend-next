@@ -232,7 +232,10 @@
     "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "天城文轉IAST",
     "tibetanToWylieSwitchLabel": "藏文轉威利轉寫",
-    "largeDownload": "提取的文字大於100kB，可以作為檔案下載。"
+    "largeDownload": "提取的文字大於100kB，可以作為檔案下載。",
+    "fileTooLarge": "The file is too large to process. Please try again with a smaller file.",
+    "tooManyRequests": "Too many requests. Please try again later.",
+    "unknownError": "An unknown error occurred with your OCR request. Please try again later."
   },
   "globalParams": {
     "encodingSelectLabel": "輸入編碼",

@@ -232,3 +232,76 @@ This change log serves as a TODO list for localizations that may need to be upda
 
 - `ocr.processingTimeNote`: 'Please note that large files can take several minutes to process and it is advised to break them into smaller chunks.' → 'Please note that large files can take a long time to process and it is advised to break them into smaller chunks.'
 - `ocr.processingTimeNoteShort`: 'Large files can take several minutes to process.' → 'Large files can take a long time to process.'
+
+---
+
+## Changes - 2025-10-19 23:33:59
+
+### English Value Changes
+
+- `ocr.fileTooLarge`: '(missing)' → 'The file is too large to process. Please try again with a smaller file.'
+- `ocr.tooManyRequests`: '(missing)' → 'Too many requests. Please try again later.'
+- `ocr.unknownError`: '(missing)' → 'An unknown error occurred with your OCR request. Please try again later.'
+
+### bo.json
+
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+
+### de.json
+
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+
+### hi.json
+
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+
+### ja.json
+
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+
+### ko.json
+
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+
+### zh-Hans.json
+
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+
+### zh-Hant.json
+
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+- Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
+- Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
+- Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`

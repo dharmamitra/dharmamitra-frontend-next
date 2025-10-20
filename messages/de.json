@@ -232,7 +232,10 @@
     "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "Devanagari zu IAST",
     "tibetanToWylieSwitchLabel": "Tibetisch zu Wylie",
-    "largeDownload": "Der extrahierte Text ist größer als 100kB und kann als Datei heruntergeladen werden."
+    "largeDownload": "Der extrahierte Text ist größer als 100kB und kann als Datei heruntergeladen werden.",
+    "fileTooLarge": "The file is too large to process. Please try again with a smaller file.",
+    "tooManyRequests": "Too many requests. Please try again later.",
+    "unknownError": "An unknown error occurred with your OCR request. Please try again later."
   },
   "globalParams": {
     "encodingSelectLabel": "Eingabekodierung",

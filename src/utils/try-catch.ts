@@ -43,12 +43,6 @@ export async function awaitedTryCatch<T>(
   try {
     const result = await fn()
 
-    if (result instanceof Response && !result.ok) {
-      const payload = await result.json()
-      const err = `${payload?.error || "Unknown error"}. (Error ${result.status})`
-      throw new Error(err)
-    }
-
     return { result, error: null }
   } catch (rawError: unknown) {
     const processedError = rawError instanceof Error ? rawError : new Error(String(rawError))
