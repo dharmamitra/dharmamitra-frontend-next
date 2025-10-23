@@ -263,8 +263,9 @@
   },
   "staticContent": {
     "roles": {
-      "directorExecutive": "Geschäftsführender Direktor",
-      "directorTechnical": "Technischer Direktor",
+      "nehrdich": "Director & Principal Investigator",
+      "keutzer": "Co-founder & Strategic Advisor",
+      "allport": "AI model development, NLP research, data collection and preparation",
       "dataCollectionSanskrit": "Sanskrit-Datensammlung",
       "projectInfrastructure": "Projektinfrastruktur",
       "websiteDevelopment": "Website-Entwicklung",
@@ -302,12 +303,10 @@
       "dharmamitra": {
         "title": "Meet Our Team",
         "h1": "Meet Our Team",
-        "main": {
-          "h2": "Main"
-        },
-        "volunteers": {
-          "h2": "Student Volunteers"
-        }
+        "teamH2": "The MITRA Team",
+        "studentVolunteersH2": "Student Volunteers",
+        "current": "Current",
+        "former": "Former"
       }
     },
     "notFound": {

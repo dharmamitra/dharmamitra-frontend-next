@@ -263,8 +263,9 @@
   },
   "staticContent": {
     "roles": {
-      "directorExecutive": "Executive Director",
-      "directorTechnical": "Technical Director",
+      "nehrdich": "Director & Principal Investigator",
+      "keutzer": "Co-founder & Strategic Advisor",
+      "allport": "AI model development, NLP research, data collection and preparation",
       "dataCollectionSanskrit": "Sanskrit data collection",
       "projectInfrastructure": "Project infrastructure",
       "websiteDevelopment": "Website development",
@@ -302,12 +303,10 @@
       "dharmamitra": {
         "title": "ང་ཚོའི་དཔུང་སྡེ་ལ་རྒྱུས་ལོན།",
         "h1": "ང་ཚོའི་དཔུང་སྡེ་ལ་རྒྱུས་ལོན།",
-        "main": {
-          "h2": "Main"
-        },
-        "volunteers": {
-          "h2": "Student Volunteers"
-        }
+        "teamH2": "The MITRA Team",
+        "studentVolunteersH2": "Student Volunteers",
+        "current": "Current",
+        "former": "Former"
       }
     },
     "notFound": {

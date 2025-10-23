@@ -263,8 +263,9 @@
   },
   "staticContent": {
     "roles": {
-      "directorExecutive": "執行總監",
-      "directorTechnical": "技術總監",
+      "nehrdich": "Director & Principal Investigator",
+      "keutzer": "Co-founder & Strategic Advisor",
+      "allport": "AI model development, NLP research, data collection and preparation",
       "dataCollectionSanskrit": "梵文資料收集",
       "projectInfrastructure": "專案基礎設施",
       "websiteDevelopment": "網站開發",
@@ -302,12 +303,10 @@
       "dharmamitra": {
         "title": "認識我們的團隊",
         "h1": "認識我們的團隊",
-        "main": {
-          "h2": "主要成員"
-        },
-        "volunteers": {
-          "h2": "學生志工"
-        }
+        "teamH2": "The MITRA Team",
+        "studentVolunteersH2": "Student Volunteers",
+        "current": "Current",
+        "former": "Former"
       }
     },
     "notFound": {

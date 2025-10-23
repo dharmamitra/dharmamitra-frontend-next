@@ -305,3 +305,143 @@ This change log serves as a TODO list for localizations that may need to be upda
 - Added missing key `ocr.fileTooLarge`: `""` → `"The file is too large to process. Please try again with a smaller file."`
 - Added missing key `ocr.tooManyRequests`: `""` → `"Too many requests. Please try again later."`
 - Added missing key `ocr.unknownError`: `""` → `"An unknown error occurred with your OCR request. Please try again later."`
+
+---
+
+## Changes - 2025-10-24 00:49:15
+
+### English Value Changes
+
+- `staticContent.roles.nehrdich`: '(missing)' → 'Director & Principal Investigator'
+- `staticContent.roles.keutzer`: '(missing)' → 'Co-founder & Strategic Advisor'
+- `staticContent.roles.allport`: '(missing)' → 'AI model development, NLP research, data collection and preparation'
+- `pages.team.dharmamitra.teamH2`: '(missing)' → 'The MITRA Team'
+- `pages.team.dharmamitra.studentVolunteersH2`: '(missing)' → 'Student Volunteers'
+- `pages.team.dharmamitra.current`: '(missing)' → 'Current'
+- `pages.team.dharmamitra.former`: '(missing)' → 'Former'
+
+### bo.json
+
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Removed 6 extra keys: `pages.team.dharmamitra.main`, `pages.team.dharmamitra.main.h2`, `pages.team.dharmamitra.volunteers`, `pages.team.dharmamitra.volunteers.h2`, `staticContent.roles.directorExecutive` and 1 more
+
+### de.json
+
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Removed 6 extra keys: `pages.team.dharmamitra.main`, `pages.team.dharmamitra.main.h2`, `pages.team.dharmamitra.volunteers`, `pages.team.dharmamitra.volunteers.h2`, `staticContent.roles.directorExecutive` and 1 more
+
+### hi.json
+
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Removed 6 extra keys: `pages.team.dharmamitra.main`, `pages.team.dharmamitra.main.h2`, `pages.team.dharmamitra.volunteers`, `pages.team.dharmamitra.volunteers.h2`, `staticContent.roles.directorExecutive` and 1 more
+
+### ja.json
+
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Removed 6 extra keys: `pages.team.dharmamitra.main`, `pages.team.dharmamitra.main.h2`, `pages.team.dharmamitra.volunteers`, `pages.team.dharmamitra.volunteers.h2`, `staticContent.roles.directorExecutive` and 1 more
+
+### ko.json
+
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Removed 6 extra keys: `pages.team.dharmamitra.main`, `pages.team.dharmamitra.main.h2`, `pages.team.dharmamitra.volunteers`, `pages.team.dharmamitra.volunteers.h2`, `staticContent.roles.directorExecutive` and 1 more
+
+### zh-Hans.json
+
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Removed 6 extra keys: `pages.team.dharmamitra.main`, `pages.team.dharmamitra.main.h2`, `pages.team.dharmamitra.volunteers`, `pages.team.dharmamitra.volunteers.h2`, `staticContent.roles.directorExecutive` and 1 more
+
+### zh-Hant.json
+
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.nehrdich`: `""` → `"Director & Principal Investigator"`
+- Added missing key `staticContent.roles.keutzer`: `""` → `"Co-founder & Strategic Advisor"`
+- Added missing key `staticContent.roles.allport`: `""` → `"AI model development, NLP research, data collection and preparation"`
+- Added missing key `pages.team.dharmamitra.teamH2`: `""` → `"The MITRA Team"`
+- Added missing key `pages.team.dharmamitra.studentVolunteersH2`: `""` → `"Student Volunteers"`
+- Added missing key `pages.team.dharmamitra.current`: `""` → `"Current"`
+- Added missing key `pages.team.dharmamitra.former`: `""` → `"Former"`
+- Removed 6 extra keys: `pages.team.dharmamitra.main`, `pages.team.dharmamitra.main.h2`, `pages.team.dharmamitra.volunteers`, `pages.team.dharmamitra.volunteers.h2`, `staticContent.roles.directorExecutive` and 1 more
