@@ -225,17 +225,17 @@
       "on": "켜기",
       "off": "끄기"
     },
-    "deepResearchPrompt": "See related passages and doctrinal explanations"
+    "deepResearchPrompt": "관련 구절 및 교리 설명 보기"
   },
   "ocr": {
-    "processingTimeNote": "Please note that large files can take a long time to process and it is advised to break them into smaller chunks.",
-    "processingTimeNoteShort": "Large files can take a long time to process.",
+    "processingTimeNote": "큰 파일은 처리 시간이 오래 걸릴 수 있으므로, 더 작은 부분으로 나누어 업로드하는 것을 권장합니다.",
+    "processingTimeNoteShort": "큰 파일은 처리하는 데 시간이 오래 걸릴 수 있습니다.",
     "devanagariToIASTSwitchLabel": "데바나가리 → IAST",
     "tibetanToWylieSwitchLabel": "티베트어 → 와일리",
     "largeDownload": "추출된 텍스트가 100kB를 초과하여 파일로 다운로드됩니다.",
-    "fileTooLarge": "The file is too large to process. Please try again with a smaller file.",
-    "tooManyRequests": "Too many requests. Please try again later.",
-    "unknownError": "An unknown error occurred with your OCR request. Please try again later."
+    "fileTooLarge": "파일이 너무 커서 처리할 수 없습니다. 더 작은 파일로 다시 시도하세요.",
+    "tooManyRequests": "요청이 너무 많습니다. 잠시 후 다시 시도하세요.",
+    "unknownError": "OCR 요청 중 알 수 없는 오류가 발생했습니다. 나중에 다시 시도하세요."
   },
   "globalParams": {
     "encodingSelectLabel": "입력 인코딩",
@@ -263,9 +263,9 @@
   },
   "staticContent": {
     "roles": {
-      "nehrdich": "Director & Principal Investigator",
-      "keutzer": "Co-founder & Strategic Advisor",
-      "allport": "AI model development, NLP research, data collection and preparation",
+      "nehrdich": "이사 겸 수석 연구자",
+      "keutzer": "공동 설립자 & 전략 고문",
+      "allport": "AI 모델 개발, NLP 연구, 데이터 수집 및 준비",
       "dataCollectionSanskrit": "산스크리트어 데이터 수집",
       "projectInfrastructure": "프로젝트 인프라",
       "websiteDevelopment": "웹사이트 개발",
@@ -303,10 +303,10 @@
       "dharmamitra": {
         "title": "팀원 소개",
         "h1": "팀원 소개",
-        "teamH2": "The MITRA Team",
-        "studentVolunteersH2": "Student Volunteers",
-        "current": "Current",
-        "former": "Former"
+        "teamH2": "MITRA 팀",
+        "studentVolunteersH2": "학생 자원봉사자",
+        "current": "현재",
+        "former": "전임"
       }
     },
     "notFound": {
