@@ -40,7 +40,13 @@ export function Member({ id, name, roles, image }: MemberType) {
           mt: { xs: 4, md: 10 },
           maxWidth: { xs: "380px", sm: "unset" },
           mx: { xs: "auto", sm: "unset" },
-          height: roles ? "clamp(135px, 18vw, 175px)" : "unset",
+          height: roles
+            ? {
+                xs: "clamp(135px, 25vw, 190px)",
+                sm: "clamp(155px, 20vw, 190px)",
+                lg: "clamp(135px, 18vw, 190px)",
+              }
+            : "unset",
         }}
       >
         <Box
@@ -76,7 +82,12 @@ export function Member({ id, name, roles, image }: MemberType) {
           </Typography>
           {roles &&
             roles.map(({ i18nRoleKey }, index) => (
-              <Typography key={id + "-" + i18nRoleKey} variant="body2" color="text.secondary">
+              <Typography
+                key={id + "-" + i18nRoleKey}
+                variant="body2"
+                color="text.secondary"
+                align="center"
+              >
                 {t(`roles.${i18nRoleKey}`)}
                 {index < roles.length - 1 && ","}
               </Typography>
@@ -98,7 +109,7 @@ export default function Members({ members }: { members: MemberType[] }) {
         flexWrap: "wrap",
       }}
     >
-      <Grid container spacing={{ xs: 3, sm: 4, lg: 5 }}>
+      <Grid container spacing={{ xs: 3, sm: 4, lg: 5 }} sx={{ width: "100%" }}>
         {members.map((member) => (
           <Member key={member.id} {...member} />
         ))}

@@ -15,7 +15,6 @@ export const getOCRDataCall = async ({
   const formData = new FormData()
 
   formData.append("file", file, file.name)
-
   formData.append("transliterate_devanagari_to_iast", String(transliterateDevanagariToIAST))
   formData.append("transliterate_tibetan_to_wylie", String(transliterateTibetanToWylie))
 
@@ -33,13 +32,13 @@ export const getOCRDataCall = async ({
     throw fetchQuery.error
   }
 
-  const parseQuery = await awaitedTryCatch(
+  const parsedResult = await awaitedTryCatch(
     async () => await parseOCRResponse(fetchQuery.result, file.name),
   )
 
-  if (parseQuery.error) {
-    throw parseQuery.error
+  if (parsedResult.error) {
+    throw parsedResult.error
   }
 
-  return parseQuery.result
+  return parsedResult.result
 }

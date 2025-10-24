@@ -225,14 +225,17 @@
       "on": "चालू",
       "off": "बंद"
     },
-    "deepResearchPrompt": "See related passages and doctrinal explanations"
+    "deepResearchPrompt": "संबंधित उद्धरण और सिद्धांत व्याख्या देखें"
   },
   "ocr": {
-    "processingTimeNote": "कृपया ध्यान दें कि बड़ी फ़ाइलों को प्रोसेस करने में कई मिनट लग सकते हैं और उन्हें छोटे टुकड़ों में तोड़ने की सलाह दी जाती है।",
-    "processingTimeNoteShort": "बड़ी फ़ाइलों को प्रोसेस करने में कई मिनट लग सकते हैं।",
+    "processingTimeNote": "कृपया ध्यान दें कि बड़ी फ़ाइलों को संसाधित करने में अधिक समय लग सकता है, इसलिए इन्हें छोटे भागों में विभाजित करने की सलाह दी जाती है।",
+    "processingTimeNoteShort": "बड़ी फ़ाइलों को संसाधित करने में अधिक समय लग सकता है।",
     "devanagariToIASTSwitchLabel": "देवनागरी से IAST",
     "tibetanToWylieSwitchLabel": "तिब्बती से वायली",
-    "largeDownload": "निकाला गया टेक्स्ट 100kB से बड़ा है और फ़ाइल के रूप में डाउनलोड किया जा सकता है।"
+    "largeDownload": "निकाला गया टेक्स्ट 100kB से बड़ा है और फ़ाइल के रूप में डाउनलोड किया जा सकता है।",
+    "fileTooLarge": "फ़ाइल बहुत बड़ी है, इसे संसाधित नहीं किया जा सकता। कृपया छोटी फ़ाइल के साथ पुनः प्रयास करें।",
+    "tooManyRequests": "बहुत अधिक अनुरोध किए गए हैं। कृपया बाद में पुनः प्रयास करें।",
+    "unknownError": "आपके OCR अनुरोध में अज्ञात त्रुटि हुई है। कृपया बाद में पुनः प्रयास करें।"
   },
   "globalParams": {
     "encodingSelectLabel": "इनपुट एनकोडिंग",
@@ -260,8 +263,9 @@
   },
   "staticContent": {
     "roles": {
-      "directorExecutive": "कार्यकारी निदेशक",
-      "directorTechnical": "तकनीकी निदेशक",
+      "nehrdich": "निदेशक एवं मुख्य अन्वेषक",
+      "keutzer": "सह-संस्थापक एवं रणनीति सलाहकार",
+      "allport": "AI मॉडल विकास, NLP अनुसंधान, डेटा संग्रह और तैयारी",
       "dataCollectionSanskrit": "संस्कृत डेटा संग्रह",
       "projectInfrastructure": "प्रोजेक्ट बुनियादी ढांचा",
       "websiteDevelopment": "वेबसाइट विकास",
@@ -299,12 +303,10 @@
       "dharmamitra": {
         "title": "हमारी टीम से मिलें",
         "h1": "हमारी टीम से मिलें",
-        "main": {
-          "h2": "मुख्य"
-        },
-        "volunteers": {
-          "h2": "छात्र स्वयंसेवक"
-        }
+        "teamH2": "MITRA टीम",
+        "studentVolunteersH2": "छात्र स्वयंसेवक",
+        "current": "वर्तमान",
+        "former": "पूर्व"
       }
     },
     "notFound": {

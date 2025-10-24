@@ -228,11 +228,14 @@
     "deepResearchPrompt": "See related passages and doctrinal explanations"
   },
   "ocr": {
-    "processingTimeNote": "Please note that large files can take several minutes to process and it is advised to break them into smaller chunks.",
-    "processingTimeNoteShort": "Large files can take several minutes to process.",
+    "processingTimeNote": "Please note that large files can take a long time to process and it is advised to break them into smaller chunks.",
+    "processingTimeNoteShort": "Large files can take a long time to process.",
     "devanagariToIASTSwitchLabel": "Devanagari to IAST",
     "tibetanToWylieSwitchLabel": "Tibetan to Wylie",
-    "largeDownload": "The extracted text is larger than 100kB and can be downloaded as a file."
+    "largeDownload": "The extracted text is larger than 100kB and can be downloaded as a file.",
+    "fileTooLarge": "The file is too large to process. Please try again with a smaller file.",
+    "tooManyRequests": "Too many requests. Please try again later.",
+    "unknownError": "An unknown error occurred with your OCR request. Please try again later."
   },
   "globalParams": {
     "encodingSelectLabel": "Input encoding",
@@ -260,8 +263,9 @@
   },
   "staticContent": {
     "roles": {
-      "directorExecutive": "Executive Director",
-      "directorTechnical": "Technical Director",
+      "nehrdich": "Director & Principal Investigator",
+      "keutzer": "Co-founder & Strategic Advisor",
+      "allport": "AI model development, NLP research, data collection and preparation",
       "dataCollectionSanskrit": "Sanskrit data collection",
       "projectInfrastructure": "Project infrastructure",
       "websiteDevelopment": "Website development",
@@ -299,12 +303,10 @@
       "dharmamitra": {
         "title": "Meet Our Team",
         "h1": "Meet Our Team",
-        "main": {
-          "h2": "Main"
-        },
-        "volunteers": {
-          "h2": "Student Volunteers"
-        }
+        "teamH2": "The MITRA Team",
+        "studentVolunteersH2": "Student Volunteers",
+        "current": "Current",
+        "former": "Former"
       }
     },
     "notFound": {

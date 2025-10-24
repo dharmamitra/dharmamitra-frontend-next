@@ -2,6 +2,7 @@ import { use } from "react"
 import { useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Box, Divider, Typography } from "@mui/material"
+import visuallyHidden from "@mui/utils/visuallyHidden"
 
 import { DefaultPageParams, Metadata } from "@/app/types"
 import PageContentFrame from "@/components/layout/PageContentFrame"
@@ -50,12 +51,39 @@ export default function TeamPage({ params }: DefaultPageParams) {
       </Typography>
 
       <Section sx={{ mt: 6 }}>
-        <Members members={membersData.main} />
+        <Typography component="h2" sx={visuallyHidden}>
+          {t("teamH2")}
+        </Typography>
+        <Typography variant="h3" textAlign="center" color="textSecondary">
+          {t("current")}
+        </Typography>
+        <Members members={membersData.current} />
+        <Typography
+          variant="h3"
+          textAlign="center"
+          color="textSecondary"
+          sx={{ mt: { xs: 3, sm: 8 } }}
+        >
+          {t("former")}
+        </Typography>
+        <Members members={membersData.former} />
       </Section>
 
       <Section sx={{ mt: 10, pb: 12 }}>
-        <DividedSectionHeader heading={t("volunteers.h2")} />
-        <Members members={membersData.volunteers} />
+        <DividedSectionHeader heading={t("studentVolunteersH2")} />
+        <Typography variant="h3" textAlign="center" color="textSecondary">
+          {t("current")}
+        </Typography>
+        <Members members={membersData.currentVolunteers} />
+        <Typography
+          variant="h3"
+          textAlign="center"
+          color="textSecondary"
+          sx={{ mt: { xs: 3, sm: 8 } }}
+        >
+          {t("former")}
+        </Typography>
+        <Members members={membersData.formerVolunteers} />
       </Section>
     </PageContentFrame>
   )

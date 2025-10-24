@@ -10,58 +10,38 @@ import SaveToFileButton from "@/components/SaveToFileButton"
 import { saveAsTxtFile } from "@/utils"
 import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/handlers"
 
+import OCRErrorMessage from "./OCRErrorMessage"
+import OCRResultContainer from "./OCRResultContainer"
+
 type OCRResultProps = {
   ocrMutation: UseMutationResult<ParsedOCRResponse, Error, File, unknown>
   fileName?: string
 }
 
-const ResultContainer = ({
-  children,
-  hasTitleGutter = true,
-}: {
-  children: React.ReactNode
-  hasTitleGutter?: boolean
-}) => {
-  return (
-    <Box sx={{ mt: 4 }}>
-      <Typography variant="h5" component="h2" gutterBottom={hasTitleGutter}>
-        Result:
-      </Typography>
-      {children}
-    </Box>
-  )
-}
-
 export default function OCRResult({ ocrMutation, fileName }: OCRResultProps) {
   const t = useTranslations("generic")
   const ocrT = useTranslations("ocr")
-  const { data, isSuccess, isError, isPending, error } = ocrMutation
+  const { data, isSuccess, isPending } = ocrMutation
   const contentRef = React.useRef<HTMLElement | null>(null)
 
   if (isPending) {
     return (
-      <ResultContainer hasTitleGutter={false}>
+      <OCRResultContainer hasTitleGutter={false}>
         <Typography variant="body2" color="text.secondary" mb={2}>
           {ocrT("processingTimeNoteShort")}
         </Typography>
         <LoadingDots />
-      </ResultContainer>
+      </OCRResultContainer>
     )
   }
 
-  if (isError) {
-    return (
-      <ResultContainer>
-        <Typography color="error" sx={{ mt: 2 }}>
-          {error?.message || t("exception.fileFailure")}
-        </Typography>
-      </ResultContainer>
-    )
+  if (data && data.type === "error") {
+    return <OCRErrorMessage ocrError={data} />
   }
 
   if (isSuccess && data && data.type === "json") {
     return (
-      <ResultContainer>
+      <OCRResultContainer>
         <Box
           sx={{
             bgcolor: "grey.100",
@@ -94,13 +74,13 @@ export default function OCRResult({ ocrMutation, fileName }: OCRResultProps) {
             </Typography>
           </Box>
         </Box>
-      </ResultContainer>
+      </OCRResultContainer>
     )
   }
 
   if (isSuccess && data && data.type === "file") {
     return (
-      <ResultContainer>
+      <OCRResultContainer>
         <Typography sx={{ mb: 2 }}>{ocrT("largeDownload")}</Typography>
         <Button
           variant="contained"
@@ -109,7 +89,7 @@ export default function OCRResult({ ocrMutation, fileName }: OCRResultProps) {
         >
           {t("saveToFile")}
         </Button>
-      </ResultContainer>
+      </OCRResultContainer>
     )
   }
 
