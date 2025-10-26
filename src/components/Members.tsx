@@ -77,7 +77,7 @@ export function Member({ id, name, roles, image }: MemberType) {
             alignItems: "center",
           }}
         >
-          <Typography variant="h3" component="p">
+          <Typography variant="h3" component="p" align="center">
             {name}
           </Typography>
           {roles &&

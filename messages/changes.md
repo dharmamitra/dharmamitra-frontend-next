@@ -25,3 +25,42 @@ This change log serves as a TODO list for localizations that may need to be upda
 ## Changes - 2025-10-24 02:25:17
 
 No changes made.
+
+---
+
+## Changes - 2025-10-26 13:57:28
+
+### English Value Changes
+
+- `staticContent.roles.nehrdich`: 'Director & Principal Investigator' → 'Co-founder, Director & Principal Investigator'
+- `staticContent.roles.dworczyński`: '(missing)' → 'Senior Full Stack Engineer'
+
+### bo.json
+
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+
+### hi.json
+
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+
+### ja.json
+
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+
+### ko.json
+
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+
+### zh-Hans.json
+
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+
+### zh-Hant.json
+
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`
+- Added missing key `staticContent.roles.dworczyński`: `""` → `"Senior Full Stack Engineer"`

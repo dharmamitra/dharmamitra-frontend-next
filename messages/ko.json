@@ -263,9 +263,10 @@
   },
   "staticContent": {
     "roles": {
-      "nehrdich": "이사 겸 수석 연구자",
+      "nehrdich": "Co-founder, Director & Principal Investigator",
       "keutzer": "공동 설립자 & 전략 고문",
       "allport": "AI 모델 개발, NLP 연구, 데이터 수집 및 준비",
+      "dworczyński": "Senior Full Stack Engineer",
       "dataCollectionSanskrit": "산스크리트어 데이터 수집",
       "projectInfrastructure": "프로젝트 인프라",
       "websiteDevelopment": "웹사이트 개발",

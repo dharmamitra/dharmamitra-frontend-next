@@ -7,11 +7,13 @@ import imgDavidAllport from "@/assets/team/david-allport.png"
 import imgDevanshOjha from "@/assets/team/devansh-ojha.png"
 import imgDevikaGopakumar from "@/assets/team/devika-gopakumar.jpg"
 import imgFrancesBelleza from "@/assets/team/frances-belleza.jpg"
+import imgHubertDworczyński from "@/assets/team/hubert-dworcynski.jpg"
 import imgKayshavBhardwaj from "@/assets/team/kayshav-bhardwaj.png"
 import imgKurtKeutzer from "@/assets/team/kurt-keutzer.jpg"
 import imgKushBhardwaj from "@/assets/team/kush-bhardwaj.png"
 import imgLakshPatel from "@/assets/team/laksh-patel.jpg"
 import imgMirandaZhu from "@/assets/team/miranda-zhu.jpg"
+import imgPranavTandra from "@/assets/team/pranav-tandra.jpg"
 import imgRajMehta from "@/assets/team/raj-mehta.png"
 import imgRheaMehta from "@/assets/team/rhea-mehta.jpg"
 import imgSaiSrinivasan from "@/assets/team/sai-srinivasan.jpg"
@@ -66,6 +68,12 @@ const members: TeamMembers = {
         },
       ],
       image: imgDavidAllport,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Hubert Dworczyński",
+      roles: [{ role: "Senior Full Stack Engineer", i18nRoleKey: "dworczyński" }],
+      image: imgHubertDworczyński,
     },
     {
       id: crypto.randomUUID(),
@@ -156,7 +164,7 @@ const members: TeamMembers = {
       id: crypto.randomUUID(),
       name: "Pranav Tandra",
       roles: null,
-      image: avatar,
+      image: imgPranavTandra,
     },
     {
       id: crypto.randomUUID(),

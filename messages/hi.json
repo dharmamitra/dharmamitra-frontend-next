@@ -263,9 +263,10 @@
   },
   "staticContent": {
     "roles": {
-      "nehrdich": "निदेशक एवं मुख्य अन्वेषक",
+      "nehrdich": "Co-founder, Director & Principal Investigator",
       "keutzer": "सह-संस्थापक एवं रणनीति सलाहकार",
       "allport": "AI मॉडल विकास, NLP अनुसंधान, डेटा संग्रह और तैयारी",
+      "dworczyński": "Senior Full Stack Engineer",
       "dataCollectionSanskrit": "संस्कृत डेटा संग्रह",
       "projectInfrastructure": "प्रोजेक्ट बुनियादी ढांचा",
       "websiteDevelopment": "वेबसाइट विकास",
