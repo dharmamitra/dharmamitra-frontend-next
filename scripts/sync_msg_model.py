@@ -106,7 +106,6 @@ class LocalizationManager:
                     result[key] = self.reorder_dict_by_reference({}, reference_dict[key], full_key)
                 else:
                     result[key] = reference_dict[key]  # Use English value as placeholder
-                    self.changes_made.append(f"Added missing key `{full_key}`: `\"\"` → `\"{reference_dict[key]}\"`")
         
         return result
     
@@ -407,8 +406,6 @@ class LocalizationManager:
         # Only write report if changes were made
         if changes_made_overall:
             self.write_report()
-        else:
-            print("No changes needed - all files already match reference structure")
         
         return True
     
