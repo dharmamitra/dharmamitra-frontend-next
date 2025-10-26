@@ -263,9 +263,10 @@
   },
   "staticContent": {
     "roles": {
-      "nehrdich": "主任 & 主要研究者",
+      "nehrdich": "联合创始人 & 主任 & 主要研究者",
       "keutzer": "联合创始人 & 战略顾问",
       "allport": "AI 模型开发、NLP 研究、数据收集与准备",
+      "dworczyński": "高级全栈工程师",
       "dataCollectionSanskrit": "梵文数据收集",
       "projectInfrastructure": "项目基础设施",
       "websiteDevelopment": "网站开发",

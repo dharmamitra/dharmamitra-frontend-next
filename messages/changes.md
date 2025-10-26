@@ -21,7 +21,3 @@ This change log serves as a TODO list for localizations that may need to be upda
 - `translation.usageNoticeLong.p2`: 'Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services.' → 'Dharmamitra is designed to complement human expertise, not replace it. By combining our advanced technology with your discernment, you can make the most of our translation services. See our <a>documentation</a> for more info.'
 
 ---
-
-## Changes - 2025-10-24 02:25:17
-
-No changes made.
