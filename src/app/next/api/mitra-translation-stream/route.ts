@@ -3,9 +3,8 @@ import { streamText } from "ai"
 
 import { mitraTranslate } from "@/lib/ai/providers"
 import { validateModel } from "@/utils/api/global/validators"
-import { awaitedTryCatch } from "@/utils/try-catch"
 
-import { createStreamHeaders } from "../utils"
+import { createForwardedHeaders } from "../utils"
 
 export const maxDuration = 30
 
@@ -21,7 +20,7 @@ export async function GET() {
 // example: https://github.com/adithya04dev/csql-agent/blob/main/chatbot/lib/ai/models.ts
 
 export async function POST(request: NextRequest) {
-  const { result, error } = await awaitedTryCatch(async () => {
+  try {
     const requestBody = await request.json()
 
     const { input_sentence, target_lang, input_encoding, model } = requestBody
@@ -32,7 +31,7 @@ export async function POST(request: NextRequest) {
       model: mitraTranslate(providerModel),
       messages: [{ role: "user", content: input_sentence }],
       temperature: 0.1,
-      headers: createStreamHeaders(request.headers),
+      headers: createForwardedHeaders(request.headers),
       providerOptions: {
         "mitra-translate": {
           target_lang,
@@ -42,18 +41,16 @@ export async function POST(request: NextRequest) {
     })
 
     return responseStream.toTextStreamResponse()
-  })
-
-  if (result) return result
-
-  console.error({ api_route_error: error })
-  return new Response(
-    JSON.stringify({
-      error: error instanceof Error ? error.message : String(error),
-    }),
-    {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    },
-  )
+  } catch (error) {
+    console.error("Translation stream route error: ", error)
+    return new Response(
+      JSON.stringify({
+        error: error instanceof Error ? error.message : String(error),
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      },
+    )
+  }
 }

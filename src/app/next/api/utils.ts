@@ -1,5 +1,5 @@
 // Curated pass-through of client-related headers (exclude sensitive headers like cookies/authorization)
-export const streamHeaderMap: Record<string, string> = {
+export const clientHeaderForwardingMap: Record<string, string> = {
   "x-forwarded-for": "X-Forwarded-For",
   forwarded: "Forwarded",
   "x-real-ip": "X-Real-IP",
@@ -11,9 +11,9 @@ export const streamHeaderMap: Record<string, string> = {
   "x-request-id": "X-Request-Id",
 }
 
-export const createStreamHeaders = (headers: Headers) => {
+export const createForwardedHeaders = (headers: Headers) => {
   const outgoingHeaders: Record<string, string> = {}
-  for (const [inName, outName] of Object.entries(streamHeaderMap)) {
+  for (const [inName, outName] of Object.entries(clientHeaderForwardingMap)) {
     const value = headers.get(inName)
     if (value) outgoingHeaders[outName] = value
   }
