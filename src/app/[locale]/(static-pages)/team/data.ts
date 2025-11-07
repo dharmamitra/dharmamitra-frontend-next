@@ -13,6 +13,7 @@ import imgKurtKeutzer from "@/assets/team/kurt-keutzer.jpg"
 import imgKushBhardwaj from "@/assets/team/kush-bhardwaj.png"
 import imgLakshPatel from "@/assets/team/laksh-patel.jpg"
 import imgMirandaZhu from "@/assets/team/miranda-zhu.jpg"
+import imgPragunSeth from "@/assets/team/pragun-seth.png"
 import imgPranavTandra from "@/assets/team/pranav-tandra.jpg"
 import imgRajMehta from "@/assets/team/raj-mehta.png"
 import imgRheaMehta from "@/assets/team/rhea-mehta.jpg"
@@ -23,6 +24,7 @@ import imgShivamDewan from "@/assets/team/shivam-dewan.jpg"
 import imgSiyaMehta from "@/assets/team/siya-mehta.png"
 import imgSujeetJaiswal from "@/assets/team/sujeet-jaiswal.jpg"
 import imgVarunRao from "@/assets/team/varun-rao.jpg"
+import imgVikrantVenkatesan from "@/assets/team/vikrant-venkatesan.png"
 import imgVladimirAngirov from "@/assets/team/vladimir-angirov.jpg"
 
 export type Member = {
@@ -158,7 +160,7 @@ const members: TeamMembers = {
       id: crypto.randomUUID(),
       name: "Pragun Seth",
       roles: null,
-      image: avatar,
+      image: imgPragunSeth,
     },
     {
       id: crypto.randomUUID(),
@@ -170,7 +172,7 @@ const members: TeamMembers = {
       id: crypto.randomUUID(),
       name: "Vikrant Venkatesan",
       roles: null,
-      image: avatar,
+      image: imgVikrantVenkatesan,
     },
   ],
   formerVolunteers: [
