@@ -225,14 +225,17 @@
       "on": "開啟",
       "off": "關閉"
     },
-    "deepResearchPrompt": "See related passages and doctrinal explanations"
+    "deepResearchPrompt": "查看相關段落和教義說明"
   },
   "ocr": {
-    "processingTimeNote": "請注意，大檔案可能需要數分鐘處理，建議將其分割成較小的區塊。",
-    "processingTimeNoteShort": "大檔案可能需要數分鐘處理。",
+    "processingTimeNote": "請注意，大型檔案可能需要較長時間處理，建議將其分成較小的部分。",
+    "processingTimeNoteShort": "大型檔案可能需要較長時間處理。",
     "devanagariToIASTSwitchLabel": "天城文轉IAST",
     "tibetanToWylieSwitchLabel": "藏文轉威利轉寫",
-    "largeDownload": "提取的文字大於100kB，可以作為檔案下載。"
+    "largeDownload": "提取的文字大於100kB，可以作為檔案下載。",
+    "fileTooLarge": "檔案過大，無法處理。請嘗試使用較小的檔案。",
+    "tooManyRequests": "請求過多。請稍後再試。",
+    "unknownError": "您的 OCR 請求發生未知錯誤。請稍後再試。"
   },
   "globalParams": {
     "encodingSelectLabel": "輸入編碼",
@@ -260,8 +263,10 @@
   },
   "staticContent": {
     "roles": {
-      "directorExecutive": "執行總監",
-      "directorTechnical": "技術總監",
+      "nehrdich": "聯合創始人 & 主任 & 主要研究者",
+      "keutzer": "聯合創始人 & 策略顧問",
+      "allport": "AI 模型開發、NLP 研究、數據收集與準備",
+      "dworczyński": "資深全端工程師",
       "dataCollectionSanskrit": "梵文資料收集",
       "projectInfrastructure": "專案基礎設施",
       "websiteDevelopment": "網站開發",
@@ -299,12 +304,10 @@
       "dharmamitra": {
         "title": "認識我們的團隊",
         "h1": "認識我們的團隊",
-        "main": {
-          "h2": "主要成員"
-        },
-        "volunteers": {
-          "h2": "學生志工"
-        }
+        "teamH2": "MITRA 團隊",
+        "studentVolunteersH2": "學生志願者",
+        "current": "現任",
+        "former": "前任"
       }
     },
     "notFound": {

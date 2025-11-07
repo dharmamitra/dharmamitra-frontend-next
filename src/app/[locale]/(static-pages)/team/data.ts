@@ -4,13 +4,16 @@ import imgAarnavSrivastava from "@/assets/team/aarnav-srivastava.jpg"
 import imgAminahBorgLuck from "@/assets/team/aminah.jpg"
 import avatar from "@/assets/team/avatar.svg"
 import imgDavidAllport from "@/assets/team/david-allport.png"
+import imgDevanshOjha from "@/assets/team/devansh-ojha.png"
 import imgDevikaGopakumar from "@/assets/team/devika-gopakumar.jpg"
 import imgFrancesBelleza from "@/assets/team/frances-belleza.jpg"
+import imgHubertDworczyński from "@/assets/team/hubert-dworcynski.jpg"
 import imgKayshavBhardwaj from "@/assets/team/kayshav-bhardwaj.png"
 import imgKurtKeutzer from "@/assets/team/kurt-keutzer.jpg"
 import imgKushBhardwaj from "@/assets/team/kush-bhardwaj.png"
 import imgLakshPatel from "@/assets/team/laksh-patel.jpg"
 import imgMirandaZhu from "@/assets/team/miranda-zhu.jpg"
+import imgPranavTandra from "@/assets/team/pranav-tandra.jpg"
 import imgRajMehta from "@/assets/team/raj-mehta.png"
 import imgRheaMehta from "@/assets/team/rhea-mehta.jpg"
 import imgSaiSrinivasan from "@/assets/team/sai-srinivasan.jpg"
@@ -19,7 +22,7 @@ import imgSebastianNehrdich from "@/assets/team/sebastian-nehrdich.jpg"
 import imgShivamDewan from "@/assets/team/shivam-dewan.jpg"
 import imgSiyaMehta from "@/assets/team/siya-mehta.png"
 import imgSujeetJaiswal from "@/assets/team/sujeet-jaiswal.jpg"
-import imgVarunRao from "@/assets/team/varun-rao.png"
+import imgVarunRao from "@/assets/team/varun-rao.jpg"
 import imgVladimirAngirov from "@/assets/team/vladimir-angirov.jpg"
 
 export type Member = {
@@ -35,35 +38,51 @@ export type Member = {
 }
 
 type TeamMembers = {
-  main: Member[]
-  volunteers: Member[]
+  current: Member[]
+  former: Member[]
+  currentVolunteers: Member[]
+  formerVolunteers: Member[]
 }
 
 const members: TeamMembers = {
-  main: [
-    {
-      id: crypto.randomUUID(),
-      name: "Kurt Keutzer",
-      roles: [{ role: "Executive Director", i18nRoleKey: "directorExecutive" }],
-      image: imgKurtKeutzer,
-    },
+  current: [
     {
       id: crypto.randomUUID(),
       name: "Sebastian Nehrdich",
-      roles: [{ role: "Technical Director", i18nRoleKey: "directorTechnical" }],
+      roles: [{ role: "Director", i18nRoleKey: "nehrdich" }],
       image: imgSebastianNehrdich,
     },
     {
       id: crypto.randomUUID(),
-      name: "David Allport",
+      name: "Kurt Keutzer",
+      roles: [{ role: "Co-founder", i18nRoleKey: "keutzer" }],
+      image: imgKurtKeutzer,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "David Zorg Allport",
       roles: [
         {
-          role: "Sanskrit data collection",
-          i18nRoleKey: "dataCollectionSanskrit",
+          role: "data",
+          i18nRoleKey: "allport",
         },
       ],
       image: imgDavidAllport,
     },
+    {
+      id: crypto.randomUUID(),
+      name: "Hubert Dworczyński",
+      roles: [{ role: "Senior Full Stack Engineer", i18nRoleKey: "dworczyński" }],
+      image: imgHubertDworczyński,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Aminah Borg-Luck",
+      roles: [{ role: "Website development", i18nRoleKey: "websiteDevelopment" }],
+      image: imgAminahBorgLuck,
+    },
+  ],
+  former: [
     {
       id: crypto.randomUUID(),
       name: "Vladimir Angirov",
@@ -78,12 +97,6 @@ const members: TeamMembers = {
         },
       ],
       image: imgVladimirAngirov,
-    },
-    {
-      id: crypto.randomUUID(),
-      name: "Aminah Borg-Luck",
-      roles: [{ role: "Website development", i18nRoleKey: "websiteDevelopment" }],
-      image: imgAminahBorgLuck,
     },
     {
       id: crypto.randomUUID(),
@@ -122,12 +135,12 @@ const members: TeamMembers = {
       image: imgSujeetJaiswal,
     },
   ],
-  volunteers: [
+  currentVolunteers: [
     {
       id: crypto.randomUUID(),
-      name: "Frances Belleza",
+      name: "Kush Bhardwaj",
       roles: null,
-      image: imgFrancesBelleza,
+      image: imgKushBhardwaj,
     },
     {
       id: crypto.randomUUID(),
@@ -137,9 +150,41 @@ const members: TeamMembers = {
     },
     {
       id: crypto.randomUUID(),
-      name: "Kush Bhardwaj",
+      name: "Devansh Ojha",
       roles: null,
-      image: imgKushBhardwaj,
+      image: imgDevanshOjha,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Pragun Seth",
+      roles: null,
+      image: avatar,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Pranav Tandra",
+      roles: null,
+      image: imgPranavTandra,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Vikrant Venkatesan",
+      roles: null,
+      image: avatar,
+    },
+  ],
+  formerVolunteers: [
+    {
+      id: crypto.randomUUID(),
+      name: "Frances Belleza",
+      roles: null,
+      image: imgFrancesBelleza,
+    },
+    {
+      id: crypto.randomUUID(),
+      name: "Om Chandran",
+      roles: null,
+      image: avatar,
     },
     {
       id: crypto.randomUUID(),
@@ -171,12 +216,7 @@ const members: TeamMembers = {
       roles: null,
       image: imgMirandaZhu,
     },
-    {
-      id: crypto.randomUUID(),
-      name: "Om Chandran",
-      roles: null,
-      image: avatar,
-    },
+
     {
       id: crypto.randomUUID(),
       name: "Siya Mehta",

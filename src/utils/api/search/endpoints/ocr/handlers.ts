@@ -20,7 +20,14 @@ export type ParsedOCRFile = {
   file: Blob
 }
 
-export type ParsedOCRResponse = ParsedOCRJson | ParsedOCRFile
+export type ParsedOCRError = {
+  type: "error"
+  ok: false
+  errorCode: number
+  errorText: string
+}
+
+export type ParsedOCRResponse = ParsedOCRJson | ParsedOCRFile | ParsedOCRError
 
 const parseJSONResponse = (responseData: unknown) => {
   const parseResult = schema.safeParse(responseData)
@@ -34,12 +41,23 @@ const parseJSONResponse = (responseData: unknown) => {
   }
 
   return {
-    type: "unknown" as const,
-    parserError: parseResult.error.message,
+    type: "error" as const,
+    ok: false as const,
+    errorCode: 500,
+    errorText: `JSON parsing failed: ${parseResult.error.message}`,
   }
 }
 
 export async function parseOCRResponse(response: Response, fileName?: string) {
+  if (!response.ok) {
+    return {
+      type: "error" as const,
+      ok: false as const,
+      errorCode: response.status,
+      errorText: response.statusText,
+    }
+  }
+
   const contentDisposition = response.headers.get("content-disposition")
 
   if (contentDisposition) {
@@ -56,7 +74,10 @@ export async function parseOCRResponse(response: Response, fileName?: string) {
     return pasrsedData
   }
 
-  throw new Error(
-    `Unexpected return from OCR request. Return is not a file, or cannot be parsed. ${pasrsedData.parserError}`,
-  )
+  return {
+    type: "error" as const,
+    ok: false as const,
+    errorCode: response.status,
+    errorText: "Unexpected return from OCR request. Return is not a file, or cannot be parsed.",
+  }
 }

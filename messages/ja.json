@@ -225,14 +225,17 @@
       "on": "オン",
       "off": "オフ"
     },
-    "deepResearchPrompt": "See related passages and doctrinal explanations"
+    "deepResearchPrompt": "関連する文献や教義の説明を参照"
   },
   "ocr": {
-    "processingTimeNote": "大きなファイルは処理に数分かかる場合があるため、小さなチャンクに分割することをお勧めします。",
-    "processingTimeNoteShort": "大きなファイルの処理には数分かかる場合があります。",
+    "processingTimeNote": "大きなファイルは処理に時間がかかる場合がありますので、小さいチャンクに分けて処理することをお勧めします。",
+    "processingTimeNoteShort": "大きなファイルは処理に時間がかかる場合があります。",
     "devanagariToIASTSwitchLabel": "デーヴァナーガリーからIASTへ",
     "tibetanToWylieSwitchLabel": "チベット語からワイリー式へ",
-    "largeDownload": "抽出されたテキストは100kBより大きいため、ファイルとしてダウンロードできます。"
+    "largeDownload": "抽出されたテキストは100kBより大きいため、ファイルとしてダウンロードできます。",
+    "fileTooLarge": "ファイルが大きすぎて処理できません。小さいファイルでもう一度お試しください。",
+    "tooManyRequests": "リクエストが多すぎます。しばらくしてからもう一度お試しください。",
+    "unknownError": "OCR リクエストで不明なエラーが発生しました。後でもう一度お試しください。"
   },
   "globalParams": {
     "encodingSelectLabel": "入力エンコーディング",
@@ -260,8 +263,10 @@
   },
   "staticContent": {
     "roles": {
-      "directorExecutive": "事務局長",
-      "directorTechnical": "テクニカルディレクター",
+      "nehrdich": "共同創業者／Cディレクター／主任研究者",
+      "keutzer": "共同創業者／戦略アドバイザー",
+      "allport": "AI モデル開発、NLP 研究、データ収集および準備",
+      "dworczyński": "シニア・フルスタック・エンジニア",
       "dataCollectionSanskrit": "サンスクリット語データ収集",
       "projectInfrastructure": "プロジェクトインフラ",
       "websiteDevelopment": "ウェブサイト開発",
@@ -299,12 +304,10 @@
       "dharmamitra": {
         "title": "私たちのチームに会う",
         "h1": "私たちのチームに会う",
-        "main": {
-          "h2": "メイン"
-        },
-        "volunteers": {
-          "h2": "学生ボランティア"
-        }
+        "teamH2": "MITRA チーム",
+        "studentVolunteersH2": "学生ボランティア",
+        "current": "現在",
+        "former": "前任"
       }
     },
     "notFound": {

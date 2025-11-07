@@ -1,6 +1,10 @@
+interface TryError extends Error {
+  status?: number
+}
+
 type TrySuccess<T> = { result: T; error: null }
 type TryFailure<E> = { result: null; error: E }
-type TryResult<T, E = Error> = TrySuccess<T> | TryFailure<E>
+type TryResult<T, E = TryError> = TrySuccess<T> | TryFailure<E>
 
 /**
  * tryCatch - Synchronous error handling.
@@ -38,6 +42,7 @@ export async function awaitedTryCatch<T>(
 ): Promise<TryResult<T>> {
   try {
     const result = await fn()
+
     return { result, error: null }
   } catch (rawError: unknown) {
     const processedError = rawError instanceof Error ? rawError : new Error(String(rawError))

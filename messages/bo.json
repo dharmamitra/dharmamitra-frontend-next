@@ -225,14 +225,17 @@
       "on": "ཁ་ཕྱེ།",
       "off": "ཁ་རྒྱོབ།"
     },
-    "deepResearchPrompt": "See related passages and doctrinal explanations"
+    "deepResearchPrompt": "འགྲོ་བ་དང་གྱི་སྒྲིབ། དང་བློ་གྲོས་བསྡུས་རྒྱུད་ལུས་མཛད།"
   },
   "ocr": {
-    "processingTimeNote": "ཡིག་ཆ་ཆེ་བ་ལས་སྣོན་བྱེད་པར་སྐར་མ་མང་པོ་འགོར་སྲིད་པས། ཆུང་དུ་བགོས་ནས་བེད་སྤྱོད་བྱེད་ན་ལེགས།",
-    "processingTimeNoteShort": "ཡིག་ཆ་ཆེ་བ་ལས་སྣོན་བྱེད་པར་སྐར་མ་མང་པོ་འགོར་སྲིད།",
+    "processingTimeNote": "ཡིག་ཆ་ཆེ་བ་ཡོད་པ་ནས་ལས་འགན་ལེན་ནུས་མཐར་འཁྱོལ་བ་ལ་དུས་ཚོད་མང་པོ་དགོས་པ་དང་། ཆུང་བའི་དུམ་ཚན་བཟོ་བ་ལགས་བཀོལ་བ་བསམ་བཞེས་བྱ་རོགས།",
+    "processingTimeNoteShort": "ཡིག་ཆ་ཆེ་བ་ཡོད་པས་དུས་ཚོད་མང་པོ་དགོས་པ་ཡོད།",
     "devanagariToIASTSwitchLabel": "དེ་བ་ན་ག་ར་ནས་ IAST",
     "tibetanToWylieSwitchLabel": "བོད་ཡིག་ནས་ཝེ་ལི།",
-    "largeDownload": "ཕྱིར་འདོན་བྱས་པའི་ཡི་གེ་ 100kB ལས་ཆེ་བས་ཡིག་ཆར་ཕབ་ལེན་བྱེད་ཐུབ།"
+    "largeDownload": "ཕྱིར་འདོན་བྱས་པའི་ཡི་གེ་ 100kB ལས་ཆེ་བས་ཡིག་ཆར་ཕབ་ལེན་བྱེད་ཐུབ།",
+    "fileTooLarge": "ཡིག་ཆ་ཆེ་བས་ལས་འགན་ལེན་མི་ཐུབ། ཆུང་བའི་ཡིག་ཆ་བཀོལ་བ་བསྐྱར་འབད་རོགས།",
+    "tooManyRequests": "ཞུ་འབུལ་མང་པོ་ཡོད། ལས་འགན་ལེན་གཞི་བསྐྱར་འབད་རོགས།",
+    "unknownError": "ཁྱེད་ཀྱི་ OCR ཞུ་འབུལ་ལ་ངེས་མེད་འཛོལ་བ་བྱུང་བ། ཤུལ་ལས་བསྐྱར་འབད་རོགས།"
   },
   "globalParams": {
     "encodingSelectLabel": "ནང་འཇུག་གི་ཨང་སྒྲིག",
@@ -260,13 +263,15 @@
   },
   "staticContent": {
     "roles": {
-      "directorExecutive": "Executive Director",
-      "directorTechnical": "Technical Director",
-      "dataCollectionSanskrit": "Sanskrit data collection",
-      "projectInfrastructure": "Project infrastructure",
-      "websiteDevelopment": "Website development",
-      "productDesigner": "Product Designer",
-      "nlpResearchSanskrit": "Sanskrit NLP research"
+      "nehrdich": "མཉམ་འབྲེལ་དང་འབྲེལ་བ་དང་མཁན་པོ་འགྱུར་རིམ་པ",
+      "keutzer": "མཉམ་འབྲེལ་དང་ཙྲ་བློ་སྐྱོང་པ",
+      "allport": "AI གྱི་གཏོང་རིམ་སྒྲིག་བསྒྲིགས།, NLP གི་བརྙན་ཞིབ་སློབ་པ།, དཔྱད་མཐོང་དང་གྲུ་འབྲས་སྦྱོང་བྱེད་",
+      "dworczyński": "མཐར་ཕྱིན་ཡོངས་སྒྲིག་ལས་རིམ་སྟོན་པ་མཁས་པ།",
+      "dataCollectionSanskrit": "संस्कृत् དཔྱད་མཐོང་མཉམ་གྲུ་འབྲས་",
+      "projectInfrastructure": "ཆོས་མཐུན་གནད་དོན་ལྟར་བརྒྱབ་",
+      "websiteDevelopment": "ཐོག་མའི་དྲ་ལམ་གཏོང་རིམ་",
+      "productDesigner": "ཕོ་ཕྲེ་གྱི་བསྐྱོད་རིས་བྱེད་པ",
+      "nlpResearchSanskrit": "संस्कृत् NLP གི་བརྙན་ཞིབ་སློབ་པ"
     }
   },
   "pages": {
@@ -297,14 +302,12 @@
     },
     "team": {
       "dharmamitra": {
-        "title": "ང་ཚོའི་དཔུང་སྡེ་ལ་རྒྱུས་ལོན།",
-        "h1": "ང་ཚོའི་དཔུང་སྡེ་ལ་རྒྱུས་ལོན།",
-        "main": {
-          "h2": "Main"
-        },
-        "volunteers": {
-          "h2": "Student Volunteers"
-        }
+        "title": "ངེད་རྣམ་སྤྱོད་མཉམ་པོ་ཞུགས།",
+        "h1": "ངེད་རྣམ་སྤྱོད་མཉམ་པོ་ཞུགས།",
+        "teamH2": "MITRA རྣམ་པར་ཚོགས།",
+        "studentVolunteersH2": "གདུང་སློབ་ཕྱོགས་རྩལ་ལྡན།",
+        "current": "ད་ལྟ་འགོ་བསྐྱོད་",
+        "former": "ཟླ་བ་བརྒྱབ་"
       }
     },
     "notFound": {
