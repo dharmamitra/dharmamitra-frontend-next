@@ -1,7 +1,8 @@
-import { ExceptionMessageKey, getValidI18nExceptionKey } from "../validators"
+import { ExceptionMessageKey } from "../validators"
 
 export const localAPIEndpoints = {
   "mitra-translation": "/next/api/mitra-translation-stream",
+  "mitra-explore": "/next/api/mitra-explore-stream",
   "explanation-primary": "/next/api/mitra-search-summary",
   "explanation-parallel": "/next/api/awaiting-backend-update",
 }
@@ -15,11 +16,6 @@ export const markers = {
   warning: "⚠️", // (followed by i18n warning message key matching the pattern `\w+`)
   error: "↯", // (followed by i18n error message key matching the pattern `\w+`)
 } as const
-
-const exceptionChecks = {
-  warning: new RegExp(String.raw`(^.*?)(⚠️.*)$`),
-  error: new RegExp(String.raw`(^.*?)(↯.*)$`),
-}
 
 export type ParsedStream = {
   content: string
@@ -38,24 +34,4 @@ export const getParagraphsFromString = (string: string) => {
     .split(markers.lineBreak)
     .map((p) => p.trim())
     .filter(Boolean)
-}
-
-export const parseStream = (stream: string | undefined) => {
-  if (!stream) return initialParsedStream
-
-  const checkedStream = Object.entries(exceptionChecks).reduce<ParsedStream>((acc, [, pattern]) => {
-    const exceptionCheck = stream.match(pattern)
-    const [, streamWihException, exception] = exceptionCheck ?? ["", "", ""]
-
-    return {
-      ...acc,
-      content: streamWihException || acc.content || stream,
-      exceptionI18nKey: getValidI18nExceptionKey(exception || acc.exceptionI18nKey),
-    }
-  }, initialParsedStream)
-
-  return {
-    ...checkedStream,
-    parsedContent: getParagraphsFromString(checkedStream.content),
-  }
 }
