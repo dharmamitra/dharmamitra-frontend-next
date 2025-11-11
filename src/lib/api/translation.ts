@@ -184,7 +184,9 @@ export interface components {
       grammatical_analysis: components["schemas"]["Lemma"][]
     }
     /** TaggerResponseModel */
-    TaggerResponseModel: components["schemas"]["Sentence"][]
+    "TaggerResponseModel-Input": components["schemas"]["Sentence"][]
+    /** TaggerResponseModel */
+    "TaggerResponseModel-Output": components["schemas"]["Sentence"][]
     /**
      * TargetLanguage
      * @enum {string}
@@ -373,7 +375,7 @@ export interface operations {
         }
         content: {
           "application/json":
-            | components["schemas"]["TaggerResponseModel"]
+            | components["schemas"]["TaggerResponseModel-Output"]
             | components["schemas"]["ErrorResponseModel"]
         }
       }

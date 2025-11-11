@@ -5,7 +5,7 @@ import type { IsIdentical } from "@/utils/typescript"
 export type APIInputEncoding =
   IsIdentical<
     TranslationApiTypes.Schema["InputEncoding"],
-    SearchApiTypes.Schema["InputEncoding"]
+    SearchApiTypes.Schema["typing_models__search__InputEncoding"]
   > extends true
     ? TranslationApiTypes.Schema["InputEncoding"]
     : never
