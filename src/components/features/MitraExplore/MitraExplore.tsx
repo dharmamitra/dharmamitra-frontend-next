@@ -1,134 +1,154 @@
-// import * as React from "react"
-// import Box from "@mui/material/Box"
+import * as React from "react"
+import { useLocale } from "next-intl"
+import Box from "@mui/material/Box"
 
-// import InputEncodingSelector from "@/components/features/paramSettings/InputEncodingSelector"
-// import { localStorageKeys } from "@/utils/constants"
+import InputEncodingSelector from "@/components/features/paramSettings/InputEncodingSelector"
+import {
+  useFilterSourceLanguageParam,
+  useFilterTargetLanguageParam,
+  useSearchInputParam,
+  //   useSearchTargetParam,
+  useSearchTypeParam,
+  useSourceFiltersValue,
+} from "@/hooks/params"
+import { createChatProps, LOCAL_API_ENDPOINTS } from "@/utils/api/stream"
+import { localStorageKeys } from "@/utils/constants"
 
-// import ResetOptionsButton from "../MitraSearch/controls/ResetOptionsButton"
-// import ShowOptionsSwitch from "../MitraSearch/controls/ShowOptionsSwitch"
-// import SubInputSearchControls from "../MitraSearch/controls/SubInputSearchControls"
-// import SearchExamples from "../MitraSearch/SearchExamples"
-// import SearchInput from "../MitraSearch/SearchInput"
-// import SearchResults from "../MitraSearch/SearchResults"
-// import SearchUsageDialog from "../MitraSearch/SearchUsageDialog"
+import ResetOptionsButton from "../MitraSearch/controls/ResetOptionsButton"
+import ShowOptionsSwitch from "../MitraSearch/controls/ShowOptionsSwitch"
+import SubInputSearchControls from "../MitraSearch/controls/SubInputSearchControls"
+import SearchExamples from "../MitraSearch/SearchExamples"
+import SearchUsageDialog from "../MitraSearch/SearchUsageDialog"
+import ExploreInput from "./ExploreInput"
+import ExploreOutput from "./ExploreOutput"
+import { createExploreRequestBody } from "./utils"
 
-// import { useSearchInputParam } from "@/hooks/params"
-// import { useSearchTargetParam } from "@/hooks/params"
-// import { useSourceFiltersValue } from "@/hooks/params"
-// import { useFilterSourceLanguageParam } from "@/hooks/params"
-// import { useFilterTargetLanguageParam } from "@/hooks/params"
-// import { useSearchTypeParam } from "@/hooks/params"
-// import { createSearchRequestBody } from "../MitraSearch/utils"
-// import { createChatProps } from "@/components/features/utils"
-// import { streamUtils } from "@/utils/api"
+type ExploreFeatureProps = {
+  isSearchControlsOpen: boolean
+  setIsSearchControlsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-// type TranslationFeatureProps = {
-//   isSearchControlsOpen: boolean
-//   setIsSearchControlsOpen: React.Dispatch<React.SetStateAction<boolean>>
-// }
+export default function MitraExplore({
+  isSearchControlsOpen,
+  setIsSearchControlsOpen,
+}: ExploreFeatureProps) {
+  const [search_input, setSearchInputParam] = useSearchInputParam()
+  //   const [search_target] = useSearchTargetParam()
+  const { include_collections, include_categories, include_files } = useSourceFiltersValue()
+  const [filter_source_language] = useFilterSourceLanguageParam()
+  const [filter_target_language] = useFilterTargetLanguageParam()
+  const [search_type] = useSearchTypeParam()
+  const locale = useLocale()
 
-// export default function MitraSearch({
-//   isSearchControlsOpen,
-//   setIsSearchControlsOpen,
-// }: TranslationFeatureProps) {
+  const chatPropsWithId = React.useMemo(() => {
+    const requestBody = createExploreRequestBody({
+      search_input,
+      search_type,
+      filter_source_language,
+      filter_target_language,
+      locale,
+      source_filters: {
+        include_collections,
+        include_categories,
+        include_files,
+      },
+    })
 
-//   const [search_input] = useSearchInputParam()
-//   const [search_target] = useSearchTargetParam()
-//   const { include_collections,
-//     include_categories,
-//     include_files } = useSourceFiltersValue()
-//   const [filter_source_language] = useFilterSourceLanguageParam()
-//   const [filter_target_language] = useFilterTargetLanguageParam()
-//   const [search_type] = useSearchTypeParam()
+    const chatProps = createChatProps({
+      localEndpoint: LOCAL_API_ENDPOINTS["mitra-explore"],
+      requestBody,
+      initialInput: search_input,
+    })
 
-//   const chatPropsWithId = React.useMemo(() => {
-//     const requestBody = createSearchRequestBody({
-//       search_input,
-//       search_type,
-//       filter_source_language,
-//       filter_target_language,
-//       source_filters: {
-//         include_collections,
-//         include_categories,
-//         include_files,
-//       },
-//     })
+    return { ...chatProps, id: JSON.stringify(requestBody) }
+  }, [
+    search_input,
+    search_type,
+    filter_source_language,
+    filter_target_language,
+    include_collections,
+    include_categories,
+    include_files,
+    locale,
+  ])
 
-//     const chatProps = createChatProps({
-//       localEndpoint: streamUtils.localAPIEndpoints["mitra-explore"],
-//       requestBody,
-//       initialInput: search_input,
-//     })
+  const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
-//     return { ...chatProps, id: JSON.stringify(requestBody) }
-//   }, [search_input, search_target, search_type, filter_source_language, filter_target_language, include_collections, include_categories, include_files])
+  const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(new Set())
 
-//   const handleToggleShowOptions = React.useCallback(
-//     (event: React.ChangeEvent<HTMLInputElement>) => {
-//       setIsSearchControlsOpen(event.target.checked)
+  const handleToggleShowOptions = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsSearchControlsOpen(event.target.checked)
 
-//       if (event.target.checked) {
-//         localStorage.setItem(localStorageKeys.showSearchControls, String(event.target.checked))
-//       } else {
-//         localStorage.removeItem(localStorageKeys.showSearchControls)
-//       }
-//     },
-//     [setIsSearchControlsOpen],
-//   )
+      if (event.target.checked) {
+        localStorage.setItem(localStorageKeys.showSearchControls, String(event.target.checked))
+      } else {
+        localStorage.removeItem(localStorageKeys.showSearchControls)
+      }
+    },
+    [setIsSearchControlsOpen],
+  )
 
-//   return (
-//     <>
-//       <SearchUsageDialog />
+  return (
+    <>
+      <SearchUsageDialog />
 
-//       <Box
-//         id="search-input-wrapper"
-//         sx={{
-//           bgcolor: "background.paper",
-//           py: 1,
-//           zIndex: 10,
-//           transition: "position 1s ease-in-out, box-shadow 0.3s ease-in-out",
-//           top: {
-//             xs: "78px",
-//             md: "96px",
-//           },
-//           borderRadius: "0 0 10px 10px",
-//         }}
-//       >
-//         <Box
-//           sx={{
-//             display: "flex",
-//             flexDirection: {
-//               xs: "column-reverse",
-//               md: "row",
-//             },
-//             alignItems: { xs: "flex-start", md: "center" },
-//             justifyContent: {
-//               xs: "flex-start",
-//               md: isSearchControlsOpen ? "space-between" : "flex-end",
-//             },
-//             flexWrap: "wrap",
-//             minHeight: "60px",
-//           }}
-//         >
-//           <InputEncodingSelector isRendered={isSearchControlsOpen} />
+      <Box
+        id="search-input-wrapper"
+        sx={{
+          bgcolor: "background.paper",
+          py: 1,
+          zIndex: 10,
+          transition: "position 1s ease-in-out, box-shadow 0.3s ease-in-out",
+          top: {
+            xs: "78px",
+            md: "96px",
+          },
+          borderRadius: "0 0 10px 10px",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: {
+              xs: "column-reverse",
+              md: "row",
+            },
+            alignItems: { xs: "flex-start", md: "center" },
+            justifyContent: {
+              xs: "flex-start",
+              md: isSearchControlsOpen ? "space-between" : "flex-end",
+            },
+            flexWrap: "wrap",
+            minHeight: "60px",
+          }}
+        >
+          <InputEncodingSelector isRendered={isSearchControlsOpen} />
 
-//           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-//             <ShowOptionsSwitch
-//               isSearchControlsOpen={isSearchControlsOpen}
-//               handleToggleShowOptions={handleToggleShowOptions}
-//             />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <ShowOptionsSwitch
+              isSearchControlsOpen={isSearchControlsOpen}
+              handleToggleShowOptions={handleToggleShowOptions}
+            />
 
-//             <ResetOptionsButton />
-//           </Box>
-//         </Box>
-//         <SearchInput />
+            <ResetOptionsButton />
+          </Box>
+        </Box>
+        <ExploreInput
+          chatPropsWithId={chatPropsWithId}
+          input={search_input}
+          setInput={setSearchInputParam}
+          completedQueryIds={completedQueryIds}
+          setCompletedQueryIds={setCompletedQueryIds}
+          isTriggerDisabled={false}
+        />
 
-//         <SubInputSearchControls isOpen={isSearchControlsOpen} />
+        <SubInputSearchControls isOpen={isSearchControlsOpen} />
 
-//         <SearchExamples isShown={!isSearchControlsOpen} />
-//       </Box>
+        <SearchExamples isShown={!isSearchControlsOpen} />
+      </Box>
 
-//       <SearchResults />
-//     </>
-//   )
-// }
+      <ExploreOutput ref={outputBoxRef} chatPropsWithId={chatPropsWithId} />
+    </>
+  )
+}

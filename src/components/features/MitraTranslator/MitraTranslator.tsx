@@ -3,10 +3,8 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
-import { streamUtils } from "@/api"
 import { ACCEPTED_FILE_TYPES_UI_STRING } from "@/components/features/MitraOCR/utils"
 import TranslationModelSelector from "@/components/features/paramSettings/TranslationModelSelector"
-import { createChatProps } from "@/components/features/utils"
 import {
   useInputEncodingParamWithLocalStorage,
   useInputSentenceParam,
@@ -14,6 +12,7 @@ import {
   useTranslationModelParam,
 } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
+import { createChatProps, LOCAL_API_ENDPOINTS } from "@/utils/api/stream"
 
 import TranslatorInputControls from "./controls/TranslatorInputControls"
 import TranslatorKeyboardControls from "./controls/TranslatorKeyboardControls"
@@ -48,7 +47,7 @@ export default function MitraTranslator() {
     })
 
     const chatProps = createChatProps({
-      localEndpoint: streamUtils.localAPIEndpoints["mitra-translation"],
+      localEndpoint: LOCAL_API_ENDPOINTS["mitra-translation"],
       requestBody,
       initialInput: input_sentence,
     })
@@ -59,6 +58,7 @@ export default function MitraTranslator() {
   const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
   const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(new Set())
+
   // State to track if file upload is in progress
   const [isFileUploadPending, setIsFileUploadPending] = React.useState(false)
 

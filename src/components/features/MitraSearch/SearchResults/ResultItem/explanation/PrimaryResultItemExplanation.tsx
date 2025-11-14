@@ -2,8 +2,8 @@ import React from "react"
 import { useLocale } from "next-intl"
 import { useChat } from "@ai-sdk/react"
 
-import { SearchApiTypes, streamUtils } from "@/api"
-import { createChatProps } from "@/components/features/utils"
+import { SearchApiTypes } from "@/api"
+import { createChatProps, LOCAL_API_ENDPOINTS } from "@/utils/api/stream"
 
 import PrimaryExplanationStream from "./PrimaryExplanationStream"
 import ExplanationFrame from "./ResultItemExplanationFrame"
@@ -25,7 +25,7 @@ export default function PrimaryResultItemExplanation({
   const chatPropsWithId = React.useMemo(() => {
     return createChatProps({
       id: JSON.stringify(primarySearchResult),
-      localEndpoint: streamUtils.localAPIEndpoints["explanation-primary"],
+      localEndpoint: LOCAL_API_ENDPOINTS["explanation-primary"],
       requestBody: { ...primarySearchResult, locale },
       initialInput: primarySearchResult.query,
     })

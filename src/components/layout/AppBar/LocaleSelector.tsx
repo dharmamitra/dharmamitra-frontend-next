@@ -21,9 +21,9 @@ export default function LocaleSelector() {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = () => {
+  const handleClose = React.useCallback(() => {
     setAnchorEl(null)
-  }
+  }, [])
 
   const handleLocaleChange = React.useCallback(
     (locale: SupportedLocale) => {

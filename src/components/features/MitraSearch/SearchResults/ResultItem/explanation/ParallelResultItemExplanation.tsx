@@ -4,8 +4,7 @@ import { SearchApiTypes } from "@/api"
 
 import ParallelExplanation from "./ParallelExplanation"
 import ExplanationFrame from "./ResultItemExplanationFrame"
-// import { createChatProps } from "@/features/utils"
-// import { streamUtils } from "@/api"
+// import { createChatProps, LOCAL_API_ENDPOINTS } from "@/utils/api/stream"
 
 export default function ParallelResultItemExplanation({
   parallelRequest,
@@ -17,7 +16,7 @@ export default function ParallelResultItemExplanation({
   // TODO: pending BE updates
   // const chatPropsWithId = createChatProps({
   //   id: JSON.stringify(parallelRequest),
-  //   localEndpoint: streamUtils.localAPIEndpoints["explanation-parallel"],
+  //   localEndpoint: LOCAL_API_ENDPOINTS["explanation-parallel"],
   //   requestBody: parallelRequest,
   //   initialInput: parallelRequest.query,
   // })

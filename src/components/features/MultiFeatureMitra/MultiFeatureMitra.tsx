@@ -21,6 +21,7 @@ import { views } from "@/utils/api/global/params"
 import { View } from "@/utils/api/global/types"
 import { localStorageKeys } from "@/utils/constants"
 
+import FeatureContainer from "./FeatureContainer"
 import FeatureTabPanel from "./FeatureTabPanel"
 import ScrollToTopButton from "./ScrollToTopButton"
 
@@ -115,18 +116,18 @@ export default function MultiFeatureMitra() {
           </FeatureTabPanel>
 
           <FeatureTabPanel currentView={currentView} view="search">
-            <Box id="search-feature-wrapper" sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}>
+            <FeatureContainer id="search-feature-wrapper">
               <MitraSearch
                 isSearchControlsOpen={isSearchControlsOpen}
                 setIsSearchControlsOpen={setIsSearchControlsOpen}
               />
-            </Box>
+            </FeatureContainer>
           </FeatureTabPanel>
 
           <FeatureTabPanel currentView={currentView} view="ocr">
-            <Box id="ocr-feature-wrapper" sx={{ maxWidth: "960px", mx: "auto", mt: { md: 6 } }}>
+            <FeatureContainer id="ocr-feature-wrapper">
               <MitraOCR />
-            </Box>
+            </FeatureContainer>
           </FeatureTabPanel>
         </Box>
       </Box>

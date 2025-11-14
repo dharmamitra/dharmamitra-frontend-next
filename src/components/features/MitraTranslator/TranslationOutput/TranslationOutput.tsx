@@ -5,7 +5,7 @@ import { useChat } from "@ai-sdk/react"
 import Box from "@mui/material/Box"
 
 import ExceptionText from "@/components/ExceptionText"
-import { TranslationChatPropsWithId } from "@/components/features/utils"
+import { TranslationChatPropsWithId } from "@/components/features/MitraTranslator/utils"
 import LoadingDots from "@/components/LoadingDots"
 import { MemoizedMarkdown } from "@/components/memoized-markdown"
 

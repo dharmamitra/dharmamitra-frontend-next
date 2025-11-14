@@ -6,9 +6,9 @@ import { useChat } from "@ai-sdk/react"
 import SendIcon from "@mui/icons-material/Send"
 import { Box, Button } from "@mui/material"
 
-import { streamUtils } from "@/api"
-import { createChatProps, TranslationChatPropsWithId } from "@/components/features/utils"
+import { TranslationChatPropsWithId } from "@/components/features/MitraTranslator/utils"
 import { useTargetLangParamWithLocalStorage } from "@/hooks/params"
+import { createChatProps, LOCAL_API_ENDPOINTS } from "@/utils/api/stream"
 
 type DeepResearchPromptProps = {
   isRendered: boolean
@@ -20,7 +20,7 @@ function DeepResearchPromptComponent({
 }: Omit<DeepResearchPromptProps, "isRendered">) {
   const updatedChatPropsWithId = React.useMemo(() => {
     const chatProps = createChatProps({
-      localEndpoint: streamUtils.localAPIEndpoints["mitra-translation"],
+      localEndpoint: LOCAL_API_ENDPOINTS["mitra-translation"],
       requestBody: { ...chatPropsWithId.body, target_lang: "english-deep-research" },
       initialInput: chatPropsWithId.body.input_sentence,
     })
