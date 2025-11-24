@@ -1,16 +1,16 @@
 import React, { memo } from "react"
 import { Box } from "@mui/material"
 
+import DbSourceMenuPopper from "./filterContent/DbSourceMenuPopper"
+import SelectionBox from "./filterContent/SelectionBox"
+import SelectionHead from "./filterContent/SelectionHead"
+
 import {
   useIncludeCategoriesParam,
   useIncludeCollectionsParam,
   useIncludeFilesParam,
 } from "@/hooks/params"
 import { SourceLanguage } from "@/utils/api/search/types"
-
-import DbSourceMenuPopper from "./filterContent/DbSourceMenuPopper"
-import SelectionBox from "./filterContent/SelectionBox"
-import SelectionHead from "./filterContent/SelectionHead"
 
 export const INPUT_WIDTH = 340
 

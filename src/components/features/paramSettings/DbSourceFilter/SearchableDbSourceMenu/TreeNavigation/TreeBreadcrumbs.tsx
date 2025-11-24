@@ -4,10 +4,10 @@ import { Box, Button, Typography } from "@mui/material"
 import { lighten } from "@mui/material/styles"
 import { useAtom } from "jotai"
 
+import { getTreeBreadcrumbs } from "../utils"
+
 import { activeDbSourceTreeBreadcrumbsAtom } from "@/atoms"
 import { type DbSourceTreeNode } from "@/components/features/paramSettings/DbSourceFilter/types"
-
-import { getTreeBreadcrumbs } from "../utils"
 
 type HandleBreadcrumbClickProps = {
   node: NodeApi<DbSourceTreeNode> | null | undefined

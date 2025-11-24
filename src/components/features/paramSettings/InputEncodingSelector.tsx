@@ -4,6 +4,8 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import { Box, MenuItem, RadioGroup, Select, Tooltip } from "@mui/material"
 
+import RadioOption from "../../RadioOption"
+
 import styles from "@/components/customFocusVisible.module.css"
 import {
   flatRadioGroupStyles,
@@ -17,8 +19,6 @@ import useFocusHighlight from "@/hooks/useFocusHighlight"
 import { getOptionI18nKeyPath } from "@/utils"
 import { defaultInputEncoding, inputEncodings } from "@/utils/api/global/params"
 import { InputEncoding } from "@/utils/api/global/types"
-
-import RadioOption from "../../RadioOption"
 
 export default function InputEncodingSelector({ isRendered = true }: { isRendered?: boolean }) {
   if (!isRendered) return null

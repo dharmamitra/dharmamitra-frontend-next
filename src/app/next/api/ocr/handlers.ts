@@ -6,9 +6,9 @@ import {
   Response as UndiciResponse,
 } from "undici"
 
-import { searchBaseUrl } from "@/utils/api/client"
-
 import { createForwardedHeaders } from "../utils"
+
+import { searchBaseUrl } from "@/utils/api/client"
 
 /**
  * Returns `null` if response param is not a file

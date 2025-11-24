@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import { Box, Typography } from "@mui/material"
 import Grid from "@mui/material/Grid"
 
+import type { Messages } from "@/app/types"
 // import { Member as MemberType } from "@/app/[locale]/(static-pages)/team/data"
 import customTheming from "@/utils/theme/config"
 

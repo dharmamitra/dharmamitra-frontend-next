@@ -2,12 +2,12 @@ import React from "react"
 import Box from "@mui/material/Box"
 import Grid, { GridProps } from "@mui/material/Grid"
 
-import { SearchApiTypes } from "@/api"
-import { getParagraphsFromString } from "@/utils/api/stream"
-
 import ResultItemExplanation from "./explanation/ResultItemExplanation"
 import ResultItemHeader from "./ResultItemHeader"
 import ResultItemText from "./ResultItemText"
+
+import { SearchApiTypes } from "@/api"
+import { getParagraphsFromString } from "@/utils/api/stream"
 
 type ResultItemProps = {
   language: string

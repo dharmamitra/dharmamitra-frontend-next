@@ -40,9 +40,7 @@ Object.entries(pathnames).forEach(([pathname /*pagename */]) => {
         // await expect(page).toHaveTitle(pageMessages.title)
         await expect(page.locator("h1")).toBeVisible()
       })
-      test(`has no auto-detected accessibility violations`, async ({
-        page,
-      }) => {
+      test(`has no auto-detected accessibility violations`, async ({ page }) => {
         await page.waitForTimeout(1000)
         const accessibilityScanResults = await new AxeBuilder({
           page,

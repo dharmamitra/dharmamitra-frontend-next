@@ -3,10 +3,10 @@ import { useTranslations } from "next-intl"
 import { IconButton } from "@mui/material"
 import Tooltip from "@mui/material/Tooltip"
 
-import { SearchApiTypes } from "@/api"
-
 import { tipMsgs } from "../ParallelQueryResults/ParallelCopyResults"
 import ResultsListCopyIcon, { type ResultsListCopyType } from "../ResultsListCopyIcon"
+
+import { SearchApiTypes } from "@/api"
 
 type PrimaryCopyResultsProps = {
   results: SearchApiTypes.Response<"/primary/">["results"]

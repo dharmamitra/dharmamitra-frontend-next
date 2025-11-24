@@ -1,9 +1,9 @@
 import React from "react"
 
-import { SearchApiTypes } from "@/api"
-
 import ParallelExplanation from "./ParallelExplanation"
 import ExplanationFrame from "./ResultItemExplanationFrame"
+
+import { SearchApiTypes } from "@/api"
 // import { createChatProps } from "@/features/utils"
 // import { streamUtils } from "@/api"
 

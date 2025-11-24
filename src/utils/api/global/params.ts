@@ -1,6 +1,7 @@
-import { exhaustiveStringTuple } from "@/utils/typescript"
-
 import { APIInputEncoding, GlobalParamNames, InputEncoding, ModelType, View } from "./types"
+
+import { Messages } from "@/app/types"
+import { exhaustiveStringTuple } from "@/utils/typescript"
 
 export const inputEncodings: InputEncoding[] = exhaustiveStringTuple<APIInputEncoding>()(
   "auto",

@@ -1,13 +1,14 @@
 import { z } from "zod"
 
+import { BUILD_VARIANTS } from "./constants"
+import { getBasePath, getBuildVariant } from "./utils"
+
+import { Messages } from "@/app/types"
 import {
   allTargetLanguages,
   stableTargetLanguages,
   TargetLanguage,
 } from "@/utils/api/translation/params"
-
-import { BUILD_VARIANTS } from "./constants"
-import { getBasePath, getBuildVariant } from "./utils"
 
 type Page = Exclude<keyof Messages["pages"]["nav"], "notFound">
 export const allPages = ["home", "team", "test", "guide"] as const

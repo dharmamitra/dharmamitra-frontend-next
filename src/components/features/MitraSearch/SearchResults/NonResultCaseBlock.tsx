@@ -2,10 +2,10 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import { Typography } from "@mui/material"
 
+import ResultsHeading from "./ResultsHeading"
+
 import ExceptionText from "@/components/ExceptionText"
 import SkeletonGroup from "@/components/SkeletonGroup"
-
-import ResultsHeading from "./ResultsHeading"
 
 type NonResultCaseBlockProps = {
   hasData: boolean

@@ -1,12 +1,12 @@
 import { use } from "react"
 import { notFound } from "next/navigation"
-import { useTranslations, hasLocale } from "next-intl"
+import { hasLocale, useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 
 import { DefaultPageParams, Metadata } from "@/app/types"
-import { routing } from "@/i18n/routing"
 import Section from "@/components/Section"
+import { routing } from "@/i18n/routing"
 
 export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params

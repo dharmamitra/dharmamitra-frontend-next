@@ -7,11 +7,11 @@ import { Breakpoint } from "@mui/material"
 import { useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
-import { useNavItems } from "@/hooks/useNavItems"
-
 import AppBarFrame from "./AppBarFrame"
 import DesktopNavMenu from "./DesktopNavMenu"
 import MobileNavMenuLoading from "./MobileNavMenuLoading"
+
+import { useNavItems } from "@/hooks/useNavItems"
 
 const DESKTOP_BREAKPOINT: Breakpoint = "md"
 

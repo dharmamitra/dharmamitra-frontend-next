@@ -1,7 +1,7 @@
+import { parseOCRResponse } from "./handlers"
+
 import appConfig from "@/config"
 import { awaitedTryCatch } from "@/utils"
-
-import { parseOCRResponse } from "./handlers"
 
 export const getOCRDataCall = async ({
   file,

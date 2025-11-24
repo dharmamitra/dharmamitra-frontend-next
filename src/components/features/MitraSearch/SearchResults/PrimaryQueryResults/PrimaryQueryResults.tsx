@@ -1,16 +1,17 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
+import NonResultCaseBlock from "../NonResultCaseBlock"
+import ResultsHeading from "../ResultsHeading"
+
+import PrimaryCopyResults from "./PrimaryCopyResults"
+import PrimarySearchResultItems from "./PrimaryQueryResultItems"
+
 import CopyPageLink from "@/components/CopyPageLink"
 import ExceptionText from "@/components/ExceptionText"
 import { MAX_PRIMARY_RESULTS } from "@/components/features/MitraSearch/utils"
 import { useSearchInputParam } from "@/hooks/params"
 import { usePrimarySearchQuery } from "@/hooks/search/queries"
-
-import NonResultCaseBlock from "../NonResultCaseBlock"
-import ResultsHeading from "../ResultsHeading"
-import PrimaryCopyResults from "./PrimaryCopyResults"
-import PrimarySearchResultItems from "./PrimaryQueryResultItems"
 
 export default function PrimaryQueryResults() {
   const [searchInput] = useSearchInputParam()

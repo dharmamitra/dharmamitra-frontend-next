@@ -4,9 +4,9 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import { Button } from "@mui/material"
 
-import { localStorageKeys } from "@/utils/constants"
-
 import UsageDialogContent from "./UsageDialogContent"
+
+import { localStorageKeys } from "@/utils/constants"
 
 const dialogId = "translation-usage-dialog"
 

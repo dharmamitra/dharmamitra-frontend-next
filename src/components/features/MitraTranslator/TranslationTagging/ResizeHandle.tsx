@@ -12,29 +12,27 @@ const ResizeHandle = ({
 }: {
   setDrawerWidth: React.Dispatch<React.SetStateAction<number | string>>
 }) => {
-  const handleMouseMove = React.useCallback(
-    (e: MouseEvent) => {
+  const handleMouseDown = () => {
+    const drawerContent = document.getElementById("tagging-drawer-content")
+    if (drawerContent) drawerContent.style.userSelect = "none"
+
+    const handleMouseMove = (e: MouseEvent) => {
       const newWidth = e.clientX - document.body.offsetLeft
       if (newWidth > minDrawerWidth && newWidth < maxDrawerWidth) {
         setDrawerWidth(newWidth)
       }
-    },
-    [setDrawerWidth],
-  )
+    }
 
-  const handleMouseUp = React.useCallback(() => {
-    const drawerContent = document.getElementById("tagging-drawer-content")
-    if (drawerContent) drawerContent.style.userSelect = "unset"
-    document.removeEventListener("mouseup", handleMouseUp, true)
-    document.removeEventListener("mousemove", handleMouseMove, true)
-  }, [handleMouseMove])
+    const handleMouseUp = () => {
+      const drawerContent = document.getElementById("tagging-drawer-content")
+      if (drawerContent) drawerContent.style.userSelect = "unset"
+      document.removeEventListener("mouseup", handleMouseUp, true)
+      document.removeEventListener("mousemove", handleMouseMove, true)
+    }
 
-  const handleMouseDown = React.useCallback(() => {
-    const drawerContent = document.getElementById("tagging-drawer-content")
-    if (drawerContent) drawerContent.style.userSelect = "none"
     document.addEventListener("mouseup", handleMouseUp, true)
     document.addEventListener("mousemove", handleMouseMove, true)
-  }, [handleMouseMove, handleMouseUp])
+  }
 
   return (
     <>

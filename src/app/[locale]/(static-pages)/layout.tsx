@@ -1,5 +1,5 @@
-import { getTranslations, setRequestLocale } from "next-intl/server"
 import { hasLocale } from "next-intl"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { DefaultPageParams, DefaultPageProps, Metadata } from "@/app/types"
 import appConfig from "@/config"

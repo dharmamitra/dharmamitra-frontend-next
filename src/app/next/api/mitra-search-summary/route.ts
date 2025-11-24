@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import { streamText } from "ai"
 
+import { createForwardedHeaders } from "../utils"
+
 import { mitraSearchSummary } from "@/lib/ai/providers"
 import { validateModel } from "@/utils/api/global/validators"
-
-import { createForwardedHeaders } from "../utils"
 
 export const maxDuration = 30
 

@@ -2,9 +2,9 @@ import * as React from "react"
 import { useTranslations } from "next-intl"
 import { Typography } from "@mui/material"
 
-import { type ParsedOCRError } from "@/utils/api/search/endpoints/ocr/handlers"
-
 import OCRResultContainer from "./OCRResultContainer"
+
+import { type ParsedOCRError } from "@/utils/api/search/endpoints/ocr/handlers"
 
 export default function OCRErrorMessage({ ocrError }: { ocrError: ParsedOCRError }) {
   const t = useTranslations("ocr")

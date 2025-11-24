@@ -2,11 +2,11 @@ import React from "react"
 import { useLocale } from "next-intl"
 import { useChat } from "@ai-sdk/react"
 
-import { SearchApiTypes, streamUtils } from "@/api"
-import { createChatProps } from "@/components/features/utils"
-
 import PrimaryExplanationStream from "./PrimaryExplanationStream"
 import ExplanationFrame from "./ResultItemExplanationFrame"
+
+import { SearchApiTypes, streamUtils } from "@/api"
+import { createChatProps } from "@/components/features/utils"
 export type ResultItemExplanationProps = {
   primarySearchResult?: SearchApiTypes.Response<"/primary/">["results"][0]
   parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">

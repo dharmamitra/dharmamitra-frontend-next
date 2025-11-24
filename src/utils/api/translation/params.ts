@@ -1,7 +1,8 @@
+import { Schema, TranslationParamNames } from "./types"
+
+import { Messages } from "@/app/types"
 import { defaultInputEncoding, globalParamsNames } from "@/utils/api/global/params"
 import { exhaustiveStringTuple } from "@/utils/typescript"
-
-import { Schema, TranslationParamNames } from "./types"
 
 export type TargetLanguage = Schema["TargetLanguageExperimental"] &
   keyof Messages["translation"]["targetLanguages"]

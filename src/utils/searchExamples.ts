@@ -1,3 +1,5 @@
+import { SupportedLocale } from "@/app/types"
+
 const en = [
   "The definition of cetanā",
   "Texts that compare types of suffering",

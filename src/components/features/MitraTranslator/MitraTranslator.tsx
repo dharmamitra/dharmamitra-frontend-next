@@ -3,6 +3,16 @@
 import React from "react"
 import Box from "@mui/material/Box"
 
+import TranslatorInputControls from "./controls/TranslatorInputControls"
+import TranslatorKeyboardControls from "./controls/TranslatorKeyboardControls"
+import TranslatorOutputControls from "./controls/TranslatorOutputControls"
+import TranslationOutput from "./TranslationOutput"
+import TranslationTagging from "./TranslationTagging"
+import TranslationUsageDialog from "./TranslationUsageDialog"
+import TranslatorInput from "./TranslatorInput"
+import TranslatorLayout from "./TranslatorLayout"
+import { createTranslationRequestBody } from "./utils"
+
 import { streamUtils } from "@/api"
 import { ACCEPTED_FILE_TYPES_UI_STRING } from "@/components/features/MitraOCR/utils"
 import TranslationModelSelector from "@/components/features/paramSettings/TranslationModelSelector"
@@ -14,16 +24,6 @@ import {
   useTranslationModelParam,
 } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
-
-import TranslatorInputControls from "./controls/TranslatorInputControls"
-import TranslatorKeyboardControls from "./controls/TranslatorKeyboardControls"
-import TranslatorOutputControls from "./controls/TranslatorOutputControls"
-import TranslationOutput from "./TranslationOutput"
-import TranslationTagging from "./TranslationTagging"
-import TranslationUsageDialog from "./TranslationUsageDialog"
-import TranslatorInput from "./TranslatorInput"
-import TranslatorLayout from "./TranslatorLayout"
-import { createTranslationRequestBody } from "./utils"
 
 export default function MitraTranslator() {
   const {

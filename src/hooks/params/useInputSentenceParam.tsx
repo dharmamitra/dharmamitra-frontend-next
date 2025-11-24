@@ -1,8 +1,8 @@
 import { useQueryState } from "nuqs"
 
-import { translationParamsNames } from "@/utils/api/translation/params"
-
 import { parseAsMultiLineString } from "./parsers"
+
+import { translationParamsNames } from "@/utils/api/translation/params"
 
 const {
   common: { input_sentence },

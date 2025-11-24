@@ -3,10 +3,10 @@ import { useTranslations } from "next-intl"
 import PlayCircleIcon from "@mui/icons-material/PlayCircle"
 import IconButton from "@mui/material/IconButton"
 
+import TriggerTooltip from "./TriggerTooltip"
+
 import { useSearchTargetParam } from "@/hooks/params"
 import { /* useParallelSearchQuery, */ usePrimarySearchQuery } from "@/hooks/search/queries"
-
-import TriggerTooltip from "./TriggerTooltip"
 
 type TriggerQueryButtonProps = {
   input: string

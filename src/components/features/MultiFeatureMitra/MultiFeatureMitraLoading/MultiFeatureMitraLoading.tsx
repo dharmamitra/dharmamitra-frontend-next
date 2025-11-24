@@ -8,9 +8,9 @@ import TranslateOutlinedIcon from "@mui/icons-material/TranslateOutlined"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 
-import { tabsStyles } from "@/components/styled-ssr-safe"
-
 import LoadingBox from "./LoadingBox"
+
+import { tabsStyles } from "@/components/styled-ssr-safe"
 
 export default function MultiFeatureMitraLoading() {
   const t = useTranslations()

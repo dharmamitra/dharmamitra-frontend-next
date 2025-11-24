@@ -3,11 +3,12 @@ import Box from "@mui/material/Box"
 import ToggleButton from "@mui/material/ToggleButton"
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 
+import TranslatorLayout from "../TranslatorLayout"
+
+import OptionsLoading from "./OptionsLoading"
+
 import { inputEncodings, modelTypes } from "@/utils/api/global/params"
 import { TargetLanguage } from "@/utils/api/translation/params"
-
-import TranslatorLayout from "../TranslatorLayout"
-import OptionsLoading from "./OptionsLoading"
 
 export default function ExtendedMitraTranslatorLoading({
   targetLanguages,

@@ -1,165 +1,88 @@
-import next from "eslint-config-next";
-import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
-import nextTypescript from "eslint-config-next/typescript";
-import pluginJs from "@eslint/js"
+import js from "@eslint/js";
+import tsEslintPlugin from "@typescript-eslint/eslint-plugin";
+import tsEslintParser from "@typescript-eslint/parser";
 import nextPlugin from "@next/eslint-plugin-next"
+import { defineConfig } from "eslint/config"
+import prettierConfig from "eslint-config-prettier/flat"
 import importPlugin from "eslint-plugin-import"
 import jsxA11y from "eslint-plugin-jsx-a11y"
-import prettier from "eslint-plugin-prettier"
+import noRelativeImportPaths from "eslint-plugin-no-relative-import-paths"
+import prettierPlugin from "eslint-plugin-prettier"
 import reactPlugin from "eslint-plugin-react"
-import reactHooks from "eslint-plugin-react-hooks"
+import reactHooksPlugin from "eslint-plugin-react-hooks"
 import simpleImportSort from "eslint-plugin-simple-import-sort"
-import globals from "globals"
-import tseslint from "typescript-eslint"
+import globals from "globals";
 
 
 /** @type {import('eslint').Linter.Config} */
-export default [
-  // Ignore patterns (must be first for editor compatibility)
+const eslintConfig = defineConfig([
   {
     ignores: [
       ".next/",
       "node_modules/",
+      "next.config.js",
+      "next-i18next.config.js",
+      "next-seo.config.js",
+      "eslint.config.mjs",
       "yarn.lock",
-      "coverage/",
-      "test-results/",
-      "playwright-report/",
-      "blob-report/",
-      "playwright/.cache/",
       "**/*.d.ts",
     ],
   },
-  // Global configuration
   {
-    linterOptions: {
-      reportUnusedDisableDirectives: true,
+    ...prettierConfig,
+  },
+  {
+    plugins: {
+      "simple-import-sort": simpleImportSort,
+      import: importPlugin,
+      prettier: prettierPlugin,
+      "no-relative-import-paths": noRelativeImportPaths,
     },
   },
-  // Base configurations
-  ...next,
-  ...nextCoreWebVitals,
-  ...nextTypescript,
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  // Main configuration for all files
   {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     languageOptions: {
+      ecmaVersion: 2022,
       globals: {
         ...globals.browser,
         ...globals.es2021,
         ...globals.node,
+        document: "readonly",
+        navigator: "readonly",
+        window: "readonly",
+        NodeListOf: "readonly",
       },
-      parser: tseslint.parser,
       parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
         ecmaFeatures: {
           jsx: true,
         },
+        ecmaVersion: 2022,
+        sourceType: "module",
       },
-    },
-    plugins: {
-      "@typescript-eslint": tseslint.plugin,
-      react: reactPlugin,
-      "react-hooks": reactHooks,
-      "jsx-a11y": jsxA11y,
-      prettier,
-      "simple-import-sort": simpleImportSort,
-      import: importPlugin,
-      "@next/next": nextPlugin,
-    },
-    settings: {
-      react: {
-        version: "detect",
-      },
+      sourceType: "module",
     },
     rules: {
-      /**
-       * JAVASCRIPT RULES
-       */
-      "prefer-const": "error",
-      "no-var": "error",
-      "no-unused-vars": "off", // duplicate with typescript-eslint/no-unused-vars
-      "object-shorthand": "error",
-      "quote-props": ["error", "as-needed"],
-      "no-console": "error", // Enable no-console by default
-
-      /**
-       * TYPESCRIPT RULES
-       */
-      "@typescript-eslint/array-type": [
+      ...js.configs.recommended.rules,
+      "no-unused-vars": [
         "error",
         {
-          default: "array",
-        },
-      ],
-      "@typescript-eslint/consistent-type-assertions": [
-        "error",
-        {
-          assertionStyle: "as",
-          objectLiteralTypeAssertions: "never",
-        },
-      ],
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_|^[A-Z]",
+          args: "none",
+          caughtErrors: "none",
           ignoreRestSiblings: true,
-          args: "after-used",
+          vars: "all",
         },
       ],
-
-      /**
-       * REACT RULES
-       */
-      "react/jsx-fragments": ["error", "syntax"], // Shorthand syntax for React fragments
-      "react/jsx-filename-extension": [
-        "warn",
-        {
-          extensions: ["ts", "tsx"],
-        },
-      ],
-      "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-      "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
-      "react/react-in-jsx-scope": "off", // Not needed in Next.js
-      "react/prop-types": "off", // Not needed with TypeScript
-
-      /**
-       * NEXT.JS RULES
-       */
-      ...nextPlugin.configs.recommended.rules,
-      ...nextPlugin.configs["core-web-vitals"].rules,
-
-      /**
-       * ACCESSIBILITY RULES
-       */
-      "jsx-a11y/no-autofocus": [
-        2,
-        {
-          // focus order success criterion: https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html
-          // TODO: review focus return handling.
-          ignoreNonDOM: true,
-        },
-      ],
-
-      /**
-       * PRETTIER RULES
-       */
+    },
+  },
+   {
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    rules: {
       "prettier/prettier": "error",
-
-      /**
-       * IMPORT RULES
-       */
       "simple-import-sort/imports": [
         "error",
         {
           groups: [
-            // Side effect imports.
             ["^\\u0000"],
             [
-              // Node.js builtins prefixed with `react:`....
               "^react",
               "^react-native",
               "^next",
@@ -168,18 +91,10 @@ export default [
               "^urql",
               "^pages",
               "^views",
-              "^node:",
-              // Packages.
-              // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
               "^@?\\w",
             ],
-            // Absolute imports and other imports such as Vue-style `@/foo`.
-            // Anything not matched in another group.
-            ["^"],
-            // Relative imports.
-            // Anything that starts with a dot.
-            ["^\\."],
-            ["^\\u0000"],
+            ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+            ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
           ],
         },
       ],
@@ -190,14 +105,67 @@ export default [
       "import/no-anonymous-default-export": "off",
     },
   },
-  /**
-   * CUSTOM RULES
-   */
   {
-    // Allow console logs in server-side code
-    files: ["**/app/next/api/**/*.ts", "**/lib/ai/server-side-utils.ts"],
-    rules: {
-      "no-console": "off",
+    files: ["**/*.ts", "**/*.tsx"],
+    plugins: {
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
+      "@next/next": nextPlugin,
+      "jsx-a11y": jsxA11y,
     },
-  }
-];
+    rules: {
+      ...reactPlugin.configs["jsx-runtime"].rules,
+      ...reactHooksPlugin.configs.recommended.rules,
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs["core-web-vitals"].rules,
+      ...jsxA11y.configs.recommended.rules,
+      "@next/next/no-img-element": "error",
+      "jsx-a11y/no-autofocus": [
+        2,
+        {
+          // focus order success criterion: https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html
+          // TODO: review focus return handling.
+          ignoreNonDOM: true,
+        },
+      ],
+    },
+  },
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    plugins: {
+      "@typescript-eslint": tsEslintPlugin,
+    },
+    languageOptions: {
+      parser: tsEslintParser,
+    },
+    rules: {
+      ...tsEslintPlugin.configs.recommended.rules,
+       "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_|^[A-Z]",
+          ignoreRestSiblings: true,
+          args: "after-used",
+        },
+      ],
+      "@typescript-eslint/no-explicit-any": "error",
+      "@next/next/no-html-link-for-pages": "off",
+    },
+  },
+  // TARGETED OVERRIDES
+  {
+    files: ["./src/lib/api/*.ts"],
+    rules: {
+      "no-use-before-define": "off",
+    },
+  },
+  {
+    files: ["./src/components/memoized-markdown.tsx"],
+    rules: {
+      "@typescript-eslint/no-unused-vars": "off",
+    },
+  },
+])
+
+export default eslintConfig

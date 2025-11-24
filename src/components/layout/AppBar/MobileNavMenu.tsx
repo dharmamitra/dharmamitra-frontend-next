@@ -16,11 +16,11 @@ import {
   Typography,
 } from "@mui/material"
 
+import LocaleSelector from "./LocaleSelector"
+
 import LocalLink from "@/components/LocalLink"
 import Logo from "@/components/Logo"
 import { NavItems } from "@/hooks/useNavItems"
-
-import LocaleSelector from "./LocaleSelector"
 
 const drawerWidth = 240
 

@@ -5,6 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter"
 
+import { SupportedLocale } from "@/app/types"
 import { PageShell } from "@/components/layout"
 import theme from "@/utils/theme"
 

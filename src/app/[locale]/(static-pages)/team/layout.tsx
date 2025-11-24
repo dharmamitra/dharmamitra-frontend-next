@@ -1,3 +1,4 @@
+import React from "react"
 import { notFound } from "next/navigation"
 import { hasLocale } from "next-intl"
 import { setRequestLocale } from "next-intl/server"

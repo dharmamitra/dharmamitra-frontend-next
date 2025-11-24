@@ -3,7 +3,7 @@
 import React, { type JSX } from "react"
 import { useTranslations } from "next-intl"
 import ContentCopyIcon from "@mui/icons-material/ContentCopy"
-import { IconButton, IconButtonProps } from "@mui/material"
+import { IconButton } from "@mui/material"
 import { SvgIconProps } from "@mui/material/SvgIcon"
 import Tooltip from "@mui/material/Tooltip"
 

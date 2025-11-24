@@ -1,6 +1,3 @@
-import { defaultInputEncoding } from "@/utils/api/global/params"
-import { exhaustiveStringTuple } from "@/utils/typescript"
-
 import {
   AllSearchApiParams,
   AllSearchParamDefaults,
@@ -9,6 +6,10 @@ import {
   SearchTarget,
   SearchTargets,
 } from "./types"
+
+import { Messages } from "@/app/types"
+import { defaultInputEncoding } from "@/utils/api/global/params"
+import { exhaustiveStringTuple } from "@/utils/typescript"
 
 export type { AllSearchApiParams, AllSearchParamDefaults, SearchTarget }
 

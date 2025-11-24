@@ -1,10 +1,10 @@
 import React from "react"
 import { useQueryState } from "nuqs"
 
+import { parseAsView } from "./parsers"
+
 import { defaultView, globalParamsNames } from "@/utils/api/global/params"
 import { View } from "@/utils/api/global/types"
-
-import { parseAsView } from "./parsers"
 
 export function useViewParamWithLocalStorage(availableViews: View[]) {
   const [viewParam, setViewParam] = useQueryState(globalParamsNames.local.view, {

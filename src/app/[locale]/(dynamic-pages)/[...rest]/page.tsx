@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
-import { getTranslations } from "next-intl/server"
 import { hasLocale } from "next-intl"
+import { getTranslations } from "next-intl/server"
 
 import { DefaultPageParams, Metadata } from "@/app/types"
 import { routing } from "@/i18n/routing"

@@ -1,17 +1,17 @@
 import { use } from "react"
 import { notFound } from "next/navigation"
-import { useTranslations, hasLocale } from "next-intl"
+import { hasLocale, useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Box, Divider, Typography } from "@mui/material"
 import visuallyHidden from "@mui/utils/visuallyHidden"
 
+import membersData from "./data"
+
 import { DefaultPageParams, Metadata } from "@/app/types"
-import { routing } from "@/i18n/routing"
 import PageContentFrame from "@/components/layout/PageContentFrame"
 import Members from "@/components/Members"
 import Section from "@/components/Section"
-
-import membersData from "./data"
+import { routing } from "@/i18n/routing"
 
 export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const resolvedParams = await params

@@ -1,9 +1,7 @@
-import React from "react"
+// import ParallelResultItemExplanation from "./ParallelResultItemExplanation"
+import PrimaryResultItemExplanation from "./PrimaryResultItemExplanation"
 
 import { SearchApiTypes } from "@/api"
-
-import ParallelResultItemExplanation from "./ParallelResultItemExplanation"
-import PrimaryResultItemExplanation from "./PrimaryResultItemExplanation"
 
 export type ResultItemExplanationProps = {
   primarySearchResult?: SearchApiTypes.Response<"/primary/">["results"][0]

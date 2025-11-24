@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
-import { setRequestLocale } from "next-intl/server"
 import { hasLocale } from "next-intl"
+import { setRequestLocale } from "next-intl/server"
 
 import { DefaultPageProps } from "@/app/types"
 import appConfig from "@/config"

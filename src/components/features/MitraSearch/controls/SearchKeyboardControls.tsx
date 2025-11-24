@@ -2,10 +2,10 @@
 
 import React from "react"
 
+import { handleSearchKeyPress } from "../utils"
+
 import { useSearchTargetParam } from "@/hooks/params"
 import { /* useParallelSearchQuery, */ usePrimarySearchQuery } from "@/hooks/search/queries"
-
-import { handleSearchKeyPress } from "../utils"
 
 type Props = {
   input: string

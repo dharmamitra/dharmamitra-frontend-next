@@ -5,13 +5,13 @@ import Box from "@mui/material/Box"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { useAtom } from "jotai"
 
+import SearchKeyboardControls from "./controls/SearchKeyboardControls"
+
 import { searchInputAtom } from "@/atoms"
 import ClearButton from "@/components/ClearButton"
 import TriggerQueryButton from "@/components/features/MitraSearch/controls/TriggerQueryButton"
 import { useSearchInputParam } from "@/hooks/params"
 import useDebouncedValue from "@/hooks/useDebouncedValue"
-
-import SearchKeyboardControls from "./controls/SearchKeyboardControls"
 
 export const searchInputId = "search-input-field"
 

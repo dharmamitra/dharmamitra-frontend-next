@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation"
-import { NextIntlClientProvider } from "next-intl"
+import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { getMessages, getTranslations } from "next-intl/server"
 import { NuqsAdapter } from "nuqs/adapters/react"
-import { hasLocale } from "next-intl"
 
 import { DefaultPageParams, DefaultPageProps, Metadata } from "@/app/types"
 import appConfig from "@/config"

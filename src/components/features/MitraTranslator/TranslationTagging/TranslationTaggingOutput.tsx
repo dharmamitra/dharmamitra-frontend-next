@@ -6,13 +6,13 @@ import Link from "@mui/material/Link"
 import Typography from "@mui/material/Typography"
 import { useQuery } from "@tanstack/react-query"
 
+import SentenceAccordion from "./SentenceAccordion"
+
 import { DMFetchApi } from "@/api"
 import Error from "@/components/Error"
 import SkeletonGroup from "@/components/SkeletonGroup"
 import useTaggingRequestBody from "@/hooks/translation/useTaggingRequestBody"
 import { linkAttrs } from "@/utils/constants"
-
-import SentenceAccordion from "./SentenceAccordion"
 
 export default function TranslationTaggingOutput() {
   const t = useTranslations()

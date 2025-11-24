@@ -108,7 +108,7 @@ const TranslatorInput = ({
 
   // Add a small debounce to isDragging state to prevent flickering
   // The ref tracks the drag timeout for debouncing
-  const dragTimeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+  const dragTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
   const [isDragging, setIsDragging] = React.useState(false)
 
   React.useEffect(() => {

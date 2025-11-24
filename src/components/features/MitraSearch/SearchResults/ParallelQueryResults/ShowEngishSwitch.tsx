@@ -52,7 +52,6 @@ export default function ShowEngishSwitch() {
     const result = tryCatch(updateDOMAndLocalStorage, operationName)
 
     if (result.error && isMounted.current) {
-      // eslint-disable-next-line no-console
       console.error(`${operationName} failed:`, result.error.message)
     }
   }, [showEnglish])

@@ -2,10 +2,10 @@ import * as React from "react"
 import { useTranslations } from "next-intl"
 import { Box, Button, Typography } from "@mui/material"
 
+import { ACCEPTED_FILE_TYPES_UI_STRING, MAX_FILE_SIZE, MAX_FILE_SIZE_MB } from "./utils"
+
 import UploadIcon from "@/components/icons/Upload"
 import { useFileUpload } from "@/hooks/useFileUpload"
-
-import { ACCEPTED_FILE_TYPES_UI_STRING, MAX_FILE_SIZE, MAX_FILE_SIZE_MB } from "./utils"
 
 type InputBoxProps = {
   className?: string

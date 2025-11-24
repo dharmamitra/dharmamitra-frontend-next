@@ -3,9 +3,9 @@ import { useTranslations } from "next-intl"
 import { IconButton } from "@mui/material"
 import Tooltip from "@mui/material/Tooltip"
 
-import { SearchApiTypes } from "@/api"
-
 import ResultsListCopyIcon, { type ResultsListCopyType } from "../ResultsListCopyIcon"
+
+import { SearchApiTypes } from "@/api"
 
 export const tipMsgs = {
   full: "copyResultsList",

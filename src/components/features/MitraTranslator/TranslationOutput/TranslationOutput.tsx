@@ -4,12 +4,12 @@ import React, { forwardRef } from "react"
 import { useChat } from "@ai-sdk/react"
 import Box from "@mui/material/Box"
 
+import DeepResearchPrompt from "./DeepResearchPrompt"
+
 import ExceptionText from "@/components/ExceptionText"
 import { TranslationChatPropsWithId } from "@/components/features/utils"
 import LoadingDots from "@/components/LoadingDots"
 import { MemoizedMarkdown } from "@/components/memoized-markdown"
-
-import DeepResearchPrompt from "./DeepResearchPrompt"
 
 type TranslationOutputProps = {
   chatPropsWithId: TranslationChatPropsWithId

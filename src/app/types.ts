@@ -1,9 +1,9 @@
 import { ReactNode } from "react"
 
+import messages from "../../messages/en.json"
+
 import { BUILD_VARIANTS } from "@/config/constants"
 import { SUPPORTED_LOCALES } from "@/i18n"
-
-import messages from "../../messages/en.json"
 
 export type { Metadata } from "next"
 

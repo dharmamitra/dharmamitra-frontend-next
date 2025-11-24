@@ -2,9 +2,9 @@ import React from "react"
 import { useLocale } from "next-intl"
 import Box from "@mui/material/Box"
 
-import { SearchApiTypes } from "@/api"
-
 import ResultItem, { ResultItemsFrame } from "../ResultItem"
+
+import { SearchApiTypes } from "@/api"
 
 export default function ParralelSearchResultItems({
   results,

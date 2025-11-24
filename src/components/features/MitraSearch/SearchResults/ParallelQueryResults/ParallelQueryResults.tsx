@@ -1,14 +1,15 @@
 import React from "react"
 import { Box } from "@mui/material"
 
+import NonResultCaseBlock from "../NonResultCaseBlock"
+import ResultsHeading from "../ResultsHeading"
+
+import ParallelCopyResults from "./ParallelCopyResults"
+import ParralelSearchResultItems from "./ParralelSearchResultItems"
+
 import CopyPageLink from "@/components/CopyPageLink"
 import { useSearchInputParam } from "@/hooks/params"
 import { useParallelSearchQuery } from "@/hooks/search/queries"
-
-import NonResultCaseBlock from "../NonResultCaseBlock"
-import ResultsHeading from "../ResultsHeading"
-import ParallelCopyResults from "./ParallelCopyResults"
-import ParralelSearchResultItems from "./ParralelSearchResultItems"
 
 export default function ParallelQueryResults() {
   const [searchInput] = useSearchInputParam()

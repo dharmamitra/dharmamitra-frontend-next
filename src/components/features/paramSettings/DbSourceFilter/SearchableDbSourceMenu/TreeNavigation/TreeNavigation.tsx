@@ -4,9 +4,9 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import { Box, IconButton, Tooltip } from "@mui/material"
 import { useAtomValue } from "jotai"
 
-import { activeDbSourceTreeAtom } from "@/atoms"
-
 import TreeBreadcrumbs from "./TreeBreadcrumbs"
+
+import { activeDbSourceTreeAtom } from "@/atoms"
 
 export default function TreeNavigation() {
   const activeTree = useAtomValue(activeDbSourceTreeAtom)

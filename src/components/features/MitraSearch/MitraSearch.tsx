@@ -1,9 +1,6 @@
 import * as React from "react"
 import Box from "@mui/material/Box"
 
-import InputEncodingSelector from "@/components/features/paramSettings/InputEncodingSelector"
-import { localStorageKeys } from "@/utils/constants"
-
 import ResetOptionsButton from "./controls/ResetOptionsButton"
 import ShowOptionsSwitch from "./controls/ShowOptionsSwitch"
 import SubInputSearchControls from "./controls/SubInputSearchControls"
@@ -11,6 +8,9 @@ import SearchExamples from "./SearchExamples"
 import SearchInput from "./SearchInput"
 import SearchResults from "./SearchResults"
 import SearchUsageDialog from "./SearchUsageDialog"
+
+import InputEncodingSelector from "@/components/features/paramSettings/InputEncodingSelector"
+import { localStorageKeys } from "@/utils/constants"
 
 type TranslationFeatureProps = {
   isSearchControlsOpen: boolean

@@ -3,15 +3,15 @@ import { useTranslations } from "next-intl"
 import { Box, Button, Typography } from "@mui/material"
 import { UseMutationResult } from "@tanstack/react-query"
 
+import OCRErrorMessage from "./OCRErrorMessage"
+import OCRResultContainer from "./OCRResultContainer"
+
 import CopyTextButton from "@/components/CopyTextButton"
 import { makeOCROutputFileName } from "@/components/features/MitraOCR/utils"
 import LoadingDots from "@/components/LoadingDots"
 import SaveToFileButton from "@/components/SaveToFileButton"
 import { saveAsTxtFile } from "@/utils"
 import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/handlers"
-
-import OCRErrorMessage from "./OCRErrorMessage"
-import OCRResultContainer from "./OCRResultContainer"
 
 type OCRResultProps = {
   ocrMutation: UseMutationResult<ParsedOCRResponse, Error, File, unknown>

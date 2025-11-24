@@ -1,7 +1,8 @@
-import { transformDataForTreeView } from "@/components/features/paramSettings/DbSourceFilter/SearchableDbSourceMenu/utils"
-
 import apiClients from "../client"
+
 import type { APIGetRequestQuery, APIGetResponse } from "./types"
+
+import { transformDataForTreeView } from "@/components/features/paramSettings/DbSourceFilter/SearchableDbSourceMenu/utils"
 
 function parseStructuredDbSourceMenuData(data: APIGetResponse<"/menudata/">) {
   return data.menudata.map(({ collection, categories }) => ({
