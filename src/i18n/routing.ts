@@ -13,10 +13,6 @@ export const routing = defineRouting({
   localeCookie: false,
 })
 
-export function isValidLocaleRoute(locale: unknown): locale is SupportedLocale {
-  return typeof locale === "string" && routing.locales.some((value) => value === locale)
-}
-
 export function getPageLocaleRoutes() {
   return routing.locales.map((locale) => ({ locale }))
 }

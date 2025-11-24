@@ -1,3 +1,6 @@
+import next from "eslint-config-next";
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
+import nextTypescript from "eslint-config-next/typescript";
 import pluginJs from "@eslint/js"
 import nextPlugin from "@next/eslint-plugin-next"
 import importPlugin from "eslint-plugin-import"
@@ -9,36 +12,35 @@ import simpleImportSort from "eslint-plugin-simple-import-sort"
 import globals from "globals"
 import tseslint from "typescript-eslint"
 
-const ignorePatterns = [
-  ".next/",
-  "node_modules/",
-  "yarn.lock",
-  "coverage/",
-  "test-results/",
-  "playwright-report/",
-  "blob-report/",
-  "playwright/.cache/",
-  "**/*.d.ts",
-]
 
 /** @type {import('eslint').Linter.Config} */
 export default [
   // Ignore patterns (must be first for editor compatibility)
   {
-    ignores: ignorePatterns,
+    ignores: [
+      ".next/",
+      "node_modules/",
+      "yarn.lock",
+      "coverage/",
+      "test-results/",
+      "playwright-report/",
+      "blob-report/",
+      "playwright/.cache/",
+      "**/*.d.ts",
+    ],
   },
-
   // Global configuration
   {
     linterOptions: {
       reportUnusedDisableDirectives: true,
     },
   },
-
   // Base configurations
+  ...next,
+  ...nextCoreWebVitals,
+  ...nextTypescript,
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-
   // Main configuration for all files
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
@@ -188,7 +190,6 @@ export default [
       "import/no-anonymous-default-export": "off",
     },
   },
-
   /**
    * CUSTOM RULES
    */
@@ -198,5 +199,5 @@ export default [
     rules: {
       "no-console": "off",
     },
-  },
-]
+  }
+];

@@ -20,9 +20,6 @@ const nextConfig = {
   basePath: getBasePath(),
   output: "standalone",
   productionBrowserSourceMaps: true,
-  eslint: {
-    ignoreDuringBuilds: process.env.NEXT_DISABLE_ESLINT === "true",
-  },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   reactStrictMode: true,
   images: {

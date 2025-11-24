@@ -1,13 +1,19 @@
 import { use } from "react"
-import { useTranslations } from "next-intl"
+import { notFound } from "next/navigation"
+import { useTranslations, hasLocale } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 
 import { DefaultPageParams, Metadata } from "@/app/types"
+import { routing } from "@/i18n/routing"
 import Section from "@/components/Section"
 
 export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {}
+  }
 
   const t = await getTranslations({ locale, namespace: "pages.guide.kumarajiva" })
 
@@ -16,6 +22,10 @@ export async function generateMetadata({ params }: DefaultPageParams): Promise<M
 
 export default function KumarajivaAboutPage({ params }: DefaultPageParams) {
   const { locale } = use(params)
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
 
   setRequestLocale(locale)
   const t = useTranslations("pages.guide.kumarajiva")
