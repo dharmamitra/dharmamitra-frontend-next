@@ -4,11 +4,7 @@ import { BUILD_VARIANTS } from "./constants"
 import { getBasePath, getBuildVariant } from "./utils"
 
 import { Messages } from "@/app/types"
-import {
-  allTargetLanguages,
-  stableTargetLanguages,
-  TargetLanguage,
-} from "@/utils/api/translation/params"
+import { allTargetLanguages, stableTargetLanguages } from "@/utils/api/translation/params"
 
 type Page = Exclude<keyof Messages["pages"]["nav"], "notFound">
 export const allPages = ["home", "team", "test", "guide"] as const
@@ -19,7 +15,7 @@ export const appConfigSchema = z.object({
   storageVersionId: z.string().default("6"),
   isClient: z.boolean().default(false),
   siteName: z.string().default("Dharmamitra"),
-  orgEmail: z.string().email().default("dharmamitra.project@gmail.com"),
+  orgEmail: z.email().default("dharmamitra.project@gmail.com"),
   siteUrl: z.string().default("https://dharmamitra.org" + getBasePath()),
   basePath: z.string().default(getBasePath()),
   assetPaths: z
@@ -53,25 +49,20 @@ export const appConfigSchema = z.object({
   subPages: z.array(z.enum(allPages)).default(defaultSubPages),
   customParamOptions: z
     .object({
-      targetLanguages: z
-        .array(
-          z.string().refine(
-            // validates at build & runtime
-            (val): val is TargetLanguage => allTargetLanguages.includes(val as TargetLanguage),
-            {
-              message: "Invalid `customParamOptions.targetLanguage` value given to app config.",
-            },
-          ),
-        )
-        .default(stableTargetLanguages),
+      targetLanguages: z.array(z.enum(allTargetLanguages)).default(stableTargetLanguages),
     })
-    .default({}),
+    .default({
+      targetLanguages: stableTargetLanguages,
+    }),
   featureFlags: z
     .object({
       hasTranslateExtendedOptions: z.boolean().default(false),
       hasFeedbackWidget: z.boolean().default(false),
     })
-    .default({}),
+    .default({
+      hasTranslateExtendedOptions: false,
+      hasFeedbackWidget: false,
+    }),
 })
 
 export type AppConfig = z.infer<typeof appConfigSchema>
