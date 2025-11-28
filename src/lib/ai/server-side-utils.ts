@@ -1,4 +1,4 @@
-import { CoreMessage } from "ai"
+import { ModelMessage } from "ai"
 
 /**
  * Creates a clean ReadableStream from an AI text stream by removing protocol markers.
@@ -59,7 +59,7 @@ export function createReadableStreamFromAI(textStream: AsyncIterable<string>) {
 }
 
 export function composeMessageProps(input: string) {
-  const messages: CoreMessage[] = [
+  const messages: ModelMessage[] = [
     {
       role: "system",
       content: "You are a helpful translator of buddhist literature.",

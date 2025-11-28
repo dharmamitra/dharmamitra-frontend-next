@@ -2,7 +2,7 @@ import React from "react"
 import Box from "@mui/material/Box"
 import Grid, { GridProps } from "@mui/material/Grid"
 
-import ResultItemExplanation from "./explanation/ResultItemExplanation"
+import ResultItemExplanation from "./ResultItemExplanation"
 import ResultItemHeader from "./ResultItemHeader"
 import ResultItemText from "./ResultItemText"
 
@@ -16,9 +16,7 @@ type ResultItemProps = {
   link: string
   text: SearchApiTypes.Response<"/primary/">["results"][0]["text"]
   text_new?: SearchApiTypes.Response<"/primary/">["results"][0]["text_new"] // TODO: remove
-  primarySearchResult?: SearchApiTypes.Response<"/primary/">["results"][0]
-  parallelRequest?: SearchApiTypes.RequestBody<"/explanation-parallel/">
-  isParallel?: boolean
+  searchResult: SearchApiTypes.Response<"/primary/">["results"][0]
   query?: string
   summary?: string
   size: GridProps["size"]
@@ -31,9 +29,7 @@ function ResultItem({
   segmentnr,
   text,
   text_new,
-  primarySearchResult,
-  parallelRequest,
-  isParallel,
+  searchResult,
   size,
 }: ResultItemProps) {
   const fullResultContentRef = React.useRef<HTMLDivElement>(null)
@@ -80,11 +76,6 @@ function ResultItem({
             flexDirection: "column",
             columnGap: 2,
             rowGap: 1,
-            ...(isParallel && {
-              border: "1px solid",
-              borderColor: "divider",
-              borderRadius: "8px",
-            }),
           }}
         >
           <ResultItemHeader
@@ -101,11 +92,7 @@ function ResultItem({
           <ResultItemText text={parsedText} isTextExpanded={isTextExpanded} />
         </Box>
 
-        <ResultItemExplanation
-          isRendered={!!primarySearchResult || !!parallelRequest}
-          primarySearchResult={primarySearchResult}
-          // parallelRequest={parallelRequest}
-        />
+        <ResultItemExplanation searchResult={searchResult} />
       </Box>
     </Grid>
   )

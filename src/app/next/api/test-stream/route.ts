@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    return result.toTextStreamResponse()
+    return result.toUIMessageStreamResponse()
   } catch (error) {
     console.error("API route error:", error)
     return new Response(

@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     const providerModel = validateModel(model) ? model : "default"
 
-    const responseStream = streamText({
+    const result = streamText({
       model: mitraTranslate(providerModel),
       messages: [{ role: "user", content: input_sentence }],
       temperature: 0.1,
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    return responseStream.toTextStreamResponse()
+    return result.toUIMessageStreamResponse()
   } catch (error) {
     console.error("Translation stream route error: ", error)
     return new Response(

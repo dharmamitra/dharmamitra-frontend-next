@@ -1,18 +1,20 @@
 import React from "react"
-import { useChat, UseChatOptions } from "@ai-sdk/react"
 import { Box } from "@mui/material"
+import { UIMessage } from "ai"
 
 import ExceptionText from "@/components/ExceptionText"
+import { getMessageText } from "@/components/features/utils"
 import LoadingDots from "@/components/LoadingDots"
 import { MemoizedMarkdown } from "@/components/memoized-markdown"
 
 export type ExplanationProps = {
-  chatPropsWithId: UseChatOptions
+  id: string
+  messages: UIMessage[]
+  status: "submitted" | "streaming" | "ready" | "error"
+  error: Error | undefined
 }
 
-export default function PrimaryExplanationStream({ chatPropsWithId }: ExplanationProps) {
-  const { messages, status, error } = useChat(chatPropsWithId)
-
+export default function ExplanationStream({ id, messages, status, error }: ExplanationProps) {
   const assistantMessages = React.useMemo(
     () => messages.filter((msg) => msg.role === "assistant"),
     [messages],
@@ -34,9 +36,9 @@ export default function PrimaryExplanationStream({ chatPropsWithId }: Explanatio
     <Box>
       {assistantMessages.map((message) => (
         <MemoizedMarkdown
-          key={`${chatPropsWithId.id}-${message.id}`}
+          key={`${id}-${message.id}`}
           id={message.id}
-          content={message.content}
+          content={getMessageText(message)}
         />
       ))}
     </Box>

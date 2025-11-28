@@ -17,22 +17,26 @@ type TranslationFeatureProps = {
   setIsSearchControlsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+/**
+ * Refactoring away from mutliple search targets. Outstanding tasks:
+ * - remove searchTarget param
+ * - remove parallel search hook
+ * - resolve primary var names
+ */
+
 export default function MitraSearch({
   isSearchControlsOpen,
   setIsSearchControlsOpen,
 }: TranslationFeatureProps) {
-  const handleToggleShowOptions = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsSearchControlsOpen(event.target.checked)
+  const handleToggleShowOptions = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsSearchControlsOpen(event.target.checked)
 
-      if (event.target.checked) {
-        localStorage.setItem(localStorageKeys.showSearchControls, String(event.target.checked))
-      } else {
-        localStorage.removeItem(localStorageKeys.showSearchControls)
-      }
-    },
-    [setIsSearchControlsOpen],
-  )
+    if (event.target.checked) {
+      localStorage.setItem(localStorageKeys.showSearchControls, String(event.target.checked))
+    } else {
+      localStorage.removeItem(localStorageKeys.showSearchControls)
+    }
+  }
 
   return (
     <>

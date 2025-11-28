@@ -19,22 +19,20 @@ function DeepResearchPromptComponent({
   chatPropsWithId,
 }: Omit<DeepResearchPromptProps, "isRendered">) {
   const updatedChatPropsWithId = React.useMemo(() => {
-    const chatProps = createChatProps({
+    return createChatProps({
       localEndpoint: streamUtils.localAPIEndpoints["mitra-translation"],
       requestBody: { ...chatPropsWithId.body, target_lang: "english-deep-research" },
-      initialInput: chatPropsWithId.body.input_sentence,
     })
-    return { ...chatProps, id: JSON.stringify(chatProps.body) }
   }, [chatPropsWithId])
 
   const [, setTargetLang] = useTargetLangParamWithLocalStorage()
 
-  const { handleSubmit } = useChat(updatedChatPropsWithId)
+  const { sendMessage } = useChat(updatedChatPropsWithId)
   const t = useTranslations("translation")
 
   const handleClick = () => {
     setTargetLang("english-deep-research")
-    handleSubmit()
+    sendMessage({ text: chatPropsWithId.body.input_sentence })
   }
 
   return (

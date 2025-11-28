@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { streamText } from "ai"
+import { convertToModelMessages, streamText } from "ai"
 
 import { createForwardedHeaders } from "../utils"
 
@@ -27,9 +27,9 @@ export async function POST(request: NextRequest) {
 
     const providerModel = validateModel(model) ? model : "default"
 
-    const responseStream = streamText({
+    const result = streamText({
       model: mitraSearchSummary(providerModel),
-      messages,
+      messages: convertToModelMessages(messages),
       temperature: 0.1,
       headers: createForwardedHeaders(request.headers),
       providerOptions: {
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    return responseStream.toTextStreamResponse()
+    return result.toUIMessageStreamResponse()
   } catch (error) {
     console.error("Search summary stream route error: ", error)
     return new Response(

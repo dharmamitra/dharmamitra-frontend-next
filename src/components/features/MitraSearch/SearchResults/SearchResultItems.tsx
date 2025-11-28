@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box"
 
-import ResultItem, { ResultItemsFrame } from "../ResultItem"
+import ResultItem, { ResultItemsFrame } from "./ResultItem"
 
 import { SearchApiTypes } from "@/api"
 
@@ -8,7 +8,7 @@ type Props = {
   results: SearchApiTypes.Response<"/primary/">["results"]
 }
 
-export default function PrimarySearchResultItems({ results }: Props) {
+export default function SearchResultItems({ results }: Props) {
   return (
     <Box>
       {results.map((result, index) => {
@@ -19,7 +19,7 @@ export default function PrimarySearchResultItems({ results }: Props) {
               size={{ xs: 12 }}
               language={lang}
               link={src_link}
-              primarySearchResult={result}
+              searchResult={result}
               // TODO: clean up
               {...props}
             />

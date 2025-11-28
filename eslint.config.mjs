@@ -73,7 +73,7 @@ const eslintConfig = defineConfig([
       ],
     },
   },
-   {
+  {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     rules: {
       "prettier/prettier": "error",
@@ -153,7 +153,7 @@ const eslintConfig = defineConfig([
       "@next/next/no-html-link-for-pages": "off",
     },
   },
-  // TARGETED OVERRIDES
+     // TARGETED OVERRIDES
   {
     files: ["./src/lib/api/*.ts"],
     rules: {
@@ -161,7 +161,7 @@ const eslintConfig = defineConfig([
     },
   },
   {
-    files: ["./src/components/memoized-markdown.tsx"],
+    files: ["./src/components/memoized-markdown.tsx", "**/test/page.tsx"],
     rules: {
       "@typescript-eslint/no-unused-vars": "off",
     },
