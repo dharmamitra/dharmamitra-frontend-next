@@ -66,12 +66,11 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.4.1",
     "@eslint/js": "^9.39.1",
     "@next/eslint-plugin-next": "^16.0.5",
     "@playwright/test": "^1.57.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/github": "^12.0.2",
     "@tanstack/eslint-plugin-query": "^5.91.2",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
@@ -92,7 +91,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "openapi-typescript": "^7.10.1",
-    "semantic-release": "^24.2.9",
+    "semantic-release": "^25.0.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.0"
   },
