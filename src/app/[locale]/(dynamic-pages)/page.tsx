@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <StorageCheck />
       <PageContentFrame maxWidth="xl" sx={{ mb: { xs: 6, md: 14 } }}>
-        <Typography component="h1" sx={visuallyHidden}>
+        <Typography component="h1" style={visuallyHidden}>
           Dharmamitra
         </Typography>
         <MultiFeatureMitra />

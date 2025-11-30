@@ -1,7 +1,7 @@
+import { searchInputId } from "./SearchInput"
+
 import { SearchApiTypes } from "@/api"
 import { allSearchDefaultParams } from "@/utils/api/search/params"
-
-import { searchInputId } from "./SearchInput"
 
 export function createPrimarySearchRequestBody(
   params: Partial<SearchApiTypes.RequestBody<"/primary/">>,

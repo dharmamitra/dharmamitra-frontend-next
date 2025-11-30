@@ -1,26 +1,25 @@
-import React from "react"
 import Box from "@mui/material/Box"
 
-import { SearchApiTypes } from "@/api"
+import ResultItem, { ResultItemsFrame } from "./ResultItem"
 
-import ResultItem, { ResultItemsFrame } from "../ResultItem"
+import { SearchApiTypes } from "@/api"
 
 type Props = {
   results: SearchApiTypes.Response<"/primary/">["results"]
 }
 
-export default function PrimarySearchResultItems({ results }: Props) {
+export default function SearchResultItems({ results }: Props) {
   return (
     <Box>
       {results.map((result, index) => {
-        const { lang, src_link, query, summary, ...props } = result
+        const { lang, src_link, query: _query, summary: _summary, ...props } = result
         return (
           <ResultItemsFrame key={`parallel-result-${index}`}>
             <ResultItem
               size={{ xs: 12 }}
               language={lang}
               link={src_link}
-              primarySearchResult={result}
+              searchResult={result}
               // TODO: clean up
               {...props}
             />

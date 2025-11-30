@@ -1,10 +1,10 @@
-import { Box, Typography } from "@mui/material"
-
-import customTheming from "@/utils/theme/config"
+import { Box } from "@mui/material"
 
 import Blurb from "./Blurb"
 import LogoBlock from "./LogoBlock"
 import { Socials } from "./Socials"
+
+import customTheming from "@/utils/theme/config"
 
 export default function Footer({ isLocalized = true }: { isLocalized?: boolean }) {
   return (

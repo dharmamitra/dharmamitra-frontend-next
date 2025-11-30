@@ -20,11 +20,9 @@ const nextConfig = {
   basePath: getBasePath(),
   output: "standalone",
   productionBrowserSourceMaps: true,
-  eslint: {
-    ignoreDuringBuilds: process.env.NEXT_DISABLE_ESLINT === "true",
-  },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   reactStrictMode: true,
+  reactCompiler: true,
   images: {
     // https://nextjs.org/docs/app/api-reference/components/image#configuration-options
     formats: ["image/avif", "image/webp"],

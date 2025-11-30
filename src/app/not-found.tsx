@@ -5,7 +5,7 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter"
 
 // import theme from "@/utils/theme"
-import Error from "@/components/Error"
+// import Error from "@/components/Error"
 // import Footer from "@/components/layout/Footer/Footer"
 // import AppBar from "@/components/layout/NavigationBar/AppBar"
 import NotFound from "@/components/NotFound"

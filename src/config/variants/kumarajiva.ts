@@ -1,6 +1,6 @@
-import { TargetLanguage } from "@/utils/api/translation/params"
-
 import defineConfig from "../defineConfig"
+
+import { TargetLanguage } from "@/utils/api/translation/params"
 
 export const targetLanguages: TargetLanguage[] = [
   "modern-chinese",

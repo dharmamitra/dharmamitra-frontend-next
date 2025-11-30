@@ -4,6 +4,8 @@ import React from "react"
 import { useTranslations } from "next-intl"
 import { Box, MenuItem, RadioGroup, Select, Tooltip } from "@mui/material"
 
+import RadioOption from "../../RadioOption"
+
 import styles from "@/components/customFocusVisible.module.css"
 import {
   flatRadioGroupStyles,
@@ -16,8 +18,6 @@ import { useResponsiveOptions } from "@/hooks/responsiveLayout"
 import useAppConfig from "@/hooks/useAppConfig"
 import useFocusHighlight from "@/hooks/useFocusHighlight"
 import { getOptionI18nKeyPath } from "@/utils"
-
-import RadioOption from "../../RadioOption"
 
 export default function TargetLanguageSelector() {
   const t = useTranslations()

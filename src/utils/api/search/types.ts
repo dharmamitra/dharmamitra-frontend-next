@@ -1,3 +1,4 @@
+import { Messages } from "@/app/types"
 import type { components, paths } from "@/lib/api/search"
 import type { APIRequestBody, APIResponse } from "@/utils/api/helpers"
 

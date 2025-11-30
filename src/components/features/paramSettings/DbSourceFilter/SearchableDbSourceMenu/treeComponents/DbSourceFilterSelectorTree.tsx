@@ -2,14 +2,14 @@ import { memo } from "react"
 import { Tree } from "react-arborist"
 import { useSetAtom } from "jotai"
 
+import { handleTreeChange, isSearchMatch } from "../utils"
+
 import { activeDbSourceTreeAtom, activeDbSourceTreeBreadcrumbsAtom } from "@/atoms"
 import { DbSourceFilterTreeNode } from "@/components/features/paramSettings/DbSourceFilter/SearchableDbSourceMenu/nodeComponents/DbSourceFilterTreeNode"
 import type {
   DbSourceFilterSelectorTreeProps,
   DbSourceTreeBaseProps,
 } from "@/components/features/paramSettings/DbSourceFilter/types"
-
-import { handleTreeChange, isSearchMatch } from "../utils"
 
 export const DbSourceFilterSelectorTree = memo(function DbSourceFilterSelectorTree({
   data,

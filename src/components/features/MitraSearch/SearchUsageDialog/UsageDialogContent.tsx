@@ -1,4 +1,3 @@
-import React from "react"
 import { useTranslations } from "next-intl"
 import { Box, Link, List, ListItem, ListItemText, Typography } from "@mui/material"
 
@@ -12,8 +11,8 @@ export default function UsageDialogContent({ dense }: { dense?: boolean }) {
   return (
     <Box>
       {/* Hack: hidden focusable element to receive initial focus instead of the link when Dialog is opened */}
-      <div
-        tabIndex={0}
+      <button
+        aria-hidden="true"
         style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px" }}
       />
 

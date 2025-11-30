@@ -1,3 +1,4 @@
+import { Messages } from "@/app/types"
 import * as searchParams from "@/utils/api/search/params"
 import { Schema as SearchSchema } from "@/utils/api/search/types"
 import { exhaustiveStringTuple } from "@/utils/typescript"

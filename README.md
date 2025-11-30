@@ -408,12 +408,6 @@ For reduced production build size the project has been configured for [`standalo
 
 Note the `configure experimental.outputFileTracingExcludes` and `experimental.outputFileTracingIncludes` as needed.
 
-### Running a test build by-passing eslint
-
-```sh
-NEXT_DISABLE_ESLINT=true yarn build
-```
-
 ### Running a local build
 
 [`dumb-init`](https://github.com/Yelp/dumb-init) needs to be installed to run the server.

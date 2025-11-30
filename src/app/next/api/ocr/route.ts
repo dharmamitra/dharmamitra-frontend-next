@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 import { FormData as UndiciFormData } from "undici"
 
-import { awaitedTryCatch } from "@/utils"
-
 import { fetchOCRData, handleFileResponse, handleJsonResponse } from "./handlers"
+
+import { awaitedTryCatch } from "@/utils"
 
 export const maxDuration = 3600 // 1hr
 

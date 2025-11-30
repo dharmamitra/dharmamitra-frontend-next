@@ -1,39 +1,37 @@
 "use client"
 
 import React from "react"
-import { useChat, UseChatOptions } from "@ai-sdk/react"
 
 interface TranslatorKeyboardControlsProps {
-  chatPropsWithId: UseChatOptions
-  isInput: boolean
+  input: string
+  sendMessage: (message: { text: string }) => void
+  stop: () => void
+  status: "submitted" | "streaming" | "ready" | "error"
 }
 
 export default function TranslatorKeyboardControls({
-  chatPropsWithId,
-  isInput,
+  input,
+  sendMessage,
+  stop,
+  status,
 }: TranslatorKeyboardControlsProps) {
-  const { stop, status, handleSubmit } = useChat(chatPropsWithId)
-
-  const handleUserKeyPress = React.useCallback(
-    (event: KeyboardEvent) => {
+  React.useEffect(() => {
+    const handleUserKeyPress = (event: KeyboardEvent) => {
       const { key, ctrlKey } = event
 
-      if (isInput && key === "Enter" && ctrlKey) {
-        handleSubmit(event, { allowEmptySubmit: true })
+      if (input && key === "Enter" && ctrlKey) {
+        sendMessage({ text: input })
       }
       if (status === "submitted" && key === "Escape") {
         stop()
       }
-    },
-    [stop, status, handleSubmit, isInput],
-  )
+    }
 
-  React.useEffect(() => {
     window.addEventListener("keydown", handleUserKeyPress)
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress)
     }
-  }, [handleUserKeyPress, chatPropsWithId])
+  }, [input, sendMessage, stop, status])
 
   return <></>
 }

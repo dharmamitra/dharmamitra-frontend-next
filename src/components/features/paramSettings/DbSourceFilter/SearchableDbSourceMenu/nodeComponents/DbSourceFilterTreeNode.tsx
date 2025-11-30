@@ -2,6 +2,11 @@ import React from "react"
 import type { NodeApi, NodeRendererProps } from "react-arborist"
 import { Box, Checkbox, Tooltip, Typography } from "@mui/material"
 
+import { ExpanderArrow } from "./ExpanderArrow"
+import { SourceTypeIcon } from "./SourceTypeIcon"
+import { NodeBox, NodeLabelsBox, RowBox, TextNameTypography } from "./styledComponents"
+import styles from "./TextItemLink.module.css"
+
 import {
   type DbSourceTreeNode,
   DbSourceTreeNodeDataType as NodeType,
@@ -12,11 +17,6 @@ import {
   useIncludeCollectionsParam,
   useIncludeFilesParam,
 } from "@/hooks/params"
-
-import { ExpanderArrow } from "./ExpanderArrow"
-import { SourceTypeIcon } from "./SourceTypeIcon"
-import { NodeBox, NodeLabelsBox, RowBox, TextNameTypography } from "./styledComponents"
-import styles from "./TextItemLink.module.css"
 
 const CHARACTER_WIDTH = 6.5
 const INDENTATION_WIDTH = 90

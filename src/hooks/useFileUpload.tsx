@@ -9,17 +9,6 @@ type FileUploadHookProps = {
   maxSize: number
 }
 
-type FileUploadHookReturn = {
-  isDragging: boolean
-  fileInputRef: React.RefObject<HTMLInputElement | null>
-  handleDragOver: (e: React.DragEvent) => void
-  handleDragLeave: (e: React.DragEvent) => void
-  handleDrop: (e: React.DragEvent) => void
-  handleFileInput: (e: React.ChangeEvent<HTMLInputElement>) => void
-  handleBrowseClick: () => void
-  acceptedFileTypes: string
-}
-
 /**
  * A hook for handling file uploads with drag and drop functionality
  */

@@ -1,19 +1,25 @@
 import { use } from "react"
-import { useTranslations } from "next-intl"
+import { notFound } from "next/navigation"
+import { hasLocale, useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Box, Divider, Typography } from "@mui/material"
 import visuallyHidden from "@mui/utils/visuallyHidden"
+
+import membersData from "./data"
 
 import { DefaultPageParams, Metadata } from "@/app/types"
 import PageContentFrame from "@/components/layout/PageContentFrame"
 import Members from "@/components/Members"
 import Section from "@/components/Section"
-
-import membersData from "./data"
+import { routing } from "@/i18n/routing"
 
 export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const resolvedParams = await params
   const locale = resolvedParams?.locale
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {}
+  }
 
   const t = await getTranslations({ locale, namespace: "pages.team.dharmamitra" })
 
@@ -41,6 +47,10 @@ const DividedSectionHeader = ({ heading }: { heading: string }) => (
 export default function TeamPage({ params }: DefaultPageParams) {
   const { locale } = use(params)
 
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
+
   setRequestLocale(locale)
   const t = useTranslations("pages.team.dharmamitra")
 
@@ -51,7 +61,7 @@ export default function TeamPage({ params }: DefaultPageParams) {
       </Typography>
 
       <Section sx={{ mt: 6 }}>
-        <Typography component="h2" sx={visuallyHidden}>
+        <Typography component="h2" style={visuallyHidden}>
           {t("teamH2")}
         </Typography>
         <Typography variant="h3" textAlign="center" color="textSecondary">

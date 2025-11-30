@@ -1,3 +1,4 @@
+import React from "react"
 import Box from "@mui/material/Box"
 
 import { View } from "@/utils/api/global/types"

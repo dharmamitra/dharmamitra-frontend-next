@@ -1,8 +1,8 @@
 import { useQueryState } from "nuqs"
 
-import { searchParamsNames } from "@/utils/api/search/params"
-
 import { parseAsMultiLineString } from "./parsers"
+
+import { searchParamsNames } from "@/utils/api/search/params"
 
 const {
   api: { search_input },

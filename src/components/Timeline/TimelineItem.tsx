@@ -1,10 +1,10 @@
 import { Stack, Typography } from "@mui/material"
 
-import { NewsPost } from "@/content/schemas"
-import { formatDate } from "@/utils"
-
 import TimelineDot from "./TimelineDot"
 import TimelineTitle from "./TimelineTitle"
+
+import { NewsPost } from "@/content/schemas"
+import { formatDate } from "@/utils"
 
 export default function TimelineItem({
   title,

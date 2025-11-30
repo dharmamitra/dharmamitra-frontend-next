@@ -1,5 +1,6 @@
 // import { useTranslations } from "next-intl"
 
+import React from "react"
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown"
 import { IconButton, SxProps } from "@mui/material"
 

@@ -6,12 +6,12 @@ import Button from "@mui/material/Button"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import { useQuery } from "@tanstack/react-query"
 
+import TaggingDrawer from "./TaggingDrawer"
+import styles from "./TranslationTagging.module.css"
+
 import { DMFetchApi } from "@/api"
 import { useTargetLangParamWithLocalStorage } from "@/hooks/params"
 import useTaggingRequestBody from "@/hooks/translation/useTaggingRequestBody"
-
-import TaggingDrawer from "./TaggingDrawer"
-import styles from "./TranslationTagging.module.css"
 
 const defaultSmDrawerWidth = "95%"
 const defaultLgDrawerWidth = 700

@@ -1,9 +1,6 @@
 import * as React from "react"
 import Box from "@mui/material/Box"
 
-import InputEncodingSelector from "@/components/features/paramSettings/InputEncodingSelector"
-import { localStorageKeys } from "@/utils/constants"
-
 import ResetOptionsButton from "./controls/ResetOptionsButton"
 import ShowOptionsSwitch from "./controls/ShowOptionsSwitch"
 import SubInputSearchControls from "./controls/SubInputSearchControls"
@@ -12,27 +9,34 @@ import SearchInput from "./SearchInput"
 import SearchResults from "./SearchResults"
 import SearchUsageDialog from "./SearchUsageDialog"
 
+import InputEncodingSelector from "@/components/features/paramSettings/InputEncodingSelector"
+import { localStorageKeys } from "@/utils/constants"
+
 type TranslationFeatureProps = {
   isSearchControlsOpen: boolean
   setIsSearchControlsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+/**
+ * Refactoring away from mutliple search targets. Outstanding tasks:
+ * - remove searchTarget param
+ * - remove parallel search hook
+ * - resolve primary var names
+ */
+
 export default function MitraSearch({
   isSearchControlsOpen,
   setIsSearchControlsOpen,
 }: TranslationFeatureProps) {
-  const handleToggleShowOptions = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsSearchControlsOpen(event.target.checked)
+  const handleToggleShowOptions = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsSearchControlsOpen(event.target.checked)
 
-      if (event.target.checked) {
-        localStorage.setItem(localStorageKeys.showSearchControls, String(event.target.checked))
-      } else {
-        localStorage.removeItem(localStorageKeys.showSearchControls)
-      }
-    },
-    [setIsSearchControlsOpen],
-  )
+    if (event.target.checked) {
+      localStorage.setItem(localStorageKeys.showSearchControls, String(event.target.checked))
+    } else {
+      localStorage.removeItem(localStorageKeys.showSearchControls)
+    }
+  }
 
   return (
     <>

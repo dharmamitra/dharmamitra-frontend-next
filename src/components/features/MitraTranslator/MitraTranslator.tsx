@@ -1,7 +1,18 @@
 "use client"
 
 import React from "react"
+import { useChat } from "@ai-sdk/react"
 import Box from "@mui/material/Box"
+
+import TranslatorInputControls from "./controls/TranslatorInputControls"
+import TranslatorKeyboardControls from "./controls/TranslatorKeyboardControls"
+import TranslatorOutputControls from "./controls/TranslatorOutputControls"
+import TranslationOutput from "./TranslationOutput"
+import TranslationTagging from "./TranslationTagging"
+import TranslationUsageDialog from "./TranslationUsageDialog"
+import TranslatorInput from "./TranslatorInput"
+import TranslatorLayout from "./TranslatorLayout"
+import { createTranslationRequestBody } from "./utils"
 
 import { streamUtils } from "@/api"
 import { ACCEPTED_FILE_TYPES_UI_STRING } from "@/components/features/MitraOCR/utils"
@@ -14,16 +25,6 @@ import {
   useTranslationModelParam,
 } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
-
-import TranslatorInputControls from "./controls/TranslatorInputControls"
-import TranslatorKeyboardControls from "./controls/TranslatorKeyboardControls"
-import TranslatorOutputControls from "./controls/TranslatorOutputControls"
-import TranslationOutput from "./TranslationOutput"
-import TranslationTagging from "./TranslationTagging"
-import TranslationUsageDialog from "./TranslationUsageDialog"
-import TranslatorInput from "./TranslatorInput"
-import TranslatorLayout from "./TranslatorLayout"
-import { createTranslationRequestBody } from "./utils"
 
 export default function MitraTranslator() {
   const {
@@ -47,14 +48,14 @@ export default function MitraTranslator() {
       model,
     })
 
-    const chatProps = createChatProps({
+    return createChatProps({
       localEndpoint: streamUtils.localAPIEndpoints["mitra-translation"],
       requestBody,
-      initialInput: input_sentence,
     })
-
-    return { ...chatProps, id: JSON.stringify(requestBody) }
   }, [input_sentence, input_encoding, target_lang, model])
+
+  // Single useChat instance shared across all child components
+  const chatHelpers = useChat(chatPropsWithId)
 
   const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
@@ -62,22 +63,19 @@ export default function MitraTranslator() {
   // State to track if file upload is in progress
   const [isFileUploadPending, setIsFileUploadPending] = React.useState(false)
 
-  // Pass the file upload state to the TranslatorInput component
-  const handleFileUploadStateChange = React.useCallback((isPending: boolean) => {
-    setIsFileUploadPending(isPending)
-  }, [])
-
   // Function to trigger file browse dialog
-  const handleFileButtonClick = React.useCallback(() => {
+  const handleFileButtonClick = () => {
     fileInputRef.current?.click()
-  }, [])
+  }
 
   return (
     <>
       <TranslationUsageDialog />
       <TranslatorKeyboardControls
-        chatPropsWithId={chatPropsWithId}
-        isInput={Boolean(input_sentence)}
+        input={input_sentence}
+        sendMessage={chatHelpers.sendMessage}
+        stop={chatHelpers.stop}
+        status={chatHelpers.status}
       />
 
       <Box
@@ -98,7 +96,7 @@ export default function MitraTranslator() {
       <TranslatorLayout
         inputControls={
           <TranslatorInputControls
-            chatPropsWithId={chatPropsWithId}
+            queryId={chatPropsWithId.id}
             input={input_sentence}
             setInput={setInputSentenceParam}
             isTriggerDisabled={!input_sentence.match(/\S+/g)?.length}
@@ -107,6 +105,10 @@ export default function MitraTranslator() {
             onFileButtonClick={handleFileButtonClick}
             fileUploadDisabled={isFileUploadPending}
             acceptedFileTypes={ACCEPTED_FILE_TYPES_UI_STRING}
+            sendMessage={chatHelpers.sendMessage}
+            stop={chatHelpers.stop}
+            status={chatHelpers.status}
+            messages={chatHelpers.messages}
           />
         }
         outputContoles={<TranslatorOutputControls contentRef={outputBoxRef} />}
@@ -115,10 +117,18 @@ export default function MitraTranslator() {
             input={input_sentence}
             setInput={setInputSentenceParam}
             fileInputRef={fileInputRef}
-            onFileUploadStateChange={handleFileUploadStateChange}
+            onFileUploadStateChange={setIsFileUploadPending}
           />
         }
-        outputBlock={<TranslationOutput ref={outputBoxRef} chatPropsWithId={chatPropsWithId} />}
+        outputBlock={
+          <TranslationOutput
+            ref={outputBoxRef}
+            chatPropsWithId={chatPropsWithId}
+            messages={chatHelpers.messages}
+            status={chatHelpers.status}
+            error={chatHelpers.error}
+          />
+        }
       />
     </>
   )

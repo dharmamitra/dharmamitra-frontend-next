@@ -1,6 +1,6 @@
-import { allTargetLanguages } from "@/utils/api/translation/params"
-
 import defineConfig, { defaultSubPages } from "../defineConfig"
+
+import { allTargetLanguages } from "@/utils/api/translation/params"
 
 export default function createDevConfig() {
   return defineConfig({

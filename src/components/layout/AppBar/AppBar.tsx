@@ -7,11 +7,11 @@ import { Breakpoint } from "@mui/material"
 import { useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
-import { useNavItems } from "@/hooks/useNavItems"
-
 import AppBarFrame from "./AppBarFrame"
 import DesktopNavMenu from "./DesktopNavMenu"
 import MobileNavMenuLoading from "./MobileNavMenuLoading"
+
+import { useNavItems } from "@/hooks/useNavItems"
 
 const DESKTOP_BREAKPOINT: Breakpoint = "md"
 
@@ -20,14 +20,18 @@ const MobileNavMenu = dynamic(() => import("./MobileNavMenu"), {
   ssr: false,
 })
 
-export default function AppBar() {
+type Props = {
+  showExtensionBanner?: boolean
+}
+
+export default function AppBar({ showExtensionBanner = true }: Props) {
   const navItems = useNavItems()
   const t = useTranslations("navigation")
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down(DESKTOP_BREAKPOINT))
 
   return (
-    <AppBarFrame>
+    <AppBarFrame showExtensionBanner={showExtensionBanner}>
       {isMobile ? (
         <MobileNavMenu
           navItems={navItems}

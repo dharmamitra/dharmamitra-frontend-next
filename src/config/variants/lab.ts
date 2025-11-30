@@ -1,6 +1,6 @@
-import { allTargetLanguages } from "@/utils/api/translation/params"
-
 import defineConfig from "../defineConfig"
+
+import { allTargetLanguages } from "@/utils/api/translation/params"
 
 export default function createLabConfig() {
   return defineConfig({

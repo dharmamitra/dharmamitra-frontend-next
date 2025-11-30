@@ -49,16 +49,25 @@ export default function SearchExamples({ isShown }: Props) {
   const [search_input] = useSearchInputParam()
   const locale = useLocale()
 
-  const examples = React.useMemo(() => {
-    const uniqueExamples = new Set<string>()
-    while (uniqueExamples.size < 7) {
-      const randomIndex = Math.floor(Math.random() * exampleSearchStrings[locale].length)
-      uniqueExamples.add(exampleSearchStrings[locale][randomIndex] ?? "")
+  const [examples, setExamples] = React.useState<string[]>([])
+
+  React.useEffect(() => {
+    const localeExamples = exampleSearchStrings[locale] ?? []
+    if (!localeExamples.length) {
+      setExamples([])
+      return
     }
-    return Array.from(uniqueExamples)
+
+    const maxExamples = Math.min(7, localeExamples.length)
+    const uniqueExamples = new Set<string>()
+    while (uniqueExamples.size < maxExamples) {
+      const randomIndex = Math.floor(Math.random() * localeExamples.length)
+      uniqueExamples.add(localeExamples[randomIndex] ?? "")
+    }
+    setExamples(Array.from(uniqueExamples))
   }, [locale])
 
-  if (!isShown || search_input) return null
+  if (!isShown || search_input || !examples.length) return null
 
   return (
     <Box

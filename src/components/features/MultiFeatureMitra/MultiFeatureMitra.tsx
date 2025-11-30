@@ -12,6 +12,9 @@ import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
+import FeatureTabPanel from "./FeatureTabPanel"
+import ScrollToTopButton from "./ScrollToTopButton"
+
 import MitraOCR from "@/components/features/MitraOCR"
 import MitraSearch from "@/components/features/MitraSearch"
 import MitraTranslator from "@/components/features/MitraTranslator"
@@ -20,9 +23,6 @@ import { useViewParamWithLocalStorage } from "@/hooks/params/useViewParamWithLoc
 import { views } from "@/utils/api/global/params"
 import { View } from "@/utils/api/global/types"
 import { localStorageKeys } from "@/utils/constants"
-
-import FeatureTabPanel from "./FeatureTabPanel"
-import ScrollToTopButton from "./ScrollToTopButton"
 
 export const minToolBoxHeight = "70vh"
 

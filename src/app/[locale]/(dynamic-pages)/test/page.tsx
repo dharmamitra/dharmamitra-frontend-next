@@ -15,56 +15,56 @@ import { useInputSentenceParam } from "@/hooks/params"
 export default function Page() {
   const [input_sentence, setInputSentence] = useInputSentenceParam()
 
-  const {
-    messages: messagesTest,
-    status: statusTest,
-    error: errorTest,
-    handleSubmit: handleSubmitTest,
-    setMessages: setMessagesTest,
-  } = useChat({
-    id: "test-stream",
-    api: appConfig.basePath + "/next/api/test-stream",
-    streamProtocol: "text",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: {
-      input_sentence,
-    },
-  })
+  // const {
+  //   messages: messagesTest,
+  //   status: statusTest,
+  //   error: errorTest,
+  //   handleSubmit: handleSubmitTest,
+  //   setMessages: setMessagesTest,
+  // } = useChat({
+  //   id: "test-stream",
+  //   api: appConfig.basePath + "/next/api/test-stream",
+  //   streamProtocol: "text",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: {
+  //     input_sentence,
+  //   },
+  // })
 
-  const handleTestSubmit = () => {
-    setMessagesTest([])
-    handleSubmitTest(undefined, {
-      allowEmptySubmit: true,
-    })
-  }
+  // const handleTestSubmit = () => {
+  //   setMessagesTest([])
+  //   handleSubmitTest(undefined, {
+  //     allowEmptySubmit: true,
+  //   })
+  // }
 
-  const {
-    messages: messagesMitra,
-    status: statusMitra,
-    error: errorMitra,
-    handleSubmit: handleSubmitMitra,
-    setMessages: setMessagesMitra,
-  } = useChat({
-    id: "mitra-stream",
-    api: appConfig.basePath + "/next/api/mitra-translation-stream",
-    streamProtocol: "text",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: {
-      input_sentence,
-      target_language: "english-explained",
-    },
-  })
+  // const {
+  //   messages: messagesMitra,
+  //   status: statusMitra,
+  //   error: errorMitra,
+  //   handleSubmit: handleSubmitMitra,
+  //   setMessages: setMessagesMitra,
+  // } = useChat({
+  //   id: "mitra-stream",
+  //   api: appConfig.basePath + "/next/api/mitra-translation-stream",
+  //   streamProtocol: "text",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: {
+  //     input_sentence,
+  //     target_language: "english-explained",
+  //   },
+  // })
 
-  const handleMitraSubmit = () => {
-    setMessagesMitra([])
-    handleSubmitMitra(undefined, {
-      allowEmptySubmit: true,
-    })
-  }
+  // const handleMitraSubmit = () => {
+  //   setMessagesMitra([])
+  //   handleSubmitMitra(undefined, {
+  //     allowEmptySubmit: true,
+  //   })
+  // }
 
   return (
     <div>
@@ -82,7 +82,7 @@ export default function Page() {
           maxWidth: "1600px",
         }}
       >
-        <h1>Translators</h1>
+        {/* <h1>Translators</h1>
 
         <textarea
           style={{
@@ -154,7 +154,7 @@ export default function Page() {
               ))}
             </Box>
           </Box>
-        </Box>
+        </Box> */}
       </main>
     </div>
   )

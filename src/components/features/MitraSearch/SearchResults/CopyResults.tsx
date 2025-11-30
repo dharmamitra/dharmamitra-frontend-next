@@ -3,17 +3,21 @@ import { useTranslations } from "next-intl"
 import { IconButton } from "@mui/material"
 import Tooltip from "@mui/material/Tooltip"
 
+import ResultsListCopyIcon, { type ResultsListCopyType } from "./ResultsListCopyIcon"
+
 import { SearchApiTypes } from "@/api"
 
-import { tipMsgs } from "../ParallelQueryResults/ParallelCopyResults"
-import ResultsListCopyIcon, { type ResultsListCopyType } from "../ResultsListCopyIcon"
+const tipMsgs = {
+  full: "copyResultsList",
+  refs: "copyResultsRefs",
+} as const
 
-type PrimaryCopyResultsProps = {
+type CopyResultsProps = {
   results: SearchApiTypes.Response<"/primary/">["results"]
   type: ResultsListCopyType
 }
 
-export default function PrimaryCopyResults({ results, type }: PrimaryCopyResultsProps) {
+export default function CopyResults({ results, type }: CopyResultsProps) {
   const t = useTranslations("generic")
   const [toolTip, setToolTip] = React.useState<string>(t(tipMsgs[type]))
 

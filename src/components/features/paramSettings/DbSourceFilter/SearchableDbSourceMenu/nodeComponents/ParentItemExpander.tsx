@@ -2,13 +2,13 @@ import React from "react"
 import { NodeApi } from "react-arborist"
 import { Chip, Typography } from "@mui/material"
 
+import { SourceTypeIcon } from "./SourceTypeIcon"
+import { RowBox } from "./styledComponents"
+
 import {
   DbSourceTreeNode,
   DbSourceTreeNodeDataType as NodeType,
 } from "@/components/features/paramSettings/DbSourceFilter/types"
-
-import { SourceTypeIcon } from "./SourceTypeIcon"
-import { RowBox } from "./styledComponents"
 
 export function ParentItemExpander({ node }: { node: NodeApi<DbSourceTreeNode> }) {
   const { dataType, name, id } = node.data

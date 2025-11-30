@@ -1,5 +1,6 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
+import type { Messages } from "@/app/types"
 import imgAarnavSrivastava from "@/assets/team/aarnav-srivastava.jpg"
 import imgAminahBorgLuck from "@/assets/team/aminah.jpg"
 import avatar from "@/assets/team/avatar.svg"

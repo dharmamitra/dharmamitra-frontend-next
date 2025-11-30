@@ -2,48 +2,38 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
-import { useChat, UseChatOptions } from "@ai-sdk/react"
 import PlayCircleIcon from "@mui/icons-material/PlayCircle"
 import StopCircleIcon from "@mui/icons-material/StopCircle"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
+import { UIMessage } from "ai"
 
 import { tooltipEnterStyles } from "@/components/styled-ssr-safe"
 
 interface StartStopStreamButtonProps {
-  chatPropsWithId: UseChatOptions
+  queryId: string
   input: string
   isTriggerDisabled: boolean
   completedQueryIds: Set<string>
   setCompletedQueryIds: React.Dispatch<React.SetStateAction<Set<string>>>
+  // Chat helpers from parent
+  sendMessage: (message: { text: string }) => void
+  stop: () => void
+  status: "submitted" | "streaming" | "ready" | "error"
+  messages: UIMessage[]
 }
 
 export default function StartStopStreamButton({
-  chatPropsWithId,
+  queryId,
   input,
   isTriggerDisabled,
   setCompletedQueryIds,
+  sendMessage,
+  stop,
+  status,
+  messages,
 }: StartStopStreamButtonProps) {
   const t = useTranslations()
-
-  const queryId = chatPropsWithId.id
-
-  // TODO: review & fix message duplication & empty messages case
-  const { stop, setInput, status, handleSubmit, messages } = useChat(chatPropsWithId)
-
-  React.useEffect(() => {
-    // Ensures handlers are able to be called
-    setInput(input)
-  }, [input, setInput])
-
-  const handleTranslate = React.useCallback(() => {
-    handleSubmit(undefined, { allowEmptySubmit: true })
-  }, [handleSubmit])
-
-  const handleAbort = React.useCallback(() => {
-    stop()
-    setInput(input)
-  }, [stop, input, setInput])
 
   React.useEffect(() => {
     if (status === "ready" && messages.length > 0 && queryId) {
@@ -54,7 +44,7 @@ export default function StartStopStreamButton({
   if (status === "submitted") {
     return (
       <Tooltip title={`${t("generic.stop")} (Esc)`} placement="top">
-        <IconButton aria-label={t("generic.stop")} color="secondary" onClick={handleAbort}>
+        <IconButton aria-label={t("generic.stop")} color="secondary" onClick={stop}>
           <StopCircleIcon />
         </IconButton>
       </Tooltip>
@@ -93,7 +83,7 @@ export default function StartStopStreamButton({
           <IconButton
             aria-label={t("translation.translate")}
             color="secondary"
-            onClick={handleTranslate}
+            onClick={() => sendMessage({ text: input })}
             disabled={isTriggerDisabled}
           >
             <PlayCircleIcon />

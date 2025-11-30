@@ -1,11 +1,12 @@
 import { use } from "react"
-import { useTranslations } from "next-intl"
+import { notFound } from "next/navigation"
+import { hasLocale, useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Typography } from "@mui/material"
 
 import { DefaultPageParams, Metadata } from "@/app/types"
 import { PageContentFrame } from "@/components/layout"
-import { getPageLocaleRoutes } from "@/i18n/routing"
+import { getPageLocaleRoutes, routing } from "@/i18n/routing"
 
 export function generateStaticParams() {
   return getPageLocaleRoutes()
@@ -13,6 +14,10 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {}
+  }
 
   const t = await getTranslations({ locale, namespace: "pages.team.dharmamitra" })
 
@@ -23,6 +28,10 @@ export async function generateMetadata({ params }: DefaultPageParams): Promise<M
 
 export default function ExampleParallelRouteTeamPage({ params }: DefaultPageParams) {
   const { locale } = use(params)
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
 
   setRequestLocale(locale)
   const t = useTranslations("pages.team.dharmamitra")

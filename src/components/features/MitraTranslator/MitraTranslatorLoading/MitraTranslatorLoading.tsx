@@ -1,12 +1,13 @@
 import React from "react"
 import { Box } from "@mui/material"
 
-import useAppConfig from "@/hooks/useAppConfig"
-import { inputEncodings } from "@/utils/api/global/params"
-
 import TranslatorLayout from "../TranslatorLayout"
+
 import ExtendedMitraTranslatorLoading from "./ExtendedMitraTranslatorLoading"
 import OptionsLoading from "./OptionsLoading"
+
+import useAppConfig from "@/hooks/useAppConfig"
+import { inputEncodings } from "@/utils/api/global/params"
 
 export default function MitraTranslatorLoading() {
   const {

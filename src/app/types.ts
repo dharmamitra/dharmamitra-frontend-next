@@ -1,28 +1,28 @@
 import { ReactNode } from "react"
 
+import messages from "../../messages/en.json"
+
 import { BUILD_VARIANTS } from "@/config/constants"
 import { SUPPORTED_LOCALES } from "@/i18n"
-
-import messages from "../../messages/en.json"
 
 export type { Metadata } from "next"
 
 export type DefaultPageParams = {
   params: Promise<{
-    locale: SupportedLocale
+    locale: string
   }>
 }
 
 export type NewsPostParams = {
   params: Promise<{
-    locale: SupportedLocale
+    locale: string
     slug: string
   }>
 }
 
 export type UnsupportedNewsPostParams = {
   params: Promise<{
-    locale: SupportedLocale
+    locale: string
     unsupported: string
   }>
 }
@@ -39,7 +39,7 @@ export type PageVariants = Partial<Record<BuildVariant, ReactNode>>
 // Modified to be more explicit about layout props
 export type ParallelVariantLayoutProps = {
   children: ReactNode
-  params: Promise<{ locale: SupportedLocale }>
+  params: Promise<{ locale: string }>
 } & PageVariants
 
 // Global types that are used throughout the application

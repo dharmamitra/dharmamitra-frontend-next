@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl"
 import LanguageIcon from "@mui/icons-material/Language"
 import { FormControl, IconButton, Menu, MenuItem, Typography } from "@mui/material"
 
+import { SupportedLocale } from "@/app/types"
 import { routing, usePathname, useRouter } from "@/i18n/routing"
 
 export default function LocaleSelector() {
@@ -25,16 +26,13 @@ export default function LocaleSelector() {
     setAnchorEl(null)
   }
 
-  const handleLocaleChange = React.useCallback(
-    (locale: SupportedLocale) => {
-      const currentSearch = typeof window !== "undefined" ? window.location.search : ""
-      const fullPath = pathname + currentSearch
+  const handleLocaleChange = (locale: SupportedLocale) => {
+    const currentSearch = typeof window !== "undefined" ? window.location.search : ""
+    const fullPath = pathname + currentSearch
 
-      router.replace(fullPath, { locale })
-      handleClose()
-    },
-    [router, pathname, handleClose],
-  )
+    router.replace(fullPath, { locale })
+    handleClose()
+  }
 
   return (
     <FormControl>

@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react"
-import { UseChatOptions } from "@ai-sdk/react"
 import { Box } from "@mui/material"
+import { UIMessage } from "ai"
 
 import AttachFileButton from "@/components/AttachFileButton"
 import ClearButton from "@/components/ClearButton"
@@ -10,7 +10,7 @@ import { InputEncodingSelector } from "@/components/features/paramSettings"
 import StartStopStreamButton from "@/components/StartStopStreamButton"
 
 type TranslationInputFieldProps = {
-  chatPropsWithId: UseChatOptions
+  queryId: string
   input: string
   isTriggerDisabled: boolean
   setInput: (event: string) => void
@@ -19,6 +19,11 @@ type TranslationInputFieldProps = {
   onFileButtonClick?: () => void
   fileUploadDisabled?: boolean
   acceptedFileTypes?: string
+  // Chat helpers from parent
+  sendMessage: (message: { text: string }) => void
+  stop: () => void
+  status: "submitted" | "streaming" | "ready" | "error"
+  messages: UIMessage[]
 }
 
 export default function TranslatorInputControls(props: TranslationInputFieldProps) {

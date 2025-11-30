@@ -1,8 +1,9 @@
+import { hasLocale } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { DefaultPageParams, DefaultPageProps, Metadata } from "@/app/types"
 import appConfig from "@/config"
-import { getPageLocaleRoutes } from "@/i18n/routing"
+import { getPageLocaleRoutes, routing } from "@/i18n/routing"
 
 export function generateStaticParams() {
   return getPageLocaleRoutes()
@@ -10,6 +11,10 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: DefaultPageParams): Promise<Metadata> {
   const { locale } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {}
+  }
 
   const t = await getTranslations({ locale, namespace: "metadata" })
 
@@ -24,6 +29,10 @@ export async function generateMetadata({ params }: DefaultPageParams): Promise<M
 
 export default async function BaseStaticPageLayout({ params, children }: DefaultPageProps) {
   const { locale } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    return null
+  }
 
   /** Enable static rendering
    * - ¡must be called before next-intl functions eg. getTranslations()!

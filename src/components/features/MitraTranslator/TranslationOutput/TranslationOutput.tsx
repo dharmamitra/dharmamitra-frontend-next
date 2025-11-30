@@ -1,27 +1,32 @@
 "use client"
 
 import React, { forwardRef } from "react"
-import { useChat } from "@ai-sdk/react"
 import Box from "@mui/material/Box"
-
-import ExceptionText from "@/components/ExceptionText"
-import { TranslationChatPropsWithId } from "@/components/features/utils"
-import LoadingDots from "@/components/LoadingDots"
-import { MemoizedMarkdown } from "@/components/memoized-markdown"
+import { UIMessage } from "ai"
 
 import DeepResearchPrompt from "./DeepResearchPrompt"
 
+import ExceptionText from "@/components/ExceptionText"
+import { getMessageText, TranslationChatPropsWithId } from "@/components/features/utils"
+import LoadingDots from "@/components/LoadingDots"
+import { MemoizedMarkdown } from "@/components/memoized-markdown"
+
 type TranslationOutputProps = {
   chatPropsWithId: TranslationChatPropsWithId
+  messages: UIMessage[]
+  status: "submitted" | "streaming" | "ready" | "error"
+  error: Error | undefined
 }
 
 const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
-  function TranslationOutput({ chatPropsWithId }, ref) {
-    const { messages, status, error } = useChat(chatPropsWithId)
-
+  function TranslationOutput({ chatPropsWithId, messages, status, error }, ref) {
     // Stable array of filtered messages
     const assistantMessages = React.useMemo(
-      () => messages.filter((msg) => msg.role === "assistant"),
+      () =>
+        messages.filter((msg) => {
+          console.log("msg", msg)
+          return msg.role === "assistant"
+        }),
       [messages],
     )
 
@@ -46,7 +51,7 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
               <MemoizedMarkdown
                 key={`${chatPropsWithId.id}-${message.id}`}
                 id={message.id}
-                content={message.content}
+                content={getMessageText(message)}
               />
             ))}
           </Box>

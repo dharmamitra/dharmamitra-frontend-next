@@ -1,3 +1,4 @@
+import { BuildVariant } from "@/app/types"
 import appConfig from "@/config"
 
 const getDefaultColors = () => ({

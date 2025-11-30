@@ -13,6 +13,9 @@ export const localStorageKeys = {
   showSearchControls: "show-search-options",
   showParallelTranslations: "show-parallel-translations",
   showSummary: "show-search-result-summary",
+} as const
+
+export const cookieKeys = {
   extensionBannerClosed: "extension-banner-closed",
 } as const
 
