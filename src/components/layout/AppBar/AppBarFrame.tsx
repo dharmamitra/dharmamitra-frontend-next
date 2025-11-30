@@ -15,13 +15,15 @@ const appBarHeight = {
 export default function AppBarFrame({
   children,
   isLocalized = true,
+  showExtensionBanner = true,
 }: {
   children?: React.ReactNode
   isLocalized?: boolean
+  showExtensionBanner?: boolean
 }) {
   return (
     <>
-      <ExtensionBanner />
+      <ExtensionBanner isRendered={showExtensionBanner} />
       <MuiAppBar
         component="nav"
         elevation={0}

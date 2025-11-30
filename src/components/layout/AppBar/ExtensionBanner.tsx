@@ -1,26 +1,35 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useTranslations } from "next-intl"
 import CloseIcon from "@mui/icons-material/Close"
 import { Box, IconButton, Link as MuiLink, Typography } from "@mui/material"
 
-import { chromeExtensionUrl, firefoxExtensionUrl, localStorageKeys } from "@/utils/constants"
+import { chromeExtensionUrl, cookieKeys, firefoxExtensionUrl } from "@/utils/constants"
 
-export default function ExtensionBanner() {
+type Props = {
+  isRendered?: boolean
+}
+
+export default function ExtensionBannerWrapper({ isRendered = true }: Props) {
+  if (!isRendered) {
+    return null
+  }
+
+  return <ExtensionBanner />
+}
+
+function ExtensionBanner() {
+  const [isClosed, setIsClosed] = useState(false)
   const t = useTranslations("generic")
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const bannerClosed = localStorage.getItem(localStorageKeys.extensionBannerClosed)
-    if (bannerClosed !== "true") {
-      setIsVisible(true)
-    }
-  }, [])
 
   const handleClose = () => {
-    localStorage.setItem(localStorageKeys.extensionBannerClosed, "true")
-    setIsVisible(false)
+    document.cookie = `${cookieKeys.extensionBannerClosed}=true; path=/; max-age=31536000; SameSite=Strict`
+    setIsClosed(true)
+  }
+
+  if (isClosed) {
+    return null
   }
 
   return (
@@ -29,11 +38,7 @@ export default function ExtensionBanner() {
         backgroundColor: "secondary.dark",
         width: "100%",
         color: "white",
-        height: isVisible ? "auto" : 0,
-        overflow: "hidden",
-        opacity: isVisible ? 1 : 0,
-        transition: "height 0.3s ease-in-out, opacity 0.3s ease-in-out",
-        paddingBlock: isVisible ? 0.75 : 0,
+        paddingBlock: 0.75,
         paddingInline: 4,
         display: "flex",
         alignItems: "center",

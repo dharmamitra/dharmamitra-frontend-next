@@ -15,23 +15,23 @@ export default function TranslatorKeyboardControls({
   stop,
   status,
 }: TranslatorKeyboardControlsProps) {
-  const handleUserKeyPress = (event: KeyboardEvent) => {
-    const { key, ctrlKey } = event
-
-    if (input && key === "Enter" && ctrlKey) {
-      sendMessage({ text: input })
-    }
-    if (status === "submitted" && key === "Escape") {
-      stop()
-    }
-  }
-
   React.useEffect(() => {
+    const handleUserKeyPress = (event: KeyboardEvent) => {
+      const { key, ctrlKey } = event
+
+      if (input && key === "Enter" && ctrlKey) {
+        sendMessage({ text: input })
+      }
+      if (status === "submitted" && key === "Escape") {
+        stop()
+      }
+    }
+
     window.addEventListener("keydown", handleUserKeyPress)
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress)
     }
-  }, [handleUserKeyPress])
+  }, [input, sendMessage, stop, status])
 
   return <></>
 }

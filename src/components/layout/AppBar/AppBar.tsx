@@ -20,14 +20,18 @@ const MobileNavMenu = dynamic(() => import("./MobileNavMenu"), {
   ssr: false,
 })
 
-export default function AppBar() {
+type Props = {
+  showExtensionBanner?: boolean
+}
+
+export default function AppBar({ showExtensionBanner = true }: Props) {
   const navItems = useNavItems()
   const t = useTranslations("navigation")
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down(DESKTOP_BREAKPOINT))
 
   return (
-    <AppBarFrame>
+    <AppBarFrame showExtensionBanner={showExtensionBanner}>
       {isMobile ? (
         <MobileNavMenu
           navItems={navItems}
