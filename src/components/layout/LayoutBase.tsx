@@ -6,7 +6,6 @@ import { ThemeProvider } from "@mui/material/styles"
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter"
 
 import { SupportedLocale } from "@/app/types"
-import { PageShell } from "@/components/layout"
 import theme from "@/utils/theme"
 
 type Props = {
@@ -19,6 +18,10 @@ const baseStyles = {
   height: "100%",
 } as const
 
+/**
+ * Base layout providing theme, i18n, and MUI cache.
+ * Does not include client dependent AppLayout
+ */
 export default async function LayoutBase({ children, locale }: Props) {
   const messages = await getMessages()
 
@@ -28,9 +31,7 @@ export default async function LayoutBase({ children, locale }: Props) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <NextIntlClientProvider messages={messages}>
-              <PageShell>{children}</PageShell>
-            </NextIntlClientProvider>
+            <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

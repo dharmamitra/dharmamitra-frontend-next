@@ -45,9 +45,23 @@
   },
   "navigation": {
     "nexusLinkLabel": "डेटाबेस",
-    "docsLinkLabel": "दस्तावेज़",
+    "docsLinkLabel": "Guide",
     "mobileButtonAriaLabel": "नेविगेशन मेनू खोलें",
-    "mobileMenuAriaLabel": "नेविगेशन मेनू"
+    "mobileMenuAriaLabel": "नेविगेशन मेनू",
+    "sidebarToggleLabel": "Toggle sidebar"
+  },
+  "features": {
+    "translate": "Translation",
+    "explore": "Explore",
+    "db-search": "DB Search",
+    "ocr": "OCR"
+  },
+  "sidebar": {
+    "credit": "Powered by Gemini API"
+  },
+  "explore": {
+    "title": "Explore",
+    "comingSoon": "This feature is coming soon."
   },
   "footer": {
     "blurb": "धर्म के विद्वतापूर्ण अध्ययन और व्यक्तिगत अभ्यास को बढ़ावा देने के लिए एआई प्रौद्योगिकियों का उपयोग करना। <link>Tsadra Foundation</link> के सहयोग से; Gemini API द्वारा संचालित।"

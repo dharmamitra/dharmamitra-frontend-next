@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 import { Breakpoint } from "@mui/material"
@@ -20,18 +19,15 @@ const MobileNavMenu = dynamic(() => import("./MobileNavMenu"), {
   ssr: false,
 })
 
-type Props = {
-  showExtensionBanner?: boolean
-}
-
-export default function AppBar({ showExtensionBanner = true }: Props) {
+// TODO: Refactor mobile handling to merge with feature menu
+export default function AppBar() {
   const navItems = useNavItems()
   const t = useTranslations("navigation")
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down(DESKTOP_BREAKPOINT))
 
   return (
-    <AppBarFrame showExtensionBanner={showExtensionBanner}>
+    <AppBarFrame>
       {isMobile ? (
         <MobileNavMenu
           navItems={navItems}

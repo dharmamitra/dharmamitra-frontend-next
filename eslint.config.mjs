@@ -1,6 +1,6 @@
-import js from "@eslint/js";
-import tsEslintPlugin from "@typescript-eslint/eslint-plugin";
-import tsEslintParser from "@typescript-eslint/parser";
+import js from "@eslint/js"
+import tsEslintPlugin from "@typescript-eslint/eslint-plugin"
+import tsEslintParser from "@typescript-eslint/parser"
 import nextPlugin from "@next/eslint-plugin-next"
 import { defineConfig } from "eslint/config"
 import prettierConfig from "eslint-config-prettier/flat"
@@ -11,8 +11,7 @@ import prettierPlugin from "eslint-plugin-prettier"
 import reactPlugin from "eslint-plugin-react"
 import reactHooksPlugin from "eslint-plugin-react-hooks"
 import simpleImportSort from "eslint-plugin-simple-import-sort"
-import globals from "globals";
-
+import globals from "globals"
 
 /** @type {import('eslint').Linter.Config} */
 const eslintConfig = defineConfig([
@@ -27,9 +26,6 @@ const eslintConfig = defineConfig([
       "yarn.lock",
       "**/*.d.ts",
     ],
-  },
-  {
-    ...prettierConfig,
   },
   {
     plugins: {
@@ -140,7 +136,7 @@ const eslintConfig = defineConfig([
     },
     rules: {
       ...tsEslintPlugin.configs.recommended.rules,
-       "@typescript-eslint/no-unused-vars": [
+      "@typescript-eslint/no-unused-vars": [
         "error",
         {
           argsIgnorePattern: "^_",
@@ -153,7 +149,7 @@ const eslintConfig = defineConfig([
       "@next/next/no-html-link-for-pages": "off",
     },
   },
-     // TARGETED OVERRIDES
+  // TARGETED OVERRIDES
   {
     files: ["./src/lib/api/*.ts"],
     rules: {
@@ -165,6 +161,10 @@ const eslintConfig = defineConfig([
     rules: {
       "@typescript-eslint/no-unused-vars": "off",
     },
+  },
+  // This must come last to disable conflicting rules
+  {
+    ...prettierConfig,
   },
 ])
 

@@ -45,9 +45,23 @@
   },
   "navigation": {
     "nexusLinkLabel": "データベース",
-    "docsLinkLabel": "ドキュメント",
+    "docsLinkLabel": "Guide",
     "mobileButtonAriaLabel": "ナビゲーションメニューを開く",
-    "mobileMenuAriaLabel": "ナビゲーションメニュー"
+    "mobileMenuAriaLabel": "ナビゲーションメニュー",
+    "sidebarToggleLabel": "Toggle sidebar"
+  },
+  "features": {
+    "translate": "Translation",
+    "explore": "Explore",
+    "db-search": "DB Search",
+    "ocr": "OCR"
+  },
+  "sidebar": {
+    "credit": "Powered by Gemini API"
+  },
+  "explore": {
+    "title": "Explore",
+    "comingSoon": "This feature is coming soon."
   },
   "footer": {
     "blurb": "AI技術を活用し、法（ダルマ）の学術的研究と個人的な実践を促進します。<link>Tsadra Foundation</link>との協力により、Gemini APIを搭載しています。"

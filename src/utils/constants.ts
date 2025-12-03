@@ -4,7 +4,7 @@ export const linkAttrs = {
   color: "secondary",
   target: "_blank",
   rel: "noopener noreferrer",
-}
+} as const
 
 export const localStorageKeys = {
   storageVersionId: "storage-id",
@@ -17,6 +17,7 @@ export const localStorageKeys = {
 
 export const cookieKeys = {
   extensionBannerClosed: "extension-banner-closed",
+  sidebarExpanded: "sidebar-expanded",
 } as const
 
 export const smMediaQuery = "(max-width: 500px)"

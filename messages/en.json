@@ -45,9 +45,23 @@
   },
   "navigation": {
     "nexusLinkLabel": "Database",
-    "docsLinkLabel": "Docs",
+    "docsLinkLabel": "Guide",
     "mobileButtonAriaLabel": "open navigation menu",
-    "mobileMenuAriaLabel": "navigation menu"
+    "mobileMenuAriaLabel": "navigation menu",
+    "sidebarToggleLabel": "Toggle sidebar"
+  },
+  "features": {
+    "translate": "Translation",
+    "explore": "Explore",
+    "db-search": "DB Search",
+    "ocr": "OCR"
+  },
+  "sidebar": {
+    "credit": "Powered by Gemini API"
+  },
+  "explore": {
+    "title": "Explore",
+    "comingSoon": "This feature is coming soon."
   },
   "footer": {
     "blurb": "Harnessing AI technologies to promote the scholarly study and personal practice of the dharma. In collaboration with the <link>Tsadra Foundation</link>; powered by Gemini API."

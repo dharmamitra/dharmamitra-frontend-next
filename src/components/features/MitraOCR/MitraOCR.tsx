@@ -1,4 +1,5 @@
 import * as React from "react"
+import Box from "@mui/material/Box"
 import { useMutation } from "@tanstack/react-query"
 
 import InputBox from "./InputBox"
@@ -6,6 +7,7 @@ import OCRResult from "./OCRResult"
 import SelectedBoxWithTrigger from "./SelectedBoxWithTrigger"
 import TransliterationSwitchs from "./TransliterationSwitchs"
 
+import { CONTAINED_FEATURE_SX } from "@/components/features/utils"
 import { DMFetchApi } from "@/utils/api"
 import { type ParsedOCRResponse } from "@/utils/api/search/endpoints/ocr/handlers"
 
@@ -41,7 +43,7 @@ export default function MitraOCR() {
   }, [ocrMutation])
 
   return (
-    <>
+    <Box sx={CONTAINED_FEATURE_SX}>
       {selectedFile ? (
         <>
           <TransliterationSwitchs
@@ -63,6 +65,6 @@ export default function MitraOCR() {
       )}
 
       <OCRResult ocrMutation={ocrMutation} fileName={selectedFile?.name} />
-    </>
+    </Box>
   )
 }

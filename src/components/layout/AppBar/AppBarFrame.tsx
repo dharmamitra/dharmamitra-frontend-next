@@ -1,12 +1,10 @@
 import React from "react"
 import { AppBar as MuiAppBar, Box, Toolbar } from "@mui/material"
 
-import ExtensionBanner from "./ExtensionBanner"
-
 import Logo from "@/components/Logo"
 import SponsorLogo from "@/components/SponsorLogo"
 
-const appBarHeight = {
+export const appBarHeight = {
   xs: "57px",
   sm: "57px",
   md: "64px",
@@ -15,24 +13,17 @@ const appBarHeight = {
 export default function AppBarFrame({
   children,
   isLocalized = true,
-  showExtensionBanner = true,
 }: {
   children?: React.ReactNode
   isLocalized?: boolean
-  showExtensionBanner?: boolean
 }) {
   return (
     <>
-      <ExtensionBanner isRendered={showExtensionBanner} />
       <MuiAppBar
         component="nav"
         elevation={0}
         position="relative"
-        sx={{
-          height: appBarHeight,
-          backgroundColor: "common.white",
-          boxShadow: "0px 4px 4px 0px #0000001A",
-        }}
+        sx={{ height: appBarHeight, backgroundColor: "common.white" }}
       >
         <Toolbar sx={{ display: "block" }}>
           <Box

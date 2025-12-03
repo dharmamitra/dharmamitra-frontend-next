@@ -45,9 +45,23 @@
   },
   "navigation": {
     "nexusLinkLabel": "資料庫",
-    "docsLinkLabel": "文件",
+    "docsLinkLabel": "Guide",
     "mobileButtonAriaLabel": "開啟導航選單",
-    "mobileMenuAriaLabel": "導航選單"
+    "mobileMenuAriaLabel": "導航選單",
+    "sidebarToggleLabel": "Toggle sidebar"
+  },
+  "features": {
+    "translate": "Translation",
+    "explore": "Explore",
+    "db-search": "DB Search",
+    "ocr": "OCR"
+  },
+  "sidebar": {
+    "credit": "Powered by Gemini API"
+  },
+  "explore": {
+    "title": "Explore",
+    "comingSoon": "This feature is coming soon."
   },
   "footer": {
     "blurb": "利用人工智慧技術，促進對佛法的學術研究和個人實踐。與<link>欽哲基金會</link>合作；由 Gemini API 提供技術支援。"

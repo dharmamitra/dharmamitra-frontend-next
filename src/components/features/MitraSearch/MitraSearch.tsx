@@ -10,6 +10,7 @@ import SearchResults from "./SearchResults"
 import SearchUsageDialog from "./SearchUsageDialog"
 
 import InputEncodingSelector from "@/components/features/paramSettings/InputEncodingSelector"
+import { CONTAINED_FEATURE_SX } from "@/components/features/utils"
 import { localStorageKeys } from "@/utils/constants"
 
 type TranslationFeatureProps = {
@@ -18,7 +19,7 @@ type TranslationFeatureProps = {
 }
 
 /**
- * Refactoring away from mutliple search targets. Outstanding tasks:
+ * TODO: Refactoring away from mutliple search targets. Outstanding tasks:
  * - remove searchTarget param
  * - remove parallel search hook
  * - resolve primary var names
@@ -39,7 +40,7 @@ export default function MitraSearch({
   }
 
   return (
-    <>
+    <Box sx={CONTAINED_FEATURE_SX}>
       <SearchUsageDialog />
 
       <Box
@@ -91,6 +92,6 @@ export default function MitraSearch({
       </Box>
 
       <SearchResults />
-    </>
+    </Box>
   )
 }

@@ -45,9 +45,23 @@
   },
   "navigation": {
     "nexusLinkLabel": "데이터베이스",
-    "docsLinkLabel": "문서",
+    "docsLinkLabel": "Guide",
     "mobileButtonAriaLabel": "탐색 메뉴 열기",
-    "mobileMenuAriaLabel": "탐색 메뉴"
+    "mobileMenuAriaLabel": "탐색 메뉴",
+    "sidebarToggleLabel": "Toggle sidebar"
+  },
+  "features": {
+    "translate": "Translation",
+    "explore": "Explore",
+    "db-search": "DB Search",
+    "ocr": "OCR"
+  },
+  "sidebar": {
+    "credit": "Powered by Gemini API"
+  },
+  "explore": {
+    "title": "Explore",
+    "comingSoon": "This feature is coming soon."
   },
   "footer": {
     "blurb": "AI 기술을 활용하여 법(dharma)의 학술적 연구와 개인적 수행을 증진합니다. <link>Tsadra Foundation</link>과 협력하여 Gemini API로 구동됩니다."
