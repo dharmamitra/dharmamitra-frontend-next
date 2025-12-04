@@ -19,8 +19,8 @@ export default function SidebarExpandIcon({
       strokeLinejoin="round"
       strokeMiterlimit={2}
       viewBox="0 0 24 24"
-      width={24 * size}
-      height={24 * size}
+      width={20 * size}
+      height={20 * size}
       stroke={color}
       fill={color}
       strokeWidth={0.25}

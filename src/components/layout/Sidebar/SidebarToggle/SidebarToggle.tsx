@@ -4,8 +4,6 @@ import { useTranslations } from "next-intl"
 import { IconButton } from "@mui/material"
 import Box from "@mui/material/Box"
 
-import { appBarHeight } from "../../AppBar/AppBarFrame"
-
 import SidebarCollapsIcon from "./SidebarCollapsIcon"
 import SidebarExpandIcon from "./SidebarExpandIcon"
 
@@ -23,14 +21,12 @@ export default function SidebarToggle({ isExpanded, onToggle }: Props) {
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-        px: 1,
-        minHeight: appBarHeight,
       }}
     >
       <IconButton
         onClick={onToggle}
         aria-label={t("sidebarToggleLabel")}
-        sx={{ color: "text.secondary" }}
+        sx={{ p: 1.25, color: "text.secondary" }}
       >
         {isExpanded ? <SidebarCollapsIcon /> : <SidebarExpandIcon />}
       </IconButton>

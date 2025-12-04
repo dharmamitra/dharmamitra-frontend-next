@@ -35,7 +35,7 @@ export default function Sidebar() {
           overflowX: "hidden",
           overflowY: "auto",
           display: "grid",
-          gridTemplateRows: "64px 1fr auto",
+          gridTemplateRows: "auto 1fr auto",
           backgroundColor: customTheming.palette.soft,
         },
       }}
