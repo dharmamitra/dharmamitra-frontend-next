@@ -36,10 +36,6 @@ export default function MitraTranslator() {
   const [target_lang] = useTargetLangParamWithLocalStorage()
   const [model] = useTranslationModelParam()
 
-  // Ref for file input to be shared between components
-  // Use a more specific type that matches what TranslatorInput expects
-  const fileInputRef = React.useRef<HTMLInputElement | null>(null)
-
   const chatPropsWithId = React.useMemo(() => {
     const requestBody = createTranslationRequestBody({
       input_sentence,
@@ -55,15 +51,53 @@ export default function MitraTranslator() {
   }, [input_sentence, input_encoding, target_lang, model])
 
   // Single useChat instance shared across all child components
-  const chatHelpers = useChat(chatPropsWithId)
+  const { status, sendMessage, stop, messages, error } = useChat(chatPropsWithId)
+
+  console.log({ messages })
 
   const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
   const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(new Set())
-  // State to track if file upload is in progress
   const [isFileUploadPending, setIsFileUploadPending] = React.useState(false)
 
-  // Function to trigger file browse dialog
+  const hasAutoTriggeredRef = React.useRef(false)
+  const handleAutoTriggerOnFirstMount = React.useEffectEvent(() => {
+    // Allowed to silently fail if useChat status is not ready
+    if (input_sentence?.match(/\S+/g)?.length && status === "ready" && messages.length === 0) {
+      hasAutoTriggeredRef.current = true
+      sendMessage({ text: input_sentence })
+    }
+  })
+  React.useEffect(() => {
+    if (!hasAutoTriggeredRef.current) {
+      handleAutoTriggerOnFirstMount()
+    }
+  }, [])
+
+  // Deep Research Prompt trigger logic is handled here
+  // to enable new useChat query
+  const [isPendingDeepResearch, setIsPendingDeepResearch] = React.useState(false)
+  const [, setTargetLang] = useTargetLangParamWithLocalStorage()
+
+  const handleDeepResearchPromptClick = function () {
+    setTargetLang("english-deep-research")
+    setIsPendingDeepResearch(true)
+  }
+
+  const handleDeepResearchProptTrigger = React.useEffectEvent(() => {
+    setIsPendingDeepResearch(false)
+    sendMessage({ text: input_sentence })
+  })
+
+  React.useEffect(() => {
+    // The primary conditions for triggering DeepResearchPrompt
+    // are set in the component's isRendered prop
+    if (isPendingDeepResearch) {
+      handleDeepResearchProptTrigger()
+    }
+  }, [isPendingDeepResearch])
+
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null)
   const handleFileButtonClick = () => {
     fileInputRef.current?.click()
   }
@@ -73,9 +107,9 @@ export default function MitraTranslator() {
       <TranslationUsageDialog />
       <TranslatorKeyboardControls
         input={input_sentence}
-        sendMessage={chatHelpers.sendMessage}
-        stop={chatHelpers.stop}
-        status={chatHelpers.status}
+        sendMessage={sendMessage}
+        stop={stop}
+        status={status}
       />
 
       <Box
@@ -105,10 +139,10 @@ export default function MitraTranslator() {
             onFileButtonClick={handleFileButtonClick}
             fileUploadDisabled={isFileUploadPending}
             acceptedFileTypes={ACCEPTED_FILE_TYPES_UI_STRING}
-            sendMessage={chatHelpers.sendMessage}
-            stop={chatHelpers.stop}
-            status={chatHelpers.status}
-            messages={chatHelpers.messages}
+            sendMessage={sendMessage}
+            stop={stop}
+            status={status}
+            messages={messages}
           />
         }
         outputContoles={<TranslatorOutputControls contentRef={outputBoxRef} />}
@@ -123,10 +157,13 @@ export default function MitraTranslator() {
         outputBlock={
           <TranslationOutput
             ref={outputBoxRef}
-            chatPropsWithId={chatPropsWithId}
-            messages={chatHelpers.messages}
-            status={chatHelpers.status}
-            error={chatHelpers.error}
+            id={chatPropsWithId.id}
+            targetLang={target_lang}
+            input={input_sentence}
+            messages={messages}
+            status={status}
+            error={error}
+            onDeepResearchClick={handleDeepResearchPromptClick}
           />
         }
       />
