@@ -6,7 +6,7 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle"
 import StopCircleIcon from "@mui/icons-material/StopCircle"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
-import { UIMessage } from "ai"
+import { ChatStatus, UIMessage } from "ai"
 
 import { tooltipEnterStyles } from "@/components/styled-ssr-safe"
 
@@ -19,7 +19,7 @@ interface StartStopStreamButtonProps {
   // Chat helpers from parent
   sendMessage: (message: { text: string }) => void
   stop: () => void
-  status: "submitted" | "streaming" | "ready" | "error"
+  status: ChatStatus
   messages: UIMessage[]
 }
 
@@ -41,7 +41,7 @@ export default function StartStopStreamButton({
     }
   }, [status, messages, queryId, setCompletedQueryIds])
 
-  if (status === "submitted") {
+  if (status === "submitted" || status === "streaming") {
     return (
       <Tooltip title={`${t("generic.stop")} (Esc)`} placement="top">
         <IconButton aria-label={t("generic.stop")} color="secondary" onClick={stop}>

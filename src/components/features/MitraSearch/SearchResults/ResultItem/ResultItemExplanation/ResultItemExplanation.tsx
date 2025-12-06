@@ -1,12 +1,12 @@
 import React from "react"
 import { useLocale } from "next-intl"
-import { useChat } from "@ai-sdk/react"
 
 import ExplanationStream from "./ExplanationStream"
 import ResultItemExplanationFrame from "./ResultItemExplanationFrame"
 
 import { SearchApiTypes, streamUtils } from "@/api"
 import { createChatProps } from "@/components/features/utils"
+import { useCachedChat } from "@/hooks/useCachedChat"
 
 type SearchResult = SearchApiTypes.Response<"/primary/">["results"][0]
 type ExplanationRequestBody = SearchResult & { locale: string }
@@ -25,7 +25,7 @@ export default function ResultItemExplanation({ searchResult }: { searchResult: 
   }, [searchResult, locale])
 
   // Single useChat instance shared with child component
-  const { sendMessage, messages, status, error } = useChat(chatPropsWithId)
+  const { sendMessage, messages, status, error } = useCachedChat(chatPropsWithId)
 
   const handleExpand = () => {
     sendMessage({ text: searchResult.query })

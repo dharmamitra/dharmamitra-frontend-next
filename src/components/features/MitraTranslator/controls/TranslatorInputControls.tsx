@@ -2,7 +2,7 @@
 
 import React from "react"
 import { Box } from "@mui/material"
-import { UIMessage } from "ai"
+import { ChatStatus, UIMessage } from "ai"
 
 import AttachFileButton from "@/components/AttachFileButton"
 import ClearButton from "@/components/ClearButton"
@@ -22,7 +22,7 @@ type TranslationInputFieldProps = {
   // Chat helpers from parent
   sendMessage: (message: { text: string }) => void
   stop: () => void
-  status: "submitted" | "streaming" | "ready" | "error"
+  status: ChatStatus
   messages: UIMessage[]
 }
 

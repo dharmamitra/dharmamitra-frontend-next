@@ -1,39 +1,27 @@
 "use client"
 
-import React from "react"
 import { useTranslations } from "next-intl"
-import { useChat } from "@ai-sdk/react"
 import SendIcon from "@mui/icons-material/Send"
 import { Box, Button } from "@mui/material"
 
-import { streamUtils } from "@/api"
-import { createChatProps, TranslationChatPropsWithId } from "@/components/features/utils"
-import { useTargetLangParamWithLocalStorage } from "@/hooks/params"
-
 type DeepResearchPromptProps = {
   isRendered: boolean
-  chatPropsWithId: TranslationChatPropsWithId
+  onDeepResearchClick: () => void
 }
 
-function DeepResearchPromptComponent({
-  chatPropsWithId,
-}: Omit<DeepResearchPromptProps, "isRendered">) {
-  const updatedChatPropsWithId = React.useMemo(() => {
-    return createChatProps({
-      localEndpoint: streamUtils.localAPIEndpoints["mitra-translation"],
-      requestBody: { ...chatPropsWithId.body, target_lang: "english-deep-research" },
-    })
-  }, [chatPropsWithId])
+export default function DeepResearchPromptWrapper({
+  isRendered,
+  onDeepResearchClick,
+}: DeepResearchPromptProps) {
+  if (!isRendered) return null
 
-  const [, setTargetLang] = useTargetLangParamWithLocalStorage()
+  return <DeepResearchPrompt onDeepResearchClick={onDeepResearchClick} />
+}
 
-  const { sendMessage } = useChat(updatedChatPropsWithId)
+function DeepResearchPrompt({
+  onDeepResearchClick,
+}: Pick<DeepResearchPromptProps, "onDeepResearchClick">) {
   const t = useTranslations("translation")
-
-  const handleClick = () => {
-    setTargetLang("english-deep-research")
-    sendMessage({ text: chatPropsWithId.body.input_sentence })
-  }
 
   return (
     <Box
@@ -51,17 +39,14 @@ function DeepResearchPromptComponent({
         },
       }}
     >
-      <Button variant="outlined" color="secondary" endIcon={<SendIcon />} onClick={handleClick}>
+      <Button
+        variant="outlined"
+        color="secondary"
+        endIcon={<SendIcon />}
+        onClick={onDeepResearchClick}
+      >
         {t("deepResearchPrompt")}
       </Button>
     </Box>
   )
 }
-
-function DeepResearchPrompt({ isRendered, chatPropsWithId }: DeepResearchPromptProps) {
-  if (!isRendered || !chatPropsWithId) return null
-
-  return <DeepResearchPromptComponent chatPropsWithId={chatPropsWithId} />
-}
-
-export default DeepResearchPrompt

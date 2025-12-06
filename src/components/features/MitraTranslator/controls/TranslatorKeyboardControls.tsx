@@ -1,12 +1,13 @@
 "use client"
 
 import React from "react"
+import { ChatStatus } from "ai"
 
 interface TranslatorKeyboardControlsProps {
   input: string
   sendMessage: (message: { text: string }) => void
   stop: () => void
-  status: "submitted" | "streaming" | "ready" | "error"
+  status: ChatStatus
 }
 
 export default function TranslatorKeyboardControls({
