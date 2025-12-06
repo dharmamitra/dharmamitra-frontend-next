@@ -7,7 +7,7 @@ import { ChatStatus, UIMessage } from "ai"
 import DeepResearchPrompt from "./DeepResearchPrompt"
 
 import ExceptionText from "@/components/ExceptionText"
-import { getMessageText, TranslationChatPropsWithId } from "@/components/features/utils"
+import { getMessageText } from "@/components/features/utils"
 import LoadingDots from "@/components/LoadingDots"
 import { MemoizedMarkdown } from "@/components/memoized-markdown"
 import { TargetLanguage } from "@/utils/api/translation/params"
@@ -48,9 +48,9 @@ const TranslationOutput = forwardRef<HTMLDivElement, TranslationOutputProps>(
       >
         <Box>
           <Box ref={ref}>
-            {assistantMessages.map((message) => (
+            {assistantMessages.map((message, index) => (
               <MemoizedMarkdown
-                key={`${id}-${message.id}`}
+                key={`${id}-${message.id}-${index}`}
                 id={message.id}
                 content={getMessageText(message)}
               />

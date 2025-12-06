@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { useChat } from "@ai-sdk/react"
 import Box from "@mui/material/Box"
 
 import TranslatorInputControls from "./controls/TranslatorInputControls"
@@ -25,6 +24,7 @@ import {
   useTranslationModelParam,
 } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
+import { hasCachedChat, useCachedChat } from "@/hooks/useCachedChat"
 
 export default function MitraTranslator() {
   const {
@@ -51,31 +51,35 @@ export default function MitraTranslator() {
   }, [input_sentence, input_encoding, target_lang, model])
 
   // Single useChat instance shared across all child components
-  const { status, sendMessage, stop, messages, error } = useChat(chatPropsWithId)
-
-  console.log({ messages })
-
-  const outputBoxRef = React.useRef<HTMLDivElement>(null)
+  const { status, sendMessage, stop, messages, error, isCacheLoaded } =
+    useCachedChat(chatPropsWithId)
 
   const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(new Set())
   const [isFileUploadPending, setIsFileUploadPending] = React.useState(false)
 
-  const hasAutoTriggeredRef = React.useRef(false)
+  const shouldSkipInitAutoTriggerRef = React.useRef(false)
   const handleAutoTriggerOnFirstMount = React.useEffectEvent(() => {
-    // Allowed to silently fail if useChat status is not ready
-    if (input_sentence?.match(/\S+/g)?.length && status === "ready" && messages.length === 0) {
-      hasAutoTriggeredRef.current = true
-      sendMessage({ text: input_sentence })
+    // Silent fail preferred in the following conditons rather than
+    // excessive useEffect triggeres - this is a non-critical feature
+    if (!input_sentence?.match(/\S+/g)?.length) return
+    if (status !== "ready") return
+    if (hasCachedChat(chatPropsWithId.id)) {
+      shouldSkipInitAutoTriggerRef.current = true
+      return
     }
-  })
-  React.useEffect(() => {
-    if (!hasAutoTriggeredRef.current) {
-      handleAutoTriggerOnFirstMount()
-    }
-  }, [])
 
-  // Deep Research Prompt trigger logic is handled here
-  // to enable new useChat query
+    shouldSkipInitAutoTriggerRef.current = true
+    sendMessage({ text: input_sentence })
+  })
+
+  React.useEffect(() => {
+    if (shouldSkipInitAutoTriggerRef.current) return
+    if (!isCacheLoaded) return
+    handleAutoTriggerOnFirstMount()
+  }, [isCacheLoaded])
+
+  // Deep Research Prompt trigger logic is created here
+  // to allow the creation of a new translation query
   const [isPendingDeepResearch, setIsPendingDeepResearch] = React.useState(false)
   const [, setTargetLang] = useTargetLangParamWithLocalStorage()
 
@@ -96,6 +100,8 @@ export default function MitraTranslator() {
       handleDeepResearchProptTrigger()
     }
   }, [isPendingDeepResearch])
+
+  const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
   const fileInputRef = React.useRef<HTMLInputElement | null>(null)
   const handleFileButtonClick = () => {

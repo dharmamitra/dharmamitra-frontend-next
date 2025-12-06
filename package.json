@@ -45,6 +45,7 @@
     "axe-core": "^4.11.0",
     "axe-html-reporter": "^2.2.11",
     "dotenv": "^16.6.1",
+    "idb-keyval": "^6.2.2",
     "image-size": "^2.0.2",
     "jotai": "^2.15.2",
     "next": "^16.0.7",

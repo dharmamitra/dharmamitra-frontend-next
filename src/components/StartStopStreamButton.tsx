@@ -41,7 +41,7 @@ export default function StartStopStreamButton({
     }
   }, [status, messages, queryId, setCompletedQueryIds])
 
-  if (status === "submitted") {
+  if (status === "submitted" || status === "streaming") {
     return (
       <Tooltip title={`${t("generic.stop")} (Esc)`} placement="top">
         <IconButton aria-label={t("generic.stop")} color="secondary" onClick={stop}>

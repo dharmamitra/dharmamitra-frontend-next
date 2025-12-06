@@ -64,7 +64,7 @@ export function LayoutFrame({ children }: LayoutFrameProps) {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "min-content min-content auto auto",
         "@media (min-width: 760px)": {
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "50% 50%",
           gridTemplateRows: "auto 1fr",
         },
         height: "min-content",
