@@ -1,6 +1,6 @@
 import React from "react"
 import { Box } from "@mui/material"
-import { UIMessage } from "ai"
+import { ChatStatus, UIMessage } from "ai"
 
 import ExceptionText from "@/components/ExceptionText"
 import { getMessageText } from "@/components/features/utils"
@@ -10,7 +10,7 @@ import { MemoizedMarkdown } from "@/components/memoized-markdown"
 export type ExplanationProps = {
   id: string
   messages: UIMessage[]
-  status: "submitted" | "streaming" | "ready" | "error"
+  status: ChatStatus
   error: Error | undefined
 }
 

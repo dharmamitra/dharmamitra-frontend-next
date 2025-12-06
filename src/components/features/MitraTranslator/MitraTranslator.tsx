@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { useChat } from "@ai-sdk/react"
 import Box from "@mui/material/Box"
 
 import TranslatorInputControls from "./controls/TranslatorInputControls"
@@ -25,6 +24,7 @@ import {
   useTranslationModelParam,
 } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
+import { hasCachedChat, useCachedChat } from "@/hooks/useCachedChat"
 
 export default function MitraTranslator() {
   const {
@@ -35,10 +35,6 @@ export default function MitraTranslator() {
   const [input_encoding] = useInputEncodingParamWithLocalStorage()
   const [target_lang] = useTargetLangParamWithLocalStorage()
   const [model] = useTranslationModelParam()
-
-  // Ref for file input to be shared between components
-  // Use a more specific type that matches what TranslatorInput expects
-  const fileInputRef = React.useRef<HTMLInputElement | null>(null)
 
   const chatPropsWithId = React.useMemo(() => {
     const requestBody = createTranslationRequestBody({
@@ -55,15 +51,59 @@ export default function MitraTranslator() {
   }, [input_sentence, input_encoding, target_lang, model])
 
   // Single useChat instance shared across all child components
-  const chatHelpers = useChat(chatPropsWithId)
+  const { status, sendMessage, stop, messages, error, isCacheLoaded } =
+    useCachedChat(chatPropsWithId)
+
+  const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(new Set())
+  const [isFileUploadPending, setIsFileUploadPending] = React.useState(false)
+
+  const shouldSkipInitAutoTriggerRef = React.useRef(false)
+  const handleAutoTriggerOnFirstMount = React.useEffectEvent(() => {
+    // Silent fail preferred in the following conditons rather than
+    // excessive useEffect triggeres - this is a non-critical feature
+    if (!input_sentence?.match(/\S+/g)?.length) return
+    if (status !== "ready") return
+    if (hasCachedChat(chatPropsWithId.id)) {
+      shouldSkipInitAutoTriggerRef.current = true
+      return
+    }
+
+    shouldSkipInitAutoTriggerRef.current = true
+    sendMessage({ text: input_sentence })
+  })
+
+  React.useEffect(() => {
+    if (shouldSkipInitAutoTriggerRef.current) return
+    if (!isCacheLoaded) return
+    handleAutoTriggerOnFirstMount()
+  }, [isCacheLoaded])
+
+  // Deep Research Prompt trigger logic is created here
+  // to allow the creation of a new translation query
+  const [isPendingDeepResearch, setIsPendingDeepResearch] = React.useState(false)
+  const [, setTargetLang] = useTargetLangParamWithLocalStorage()
+
+  const handleDeepResearchPromptClick = function () {
+    setTargetLang("english-deep-research")
+    setIsPendingDeepResearch(true)
+  }
+
+  const handleDeepResearchProptTrigger = React.useEffectEvent(() => {
+    setIsPendingDeepResearch(false)
+    sendMessage({ text: input_sentence })
+  })
+
+  React.useEffect(() => {
+    // The primary conditions for triggering DeepResearchPrompt
+    // are set in the component's isRendered prop
+    if (isPendingDeepResearch) {
+      handleDeepResearchProptTrigger()
+    }
+  }, [isPendingDeepResearch])
 
   const outputBoxRef = React.useRef<HTMLDivElement>(null)
 
-  const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(new Set())
-  // State to track if file upload is in progress
-  const [isFileUploadPending, setIsFileUploadPending] = React.useState(false)
-
-  // Function to trigger file browse dialog
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null)
   const handleFileButtonClick = () => {
     fileInputRef.current?.click()
   }
@@ -73,9 +113,9 @@ export default function MitraTranslator() {
       <TranslationUsageDialog />
       <TranslatorKeyboardControls
         input={input_sentence}
-        sendMessage={chatHelpers.sendMessage}
-        stop={chatHelpers.stop}
-        status={chatHelpers.status}
+        sendMessage={sendMessage}
+        stop={stop}
+        status={status}
       />
 
       <Box
@@ -105,10 +145,10 @@ export default function MitraTranslator() {
             onFileButtonClick={handleFileButtonClick}
             fileUploadDisabled={isFileUploadPending}
             acceptedFileTypes={ACCEPTED_FILE_TYPES_UI_STRING}
-            sendMessage={chatHelpers.sendMessage}
-            stop={chatHelpers.stop}
-            status={chatHelpers.status}
-            messages={chatHelpers.messages}
+            sendMessage={sendMessage}
+            stop={stop}
+            status={status}
+            messages={messages}
           />
         }
         outputContoles={<TranslatorOutputControls contentRef={outputBoxRef} />}
@@ -123,10 +163,13 @@ export default function MitraTranslator() {
         outputBlock={
           <TranslationOutput
             ref={outputBoxRef}
-            chatPropsWithId={chatPropsWithId}
-            messages={chatHelpers.messages}
-            status={chatHelpers.status}
-            error={chatHelpers.error}
+            id={chatPropsWithId.id}
+            targetLang={target_lang}
+            input={input_sentence}
+            messages={messages}
+            status={status}
+            error={error}
+            onDeepResearchClick={handleDeepResearchPromptClick}
           />
         }
       />

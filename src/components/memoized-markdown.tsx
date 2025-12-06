@@ -1,6 +1,7 @@
-import React, { memo, useMemo } from "react"
+import { memo, useMemo } from "react"
 import ReactMarkdown from "react-markdown"
 import { Link, Typography } from "@mui/material"
+import { useTheme } from "@mui/material/styles"
 import { marked } from "marked"
 
 /**
@@ -15,6 +16,7 @@ function parseMarkdownIntoBlocks(markdown: string): string[] {
 
 const MemoizedMarkdownBlock = memo(
   ({ content }: { content: string }) => {
+    const theme = useTheme()
     return (
       <ReactMarkdown
         components={{
@@ -35,13 +37,24 @@ const MemoizedMarkdownBlock = memo(
           h5: ({ node, ...props }) => (
             <Typography variant="h5" fontWeight={500} my={2} {...props} />
           ),
-          // TODO: Hardcoded color value need to be extracted from theme
-          p: ({ node, ...props }) => <Typography sx={{ color: "#222", mb: 2 }} {...props} />,
+          p: ({ node, ...props }) => (
+            <Typography sx={{ color: theme.palette.text.primary, mb: 2 }} {...props} />
+          ),
           strong: ({ node, ...props }) => (
             <Typography component="strong" fontWeight={500} color="primary" {...props} />
           ),
           a: ({ node, href, ...props }) => (
             <Link href={href} target="_blank" rel="noopener noreferrer" {...props} />
+          ),
+          pre: ({ node, ...props }) => (
+            <pre
+              style={{
+                color: theme.palette.text.primary,
+                whiteSpace: "pre-wrap",
+                wordWrap: "break-word",
+              }}
+              {...props}
+            />
           ),
         }}
       >
