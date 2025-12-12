@@ -41,6 +41,11 @@ RUN echo "NEXT_PUBLIC_BUILD_VARIANT=${BUILD_VARIANT}" >> .env.production
 FROM base AS runner
 WORKDIR /app
 
+# Remove network utilities that attackers use to download malware
+RUN apk del --no-cache curl wget bash 2>/dev/null || true && \
+    rm -rf /var/cache/apk/*
+
+
 # copy dirs not included in the standalone build process
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
