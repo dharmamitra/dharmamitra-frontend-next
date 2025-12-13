@@ -18,7 +18,7 @@ export default function AppBarFrame({
   isLocalized?: boolean
 }) {
   return (
-    <>
+    <Box>
       <MuiAppBar
         component="nav"
         elevation={0}
@@ -45,6 +45,6 @@ export default function AppBarFrame({
           </Box>
         </Toolbar>
       </MuiAppBar>
-    </>
+    </Box>
   )
 }

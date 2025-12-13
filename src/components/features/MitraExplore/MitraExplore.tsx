@@ -1,50 +1,55 @@
 import * as React from "react"
+import { useLocale } from "next-intl"
 import Box from "@mui/material/Box"
 
 import ResetOptionsButton from "../MitraSearch/controls/ResetOptionsButton"
 import ShowOptionsSwitch from "../MitraSearch/controls/ShowOptionsSwitch"
 import SubInputSearchControls from "../MitraSearch/controls/SubInputSearchControls"
 import SearchExamples from "../MitraSearch/SearchExamples"
-import SearchInput from "../MitraSearch/SearchInput"
-import SearchResults from "../MitraSearch/SearchResults"
 import SearchUsageDialog from "../MitraSearch/SearchUsageDialog"
-import { createSearchRequestBody } from "../MitraSearch/utils"
+
+import ExploreInput from "./ExploreInput"
+import ExploreOutput from "./ExploreOutput"
+import { createExploreRequestBody } from "./utils"
 
 import InputEncodingSelector from "@/components/features/paramSettings/InputEncodingSelector"
-import { createChatProps } from "@/components/features/utils"
+import { CONTAINED_FEATURE_SX } from "@/components/features/utils"
 import {
   useFilterSourceLanguageParam,
   useFilterTargetLanguageParam,
   useSearchInputParam,
+  //   useSearchTargetParam,
   useSearchTypeParam,
   useSourceFiltersValue,
 } from "@/hooks/params"
-import { streamUtils } from "@/utils/api"
+import { useCachedChat } from "@/hooks/useCachedChat"
+import { createChatProps, localAPIEndpoints } from "@/utils/api/stream"
 import { localStorageKeys } from "@/utils/constants"
 
-type TranslationFeatureProps = {
+type ExploreFeatureProps = {
   isSearchControlsOpen: boolean
   setIsSearchControlsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function MitraSearch({
+export default function MitraExplore({
   isSearchControlsOpen,
   setIsSearchControlsOpen,
-}: TranslationFeatureProps) {
-  const [search_input] = useSearchInputParam()
-  // const [search_target] = useSearchTargetParam()
+}: ExploreFeatureProps) {
+  const [search_input, setSearchInputParam] = useSearchInputParam()
+  //   const [search_target] = useSearchTargetParam()
   const { include_collections, include_categories, include_files } = useSourceFiltersValue()
   const [filter_source_language] = useFilterSourceLanguageParam()
   const [filter_target_language] = useFilterTargetLanguageParam()
   const [search_type] = useSearchTypeParam()
+  const locale = useLocale()
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const chatPropsWithId = React.useMemo(() => {
-    const requestBody = createSearchRequestBody({
+    const requestBody = createExploreRequestBody({
       search_input,
       search_type,
       filter_source_language,
       filter_target_language,
+      locale,
       source_filters: {
         include_collections,
         include_categories,
@@ -53,7 +58,7 @@ export default function MitraSearch({
     })
 
     const chatProps = createChatProps({
-      localEndpoint: streamUtils.localAPIEndpoints["mitra-explore"],
+      localEndpoint: localAPIEndpoints["mitra-explore"],
       requestBody,
     })
 
@@ -66,7 +71,13 @@ export default function MitraSearch({
     include_collections,
     include_categories,
     include_files,
+    locale,
   ])
+  const { status, sendMessage, stop, messages, error } = useCachedChat(chatPropsWithId)
+
+  const outputBoxRef = React.useRef<HTMLDivElement>(null)
+
+  const [completedQueryIds, setCompletedQueryIds] = React.useState<Set<string>>(new Set())
 
   const handleToggleShowOptions = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,7 +93,7 @@ export default function MitraSearch({
   )
 
   return (
-    <>
+    <Box sx={CONTAINED_FEATURE_SX}>
       <SearchUsageDialog />
 
       <Box
@@ -126,14 +137,31 @@ export default function MitraSearch({
             <ResetOptionsButton />
           </Box>
         </Box>
-        <SearchInput />
+        <ExploreInput
+          queryId={chatPropsWithId.id}
+          input={search_input}
+          setInput={setSearchInputParam}
+          completedQueryIds={completedQueryIds}
+          setCompletedQueryIds={setCompletedQueryIds}
+          isTriggerDisabled={false}
+          sendMessage={sendMessage}
+          stop={stop}
+          status={status}
+          messages={messages}
+        />
 
         <SubInputSearchControls isOpen={isSearchControlsOpen} />
 
         <SearchExamples isShown={!isSearchControlsOpen} />
       </Box>
 
-      <SearchResults />
-    </>
+      <ExploreOutput
+        ref={outputBoxRef}
+        messages={messages}
+        id={chatPropsWithId.id}
+        status={status}
+        error={error}
+      />
+    </Box>
   )
 }

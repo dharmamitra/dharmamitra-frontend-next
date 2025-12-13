@@ -7,9 +7,9 @@ import { ChatStatus, UIMessage } from "ai"
 import DeepResearchPrompt from "./DeepResearchPrompt"
 
 import ExceptionText from "@/components/ExceptionText"
-import { getMessageText } from "@/components/features/utils"
 import LoadingDots from "@/components/LoadingDots"
 import { MemoizedMarkdown } from "@/components/memoized-markdown"
+import { getMessageText } from "@/utils/api/stream"
 import { TargetLanguage } from "@/utils/api/translation/params"
 
 type TranslationOutputProps = {

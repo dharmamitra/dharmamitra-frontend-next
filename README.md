@@ -3,44 +3,44 @@
 - [ℹ️ About](#-about)
 - [✨ Getting Started](#-getting-started)
 - [🏗️ Workflow](#-workflow)
-    - [Branches](#branches)
-    - [Commit messages](#commit-messages)
-        - [Public facing features](#public-facing-features)
-        - [semantic-release](#semantic-release)
-    - [Development cycle](#development-cycle)
+  - [Branches](#branches)
+  - [Commit messages](#commit-messages)
+    - [Public facing features](#public-facing-features)
+    - [semantic-release](#semantic-release)
+  - [Development cycle](#development-cycle)
 - [🔧 Environment setup](#-environment-setup)
-    - [Env config](#env-config)
-    - [Adding a new environment](#adding-a-new-environment)
-    - [Required config](#required-config)
-    - [Env customization](#env-customization)
-        - [Nav & sub pages](#nav--sub-pages)
-            - [Nav](#nav)
-            - [Sub page creation](#sub-page-creation)
-        - [Theming](#theming)
-        - [Images](#images)
+  - [Env config](#env-config)
+  - [Adding a new environment](#adding-a-new-environment)
+  - [Required config](#required-config)
+  - [Env customization](#env-customization)
+    - [Nav & sub pages](#nav--sub-pages)
+      - [Nav](#nav)
+      - [Sub page creation](#sub-page-creation)
+    - [Theming](#theming)
+    - [Images](#images)
 - [📡 DharmaMitra API client & typing UPDATE IN PROGRESS](#-dharmamitra-api-client--typing-update-in-progress)
-    - [APIs](#apis)
-    - [API models](#api-models)
-    - [Regular fetchs](#regular-fetchs)
-    - [SSE fetchs](#sse-fetchs)
-        - [Stream formatting markers](#stream-formatting-markers)
+  - [APIs](#apis)
+  - [API models](#api-models)
+  - [Regular fetchs](#regular-fetchs)
+  - [SSE fetchs](#sse-fetchs)
+    - [Stream formatting markers](#stream-formatting-markers)
 - [🌐 Content updates & Internationalization i18n](#-content-updates--internationalization-i18n)
-    - [Updating news content workflow](#updating-news-content-workflow)
-    - [UI messages](#ui-messages)
-    - [Locale content update workflow](#locale-content-update-workflow)
-    - [Internal navigation](#internal-navigation)
-    - [Referrences](#referrences)
+  - [Updating news content workflow](#updating-news-content-workflow)
+  - [UI messages](#ui-messages)
+  - [Locale content update workflow](#locale-content-update-workflow)
+  - [Internal navigation](#internal-navigation)
+  - [Referrences](#referrences)
 - [🎨 Theming](#-theming)
-    - [Config](#config)
-    - [Env specific theming](#env-specific-theming)
-    - [References](#references)
+  - [Config](#config)
+  - [Env specific theming](#env-specific-theming)
+  - [References](#references)
 - [🧪 Testing](#%F0%9F%A7%AA-testing)
 - [👷 Building](#-building)
-    - [Running a test build by-passing eslint](#running-a-test-build-by-passing-eslint)
-    - [Running a local build](#running-a-local-build)
+  - [Running a test build by-passing eslint](#running-a-test-build-by-passing-eslint)
+  - [Running a local build](#running-a-local-build)
 - [📦 Containerization](#-containerization)
-    - [Single project variant](#single-project-variant)
-    - [Multiple Docker services](#multiple-docker-services)
+  - [Single project variant](#single-project-variant)
+  - [Multiple Docker services](#multiple-docker-services)
 - [🚢 Deployment](#-deployment)
 
 <!-- /TOC -->
@@ -89,7 +89,6 @@ Open [http://localhost:3000](http://localhost:3000) (adding an environment base 
 - `main`: for production deployment
 - `content`: exclusively for making content updates to `messages/*`, `src/assets/*`, `src/app/[locale]/team/data.ts`, `src/content/news/*`, or similar content data files.
 - development item branches linked to issue numbers
-
 
 ### Commit messages
 
@@ -170,7 +169,6 @@ These steps can also be adjusted and used for renaming an environment.
 #### Nav & sub pages
 
 - all possible sub pages need to be
-
   - defined in `allPages` in `src/config/defineConfig.ts`
   - added to the `pages` prop of each i18n file (ie. `messages/en.json` etc.)
   - have a corresponding page prop in each i18n file with sub keys for each applicable environment. eg:
@@ -197,7 +195,6 @@ The above configuration feeds into the `useNavItems` hook and takes care of app 
 Custom env sub pages are handled with Next Js's [Parallel Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) which allows env specific content to be slotted into a page's `layout.tsx` file.
 
 - The page group `layout.tsx` needs to:
-
   - export a `generateStaticParams` function that returns an array of `params` for each page in the group, including the `locale` param.
   - include a param for each env content page (corresponding to `@envcontent` directory)
   - include a check if the env has the given route:
@@ -209,7 +206,6 @@ Custom env sub pages are handled with Next Js's [Parallel Routes](https://nextjs
     ```
 
 - The page group top-level `page.tsx`:
-
   - only handles page metadata
   - returns nothing
 
@@ -285,7 +281,7 @@ TODO
 
 #### Stream formatting markers
 
-The list of unique characters from unicode emojis (https://emojipedia.org/) used to format stream responses is maintained in `markers` in `src/utils/api/stream.ts` and consumed throughout the app via `streamUtils` expirted from `src/utils/api/index.ts`.
+The list of unique characters from unicode emojis (https://emojipedia.org/) used to format stream responses is maintained in `markers` in `src/utils/api/stream.ts` and consumed throughout the app via `localAPIEndpoints` expirted from `src/utils/api/index.ts`.
 
 ## 🌐 Content updates & Internationalization (i18n)
 

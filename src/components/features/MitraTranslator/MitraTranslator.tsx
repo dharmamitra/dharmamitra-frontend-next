@@ -13,10 +13,8 @@ import TranslatorInput from "./TranslatorInput"
 import TranslatorLayout from "./TranslatorLayout"
 import { createTranslationRequestBody } from "./utils"
 
-import { streamUtils } from "@/api"
 import { ACCEPTED_FILE_TYPES_UI_STRING } from "@/components/features/MitraOCR/utils"
 import TranslationModelSelector from "@/components/features/paramSettings/TranslationModelSelector"
-import { createChatProps } from "@/components/features/utils"
 import {
   useInputEncodingParamWithLocalStorage,
   useInputSentenceParam,
@@ -25,6 +23,7 @@ import {
 } from "@/hooks/params"
 import useAppConfig from "@/hooks/useAppConfig"
 import { hasCachedChat, useCachedChat } from "@/hooks/useCachedChat"
+import { createChatProps, localAPIEndpoints } from "@/utils/api/stream"
 
 export default function MitraTranslator() {
   const {
@@ -45,12 +44,11 @@ export default function MitraTranslator() {
     })
 
     return createChatProps({
-      localEndpoint: streamUtils.localAPIEndpoints["mitra-translation"],
+      localEndpoint: localAPIEndpoints["mitra-translation"],
       requestBody,
     })
   }, [input_sentence, input_encoding, target_lang, model])
 
-  // Single useChat instance shared across all child components
   const { status, sendMessage, stop, messages, error, isCacheLoaded } =
     useCachedChat(chatPropsWithId)
 

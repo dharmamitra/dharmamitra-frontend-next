@@ -1,18 +1,19 @@
 import { TranslationApiTypes } from "@/api"
 import { ModelType } from "@/utils/api/global/types"
+import { ChatPropsWithId } from "@/utils/api/stream"
 import { allTranslationDefaultParams } from "@/utils/api/translation/params"
 
 const { input_encoding, target_lang, model, do_grammar_explanation, human_readable_tags, mode } =
   allTranslationDefaultParams
 
-export type TranslationRequestBodyV2 = Omit<
+export type TranslationRequestBody = Omit<
   TranslationApiTypes.RequestBody<"/translation/">,
   "model"
 > & {
   model: ModelType
 }
 
-export const defaultTranslationRequestBody: TranslationRequestBodyV2 = {
+export const defaultTranslationRequestBody: TranslationRequestBody = {
   input_sentence: "",
   input_encoding,
   target_lang,
@@ -20,10 +21,12 @@ export const defaultTranslationRequestBody: TranslationRequestBodyV2 = {
   model,
 }
 
-type CreateTranslationRequestBody = Partial<TranslationRequestBodyV2>
+type CreateTranslationRequestBody = Partial<TranslationRequestBody>
 export function createTranslationRequestBody(params: CreateTranslationRequestBody) {
   return { ...defaultTranslationRequestBody, ...params }
 }
+
+export type TranslationChatPropsWithId = ChatPropsWithId<TranslationRequestBody>
 
 export const defaultTaggingnRequestBody: TranslationApiTypes.RequestBody<"/tagging/"> = {
   input_sentence: "",

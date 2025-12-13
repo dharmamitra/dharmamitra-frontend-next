@@ -4,9 +4,9 @@ import { useLocale } from "next-intl"
 import ExplanationStream from "./ExplanationStream"
 import ResultItemExplanationFrame from "./ResultItemExplanationFrame"
 
-import { SearchApiTypes, streamUtils } from "@/api"
-import { createChatProps } from "@/components/features/utils"
+import { SearchApiTypes } from "@/api"
 import { useCachedChat } from "@/hooks/useCachedChat"
+import { createChatProps, localAPIEndpoints } from "@/utils/api/stream"
 
 type SearchResult = SearchApiTypes.Response<"/primary/">["results"][0]
 type ExplanationRequestBody = SearchResult & { locale: string }
@@ -19,7 +19,7 @@ export default function ResultItemExplanation({ searchResult }: { searchResult: 
   const chatPropsWithId = React.useMemo(() => {
     return createChatProps<ExplanationRequestBody>({
       id: JSON.stringify(searchResult),
-      localEndpoint: streamUtils.localAPIEndpoints["explanation-primary"],
+      localEndpoint: localAPIEndpoints["explanation-primary"],
       requestBody: { ...searchResult, locale },
     })
   }, [searchResult, locale])

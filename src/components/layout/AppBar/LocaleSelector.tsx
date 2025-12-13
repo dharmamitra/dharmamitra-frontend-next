@@ -22,9 +22,9 @@ export default function LocaleSelector() {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = () => {
+  const handleClose = React.useCallback(() => {
     setAnchorEl(null)
-  }
+  }, [])
 
   const handleLocaleChange = (locale: SupportedLocale) => {
     const currentSearch = typeof window !== "undefined" ? window.location.search : ""

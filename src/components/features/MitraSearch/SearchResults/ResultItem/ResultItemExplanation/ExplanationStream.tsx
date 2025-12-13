@@ -3,9 +3,9 @@ import { Box } from "@mui/material"
 import { ChatStatus, UIMessage } from "ai"
 
 import ExceptionText from "@/components/ExceptionText"
-import { getMessageText } from "@/components/features/utils"
 import LoadingDots from "@/components/LoadingDots"
 import { MemoizedMarkdown } from "@/components/memoized-markdown"
+import { getMessageText } from "@/utils/api/stream"
 
 export type ExplanationProps = {
   id: string

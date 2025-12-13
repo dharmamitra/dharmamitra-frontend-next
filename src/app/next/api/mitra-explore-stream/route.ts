@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    return responseStream.toTextStreamResponse()
+    return responseStream.toUIMessageStreamResponse()
   } catch (error) {
     console.error("Search stream route error: ", error)
     return new Response(
