@@ -3,15 +3,7 @@ import { searchInputId } from "./SearchInput"
 import { SearchApiTypes } from "@/api"
 import { allSearchDefaultParams } from "@/utils/api/search/params"
 
-export function createPrimarySearchRequestBody(
-  params: Partial<SearchApiTypes.RequestBody<"/primary/">>,
-) {
-  return { ...allSearchDefaultParams, ...params }
-}
-
-export function createParallelSearchRequestBody(
-  params: Partial<SearchApiTypes.RequestBody<"/parallel/">>,
-) {
+export function createSearchRequestBody(params: Partial<SearchApiTypes.Schema["SearchRequest"]>) {
   return { ...allSearchDefaultParams, ...params }
 }
 

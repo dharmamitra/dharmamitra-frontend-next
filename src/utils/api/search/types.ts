@@ -29,11 +29,7 @@ export type Response<Endpoint extends keyof paths> = APIResponse<paths[Endpoint]
 
 // type ExcludeStreams<T> = T extends `${infer _}stream${infer _}` ? T : never
 
-export type SearchTargets = Extract<
-  SearchEndpointName,
-  "primary"
-  // | "parallel" | "secondary" // TODO: awaiting BE work
->
+export type SearchTargets = Extract<SearchEndpointName, "primary">
 
 export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
 
@@ -41,8 +37,7 @@ export type SearchTarget = SearchTargets & keyof Messages["search"]["targets"]
  *  REQUEST PROPS
  */
 
-export type AllSearchApiParams = RequestBody<"/primary/"> & RequestBody<"/parallel/">
-// RequestBody<"/secondary/">
+export type AllSearchApiParams = RequestBody<"/primary/">
 
 type AssertAllKeys<T> = {
   [K in keyof T]-?: K

@@ -4,23 +4,6 @@
  */
 
 export interface paths {
-  "/parallel/": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Search Endpoint Parallel */
-    post: operations["search_endpoint_parallel_parallel__post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/primary/": {
     parameters: {
       query?: never
@@ -140,40 +123,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/knn-translate-mitra/": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Knn Translate Endpoint */
-    post: operations["knn_translate_endpoint_knn_translate_mitra__post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/knn-translate-mitra-no-stream/": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Knn Translate Endpoint No Stream */
-    post: operations["knn_translate_endpoint_no_stream_knn_translate_mitra_no_stream__post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/knn-translate-gemini/": {
     parameters: {
       query?: never
@@ -272,11 +221,7 @@ export interface paths {
     }
     get?: never
     put?: never
-    /**
-     * Chat Completions
-     * @description This endpoint emulates the OpenAI /v1/chat/completions API.
-     *     It supports streaming via SSE or normal single-response mode.
-     */
+    /** Chat Completions */
     post: operations["chat_completions_chat_translate_v1_chat_completions_post"]
     delete?: never
     options?: never
@@ -293,12 +238,8 @@ export interface paths {
     }
     get?: never
     put?: never
-    /**
-     * Chat Completions
-     * @description This endpoint emulates the OpenAI /v1/chat/completions API.
-     *     It supports streaming via SSE or normal single-response mode.
-     */
-    post: operations["chat_completions_chat_translate_v1_chat_completions_v2_post"]
+    /** Chat Completions V2 */
+    post: operations["chat_completions_v2_chat_translate_v1_chat_completions_v2_post"]
     delete?: never
     options?: never
     head?: never
@@ -316,11 +257,31 @@ export interface paths {
     put?: never
     /**
      * Chat Summary
-     * @description This endpoint provides a summary using the ChatSummaryRequest type.
-     *     It follows the OpenAI /v1/chat/completions format and supports streaming.
-     *     This endpoint is designed for better type safety and automatic TypeScript generation.
+     * @description OpenAI-compatible chat completion endpoint for chat summaries (SSE streaming).
+     *     Now uses emoji placeholders in the model output and converts them to markdown links on the fly.
      */
     post: operations["chat_summary_chat_summary_v1_chat_completions_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/search/v1/chat/completions": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Search Chat Completions
+     * @description Combined search and chat endpoint.
+     *     Runs primary search pipeline and feeds results to Gemini Pro for streaming response.
+     */
+    post: operations["search_chat_completions_search_v1_chat_completions_post"]
     delete?: never
     options?: never
     head?: never
@@ -386,6 +347,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/translation-rating/": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Translation Rating
+     * @description Endpoint to log translation ratings (thumbs up/down).
+     *     Logs the rating along with input and output to logs/ratings.ndjson
+     */
+    post: operations["translation_rating_translation_rating__post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
 export type webhooks = Record<string, never>
 export interface components {
@@ -404,46 +386,6 @@ export interface components {
        * @default fgs
        */
       mode: string
-    }
-    /** Body_knn_translate_endpoint_knn_translate_mitra__post */
-    Body_knn_translate_endpoint_knn_translate_mitra__post: {
-      /** Query */
-      query: string
-      /**
-       * Language
-       * @default english
-       */
-      language: string
-      /**
-       * Mode
-       * @default fgs
-       */
-      mode: string
-      /**
-       * Do Grammar
-       * @default true
-       */
-      do_grammar: boolean
-    }
-    /** Body_knn_translate_endpoint_no_stream_knn_translate_mitra_no_stream__post */
-    Body_knn_translate_endpoint_no_stream_knn_translate_mitra_no_stream__post: {
-      /** Query */
-      query: string
-      /**
-       * Language
-       * @default english
-       */
-      language: string
-      /**
-       * Mode
-       * @default normal
-       */
-      mode: string
-      /**
-       * Do Grammar
-       * @default true
-       */
-      do_grammar: boolean
     }
     /** Body_knn_translate_endpoint_no_stream_knn_translate_no_stream__post */
     Body_knn_translate_endpoint_no_stream_knn_translate_no_stream__post: {
@@ -508,13 +450,6 @@ export interface components {
        * @default false
        */
       do_grammar: boolean
-      /**
-       * Use Pro Model
-       * @default false
-       */
-      use_pro_model: boolean
-      /** Password */
-      password: string
     }
     /** Body_knn_translate_gemini_pro_endpoint_knn_translate_gemini_pro__post */
     Body_knn_translate_gemini_pro_endpoint_knn_translate_gemini_pro__post: {
@@ -540,7 +475,7 @@ export interface components {
     Body_search_endpoint_secondary_secondary__post: {
       /** Search Input */
       search_input: string
-      input_encoding: components["schemas"]["InputEncoding"]
+      input_encoding: components["schemas"]["typing_models__search__InputEncoding"]
       search_type: components["schemas"]["SearchType"]
       filter_secondary: components["schemas"]["LimitsSecondary"]
       postprocess_model: components["schemas"]["PostProcessModel"]
@@ -611,7 +546,7 @@ export interface components {
        */
       do_grammar: boolean | null
       /** @default auto */
-      input_encoding: components["schemas"]["InputEncoding"] | null
+      input_encoding: components["schemas"]["typing_models__search__InputEncoding"] | null
       /**
        * Target Lang
        * @default english
@@ -658,11 +593,6 @@ export interface components {
       detail?: components["schemas"]["ValidationError"][]
     }
     /**
-     * InputEncoding
-     * @enum {string}
-     */
-    InputEncoding: "auto" | "tibetan" | "wylie" | "dev" | "iast" | "hk"
-    /**
      * LimitsSecondary
      * @description Limits for Search in secondary sources
      * @enum {string}
@@ -672,40 +602,15 @@ export interface components {
      * ModelType
      * @enum {string}
      */
-    ModelType: "gpt-3.5-turbo" | "default" | "mitra-base" | "mitra-pro"
-    /**
-     * ParallelDataSearchResponse
-     * @description List of individual search results for the parallel search.
-     */
-    ParallelDataSearchResponse: {
-      /** Results */
-      results: components["schemas"]["ParallelDataSearchResult"][]
-    }
-    /**
-     * ParallelDataSearchResult
-     * @description A single result from the parallel data search.
-     */
-    ParallelDataSearchResult: {
-      /** Query */
-      query: string
-      /** Src Lang */
-      src_lang: string
-      /** Src Segmentnr */
-      src_segmentnr: string
-      /** Src Title */
-      src_title: string
-      /** Src Link */
-      src_link: string
-      src_text: components["schemas"]["TextSegment"]
-      /** Tgt Lang */
-      tgt_lang: string
-      /** Tgt Segmentnr */
-      tgt_segmentnr: string
-      /** Tgt Title */
-      tgt_title: string
-      tgt_text: components["schemas"]["TextSegment"]
-      /** Tgt Link */
-      tgt_link: string
+    ModelType: "gpt-3.5-turbo" | "default" | "mitra-base" | "mitra-pro" | "fgs"
+    /** OCRResponse */
+    OCRResponse: {
+      /** Extracted Text */
+      extracted_text: string
+      /** Pages */
+      pages: number
+      /** Processing Time Seconds */
+      processing_time_seconds: number
     }
     /**
      * PostProcessModel
@@ -747,12 +652,50 @@ export interface components {
       /** Vector */
       vector?: number[] | null
     }
+    /**
+     * SearchChatRequest
+     * @description Combines ChatCompletionRequest format with SearchRequest parameters.
+     */
+    SearchChatRequest: {
+      /** @default gpt-3.5-turbo */
+      model: components["schemas"]["ModelType"] | null
+      /** Messages */
+      messages: {
+        [key: string]: string
+      }[]
+      /**
+       * Stream
+       * @default true
+       */
+      stream: boolean | null
+      /**
+       * Temperature
+       * @default 0.2
+       */
+      temperature: number | null
+      /** Locale */
+      locale: string
+      /** @default auto */
+      input_encoding: components["schemas"]["typing_models__search__InputEncoding"] | null
+      /** @default semantic */
+      search_type: components["schemas"]["SearchType"] | null
+      /** @default all */
+      filter_source_language: components["schemas"]["FilterLanguage"] | null
+      /** @default all */
+      filter_target_language: components["schemas"]["FilterLanguage"] | null
+      source_filters?: components["schemas"]["SourceFilters"] | null
+      /**
+       * Max Depth
+       * @default 50
+       */
+      max_depth: number | null
+    }
     /** SearchRequest */
     SearchRequest: {
       /** Search Input */
       search_input: string
       /** @default auto */
-      input_encoding: components["schemas"]["InputEncoding"]
+      input_encoding: components["schemas"]["typing_models__search__InputEncoding"]
       /** @default semantic */
       search_type: components["schemas"]["SearchType"]
       /** @default all */
@@ -855,6 +798,29 @@ export interface components {
       /** Prediction */
       prediction: string
     }
+    /** TranslationRatingRequest */
+    TranslationRatingRequest: {
+      /** Translation Input */
+      translation_input: string
+      /** Translation Output */
+      translation_output: string
+      /**
+       * Rating
+       * @enum {string}
+       */
+      rating: "+" | "-"
+      /** Comment */
+      comment?: string | null
+      /** Name */
+      name?: string | null
+    }
+    /** TranslationRatingResponse */
+    TranslationRatingResponse: {
+      /** Status */
+      status: string
+      /** Message */
+      message: string
+    }
     /** TranslationResponse */
     TranslationResponse: {
       /** Translation */
@@ -869,6 +835,11 @@ export interface components {
       /** Error Type */
       type: string
     }
+    /**
+     * InputEncoding
+     * @enum {string}
+     */
+    typing_models__search__InputEncoding: "auto" | "tibetan" | "wylie" | "dev" | "iast" | "hk"
   }
   responses: never
   parameters: never
@@ -878,39 +849,6 @@ export interface components {
 }
 export type $defs = Record<string, never>
 export interface operations {
-  search_endpoint_parallel_parallel__post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["SearchRequest"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["ParallelDataSearchResponse"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
   search_endpoint_primary_primary__post: {
     parameters: {
       query?: never
@@ -1142,72 +1080,6 @@ export interface operations {
       }
     }
   }
-  knn_translate_endpoint_knn_translate_mitra__post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["Body_knn_translate_endpoint_knn_translate_mitra__post"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  knn_translate_endpoint_no_stream_knn_translate_mitra_no_stream__post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["Body_knn_translate_endpoint_no_stream_knn_translate_mitra_no_stream__post"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["TranslationResponse"]
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
   knn_translate_gemini_endpoint_knn_translate_gemini__post: {
     parameters: {
       query?: never
@@ -1396,7 +1268,7 @@ export interface operations {
       }
     }
   }
-  chat_completions_chat_translate_v1_chat_completions_v2_post: {
+  chat_completions_v2_chat_translate_v1_chat_completions_v2_post: {
     parameters: {
       query?: never
       header?: never
@@ -1439,6 +1311,39 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["ChatSummaryRequest"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  search_chat_completions_search_v1_chat_completions_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["SearchChatRequest"]
       }
     }
     responses: {
@@ -1534,6 +1439,7 @@ export interface operations {
         transliterate_devanagari_to_iast?: boolean
         transliterate_tibetan_to_wylie?: boolean
         instruction?: string
+        bypass_cache?: boolean
       }
       header?: never
       path?: never
@@ -1551,7 +1457,48 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          "application/json": unknown
+          "application/json": components["schemas"]["OCRResponse"]
+          "text/plain": unknown
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+      /** @description Too many requests */
+      429: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  translation_rating_translation_rating__post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TranslationRatingRequest"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["TranslationRatingResponse"]
         }
       }
       /** @description Validation Error */
