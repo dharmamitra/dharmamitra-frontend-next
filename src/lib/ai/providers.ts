@@ -4,6 +4,7 @@ import { ModelType } from "@/utils/api/global/types"
 
 const ENDPOINTS = {
   mitraTranslate: "/chat-translate/v1/",
+  mitraExplore: "/search/v1/",
   mitraSearchSummary: "/chat-summary/v1/",
 }
 
@@ -28,6 +29,17 @@ export const mitraTranslate = createOpenAICompatible<
   name: "mitra-translate",
   apiKey: process.env.DM_CHAT_API_KEY,
   baseURL: process.env.DM_CHAT_STREAM_BASE_URL + ENDPOINTS.mitraTranslate,
+})
+
+export const mitraExplore = createOpenAICompatible<
+  MitraCompletionModelId,
+  MitraChatModelId,
+  MitraEmbeddingModelId,
+  _ImgModelId
+>({
+  name: "mitra-explore",
+  apiKey: process.env.DM_CHAT_API_KEY,
+  baseURL: process.env.DM_CHAT_STREAM_BASE_URL + ENDPOINTS.mitraExplore,
 })
 
 export const mitraSearchSummary = createOpenAICompatible<

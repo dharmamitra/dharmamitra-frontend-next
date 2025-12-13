@@ -39,7 +39,7 @@ export default function FeatureContainer() {
         </Activity>
 
         <Activity mode={isFeatureVisible("explore") ? "visible" : "hidden"}>
-          <MitraExplore />
+          <MitraExploreWrapper />
         </Activity>
 
         <Activity mode={isFeatureVisible("db-search") ? "visible" : "hidden"}>
@@ -55,7 +55,7 @@ export default function FeatureContainer() {
 }
 
 /**
- * Wrapper for MitraSearch to manage its local state.
+ * Wrapper for MitraSearch & MitraExplore to manage their local state.
  * This keeps the search controls state within the Activity boundary.
  */
 function MitraSearchWrapper() {
@@ -66,6 +66,20 @@ function MitraSearchWrapper() {
 
   return (
     <MitraSearch
+      isSearchControlsOpen={isSearchControlsOpen}
+      setIsSearchControlsOpen={setIsSearchControlsOpen}
+    />
+  )
+}
+
+function MitraExploreWrapper() {
+  const [isSearchControlsOpen, setIsSearchControlsOpen] = React.useState(() => {
+    if (typeof window === "undefined") return false
+    return localStorage.getItem("show-search-options") === "true"
+  })
+
+  return (
+    <MitraExplore
       isSearchControlsOpen={isSearchControlsOpen}
       setIsSearchControlsOpen={setIsSearchControlsOpen}
     />
